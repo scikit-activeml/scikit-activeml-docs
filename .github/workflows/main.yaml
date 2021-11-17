@@ -18,8 +18,7 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Clone Repository
       run: |
-        git clone -b master --single-branch https://github.com/scikit-activeml/scikit-activeml.git
-        cd scikit-activeml
+        git clone -b master --single-branch https://github.com/scikit-activeml/scikit-activeml.git .
     - name: Install dependencies
       run: |
         sudo apt-get install pandoc
