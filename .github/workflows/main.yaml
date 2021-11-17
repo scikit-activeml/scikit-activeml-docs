@@ -18,7 +18,7 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Clone Repository
       run: |
-        git clone -b master https://github.com/scikit-activeml/scikit-activeml.git
+        git clone -b master --single-branch https://github.com/scikit-activeml/scikit-activeml.git
         cd scikit-activeml
     - name: Install dependencies
       run: |
