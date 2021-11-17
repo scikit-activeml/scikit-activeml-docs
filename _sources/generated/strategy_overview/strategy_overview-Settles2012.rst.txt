@@ -1,0 +1,98 @@
+Strategy Overview By Settles
+==============================
+
+This is an overview of all implemented AL strategies. The strategies are categorized according to :footcite:t:`Settles2012`.
+
+Pool Strategies
+---------------
+
+Expected Error Reduction
+~~~~~~~~~~~~~~~~~~~~~~~~
+.. list-table:: 
+   :header-rows: 1
+
+   * - Method
+     - Base Class
+     - Reference
+   * - :doc:`Expected Misclassification Risk </generated/sphinx_gallery_examples/pool/plot_ExpectedErrorReduction_Expected_Misclassification_Risk>`
+     - :doc:`ExpectedErrorReduction </generated/api/skactiveml.pool.ExpectedErrorReduction>`
+     - :footcite:t:`joshi2009multi`
+   * - :doc:`Cost-sensitive Expected Error Reduction </generated/sphinx_gallery_examples/pool/plot_ExpectedErrorReduction_Cost-sensitive_Expected_Error_Reduction>`
+     - :doc:`ExpectedErrorReduction </generated/api/skactiveml.pool.ExpectedErrorReduction>`
+     - :footcite:t:`margineantu2005active`
+   * - :doc:`Log Loss Expected Error Reduction </generated/sphinx_gallery_examples/pool/plot_ExpectedErrorReduction_Log_Loss_Expected_Error_Reduction>`
+     - :doc:`ExpectedErrorReduction </generated/api/skactiveml.pool.ExpectedErrorReduction>`
+     - :footcite:t:`roy2001toward`
+
+Query-by-Committee
+~~~~~~~~~~~~~~~~~~
+.. list-table:: 
+   :header-rows: 1
+
+   * - Method
+     - Base Class
+     - Reference
+   * - :doc:`Query-by-Committee with Kullback-Leibler Divergence </generated/sphinx_gallery_examples/pool/plot_QBC_Query-by-Committee_with_Kullback-Leibler_Divergence>`
+     - :doc:`QBC </generated/api/skactiveml.pool.QBC>`
+     - :footcite:t:`seung1992query`, :footcite:t:`mccallum1998employing`
+   * - :doc:`Query-by-Committee with Vote Entropy </generated/sphinx_gallery_examples/pool/plot_QBC_Query-by-Committee_with_Vote_Entropy>`
+     - :doc:`QBC </generated/api/skactiveml.pool.QBC>`
+     - :footcite:t:`seung1992query`, :footcite:t:`engelson1996minimizing`
+
+Random Sampling
+~~~~~~~~~~~~~~~
+.. list-table:: 
+   :header-rows: 1
+
+   * - Method
+     - Base Class
+     - Reference
+   * - :doc:`Random Sampling </generated/sphinx_gallery_examples/pool/plot_RandomSampler_Random_Sampling>`
+     - :doc:`RandomSampler </generated/api/skactiveml.pool.RandomSampler>`
+     - 
+
+Uncertainty Sampling
+~~~~~~~~~~~~~~~~~~~~
+.. list-table:: 
+   :header-rows: 1
+
+   * - Method
+     - Base Class
+     - Reference
+   * - :doc:`Epistemic Uncertainty Sampling </generated/sphinx_gallery_examples/pool/plot_EpistemicUncertainty_Epistemic_Uncertainty_Sampling>`
+     - :doc:`EpistemicUncertainty </generated/api/skactiveml.pool.EpistemicUncertainty>`
+     - :footcite:t:`nguyen2019epistemic`
+   * - :doc:`4DS </generated/sphinx_gallery_examples/pool/plot_FourDS_4DS>`
+     - :doc:`FourDS </generated/api/skactiveml.pool.FourDS>`
+     - :footcite:t:`reitmaier2013let`
+   * - :doc:`Margin-based Uncertainty Sampling </generated/sphinx_gallery_examples/pool/plot_UncertaintySampling_Margin-based_Uncertainty_Sampling>`
+     - :doc:`UncertaintySampling </generated/api/skactiveml.pool.UncertaintySampling>`
+     - :footcite:t:`settles2009active`
+   * - :doc:`Least-confident-based Uncertainty Sampling </generated/sphinx_gallery_examples/pool/plot_UncertaintySampling_Least-confident-based_Uncertainty_Sampling>`
+     - :doc:`UncertaintySampling </generated/api/skactiveml.pool.UncertaintySampling>`
+     - :footcite:t:`settles2009active`
+   * - :doc:`Entropy-based Uncertainty Sampling </generated/sphinx_gallery_examples/pool/plot_UncertaintySampling_Entropy-based_Uncertainty_Sampling>`
+     - :doc:`UncertaintySampling </generated/api/skactiveml.pool.UncertaintySampling>`
+     - :footcite:t:`settles2009active`
+   * - :doc:`Expected Average Precision </generated/sphinx_gallery_examples/pool/plot_UncertaintySampling_Expected_Average_Precision>`
+     - :doc:`UncertaintySampling </generated/api/skactiveml.pool.UncertaintySampling>`
+     - :footcite:t:`wang2018uncertainty`
+
+Others
+~~~~~~
+.. list-table:: 
+   :header-rows: 1
+
+   * - Method
+     - Base Class
+     - Reference
+   * - :doc:`Active Learning with Cost Embedding </generated/sphinx_gallery_examples/pool/plot_ALCE_Active_Learning_with_Cost_Embedding>`
+     - :doc:`ALCE </generated/api/skactiveml.pool.ALCE>`
+     - :footcite:t:`huang2016novel`
+   * - :doc:`Multi-class Probabilistic Active Learning </generated/sphinx_gallery_examples/pool/plot_McPAL_Multi-class_Probabilistic_Active_Learning>`
+     - :doc:`McPAL </generated/api/skactiveml.pool.McPAL>`
+     - :footcite:t:`kottke2016multi`
+
+References
+----------
+.. footbibliography::

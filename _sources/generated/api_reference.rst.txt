@@ -1,0 +1,214 @@
+.. _api_reference:
+
+=============
+API Reference
+=============
+
+This is an overview of the API.
+
+.. module:: skactiveml
+
+:mod:`skactiveml.base`:
+=======================
+
+.. automodule:: skactiveml.base
+    :no-members:
+    :no-inherited-members:
+
+.. currentmodule:: skactiveml
+
+Classes
+-------
+
+.. autosummary::
+   :nosignatures:
+   :toctree: api
+   :template: class.rst
+
+   base.QueryStrategy
+   base.SingleAnnotPoolBasedQueryStrategy
+   base.MultiAnnotPoolBasedQueryStrategy
+   base.BudgetManager
+   base.SingleAnnotStreamBasedQueryStrategy
+   base.SkactivemlClassifier
+   base.ClassFrequencyEstimator
+   base.AnnotModelMixin
+
+:mod:`skactiveml.pool`:
+=======================
+
+.. automodule:: skactiveml.pool
+    :no-members:
+    :no-inherited-members:
+
+.. currentmodule:: skactiveml
+
+Classes
+-------
+
+.. autosummary::
+   :nosignatures:
+   :toctree: api
+   :template: class.rst
+
+   pool.RandomSampler
+   pool.McPAL
+   pool.UncertaintySampling
+   pool.EpistemicUncertainty
+   pool.ExpectedErrorReduction
+   pool.QBC
+   pool.FourDS
+   pool.ALCE
+
+Functions
+---------
+
+.. autosummary::
+   :nosignatures:
+   :toctree: api
+   :template: function.rst
+
+   pool.cost_reduction
+   pool.uncertainty_scores
+   pool.expected_average_precision
+   pool.expected_error_reduction
+   pool.average_kl_divergence
+   pool.vote_entropy
+
+:mod:`skactiveml.pool.multi`:
+=============================
+
+.. automodule:: skactiveml.pool.multi
+    :no-members:
+    :no-inherited-members:
+
+.. currentmodule:: skactiveml
+
+Classes
+-------
+
+.. autosummary::
+   :nosignatures:
+   :toctree: api
+   :template: class.rst
+
+   pool.multi.IEThresh
+   pool.multi.IEAnnotModel
+   pool.multi.MultiAnnotWrapper
+
+:mod:`skactiveml.stream`:
+=========================
+
+.. automodule:: skactiveml.stream
+    :no-members:
+    :no-inherited-members:
+
+.. currentmodule:: skactiveml
+
+Classes
+-------
+
+.. autosummary::
+   :nosignatures:
+   :toctree: api
+   :template: class.rst
+
+   stream.RandomSampler
+   stream.PeriodicSampler
+   stream.FixedUncertainty
+   stream.VariableUncertainty
+   stream.Split
+   stream.PALS
+
+:mod:`skactiveml.classifier`:
+=============================
+
+.. automodule:: skactiveml.classifier
+    :no-members:
+    :no-inherited-members:
+
+.. currentmodule:: skactiveml
+
+Classes
+-------
+
+.. autosummary::
+   :nosignatures:
+   :toctree: api
+   :template: class.rst
+
+   classifier.PWC
+   classifier.CMM
+   classifier.SklearnClassifier
+   classifier.MultiAnnotClassifier
+   classifier.LogisticRegressionRY
+
+:mod:`skactiveml.visualization`:
+================================
+
+.. automodule:: skactiveml.visualization
+    :no-members:
+    :no-inherited-members:
+
+.. currentmodule:: skactiveml
+
+Functions
+---------
+
+.. autosummary::
+   :nosignatures:
+   :toctree: api
+   :template: function.rst
+
+   visualization.plot_utility
+   visualization.plot_decision_boundary
+
+:mod:`skactiveml.utils`:
+========================
+
+.. automodule:: skactiveml.utils
+    :no-members:
+    :no-inherited-members:
+
+.. currentmodule:: skactiveml
+
+Classes
+-------
+
+.. autosummary::
+   :nosignatures:
+   :toctree: api
+   :template: class.rst
+
+   utils.ExtLabelEncoder
+
+Functions
+---------
+
+.. autosummary::
+   :nosignatures:
+   :toctree: api
+   :template: function.rst
+
+   utils.rand_argmax
+   utils.rand_argmin
+   utils.compute_vote_vectors
+   utils.majority_vote
+   utils.is_unlabeled
+   utils.is_labeled
+   utils.check_classes
+   utils.check_missing_label
+   utils.check_cost_matrix
+   utils.check_scalar
+   utils.check_classifier_params
+   utils.check_X_y
+   utils.check_random_state
+   utils.call_func
+   utils.simple_batch
+   utils.check_class_prior
+   utils.ext_confusion_matrix
+   utils.fit_if_not_fitted
+   utils.labeled_indices
+   utils.unlabeled_indices
+   utils.check_type
+

@@ -1,0 +1,470 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>skactiveml.pool._expected_error &#8212; scikit-activeml 0.1.1 documentation</title>
+    
+  <link href="../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css" />
+    
+  <link rel="preload" as="script" href="../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../../index.html">
+  <img src="../../../_static/scikit-activeml-logo.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../notebooks/getting_started.html">
+  Getting Started
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../generated/strategy_overview/strategy_overview-Settles2012.html">
+  Strategy Overview
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../generated/api_reference.html">
+  API Reference
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../generated/sphinx_gallery_examples/index.html">
+  Examples
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../developers_guide.html">
+  Developer’s Guide
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Quick Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/scikit-activeml/scikit-activeml" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://pypi.org/project/scikit-activeml" rel="noopener" target="_blank" title="PyPI">
+            <span><i class="fas fa-box"></i></span>
+            <label class="sr-only">PyPI</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <h1>Source code for skactiveml.pool._expected_error</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.base</span> <span class="kn">import</span> <span class="n">clone</span>
+
+<span class="kn">from</span> <span class="nn">..base</span> <span class="kn">import</span> <span class="n">SingleAnnotPoolBasedQueryStrategy</span><span class="p">,</span> <span class="n">SkactivemlClassifier</span>
+<span class="kn">from</span> <span class="nn">..utils</span> <span class="kn">import</span> <span class="n">check_type</span><span class="p">,</span> <span class="n">is_labeled</span><span class="p">,</span> <span class="n">simple_batch</span><span class="p">,</span> \
+    <span class="n">fit_if_not_fitted</span><span class="p">,</span> <span class="n">check_cost_matrix</span><span class="p">,</span> <span class="n">check_X_y</span>
+
+
+<div class="viewcode-block" id="ExpectedErrorReduction"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.ExpectedErrorReduction.html#skactiveml.pool.ExpectedErrorReduction">[docs]</a><span class="k">class</span> <span class="nc">ExpectedErrorReduction</span><span class="p">(</span><span class="n">SingleAnnotPoolBasedQueryStrategy</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Expected Error Reduction</span>
+
+<span class="sd">    This class implements the expected error reduction algorithm with different</span>
+<span class="sd">    loss functions:</span>
+<span class="sd">     - log loss (log_loss) [1],</span>
+<span class="sd">     - expected misclassification risk (emr) [2],</span>
+<span class="sd">     - and cost-sensitive learning (csl) [3].</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    method: {&#39;log_loss&#39;, &#39;emr&#39;, &#39;csl&#39;}, optional (default=&#39;emr&#39;)</span>
+<span class="sd">        Variant of expected error reduction to be used: &#39;log_loss&#39; is</span>
+<span class="sd">        cost-insensitive, while &#39;emr&#39; and &#39;csl&#39; are cost-sensitive variants.</span>
+<span class="sd">    cost_matrix: array-like, shape (n_classes, n_classes), optional</span>
+<span class="sd">    (default=None)</span>
+<span class="sd">        Cost matrix with `cost_matrix[i,j]` defining the cost of predicting</span>
+<span class="sd">        class `j` for a sample with the actual class `i`.</span>
+<span class="sd">        Only supported for least confident</span>
+<span class="sd">        variant.</span>
+<span class="sd">    ignore_partial_fit: bool, optional (default=False)</span>
+<span class="sd">        If false, the classifier will be refitted through `partial_fit` if</span>
+<span class="sd">        available. Otherwise, the use of `fit` is enforced.</span>
+<span class="sd">    random_state: numeric | np.random.RandomState, optional (default=None)</span>
+<span class="sd">        Random state for annotator selection.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    [1] Settles, Burr. &quot;Active learning literature survey.&quot; University of</span>
+<span class="sd">        Wisconsin, Madison 52.55-66 (2010): 11.</span>
+<span class="sd">    [2] Joshi, A. J., Porikli, F., &amp; Papanikolopoulos, N. (2009, June).</span>
+<span class="sd">        Multi-class active learning for image classification.</span>
+<span class="sd">        In 2009 IEEE Conference on Computer Vision and Pattern Recognition</span>
+<span class="sd">        (pp. 2372-2379). IEEE.</span>
+<span class="sd">    [3] Margineantu, D. D. (2005, July). Active cost-sensitive learning.</span>
+<span class="sd">        In IJCAI (Vol. 5, pp. 1622-1623).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">EMR</span> <span class="o">=</span> <span class="s1">&#39;emr&#39;</span>
+    <span class="n">CSL</span> <span class="o">=</span> <span class="s1">&#39;csl&#39;</span>
+    <span class="n">LOG_LOSS</span> <span class="o">=</span> <span class="s1">&#39;log_loss&#39;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="n">EMR</span><span class="p">,</span> <span class="n">cost_matrix</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ignore_partial_fit</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                 <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">method</span> <span class="o">=</span> <span class="n">method</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cost_matrix</span> <span class="o">=</span> <span class="n">cost_matrix</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ignore_partial_fit</span> <span class="o">=</span> <span class="n">ignore_partial_fit</span>
+
+<div class="viewcode-block" id="ExpectedErrorReduction.query"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.ExpectedErrorReduction.html#skactiveml.pool.ExpectedErrorReduction.query">[docs]</a>    <span class="k">def</span> <span class="nf">query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X_cand</span><span class="p">,</span> <span class="n">clf</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+              <span class="n">sample_weight_cand</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">return_utilities</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Query the next instance to be labeled.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X_cand : array-like, shape (n_candidate_samples, n_features)</span>
+<span class="sd">            Candidate samples from which the strategy can select.</span>
+<span class="sd">        clf : skactiveml.base.SkactivemlClassifier</span>
+<span class="sd">            Model implementing the methods `fit` and `predict_proba`.</span>
+<span class="sd">        X : array-like, shape (n_samples, n_features), optional (default=None)</span>
+<span class="sd">            Complete training data set.</span>
+<span class="sd">        y : array-like, shape (n_samples), optional (default=None)</span>
+<span class="sd">            Labels of the training data set.</span>
+<span class="sd">        sample_weight : array-like, shape (n_samples), optional</span>
+<span class="sd">        (default=None)</span>
+<span class="sd">            Weights of training samples in `X`.</span>
+<span class="sd">        sample_weight_cand : array-like, shape (n_candidate_samples), optional</span>
+<span class="sd">        (default=None)</span>
+<span class="sd">            Weights of candidate samples in `X_cand`.</span>
+<span class="sd">        batch_size : int, optional (default=1)</span>
+<span class="sd">            The number of samples to be selected in one AL cycle.</span>
+<span class="sd">        return_utilities : bool, optional (default=False)</span>
+<span class="sd">            If true, also return the utilities based on the query strategy.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        query_indices : numpy.ndarray, shape (batch_size)</span>
+<span class="sd">            The query_indices indicate for which candidate sample a label is</span>
+<span class="sd">            to queried, e.g., `query_indices[0]` indicates the first selected</span>
+<span class="sd">            sample.</span>
+<span class="sd">        utilities : numpy.ndarray, shape (batch_size, n_samples)</span>
+<span class="sd">            The utilities of all candidate samples after each selected</span>
+<span class="sd">            sample of the batch, e.g., `utilities[0]` indicates the utilities</span>
+<span class="sd">            used for selecting the first sample (with index `query_indices[0]`)</span>
+<span class="sd">            of the batch.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Validate input parameters.</span>
+        <span class="n">X_cand</span><span class="p">,</span> <span class="n">return_utilities</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> \
+            <span class="bp">self</span><span class="o">.</span><span class="n">_validate_data</span><span class="p">(</span><span class="n">X_cand</span><span class="p">,</span> <span class="n">return_utilities</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">random_state</span><span class="p">,</span> <span class="n">reset</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="c1"># Calculate utilities</span>
+        <span class="n">utilities</span> <span class="o">=</span> <span class="n">expected_error_reduction</span><span class="p">(</span>
+            <span class="n">clf</span><span class="o">=</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_cand</span><span class="o">=</span><span class="n">X_cand</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">cost_matrix</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cost_matrix</span><span class="p">,</span>
+            <span class="n">method</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">method</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">,</span>
+            <span class="n">sample_weight_cand</span><span class="o">=</span><span class="n">sample_weight_cand</span><span class="p">,</span>
+            <span class="n">ignore_partial_fit</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ignore_partial_fit</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">simple_batch</span><span class="p">(</span><span class="n">utilities</span><span class="p">,</span> <span class="n">random_state</span><span class="p">,</span>
+                            <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
+                            <span class="n">return_utilities</span><span class="o">=</span><span class="n">return_utilities</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="expected_error_reduction"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.expected_error_reduction.html#skactiveml.pool.expected_error_reduction">[docs]</a><span class="k">def</span> <span class="nf">expected_error_reduction</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_cand</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cost_matrix</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                             <span class="n">method</span><span class="o">=</span><span class="s1">&#39;emr&#39;</span><span class="p">,</span> <span class="n">sample_weight_cand</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                             <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ignore_partial_fit</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Compute uncertainty scores.</span>
+
+<span class="sd">    In case of a given cost matrix C, maximum expected cost is implemented as</span>
+<span class="sd">    score.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    clf : skactiveml.base.SkactivemlClassifier</span>
+<span class="sd">        Model implementing the methods `fit` and `predict_proba`.</span>
+<span class="sd">    X_cand : array-like, shape (n_candidate_samples, n_features)</span>
+<span class="sd">        Candidate samples from which the strategy can select.</span>
+<span class="sd">    X : array-like, shape (n_samples, n_features), optional (default=None)</span>
+<span class="sd">        Complete training data set.</span>
+<span class="sd">    y : array-like, shape (n_samples), optional (default=None)</span>
+<span class="sd">        Labels of the training data set.</span>
+<span class="sd">    cost_matrix : array-like, shape (n_classes, n_classes), optional</span>
+<span class="sd">    (default=None)</span>
+<span class="sd">        Cost matrix with `cost_matrix[i,j]` defining the cost of predicting</span>
+<span class="sd">        class `j` for a sample with the actual class `i`.</span>
+<span class="sd">        Only supported for least confident</span>
+<span class="sd">        variant.</span>
+<span class="sd">    method : {&#39;log_loss&#39;, &#39;emr&#39;, &#39;csl&#39;}, optional (default=&#39;emr&#39;)</span>
+<span class="sd">        Variant of expected error reduction to be used: &#39;log_loss&#39; is</span>
+<span class="sd">        cost-insensitive, while &#39;emr&#39; and &#39;csl&#39; are cost-sensitive variants.</span>
+<span class="sd">    sample_weight : array-like, shape (n_samples), optional</span>
+<span class="sd">    (default=None)</span>
+<span class="sd">        Weights of training samples in `X`.</span>
+<span class="sd">    sample_weight_cand : array-like, shape (n_candidate_samples), optional</span>
+<span class="sd">    (default=None)</span>
+<span class="sd">        Weights of candidate samples in `X_cand`.</span>
+<span class="sd">    ignore_partial_fit : bool, optional (default=False)</span>
+<span class="sd">        If false, the classifier will be refitted through `partial_fit` if</span>
+<span class="sd">        available. Otherwise, the use of `fit` is enforced.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    utilities : np.ndarray, shape (n_candidates)</span>
+<span class="sd">        The utilities of all unlabeled instances.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    [1] Settles, Burr. &quot;Active learning literature survey.&quot; University of</span>
+<span class="sd">        Wisconsin, Madison 52.55-66 (2010): 11.</span>
+<span class="sd">    [2] Joshi, A. J., Porikli, F., &amp; Papanikolopoulos, N. (2009, June).</span>
+<span class="sd">        Multi-class active learning for image classification.</span>
+<span class="sd">        In 2009 IEEE Conference on Computer Vision and Pattern Recognition</span>
+<span class="sd">        (pp. 2372-2379). IEEE.</span>
+<span class="sd">    [3] Margineantu, D. D. (2005, July). Active cost-sensitive learning.</span>
+<span class="sd">        In IJCAI (Vol. 5, pp. 1622-1623).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Check if the classifier and its arguments are valid.</span>
+    <span class="n">check_type</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">SkactivemlClassifier</span><span class="p">,</span> <span class="s1">&#39;clf&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Check whether to use `fit` or `partial_fit`.</span>
+    <span class="n">check_type</span><span class="p">(</span><span class="n">ignore_partial_fit</span><span class="p">,</span> <span class="nb">bool</span><span class="p">,</span> <span class="s1">&#39;ignore_partial_fit&#39;</span><span class="p">)</span>
+    <span class="n">use_fit</span> <span class="o">=</span> <span class="n">ignore_partial_fit</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="s1">&#39;partial_fit&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">use_fit</span> <span class="ow">and</span> <span class="p">(</span><span class="n">X</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">y</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s1">&#39;`X` and `y` cannot be None for a classifier using `fit` for &#39;</span>
+            <span class="s1">&#39;retraining.&#39;</span>
+        <span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">X</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">y</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;csl&#39;</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;`X` and `y` cannot be None for `method=&#39;csl&#39;`.&quot;</span>
+        <span class="p">)</span>
+    <span class="n">use_sample_weight</span> <span class="o">=</span> <span class="n">sample_weight</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> \
+                        <span class="ow">or</span> <span class="n">sample_weight_cand</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="n">use_fit</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">bool</span><span class="p">(</span><span class="n">sample_weight</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span>
+                    <span class="o">!=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">sample_weight_cand</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s1">&#39;`sample_weight` and `sample_weight_cand` must either both be &#39;</span>
+            <span class="s1">&#39;None or array-like, if the fit method is used.&#39;</span>
+        <span class="p">)</span>
+    <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">X_cand</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">,</span> <span class="n">sample_weight_cand</span> <span class="o">=</span> <span class="n">check_X_y</span><span class="p">(</span>
+        <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">X_cand</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">,</span> <span class="n">sample_weight_cand</span><span class="p">,</span>
+        <span class="n">force_all_finite</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">missing_label</span><span class="o">=</span><span class="n">clf</span><span class="o">.</span><span class="n">missing_label</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Refit classifier.</span>
+    <span class="k">if</span> <span class="n">use_sample_weight</span><span class="p">:</span>
+        <span class="n">clf</span> <span class="o">=</span> <span class="n">fit_if_not_fitted</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">clf</span> <span class="o">=</span> <span class="n">fit_if_not_fitted</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+    <span class="n">clf_refit</span> <span class="o">=</span> <span class="n">clone</span><span class="p">(</span><span class="n">clf</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span> <span class="k">if</span> <span class="n">use_fit</span> <span class="k">else</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">clf</span><span class="p">)</span><span class="o">.</span><span class="n">partial_fit</span>
+
+    <span class="c1"># Check cost matrix.</span>
+    <span class="n">n_classes</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">clf</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span>
+    <span class="n">cost_matrix</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">clf</span><span class="o">.</span><span class="n">classes_</span><span class="p">))</span> <span class="k">if</span> <span class="n">cost_matrix</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> \
+        <span class="n">cost_matrix</span>
+    <span class="n">cost_matrix</span> <span class="o">=</span> <span class="n">check_cost_matrix</span><span class="p">(</span><span class="n">cost_matrix</span><span class="p">,</span> <span class="n">n_classes</span><span class="p">)</span>
+
+    <span class="c1"># Compute class-membership probabilities of candidate samples.</span>
+    <span class="n">P</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_cand</span><span class="p">)</span>
+
+    <span class="c1"># Storage for computed errors per candidate sample.</span>
+    <span class="n">errors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X_cand</span><span class="p">))</span>
+    <span class="n">errors_per_class</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_classes</span><span class="p">)</span>
+
+    <span class="c1"># Iterate over candidate samples</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">X_cand</span><span class="p">):</span>
+        <span class="c1"># Simulate acquisition of label for each candidate sample and class.</span>
+        <span class="k">for</span> <span class="n">yi</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_classes</span><span class="p">):</span>
+            <span class="c1"># Create sample array for the retraining of the classifier.</span>
+            <span class="n">X_new</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">X</span><span class="p">,</span> <span class="p">[</span><span class="n">x</span><span class="p">]))</span> <span class="k">if</span> <span class="n">use_fit</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x</span><span class="p">])</span>
+            <span class="c1"># Create label array for the retraining of the classifier.</span>
+            <span class="n">y_new</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="p">[[</span><span class="n">yi</span><span class="p">]])</span> <span class="k">if</span> <span class="n">use_fit</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">yi</span><span class="p">])</span>
+            <span class="c1"># Check whether sample weights are used.</span>
+            <span class="k">if</span> <span class="n">use_sample_weight</span><span class="p">:</span>
+                <span class="c1"># Create sample weight array for the retraining of the</span>
+                <span class="c1"># classifier.</span>
+                <span class="n">w</span> <span class="o">=</span> <span class="n">sample_weight_cand</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">use_fit</span><span class="p">:</span>
+                    <span class="n">sample_weight_new</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sample_weight</span><span class="p">,</span> <span class="p">[[</span><span class="n">w</span><span class="p">]])</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">sample_weight_new</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">w</span><span class="p">])</span>
+                <span class="c1"># Retrain classifier with sample weights.</span>
+                <span class="n">clf_new</span> <span class="o">=</span> <span class="n">clf_refit</span><span class="p">(</span><span class="n">X_new</span><span class="p">,</span> <span class="n">y_new</span><span class="p">,</span> <span class="n">sample_weight_new</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># Retrain classifier without sample weights.</span>
+                <span class="n">clf_new</span> <span class="o">=</span> <span class="n">clf_refit</span><span class="p">(</span><span class="n">X_new</span><span class="p">,</span> <span class="n">y_new</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;emr&#39;</span><span class="p">:</span>
+                <span class="n">P_new</span> <span class="o">=</span> <span class="n">clf_new</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_cand</span><span class="p">)</span>
+                <span class="n">costs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">P_new</span><span class="o">.</span><span class="n">T</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">P_new</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">T</span> <span class="o">*</span> <span class="n">cost_matrix</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;csl&#39;</span><span class="p">:</span>
+                <span class="n">is_lbld</span> <span class="o">=</span> <span class="n">is_labeled</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">clf_new</span><span class="o">.</span><span class="n">missing_label</span><span class="p">)</span>
+                <span class="n">X_labeled</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">is_lbld</span><span class="p">]</span>
+                <span class="n">y_labeled</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">is_lbld</span><span class="p">]</span>
+                <span class="n">y_indices</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">clf_new</span><span class="o">.</span><span class="n">classes_</span> <span class="o">==</span> <span class="n">label</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+                             <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">y_labeled</span><span class="p">]</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_labeled</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">costs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span>
+                        <span class="n">clf_new</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_labeled</span><span class="p">)</span> <span class="o">*</span>
+                        <span class="n">cost_matrix</span><span class="p">[</span><span class="n">y_indices</span><span class="p">]</span>
+                    <span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">costs</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;log_loss&#39;</span><span class="p">:</span>
+                <span class="n">P_new</span> <span class="o">=</span> <span class="n">clf_new</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_cand</span><span class="p">)</span>
+                <span class="n">costs</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">P_new</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">P_new</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">eps</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;Supported methods are [</span><span class="si">{</span><span class="n">ExpectedErrorReduction</span><span class="o">.</span><span class="n">EMR</span><span class="si">}</span><span class="s2">, &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ExpectedErrorReduction</span><span class="o">.</span><span class="n">CSL</span><span class="si">}</span><span class="s2">, &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ExpectedErrorReduction</span><span class="o">.</span><span class="n">LOG_LOSS</span><span class="si">}</span><span class="s2">], the given one is: &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="p">)</span>
+            <span class="n">errors_per_class</span><span class="p">[</span><span class="n">yi</span><span class="p">]</span> <span class="o">=</span> <span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">yi</span><span class="p">]</span> <span class="o">*</span> <span class="n">costs</span>
+        <span class="n">errors</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">errors_per_class</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">errors</span></div>
+</pre></div>
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2020.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

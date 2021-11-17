@@ -1,0 +1,469 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Developer’s Guide &#8212; scikit-activeml 0.1.1 documentation</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-rendered-html.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Multi-class Probabilistic Active Learning" href="generated/sphinx_gallery_examples/pool/plot_McPAL_Multi-class_Probabilistic_Active_Learning.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="index.html">
+  <img src="_static/scikit-activeml-logo.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="notebooks/getting_started.html">
+  Getting Started
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="generated/strategy_overview/strategy_overview-Settles2012.html">
+  Strategy Overview
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="generated/api_reference.html">
+  API Reference
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="generated/sphinx_gallery_examples/index.html">
+  Examples
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="current reference internal nav-link" href="#">
+  Developer’s Guide
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Quick Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/scikit-activeml/scikit-activeml" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://pypi.org/project/scikit-activeml" rel="noopener" target="_blank" title="PyPI">
+            <span><i class="fas fa-box"></i></span>
+            <label class="sr-only">PyPI</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conformity-with-scikit-learn">
+   Conformity with scikit-learn
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#code-style-and-linting">
+   Code style and linting
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#homogeneous-naming-scheme">
+   Homogeneous naming scheme
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#general-unittest-for-query-strategies-test-pool-py">
+   General Unittest for Query Strategies (
+   <cite>
+    test_pool.py
+   </cite>
+   ):
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#handling-of-unlabeled-instances">
+   Handling of unlabeled instances
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#handling-of-batch-non-batch-scenarios">
+   Handling of Batch / Non-Batch scenarios
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#handling-of-pool-based-stream-based-al-and-membership-query-synthesis">
+   Handling of pool-based, stream-based AL and membership query synthesis
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#handling-of-active-learning-with-multiple-annotators">
+   Handling of active learning with multiple annotators
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#handling-of-uncertain-oracles">
+   Handling of uncertain oracles
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transductive-and-inductive-active-learning">
+   Transductive and inductive active learning
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#classification-and-regression">
+   Classification and regression
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#evaluation">
+   Evaluation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stopping-criteria">
+   Stopping criteria
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#json-example-file-structure">
+   Json example file structure
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section id="developer-s-guide">
+<h1>Developer’s Guide<a class="headerlink" href="#developer-s-guide" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<p>This page will be used to document the discussed guidelines and should help new contributors to adhere to the same set guidelines.</p>
+<section id="conformity-with-scikit-learn">
+<h2>Conformity with scikit-learn<a class="headerlink" href="#conformity-with-scikit-learn" title="Permalink to this headline">¶</a></h2>
+<p>As the selection streategies are inheriting from BaseEstimator, the selection strategies should conform to the initialization scheme proposed by scikit-learn, i.e., there shall be no code in the __init__ function besides storing the attributes. All verification and transformation of inputs shall be done in the query (i.e., fit in scikit-learn) function.</p>
+</section>
+<section id="code-style-and-linting">
+<h2>Code style and linting<a class="headerlink" href="#code-style-and-linting" title="Permalink to this headline">¶</a></h2>
+<p>As this library conforms to the convention of scikit-learn, the code should conform to <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">PEP 8 Sytle Guide for Python Code</a>. For linting, the use of <a class="reference external" href="https://flake8.pycqa.org/en/latest/">flake8</a> is recommended.</p>
+</section>
+<section id="homogeneous-naming-scheme">
+<h2>Homogeneous naming scheme<a class="headerlink" href="#homogeneous-naming-scheme" title="Permalink to this headline">¶</a></h2>
+<p>To simplify the use of this library, a homogeneous naming scheme is important. Thus, the following attribute and parameter names are to be used when appropriately:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Parameters of <cite>__init__()</cite>:</dt><dd><ul>
+<li><p>all optional</p></li>
+<li><p><cite>clf</cite></p></li>
+<li><p><cite>classes</cite></p></li>
+<li><p><cite>missing_label</cite></p></li>
+<li><p><cite>random_state</cite></p></li>
+<li><p><cite>metric</cite></p></li>
+<li><p><cite>cost_matrix</cite></p></li>
+<li><p><cite>budget_manager</cite> (stream)</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Parameters of <cite>query()</cite>:</dt><dd><ul>
+<li><p><cite>X_cand</cite></p></li>
+<li><p><cite>X</cite></p></li>
+<li><p><cite>y</cite></p></li>
+<li><p><cite>X_eval</cite></p></li>
+<li><p><cite>y_eval</cite></p></li>
+<li><p><cite>A_cand</cite> (multiannot) - matrix wer was noch labeln kann</p></li>
+<li><p>(kernel kram…)</p></li>
+<li><p><cite>sample_weight_cand</cite></p></li>
+<li><p><cite>sample_weight</cite> (same dim as y)</p></li>
+<li><p><cite>sample_weight_eval</cite></p></li>
+<li><p><cite>simulate</cite> (esp stream)</p></li>
+<li><p><cite>batch_size</cite></p></li>
+<li><p><cite>return_utilities</cite></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="general-unittest-for-query-strategies-test-pool-py">
+<h2>General Unittest for Query Strategies (<cite>test_pool.py</cite>):<a class="headerlink" href="#general-unittest-for-query-strategies-test-pool-py" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Querying of every method is tested with standard configurations with <cite>0</cite>, <cite>1</cite>, and <cite>5</cite> initial labels.</p></li>
+<li><p>For every class <cite>ExampleQueryStrategy</cite> that inherits from <cite>SingleAnnotPoolBasedQueryStrategy</cite> (stored in <cite>_example.py</cite>), it is automatically tested if there exists a file <cite>test/test_example.py</cite>. It is necessary that both filenames are the same. Moreover, the test class must be called <cite>TestExampleQueryStrategy(unittest.TestCase)</cite></p></li>
+<li><p>Every parameter in <cite>__init__()</cite> will be tested if it is written the same as a class variable.</p></li>
+<li><p>Every parameter <cite>arg</cite> in <cite>__init__()</cite> will be evaluated if there exists a method in the testclass <cite>TestExampleQueryStrategy</cite> that is called <cite>test_init_param_arg()</cite>.</p></li>
+<li><p>Every parameter <cite>arg</cite> in <cite>query()</cite> will be evaluated if there exists a method in the testclass <cite>TestExampleQueryStrategy</cite> that is called <cite>test_query_param_arg()</cite>.</p></li>
+</ol>
+</section>
+<section id="handling-of-unlabeled-instances">
+<h2>Handling of unlabeled instances<a class="headerlink" href="#handling-of-unlabeled-instances" title="Permalink to this headline">¶</a></h2>
+<p>Active learning generally uses labeled and unlabeled instances. To simplify the data handling, the SkactivemlClassifier is able to handle unlabeled data. The unlabeled data is marked as such by setting corresponding entry in y (the label) during fitting to missing_label which is set during the initialization of the classifier. All classifier and the wrappers (e.g. for scikit-learn classifiers) are compatible with unlabeled instances.</p>
+</section>
+<section id="handling-of-batch-non-batch-scenarios">
+<h2>Handling of Batch / Non-Batch scenarios<a class="headerlink" href="#handling-of-batch-non-batch-scenarios" title="Permalink to this headline">¶</a></h2>
+<p>All query strategies, except the stream based approaches, support the batch scenario. All strategies that are not explicitly designed to support the batch scenario shall employ a greedy strategy to iteratively select instances to fill the queried batch. The query methods have a batch_size parameter to specify the number of instances to queried instances. If the batch size is dynamic, the batch_size parameter shall be set to ‘adaptive’. The utilities that are returned, when return_utilities is set to true, have the following shape: batch_size x n_cand, reflect the utilities for each individual acquisition.</p>
+</section>
+<section id="handling-of-pool-based-stream-based-al-and-membership-query-synthesis">
+<h2>Handling of pool-based, stream-based AL and membership query synthesis<a class="headerlink" href="#handling-of-pool-based-stream-based-al-and-membership-query-synthesis" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>separate packages and classes follow *PoolBasedQueryStrategy, *StreamBasedQueryStrategy, *MembershipQuerySynthesis</p></li>
+</ul>
+</section>
+<section id="handling-of-active-learning-with-multiple-annotators">
+<h2>Handling of active learning with multiple annotators<a class="headerlink" href="#handling-of-active-learning-with-multiple-annotators" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><dl class="simple">
+<dt>create MultiAnnotPoolBasedQueryStrategy()</dt><dd><ul>
+<li><p>def query(self, X_cand, *args, A_cand=None, return_utilities=False, **kwargs)</p></li>
+<li><p>is independent, not compatible with SAPBQS</p></li>
+<li><p>return_utilities shape: batch_size x *shape(A_cand)</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="handling-of-uncertain-oracles">
+<h2>Handling of uncertain oracles<a class="headerlink" href="#handling-of-uncertain-oracles" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>will be considered when labels are added to y</p></li>
+<li><p>oracles with errors (oracles with confidences can be used with sample_weight)</p></li>
+<li><p>e.g. using annotlib</p></li>
+<li><p>evtl. sample_weight for X, y in query()</p></li>
+<li><p>CAUTION: sample_weight_cand for X_cand and sample_weight for X</p></li>
+</ul>
+</section>
+<section id="transductive-and-inductive-active-learning">
+<h2>Transductive and inductive active learning<a class="headerlink" href="#transductive-and-inductive-active-learning" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>possible with distinct X_cand list independent X, y, E_eval, etc.</p></li>
+<li><p>explain with notebooks</p></li>
+</ul>
+</section>
+<section id="classification-and-regression">
+<h2>Classification and regression<a class="headerlink" href="#classification-and-regression" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>separate methods for classifiers and regressors, identify with tags (see sklearn) [estimator_type]</p></li>
+</ul>
+</section>
+<section id="evaluation">
+<h2>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>extra package evaluation with some extra functions (visualization, etc.)</p></li>
+</ul>
+</section>
+<section id="stopping-criteria">
+<h2>Stopping criteria<a class="headerlink" href="#stopping-criteria" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>extra package stopping</p></li>
+<li><p>separate inductive from transductive?</p></li>
+</ul>
+</section>
+<section id="json-example-file-structure">
+<h2>Json example file structure<a class="headerlink" href="#json-example-file-structure" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>The example can be modified by modifying the template.py file</p></li>
+<li><p>One json file for each module.</p></li>
+<li><p>Organized in the same folder and naming structure as the packages.</p></li>
+<li><p>The json file should contain a list with one entry for each example.</p></li>
+<li><dl class="simple">
+<dt>Each example entry it self is a dictionary with the following keys:</dt><dd><ul>
+<li><p>“class”: The name of the class for which the example is intended. Multiple use is possible.</p></li>
+<li><p>“method”: The method for which the example is intended. Each method-class combination should only be used once.</p></li>
+<li><p>“refs” (optional): A list of references to bibliographic entries in the ‘refs.bib’ file.</p></li>
+<li><p>“title”: The title of the example page.</p></li>
+<li><p>“text”: Every key that starts with ‘text’ will be formatted as a paragraph in the example.</p></li>
+<li><p>“code”: Every key that starts with ‘code’ will be formatted as a python code block in the example.</p></li>
+<li><p>“bp”: Each key that starts with ‘bp’ is formatted as Python code and added on a specific line in the example. You need to define the line by adding the key starting with ‘#_’ to the appropriate line in the template.py file.</p></li>
+<li><dl class="simple">
+<dt>“sequence”: A list that contains the order in which the blocks are shown. Possible blocks are:</dt><dd><ul>
+<li><p>‘title’: Shows the title.</p></li>
+<li><p>‘text’: Shows the specified text paragraph.</p></li>
+<li><p>‘code’: Shows the specified code block.</p></li>
+<li><p>‘refs’: Shows the references.</p></li>
+<li><p>‘plot’: Shows the example plot including the generated code of the AL cycle.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>“categories”: A dictionary with a survey as key and the depending category as value.</p></li>
+<li><p>“init_params”: A dictionary which contains the parameters used to initialize the query strategy.</p></li>
+<li><p>“query_params”: A dictionary which contains the parameters used to call the ‘query’ method.</p></li>
+<li><p>“clf” (optional): The initialization string of the classifier used as model.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="generated/sphinx_gallery_examples/pool/plot_McPAL_Multi-class_Probabilistic_Active_Learning.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Multi-class Probabilistic Active Learning</p>
+        </div>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2020.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

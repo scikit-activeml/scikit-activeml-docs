@@ -1,0 +1,287 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Computation times &#8212; scikit-activeml 0.1.1 documentation</title>
+    
+  <link href="../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css" />
+    
+  <link rel="preload" as="script" href="../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../../index.html">
+  <img src="../../../_static/scikit-activeml-logo.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../notebooks/getting_started.html">
+  Getting Started
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../strategy_overview/strategy_overview-Settles2012.html">
+  Strategy Overview
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../api_reference.html">
+  API Reference
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../index.html">
+  Examples
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../developers_guide.html">
+  Developer’s Guide
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Quick Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/scikit-activeml/scikit-activeml" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://pypi.org/project/scikit-activeml" rel="noopener" target="_blank" title="PyPI">
+            <span><i class="fas fa-box"></i></span>
+            <label class="sr-only">PyPI</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+
+<nav id="bd-toc-nav">
+    
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section id="computation-times">
+<span id="sphx-glr-generated-sphinx-gallery-examples-pool-sg-execution-times"></span><h1>Computation times<a class="headerlink" href="#computation-times" title="Permalink to this headline">¶</a></h1>
+<p><strong>04:40.805</strong> total execution time for <strong>generated_sphinx_gallery_examples_pool</strong> files:</p>
+<table class="table">
+<colgroup>
+<col style="width: 91%" />
+<col style="width: 5%" />
+<col style="width: 4%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="plot_UncertaintySampling_Expected_Average_Precision.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-uncertaintysampling-expected-average-precision-py"><span class="std std-ref">Expected Average Precision</span></a> (<code class="docutils literal notranslate"><span class="pre">plot_UncertaintySampling_Expected_Average_Precision.py</span></code>)</p></td>
+<td><p>02:22.837</p></td>
+<td><p>0.0 MB</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="plot_ExpectedErrorReduction_Log_Loss_Expected_Error_Reduction.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-expectederrorreduction-log-loss-expected-error-reduction-py"><span class="std std-ref">Log Loss Expected Error Reduction</span></a> (<code class="docutils literal notranslate"><span class="pre">plot_ExpectedErrorReduction_Log_Loss_Expected_Error_Reduction.py</span></code>)</p></td>
+<td><p>00:18.511</p></td>
+<td><p>0.0 MB</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="plot_ExpectedErrorReduction_Expected_Misclassification_Risk.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-expectederrorreduction-expected-misclassification-risk-py"><span class="std std-ref">Expected Misclassification Risk</span></a> (<code class="docutils literal notranslate"><span class="pre">plot_ExpectedErrorReduction_Expected_Misclassification_Risk.py</span></code>)</p></td>
+<td><p>00:18.243</p></td>
+<td><p>0.0 MB</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="plot_EpistemicUncertainty_Epistemic_Uncertainty_Sampling.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-epistemicuncertainty-epistemic-uncertainty-sampling-py"><span class="std std-ref">Epistemic Uncertainty Sampling</span></a> (<code class="docutils literal notranslate"><span class="pre">plot_EpistemicUncertainty_Epistemic_Uncertainty_Sampling.py</span></code>)</p></td>
+<td><p>00:18.019</p></td>
+<td><p>0.0 MB</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="plot_ExpectedErrorReduction_Cost-sensitive_Expected_Error_Reduction.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-expectederrorreduction-cost-sensitive-expected-error-reduction-py"><span class="std std-ref">Cost-sensitive Expected Error Reduction</span></a> (<code class="docutils literal notranslate"><span class="pre">plot_ExpectedErrorReduction_Cost-sensitive_Expected_Error_Reduction.py</span></code>)</p></td>
+<td><p>00:18.008</p></td>
+<td><p>0.0 MB</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="plot_ALCE_Active_Learning_with_Cost_Embedding.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-alce-active-learning-with-cost-embedding-py"><span class="std std-ref">Active Learning with Cost Embedding</span></a> (<code class="docutils literal notranslate"><span class="pre">plot_ALCE_Active_Learning_with_Cost_Embedding.py</span></code>)</p></td>
+<td><p>00:09.274</p></td>
+<td><p>0.0 MB</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="plot_QBC_Query-by-Committee_with_Kullback-Leibler_Divergence.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-qbc-query-by-committee-with-kullback-leibler-divergence-py"><span class="std std-ref">Query-by-Committee with Kullback-Leibler Divergence</span></a> (<code class="docutils literal notranslate"><span class="pre">plot_QBC_Query-by-Committee_with_Kullback-Leibler_Divergence.py</span></code>)</p></td>
+<td><p>00:07.410</p></td>
+<td><p>0.0 MB</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="plot_QBC_Query-by-Committee_with_Vote_Entropy.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-qbc-query-by-committee-with-vote-entropy-py"><span class="std std-ref">Query-by-Committee with Vote Entropy</span></a> (<code class="docutils literal notranslate"><span class="pre">plot_QBC_Query-by-Committee_with_Vote_Entropy.py</span></code>)</p></td>
+<td><p>00:07.387</p></td>
+<td><p>0.0 MB</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="plot_FourDS_4DS.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-fourds-4ds-py"><span class="std std-ref">4DS</span></a> (<code class="docutils literal notranslate"><span class="pre">plot_FourDS_4DS.py</span></code>)</p></td>
+<td><p>00:07.264</p></td>
+<td><p>0.0 MB</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="plot_McPAL_Multi-class_Probabilistic_Active_Learning.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-mcpal-multi-class-probabilistic-active-learning-py"><span class="std std-ref">Multi-class Probabilistic Active Learning</span></a> (<code class="docutils literal notranslate"><span class="pre">plot_McPAL_Multi-class_Probabilistic_Active_Learning.py</span></code>)</p></td>
+<td><p>00:07.085</p></td>
+<td><p>0.0 MB</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="plot_UncertaintySampling_Least-confident-based_Uncertainty_Sampling.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-uncertaintysampling-least-confident-based-uncertainty-sampling-py"><span class="std std-ref">Least-confident-based Uncertainty Sampling</span></a> (<code class="docutils literal notranslate"><span class="pre">plot_UncertaintySampling_Least-confident-based_Uncertainty_Sampling.py</span></code>)</p></td>
+<td><p>00:06.907</p></td>
+<td><p>0.0 MB</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="plot_UncertaintySampling_Margin-based_Uncertainty_Sampling.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-uncertaintysampling-margin-based-uncertainty-sampling-py"><span class="std std-ref">Margin-based Uncertainty Sampling</span></a> (<code class="docutils literal notranslate"><span class="pre">plot_UncertaintySampling_Margin-based_Uncertainty_Sampling.py</span></code>)</p></td>
+<td><p>00:06.885</p></td>
+<td><p>0.0 MB</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="plot_UncertaintySampling_Entropy-based_Uncertainty_Sampling.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-uncertaintysampling-entropy-based-uncertainty-sampling-py"><span class="std std-ref">Entropy-based Uncertainty Sampling</span></a> (<code class="docutils literal notranslate"><span class="pre">plot_UncertaintySampling_Entropy-based_Uncertainty_Sampling.py</span></code>)</p></td>
+<td><p>00:06.797</p></td>
+<td><p>0.0 MB</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="plot_RandomSampler_Random_Sampling.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-randomsampler-random-sampling-py"><span class="std std-ref">Random Sampling</span></a> (<code class="docutils literal notranslate"><span class="pre">plot_RandomSampler_Random_Sampling.py</span></code>)</p></td>
+<td><p>00:06.179</p></td>
+<td><p>0.0 MB</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2020.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>
