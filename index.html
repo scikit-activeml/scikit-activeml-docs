@@ -39,7 +39,7 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Getting Started" href="notebooks/getting_started.html" />
+    <link rel="next" title="Tutorials" href="tutorials.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -76,9 +76,15 @@
       
       <div class="navbar-center-item">
         <ul id="navbar-main-elements" class="navbar-nav">
-    <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="notebooks/getting_started.html">
-  Getting Started
+    <li class="toctree-l1 current active nav-item">
+ <a class="current reference internal nav-link" href="#">
+  Home
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="tutorials.html">
+  Tutorials
  </a>
 </li>
 
@@ -211,7 +217,7 @@
 <h1>Welcome to scikit-activeml’s documentation!<a class="headerlink" href="#welcome-to-scikit-activeml-s-documentation" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 </div>
-<p><a class="reference external" href="https://scikit-activeml.github.io/scikit-activeml/"><img alt="Doc" src="https://img.shields.io/badge/docs-latest-green" /></a> <a class="reference external" href="https://app.codecov.io/gh/scikit-activeml/scikit-activeml"><img alt="Codecov" src="https://codecov.io/gh/scikit-activeml/scikit-activeml/branch/master/graph/badge.svg" /></a> <a class="reference external" href="https://img.shields.io/badge/python-3.7%20%7C%203.8%20%7C%203.9-blue"><img alt="PythonVersion" src="https://img.shields.io/badge/python-3.7%20%7C%203.8%20%7C%203.9-blue" /></a> <a class="reference external" href="https://badge.fury.io/py/scikit-activeml"><img alt="PyPi" src="https://badge.fury.io/py/scikit-activeml.svg" /></a> <a class="reference external" href="https://www.preprints.org/manuscript/202103.0194/v1"><img alt="Paper" src="https://img.shields.io/badge/paper-10.20944/preprints202103.0194.v1-blue" /></a></p>
+<p><a class="reference external" href="https://scikit-activeml.github.io/scikit-activeml-docs/"><img alt="Doc" src="https://img.shields.io/badge/docs-latest-green" /></a> <a class="reference external" href="https://app.codecov.io/gh/scikit-activeml/scikit-activeml"><img alt="Codecov" src="https://codecov.io/gh/scikit-activeml/scikit-activeml/branch/master/graph/badge.svg" /></a> <a class="reference external" href="https://img.shields.io/badge/python-3.7%20%7C%203.8%20%7C%203.9-blue"><img alt="PythonVersion" src="https://img.shields.io/badge/python-3.7%20%7C%203.8%20%7C%203.9-blue" /></a> <a class="reference external" href="https://badge.fury.io/py/scikit-activeml"><img alt="PyPi" src="https://badge.fury.io/py/scikit-activeml.svg" /></a> <a class="reference external" href="https://www.preprints.org/manuscript/202103.0194/v1"><img alt="Paper" src="https://img.shields.io/badge/paper-10.20944/preprints202103.0194.v1-blue" /></a></p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -232,7 +238,7 @@
 <section id="example">
 <h1>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h1>
 <p>The following code implements an active learning cycle with 20 iterations using a logistic regression classifier and uncertainty sampling. To use other classifiers, you can simply wrap classifiers from <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> or use classifiers provided by <code class="docutils literal notranslate"><span class="pre">scikit-activeml</span></code>. Note that the main difficulty using active learning with <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> is the ability to handle unlabeled data, which we denote as a specific value (<code class="docutils literal notranslate"><span class="pre">MISSING_LABEL</span></code>) in the label vector <code class="docutils literal notranslate"><span class="pre">y</span></code>. More query strategies can be found in the documentation.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
 <span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_classification</span>
 <span class="kn">from</span> <span class="nn">skactiveml.pool</span> <span class="kn">import</span> <span class="n">UncertaintySampling</span>
@@ -243,6 +249,11 @@
 <span class="n">X</span><span class="p">,</span> <span class="n">y_true</span> <span class="o">=</span> <span class="n">make_classification</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">y_true</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">)</span>
 
+<span class="c1"># LogisticRegression needs initial training data otherwise a warning will</span>
+<span class="c1"># be raised by SklearnClassifier. Therfore, the first 10 instances are used as</span>
+<span class="c1"># training data.</span>
+<span class="n">y</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_true</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+
 <span class="c1"># Create classifier and query strategy.</span>
 <span class="n">clf</span> <span class="o">=</span> <span class="n">SklearnClassifier</span><span class="p">(</span><span class="n">LogisticRegression</span><span class="p">(),</span> <span class="n">classes</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y_true</span><span class="p">))</span>
 <span class="n">qs</span> <span class="o">=</span> <span class="n">UncertaintySampling</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;entropy&#39;</span><span class="p">)</span>
@@ -250,11 +261,11 @@
 <span class="c1"># Execute active learning cycle.</span>
 <span class="n">n_cycles</span> <span class="o">=</span> <span class="mi">20</span>
 <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_cycles</span><span class="p">):</span>
-     <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-     <span class="n">unlbld_idx</span> <span class="o">=</span> <span class="n">unlabeled_indices</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-     <span class="n">X_cand</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">unlbld_idx</span><span class="p">]</span>
-     <span class="n">query_idx</span> <span class="o">=</span> <span class="n">unlbld_idx</span><span class="p">[</span><span class="n">qs</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">X_cand</span><span class="o">=</span><span class="n">X_cand</span><span class="p">,</span> <span class="n">clf</span><span class="o">=</span><span class="n">clf</span><span class="p">)]</span>
-     <span class="n">y</span><span class="p">[</span><span class="n">query_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_true</span><span class="p">[</span><span class="n">query_idx</span><span class="p">]</span>
+    <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">unlbld_idx</span> <span class="o">=</span> <span class="n">unlabeled_indices</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">X_cand</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">unlbld_idx</span><span class="p">]</span>
+    <span class="n">query_idx</span> <span class="o">=</span> <span class="n">unlbld_idx</span><span class="p">[</span><span class="n">qs</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">X_cand</span><span class="o">=</span><span class="n">X_cand</span><span class="p">,</span> <span class="n">clf</span><span class="o">=</span><span class="n">clf</span><span class="p">)]</span>
+    <span class="n">y</span><span class="p">[</span><span class="n">query_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_true</span><span class="p">[</span><span class="n">query_idx</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Accuracy: </span><span class="si">{</span><span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y_true</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -275,10 +286,10 @@
               
               <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='right-next' id="next-link" href="notebooks/getting_started.html" title="next page">
+    <a class='right-next' id="next-link" href="tutorials.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Getting Started</p>
+        <p class="prev-next-title">Tutorials</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

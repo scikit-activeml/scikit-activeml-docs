@@ -75,8 +75,14 @@
       <div class="navbar-center-item">
         <ul id="navbar-main-elements" class="navbar-nav">
     <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../../../notebooks/getting_started.html">
-  Getting Started
+ <a class="reference internal nav-link" href="../../../index.html">
+  Home
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../tutorials.html">
+  Tutorials
  </a>
 </li>
 
@@ -274,7 +280,7 @@
         <span class="k">elif</span> <span class="n">_is_arraylike</span><span class="p">(</span><span class="n">ensemble</span><span class="p">):</span>
             <span class="n">est_arr</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">ensemble</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">est_arr</span><span class="p">)):</span>
-                <span class="n">check_type</span><span class="p">(</span><span class="n">est_arr</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">SkactivemlClassifier</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;ensemble[</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">]&#39;</span><span class="p">)</span>
+                <span class="n">check_type</span><span class="p">(</span><span class="n">est_arr</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="sa">f</span><span class="s1">&#39;ensemble[</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">]&#39;</span><span class="p">,</span> <span class="n">SkactivemlClassifier</span><span class="p">)</span>
                 <span class="n">est_arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fit_if_not_fitted</span><span class="p">(</span>
                     <span class="n">est_arr</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="n">sample_weight</span>
                 <span class="p">)</span>

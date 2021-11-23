@@ -6,43 +6,43 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Getting Started &#8212; scikit-activeml 0.1.1 documentation</title>
+    <title>Pool-based Active Learning - Getting Started &#8212; scikit-activeml 0.1.1 documentation</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
   <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
   <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     
       
 
     
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/css/blank.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Strategy Overview By Settles" href="../generated/strategy_overview/strategy_overview-Settles2012.html" />
-    <link rel="prev" title="Welcome to scikit-activeml’s documentation!" href="../index.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Stream-based Active Learning - Getting Started" href="stream_getting_started.html" />
+    <link rel="prev" title="Multi-annotator Pool-based Active Learning - Getting Started" href="multiple_annotators_getting_started.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -61,8 +61,8 @@
     
     
 
-<a class="navbar-brand" href="../index.html">
-  <img src="../_static/scikit-activeml-logo.png" class="logo" alt="logo">
+<a class="navbar-brand" href="../../index.html">
+  <img src="../../_static/scikit-activeml-logo.png" class="logo" alt="logo">
 </a>
 
 
@@ -79,32 +79,38 @@
       
       <div class="navbar-center-item">
         <ul id="navbar-main-elements" class="navbar-nav">
-    <li class="toctree-l1 current active nav-item">
- <a class="current reference internal nav-link" href="#">
-  Getting Started
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../index.html">
+  Home
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../../tutorials.html">
+  Tutorials
  </a>
 </li>
 
 <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../generated/strategy_overview/strategy_overview-Settles2012.html">
+ <a class="reference internal nav-link" href="../strategy_overview/strategy_overview-Settles2012.html">
   Strategy Overview
  </a>
 </li>
 
 <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../generated/api_reference.html">
+ <a class="reference internal nav-link" href="../api_reference.html">
   API Reference
  </a>
 </li>
 
 <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../generated/sphinx_gallery_examples/index.html">
+ <a class="reference internal nav-link" href="../sphinx_gallery_examples/index.html">
   Examples
  </a>
 </li>
 
 <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../developers_guide.html">
+ <a class="reference internal nav-link" href="../../developers_guide.html">
   Developer’s Guide
  </a>
 </li>
@@ -145,12 +151,29 @@
           
             
             <!-- Only show if we have sidebars configured, else just a small margin  -->
-            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
   <div class="bd-toc-item active">
-    
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="multiple_annotators_getting_started.html">
+   Multi-annotator Pool-based Active Learning - Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Pool-based Active Learning - Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="stream_getting_started.html">
+   Stream-based Active Learning - Getting Started
+  </a>
+ </li>
+</ul>
+
   </div>
 </nav>
             </div>
@@ -170,8 +193,8 @@
 <nav id="bd-toc-nav">
     <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#Data-set-Generation">
-   Data set Generation
+  <a class="reference internal nav-link" href="#Data-Set-Generation">
+   Data Set Generation
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -458,8 +481,8 @@ div.rendered_html tbody tr:hover {
   background: rgba(66, 165, 245, 0.2);
 }
 </style>
-<section id="Getting-Started">
-<h1>Getting Started<a class="headerlink" href="#Getting-Started" title="Permalink to this headline">¶</a></h1>
+<section id="Pool-based-Active-Learning---Getting-Started">
+<h1>Pool-based Active Learning - Getting Started<a class="headerlink" href="#Pool-based-Active-Learning---Getting-Started" title="Permalink to this headline">¶</a></h1>
 <p>The main purpose of this tutorial is to ease the implementation of our library <code class="docutils literal notranslate"><span class="pre">scikit-activeml</span></code> to new users. <code class="docutils literal notranslate"><span class="pre">scikit-activeml</span></code> is a library that executes the most important query strategies. It is built upon the well-known machine learning frame-work <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>, which makes it user-friendly. For better understanding, we show an exemplary active learning cycle here. Let’s start by importing the relevant packages from both <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> and <code class="docutils literal notranslate"><span class="pre">scikit-activeml</span></code>.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
@@ -482,8 +505,8 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-<section id="Data-set-Generation">
-<h2>Data set Generation<a class="headerlink" href="#Data-set-Generation" title="Permalink to this headline">¶</a></h2>
+<section id="Data-Set-Generation">
+<h2>Data Set Generation<a class="headerlink" href="#Data-Set-Generation" title="Permalink to this headline">¶</a></h2>
 <p>We generate a data set of 100 data points with two clusters from the <code class="docutils literal notranslate"><span class="pre">make_classification</span></code> method of <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>. This method also returns the true labels of each data point. In practice, however, we do not know these labels unless we ask an oracle. The labels are stored in <code class="docutils literal notranslate"><span class="pre">y_true</span></code>, which acts as an oracle.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
@@ -503,7 +526,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_getting_started_4_0.png" src="../_images/notebooks_getting_started_4_0.png" />
+<img alt="../../_images/generated_tutorials_pool_getting_started_4_0.png" src="../../_images/generated_tutorials_pool_getting_started_4_0.png" />
 </div>
 </div>
 </section>
@@ -607,7 +630,7 @@ The accuracy score is 0.5.
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_getting_started_12_1.png" src="../_images/notebooks_getting_started_12_1.png" />
+<img alt="../../_images/generated_tutorials_pool_getting_started_12_1.png" src="../../_images/generated_tutorials_pool_getting_started_12_1.png" />
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -623,7 +646,7 @@ The accuracy score is 0.93.
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_getting_started_12_3.png" src="../_images/notebooks_getting_started_12_3.png" />
+<img alt="../../_images/generated_tutorials_pool_getting_started_12_3.png" src="../../_images/generated_tutorials_pool_getting_started_12_3.png" />
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -639,7 +662,7 @@ The accuracy score is 0.94.
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_getting_started_12_5.png" src="../_images/notebooks_getting_started_12_5.png" />
+<img alt="../../_images/generated_tutorials_pool_getting_started_12_5.png" src="../../_images/generated_tutorials_pool_getting_started_12_5.png" />
 </div>
 </div>
 </section>
@@ -651,17 +674,17 @@ The accuracy score is 0.94.
               
               <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="../index.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="multiple_annotators_getting_started.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Welcome to scikit-activeml’s documentation!</p>
+            <p class="prev-next-title">Multi-annotator Pool-based Active Learning - Getting Started</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="../generated/strategy_overview/strategy_overview-Settles2012.html" title="next page">
+    <a class='right-next' id="next-link" href="stream_getting_started.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Strategy Overview By Settles</p>
+        <p class="prev-next-title">Stream-based Active Learning - Getting Started</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
@@ -673,7 +696,7 @@ The accuracy score is 0.94.
       </div>
     </div>
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 <footer class="footer mt-5 mt-md-0">
   <div class="container">
     

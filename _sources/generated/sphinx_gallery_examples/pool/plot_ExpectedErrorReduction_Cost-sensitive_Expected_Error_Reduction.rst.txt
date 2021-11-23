@@ -21,12 +21,13 @@
 Cost-sensitive Expected Error Reduction
 =======================================
 
-.. GENERATED FROM PYTHON SOURCE LINES 8-72
+.. GENERATED FROM PYTHON SOURCE LINES 8-73
 
 .. code-block:: default
    :lineno-start: 9
 
 
+    import os
     import numpy as np
     from matplotlib import pyplot as plt, animation
     from sklearn.datasets import make_blobs
@@ -282,42 +283,42 @@ Cost-sensitive Expected Error Reduction
      </style>
 
      <div class="animation">
-       <img id="_anim_img855bfc58747e403789e9852c4ab97b6b">
+       <img id="_anim_imgfb178fa8524442fca20e4637b121cd1f">
        <div class="anim-controls">
-         <input id="_anim_slider855bfc58747e403789e9852c4ab97b6b" type="range" class="anim-slider"
+         <input id="_anim_sliderfb178fa8524442fca20e4637b121cd1f" type="range" class="anim-slider"
                 name="points" min="0" max="1" step="1" value="0"
-                oninput="anim855bfc58747e403789e9852c4ab97b6b.set_frame(parseInt(this.value));"></input>
+                oninput="animfb178fa8524442fca20e4637b121cd1f.set_frame(parseInt(this.value));"></input>
          <div class="anim-buttons">
-           <button title="Decrease speed" aria-label="Decrease speed" onclick="anim855bfc58747e403789e9852c4ab97b6b.slower()">
+           <button title="Decrease speed" aria-label="Decrease speed" onclick="animfb178fa8524442fca20e4637b121cd1f.slower()">
                <i class="fa fa-minus"></i></button>
-           <button title="First frame" aria-label="First frame" onclick="anim855bfc58747e403789e9852c4ab97b6b.first_frame()">
+           <button title="First frame" aria-label="First frame" onclick="animfb178fa8524442fca20e4637b121cd1f.first_frame()">
              <i class="fa fa-fast-backward"></i></button>
-           <button title="Previous frame" aria-label="Previous frame" onclick="anim855bfc58747e403789e9852c4ab97b6b.previous_frame()">
+           <button title="Previous frame" aria-label="Previous frame" onclick="animfb178fa8524442fca20e4637b121cd1f.previous_frame()">
                <i class="fa fa-step-backward"></i></button>
-           <button title="Play backwards" aria-label="Play backwards" onclick="anim855bfc58747e403789e9852c4ab97b6b.reverse_animation()">
+           <button title="Play backwards" aria-label="Play backwards" onclick="animfb178fa8524442fca20e4637b121cd1f.reverse_animation()">
                <i class="fa fa-play fa-flip-horizontal"></i></button>
-           <button title="Pause" aria-label="Pause" onclick="anim855bfc58747e403789e9852c4ab97b6b.pause_animation()">
+           <button title="Pause" aria-label="Pause" onclick="animfb178fa8524442fca20e4637b121cd1f.pause_animation()">
                <i class="fa fa-pause"></i></button>
-           <button title="Play" aria-label="Play" onclick="anim855bfc58747e403789e9852c4ab97b6b.play_animation()">
+           <button title="Play" aria-label="Play" onclick="animfb178fa8524442fca20e4637b121cd1f.play_animation()">
                <i class="fa fa-play"></i></button>
-           <button title="Next frame" aria-label="Next frame" onclick="anim855bfc58747e403789e9852c4ab97b6b.next_frame()">
+           <button title="Next frame" aria-label="Next frame" onclick="animfb178fa8524442fca20e4637b121cd1f.next_frame()">
                <i class="fa fa-step-forward"></i></button>
-           <button title="Last frame" aria-label="Last frame" onclick="anim855bfc58747e403789e9852c4ab97b6b.last_frame()">
+           <button title="Last frame" aria-label="Last frame" onclick="animfb178fa8524442fca20e4637b121cd1f.last_frame()">
                <i class="fa fa-fast-forward"></i></button>
-           <button title="Increase speed" aria-label="Increase speed" onclick="anim855bfc58747e403789e9852c4ab97b6b.faster()">
+           <button title="Increase speed" aria-label="Increase speed" onclick="animfb178fa8524442fca20e4637b121cd1f.faster()">
                <i class="fa fa-plus"></i></button>
          </div>
-         <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_select855bfc58747e403789e9852c4ab97b6b"
+         <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_selectfb178fa8524442fca20e4637b121cd1f"
                class="anim-state">
-           <input type="radio" name="state" value="once" id="_anim_radio1_855bfc58747e403789e9852c4ab97b6b"
+           <input type="radio" name="state" value="once" id="_anim_radio1_fb178fa8524442fca20e4637b121cd1f"
                   >
-           <label for="_anim_radio1_855bfc58747e403789e9852c4ab97b6b">Once</label>
-           <input type="radio" name="state" value="loop" id="_anim_radio2_855bfc58747e403789e9852c4ab97b6b"
+           <label for="_anim_radio1_fb178fa8524442fca20e4637b121cd1f">Once</label>
+           <input type="radio" name="state" value="loop" id="_anim_radio2_fb178fa8524442fca20e4637b121cd1f"
                   checked>
-           <label for="_anim_radio2_855bfc58747e403789e9852c4ab97b6b">Loop</label>
-           <input type="radio" name="state" value="reflect" id="_anim_radio3_855bfc58747e403789e9852c4ab97b6b"
+           <label for="_anim_radio2_fb178fa8524442fca20e4637b121cd1f">Loop</label>
+           <input type="radio" name="state" value="reflect" id="_anim_radio3_fb178fa8524442fca20e4637b121cd1f"
                   >
-           <label for="_anim_radio3_855bfc58747e403789e9852c4ab97b6b">Reflect</label>
+           <label for="_anim_radio3_fb178fa8524442fca20e4637b121cd1f">Reflect</label>
          </form>
        </div>
      </div>
@@ -327,9 +328,9 @@ Cost-sensitive Expected Error Reduction
        /* Instantiate the Animation class. */
        /* The IDs given should match those used in the template above. */
        (function() {
-         var img_id = "_anim_img855bfc58747e403789e9852c4ab97b6b";
-         var slider_id = "_anim_slider855bfc58747e403789e9852c4ab97b6b";
-         var loop_select_id = "_anim_loop_select855bfc58747e403789e9852c4ab97b6b";
+         var img_id = "_anim_imgfb178fa8524442fca20e4637b121cd1f";
+         var slider_id = "_anim_sliderfb178fa8524442fca20e4637b121cd1f";
+         var loop_select_id = "_anim_loop_selectfb178fa8524442fca20e4637b121cd1f";
          var frames = new Array(25);
     
        frames[0] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
@@ -21093,7 +21094,7 @@ Cost-sensitive Expected Error Reduction
          /* set a timeout to make sure all the above elements are created before
             the object is initialized. */
          setTimeout(function() {
-             anim855bfc58747e403789e9852c4ab97b6b = new Animation(frames, img_id, slider_id, 1000.0,
+             animfb178fa8524442fca20e4637b121cd1f = new Animation(frames, img_id, slider_id, 1000.0,
                                       loop_select_id);
          }, 0);
        })()
@@ -21104,7 +21105,7 @@ Cost-sensitive Expected Error Reduction
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 73-78
+.. GENERATED FROM PYTHON SOURCE LINES 74-79
 
 .. rubric:: References:
 
@@ -21115,7 +21116,7 @@ The implementation of this strategy is based on :footcite:t:`margineantu2005acti
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  17.121 seconds)
+   **Total running time of the script:** ( 0 minutes  15.634 seconds)
 
 
 .. _sphx_glr_download_generated_sphinx_gallery_examples_pool_plot_ExpectedErrorReduction_Cost-sensitive_Expected_Error_Reduction.py:

@@ -75,8 +75,14 @@
       <div class="navbar-center-item">
         <ul id="navbar-main-elements" class="navbar-nav">
     <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../../../notebooks/getting_started.html">
-  Getting Started
+ <a class="reference internal nav-link" href="../../../index.html">
+  Home
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../tutorials.html">
+  Tutorials
  </a>
 </li>
 
@@ -173,13 +179,14 @@
 
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 <span class="kn">from</span> <span class="nn">matplotlib.axes</span> <span class="kn">import</span> <span class="n">Axes</span>
-<span class="kn">from</span> <span class="nn">matplotlib.colors</span> <span class="kn">import</span> <span class="n">Colormap</span>
 <span class="kn">from</span> <span class="nn">sklearn.base</span> <span class="kn">import</span> <span class="n">ClassifierMixin</span>
 <span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsRegressor</span>
-<span class="kn">from</span> <span class="nn">sklearn.utils</span> <span class="kn">import</span> <span class="n">check_array</span>
 
 <span class="kn">from</span> <span class="nn">..base</span> <span class="kn">import</span> <span class="n">QueryStrategy</span>
 <span class="kn">from</span> <span class="nn">..utils</span> <span class="kn">import</span> <span class="n">check_scalar</span>
+<span class="kn">from</span> <span class="nn">..utils._validation</span> <span class="kn">import</span> <span class="n">check_type</span>
+<span class="kn">from</span> <span class="nn">._auxiliary_functions</span> <span class="kn">import</span> <span class="n">mesh</span><span class="p">,</span> <span class="n">check_bound</span><span class="p">,</span> <span class="n">_get_boundary_args</span><span class="p">,</span> \
+    <span class="n">_get_confidence_args</span><span class="p">,</span> <span class="n">_get_contour_args</span><span class="p">,</span> <span class="n">_get_cmap</span>
 
 
 <div class="viewcode-block" id="plot_decision_boundary"><a class="viewcode-back" href="../../../generated/api/skactiveml.visualization.plot_decision_boundary.html#skactiveml.visualization.plot_decision_boundary">[docs]</a><span class="k">def</span> <span class="nf">plot_decision_boundary</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">feature_bound</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">res</span><span class="o">=</span><span class="mi">21</span><span class="p">,</span>
@@ -194,8 +201,9 @@
 <span class="sd">        is not None, the classifier must implement the predict_proba function.</span>
 <span class="sd">    feature_bound: array-like, [[xmin, ymin], [xmax, ymax]]</span>
 <span class="sd">        Determines the area in which the boundary is plotted.</span>
-<span class="sd">    ax: matplotlib.axes.Axes, optional (default=None)</span>
-<span class="sd">        The axis on which the decision boundary is plotted.</span>
+<span class="sd">    ax: matplotlib.axes.Axes or List, optional (default=None)</span>
+<span class="sd">        The axis on which the decision boundary is plotted. If ax is a List,</span>
+<span class="sd">        each entry has to be an `matplotlib.axes.Axes`.</span>
 <span class="sd">    res: int, optional (default=21)</span>
 <span class="sd">        The resolution of the plot.</span>
 <span class="sd">    boundary_dict: dict, optional (default=None)</span>
@@ -212,51 +220,41 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    matplotlib.axes.Axes: The axis on which the boundary was plotted.</span>
+<span class="sd">    ax: matplotlib.axes.Axes or List</span>
+<span class="sd">        The axis on which the boundary was plotted or the list of axis if ax</span>
+<span class="sd">        was a list.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">ClassifierMixin</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;&#39;clf&#39; must be an Sklearn classifier.&quot;</span><span class="p">)</span>
+    <span class="n">check_type</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="s1">&#39;clf&#39;</span><span class="p">,</span> <span class="n">ClassifierMixin</span><span class="p">)</span>
     <span class="n">check_scalar</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="s1">&#39;res&#39;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="n">min_val</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">Axes</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;ax must be a matplotlib.axes.Axes.&quot;</span><span class="p">)</span>
-    <span class="n">check_array</span><span class="p">(</span><span class="n">feature_bound</span><span class="p">)</span>
-    <span class="n">xmin</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">feature_bound</span><span class="p">)</span>
+    <span class="n">check_type</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s1">&#39;ax&#39;</span><span class="p">,</span> <span class="n">Axes</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">ax_item</span> <span class="ow">in</span> <span class="n">ax</span><span class="p">:</span>
+            <span class="n">check_type</span><span class="p">(</span><span class="n">ax_item</span><span class="p">,</span> <span class="s1">&#39;one item of ax&#39;</span><span class="p">,</span> <span class="n">Axes</span><span class="p">)</span>
+        <span class="n">axs</span> <span class="o">=</span> <span class="n">ax</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">axs</span> <span class="o">=</span> <span class="p">[</span><span class="n">ax</span><span class="p">,</span> <span class="p">]</span>
+    <span class="n">feature_bound</span> <span class="o">=</span> <span class="n">check_bound</span><span class="p">(</span><span class="n">bound</span><span class="o">=</span><span class="n">feature_bound</span><span class="p">)</span>
 
     <span class="c1"># Check and convert the colormap</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">cmap</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-        <span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="n">cmap</span><span class="p">)</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">cmap</span><span class="p">,</span> <span class="n">Colormap</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;&#39;cmap&#39; must be a string or a Colormap.&quot;</span><span class="p">)</span>
+    <span class="n">cmap</span> <span class="o">=</span> <span class="n">_get_cmap</span><span class="p">(</span><span class="n">cmap</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">confidence</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">check_scalar</span><span class="p">(</span><span class="n">confidence</span><span class="p">,</span> <span class="s1">&#39;confidence&#39;</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="n">min_inclusive</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                      <span class="n">max_inclusive</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">min_val</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">max_val</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
     <span class="c1"># Update additional arguments</span>
-    <span class="n">boundary_args</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;colors&#39;</span><span class="p">:</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="s1">&#39;linewidths&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="s1">&#39;zorder&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
-    <span class="k">if</span> <span class="n">boundary_dict</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">boundary_dict</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;boundary_dict&#39; must be a dictionary.&quot;</span><span class="p">)</span>
-        <span class="n">boundary_args</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">boundary_dict</span><span class="p">)</span>
-    <span class="n">confidence_args</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;linewidths&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="s1">&#39;linestyles&#39;</span><span class="p">:</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.9</span><span class="p">,</span>
-                       <span class="s1">&#39;vmin&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span> <span class="s1">&#39;vmax&#39;</span><span class="p">:</span> <span class="mf">0.8</span><span class="p">,</span> <span class="s1">&#39;zorder&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
-    <span class="k">if</span> <span class="n">confidence_dict</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">confidence_dict</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;confidence_dict&#39; must be a dictionary.&quot;</span><span class="p">)</span>
-        <span class="n">confidence_args</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">confidence_dict</span><span class="p">)</span>
+    <span class="n">boundary_args</span> <span class="o">=</span> <span class="n">_get_boundary_args</span><span class="p">(</span><span class="n">boundary_dict</span><span class="p">)</span>
+    <span class="n">confidence_args</span> <span class="o">=</span> <span class="n">_get_confidence_args</span><span class="p">(</span><span class="n">confidence_dict</span><span class="p">)</span>
 
     <span class="c1"># Create mesh for plotting</span>
-    <span class="n">x_vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
-    <span class="n">y_vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
-    <span class="n">X_mesh</span><span class="p">,</span> <span class="n">Y_mesh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x_vec</span><span class="p">,</span> <span class="n">y_vec</span><span class="p">)</span>
-    <span class="n">mesh_instances</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">X_mesh</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">Y_mesh</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)])</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">X_mesh</span><span class="p">,</span> <span class="n">Y_mesh</span><span class="p">,</span> <span class="n">mesh_instances</span> <span class="o">=</span> <span class="n">mesh</span><span class="p">(</span><span class="n">feature_bound</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
 
     <span class="c1"># Calculate predictions</span>
     <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="s1">&#39;predict_proba&#39;</span><span class="p">):</span>
         <span class="n">predictions</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">mesh_instances</span><span class="p">)</span>
-        <span class="n">classes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">predictions</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+        <span class="n">classes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">predictions</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
     <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="s1">&#39;predict&#39;</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">confidence</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;The given classifier does not implement &quot;</span>
@@ -264,7 +262,7 @@
                           <span class="s2">&quot;plotted.&quot;</span><span class="p">)</span>
             <span class="n">confidence</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">predicted_classes</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">mesh_instances</span><span class="p">)</span>
-        <span class="n">classes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">predicted_classes</span><span class="p">))))</span>
+        <span class="n">classes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">predicted_classes</span><span class="p">)))</span>
         <span class="n">predictions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">predicted_classes</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">classes</span><span class="p">)))</span>
         <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">predicted_classes</span><span class="p">):</span>
             <span class="n">predictions</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
@@ -288,11 +286,12 @@
                                                   <span class="n">posterior_list</span><span class="p">[</span><span class="n">y2</span><span class="p">]],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
         <span class="n">posteriors</span> <span class="o">=</span> <span class="n">posteriors</span> <span class="o">/</span> <span class="p">(</span><span class="n">posteriors</span> <span class="o">+</span> <span class="n">posteriors_best_alternative</span><span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">X_mesh</span><span class="p">,</span> <span class="n">Y_mesh</span><span class="p">,</span> <span class="n">posteriors</span><span class="p">,</span> <span class="p">[</span><span class="mf">.5</span><span class="p">],</span> <span class="o">**</span><span class="n">boundary_args</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">ax_item</span> <span class="ow">in</span> <span class="n">axs</span><span class="p">:</span>
+            <span class="n">ax_item</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">X_mesh</span><span class="p">,</span> <span class="n">Y_mesh</span><span class="p">,</span> <span class="n">posteriors</span><span class="p">,</span> <span class="p">[</span><span class="mf">.5</span><span class="p">],</span> <span class="o">**</span><span class="n">boundary_args</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">confidence</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">ax</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">X_mesh</span><span class="p">,</span> <span class="n">Y_mesh</span><span class="p">,</span> <span class="n">posteriors</span><span class="p">,</span> <span class="p">[</span><span class="n">confidence</span><span class="p">],</span>
-                       <span class="n">colors</span><span class="o">=</span><span class="p">[</span><span class="n">cmap</span><span class="p">(</span><span class="n">norm</span><span class="p">(</span><span class="n">y</span><span class="p">))],</span> <span class="o">**</span><span class="n">confidence_args</span><span class="p">)</span>
-
+            <span class="k">for</span> <span class="n">ax_item</span> <span class="ow">in</span> <span class="n">axs</span><span class="p">:</span>
+                <span class="n">ax_item</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">X_mesh</span><span class="p">,</span> <span class="n">Y_mesh</span><span class="p">,</span> <span class="n">posteriors</span><span class="p">,</span> <span class="p">[</span><span class="n">confidence</span><span class="p">],</span>
+                                <span class="n">colors</span><span class="o">=</span><span class="p">[</span><span class="n">cmap</span><span class="p">(</span><span class="n">norm</span><span class="p">(</span><span class="n">y</span><span class="p">))],</span> <span class="o">**</span><span class="n">confidence_args</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">ax</span></div>
 
 
@@ -325,40 +324,21 @@
 <span class="sd">    -------</span>
 <span class="sd">    matplotlib.axes.Axes: The axis on which the utility was plotted.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">qs</span><span class="p">,</span> <span class="n">QueryStrategy</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;&#39;qs&#39; must be a query strategy.&quot;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">qs_dict</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;&#39;qs_dict&#39; must be a dictionary.&quot;</span><span class="p">)</span>
+    <span class="n">check_type</span><span class="p">(</span><span class="n">qs</span><span class="p">,</span> <span class="s1">&#39;qs&#39;</span><span class="p">,</span> <span class="n">QueryStrategy</span><span class="p">)</span>
+    <span class="n">check_type</span><span class="p">(</span><span class="n">qs_dict</span><span class="p">,</span> <span class="s1">&#39;qs_dict&#39;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span>
     <span class="k">if</span> <span class="s1">&#39;X_cand&#39;</span> <span class="ow">in</span> <span class="n">qs_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;X_cand&#39; must be given as separate argument.&quot;</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">feature_bound</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">check_array</span><span class="p">(</span><span class="n">feature_bound</span><span class="p">)</span>
-        <span class="n">xmin</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">feature_bound</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">X_cand</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">xmin</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">X_cand</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>
-        <span class="n">xmax</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">X_cand</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>
-        <span class="n">ymin</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">X_cand</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
-        <span class="n">ymax</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">X_cand</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;If &#39;X_cand&#39; is None, &#39;bound&#39; must be given.&quot;</span><span class="p">)</span>
+    <span class="n">feature_bound</span> <span class="o">=</span> <span class="n">check_bound</span><span class="p">(</span><span class="n">bound</span><span class="o">=</span><span class="n">feature_bound</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="n">X_cand</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">Axes</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;ax must be a matplotlib.axes.Axes.&quot;</span><span class="p">)</span>
+    <span class="n">check_type</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s1">&#39;ax&#39;</span><span class="p">,</span> <span class="n">Axes</span><span class="p">)</span>
     <span class="n">check_scalar</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="s1">&#39;res&#39;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="n">min_val</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-    <span class="n">x_vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
-    <span class="n">y_vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
-    <span class="n">X_mesh</span><span class="p">,</span> <span class="n">Y_mesh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x_vec</span><span class="p">,</span> <span class="n">y_vec</span><span class="p">)</span>
-    <span class="n">mesh_instances</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">X_mesh</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">Y_mesh</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)])</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">X_mesh</span><span class="p">,</span> <span class="n">Y_mesh</span><span class="p">,</span> <span class="n">mesh_instances</span> <span class="o">=</span> <span class="n">mesh</span><span class="p">(</span><span class="n">feature_bound</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
 
-    <span class="n">contour_args</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;cmap&#39;</span><span class="p">:</span> <span class="s1">&#39;Greens&#39;</span><span class="p">,</span> <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.75</span><span class="p">}</span>
-    <span class="k">if</span> <span class="n">contour_dict</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">contour_dict</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;contour_dict&#39; must be a dictionary.&quot;</span><span class="p">)</span>
-        <span class="n">contour_args</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">contour_dict</span><span class="p">)</span>
+    <span class="n">contour_args</span> <span class="o">=</span> <span class="n">_get_contour_args</span><span class="p">(</span><span class="n">contour_dict</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">X_cand</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">_</span><span class="p">,</span> <span class="n">utilities</span> <span class="o">=</span> <span class="n">qs</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">mesh_instances</span><span class="p">,</span> <span class="o">**</span><span class="n">qs_dict</span><span class="p">,</span>

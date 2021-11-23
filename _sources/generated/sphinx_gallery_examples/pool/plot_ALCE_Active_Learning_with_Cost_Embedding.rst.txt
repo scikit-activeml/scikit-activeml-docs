@@ -21,12 +21,13 @@
 Active Learning with Cost Embedding
 ===================================
 
-.. GENERATED FROM PYTHON SOURCE LINES 8-72
+.. GENERATED FROM PYTHON SOURCE LINES 8-73
 
 .. code-block:: default
    :lineno-start: 9
 
 
+    import os
     import numpy as np
     from matplotlib import pyplot as plt, animation
     from sklearn.datasets import make_blobs
@@ -282,42 +283,42 @@ Active Learning with Cost Embedding
      </style>
 
      <div class="animation">
-       <img id="_anim_img642ba742c1bd4c6581f735eaa4d50521">
+       <img id="_anim_img55710abdb239471db590e1e06665a488">
        <div class="anim-controls">
-         <input id="_anim_slider642ba742c1bd4c6581f735eaa4d50521" type="range" class="anim-slider"
+         <input id="_anim_slider55710abdb239471db590e1e06665a488" type="range" class="anim-slider"
                 name="points" min="0" max="1" step="1" value="0"
-                oninput="anim642ba742c1bd4c6581f735eaa4d50521.set_frame(parseInt(this.value));"></input>
+                oninput="anim55710abdb239471db590e1e06665a488.set_frame(parseInt(this.value));"></input>
          <div class="anim-buttons">
-           <button title="Decrease speed" aria-label="Decrease speed" onclick="anim642ba742c1bd4c6581f735eaa4d50521.slower()">
+           <button title="Decrease speed" aria-label="Decrease speed" onclick="anim55710abdb239471db590e1e06665a488.slower()">
                <i class="fa fa-minus"></i></button>
-           <button title="First frame" aria-label="First frame" onclick="anim642ba742c1bd4c6581f735eaa4d50521.first_frame()">
+           <button title="First frame" aria-label="First frame" onclick="anim55710abdb239471db590e1e06665a488.first_frame()">
              <i class="fa fa-fast-backward"></i></button>
-           <button title="Previous frame" aria-label="Previous frame" onclick="anim642ba742c1bd4c6581f735eaa4d50521.previous_frame()">
+           <button title="Previous frame" aria-label="Previous frame" onclick="anim55710abdb239471db590e1e06665a488.previous_frame()">
                <i class="fa fa-step-backward"></i></button>
-           <button title="Play backwards" aria-label="Play backwards" onclick="anim642ba742c1bd4c6581f735eaa4d50521.reverse_animation()">
+           <button title="Play backwards" aria-label="Play backwards" onclick="anim55710abdb239471db590e1e06665a488.reverse_animation()">
                <i class="fa fa-play fa-flip-horizontal"></i></button>
-           <button title="Pause" aria-label="Pause" onclick="anim642ba742c1bd4c6581f735eaa4d50521.pause_animation()">
+           <button title="Pause" aria-label="Pause" onclick="anim55710abdb239471db590e1e06665a488.pause_animation()">
                <i class="fa fa-pause"></i></button>
-           <button title="Play" aria-label="Play" onclick="anim642ba742c1bd4c6581f735eaa4d50521.play_animation()">
+           <button title="Play" aria-label="Play" onclick="anim55710abdb239471db590e1e06665a488.play_animation()">
                <i class="fa fa-play"></i></button>
-           <button title="Next frame" aria-label="Next frame" onclick="anim642ba742c1bd4c6581f735eaa4d50521.next_frame()">
+           <button title="Next frame" aria-label="Next frame" onclick="anim55710abdb239471db590e1e06665a488.next_frame()">
                <i class="fa fa-step-forward"></i></button>
-           <button title="Last frame" aria-label="Last frame" onclick="anim642ba742c1bd4c6581f735eaa4d50521.last_frame()">
+           <button title="Last frame" aria-label="Last frame" onclick="anim55710abdb239471db590e1e06665a488.last_frame()">
                <i class="fa fa-fast-forward"></i></button>
-           <button title="Increase speed" aria-label="Increase speed" onclick="anim642ba742c1bd4c6581f735eaa4d50521.faster()">
+           <button title="Increase speed" aria-label="Increase speed" onclick="anim55710abdb239471db590e1e06665a488.faster()">
                <i class="fa fa-plus"></i></button>
          </div>
-         <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_select642ba742c1bd4c6581f735eaa4d50521"
+         <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_select55710abdb239471db590e1e06665a488"
                class="anim-state">
-           <input type="radio" name="state" value="once" id="_anim_radio1_642ba742c1bd4c6581f735eaa4d50521"
+           <input type="radio" name="state" value="once" id="_anim_radio1_55710abdb239471db590e1e06665a488"
                   >
-           <label for="_anim_radio1_642ba742c1bd4c6581f735eaa4d50521">Once</label>
-           <input type="radio" name="state" value="loop" id="_anim_radio2_642ba742c1bd4c6581f735eaa4d50521"
+           <label for="_anim_radio1_55710abdb239471db590e1e06665a488">Once</label>
+           <input type="radio" name="state" value="loop" id="_anim_radio2_55710abdb239471db590e1e06665a488"
                   checked>
-           <label for="_anim_radio2_642ba742c1bd4c6581f735eaa4d50521">Loop</label>
-           <input type="radio" name="state" value="reflect" id="_anim_radio3_642ba742c1bd4c6581f735eaa4d50521"
+           <label for="_anim_radio2_55710abdb239471db590e1e06665a488">Loop</label>
+           <input type="radio" name="state" value="reflect" id="_anim_radio3_55710abdb239471db590e1e06665a488"
                   >
-           <label for="_anim_radio3_642ba742c1bd4c6581f735eaa4d50521">Reflect</label>
+           <label for="_anim_radio3_55710abdb239471db590e1e06665a488">Reflect</label>
          </form>
        </div>
      </div>
@@ -327,9 +328,9 @@ Active Learning with Cost Embedding
        /* Instantiate the Animation class. */
        /* The IDs given should match those used in the template above. */
        (function() {
-         var img_id = "_anim_img642ba742c1bd4c6581f735eaa4d50521";
-         var slider_id = "_anim_slider642ba742c1bd4c6581f735eaa4d50521";
-         var loop_select_id = "_anim_loop_select642ba742c1bd4c6581f735eaa4d50521";
+         var img_id = "_anim_img55710abdb239471db590e1e06665a488";
+         var slider_id = "_anim_slider55710abdb239471db590e1e06665a488";
+         var loop_select_id = "_anim_loop_select55710abdb239471db590e1e06665a488";
          var frames = new Array(25);
     
        frames[0] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
@@ -27257,7 +27258,7 @@ Active Learning with Cost Embedding
          /* set a timeout to make sure all the above elements are created before
             the object is initialized. */
          setTimeout(function() {
-             anim642ba742c1bd4c6581f735eaa4d50521 = new Animation(frames, img_id, slider_id, 1000.0,
+             anim55710abdb239471db590e1e06665a488 = new Animation(frames, img_id, slider_id, 1000.0,
                                       loop_select_id);
          }, 0);
        })()
@@ -27268,7 +27269,7 @@ Active Learning with Cost Embedding
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 73-78
+.. GENERATED FROM PYTHON SOURCE LINES 74-79
 
 .. rubric:: References:
 
@@ -27279,7 +27280,7 @@ The implementation of this strategy is based on :footcite:t:`huang2016novel`.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  8.805 seconds)
+   **Total running time of the script:** ( 0 minutes  8.413 seconds)
 
 
 .. _sphx_glr_download_generated_sphinx_gallery_examples_pool_plot_ALCE_Active_Learning_with_Cost_Embedding.py:

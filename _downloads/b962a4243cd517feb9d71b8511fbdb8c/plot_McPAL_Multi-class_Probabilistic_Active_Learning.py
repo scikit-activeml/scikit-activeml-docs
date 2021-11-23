@@ -6,6 +6,7 @@ Multi-class Probabilistic Active Learning
 # %%
 # 
 
+import os
 import numpy as np
 from matplotlib import pyplot as plt, animation
 from sklearn.datasets import make_blobs

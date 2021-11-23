@@ -6,6 +6,7 @@ Log Loss Expected Error Reduction
 # %%
 # 
 
+import os
 import numpy as np
 from matplotlib import pyplot as plt, animation
 from sklearn.datasets import make_blobs

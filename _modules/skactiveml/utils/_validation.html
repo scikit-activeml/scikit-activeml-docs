@@ -75,8 +75,14 @@
       <div class="navbar-center-item">
         <ul id="navbar-main-elements" class="navbar-nav">
     <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../../../notebooks/getting_started.html">
-  Getting Started
+ <a class="reference internal nav-link" href="../../../index.html">
+  Home
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../tutorials.html">
+  Tutorials
  </a>
 </li>
 
@@ -628,12 +634,89 @@
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="check_type"><a class="viewcode-back" href="../../../generated/api/skactiveml.utils.check_type.html#skactiveml.utils.check_type">[docs]</a><span class="k">def</span> <span class="nf">check_type</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">target_type</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">target_type</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s1">&#39;`</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">` has type `</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span><span class="si">}</span><span class="s1">` but must have type &#39;</span>
-            <span class="sa">f</span><span class="s1">&#39;`</span><span class="si">{</span><span class="n">target_type</span><span class="si">}</span><span class="s1">`.&#39;</span>
-        <span class="p">)</span></div>
+<div class="viewcode-block" id="check_type"><a class="viewcode-back" href="../../../generated/api/skactiveml.utils.check_type.html#skactiveml.utils.check_type">[docs]</a><span class="k">def</span> <span class="nf">check_type</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">*</span><span class="n">target_types</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Check if obj is one of the given types.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    obj: object</span>
+<span class="sd">        The object to be checked.</span>
+<span class="sd">    name: str</span>
+<span class="sd">        The variable name of the object.</span>
+<span class="sd">    target_types : iterable of types</span>
+<span class="sd">        The possible types.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">target_type</span><span class="p">)</span> <span class="k">for</span> <span class="n">target_type</span> <span class="ow">in</span> <span class="n">target_types</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">target_types</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s1">&#39;`</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">` has type `</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span><span class="si">}</span><span class="s1">` but must have type &#39;</span>
+                <span class="sa">f</span><span class="s1">&#39;`</span><span class="si">{</span><span class="n">target_types</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">`.&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">target_types</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">error_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;`</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">` has type `</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span><span class="si">}</span><span class="s1">` but must have type &#39;</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">target_types</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="n">error_str</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;`</span><span class="si">{</span><span class="n">target_types</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1">`,&#39;</span>
+            <span class="n">error_str</span> <span class="o">=</span> <span class="n">error_str</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">error_str</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;or `</span><span class="si">{</span><span class="n">target_types</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">target_types</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1">`.&#39;</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">error_str</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s1">&#39;`</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">` has type `</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span><span class="si">}</span><span class="s1">` but must be one of the &#39;</span>
+                <span class="sa">f</span><span class="s1">&#39;following types: </span><span class="si">{</span><span class="n">target_types</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="check_bound"><a class="viewcode-back" href="../../../generated/api/skactiveml.utils.check_bound.html#skactiveml.utils.check_bound">[docs]</a><span class="k">def</span> <span class="nf">check_bound</span><span class="p">(</span><span class="n">bound</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                <span class="n">bound_must_be_given</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Validates bound and returns the bound of X if bound is None.</span>
+<span class="sd">    `bound` and `X` must not be None.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    bound: array-like, shape (2, ndim), optional (default=None)</span>
+<span class="sd">        The given bound of shape</span>
+<span class="sd">        [[x1_min, x2_min, ..., xndim_min], [x1_max, x2_max, ..., xndim_max]]</span>
+<span class="sd">    X: matrix-like, shape (n_samples, ndim), optional (default=None)</span>
+<span class="sd">        The sample matrix X is the feature matrix representing samples.</span>
+<span class="sd">    ndim: int, optional (default=2)</span>
+<span class="sd">        The number of dimensions.</span>
+<span class="sd">    epsilon: float, optional (default=0)</span>
+<span class="sd">        The minimal distance between the returned bound and the values of `X`,</span>
+<span class="sd">        if `bound` is not specified.</span>
+<span class="sd">    bound_must_be_given: bool, optional (default=False)</span>
+<span class="sd">        Whether it is allowed for the bound to be `None` and to be inferred by</span>
+<span class="sd">        `X`.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    bound: array-like, shape (2, ndim), optional (default=None)</span>
+<span class="sd">        The given bound or bound of X.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">X</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="n">ndim</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;`X` along axis 1 must be of length </span><span class="si">{</span><span class="n">ndim</span><span class="si">}</span><span class="s2">. &quot;</span>
+                             <span class="sa">f</span><span class="s2">&quot;`X` along axis 1 is of length </span><span class="si">{</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">bound</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">bound</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">bound</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">bound</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">ndim</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Shape of `bound` must be (2, </span><span class="si">{</span><span class="n">ndim</span><span class="si">}</span><span class="s2">). &quot;</span>
+                             <span class="sa">f</span><span class="s2">&quot;Shape of `bound` is </span><span class="si">{</span><span class="n">bound</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">bound_must_be_given</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;`bound` must not be `None`.&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">bound</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">X</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">minima</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmin</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="n">epsilon</span>
+        <span class="n">maxima</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">epsilon</span>
+        <span class="n">bound</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">minima</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">maxima</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">bound</span>
+    <span class="k">elif</span> <span class="n">bound</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">X</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">logical_or</span><span class="p">(</span><span class="n">bound</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">X</span><span class="p">,</span> <span class="n">X</span> <span class="o">&gt;</span> <span class="n">bound</span><span class="p">[</span><span class="mi">1</span><span class="p">])):</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;`X` contains values not within range of `bound`.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">bound</span>
+    <span class="k">elif</span> <span class="n">bound</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">bound</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;`X` or `bound` must not be None.&quot;</span><span class="p">)</span></div>
 </pre></div>
 
               </div>

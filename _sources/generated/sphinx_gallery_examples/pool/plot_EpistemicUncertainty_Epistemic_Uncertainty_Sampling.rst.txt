@@ -21,12 +21,13 @@
 Epistemic Uncertainty Sampling
 ==============================
 
-.. GENERATED FROM PYTHON SOURCE LINES 8-72
+.. GENERATED FROM PYTHON SOURCE LINES 8-73
 
 .. code-block:: default
    :lineno-start: 9
 
 
+    import os
     import numpy as np
     from matplotlib import pyplot as plt, animation
     from sklearn.datasets import make_blobs
@@ -282,42 +283,42 @@ Epistemic Uncertainty Sampling
      </style>
 
      <div class="animation">
-       <img id="_anim_imgfcdfc4e096584753a772c396063885f7">
+       <img id="_anim_img67e83dc0e2aa492bac420cf9da9ab2f7">
        <div class="anim-controls">
-         <input id="_anim_sliderfcdfc4e096584753a772c396063885f7" type="range" class="anim-slider"
+         <input id="_anim_slider67e83dc0e2aa492bac420cf9da9ab2f7" type="range" class="anim-slider"
                 name="points" min="0" max="1" step="1" value="0"
-                oninput="animfcdfc4e096584753a772c396063885f7.set_frame(parseInt(this.value));"></input>
+                oninput="anim67e83dc0e2aa492bac420cf9da9ab2f7.set_frame(parseInt(this.value));"></input>
          <div class="anim-buttons">
-           <button title="Decrease speed" aria-label="Decrease speed" onclick="animfcdfc4e096584753a772c396063885f7.slower()">
+           <button title="Decrease speed" aria-label="Decrease speed" onclick="anim67e83dc0e2aa492bac420cf9da9ab2f7.slower()">
                <i class="fa fa-minus"></i></button>
-           <button title="First frame" aria-label="First frame" onclick="animfcdfc4e096584753a772c396063885f7.first_frame()">
+           <button title="First frame" aria-label="First frame" onclick="anim67e83dc0e2aa492bac420cf9da9ab2f7.first_frame()">
              <i class="fa fa-fast-backward"></i></button>
-           <button title="Previous frame" aria-label="Previous frame" onclick="animfcdfc4e096584753a772c396063885f7.previous_frame()">
+           <button title="Previous frame" aria-label="Previous frame" onclick="anim67e83dc0e2aa492bac420cf9da9ab2f7.previous_frame()">
                <i class="fa fa-step-backward"></i></button>
-           <button title="Play backwards" aria-label="Play backwards" onclick="animfcdfc4e096584753a772c396063885f7.reverse_animation()">
+           <button title="Play backwards" aria-label="Play backwards" onclick="anim67e83dc0e2aa492bac420cf9da9ab2f7.reverse_animation()">
                <i class="fa fa-play fa-flip-horizontal"></i></button>
-           <button title="Pause" aria-label="Pause" onclick="animfcdfc4e096584753a772c396063885f7.pause_animation()">
+           <button title="Pause" aria-label="Pause" onclick="anim67e83dc0e2aa492bac420cf9da9ab2f7.pause_animation()">
                <i class="fa fa-pause"></i></button>
-           <button title="Play" aria-label="Play" onclick="animfcdfc4e096584753a772c396063885f7.play_animation()">
+           <button title="Play" aria-label="Play" onclick="anim67e83dc0e2aa492bac420cf9da9ab2f7.play_animation()">
                <i class="fa fa-play"></i></button>
-           <button title="Next frame" aria-label="Next frame" onclick="animfcdfc4e096584753a772c396063885f7.next_frame()">
+           <button title="Next frame" aria-label="Next frame" onclick="anim67e83dc0e2aa492bac420cf9da9ab2f7.next_frame()">
                <i class="fa fa-step-forward"></i></button>
-           <button title="Last frame" aria-label="Last frame" onclick="animfcdfc4e096584753a772c396063885f7.last_frame()">
+           <button title="Last frame" aria-label="Last frame" onclick="anim67e83dc0e2aa492bac420cf9da9ab2f7.last_frame()">
                <i class="fa fa-fast-forward"></i></button>
-           <button title="Increase speed" aria-label="Increase speed" onclick="animfcdfc4e096584753a772c396063885f7.faster()">
+           <button title="Increase speed" aria-label="Increase speed" onclick="anim67e83dc0e2aa492bac420cf9da9ab2f7.faster()">
                <i class="fa fa-plus"></i></button>
          </div>
-         <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_selectfcdfc4e096584753a772c396063885f7"
+         <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_select67e83dc0e2aa492bac420cf9da9ab2f7"
                class="anim-state">
-           <input type="radio" name="state" value="once" id="_anim_radio1_fcdfc4e096584753a772c396063885f7"
+           <input type="radio" name="state" value="once" id="_anim_radio1_67e83dc0e2aa492bac420cf9da9ab2f7"
                   >
-           <label for="_anim_radio1_fcdfc4e096584753a772c396063885f7">Once</label>
-           <input type="radio" name="state" value="loop" id="_anim_radio2_fcdfc4e096584753a772c396063885f7"
+           <label for="_anim_radio1_67e83dc0e2aa492bac420cf9da9ab2f7">Once</label>
+           <input type="radio" name="state" value="loop" id="_anim_radio2_67e83dc0e2aa492bac420cf9da9ab2f7"
                   checked>
-           <label for="_anim_radio2_fcdfc4e096584753a772c396063885f7">Loop</label>
-           <input type="radio" name="state" value="reflect" id="_anim_radio3_fcdfc4e096584753a772c396063885f7"
+           <label for="_anim_radio2_67e83dc0e2aa492bac420cf9da9ab2f7">Loop</label>
+           <input type="radio" name="state" value="reflect" id="_anim_radio3_67e83dc0e2aa492bac420cf9da9ab2f7"
                   >
-           <label for="_anim_radio3_fcdfc4e096584753a772c396063885f7">Reflect</label>
+           <label for="_anim_radio3_67e83dc0e2aa492bac420cf9da9ab2f7">Reflect</label>
          </form>
        </div>
      </div>
@@ -327,9 +328,9 @@ Epistemic Uncertainty Sampling
        /* Instantiate the Animation class. */
        /* The IDs given should match those used in the template above. */
        (function() {
-         var img_id = "_anim_imgfcdfc4e096584753a772c396063885f7";
-         var slider_id = "_anim_sliderfcdfc4e096584753a772c396063885f7";
-         var loop_select_id = "_anim_loop_selectfcdfc4e096584753a772c396063885f7";
+         var img_id = "_anim_img67e83dc0e2aa492bac420cf9da9ab2f7";
+         var slider_id = "_anim_slider67e83dc0e2aa492bac420cf9da9ab2f7";
+         var loop_select_id = "_anim_loop_select67e83dc0e2aa492bac420cf9da9ab2f7";
          var frames = new Array(25);
     
        frames[0] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
@@ -27139,7 +27140,7 @@ Epistemic Uncertainty Sampling
          /* set a timeout to make sure all the above elements are created before
             the object is initialized. */
          setTimeout(function() {
-             animfcdfc4e096584753a772c396063885f7 = new Animation(frames, img_id, slider_id, 1000.0,
+             anim67e83dc0e2aa492bac420cf9da9ab2f7 = new Animation(frames, img_id, slider_id, 1000.0,
                                       loop_select_id);
          }, 0);
        })()
@@ -27150,7 +27151,7 @@ Epistemic Uncertainty Sampling
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 73-78
+.. GENERATED FROM PYTHON SOURCE LINES 74-79
 
 .. rubric:: References:
 
@@ -27161,7 +27162,7 @@ The implementation of this strategy is based on :footcite:t:`nguyen2019epistemic
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  17.592 seconds)
+   **Total running time of the script:** ( 0 minutes  18.149 seconds)
 
 
 .. _sphx_glr_download_generated_sphinx_gallery_examples_pool_plot_EpistemicUncertainty_Epistemic_Uncertainty_Sampling.py:

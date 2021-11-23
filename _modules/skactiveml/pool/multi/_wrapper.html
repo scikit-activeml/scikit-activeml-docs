@@ -75,8 +75,14 @@
       <div class="navbar-center-item">
         <ul id="navbar-main-elements" class="navbar-nav">
     <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../../../../notebooks/getting_started.html">
-  Getting Started
+ <a class="reference internal nav-link" href="../../../../index.html">
+  Home
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../tutorials.html">
+  Tutorials
  </a>
 </li>
 
@@ -301,19 +307,22 @@
                                    <span class="bp">self</span><span class="o">.</span><span class="n">random_state</span><span class="p">,</span> <span class="n">reset</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
         <span class="c1"># check strategy</span>
-        <span class="n">check_type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">strategy</span><span class="p">,</span> <span class="n">SingleAnnotPoolBasedQueryStrategy</span><span class="p">,</span>
-                   <span class="s1">&#39;self.strategy&#39;</span><span class="p">)</span>
+        <span class="n">check_type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">strategy</span><span class="p">,</span> <span class="s1">&#39;self.strategy&#39;</span><span class="p">,</span>
+                   <span class="n">SingleAnnotPoolBasedQueryStrategy</span><span class="p">)</span>
 
         <span class="c1"># check query_params_dict</span>
         <span class="k">if</span> <span class="n">query_params_dict</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">query_params_dict</span> <span class="o">=</span> <span class="p">{}</span>
 
-        <span class="n">check_type</span><span class="p">(</span><span class="n">query_params_dict</span><span class="p">,</span> <span class="nb">dict</span><span class="p">,</span> <span class="s1">&#39;query_params_dict&#39;</span><span class="p">)</span>
+        <span class="n">check_type</span><span class="p">(</span><span class="n">query_params_dict</span><span class="p">,</span> <span class="s1">&#39;query_params_dict&#39;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span>
 
         <span class="c1"># aggregate y</span>
         <span class="k">if</span> <span class="s1">&#39;y&#39;</span> <span class="ow">in</span> <span class="n">query_params_dict</span><span class="p">:</span>
-            <span class="n">y_aggregate</span> <span class="o">=</span> <span class="n">majority_vote</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_aggregate</span> <span class="ow">is</span> <span class="kc">None</span> \
-                <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_aggregate</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_aggregate</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">y_aggregate</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="n">majority_vote</span><span class="p">(</span><span class="n">y</span><span class="p">,</span>
+                                                      <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">y_aggregate</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_aggregate</span>
 
             <span class="k">if</span> <span class="ow">not</span> <span class="n">callable</span><span class="p">(</span><span class="n">y_aggregate</span><span class="p">):</span>
                 <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
@@ -377,7 +386,7 @@
 
         <span class="c1"># check A_perf and set annotator_utilities</span>
         <span class="k">if</span> <span class="n">A_perf</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">annotator_utilities</span> <span class="o">=</span> <span class="n">random_state</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">,</span> <span class="n">n_annotators</span><span class="p">)</span>\
+            <span class="n">annotator_utilities</span> <span class="o">=</span> <span class="n">random_state</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">,</span> <span class="n">n_annotators</span><span class="p">)</span> \
                 <span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">batch_size_sq</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">validation</span><span class="o">.</span><span class="n">_is_arraylike</span><span class="p">(</span><span class="n">A_perf</span><span class="p">):</span>
             <span class="n">A_perf</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">A_perf</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -389,11 +398,11 @@
                 <span class="n">A_perf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">A_perf</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
 
             <span class="k">if</span> <span class="n">A_perf</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">n_annotators</span><span class="p">):</span>
-                <span class="n">annotator_utilities</span> <span class="o">=</span> <span class="n">A_perf</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span>\
+                <span class="n">annotator_utilities</span> <span class="o">=</span> <span class="n">A_perf</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span> \
                     <span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">batch_size_sq</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
             <span class="k">elif</span> <span class="n">A_perf</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="n">n_annotators</span><span class="p">,):</span>
-                <span class="n">annotator_utilities</span> <span class="o">=</span> <span class="n">A_perf</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:]</span>\
-                    <span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>\
+                <span class="n">annotator_utilities</span> <span class="o">=</span> <span class="n">A_perf</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:]</span> \
+                    <span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> \
                     <span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">batch_size_sq</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
@@ -449,9 +458,8 @@
             <span class="n">query_indices</span><span class="p">[</span><span class="n">batch_index</span><span class="p">]</span> <span class="o">=</span> <span class="n">rand_argmax</span><span class="p">(</span><span class="n">utilities</span><span class="p">[</span><span class="n">batch_index</span><span class="p">],</span>
                                                      <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span>
 
-            <span class="n">s_utilities</span><span class="p">[</span><span class="n">sample_index</span><span class="p">,</span>
-                        <span class="n">query_indices</span><span class="p">[</span><span class="n">batch_index</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-                        <span class="n">query_indices</span><span class="p">[</span><span class="n">batch_index</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+            <span class="n">s_utilities</span><span class="p">[:,</span> <span class="n">query_indices</span><span class="p">[</span><span class="n">batch_index</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+            <span class="n">query_indices</span><span class="p">[</span><span class="n">batch_index</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
 
             <span class="n">batch_index</span> <span class="o">+=</span> <span class="mi">1</span>
             <span class="n">annotator_ps</span> <span class="o">+=</span> <span class="mi">1</span>

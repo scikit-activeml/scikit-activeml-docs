@@ -75,8 +75,14 @@
       <div class="navbar-center-item">
         <ul id="navbar-main-elements" class="navbar-nav">
     <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../../../notebooks/getting_started.html">
-  Getting Started
+ <a class="reference internal nav-link" href="../../../index.html">
+  Home
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../tutorials.html">
+  Tutorials
  </a>
 </li>
 
@@ -335,10 +341,10 @@
 <span class="sd">        In IJCAI (Vol. 5, pp. 1622-1623).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Check if the classifier and its arguments are valid.</span>
-    <span class="n">check_type</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">SkactivemlClassifier</span><span class="p">,</span> <span class="s1">&#39;clf&#39;</span><span class="p">)</span>
+    <span class="n">check_type</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="s1">&#39;clf&#39;</span><span class="p">,</span> <span class="n">SkactivemlClassifier</span><span class="p">)</span>
 
     <span class="c1"># Check whether to use `fit` or `partial_fit`.</span>
-    <span class="n">check_type</span><span class="p">(</span><span class="n">ignore_partial_fit</span><span class="p">,</span> <span class="nb">bool</span><span class="p">,</span> <span class="s1">&#39;ignore_partial_fit&#39;</span><span class="p">)</span>
+    <span class="n">check_type</span><span class="p">(</span><span class="n">ignore_partial_fit</span><span class="p">,</span> <span class="s1">&#39;ignore_partial_fit&#39;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>
     <span class="n">use_fit</span> <span class="o">=</span> <span class="n">ignore_partial_fit</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="s1">&#39;partial_fit&#39;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">use_fit</span> <span class="ow">and</span> <span class="p">(</span><span class="n">X</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">y</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>

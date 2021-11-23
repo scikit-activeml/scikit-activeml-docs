@@ -21,12 +21,13 @@
 Expected Misclassification Risk
 ===============================
 
-.. GENERATED FROM PYTHON SOURCE LINES 8-72
+.. GENERATED FROM PYTHON SOURCE LINES 8-73
 
 .. code-block:: default
    :lineno-start: 9
 
 
+    import os
     import numpy as np
     from matplotlib import pyplot as plt, animation
     from sklearn.datasets import make_blobs
@@ -282,42 +283,42 @@ Expected Misclassification Risk
      </style>
 
      <div class="animation">
-       <img id="_anim_img63ea723cd8414204a359d02be3466004">
+       <img id="_anim_imgbc3713dae2ec46db91c01cd5e4012dde">
        <div class="anim-controls">
-         <input id="_anim_slider63ea723cd8414204a359d02be3466004" type="range" class="anim-slider"
+         <input id="_anim_sliderbc3713dae2ec46db91c01cd5e4012dde" type="range" class="anim-slider"
                 name="points" min="0" max="1" step="1" value="0"
-                oninput="anim63ea723cd8414204a359d02be3466004.set_frame(parseInt(this.value));"></input>
+                oninput="animbc3713dae2ec46db91c01cd5e4012dde.set_frame(parseInt(this.value));"></input>
          <div class="anim-buttons">
-           <button title="Decrease speed" aria-label="Decrease speed" onclick="anim63ea723cd8414204a359d02be3466004.slower()">
+           <button title="Decrease speed" aria-label="Decrease speed" onclick="animbc3713dae2ec46db91c01cd5e4012dde.slower()">
                <i class="fa fa-minus"></i></button>
-           <button title="First frame" aria-label="First frame" onclick="anim63ea723cd8414204a359d02be3466004.first_frame()">
+           <button title="First frame" aria-label="First frame" onclick="animbc3713dae2ec46db91c01cd5e4012dde.first_frame()">
              <i class="fa fa-fast-backward"></i></button>
-           <button title="Previous frame" aria-label="Previous frame" onclick="anim63ea723cd8414204a359d02be3466004.previous_frame()">
+           <button title="Previous frame" aria-label="Previous frame" onclick="animbc3713dae2ec46db91c01cd5e4012dde.previous_frame()">
                <i class="fa fa-step-backward"></i></button>
-           <button title="Play backwards" aria-label="Play backwards" onclick="anim63ea723cd8414204a359d02be3466004.reverse_animation()">
+           <button title="Play backwards" aria-label="Play backwards" onclick="animbc3713dae2ec46db91c01cd5e4012dde.reverse_animation()">
                <i class="fa fa-play fa-flip-horizontal"></i></button>
-           <button title="Pause" aria-label="Pause" onclick="anim63ea723cd8414204a359d02be3466004.pause_animation()">
+           <button title="Pause" aria-label="Pause" onclick="animbc3713dae2ec46db91c01cd5e4012dde.pause_animation()">
                <i class="fa fa-pause"></i></button>
-           <button title="Play" aria-label="Play" onclick="anim63ea723cd8414204a359d02be3466004.play_animation()">
+           <button title="Play" aria-label="Play" onclick="animbc3713dae2ec46db91c01cd5e4012dde.play_animation()">
                <i class="fa fa-play"></i></button>
-           <button title="Next frame" aria-label="Next frame" onclick="anim63ea723cd8414204a359d02be3466004.next_frame()">
+           <button title="Next frame" aria-label="Next frame" onclick="animbc3713dae2ec46db91c01cd5e4012dde.next_frame()">
                <i class="fa fa-step-forward"></i></button>
-           <button title="Last frame" aria-label="Last frame" onclick="anim63ea723cd8414204a359d02be3466004.last_frame()">
+           <button title="Last frame" aria-label="Last frame" onclick="animbc3713dae2ec46db91c01cd5e4012dde.last_frame()">
                <i class="fa fa-fast-forward"></i></button>
-           <button title="Increase speed" aria-label="Increase speed" onclick="anim63ea723cd8414204a359d02be3466004.faster()">
+           <button title="Increase speed" aria-label="Increase speed" onclick="animbc3713dae2ec46db91c01cd5e4012dde.faster()">
                <i class="fa fa-plus"></i></button>
          </div>
-         <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_select63ea723cd8414204a359d02be3466004"
+         <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_selectbc3713dae2ec46db91c01cd5e4012dde"
                class="anim-state">
-           <input type="radio" name="state" value="once" id="_anim_radio1_63ea723cd8414204a359d02be3466004"
+           <input type="radio" name="state" value="once" id="_anim_radio1_bc3713dae2ec46db91c01cd5e4012dde"
                   >
-           <label for="_anim_radio1_63ea723cd8414204a359d02be3466004">Once</label>
-           <input type="radio" name="state" value="loop" id="_anim_radio2_63ea723cd8414204a359d02be3466004"
+           <label for="_anim_radio1_bc3713dae2ec46db91c01cd5e4012dde">Once</label>
+           <input type="radio" name="state" value="loop" id="_anim_radio2_bc3713dae2ec46db91c01cd5e4012dde"
                   checked>
-           <label for="_anim_radio2_63ea723cd8414204a359d02be3466004">Loop</label>
-           <input type="radio" name="state" value="reflect" id="_anim_radio3_63ea723cd8414204a359d02be3466004"
+           <label for="_anim_radio2_bc3713dae2ec46db91c01cd5e4012dde">Loop</label>
+           <input type="radio" name="state" value="reflect" id="_anim_radio3_bc3713dae2ec46db91c01cd5e4012dde"
                   >
-           <label for="_anim_radio3_63ea723cd8414204a359d02be3466004">Reflect</label>
+           <label for="_anim_radio3_bc3713dae2ec46db91c01cd5e4012dde">Reflect</label>
          </form>
        </div>
      </div>
@@ -327,9 +328,9 @@ Expected Misclassification Risk
        /* Instantiate the Animation class. */
        /* The IDs given should match those used in the template above. */
        (function() {
-         var img_id = "_anim_img63ea723cd8414204a359d02be3466004";
-         var slider_id = "_anim_slider63ea723cd8414204a359d02be3466004";
-         var loop_select_id = "_anim_loop_select63ea723cd8414204a359d02be3466004";
+         var img_id = "_anim_imgbc3713dae2ec46db91c01cd5e4012dde";
+         var slider_id = "_anim_sliderbc3713dae2ec46db91c01cd5e4012dde";
+         var loop_select_id = "_anim_loop_selectbc3713dae2ec46db91c01cd5e4012dde";
          var frames = new Array(25);
     
        frames[0] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
@@ -26247,7 +26248,7 @@ Expected Misclassification Risk
          /* set a timeout to make sure all the above elements are created before
             the object is initialized. */
          setTimeout(function() {
-             anim63ea723cd8414204a359d02be3466004 = new Animation(frames, img_id, slider_id, 1000.0,
+             animbc3713dae2ec46db91c01cd5e4012dde = new Animation(frames, img_id, slider_id, 1000.0,
                                       loop_select_id);
          }, 0);
        })()
@@ -26258,7 +26259,7 @@ Expected Misclassification Risk
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 73-78
+.. GENERATED FROM PYTHON SOURCE LINES 74-79
 
 .. rubric:: References:
 
@@ -26269,7 +26270,7 @@ The implementation of this strategy is based on :footcite:t:`joshi2009multi`.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  17.465 seconds)
+   **Total running time of the script:** ( 0 minutes  16.253 seconds)
 
 
 .. _sphx_glr_download_generated_sphinx_gallery_examples_pool_plot_ExpectedErrorReduction_Expected_Misclassification_Risk.py:

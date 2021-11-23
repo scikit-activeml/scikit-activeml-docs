@@ -39,7 +39,7 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="skactiveml.utils.ExtLabelEncoder" href="skactiveml.utils.ExtLabelEncoder.html" />
+    <link rel="next" title="skactiveml.visualization.plot_ma_current_state" href="skactiveml.visualization.plot_ma_current_state.html" />
     <link rel="prev" title="skactiveml.visualization.plot_utility" href="skactiveml.visualization.plot_utility.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -78,8 +78,14 @@
       <div class="navbar-center-item">
         <ul id="navbar-main-elements" class="navbar-nav">
     <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../../notebooks/getting_started.html">
-  Getting Started
+ <a class="reference internal nav-link" href="../../index.html">
+  Home
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../tutorials.html">
+  Tutorials
  </a>
 </li>
 
@@ -351,6 +357,26 @@
    skactiveml.visualization.plot_decision_boundary
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.visualization.plot_ma_current_state.html">
+   skactiveml.visualization.plot_ma_current_state
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.visualization.plot_ma_utility.html">
+   skactiveml.visualization.plot_ma_utility
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.visualization.plot_ma_decision_boundary.html">
+   skactiveml.visualization.plot_ma_decision_boundary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.visualization.mesh.html">
+   skactiveml.visualization.mesh
+  </a>
+ </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -465,6 +491,11 @@
    skactiveml.utils.check_type
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.utils.check_bound.html">
+   skactiveml.utils.check_bound
+  </a>
+ </li>
 </ul>
 
   </div>
@@ -530,7 +561,8 @@ is not None, the classifier must implement the predict_proba function.</p>
 </dd>
 <dt><strong>feature_bound: array-like, [[xmin, ymin], [xmax, ymax]]</strong></dt><dd><p>Determines the area in which the boundary is plotted.</p>
 </dd>
-<dt><strong>ax: matplotlib.axes.Axes, optional (default=None)</strong></dt><dd><p>The axis on which the decision boundary is plotted.</p>
+<dt><strong>ax: matplotlib.axes.Axes or List, optional (default=None)</strong></dt><dd><p>The axis on which the decision boundary is plotted. If ax is a List,
+each entry has to be an <cite>matplotlib.axes.Axes</cite>.</p>
 </dd>
 <dt><strong>res: int, optional (default=21)</strong></dt><dd><p>The resolution of the plot.</p>
 </dd>
@@ -549,7 +581,9 @@ colormap because cmap is used.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt>matplotlib.axes.Axes: The axis on which the boundary was plotted.</dt><dd></dd>
+<dt>ax: matplotlib.axes.Axes or List</dt><dd><p>The axis on which the boundary was plotted or the list of axis if ax
+was a list.</p>
+</dd>
 </dl>
 </dd>
 </dl>
@@ -657,10 +691,10 @@ colormap because cmap is used.</p>
             <p class="prev-next-title">skactiveml.visualization.plot_utility</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="skactiveml.utils.ExtLabelEncoder.html" title="next page">
+    <a class='right-next' id="next-link" href="skactiveml.visualization.plot_ma_current_state.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">skactiveml.utils.ExtLabelEncoder</p>
+        <p class="prev-next-title">skactiveml.visualization.plot_ma_current_state</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

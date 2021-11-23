@@ -78,8 +78,14 @@
       <div class="navbar-center-item">
         <ul id="navbar-main-elements" class="navbar-nav">
     <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../notebooks/getting_started.html">
-  Getting Started
+ <a class="reference internal nav-link" href="../index.html">
+  Home
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../tutorials.html">
+  Tutorials
  </a>
 </li>
 
@@ -351,6 +357,26 @@
    skactiveml.visualization.plot_decision_boundary
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.visualization.plot_ma_current_state.html">
+   skactiveml.visualization.plot_ma_current_state
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.visualization.plot_ma_utility.html">
+   skactiveml.visualization.plot_ma_utility
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.visualization.plot_ma_decision_boundary.html">
+   skactiveml.visualization.plot_ma_decision_boundary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.visualization.mesh.html">
+   skactiveml.visualization.mesh
+  </a>
+ </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -463,6 +489,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="api/skactiveml.utils.check_type.html">
    skactiveml.utils.check_type
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.utils.check_bound.html">
+   skactiveml.utils.check_bound
   </a>
  </li>
 </ul>
@@ -852,6 +883,18 @@ visualization.</p>
 <tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.visualization.plot_decision_boundary.html#skactiveml.visualization.plot_decision_boundary" title="skactiveml.visualization.plot_decision_boundary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">visualization.plot_decision_boundary</span></code></a></p></td>
 <td><p>Plot the decision boundary of the given classifier.</p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.visualization.plot_ma_current_state.html#skactiveml.visualization.plot_ma_current_state" title="skactiveml.visualization.plot_ma_current_state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">visualization.plot_ma_current_state</span></code></a></p></td>
+<td><p>Shows the annotations from the different annotators, the decision boundary of the given classifier and the utilities expected of querying a sample from a given region based on the query strategy.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.visualization.plot_ma_utility.html#skactiveml.visualization.plot_ma_utility" title="skactiveml.visualization.plot_ma_utility"><code class="xref py py-obj docutils literal notranslate"><span class="pre">visualization.plot_ma_utility</span></code></a></p></td>
+<td><p>Plots the utilities for the different annotators of the given multi-annotator query strategy.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.visualization.plot_ma_decision_boundary.html#skactiveml.visualization.plot_ma_decision_boundary" title="skactiveml.visualization.plot_ma_decision_boundary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">visualization.plot_ma_decision_boundary</span></code></a></p></td>
+<td><p>Plot the decision boundary of the given classifier for each annotator.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.visualization.mesh.html#skactiveml.visualization.mesh" title="skactiveml.visualization.mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">visualization.mesh</span></code></a></p></td>
+<td><p>Function to get instances of a mesh grid as well as x-mesh and y-mesh with given resolution in the specified bounds.</p></td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -942,7 +985,10 @@ visualization.</p>
 <td><p>Return an array of indices indicating missing labels.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.utils.check_type.html#skactiveml.utils.check_type" title="skactiveml.utils.check_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utils.check_type</span></code></a></p></td>
-<td><p></p></td>
+<td><p>Check if obj is one of the given types.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.utils.check_bound.html#skactiveml.utils.check_bound" title="skactiveml.utils.check_bound"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utils.check_bound</span></code></a></p></td>
+<td><p>Validates bound and returns the bound of X if bound is None.</p></td>
 </tr>
 </tbody>
 </table>
