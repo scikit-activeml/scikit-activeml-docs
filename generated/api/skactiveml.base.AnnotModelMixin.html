@@ -335,14 +335,16 @@
    skactiveml.classifier.SklearnClassifier
   </a>
  </li>
+</ul>
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.classifier.MultiAnnotClassifier.html">
-   skactiveml.classifier.MultiAnnotClassifier
+  <a class="reference internal" href="skactiveml.classifier.multi.LogisticRegressionRY.html">
+   skactiveml.classifier.multi.LogisticRegressionRY
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.classifier.LogisticRegressionRY.html">
-   skactiveml.classifier.LogisticRegressionRY
+  <a class="reference internal" href="skactiveml.classifier.multi.MultiAnnotEnsemble.html">
+   skactiveml.classifier.multi.MultiAnnotEnsemble
   </a>
  </li>
 </ul>
@@ -560,14 +562,16 @@ for a given sample.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>X</strong><span class="classifier">array-like, shape (n_samples, n_features)</span></dt><dd><p>Test samples.</p>
+<dt><strong>X</strong><span class="classifier">array-like of shape (n_samples, n_features)</span></dt><dd><p>Test samples.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>P_annot</strong><span class="classifier">numpy.ndarray, shape (n_samples, n_annotators)</span></dt><dd><p><cite>P_annot[i,l]</cite> is the probability, that annotator <cite>l</cite> provides the
-correct class label for sample <cite>X[i]</cite>.</p>
+<dt><strong>P_annot</strong><span class="classifier">numpy.ndarray of shape (n_samples, n_annotators)</span></dt><dd><dl class="simple">
+<dt><cite>P_annot[i,l]</cite> is the performance of annotator <cite>l</cite> regarding the</dt><dd><p>annotation of sample <cite>X[i]</cite>.</p>
+</dd>
+</dl>
 </dd>
 </dl>
 </dd>

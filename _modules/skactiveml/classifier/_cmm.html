@@ -174,7 +174,7 @@
                 
   <h1>Source code for skactiveml.classifier._cmm</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Classifier based on a Gaussian Mixture Model</span>
+<span class="sd">Classifier based on a Gaussian Mixture Model.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="c1"># Author: Marek Herde &lt;marek.herde@uni-kassel.de&gt;</span>
@@ -199,8 +199,8 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    mixture_model : {GaussianMixture, BayesianGaussianMixture, None},</span>
-<span class="sd">    default=None</span>
+<span class="sd">    mixture_model : sklearn.mixture.GaussianMixture or</span>
+<span class="sd">    sklearn.mixture.BayesianGaussianMixture or None, default=None</span>
 <span class="sd">        (Bayesian) Gaussian Mixture model that is trained with unsupervised</span>
 <span class="sd">        algorithm on train data. If the initial mixture model is not fitted, it</span>
 <span class="sd">        will be refitted in each call of the &#39;fit&#39; method. If None,</span>
@@ -214,19 +214,19 @@
 <span class="sd">    classes : array-like, shape (n_classes), default=None</span>
 <span class="sd">        Holds the label for each class. If none, the classes are determined</span>
 <span class="sd">        during the fit.</span>
-<span class="sd">    missing_label : {scalar, string, np.nan, None}, default=np.nan</span>
+<span class="sd">    missing_label : scalar or str or np.nan or None, default=np.nan</span>
 <span class="sd">        Value to represent a missing label.</span>
 <span class="sd">    cost_matrix : array-like, shape (n_classes, n_classes)</span>
 <span class="sd">        Cost matrix with `cost_matrix[i,j]` indicating cost of predicting class</span>
 <span class="sd">        `classes[j]`  for a sample of class `classes[i]`. Can be only set, if</span>
-<span class="sd">        classes is not none.</span>
-<span class="sd">    class_prior : float | array-like, shape (n_classes), optional (default=0)</span>
+<span class="sd">        `classes` is not none.</span>
+<span class="sd">    class_prior : float or array-like of shape (n_classes), default=0</span>
 <span class="sd">        Prior observations of the class frequency estimates. If `class_prior`</span>
 <span class="sd">        is an array, the entry `class_prior[i]` indicates the non-negative</span>
 <span class="sd">        prior number of samples belonging to class `classes_[i]`. If</span>
 <span class="sd">        `class_prior` is a float, `class_prior` indicates the non-negative</span>
 <span class="sd">        prior number of samples per class.</span>
-<span class="sd">    random_state : int, RandomState instance or None, optional (default=None)</span>
+<span class="sd">    random_state : int or RandomState instance or None, default=None</span>
 <span class="sd">        Determines random number for &#39;predict&#39; method. Pass an int for</span>
 <span class="sd">        reproducible results across multiple method calls.</span>
 
@@ -244,7 +244,8 @@
 <span class="sd">    F_components_ : numpy.ndarray, shape (n_components, n_classes)</span>
 <span class="sd">        `F[j,c]` is a proxy for the number of sample of class c belonging to</span>
 <span class="sd">        component j.</span>
-<span class="sd">    mixture_model_ : {GaussianMixture, BayesianGaussianMixture}</span>
+<span class="sd">    mixture_model_ : sklearn.mixture.GaussianMixture or</span>
+<span class="sd">    sklearn.mixture.BayesianGaussianMixture</span>
 <span class="sd">        (Bayesian) Gaussian Mixture model that is trained with unsupervised</span>
 <span class="sd">        algorithm on train data.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -258,24 +259,23 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">weight_mode</span> <span class="o">=</span> <span class="n">weight_mode</span>
 
 <div class="viewcode-block" id="CMM.fit"><a class="viewcode-back" href="../../../generated/api/skactiveml.classifier.CMM.html#skactiveml.classifier.CMM.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Fit the model using X as training data and y as class labels.</span>
+        <span class="sd">&quot;&quot;&quot;Fit the model using `X` as training samples and `y` as class labels.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        X : matrix-like, shape (n_samples, n_features)</span>
-<span class="sd">            The sample matrix X is the feature matrix representing the samples.</span>
-<span class="sd">        y : array-like, shape (n_samples) or (n_samples, n_outputs)</span>
+<span class="sd">        X : matrix-like of shape (n_samples, n_features)</span>
+<span class="sd">            The samples matrix `X` is the feature matrix representing the</span>
+<span class="sd">            samples.</span>
+<span class="sd">        y : array-like of shape (n_samples,)</span>
 <span class="sd">            It contains the class labels of the training samples.</span>
-<span class="sd">            The number of class labels may be variable for the samples, where</span>
-<span class="sd">            missing labels are represented the attribute &#39;missing_label&#39;.</span>
-<span class="sd">        sample_weight : array-like, shape (n_samples) or (n_samples, n_outputs)</span>
+<span class="sd">        sample_weight : array-like, shape (n_samples,)</span>
 <span class="sd">            It contains the weights of the training samples&#39; class labels. It</span>
-<span class="sd">            must have the same shape as y.</span>
+<span class="sd">            must have the same shape as `y`.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        self: CMM,</span>
-<span class="sd">            The CMM is fitted on the training data.</span>
+<span class="sd">        self: skactiveml.classifier.CMM,</span>
+<span class="sd">            `skactiveml.classifier.CMM` object fitted on the training data.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Check input parameters.</span>
         <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_data</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">)</span>
@@ -284,23 +284,25 @@
         <span class="c1"># Check mixture model.</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mixture_model</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">bgm</span> <span class="o">=</span> <span class="n">BayesianGaussianMixture</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">classes_</span><span class="p">),</span>
-                                          <span class="n">random_state</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_random_state</span><span class="p">)</span>
+                                          <span class="n">random_state</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state_</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">mixture_model_</span> <span class="o">=</span> <span class="n">bgm</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mixture_model</span><span class="p">,</span>
                               <span class="p">(</span><span class="n">GaussianMixture</span><span class="p">,</span> <span class="n">BayesianGaussianMixture</span><span class="p">)):</span>
                 <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
-                    <span class="s2">&quot;&#39;mixture_model&#39; is of the type &#39;</span><span class="si">{}</span><span class="s2">&#39; but must be of the &quot;</span>
-                    <span class="s2">&quot;type &#39;sklearn.mixture.GaussianMixture&#39; or &quot;</span>
-                    <span class="s2">&quot;&#39;sklearn.mixture.BayesianGaussianMixture&#39;.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                        <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mixture_model</span><span class="p">)))</span>
+                    <span class="sa">f</span><span class="s2">&quot;`mixture_model` is of the type `</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">mixture_model</span><span class="si">}</span><span class="s2">` &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;but must be of the type &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;`sklearn.mixture.GaussianMixture` or &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;&#39;sklearn.mixture.BayesianGaussianMixture&#39;.&quot;</span>
+                <span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">mixture_model_</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mixture_model</span><span class="p">)</span>
 
         <span class="c1"># Check weight mode.</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight_mode</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;responsibilities&#39;</span><span class="p">,</span> <span class="s1">&#39;similarities&#39;</span><span class="p">]:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;weight_mode&#39; must be either `responsibilities` &quot;</span>
-                             <span class="s2">&quot;or `similarities`, got </span><span class="si">{}</span><span class="s2"> instead.&quot;</span>
-                             <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">weight_mode</span><span class="p">))</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;`weight_mode` must be either &#39;responsibilities&#39; or &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;&#39;similarities&#39;, got </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">weight_mode</span><span class="si">}</span><span class="s2"> instead.&quot;</span>
+            <span class="p">)</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_features_in_</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">F_components_</span> <span class="o">=</span> <span class="mi">0</span>
@@ -312,8 +314,9 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">mixture_model_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mixture_model_</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 
             <span class="c1"># Counts number of votes per class label for each sample.</span>
-            <span class="n">V</span> <span class="o">=</span> <span class="n">compute_vote_vectors</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">,</span>
-                                     <span class="n">classes</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">classes_</span><span class="p">)))</span>
+            <span class="n">V</span> <span class="o">=</span> <span class="n">compute_vote_vectors</span><span class="p">(</span>
+                <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">,</span> <span class="n">classes</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">classes_</span><span class="p">))</span>
+            <span class="p">)</span>
 
             <span class="c1"># Stores responsibility for every given sample of training set.</span>
             <span class="n">R</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mixture_model_</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
@@ -324,18 +327,18 @@
         <span class="k">return</span> <span class="bp">self</span></div>
 
 <div class="viewcode-block" id="CMM.predict_freq"><a class="viewcode-back" href="../../../generated/api/skactiveml.classifier.CMM.html#skactiveml.classifier.CMM.predict_freq">[docs]</a>    <span class="k">def</span> <span class="nf">predict_freq</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Return class frequency estimates for the input data X.</span>
+        <span class="sd">&quot;&quot;&quot;Return class frequency estimates for the input data `X`.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        X : array-like, shape (n_samples, n_features)</span>
+<span class="sd">        X : array-like of shape (n_samples, n_features)</span>
 <span class="sd">            Input samples.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        F : array-like, shape (n_samples, classes)</span>
+<span class="sd">        F : array-like of shape (n_samples, classes)</span>
 <span class="sd">            The class frequency estimates of the input samples. Classes are</span>
-<span class="sd">            ordered according to classes_.</span>
+<span class="sd">            ordered according to `classes_`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">check_is_fitted</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="n">X</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>

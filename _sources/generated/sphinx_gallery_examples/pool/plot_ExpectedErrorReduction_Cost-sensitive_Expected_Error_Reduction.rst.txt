@@ -21,7 +21,7 @@
 Cost-sensitive Expected Error Reduction
 =======================================
 
-.. GENERATED FROM PYTHON SOURCE LINES 8-73
+.. GENERATED FROM PYTHON SOURCE LINES 8-75
 
 .. code-block:: default
    :lineno-start: 9
@@ -31,8 +31,10 @@ Cost-sensitive Expected Error Reduction
     import numpy as np
     from matplotlib import pyplot as plt, animation
     from sklearn.datasets import make_blobs
+
     from skactiveml.utils import MISSING_LABEL, unlabeled_indices, labeled_indices
     from skactiveml.visualization import plot_utility, plot_decision_boundary
+
     from skactiveml.pool import ExpectedErrorReduction
     from skactiveml.classifier import PWC
 
@@ -40,8 +42,8 @@ Cost-sensitive Expected Error Reduction
 
     # Build a dataset.
     X, y_true = make_blobs(n_samples=100, n_features=2,
-                      centers=[[0, 1], [-3, .5], [-1, -1], [2, 1], [1, -.5]],
-                      cluster_std=.7, random_state=random_state)
+                           centers=[[0, 1], [-3, .5], [-1, -1], [2, 1], [1, -.5]],
+                           cluster_std=.7, random_state=random_state)
     y_true = y_true % 2
     y = np.full(shape=y_true.shape, fill_value=MISSING_LABEL)
 
@@ -283,42 +285,42 @@ Cost-sensitive Expected Error Reduction
      </style>
 
      <div class="animation">
-       <img id="_anim_img7ae7f01ba4ca483f977bc4a58bc574e3">
+       <img id="_anim_img4da61eeabcd54ddf90619f7b009f0b0e">
        <div class="anim-controls">
-         <input id="_anim_slider7ae7f01ba4ca483f977bc4a58bc574e3" type="range" class="anim-slider"
+         <input id="_anim_slider4da61eeabcd54ddf90619f7b009f0b0e" type="range" class="anim-slider"
                 name="points" min="0" max="1" step="1" value="0"
-                oninput="anim7ae7f01ba4ca483f977bc4a58bc574e3.set_frame(parseInt(this.value));"></input>
+                oninput="anim4da61eeabcd54ddf90619f7b009f0b0e.set_frame(parseInt(this.value));"></input>
          <div class="anim-buttons">
-           <button title="Decrease speed" aria-label="Decrease speed" onclick="anim7ae7f01ba4ca483f977bc4a58bc574e3.slower()">
+           <button title="Decrease speed" aria-label="Decrease speed" onclick="anim4da61eeabcd54ddf90619f7b009f0b0e.slower()">
                <i class="fa fa-minus"></i></button>
-           <button title="First frame" aria-label="First frame" onclick="anim7ae7f01ba4ca483f977bc4a58bc574e3.first_frame()">
+           <button title="First frame" aria-label="First frame" onclick="anim4da61eeabcd54ddf90619f7b009f0b0e.first_frame()">
              <i class="fa fa-fast-backward"></i></button>
-           <button title="Previous frame" aria-label="Previous frame" onclick="anim7ae7f01ba4ca483f977bc4a58bc574e3.previous_frame()">
+           <button title="Previous frame" aria-label="Previous frame" onclick="anim4da61eeabcd54ddf90619f7b009f0b0e.previous_frame()">
                <i class="fa fa-step-backward"></i></button>
-           <button title="Play backwards" aria-label="Play backwards" onclick="anim7ae7f01ba4ca483f977bc4a58bc574e3.reverse_animation()">
+           <button title="Play backwards" aria-label="Play backwards" onclick="anim4da61eeabcd54ddf90619f7b009f0b0e.reverse_animation()">
                <i class="fa fa-play fa-flip-horizontal"></i></button>
-           <button title="Pause" aria-label="Pause" onclick="anim7ae7f01ba4ca483f977bc4a58bc574e3.pause_animation()">
+           <button title="Pause" aria-label="Pause" onclick="anim4da61eeabcd54ddf90619f7b009f0b0e.pause_animation()">
                <i class="fa fa-pause"></i></button>
-           <button title="Play" aria-label="Play" onclick="anim7ae7f01ba4ca483f977bc4a58bc574e3.play_animation()">
+           <button title="Play" aria-label="Play" onclick="anim4da61eeabcd54ddf90619f7b009f0b0e.play_animation()">
                <i class="fa fa-play"></i></button>
-           <button title="Next frame" aria-label="Next frame" onclick="anim7ae7f01ba4ca483f977bc4a58bc574e3.next_frame()">
+           <button title="Next frame" aria-label="Next frame" onclick="anim4da61eeabcd54ddf90619f7b009f0b0e.next_frame()">
                <i class="fa fa-step-forward"></i></button>
-           <button title="Last frame" aria-label="Last frame" onclick="anim7ae7f01ba4ca483f977bc4a58bc574e3.last_frame()">
+           <button title="Last frame" aria-label="Last frame" onclick="anim4da61eeabcd54ddf90619f7b009f0b0e.last_frame()">
                <i class="fa fa-fast-forward"></i></button>
-           <button title="Increase speed" aria-label="Increase speed" onclick="anim7ae7f01ba4ca483f977bc4a58bc574e3.faster()">
+           <button title="Increase speed" aria-label="Increase speed" onclick="anim4da61eeabcd54ddf90619f7b009f0b0e.faster()">
                <i class="fa fa-plus"></i></button>
          </div>
-         <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_select7ae7f01ba4ca483f977bc4a58bc574e3"
+         <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_select4da61eeabcd54ddf90619f7b009f0b0e"
                class="anim-state">
-           <input type="radio" name="state" value="once" id="_anim_radio1_7ae7f01ba4ca483f977bc4a58bc574e3"
+           <input type="radio" name="state" value="once" id="_anim_radio1_4da61eeabcd54ddf90619f7b009f0b0e"
                   >
-           <label for="_anim_radio1_7ae7f01ba4ca483f977bc4a58bc574e3">Once</label>
-           <input type="radio" name="state" value="loop" id="_anim_radio2_7ae7f01ba4ca483f977bc4a58bc574e3"
+           <label for="_anim_radio1_4da61eeabcd54ddf90619f7b009f0b0e">Once</label>
+           <input type="radio" name="state" value="loop" id="_anim_radio2_4da61eeabcd54ddf90619f7b009f0b0e"
                   checked>
-           <label for="_anim_radio2_7ae7f01ba4ca483f977bc4a58bc574e3">Loop</label>
-           <input type="radio" name="state" value="reflect" id="_anim_radio3_7ae7f01ba4ca483f977bc4a58bc574e3"
+           <label for="_anim_radio2_4da61eeabcd54ddf90619f7b009f0b0e">Loop</label>
+           <input type="radio" name="state" value="reflect" id="_anim_radio3_4da61eeabcd54ddf90619f7b009f0b0e"
                   >
-           <label for="_anim_radio3_7ae7f01ba4ca483f977bc4a58bc574e3">Reflect</label>
+           <label for="_anim_radio3_4da61eeabcd54ddf90619f7b009f0b0e">Reflect</label>
          </form>
        </div>
      </div>
@@ -328,9 +330,9 @@ Cost-sensitive Expected Error Reduction
        /* Instantiate the Animation class. */
        /* The IDs given should match those used in the template above. */
        (function() {
-         var img_id = "_anim_img7ae7f01ba4ca483f977bc4a58bc574e3";
-         var slider_id = "_anim_slider7ae7f01ba4ca483f977bc4a58bc574e3";
-         var loop_select_id = "_anim_loop_select7ae7f01ba4ca483f977bc4a58bc574e3";
+         var img_id = "_anim_img4da61eeabcd54ddf90619f7b009f0b0e";
+         var slider_id = "_anim_slider4da61eeabcd54ddf90619f7b009f0b0e";
+         var loop_select_id = "_anim_loop_select4da61eeabcd54ddf90619f7b009f0b0e";
          var frames = new Array(25);
     
        frames[0] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
@@ -21094,7 +21096,7 @@ Cost-sensitive Expected Error Reduction
          /* set a timeout to make sure all the above elements are created before
             the object is initialized. */
          setTimeout(function() {
-             anim7ae7f01ba4ca483f977bc4a58bc574e3 = new Animation(frames, img_id, slider_id, 1000.0,
+             anim4da61eeabcd54ddf90619f7b009f0b0e = new Animation(frames, img_id, slider_id, 1000.0,
                                       loop_select_id);
          }, 0);
        })()
@@ -21105,7 +21107,7 @@ Cost-sensitive Expected Error Reduction
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 74-79
+.. GENERATED FROM PYTHON SOURCE LINES 76-81
 
 .. rubric:: References:
 
@@ -21116,7 +21118,7 @@ The implementation of this strategy is based on :footcite:t:`margineantu2005acti
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  19.839 seconds)
+   **Total running time of the script:** ( 0 minutes  20.507 seconds)
 
 
 .. _sphx_glr_download_generated_sphinx_gallery_examples_pool_plot_ExpectedErrorReduction_Cost-sensitive_Expected_Error_Reduction.py:

@@ -335,14 +335,16 @@
    skactiveml.classifier.SklearnClassifier
   </a>
  </li>
+</ul>
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="api/skactiveml.classifier.MultiAnnotClassifier.html">
-   skactiveml.classifier.MultiAnnotClassifier
+  <a class="reference internal" href="api/skactiveml.classifier.multi.LogisticRegressionRY.html">
+   skactiveml.classifier.multi.LogisticRegressionRY
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="api/skactiveml.classifier.LogisticRegressionRY.html">
-   skactiveml.classifier.LogisticRegressionRY
+  <a class="reference internal" href="api/skactiveml.classifier.multi.MultiAnnotEnsemble.html">
+   skactiveml.classifier.multi.MultiAnnotEnsemble
   </a>
  </li>
 </ul>
@@ -607,6 +609,23 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-skactiveml.classifier.multi">
+   <code class="xref py py-mod docutils literal notranslate">
+    <span class="pre">
+     skactiveml.classifier.multi
+    </span>
+   </code>
+   :
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     Classes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#module-skactiveml.visualization">
    <code class="xref py py-mod docutils literal notranslate">
     <span class="pre">
@@ -617,7 +636,7 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id6">
+    <a class="reference internal nav-link" href="#id7">
      Functions
     </a>
    </li>
@@ -634,12 +653,12 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id7">
+    <a class="reference internal nav-link" href="#id8">
      Classes
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id8">
+    <a class="reference internal nav-link" href="#id9">
      Functions
     </a>
    </li>
@@ -697,7 +716,7 @@
 <td><p>Base class for all stream-based active learning query strategies in</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.base.SkactivemlClassifier.html#skactiveml.base.SkactivemlClassifier" title="skactiveml.base.SkactivemlClassifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">base.SkactivemlClassifier</span></code></a></p></td>
-<td><p>Base class for scikit-activeml classifiers such that missing labels, user-defined classes, cost-sensitive classification (i.e., cost matrix), and multiple labels per sample can be handled.</p></td>
+<td><p>Base class for scikit-activeml classifiers such that missing labels, user-defined classes, and cost-sensitive classification (i.e., cost matrix) can be handled.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.base.ClassFrequencyEstimator.html#skactiveml.base.ClassFrequencyEstimator" title="skactiveml.base.ClassFrequencyEstimator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">base.ClassFrequencyEstimator</span></code></a></p></td>
 <td><p>Extends scikit-activeml classifiers to estimators that are able to estimate class frequencies for given samples (by calling 'predict_freq').</p></td>
@@ -853,13 +872,27 @@ stream-based active learning.</p>
 <td><p>Classifier mixture model (CMM) is a generative classifier based on a (Bayesian) Gaussian mixture model (GMM).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.classifier.SklearnClassifier.html#skactiveml.classifier.SklearnClassifier" title="skactiveml.classifier.SklearnClassifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">classifier.SklearnClassifier</span></code></a></p></td>
-<td><p>Implementation of a wrapper class for scikit-learn classifiers such that missing labels can be handled and multiple labels per sample.</p></td>
+<td><p>Implementation of a wrapper class for scikit-learn classifiers such that missing labels can be handled.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.classifier.MultiAnnotClassifier.html#skactiveml.classifier.MultiAnnotClassifier" title="skactiveml.classifier.MultiAnnotClassifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">classifier.MultiAnnotClassifier</span></code></a></p></td>
-<td><p>This strategy consists of fitting one classifier per annotator.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.classifier.LogisticRegressionRY.html#skactiveml.classifier.LogisticRegressionRY" title="skactiveml.classifier.LogisticRegressionRY"><code class="xref py py-obj docutils literal notranslate"><span class="pre">classifier.LogisticRegressionRY</span></code></a></p></td>
+</tbody>
+</table>
+</section>
+</section>
+<section id="module-skactiveml.classifier.multi">
+<span id="skactiveml-classifier-multi"></span><h2><a class="reference internal" href="#module-skactiveml.classifier.multi" title="skactiveml.classifier.multi"><code class="xref py py-mod docutils literal notranslate"><span class="pre">skactiveml.classifier.multi</span></code></a>:<a class="headerlink" href="#module-skactiveml.classifier.multi" title="Permalink to this headline">¶</a></h2>
+<section id="id6">
+<h3>Classes<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.classifier.multi.LogisticRegressionRY.html#skactiveml.classifier.multi.LogisticRegressionRY" title="skactiveml.classifier.multi.LogisticRegressionRY"><code class="xref py py-obj docutils literal notranslate"><span class="pre">classifier.multi.LogisticRegressionRY</span></code></a></p></td>
 <td><p>Logistic Regression based on Raykar [1] is a classification algorithm that learns from multiple annotators.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.classifier.multi.MultiAnnotEnsemble.html#skactiveml.classifier.multi.MultiAnnotEnsemble" title="skactiveml.classifier.multi.MultiAnnotEnsemble"><code class="xref py py-obj docutils literal notranslate"><span class="pre">classifier.multi.MultiAnnotEnsemble</span></code></a></p></td>
+<td><p>This strategy consists of fitting one classifier per annotator.</p></td>
 </tr>
 </tbody>
 </table>
@@ -869,8 +902,8 @@ stream-based active learning.</p>
 <span id="skactiveml-visualization"></span><h2><a class="reference internal" href="#module-skactiveml.visualization" title="skactiveml.visualization"><code class="xref py py-mod docutils literal notranslate"><span class="pre">skactiveml.visualization</span></code></a>:<a class="headerlink" href="#module-skactiveml.visualization" title="Permalink to this headline">¶</a></h2>
 <p>The <a class="reference internal" href="#module-skactiveml.visualization" title="skactiveml.visualization"><code class="xref py py-mod docutils literal notranslate"><span class="pre">skactiveml.visualization</span></code></a> module includes various tools for
 visualization.</p>
-<section id="id6">
-<h3>Functions<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<section id="id7">
+<h3>Functions<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 <table class="longtable table autosummary">
 <colgroup>
 <col style="width: 10%" />
@@ -902,8 +935,8 @@ visualization.</p>
 <section id="module-skactiveml.utils">
 <span id="skactiveml-utils"></span><h2><a class="reference internal" href="#module-skactiveml.utils" title="skactiveml.utils"><code class="xref py py-mod docutils literal notranslate"><span class="pre">skactiveml.utils</span></code></a>:<a class="headerlink" href="#module-skactiveml.utils" title="Permalink to this headline">¶</a></h2>
 <p>The <a class="reference internal" href="#module-skactiveml.utils" title="skactiveml.utils"><code class="xref py py-mod docutils literal notranslate"><span class="pre">skactiveml.utils</span></code></a> module includes various utilities.</p>
-<section id="id7">
-<h3>Classes<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<section id="id8">
+<h3>Classes<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
 <table class="longtable table autosummary">
 <colgroup>
 <col style="width: 10%" />
@@ -916,8 +949,8 @@ visualization.</p>
 </tbody>
 </table>
 </section>
-<section id="id8">
-<h3>Functions<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<section id="id9">
+<h3>Functions<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
 <table class="longtable table autosummary">
 <colgroup>
 <col style="width: 10%" />

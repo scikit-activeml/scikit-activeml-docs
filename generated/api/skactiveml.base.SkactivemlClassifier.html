@@ -335,14 +335,16 @@
    skactiveml.classifier.SklearnClassifier
   </a>
  </li>
+</ul>
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.classifier.MultiAnnotClassifier.html">
-   skactiveml.classifier.MultiAnnotClassifier
+  <a class="reference internal" href="skactiveml.classifier.multi.LogisticRegressionRY.html">
+   skactiveml.classifier.multi.LogisticRegressionRY
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.classifier.LogisticRegressionRY.html">
-   skactiveml.classifier.LogisticRegressionRY
+  <a class="reference internal" href="skactiveml.classifier.multi.MultiAnnotEnsemble.html">
+   skactiveml.classifier.multi.MultiAnnotEnsemble
   </a>
  </li>
 </ul>
@@ -554,21 +556,21 @@
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">skactiveml.base.</span></span><span class="sig-name descname"><span class="pre">SkactivemlClassifier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">classes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">missing_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">nan</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cost_matrix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/base.html#SkactivemlClassifier"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.base.SkactivemlClassifier" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.base.BaseEstimator</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.base.ClassifierMixin</span></code>, <a class="reference external" href="https://docs.python.org/3/library/abc.html#abc.ABC" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></a></p>
 <p>Base class for scikit-activeml classifiers such that missing labels,
-user-defined classes, cost-sensitive classification (i.e., cost matrix),
-and multiple labels per sample can be handled.</p>
+user-defined classes, and cost-sensitive classification (i.e., cost matrix)
+can be handled.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>classes</strong><span class="classifier">array-like, shape (n_classes), default=None</span></dt><dd><p>Holds the label for each class. If none, the classes are determined
+<dt><strong>classes</strong><span class="classifier">array-like of shape (n_classes), default=None</span></dt><dd><p>Holds the label for each class. If none, the classes are determined
 during the fit.</p>
 </dd>
-<dt><strong>missing_label</strong><span class="classifier">{scalar, string, np.nan, None}, default=np.nan</span></dt><dd><p>Value to represent a missing label.</p>
+<dt><strong>missing_label</strong><span class="classifier">scalar, string, np.nan, or None, default=np.nan</span></dt><dd><p>Value to represent a missing label.</p>
 </dd>
-<dt><strong>cost_matrix</strong><span class="classifier">array-like, shape (n_classes, n_classes)</span></dt><dd><p>Cost matrix with cost_matrix[i,j] indicating cost of predicting class
-classes[j]  for a sample of class classes[i]. Can be only set, if
+<dt><strong>cost_matrix</strong><span class="classifier">array-like of shape (n_classes, n_classes)</span></dt><dd><p>Cost matrix with <cite>cost_matrix[i,j]</cite> indicating cost of predicting class
+<cite>classes[j]</cite>  for a sample of class <cite>classes[i]</cite>. Can be only set, if
 classes is not none.</p>
 </dd>
-<dt><strong>random_state</strong><span class="classifier">int, RandomState instance or None, optional (default=None)</span></dt><dd><p>Determines random number for ‘predict’ method. Pass an int for
+<dt><strong>random_state</strong><span class="classifier">int or RandomState instance or None, default=None</span></dt><dd><p>Determines random number for <cite>predict</cite> method. Pass an int for
 reproducible results across multiple method calls.</p>
 </dd>
 </dl>
@@ -577,8 +579,8 @@ reproducible results across multiple method calls.</p>
 <dd class="field-even"><dl class="simple">
 <dt><strong>classes_</strong><span class="classifier">array-like, shape (n_classes)</span></dt><dd><p>Holds the label for each class after fitting.</p>
 </dd>
-<dt><strong>cost_matrix_</strong><span class="classifier">array-like, shape (classes, classes)</span></dt><dd><p>Cost matrix with C[i,j] indicating cost of predicting class classes_[j]
-for a sample of class classes_[i].</p>
+<dt><strong>cost_matrix_</strong><span class="classifier">array-like,of shape (classes, classes)</span></dt><dd><p>Cost matrix after fitting with <cite>cost_matrix_[i,j]</cite> indicating cost of
+predicting class <cite>classes_[j]</cite>  for a sample of class <cite>classes_[i]</cite>.</p>
 </dd>
 </dl>
 </dd>
@@ -597,7 +599,7 @@ for a sample of class classes_[i].</p>
 <td><p>Get parameters for this estimator.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.base.SkactivemlClassifier.predict" title="skactiveml.base.SkactivemlClassifier.predict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict</span></code></a>(X)</p></td>
-<td><p>Return class label predictions for the test samples X.</p></td>
+<td><p>Return class label predictions for the test samples <cite>X</cite>.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#skactiveml.base.SkactivemlClassifier.predict_proba" title="skactiveml.base.SkactivemlClassifier.predict_proba"><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict_proba</span></code></a>(X)</p></td>
 <td><p>Return probability estimates for the test data X.</p></td>
@@ -630,7 +632,8 @@ It must have the same shape as y.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt>self: SkactivemlClassifier,</dt><dd><p>The SkactivemlClassifier is fitted on the training data.</p>
+<dt>self: skactiveml.base.SkactivemlClassifier,</dt><dd><p>The <cite>skactiveml.base.SkactivemlClassifier</cite> object fitted on the
+training data.</p>
 </dd>
 </dl>
 </dd>
@@ -661,19 +664,18 @@ contained subobjects that are estimators.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="skactiveml.base.SkactivemlClassifier.predict">
 <span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/base.html#SkactivemlClassifier.predict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.base.SkactivemlClassifier.predict" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return class label predictions for the test samples X.</p>
+<dd><p>Return class label predictions for the test samples <cite>X</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>X</strong><span class="classifier">array-like, shape (n_samples, n_features) or</span></dt><dd></dd>
-<dt><strong>shape (n_samples, m_samples) if metric == ‘precomputed’</strong></dt><dd><p>Input samples.</p>
+<dt><strong>X</strong><span class="classifier">array-like of shape (n_samples, n_features)</span></dt><dd><p>Input samples.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>y</strong><span class="classifier">numpy.ndarray, shape (n_samples)</span></dt><dd><p>Predicted class labels of the test samples ‘X’. Classes are ordered
-according to ‘<a href="#id15"><span class="problematic" id="id16">classes_</span></a>’.</p>
+<dt><strong>y</strong><span class="classifier">numpy.ndarray of shape (n_samples)</span></dt><dd><p>Predicted class labels of the test samples <cite>X</cite>. Classes are ordered
+according to <cite>classes_</cite>.</p>
 </dd>
 </dl>
 </dd>
@@ -694,7 +696,7 @@ according to ‘<a href="#id15"><span class="problematic" id="id16">classes_</sp
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>P</strong><span class="classifier">numpy.ndarray, shape (n_samples, classes)</span></dt><dd><p>The class probabilities of the test samples. Classes are ordered
-according to ‘<a href="#id17"><span class="problematic" id="id18">classes_</span></a>’.</p>
+according to ‘<a href="#id15"><span class="problematic" id="id16">classes_</span></a>’.</p>
 </dd>
 </dl>
 </dd>
@@ -710,7 +712,7 @@ according to ‘<a href="#id17"><span class="problematic" id="id18">classes_</sp
 <dd class="field-odd"><dl class="simple">
 <dt><strong>X</strong><span class="classifier">array-like of shape (n_samples, n_features)</span></dt><dd><p>Test samples.</p>
 </dd>
-<dt><strong>y</strong><span class="classifier">array-like of shape (n_samples,) or (n_samples, n_outputs)</span></dt><dd><p>True labels for X.</p>
+<dt><strong>y</strong><span class="classifier">array-like of shape (n_samples,)</span></dt><dd><p>True labels for <cite>X</cite>.</p>
 </dd>
 <dt><strong>sample_weight</strong><span class="classifier">array-like of shape (n_samples,), default=None</span></dt><dd><p>Sample weights.</p>
 </dd>
@@ -718,7 +720,7 @@ according to ‘<a href="#id17"><span class="problematic" id="id18">classes_</sp
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>score</strong><span class="classifier">float</span></dt><dd><p>Mean accuracy of self.predict(X) wrt. y.</p>
+<dt><strong>score</strong><span class="classifier">float</span></dt><dd><p>Mean accuracy of <cite>self.predict(X)</cite> regarding <cite>y</cite>.</p>
 </dd>
 </dl>
 </dd>

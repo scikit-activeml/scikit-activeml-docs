@@ -197,25 +197,25 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    classes : array-like, shape (n_classes), default=None</span>
+<span class="sd">    classes : array-like of shape (n_classes), default=None</span>
 <span class="sd">        Holds the label for each class. If none, the classes are determined</span>
 <span class="sd">        during the fit.</span>
-<span class="sd">    missing_label : {scalar, string, np.nan, None}, default=np.nan</span>
+<span class="sd">    missing_label : scalar or string or np.nan or None, default=np.nan</span>
 <span class="sd">        Value to represent a missing label.</span>
-<span class="sd">    cost_matrix : array-like, shape (n_classes, n_classes)</span>
+<span class="sd">    cost_matrix : array-like of shape (n_classes, n_classes)</span>
 <span class="sd">        Cost matrix with `cost_matrix[i,j]` indicating cost of predicting class</span>
-<span class="sd">        `classes[j]`  for a sample of class `classes[i]`. Can be only set, if</span>
-<span class="sd">        classes is not none.</span>
-<span class="sd">    class_prior : float | array-like, shape (n_classes), optional (default=0)</span>
+<span class="sd">        `classes[j]` for a sample of class `classes[i]`. Can be only set, if</span>
+<span class="sd">        `classes` is not none.</span>
+<span class="sd">    class_prior : float or array-like of shape (n_classes,), default=0</span>
 <span class="sd">        Prior observations of the class frequency estimates. If `class_prior`</span>
 <span class="sd">        is an array, the entry `class_prior[i]` indicates the non-negative</span>
 <span class="sd">        prior number of samples belonging to class `classes_[i]`. If</span>
 <span class="sd">        `class_prior` is a float, `class_prior` indicates the non-negative</span>
 <span class="sd">        prior number of samples per class.</span>
-<span class="sd">    metric : str | callable,</span>
+<span class="sd">    metric : str or callable, default=&#39;rbf&#39;</span>
 <span class="sd">        The metric must a be a valid kernel defined by the function </span>
 <span class="sd">        `sklearn.metrics.pairwise.pairwise_kernels`.</span>
-<span class="sd">    n_neighbors : int,</span>
+<span class="sd">    n_neighbors : int or None, default=None</span>
 <span class="sd">        Number of nearest neighbours. Default is None, which means all </span>
 <span class="sd">        available samples are considered.</span>
 <span class="sd">    metric_dict : dict,</span>
@@ -223,27 +223,27 @@
 
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
-<span class="sd">    classes_ : array-like, shape (n_classes)</span>
+<span class="sd">    classes_ : array-like of shape (n_classes,)</span>
 <span class="sd">        Holds the label for each class after fitting.</span>
-<span class="sd">    class_prior : np.ndarray, shape (n_classes)</span>
+<span class="sd">    class_prior : np.ndarray of shape (n_classes)</span>
 <span class="sd">        Prior observations of the class frequency estimates. The entry</span>
 <span class="sd">        `class_prior_[i]` indicates the non-negative prior number of samples</span>
 <span class="sd">        belonging to class `classes_[i]`.</span>
-<span class="sd">    cost_matrix_ : np.ndarray, shape (classes, classes)</span>
+<span class="sd">    cost_matrix_ : np.ndarray of shape (classes, classes)</span>
 <span class="sd">        Cost matrix with `cost_matrix_[i,j]` indicating cost of predicting</span>
 <span class="sd">        class `classes_[j]` for a sample of class `classes_[i]`.</span>
-<span class="sd">    X_ : array-like, shape (n_samples, n_features)</span>
-<span class="sd">        The sample matrix X is the feature matrix representing the samples.</span>
-<span class="sd">    V_ : array-like, shape (n_samples, classes)</span>
+<span class="sd">    X_ : np.ndarray of shape (n_samples, n_features)</span>
+<span class="sd">        The sample matrix `X` is the feature matrix representing the samples.</span>
+<span class="sd">    V_ : np.ndarray of shape (n_samples, classes)</span>
 <span class="sd">        The class labels are represented by counting vectors. An entry `V[i,j]`</span>
-<span class="sd">        indicates how many class labels of class j were provided for training </span>
-<span class="sd">        sample `X_[i]`.</span>
+<span class="sd">        indicates how many class labels of `classes[j]` were provided for</span>
+<span class="sd">        training sample `X_[i]`.</span>
 
 <span class="sd">    References</span>
 <span class="sd">    ----------</span>
-<span class="sd">    [1] O. Chapelle, &quot;Active Learning for Parzen Window Classifier&quot;,</span>
-<span class="sd">        Proceedings of the Tenth International Workshop Artificial Intelligence</span>
-<span class="sd">        and Statistics, 2005.</span>
+<span class="sd">    .. [1] `O. Chapelle, &quot;Active Learning for Parzen Window Classifier&quot;,</span>
+<span class="sd">       Proceedings of the Tenth International Workshop Artificial Intelligence</span>
+<span class="sd">       and Statistics, 2005.`_</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">METRICS</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">KERNEL_PARAMS</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;precomputed&#39;</span><span class="p">]</span>
 
@@ -262,13 +262,12 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        X : matrix-like, shape (n_samples, n_features)</span>
-<span class="sd">            The sample matrix X is the feature matrix representing the samples.</span>
-<span class="sd">        y : array-like, shape (n_samples) or (n_samples, n_outputs)</span>
+<span class="sd">        X : array-like of shape (n_samples, n_features)</span>
+<span class="sd">            The sample matrix `X` is the feature matrix representing the</span>
+<span class="sd">            samples.</span>
+<span class="sd">        y : array-like of shape (n_samples)</span>
 <span class="sd">            It contains the class labels of the training samples.</span>
-<span class="sd">            The number of class labels may be variable for the samples, where </span>
-<span class="sd">            missing labels are represented the attribute &#39;missing_label&#39;.</span>
-<span class="sd">        sample_weight : array-like, shape (n_samples) or (n_samples, n_outputs)</span>
+<span class="sd">        sample_weight : array-like of shape (n_samples)</span>
 <span class="sd">            It contains the weights of the training samples&#39; class labels.</span>
 <span class="sd">            It must have the same shape as y.</span>
 
@@ -316,26 +315,26 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        X: array-like, shape (n_samples, n_features) or shape</span>
+<span class="sd">        X: array-like or shape (n_samples, n_features) or shape</span>
 <span class="sd">        (n_samples, m_samples) if metric == &#39;precomputed&#39;</span>
 <span class="sd">            Input samples.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        F: array-like, shape (n_samples, classes)</span>
+<span class="sd">        F: array-like of shape (n_samples, classes)</span>
 <span class="sd">            The class frequency estimates of the input samples. Classes are</span>
-<span class="sd">            ordered according to classes_.</span>
+<span class="sd">            ordered according to `classes_`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">check_is_fitted</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="n">X</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 
         <span class="c1"># Predict zeros because of missing training data.</span>
-        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">V_</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_features_in_</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">classes_</span><span class="p">)))</span>
 
         <span class="c1"># Compute kernel (metric) matrix.</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric</span> <span class="o">==</span> <span class="s1">&#39;precomputed&#39;</span><span class="p">:</span>
-            <span class="n">K</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+            <span class="n">K</span> <span class="o">=</span> <span class="n">X</span>
             <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">!=</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span> \
                     <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">!=</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X_</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The kernel matrix &#39;X&#39; must have the shape &quot;</span>

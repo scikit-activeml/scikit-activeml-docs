@@ -21,7 +21,7 @@
 Multi-class Probabilistic Active Learning
 =========================================
 
-.. GENERATED FROM PYTHON SOURCE LINES 8-75
+.. GENERATED FROM PYTHON SOURCE LINES 8-77
 
 .. code-block:: default
    :lineno-start: 9
@@ -31,8 +31,10 @@ Multi-class Probabilistic Active Learning
     import numpy as np
     from matplotlib import pyplot as plt, animation
     from sklearn.datasets import make_blobs
+
     from skactiveml.utils import MISSING_LABEL, unlabeled_indices, labeled_indices
     from skactiveml.visualization import plot_utility, plot_decision_boundary
+
     from skactiveml.pool import McPAL
     from skactiveml.classifier import PWC
 
@@ -40,8 +42,8 @@ Multi-class Probabilistic Active Learning
 
     # Build a dataset.
     X, y_true = make_blobs(n_samples=100, n_features=2,
-                      centers=[[0, 1], [-3, .5], [-1, -1], [2, 1], [1, -.5]],
-                      cluster_std=.7, random_state=random_state)
+                           centers=[[0, 1], [-3, .5], [-1, -1], [2, 1], [1, -.5]],
+                           cluster_std=.7, random_state=random_state)
     y_true = y_true % 2
     y = np.full(shape=y_true.shape, fill_value=MISSING_LABEL)
 
@@ -285,42 +287,42 @@ Multi-class Probabilistic Active Learning
      </style>
 
      <div class="animation">
-       <img id="_anim_imgc6b62cdbd3d149778fc047af6c7f1510">
+       <img id="_anim_img8d818e7a10934d94ae38eab7b0f6a212">
        <div class="anim-controls">
-         <input id="_anim_sliderc6b62cdbd3d149778fc047af6c7f1510" type="range" class="anim-slider"
+         <input id="_anim_slider8d818e7a10934d94ae38eab7b0f6a212" type="range" class="anim-slider"
                 name="points" min="0" max="1" step="1" value="0"
-                oninput="animc6b62cdbd3d149778fc047af6c7f1510.set_frame(parseInt(this.value));"></input>
+                oninput="anim8d818e7a10934d94ae38eab7b0f6a212.set_frame(parseInt(this.value));"></input>
          <div class="anim-buttons">
-           <button title="Decrease speed" aria-label="Decrease speed" onclick="animc6b62cdbd3d149778fc047af6c7f1510.slower()">
+           <button title="Decrease speed" aria-label="Decrease speed" onclick="anim8d818e7a10934d94ae38eab7b0f6a212.slower()">
                <i class="fa fa-minus"></i></button>
-           <button title="First frame" aria-label="First frame" onclick="animc6b62cdbd3d149778fc047af6c7f1510.first_frame()">
+           <button title="First frame" aria-label="First frame" onclick="anim8d818e7a10934d94ae38eab7b0f6a212.first_frame()">
              <i class="fa fa-fast-backward"></i></button>
-           <button title="Previous frame" aria-label="Previous frame" onclick="animc6b62cdbd3d149778fc047af6c7f1510.previous_frame()">
+           <button title="Previous frame" aria-label="Previous frame" onclick="anim8d818e7a10934d94ae38eab7b0f6a212.previous_frame()">
                <i class="fa fa-step-backward"></i></button>
-           <button title="Play backwards" aria-label="Play backwards" onclick="animc6b62cdbd3d149778fc047af6c7f1510.reverse_animation()">
+           <button title="Play backwards" aria-label="Play backwards" onclick="anim8d818e7a10934d94ae38eab7b0f6a212.reverse_animation()">
                <i class="fa fa-play fa-flip-horizontal"></i></button>
-           <button title="Pause" aria-label="Pause" onclick="animc6b62cdbd3d149778fc047af6c7f1510.pause_animation()">
+           <button title="Pause" aria-label="Pause" onclick="anim8d818e7a10934d94ae38eab7b0f6a212.pause_animation()">
                <i class="fa fa-pause"></i></button>
-           <button title="Play" aria-label="Play" onclick="animc6b62cdbd3d149778fc047af6c7f1510.play_animation()">
+           <button title="Play" aria-label="Play" onclick="anim8d818e7a10934d94ae38eab7b0f6a212.play_animation()">
                <i class="fa fa-play"></i></button>
-           <button title="Next frame" aria-label="Next frame" onclick="animc6b62cdbd3d149778fc047af6c7f1510.next_frame()">
+           <button title="Next frame" aria-label="Next frame" onclick="anim8d818e7a10934d94ae38eab7b0f6a212.next_frame()">
                <i class="fa fa-step-forward"></i></button>
-           <button title="Last frame" aria-label="Last frame" onclick="animc6b62cdbd3d149778fc047af6c7f1510.last_frame()">
+           <button title="Last frame" aria-label="Last frame" onclick="anim8d818e7a10934d94ae38eab7b0f6a212.last_frame()">
                <i class="fa fa-fast-forward"></i></button>
-           <button title="Increase speed" aria-label="Increase speed" onclick="animc6b62cdbd3d149778fc047af6c7f1510.faster()">
+           <button title="Increase speed" aria-label="Increase speed" onclick="anim8d818e7a10934d94ae38eab7b0f6a212.faster()">
                <i class="fa fa-plus"></i></button>
          </div>
-         <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_selectc6b62cdbd3d149778fc047af6c7f1510"
+         <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_select8d818e7a10934d94ae38eab7b0f6a212"
                class="anim-state">
-           <input type="radio" name="state" value="once" id="_anim_radio1_c6b62cdbd3d149778fc047af6c7f1510"
+           <input type="radio" name="state" value="once" id="_anim_radio1_8d818e7a10934d94ae38eab7b0f6a212"
                   >
-           <label for="_anim_radio1_c6b62cdbd3d149778fc047af6c7f1510">Once</label>
-           <input type="radio" name="state" value="loop" id="_anim_radio2_c6b62cdbd3d149778fc047af6c7f1510"
+           <label for="_anim_radio1_8d818e7a10934d94ae38eab7b0f6a212">Once</label>
+           <input type="radio" name="state" value="loop" id="_anim_radio2_8d818e7a10934d94ae38eab7b0f6a212"
                   checked>
-           <label for="_anim_radio2_c6b62cdbd3d149778fc047af6c7f1510">Loop</label>
-           <input type="radio" name="state" value="reflect" id="_anim_radio3_c6b62cdbd3d149778fc047af6c7f1510"
+           <label for="_anim_radio2_8d818e7a10934d94ae38eab7b0f6a212">Loop</label>
+           <input type="radio" name="state" value="reflect" id="_anim_radio3_8d818e7a10934d94ae38eab7b0f6a212"
                   >
-           <label for="_anim_radio3_c6b62cdbd3d149778fc047af6c7f1510">Reflect</label>
+           <label for="_anim_radio3_8d818e7a10934d94ae38eab7b0f6a212">Reflect</label>
          </form>
        </div>
      </div>
@@ -330,9 +332,9 @@ Multi-class Probabilistic Active Learning
        /* Instantiate the Animation class. */
        /* The IDs given should match those used in the template above. */
        (function() {
-         var img_id = "_anim_imgc6b62cdbd3d149778fc047af6c7f1510";
-         var slider_id = "_anim_sliderc6b62cdbd3d149778fc047af6c7f1510";
-         var loop_select_id = "_anim_loop_selectc6b62cdbd3d149778fc047af6c7f1510";
+         var img_id = "_anim_img8d818e7a10934d94ae38eab7b0f6a212";
+         var slider_id = "_anim_slider8d818e7a10934d94ae38eab7b0f6a212";
+         var loop_select_id = "_anim_loop_select8d818e7a10934d94ae38eab7b0f6a212";
          var frames = new Array(25);
     
        frames[0] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
@@ -27336,7 +27338,7 @@ Multi-class Probabilistic Active Learning
          /* set a timeout to make sure all the above elements are created before
             the object is initialized. */
          setTimeout(function() {
-             animc6b62cdbd3d149778fc047af6c7f1510 = new Animation(frames, img_id, slider_id, 1000.0,
+             anim8d818e7a10934d94ae38eab7b0f6a212 = new Animation(frames, img_id, slider_id, 1000.0,
                                       loop_select_id);
          }, 0);
        })()
@@ -27347,7 +27349,7 @@ Multi-class Probabilistic Active Learning
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 76-81
+.. GENERATED FROM PYTHON SOURCE LINES 78-83
 
 .. rubric:: References:
 
@@ -27358,7 +27360,7 @@ The implementation of this strategy is based on :footcite:t:`kottke2016multi`.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  7.887 seconds)
+   **Total running time of the script:** ( 0 minutes  8.592 seconds)
 
 
 .. _sphx_glr_download_generated_sphinx_gallery_examples_pool_plot_McPAL_Multi-class_Probabilistic_Active_Learning.py:

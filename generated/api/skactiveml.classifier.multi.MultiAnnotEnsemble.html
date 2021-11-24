@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>skactiveml.classifier.MultiAnnotClassifier &#8212; scikit-activeml 0.1.1 documentation</title>
+    <title>skactiveml.classifier.multi.MultiAnnotEnsemble &#8212; scikit-activeml 0.1.1 documentation</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
   <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -39,8 +39,8 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="skactiveml.classifier.LogisticRegressionRY" href="skactiveml.classifier.LogisticRegressionRY.html" />
-    <link rel="prev" title="skactiveml.classifier.SklearnClassifier" href="skactiveml.classifier.SklearnClassifier.html" />
+    <link rel="next" title="skactiveml.visualization.plot_utility" href="skactiveml.visualization.plot_utility.html" />
+    <link rel="prev" title="skactiveml.classifier.multi.LogisticRegressionRY" href="skactiveml.classifier.multi.LogisticRegressionRY.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -319,7 +319,7 @@
   </a>
  </li>
 </ul>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="skactiveml.classifier.PWC.html">
    skactiveml.classifier.PWC
@@ -335,14 +335,16 @@
    skactiveml.classifier.SklearnClassifier
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   skactiveml.classifier.MultiAnnotClassifier
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.classifier.multi.LogisticRegressionRY.html">
+   skactiveml.classifier.multi.LogisticRegressionRY
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.classifier.LogisticRegressionRY.html">
-   skactiveml.classifier.LogisticRegressionRY
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   skactiveml.classifier.multi.MultiAnnotEnsemble
   </a>
  </li>
 </ul>
@@ -532,11 +534,11 @@
               
               <div>
                 
-  <section id="skactiveml-classifier-multiannotclassifier">
-<h1>skactiveml.classifier.MultiAnnotClassifier<a class="headerlink" href="#skactiveml-classifier-multiannotclassifier" title="Permalink to this headline">¶</a></h1>
+  <section id="skactiveml-classifier-multi-multiannotensemble">
+<h1>skactiveml.classifier.multi.MultiAnnotEnsemble<a class="headerlink" href="#skactiveml-classifier-multi-multiannotensemble" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
-<dt class="sig sig-object py" id="skactiveml.classifier.MultiAnnotClassifier">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">skactiveml.classifier.</span></span><span class="sig-name descname"><span class="pre">MultiAnnotClassifier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">estimators</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voting</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'hard'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">missing_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">nan</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cost_matrix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/classifier/_multi_annot_classifier.html#MultiAnnotClassifier"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.classifier.MultiAnnotClassifier" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="skactiveml.classifier.multi.MultiAnnotEnsemble">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">skactiveml.classifier.multi.</span></span><span class="sig-name descname"><span class="pre">MultiAnnotEnsemble</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">estimators</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voting</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'hard'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">missing_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">nan</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cost_matrix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/classifier/multi/_multi_annot_ensemble.html#MultiAnnotEnsemble"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.classifier.multi.MultiAnnotEnsemble" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.ensemble._base._BaseHeterogeneousEnsemble</span></code>, <a class="reference internal" href="skactiveml.base.SkactivemlClassifier.html#skactiveml.base.SkactivemlClassifier" title="skactiveml.base.SkactivemlClassifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">skactiveml.base.SkactivemlClassifier</span></code></a></p>
 <p>This strategy consists of fitting one classifier per annotator.</p>
 <dl class="field-list simple">
@@ -551,26 +553,26 @@ Else if ‘soft’, predicts the class label based on the argmax of
 the sums of the predicted probabilities, which is recommended for
 an ensemble of well-calibrated classifiers.</p>
 </dd>
-<dt><strong>classes</strong><span class="classifier">array-like, shape (n_classes), default=None</span></dt><dd><p>Holds the label for each class. If none, the classes are determined
+<dt><strong>classes</strong><span class="classifier">array-like of shape (n_classes,), default=None</span></dt><dd><p>Holds the label for each class. If none, the classes are determined
 during the fit.</p>
 </dd>
-<dt><strong>missing_label</strong><span class="classifier">{scalar, string, np.nan, None}, default=np.nan</span></dt><dd><p>Value to represent a missing label.</p>
+<dt><strong>missing_label</strong><span class="classifier">scalar or str or np.nan or None}, default=np.nan</span></dt><dd><p>Value to represent a missing label.</p>
 </dd>
-<dt><strong>cost_matrix</strong><span class="classifier">array-like, shape (n_classes, n_classes)</span></dt><dd><p>Cost matrix with cost_matrix[i,j] indicating cost of predicting class
-classes[j]  for a sample of class classes[i]. Can be only set, if
+<dt><strong>cost_matrix</strong><span class="classifier">array-like of shape (n_classes, n_classes)</span></dt><dd><p>Cost matrix with <cite>cost_matrix[i,j]</cite> indicating cost of predicting class
+<cite>classes[j]</cite>  for a sample of class <a href="#id1"><span class="problematic" id="id2">`</span></a>classes[i]. Can be only set, if
 classes is not none.</p>
 </dd>
-<dt><strong>random_state</strong><span class="classifier">int, RandomState instance or None, optional (default=None)</span></dt><dd><p>Determines random number for ‘predict’ method. Pass an int for
+<dt><strong>random_state</strong><span class="classifier">int or RandomState instance or None, default=None</span></dt><dd><p>Determines random number for ‘predict’ method. Pass an int for
 reproducible results across multiple method calls.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Attributes</dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>classes_</strong><span class="classifier">array-like, shape (n_classes)</span></dt><dd><p>Holds the label for each class after fitting.</p>
+<dt><strong>classes_</strong><span class="classifier">np.ndarray of shape (n_classes,)</span></dt><dd><p>Holds the label for each class after fitting.</p>
 </dd>
-<dt><strong>cost_matrix_</strong><span class="classifier">array-like, shape (classes, classes)</span></dt><dd><p>Cost matrix with C[i,j] indicating cost of predicting class classes_[j]
-for a sample of class classes_[i].</p>
+<dt><strong>cost_matrix_</strong><span class="classifier">np.ndarray of shape (classes, classes)</span></dt><dd><p>Cost matrix with <cite>cost_matrix_[i,j]</cite> indicating cost of predicting
+class <cite>classes_[j]</cite>  for a sample of class <a href="#id3"><span class="problematic" id="id4">`</span></a>classes_[i].</p>
 </dd>
 <dt><strong>estimators_</strong><span class="classifier">list of estimators</span></dt><dd><p>The elements of the estimators parameter, having been fitted on the
 training data. If an estimator has been set to <cite>‘drop’</cite>, it will not
@@ -586,22 +588,22 @@ appear in <cite>estimators_</cite>.</p>
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.classifier.MultiAnnotClassifier.fit" title="skactiveml.classifier.MultiAnnotClassifier.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code></a>(X, y[, sample_weight])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.classifier.multi.MultiAnnotEnsemble.fit" title="skactiveml.classifier.multi.MultiAnnotEnsemble.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code></a>(X, y[, sample_weight])</p></td>
 <td><p>Fit the model using X as training data and y as class labels.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#skactiveml.classifier.MultiAnnotClassifier.get_params" title="skactiveml.classifier.MultiAnnotClassifier.get_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code></a>([deep])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#skactiveml.classifier.multi.MultiAnnotEnsemble.get_params" title="skactiveml.classifier.multi.MultiAnnotEnsemble.get_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code></a>([deep])</p></td>
 <td><p>Get the parameters of an estimator from the ensemble.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.classifier.MultiAnnotClassifier.predict" title="skactiveml.classifier.MultiAnnotClassifier.predict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict</span></code></a>(X)</p></td>
-<td><p>Return class label predictions for the test samples X.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.classifier.multi.MultiAnnotEnsemble.predict" title="skactiveml.classifier.multi.MultiAnnotEnsemble.predict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict</span></code></a>(X)</p></td>
+<td><p>Return class label predictions for the test samples <cite>X</cite>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#skactiveml.classifier.MultiAnnotClassifier.predict_proba" title="skactiveml.classifier.MultiAnnotClassifier.predict_proba"><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict_proba</span></code></a>(X)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#skactiveml.classifier.multi.MultiAnnotEnsemble.predict_proba" title="skactiveml.classifier.multi.MultiAnnotEnsemble.predict_proba"><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict_proba</span></code></a>(X)</p></td>
 <td><p>Return probability estimates for the test data X.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.classifier.MultiAnnotClassifier.score" title="skactiveml.classifier.MultiAnnotClassifier.score"><code class="xref py py-obj docutils literal notranslate"><span class="pre">score</span></code></a>(X, y[, sample_weight])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.classifier.multi.MultiAnnotEnsemble.score" title="skactiveml.classifier.multi.MultiAnnotEnsemble.score"><code class="xref py py-obj docutils literal notranslate"><span class="pre">score</span></code></a>(X, y[, sample_weight])</p></td>
 <td><p>Return the mean accuracy on the given test data and labels.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#skactiveml.classifier.MultiAnnotClassifier.set_params" title="skactiveml.classifier.MultiAnnotClassifier.set_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code></a>(**params)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#skactiveml.classifier.multi.MultiAnnotEnsemble.set_params" title="skactiveml.classifier.multi.MultiAnnotEnsemble.set_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code></a>(**params)</p></td>
 <td><p>Set the parameters of an estimator from the ensemble.</p></td>
 </tr>
 </tbody>
@@ -613,32 +615,32 @@ appear in <cite>estimators_</cite>.</p>
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.classifier.MultiAnnotClassifier.named_estimators" title="skactiveml.classifier.MultiAnnotClassifier.named_estimators"><code class="xref py py-obj docutils literal notranslate"><span class="pre">named_estimators</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.classifier.multi.MultiAnnotEnsemble.named_estimators" title="skactiveml.classifier.multi.MultiAnnotEnsemble.named_estimators"><code class="xref py py-obj docutils literal notranslate"><span class="pre">named_estimators</span></code></a></p></td>
 <td><p>Dictionary to access any fitted sub-estimators by name.</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py method">
-<dt class="sig sig-object py" id="skactiveml.classifier.MultiAnnotClassifier.fit">
-<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/classifier/_multi_annot_classifier.html#MultiAnnotClassifier.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.classifier.MultiAnnotClassifier.fit" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="skactiveml.classifier.multi.MultiAnnotEnsemble.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/classifier/multi/_multi_annot_ensemble.html#MultiAnnotEnsemble.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.classifier.multi.MultiAnnotEnsemble.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fit the model using X as training data and y as class labels.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>X</strong><span class="classifier">matrix-like, shape (n_samples, n_features)</span></dt><dd><p>The sample matrix X is the feature matrix representing the samples.</p>
+<dt><strong>X</strong><span class="classifier">array-like of shape (n_samples, n_features)</span></dt><dd><p>The sample matrix X is the feature matrix representing the samples.</p>
 </dd>
-<dt><strong>y</strong><span class="classifier">array-like, shape (n_samples) or (n_samples, n_estimators)</span></dt><dd><p>It contains the class labels of the training samples.
+<dt><strong>y</strong><span class="classifier">array-like of shape (n_samples, n_estimators)</span></dt><dd><p>It contains the class labels of the training samples.
 The number of class labels may be variable for the samples, where
-missing labels are represented the attribute ‘missing_label’.</p>
+missing labels are represented the attribute <cite>missing_label</cite>.</p>
 </dd>
-<dt><strong>sample_weight</strong><span class="classifier">array-like, shape (n_samples) or (n_samples, n_outputs)</span></dt><dd><p>It contains the weights of the training samples’ class labels.
-It must have the same shape as y.</p>
+<dt><strong>sample_weight</strong><span class="classifier">array-like of shape (n_samples, n_estimators)</span></dt><dd><p>It contains the weights of the training samples’ class labels.
+It must have the same shape as <cite>y</cite>.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt>self: MultiAnnotClassifier,</dt><dd><p>The MultiAnnotClassifier is fitted on the training data.</p>
+<dt>self: skactiveml.classifier.multi.MultiAnnotEnsemble,</dt><dd><p>The <cite>MultiAnnotEnsemble</cite> object fitted on the training data.</p>
 </dd>
 </dl>
 </dd>
@@ -646,8 +648,8 @@ It must have the same shape as y.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="skactiveml.classifier.MultiAnnotClassifier.get_params">
-<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#skactiveml.classifier.MultiAnnotClassifier.get_params" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="skactiveml.classifier.multi.MultiAnnotEnsemble.get_params">
+<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#skactiveml.classifier.multi.MultiAnnotEnsemble.get_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the parameters of an estimator from the ensemble.</p>
 <p>Returns the parameters given in the constructor as well as the
 estimators contained within the <cite>estimators</cite> parameter.</p>
@@ -670,8 +672,8 @@ names mapped to their values.</p>
 </dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="skactiveml.classifier.MultiAnnotClassifier.named_estimators">
-<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">named_estimators</span></span><a class="headerlink" href="#skactiveml.classifier.MultiAnnotClassifier.named_estimators" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="skactiveml.classifier.multi.MultiAnnotEnsemble.named_estimators">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">named_estimators</span></span><a class="headerlink" href="#skactiveml.classifier.multi.MultiAnnotEnsemble.named_estimators" title="Permalink to this definition">¶</a></dt>
 <dd><p>Dictionary to access any fitted sub-estimators by name.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -683,21 +685,20 @@ names mapped to their values.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="skactiveml.classifier.MultiAnnotClassifier.predict">
-<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#skactiveml.classifier.MultiAnnotClassifier.predict" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return class label predictions for the test samples X.</p>
+<dt class="sig sig-object py" id="skactiveml.classifier.multi.MultiAnnotEnsemble.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#skactiveml.classifier.multi.MultiAnnotEnsemble.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return class label predictions for the test samples <cite>X</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>X</strong><span class="classifier">array-like, shape (n_samples, n_features) or</span></dt><dd></dd>
-<dt><strong>shape (n_samples, m_samples) if metric == ‘precomputed’</strong></dt><dd><p>Input samples.</p>
+<dt><strong>X</strong><span class="classifier">array-like of shape (n_samples, n_features)</span></dt><dd><p>Input samples.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>y</strong><span class="classifier">numpy.ndarray, shape (n_samples)</span></dt><dd><p>Predicted class labels of the test samples ‘X’. Classes are ordered
-according to ‘<a href="#id1"><span class="problematic" id="id2">classes_</span></a>’.</p>
+<dt><strong>y</strong><span class="classifier">numpy.ndarray of shape (n_samples)</span></dt><dd><p>Predicted class labels of the test samples <cite>X</cite>. Classes are ordered
+according to <cite>classes_</cite>.</p>
 </dd>
 </dl>
 </dd>
@@ -705,21 +706,20 @@ according to ‘<a href="#id1"><span class="problematic" id="id2">classes_</span
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="skactiveml.classifier.MultiAnnotClassifier.predict_proba">
-<span class="sig-name descname"><span class="pre">predict_proba</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/classifier/_multi_annot_classifier.html#MultiAnnotClassifier.predict_proba"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.classifier.MultiAnnotClassifier.predict_proba" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="skactiveml.classifier.multi.MultiAnnotEnsemble.predict_proba">
+<span class="sig-name descname"><span class="pre">predict_proba</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/classifier/multi/_multi_annot_ensemble.html#MultiAnnotEnsemble.predict_proba"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.classifier.multi.MultiAnnotEnsemble.predict_proba" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return probability estimates for the test data X.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>X</strong><span class="classifier">array-like, shape (n_samples, n_features) or</span></dt><dd></dd>
-<dt><strong>shape (n_samples, m_samples) if metric == ‘precomputed’</strong></dt><dd><p>Test samples.</p>
+<dt><strong>X</strong><span class="classifier">array-like of shape (n_samples, n_features)</span></dt><dd><p>Test samples.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>P</strong><span class="classifier">array-like, shape (n_samples, classes)</span></dt><dd><p>The class probabilities of the test samples. Classes are ordered
-according to <a href="#id3"><span class="problematic" id="id4">classes_</span></a>.</p>
+<dt><strong>P</strong><span class="classifier">np.ndarray of shape (n_samples, classes)</span></dt><dd><p>The class probabilities of the test samples. Classes are ordered
+according to <cite>classes_</cite>.</p>
 </dd>
 </dl>
 </dd>
@@ -727,15 +727,15 @@ according to <a href="#id3"><span class="problematic" id="id4">classes_</span></
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="skactiveml.classifier.MultiAnnotClassifier.score">
-<span class="sig-name descname"><span class="pre">score</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#skactiveml.classifier.MultiAnnotClassifier.score" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="skactiveml.classifier.multi.MultiAnnotEnsemble.score">
+<span class="sig-name descname"><span class="pre">score</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#skactiveml.classifier.multi.MultiAnnotEnsemble.score" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the mean accuracy on the given test data and labels.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>X</strong><span class="classifier">array-like of shape (n_samples, n_features)</span></dt><dd><p>Test samples.</p>
 </dd>
-<dt><strong>y</strong><span class="classifier">array-like of shape (n_samples,) or (n_samples, n_outputs)</span></dt><dd><p>True labels for X.</p>
+<dt><strong>y</strong><span class="classifier">array-like of shape (n_samples,)</span></dt><dd><p>True labels for <cite>X</cite>.</p>
 </dd>
 <dt><strong>sample_weight</strong><span class="classifier">array-like of shape (n_samples,), default=None</span></dt><dd><p>Sample weights.</p>
 </dd>
@@ -743,7 +743,7 @@ according to <a href="#id3"><span class="problematic" id="id4">classes_</span></
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>score</strong><span class="classifier">float</span></dt><dd><p>Mean accuracy of self.predict(X) wrt. y.</p>
+<dt><strong>score</strong><span class="classifier">float</span></dt><dd><p>Mean accuracy of <cite>self.predict(X)</cite> regarding <cite>y</cite>.</p>
 </dd>
 </dl>
 </dd>
@@ -751,8 +751,8 @@ according to <a href="#id3"><span class="problematic" id="id4">classes_</span></
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="skactiveml.classifier.MultiAnnotClassifier.set_params">
-<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#skactiveml.classifier.MultiAnnotClassifier.set_params" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="skactiveml.classifier.multi.MultiAnnotEnsemble.set_params">
+<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#skactiveml.classifier.multi.MultiAnnotEnsemble.set_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the parameters of an estimator from the ensemble.</p>
 <p>Valid parameter keys can be listed with <cite>get_params()</cite>. Note that you
 can directly set the parameters of the estimators contained in
@@ -778,13 +778,13 @@ estimators can also be set, or can be removed by setting them to
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="skactiveml.classifier.MultiAnnotClassifier.steps">
-<span class="sig-name descname"><span class="pre">steps</span></span><em class="property"><span class="pre">:</span> <span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#skactiveml.classifier.MultiAnnotClassifier.steps" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="skactiveml.classifier.multi.MultiAnnotEnsemble.steps">
+<span class="sig-name descname"><span class="pre">steps</span></span><em class="property"><span class="pre">:</span> <span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#skactiveml.classifier.multi.MultiAnnotEnsemble.steps" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<span class="target" id="sphx-glr-backref-skactiveml-classifier-multiannotclassifier"></span></section>
+<span class="target" id="sphx-glr-backref-skactiveml-classifier-multi-multiannotensemble"></span></section>
 
 
               </div>
@@ -792,17 +792,17 @@ estimators can also be set, or can be removed by setting them to
               
               <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="skactiveml.classifier.SklearnClassifier.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="skactiveml.classifier.multi.LogisticRegressionRY.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">skactiveml.classifier.SklearnClassifier</p>
+            <p class="prev-next-title">skactiveml.classifier.multi.LogisticRegressionRY</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="skactiveml.classifier.LogisticRegressionRY.html" title="next page">
+    <a class='right-next' id="next-link" href="skactiveml.visualization.plot_utility.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">skactiveml.classifier.LogisticRegressionRY</p>
+        <p class="prev-next-title">skactiveml.visualization.plot_utility</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

@@ -21,7 +21,7 @@
 Active Learning with Cost Embedding
 ===================================
 
-.. GENERATED FROM PYTHON SOURCE LINES 8-73
+.. GENERATED FROM PYTHON SOURCE LINES 8-75
 
 .. code-block:: default
    :lineno-start: 9
@@ -31,8 +31,10 @@ Active Learning with Cost Embedding
     import numpy as np
     from matplotlib import pyplot as plt, animation
     from sklearn.datasets import make_blobs
+
     from skactiveml.utils import MISSING_LABEL, unlabeled_indices, labeled_indices
     from skactiveml.visualization import plot_utility, plot_decision_boundary
+
     from skactiveml.pool import ALCE
     from skactiveml.classifier import PWC
 
@@ -40,8 +42,8 @@ Active Learning with Cost Embedding
 
     # Build a dataset.
     X, y_true = make_blobs(n_samples=100, n_features=2,
-                      centers=[[0, 1], [-3, .5], [-1, -1], [2, 1], [1, -.5]],
-                      cluster_std=.7, random_state=random_state)
+                           centers=[[0, 1], [-3, .5], [-1, -1], [2, 1], [1, -.5]],
+                           cluster_std=.7, random_state=random_state)
     y_true = y_true % 2
     y = np.full(shape=y_true.shape, fill_value=MISSING_LABEL)
 
@@ -283,42 +285,42 @@ Active Learning with Cost Embedding
      </style>
 
      <div class="animation">
-       <img id="_anim_img51ff77c17ab34ad7814178ec6fcc5e21">
+       <img id="_anim_img0b96ce614dda464b94a483383f001d18">
        <div class="anim-controls">
-         <input id="_anim_slider51ff77c17ab34ad7814178ec6fcc5e21" type="range" class="anim-slider"
+         <input id="_anim_slider0b96ce614dda464b94a483383f001d18" type="range" class="anim-slider"
                 name="points" min="0" max="1" step="1" value="0"
-                oninput="anim51ff77c17ab34ad7814178ec6fcc5e21.set_frame(parseInt(this.value));"></input>
+                oninput="anim0b96ce614dda464b94a483383f001d18.set_frame(parseInt(this.value));"></input>
          <div class="anim-buttons">
-           <button title="Decrease speed" aria-label="Decrease speed" onclick="anim51ff77c17ab34ad7814178ec6fcc5e21.slower()">
+           <button title="Decrease speed" aria-label="Decrease speed" onclick="anim0b96ce614dda464b94a483383f001d18.slower()">
                <i class="fa fa-minus"></i></button>
-           <button title="First frame" aria-label="First frame" onclick="anim51ff77c17ab34ad7814178ec6fcc5e21.first_frame()">
+           <button title="First frame" aria-label="First frame" onclick="anim0b96ce614dda464b94a483383f001d18.first_frame()">
              <i class="fa fa-fast-backward"></i></button>
-           <button title="Previous frame" aria-label="Previous frame" onclick="anim51ff77c17ab34ad7814178ec6fcc5e21.previous_frame()">
+           <button title="Previous frame" aria-label="Previous frame" onclick="anim0b96ce614dda464b94a483383f001d18.previous_frame()">
                <i class="fa fa-step-backward"></i></button>
-           <button title="Play backwards" aria-label="Play backwards" onclick="anim51ff77c17ab34ad7814178ec6fcc5e21.reverse_animation()">
+           <button title="Play backwards" aria-label="Play backwards" onclick="anim0b96ce614dda464b94a483383f001d18.reverse_animation()">
                <i class="fa fa-play fa-flip-horizontal"></i></button>
-           <button title="Pause" aria-label="Pause" onclick="anim51ff77c17ab34ad7814178ec6fcc5e21.pause_animation()">
+           <button title="Pause" aria-label="Pause" onclick="anim0b96ce614dda464b94a483383f001d18.pause_animation()">
                <i class="fa fa-pause"></i></button>
-           <button title="Play" aria-label="Play" onclick="anim51ff77c17ab34ad7814178ec6fcc5e21.play_animation()">
+           <button title="Play" aria-label="Play" onclick="anim0b96ce614dda464b94a483383f001d18.play_animation()">
                <i class="fa fa-play"></i></button>
-           <button title="Next frame" aria-label="Next frame" onclick="anim51ff77c17ab34ad7814178ec6fcc5e21.next_frame()">
+           <button title="Next frame" aria-label="Next frame" onclick="anim0b96ce614dda464b94a483383f001d18.next_frame()">
                <i class="fa fa-step-forward"></i></button>
-           <button title="Last frame" aria-label="Last frame" onclick="anim51ff77c17ab34ad7814178ec6fcc5e21.last_frame()">
+           <button title="Last frame" aria-label="Last frame" onclick="anim0b96ce614dda464b94a483383f001d18.last_frame()">
                <i class="fa fa-fast-forward"></i></button>
-           <button title="Increase speed" aria-label="Increase speed" onclick="anim51ff77c17ab34ad7814178ec6fcc5e21.faster()">
+           <button title="Increase speed" aria-label="Increase speed" onclick="anim0b96ce614dda464b94a483383f001d18.faster()">
                <i class="fa fa-plus"></i></button>
          </div>
-         <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_select51ff77c17ab34ad7814178ec6fcc5e21"
+         <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_select0b96ce614dda464b94a483383f001d18"
                class="anim-state">
-           <input type="radio" name="state" value="once" id="_anim_radio1_51ff77c17ab34ad7814178ec6fcc5e21"
+           <input type="radio" name="state" value="once" id="_anim_radio1_0b96ce614dda464b94a483383f001d18"
                   >
-           <label for="_anim_radio1_51ff77c17ab34ad7814178ec6fcc5e21">Once</label>
-           <input type="radio" name="state" value="loop" id="_anim_radio2_51ff77c17ab34ad7814178ec6fcc5e21"
+           <label for="_anim_radio1_0b96ce614dda464b94a483383f001d18">Once</label>
+           <input type="radio" name="state" value="loop" id="_anim_radio2_0b96ce614dda464b94a483383f001d18"
                   checked>
-           <label for="_anim_radio2_51ff77c17ab34ad7814178ec6fcc5e21">Loop</label>
-           <input type="radio" name="state" value="reflect" id="_anim_radio3_51ff77c17ab34ad7814178ec6fcc5e21"
+           <label for="_anim_radio2_0b96ce614dda464b94a483383f001d18">Loop</label>
+           <input type="radio" name="state" value="reflect" id="_anim_radio3_0b96ce614dda464b94a483383f001d18"
                   >
-           <label for="_anim_radio3_51ff77c17ab34ad7814178ec6fcc5e21">Reflect</label>
+           <label for="_anim_radio3_0b96ce614dda464b94a483383f001d18">Reflect</label>
          </form>
        </div>
      </div>
@@ -328,9 +330,9 @@ Active Learning with Cost Embedding
        /* Instantiate the Animation class. */
        /* The IDs given should match those used in the template above. */
        (function() {
-         var img_id = "_anim_img51ff77c17ab34ad7814178ec6fcc5e21";
-         var slider_id = "_anim_slider51ff77c17ab34ad7814178ec6fcc5e21";
-         var loop_select_id = "_anim_loop_select51ff77c17ab34ad7814178ec6fcc5e21";
+         var img_id = "_anim_img0b96ce614dda464b94a483383f001d18";
+         var slider_id = "_anim_slider0b96ce614dda464b94a483383f001d18";
+         var loop_select_id = "_anim_loop_select0b96ce614dda464b94a483383f001d18";
          var frames = new Array(25);
     
        frames[0] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
@@ -27258,7 +27260,7 @@ Active Learning with Cost Embedding
          /* set a timeout to make sure all the above elements are created before
             the object is initialized. */
          setTimeout(function() {
-             anim51ff77c17ab34ad7814178ec6fcc5e21 = new Animation(frames, img_id, slider_id, 1000.0,
+             anim0b96ce614dda464b94a483383f001d18 = new Animation(frames, img_id, slider_id, 1000.0,
                                       loop_select_id);
          }, 0);
        })()
@@ -27269,7 +27271,7 @@ Active Learning with Cost Embedding
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 74-79
+.. GENERATED FROM PYTHON SOURCE LINES 76-81
 
 .. rubric:: References:
 
@@ -27280,7 +27282,7 @@ The implementation of this strategy is based on :footcite:t:`huang2016novel`.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  10.351 seconds)
+   **Total running time of the script:** ( 0 minutes  11.229 seconds)
 
 
 .. _sphx_glr_download_generated_sphinx_gallery_examples_pool_plot_ALCE_Active_Learning_with_Cost_Embedding.py:

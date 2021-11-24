@@ -39,7 +39,7 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="skactiveml.classifier.MultiAnnotClassifier" href="skactiveml.classifier.MultiAnnotClassifier.html" />
+    <link rel="next" title="skactiveml.classifier.multi.LogisticRegressionRY" href="skactiveml.classifier.multi.LogisticRegressionRY.html" />
     <link rel="prev" title="skactiveml.classifier.CMM" href="skactiveml.classifier.CMM.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -335,14 +335,16 @@
    skactiveml.classifier.SklearnClassifier
   </a>
  </li>
+</ul>
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.classifier.MultiAnnotClassifier.html">
-   skactiveml.classifier.MultiAnnotClassifier
+  <a class="reference internal" href="skactiveml.classifier.multi.LogisticRegressionRY.html">
+   skactiveml.classifier.multi.LogisticRegressionRY
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.classifier.LogisticRegressionRY.html">
-   skactiveml.classifier.LogisticRegressionRY
+  <a class="reference internal" href="skactiveml.classifier.multi.MultiAnnotEnsemble.html">
+   skactiveml.classifier.multi.MultiAnnotEnsemble
   </a>
  </li>
 </ul>
@@ -554,36 +556,35 @@
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">skactiveml.classifier.</span></span><span class="sig-name descname"><span class="pre">SklearnClassifier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">estimator</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">missing_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">nan</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cost_matrix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/classifier/_wrapper.html#SklearnClassifier"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.classifier.SklearnClassifier" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="skactiveml.base.SkactivemlClassifier.html#skactiveml.base.SkactivemlClassifier" title="skactiveml.base.SkactivemlClassifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">skactiveml.base.SkactivemlClassifier</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.base.MetaEstimatorMixin</span></code></p>
 <p>Implementation of a wrapper class for scikit-learn classifiers such that
-missing labels can be handled and multiple labels per sample. Therefor,
-samples with missing labels are filtered and samples with n assigned labels
-are duplicated n times, i.e., one duplicate for each label.</p>
+missing labels can be handled. Therefor, samples with missing labels are
+filtered.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>estimator</strong><span class="classifier">sklearn.base.ClassifierMixin with ‘predict_proba’ method</span></dt><dd><p>scikit-learn classifier that is to deal with missing labels.</p>
+<dt><strong>estimator</strong><span class="classifier">sklearn.base.ClassifierMixin with predict_proba method</span></dt><dd><p>scikit-learn classifier that is able to deal with missing labels.</p>
 </dd>
-<dt><strong>classes</strong><span class="classifier">array-like, shape (n_classes), default=None</span></dt><dd><p>Holds the label for each class. If none, the classes are determined
+<dt><strong>classes</strong><span class="classifier">array-like of shape (n_classes,), default=None</span></dt><dd><p>Holds the label for each class. If none, the classes are determined
 during the fit.</p>
 </dd>
-<dt><strong>missing_label</strong><span class="classifier">{scalar, string, np.nan, None}, default=np.nan</span></dt><dd><p>Value to represent a missing label.</p>
+<dt><strong>missing_label</strong><span class="classifier">scalar or string or np.nan or None, default=np.nan</span></dt><dd><p>Value to represent a missing label.</p>
 </dd>
-<dt><strong>cost_matrix</strong><span class="classifier">array-like, shape (n_classes, n_classes)</span></dt><dd><p>Cost matrix with cost_matrix[i,j] indicating cost of predicting class
-classes[j]  for a sample of class classes[i]. Can be only set, if
-classes is not none.</p>
+<dt><strong>cost_matrix</strong><span class="classifier">array-like of shape (n_classes, n_classes)</span></dt><dd><p>Cost matrix with <cite>cost_matrix[i,j]</cite> indicating cost of predicting class
+<cite>classes[j]</cite> for a sample of class <cite>classes[i]</cite>. Can be only set, if
+<cite>classes</cite> is not none.</p>
 </dd>
-<dt><strong>random_state</strong><span class="classifier">int, RandomState instance or None, optional (default=None)</span></dt><dd><p>Determines random number for ‘predict’ method. Pass an int for
+<dt><strong>random_state</strong><span class="classifier">int or RandomState instance or None, default=None</span></dt><dd><p>Determines random number for ‘predict’ method. Pass an int for
 reproducible results across multiple method calls.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Attributes</dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>classes_</strong><span class="classifier">array-like, shape (n_classes)</span></dt><dd><p>Holds the label for each class after fitting.</p>
+<dt><strong>classes_</strong><span class="classifier">array-like of shape (n_classes,)</span></dt><dd><p>Holds the label for each class after fitting.</p>
 </dd>
-<dt><strong>cost_matrix_</strong><span class="classifier">array-like, shape (classes, classes)</span></dt><dd><p>Cost matrix with C[i,j] indicating cost of predicting class classes_[j]
-for a sample of class classes_[i].</p>
+<dt><strong>cost_matrix_</strong><span class="classifier">array-like of shape (classes, classes)</span></dt><dd><p>Cost matrix with <cite>cost_matrix_[i,j]</cite> indicating cost of predicting
+class <cite>classes_[j]</cite> for a sample of class <cite>classes_[i]</cite>.</p>
 </dd>
-<dt><strong>estimator_</strong><span class="classifier">sklearn.base.ClassifierMixin with ‘predict_proba’ method</span></dt><dd><p>The scikit-learn classifier after calling the fit method.</p>
+<dt><strong>estimator_</strong><span class="classifier">sklearn.base.ClassifierMixin with predict_proba method</span></dt><dd><p>The scikit-learn classifier after calling the fit method.</p>
 </dd>
 </dl>
 </dd>
@@ -693,7 +694,7 @@ must have the same shape as y.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt>self: SklearnClassifier,</dt><dd><p>The SklearnClassifier is fitted on the training data.</p>
+<dt><strong>self</strong><span class="classifier">SklearnClassifier,</span></dt><dd><p>The SklearnClassifier is fitted on the training data.</p>
 </dd>
 </dl>
 </dd>
@@ -756,7 +757,7 @@ by lexicographic order.</p>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>X</strong><span class="classifier">array-like of shape (n_samples, n_features)</span></dt><dd><p>Test samples.</p>
 </dd>
-<dt><strong>y</strong><span class="classifier">array-like of shape (n_samples,) or (n_samples, n_outputs)</span></dt><dd><p>True labels for X.</p>
+<dt><strong>y</strong><span class="classifier">array-like of shape (n_samples,)</span></dt><dd><p>True labels for <cite>X</cite>.</p>
 </dd>
 <dt><strong>sample_weight</strong><span class="classifier">array-like of shape (n_samples,), default=None</span></dt><dd><p>Sample weights.</p>
 </dd>
@@ -764,7 +765,7 @@ by lexicographic order.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>score</strong><span class="classifier">float</span></dt><dd><p>Mean accuracy of self.predict(X) wrt. y.</p>
+<dt><strong>score</strong><span class="classifier">float</span></dt><dd><p>Mean accuracy of <cite>self.predict(X)</cite> regarding <cite>y</cite>.</p>
 </dd>
 </dl>
 </dd>
@@ -827,10 +828,10 @@ possible to update each component of a nested object.</p>
             <p class="prev-next-title">skactiveml.classifier.CMM</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="skactiveml.classifier.MultiAnnotClassifier.html" title="next page">
+    <a class='right-next' id="next-link" href="skactiveml.classifier.multi.LogisticRegressionRY.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">skactiveml.classifier.MultiAnnotClassifier</p>
+        <p class="prev-next-title">skactiveml.classifier.multi.LogisticRegressionRY</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

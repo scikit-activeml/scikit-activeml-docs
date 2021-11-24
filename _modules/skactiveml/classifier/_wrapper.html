@@ -198,38 +198,36 @@
     <span class="sd">&quot;&quot;&quot;SklearnClassifier</span>
 
 <span class="sd">    Implementation of a wrapper class for scikit-learn classifiers such that</span>
-<span class="sd">    missing labels can be handled and multiple labels per sample. Therefor,</span>
-<span class="sd">    samples with missing labels are filtered and samples with n assigned labels</span>
-<span class="sd">    are duplicated n times, i.e., one duplicate for each label.</span>
+<span class="sd">    missing labels can be handled. Therefor, samples with missing labels are</span>
+<span class="sd">    filtered.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    estimator : sklearn.base.ClassifierMixin with &#39;predict_proba&#39; method</span>
-<span class="sd">        scikit-learn classifier that is to deal with missing labels.</span>
-<span class="sd">    classes : array-like, shape (n_classes), default=None</span>
+<span class="sd">    estimator : sklearn.base.ClassifierMixin with predict_proba method</span>
+<span class="sd">        scikit-learn classifier that is able to deal with missing labels.</span>
+<span class="sd">    classes : array-like of shape (n_classes,), default=None</span>
 <span class="sd">        Holds the label for each class. If none, the classes are determined</span>
 <span class="sd">        during the fit.</span>
-<span class="sd">    missing_label : {scalar, string, np.nan, None}, default=np.nan</span>
+<span class="sd">    missing_label : scalar or string or np.nan or None, default=np.nan</span>
 <span class="sd">        Value to represent a missing label.</span>
-<span class="sd">    cost_matrix : array-like, shape (n_classes, n_classes)</span>
-<span class="sd">        Cost matrix with cost_matrix[i,j] indicating cost of predicting class</span>
-<span class="sd">        classes[j]  for a sample of class classes[i]. Can be only set, if</span>
-<span class="sd">        classes is not none.</span>
-<span class="sd">    random_state : int, RandomState instance or None, optional (default=None)</span>
+<span class="sd">    cost_matrix : array-like of shape (n_classes, n_classes)</span>
+<span class="sd">        Cost matrix with `cost_matrix[i,j]` indicating cost of predicting class</span>
+<span class="sd">        `classes[j]` for a sample of class `classes[i]`. Can be only set, if</span>
+<span class="sd">        `classes` is not none.</span>
+<span class="sd">    random_state : int or RandomState instance or None, default=None</span>
 <span class="sd">        Determines random number for &#39;predict&#39; method. Pass an int for</span>
 <span class="sd">        reproducible results across multiple method calls.</span>
 
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
-<span class="sd">    classes_ : array-like, shape (n_classes)</span>
+<span class="sd">    classes_ : array-like of shape (n_classes,)</span>
 <span class="sd">        Holds the label for each class after fitting.</span>
-<span class="sd">    cost_matrix_ : array-like, shape (classes, classes)</span>
-<span class="sd">        Cost matrix with C[i,j] indicating cost of predicting class classes_[j]</span>
-<span class="sd">        for a sample of class classes_[i].</span>
-<span class="sd">    estimator_ : sklearn.base.ClassifierMixin with &#39;predict_proba&#39; method</span>
+<span class="sd">    cost_matrix_ : array-like of shape (classes, classes)</span>
+<span class="sd">        Cost matrix with `cost_matrix_[i,j]` indicating cost of predicting</span>
+<span class="sd">        class `classes_[j]` for a sample of class `classes_[i]`.</span>
+<span class="sd">    estimator_ : sklearn.base.ClassifierMixin with predict_proba method</span>
 <span class="sd">        The scikit-learn classifier after calling the fit method.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">estimator</span><span class="p">,</span> <span class="n">classes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">missing_label</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">,</span>
                  <span class="n">cost_matrix</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">classes</span><span class="o">=</span><span class="n">classes</span><span class="p">,</span> <span class="n">missing_label</span><span class="o">=</span><span class="n">missing_label</span><span class="p">,</span>
@@ -284,7 +282,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        self: SklearnClassifier,</span>
+<span class="sd">        self : SklearnClassifier,</span>
 <span class="sd">            The SklearnClassifier is fitted on the training data.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fit</span><span class="p">(</span><span class="n">fit_function</span><span class="o">=</span><span class="s1">&#39;partial_fit&#39;</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span>
@@ -307,7 +305,7 @@
 <span class="sd">            Predicted class labels of the input samples.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">check_is_fitted</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-        <span class="n">X</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">check_X_dict_</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_check_n_features</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">reset</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_fitted_</span><span class="p">:</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cost_matrix</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -315,13 +313,13 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">P</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
                 <span class="n">costs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cost_matrix_</span><span class="p">)</span>
-                <span class="n">y_pred</span> <span class="o">=</span> <span class="n">rand_argmin</span><span class="p">(</span><span class="n">costs</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_random_state</span><span class="p">,</span>
+                <span class="n">y_pred</span> <span class="o">=</span> <span class="n">rand_argmin</span><span class="p">(</span><span class="n">costs</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state_</span><span class="p">,</span>
                                      <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">p</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">([</span><span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">]])[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="n">y_pred</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_random_state</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">classes_</span><span class="p">)),</span>
-                                               <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">),</span>
-                                               <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="p">)</span>
+            <span class="n">y_pred</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">random_state_</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">classes_</span><span class="p">)),</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">p</span>
+            <span class="p">)</span>
         <span class="n">y_pred</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_le</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
         <span class="n">y_pred</span> <span class="o">=</span> <span class="n">y_pred</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">classes_</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">y_pred</span></div>
@@ -345,24 +343,25 @@
 <span class="sd">            by lexicographic order.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">check_is_fitted</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-        <span class="n">X</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">check_X_dict_</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_check_n_features</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">reset</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_fitted_</span><span class="p">:</span>
             <span class="n">P</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">estimator_</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="o">**</span><span class="n">predict_proba_kwargs</span><span class="p">)</span>
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">estimator_</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">classes_</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">P</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">classes_</span><span class="p">):</span>
                 <span class="n">P_ext</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">classes_</span><span class="p">)))</span>
                 <span class="n">class_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">estimator_</span><span class="o">.</span><span class="n">classes_</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
-                <span class="c1"># Exception for MLPCLassifier</span>
+                <span class="c1"># Exception for the MLPCLassifier</span>
                 <span class="n">P_ext</span><span class="p">[:,</span> <span class="n">class_indices</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">class_indices</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">P</span>
                 <span class="n">P</span> <span class="o">=</span> <span class="n">P_ext</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">P</span><span class="p">)):</span>
                 <span class="k">return</span> <span class="n">P</span>
 
-        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Since the &#39;base_estimator&#39; could not be fitted when&quot;</span>
-                      <span class="s2">&quot; calling the `fit` method, the class label &quot;</span>
-                      <span class="s2">&quot;distribution`_label_counts=</span><span class="si">{}</span><span class="s2">` is used to make &quot;</span>
-                      <span class="s2">&quot;the predictions.&quot;</span>
-                      <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_label_counts</span><span class="p">))</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Since the &#39;base_estimator&#39; could not be fitted when&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot; calling the `fit` method, the class label &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;distribution`_label_counts=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_label_counts</span><span class="si">}</span><span class="s2">` is used to &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;make the predictions.&quot;</span>
+        <span class="p">)</span>
         <span class="k">if</span> <span class="nb">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_label_counts</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">classes_</span><span class="p">)])</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span>
@@ -372,7 +371,14 @@
 
     <span class="k">def</span> <span class="nf">_fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fit_function</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_kwargs</span><span class="p">):</span>
         <span class="c1"># Check input parameters.</span>
-        <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_data</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_X_dict_</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;ensure_min_samples&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;ensure_min_features&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="s1">&#39;allow_nd&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;dtype&#39;</span><span class="p">:</span> <span class="kc">None</span>
+        <span class="p">}</span>
+        <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_data</span><span class="p">(</span>
+            <span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">,</span>
+            <span class="n">check_X_dict</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">check_X_dict_</span><span class="p">,</span>
+        <span class="p">)</span>
 
         <span class="c1"># Check whether estimator is a valid classifier.</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">is_classifier</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">estimator</span><span class="p">):</span>
@@ -394,20 +400,18 @@
                 <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">estimator</span><span class="si">}</span><span class="s2"> does not support `sample_weight`. &quot;</span>
                 <span class="sa">f</span><span class="s2">&quot;Therefore, this parameter will be ignored.&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">estimator_</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">estimator</span><span class="p">)</span>
-        <span class="c1"># Transform in case of 2-dimensional array of class labels.</span>
-        <span class="k">if</span> <span class="n">y</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-            <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-            <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
-            <span class="k">if</span> <span class="n">sample_weight</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">sample_weight</span> <span class="o">=</span> <span class="n">sample_weight</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+
+        <span class="c1"># Count labels per class.</span>
         <span class="n">is_lbld</span> <span class="o">=</span> <span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_label_counts</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">is_lbld</span><span class="p">]</span> <span class="o">==</span> <span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span>
                               <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_le</span><span class="o">.</span><span class="n">classes_</span><span class="p">))]</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">X_lbld</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">is_lbld</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+            <span class="n">X_lbld</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">is_lbld</span><span class="p">]</span>
             <span class="n">y_lbld</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">is_lbld</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">has_fit_parameter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">estimator</span><span class="p">,</span>
-                                     <span class="s1">&#39;sample_weight&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">sample_weight</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">is_lbld</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;There is no labeled data.&#39;</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="ow">not</span> <span class="n">has_fit_parameter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">estimator</span><span class="p">,</span> <span class="s1">&#39;sample_weight&#39;</span><span class="p">)</span> \
+                    <span class="ow">or</span> <span class="n">sample_weight</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">fit_function</span> <span class="o">==</span> <span class="s1">&#39;partial_fit&#39;</span><span class="p">:</span>
                     <span class="n">classes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_le</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">estimator_</span><span class="o">.</span><span class="n">partial_fit</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X_lbld</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_lbld</span><span class="p">,</span>

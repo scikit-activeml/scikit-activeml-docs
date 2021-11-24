@@ -335,14 +335,16 @@
    skactiveml.classifier.SklearnClassifier
   </a>
  </li>
+</ul>
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.classifier.MultiAnnotClassifier.html">
-   skactiveml.classifier.MultiAnnotClassifier
+  <a class="reference internal" href="skactiveml.classifier.multi.LogisticRegressionRY.html">
+   skactiveml.classifier.multi.LogisticRegressionRY
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.classifier.LogisticRegressionRY.html">
-   skactiveml.classifier.LogisticRegressionRY
+  <a class="reference internal" href="skactiveml.classifier.multi.MultiAnnotEnsemble.html">
+   skactiveml.classifier.multi.MultiAnnotEnsemble
   </a>
  </li>
 </ul>
@@ -559,25 +561,25 @@ obtained by applying a kernel function.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>classes</strong><span class="classifier">array-like, shape (n_classes), default=None</span></dt><dd><p>Holds the label for each class. If none, the classes are determined
+<dt><strong>classes</strong><span class="classifier">array-like of shape (n_classes), default=None</span></dt><dd><p>Holds the label for each class. If none, the classes are determined
 during the fit.</p>
 </dd>
-<dt><strong>missing_label</strong><span class="classifier">{scalar, string, np.nan, None}, default=np.nan</span></dt><dd><p>Value to represent a missing label.</p>
+<dt><strong>missing_label</strong><span class="classifier">scalar or string or np.nan or None, default=np.nan</span></dt><dd><p>Value to represent a missing label.</p>
 </dd>
-<dt><strong>cost_matrix</strong><span class="classifier">array-like, shape (n_classes, n_classes)</span></dt><dd><p>Cost matrix with <cite>cost_matrix[i,j]</cite> indicating cost of predicting class
-<cite>classes[j]</cite>  for a sample of class <cite>classes[i]</cite>. Can be only set, if
-classes is not none.</p>
+<dt><strong>cost_matrix</strong><span class="classifier">array-like of shape (n_classes, n_classes)</span></dt><dd><p>Cost matrix with <cite>cost_matrix[i,j]</cite> indicating cost of predicting class
+<cite>classes[j]</cite> for a sample of class <cite>classes[i]</cite>. Can be only set, if
+<cite>classes</cite> is not none.</p>
 </dd>
-<dt><strong>class_prior</strong><span class="classifier">float | array-like, shape (n_classes), optional (default=0)</span></dt><dd><p>Prior observations of the class frequency estimates. If <cite>class_prior</cite>
+<dt><strong>class_prior</strong><span class="classifier">float or array-like of shape (n_classes,), default=0</span></dt><dd><p>Prior observations of the class frequency estimates. If <cite>class_prior</cite>
 is an array, the entry <cite>class_prior[i]</cite> indicates the non-negative
 prior number of samples belonging to class <cite>classes_[i]</cite>. If
 <cite>class_prior</cite> is a float, <cite>class_prior</cite> indicates the non-negative
 prior number of samples per class.</p>
 </dd>
-<dt><strong>metric</strong><span class="classifier">str | callable,</span></dt><dd><p>The metric must a be a valid kernel defined by the function 
+<dt><strong>metric</strong><span class="classifier">str or callable, default=’rbf’</span></dt><dd><p>The metric must a be a valid kernel defined by the function 
 <cite>sklearn.metrics.pairwise.pairwise_kernels</cite>.</p>
 </dd>
-<dt><strong>n_neighbors</strong><span class="classifier">int,</span></dt><dd><p>Number of nearest neighbours. Default is None, which means all 
+<dt><strong>n_neighbors</strong><span class="classifier">int or None, default=None</span></dt><dd><p>Number of nearest neighbours. Default is None, which means all 
 available samples are considered.</p>
 </dd>
 <dt><strong>metric_dict</strong><span class="classifier">dict,</span></dt><dd><p>Any further parameters are passed directly to the kernel function.</p>
@@ -586,28 +588,30 @@ available samples are considered.</p>
 </dd>
 </dl>
 <p class="rubric">References</p>
-<dl class="simple">
-<dt>[1] O. Chapelle, “Active Learning for Parzen Window Classifier”,</dt><dd><p>Proceedings of the Tenth International Workshop Artificial Intelligence
-and Statistics, 2005.</p>
+<dl class="citation">
+<dt class="label" id="r3251fe152713-1"><span class="brackets">1</span></dt>
+<dd><p><a href="#id15"><span class="problematic" id="id16">`O. Chapelle, &quot;Active Learning for Parzen Window Classifier&quot;,
+Proceedings of the Tenth International Workshop Artificial Intelligence
+and Statistics, 2005.`_</span></a></p>
 </dd>
 </dl>
 <dl class="field-list simple">
 <dt class="field-odd">Attributes</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>classes_</strong><span class="classifier">array-like, shape (n_classes)</span></dt><dd><p>Holds the label for each class after fitting.</p>
+<dt><strong>classes_</strong><span class="classifier">array-like of shape (n_classes,)</span></dt><dd><p>Holds the label for each class after fitting.</p>
 </dd>
-<dt><strong>class_prior</strong><span class="classifier">np.ndarray, shape (n_classes)</span></dt><dd><p>Prior observations of the class frequency estimates. The entry
+<dt><strong>class_prior</strong><span class="classifier">np.ndarray of shape (n_classes)</span></dt><dd><p>Prior observations of the class frequency estimates. The entry
 <cite>class_prior_[i]</cite> indicates the non-negative prior number of samples
 belonging to class <cite>classes_[i]</cite>.</p>
 </dd>
-<dt><strong>cost_matrix_</strong><span class="classifier">np.ndarray, shape (classes, classes)</span></dt><dd><p>Cost matrix with <cite>cost_matrix_[i,j]</cite> indicating cost of predicting
+<dt><strong>cost_matrix_</strong><span class="classifier">np.ndarray of shape (classes, classes)</span></dt><dd><p>Cost matrix with <cite>cost_matrix_[i,j]</cite> indicating cost of predicting
 class <cite>classes_[j]</cite> for a sample of class <cite>classes_[i]</cite>.</p>
 </dd>
-<dt><strong>X_</strong><span class="classifier">array-like, shape (n_samples, n_features)</span></dt><dd><p>The sample matrix X is the feature matrix representing the samples.</p>
+<dt><strong>X_</strong><span class="classifier">np.ndarray of shape (n_samples, n_features)</span></dt><dd><p>The sample matrix <cite>X</cite> is the feature matrix representing the samples.</p>
 </dd>
-<dt><strong>V_</strong><span class="classifier">array-like, shape (n_samples, classes)</span></dt><dd><p>The class labels are represented by counting vectors. An entry <cite>V[i,j]</cite>
-indicates how many class labels of class j were provided for training 
-sample <cite>X_[i]</cite>.</p>
+<dt><strong>V_</strong><span class="classifier">np.ndarray of shape (n_samples, classes)</span></dt><dd><p>The class labels are represented by counting vectors. An entry <cite>V[i,j]</cite>
+indicates how many class labels of <cite>classes[j]</cite> were provided for
+training sample <cite>X_[i]</cite>.</p>
 </dd>
 </dl>
 </dd>
@@ -626,13 +630,13 @@ sample <cite>X_[i]</cite>.</p>
 <td><p>Get parameters for this estimator.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.classifier.PWC.predict" title="skactiveml.classifier.PWC.predict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict</span></code></a>(X)</p></td>
-<td><p>Return class label predictions for the test samples X.</p></td>
+<td><p>Return class label predictions for the test samples <cite>X</cite>.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#skactiveml.classifier.PWC.predict_freq" title="skactiveml.classifier.PWC.predict_freq"><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict_freq</span></code></a>(X)</p></td>
 <td><p>Return class frequency estimates for the input samples 'X'.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.classifier.PWC.predict_proba" title="skactiveml.classifier.PWC.predict_proba"><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict_proba</span></code></a>(X)</p></td>
-<td><p>Return probability estimates for the test data X.</p></td>
+<td><p>Return probability estimates for the test data <cite>X</cite>.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#skactiveml.classifier.PWC.score" title="skactiveml.classifier.PWC.score"><code class="xref py py-obj docutils literal notranslate"><span class="pre">score</span></code></a>(X, y[, sample_weight])</p></td>
 <td><p>Return the mean accuracy on the given test data and labels.</p></td>
@@ -666,13 +670,12 @@ sample <cite>X_[i]</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>X</strong><span class="classifier">matrix-like, shape (n_samples, n_features)</span></dt><dd><p>The sample matrix X is the feature matrix representing the samples.</p>
+<dt><strong>X</strong><span class="classifier">array-like of shape (n_samples, n_features)</span></dt><dd><p>The sample matrix <cite>X</cite> is the feature matrix representing the
+samples.</p>
 </dd>
-<dt><strong>y</strong><span class="classifier">array-like, shape (n_samples) or (n_samples, n_outputs)</span></dt><dd><p>It contains the class labels of the training samples.
-The number of class labels may be variable for the samples, where 
-missing labels are represented the attribute ‘missing_label’.</p>
+<dt><strong>y</strong><span class="classifier">array-like of shape (n_samples)</span></dt><dd><p>It contains the class labels of the training samples.</p>
 </dd>
-<dt><strong>sample_weight</strong><span class="classifier">array-like, shape (n_samples) or (n_samples, n_outputs)</span></dt><dd><p>It contains the weights of the training samples’ class labels.
+<dt><strong>sample_weight</strong><span class="classifier">array-like of shape (n_samples)</span></dt><dd><p>It contains the weights of the training samples’ class labels.
 It must have the same shape as y.</p>
 </dd>
 </dl>
@@ -710,19 +713,18 @@ contained subobjects that are estimators.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="skactiveml.classifier.PWC.predict">
 <span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#skactiveml.classifier.PWC.predict" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return class label predictions for the test samples X.</p>
+<dd><p>Return class label predictions for the test samples <cite>X</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>X</strong><span class="classifier">array-like, shape (n_samples, n_features) or</span></dt><dd></dd>
-<dt><strong>shape (n_samples, m_samples) if metric == ‘precomputed’</strong></dt><dd><p>Input samples.</p>
+<dt><strong>X</strong><span class="classifier">array-like of shape (n_samples, n_features)</span></dt><dd><p>Input samples.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>y</strong><span class="classifier">numpy.ndarray, shape (n_samples)</span></dt><dd><p>Predicted class labels of the test samples ‘X’. Classes are ordered
-according to ‘<a href="#id14"><span class="problematic" id="id15">classes_</span></a>’.</p>
+<dt><strong>y</strong><span class="classifier">numpy.ndarray of shape (n_samples)</span></dt><dd><p>Predicted class labels of the test samples <cite>X</cite>. Classes are ordered
+according to <cite>classes_</cite>.</p>
 </dd>
 </dl>
 </dd>
@@ -736,15 +738,15 @@ according to ‘<a href="#id14"><span class="problematic" id="id15">classes_</sp
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>X: array-like, shape (n_samples, n_features) or shape</strong></dt><dd></dd>
+<dt><strong>X: array-like or shape (n_samples, n_features) or shape</strong></dt><dd></dd>
 <dt><strong>(n_samples, m_samples) if metric == ‘precomputed’</strong></dt><dd><p>Input samples.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt>F: array-like, shape (n_samples, classes)</dt><dd><p>The class frequency estimates of the input samples. Classes are
-ordered according to <a href="#id16"><span class="problematic" id="id17">classes_</span></a>.</p>
+<dt>F: array-like of shape (n_samples, classes)</dt><dd><p>The class frequency estimates of the input samples. Classes are
+ordered according to <cite>classes_</cite>.</p>
 </dd>
 </dl>
 </dd>
@@ -754,7 +756,7 @@ ordered according to <a href="#id16"><span class="problematic" id="id17">classes
 <dl class="py method">
 <dt class="sig sig-object py" id="skactiveml.classifier.PWC.predict_proba">
 <span class="sig-name descname"><span class="pre">predict_proba</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#skactiveml.classifier.PWC.predict_proba" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return probability estimates for the test data X.</p>
+<dd><p>Return probability estimates for the test data <cite>X</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
@@ -765,8 +767,8 @@ ordered according to <a href="#id16"><span class="problematic" id="id17">classes
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>P</strong><span class="classifier">array-like, shape (n_samples, classes)</span></dt><dd><p>The class probabilities of the test samples. Classes are ordered
-according to <a href="#id18"><span class="problematic" id="id19">classes_</span></a>.</p>
+<dt><strong>P</strong><span class="classifier">array-like of shape (n_samples, classes)</span></dt><dd><p>The class probabilities of the test samples. Classes are ordered
+according to <a href="#id17"><span class="problematic" id="id18">classes_</span></a>.</p>
 </dd>
 </dl>
 </dd>
@@ -782,7 +784,7 @@ according to <a href="#id18"><span class="problematic" id="id19">classes_</span>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>X</strong><span class="classifier">array-like of shape (n_samples, n_features)</span></dt><dd><p>Test samples.</p>
 </dd>
-<dt><strong>y</strong><span class="classifier">array-like of shape (n_samples,) or (n_samples, n_outputs)</span></dt><dd><p>True labels for X.</p>
+<dt><strong>y</strong><span class="classifier">array-like of shape (n_samples,)</span></dt><dd><p>True labels for <cite>X</cite>.</p>
 </dd>
 <dt><strong>sample_weight</strong><span class="classifier">array-like of shape (n_samples,), default=None</span></dt><dd><p>Sample weights.</p>
 </dd>
@@ -790,7 +792,7 @@ according to <a href="#id18"><span class="problematic" id="id19">classes_</span>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>score</strong><span class="classifier">float</span></dt><dd><p>Mean accuracy of self.predict(X) wrt. y.</p>
+<dt><strong>score</strong><span class="classifier">float</span></dt><dd><p>Mean accuracy of <cite>self.predict(X)</cite> regarding <cite>y</cite>.</p>
 </dd>
 </dl>
 </dd>
@@ -825,82 +827,82 @@ possible to update each component of a nested object.</p>
 
 <section id="examples-using-skactiveml-classifier-pwc">
 <span id="sphx-glr-backref-skactiveml-classifier-pwc"></span><h2>Examples using <code class="docutils literal notranslate"><span class="pre">skactiveml.classifier.PWC</span></code><a class="headerlink" href="#examples-using-skactiveml-classifier-pwc" title="Permalink to this headline">¶</a></h2>
-<div class="sphx-glr-thumbcontainer" tooltip="Random Sampling"><figure class="align-default" id="id1">
+<div class="sphx-glr-thumbcontainer" tooltip="Random Sampling"><figure class="align-default" id="id2">
 <img alt="Random Sampling" src="../../_images/sphx_glr_plot_RandomSampler_Random_Sampling_thumb.gif" />
 <figcaption>
-<p><span class="caption-text"><a class="reference internal" href="../sphinx_gallery_examples/pool/plot_RandomSampler_Random_Sampling.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-randomsampler-random-sampling-py"><span class="std std-ref">Random Sampling</span></a></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text"><a class="reference internal" href="../sphinx_gallery_examples/pool/plot_RandomSampler_Random_Sampling.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-randomsampler-random-sampling-py"><span class="std std-ref">Random Sampling</span></a></span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Active Learning with Cost Embedding"><figure class="align-default" id="id2">
+</div><div class="sphx-glr-thumbcontainer" tooltip="Active Learning with Cost Embedding"><figure class="align-default" id="id3">
 <img alt="Active Learning with Cost Embedding" src="../../_images/sphx_glr_plot_ALCE_Active_Learning_with_Cost_Embedding_thumb.gif" />
 <figcaption>
-<p><span class="caption-text"><a class="reference internal" href="../sphinx_gallery_examples/pool/plot_ALCE_Active_Learning_with_Cost_Embedding.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-alce-active-learning-with-cost-embedding-py"><span class="std std-ref">Active Learning with Cost Embedding</span></a></span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text"><a class="reference internal" href="../sphinx_gallery_examples/pool/plot_ALCE_Active_Learning_with_Cost_Embedding.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-alce-active-learning-with-cost-embedding-py"><span class="std std-ref">Active Learning with Cost Embedding</span></a></span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Epistemic Uncertainty Sampling"><figure class="align-default" id="id3">
+</div><div class="sphx-glr-thumbcontainer" tooltip="Epistemic Uncertainty Sampling"><figure class="align-default" id="id4">
 <img alt="Epistemic Uncertainty Sampling" src="../../_images/sphx_glr_plot_EpistemicUncertainty_Epistemic_Uncertainty_Sampling_thumb.gif" />
 <figcaption>
-<p><span class="caption-text"><a class="reference internal" href="../sphinx_gallery_examples/pool/plot_EpistemicUncertainty_Epistemic_Uncertainty_Sampling.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-epistemicuncertainty-epistemic-uncertainty-sampling-py"><span class="std std-ref">Epistemic Uncertainty Sampling</span></a></span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text"><a class="reference internal" href="../sphinx_gallery_examples/pool/plot_EpistemicUncertainty_Epistemic_Uncertainty_Sampling.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-epistemicuncertainty-epistemic-uncertainty-sampling-py"><span class="std std-ref">Epistemic Uncertainty Sampling</span></a></span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Entropy-based Uncertainty Sampling"><figure class="align-default" id="id4">
+</div><div class="sphx-glr-thumbcontainer" tooltip="Entropy-based Uncertainty Sampling"><figure class="align-default" id="id5">
 <img alt="Entropy-based Uncertainty Sampling" src="../../_images/sphx_glr_plot_UncertaintySampling_Entropy-based_Uncertainty_Sampling_thumb.gif" />
 <figcaption>
-<p><span class="caption-text"><a class="reference internal" href="../sphinx_gallery_examples/pool/plot_UncertaintySampling_Entropy-based_Uncertainty_Sampling.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-uncertaintysampling-entropy-based-uncertainty-sampling-py"><span class="std std-ref">Entropy-based Uncertainty Sampling</span></a></span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text"><a class="reference internal" href="../sphinx_gallery_examples/pool/plot_UncertaintySampling_Entropy-based_Uncertainty_Sampling.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-uncertaintysampling-entropy-based-uncertainty-sampling-py"><span class="std std-ref">Entropy-based Uncertainty Sampling</span></a></span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Least-confident-based Uncertainty Sampling"><figure class="align-default" id="id5">
+</div><div class="sphx-glr-thumbcontainer" tooltip="Least-confident-based Uncertainty Sampling"><figure class="align-default" id="id6">
 <img alt="Least-confident-based Uncertainty Sampling" src="../../_images/sphx_glr_plot_UncertaintySampling_Least-confident-based_Uncertainty_Sampling_thumb.gif" />
 <figcaption>
-<p><span class="caption-text"><a class="reference internal" href="../sphinx_gallery_examples/pool/plot_UncertaintySampling_Least-confident-based_Uncertainty_Sampling.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-uncertaintysampling-least-confident-based-uncertainty-sampling-py"><span class="std std-ref">Least-confident-based Uncertainty Sampling</span></a></span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text"><a class="reference internal" href="../sphinx_gallery_examples/pool/plot_UncertaintySampling_Least-confident-based_Uncertainty_Sampling.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-uncertaintysampling-least-confident-based-uncertainty-sampling-py"><span class="std std-ref">Least-confident-based Uncertainty Sampling</span></a></span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Margin-based Uncertainty Sampling"><figure class="align-default" id="id6">
+</div><div class="sphx-glr-thumbcontainer" tooltip="Margin-based Uncertainty Sampling"><figure class="align-default" id="id7">
 <img alt="Margin-based Uncertainty Sampling" src="../../_images/sphx_glr_plot_UncertaintySampling_Margin-based_Uncertainty_Sampling_thumb.gif" />
 <figcaption>
-<p><span class="caption-text"><a class="reference internal" href="../sphinx_gallery_examples/pool/plot_UncertaintySampling_Margin-based_Uncertainty_Sampling.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-uncertaintysampling-margin-based-uncertainty-sampling-py"><span class="std std-ref">Margin-based Uncertainty Sampling</span></a></span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text"><a class="reference internal" href="../sphinx_gallery_examples/pool/plot_UncertaintySampling_Margin-based_Uncertainty_Sampling.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-uncertaintysampling-margin-based-uncertainty-sampling-py"><span class="std std-ref">Margin-based Uncertainty Sampling</span></a></span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Expected Misclassification Risk"><figure class="align-default" id="id7">
+</div><div class="sphx-glr-thumbcontainer" tooltip="Expected Misclassification Risk"><figure class="align-default" id="id8">
 <img alt="Expected Misclassification Risk" src="../../_images/sphx_glr_plot_ExpectedErrorReduction_Expected_Misclassification_Risk_thumb.gif" />
 <figcaption>
-<p><span class="caption-text"><a class="reference internal" href="../sphinx_gallery_examples/pool/plot_ExpectedErrorReduction_Expected_Misclassification_Risk.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-expectederrorreduction-expected-misclassification-risk-py"><span class="std std-ref">Expected Misclassification Risk</span></a></span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text"><a class="reference internal" href="../sphinx_gallery_examples/pool/plot_ExpectedErrorReduction_Expected_Misclassification_Risk.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-expectederrorreduction-expected-misclassification-risk-py"><span class="std std-ref">Expected Misclassification Risk</span></a></span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Cost-sensitive Expected Error Reduction"><figure class="align-default" id="id8">
+</div><div class="sphx-glr-thumbcontainer" tooltip="Cost-sensitive Expected Error Reduction"><figure class="align-default" id="id9">
 <img alt="Cost-sensitive Expected Error Reduction" src="../../_images/sphx_glr_plot_ExpectedErrorReduction_Cost-sensitive_Expected_Error_Reduction_thumb.gif" />
 <figcaption>
-<p><span class="caption-text"><a class="reference internal" href="../sphinx_gallery_examples/pool/plot_ExpectedErrorReduction_Cost-sensitive_Expected_Error_Reduction.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-expectederrorreduction-cost-sensitive-expected-error-reduction-py"><span class="std std-ref">Cost-sensitive Expected Error Reduction</span></a></span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text"><a class="reference internal" href="../sphinx_gallery_examples/pool/plot_ExpectedErrorReduction_Cost-sensitive_Expected_Error_Reduction.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-expectederrorreduction-cost-sensitive-expected-error-reduction-py"><span class="std std-ref">Cost-sensitive Expected Error Reduction</span></a></span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Log Loss Expected Error Reduction"><figure class="align-default" id="id9">
+</div><div class="sphx-glr-thumbcontainer" tooltip="Log Loss Expected Error Reduction"><figure class="align-default" id="id10">
 <img alt="Log Loss Expected Error Reduction" src="../../_images/sphx_glr_plot_ExpectedErrorReduction_Log_Loss_Expected_Error_Reduction_thumb.gif" />
 <figcaption>
-<p><span class="caption-text"><a class="reference internal" href="../sphinx_gallery_examples/pool/plot_ExpectedErrorReduction_Log_Loss_Expected_Error_Reduction.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-expectederrorreduction-log-loss-expected-error-reduction-py"><span class="std std-ref">Log Loss Expected Error Reduction</span></a></span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text"><a class="reference internal" href="../sphinx_gallery_examples/pool/plot_ExpectedErrorReduction_Log_Loss_Expected_Error_Reduction.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-expectederrorreduction-log-loss-expected-error-reduction-py"><span class="std std-ref">Log Loss Expected Error Reduction</span></a></span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Expected Average Precision"><figure class="align-default" id="id10">
+</div><div class="sphx-glr-thumbcontainer" tooltip="Expected Average Precision"><figure class="align-default" id="id11">
 <img alt="Expected Average Precision" src="../../_images/sphx_glr_plot_UncertaintySampling_Expected_Average_Precision_thumb.gif" />
 <figcaption>
-<p><span class="caption-text"><a class="reference internal" href="../sphinx_gallery_examples/pool/plot_UncertaintySampling_Expected_Average_Precision.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-uncertaintysampling-expected-average-precision-py"><span class="std std-ref">Expected Average Precision</span></a></span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text"><a class="reference internal" href="../sphinx_gallery_examples/pool/plot_UncertaintySampling_Expected_Average_Precision.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-uncertaintysampling-expected-average-precision-py"><span class="std std-ref">Expected Average Precision</span></a></span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Query-by-Committee with Vote Entropy"><figure class="align-default" id="id11">
+</div><div class="sphx-glr-thumbcontainer" tooltip="Query-by-Committee with Vote Entropy"><figure class="align-default" id="id12">
 <img alt="Query-by-Committee with Vote Entropy" src="../../_images/sphx_glr_plot_QBC_Query-by-Committee_with_Vote_Entropy_thumb.gif" />
 <figcaption>
-<p><span class="caption-text"><a class="reference internal" href="../sphinx_gallery_examples/pool/plot_QBC_Query-by-Committee_with_Vote_Entropy.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-qbc-query-by-committee-with-vote-entropy-py"><span class="std std-ref">Query-by-Committee with Vote Entropy</span></a></span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text"><a class="reference internal" href="../sphinx_gallery_examples/pool/plot_QBC_Query-by-Committee_with_Vote_Entropy.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-qbc-query-by-committee-with-vote-entropy-py"><span class="std std-ref">Query-by-Committee with Vote Entropy</span></a></span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Query-by-Committee with Kullback-Leibler Divergence"><figure class="align-default" id="id12">
+</div><div class="sphx-glr-thumbcontainer" tooltip="Query-by-Committee with Kullback-Leibler Divergence"><figure class="align-default" id="id13">
 <img alt="Query-by-Committee with Kullback-Leibler Divergence" src="../../_images/sphx_glr_plot_QBC_Query-by-Committee_with_Kullback-Leibler_Divergence_thumb.gif" />
 <figcaption>
-<p><span class="caption-text"><a class="reference internal" href="../sphinx_gallery_examples/pool/plot_QBC_Query-by-Committee_with_Kullback-Leibler_Divergence.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-qbc-query-by-committee-with-kullback-leibler-divergence-py"><span class="std std-ref">Query-by-Committee with Kullback-Leibler Divergence</span></a></span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text"><a class="reference internal" href="../sphinx_gallery_examples/pool/plot_QBC_Query-by-Committee_with_Kullback-Leibler_Divergence.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-qbc-query-by-committee-with-kullback-leibler-divergence-py"><span class="std std-ref">Query-by-Committee with Kullback-Leibler Divergence</span></a></span><a class="headerlink" href="#id13" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Multi-class Probabilistic Active Learning"><figure class="align-default" id="id13">
+</div><div class="sphx-glr-thumbcontainer" tooltip="Multi-class Probabilistic Active Learning"><figure class="align-default" id="id14">
 <img alt="Multi-class Probabilistic Active Learning" src="../../_images/sphx_glr_plot_McPAL_Multi-class_Probabilistic_Active_Learning_thumb.gif" />
 <figcaption>
-<p><span class="caption-text"><a class="reference internal" href="../sphinx_gallery_examples/pool/plot_McPAL_Multi-class_Probabilistic_Active_Learning.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-mcpal-multi-class-probabilistic-active-learning-py"><span class="std std-ref">Multi-class Probabilistic Active Learning</span></a></span><a class="headerlink" href="#id13" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text"><a class="reference internal" href="../sphinx_gallery_examples/pool/plot_McPAL_Multi-class_Probabilistic_Active_Learning.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-mcpal-multi-class-probabilistic-active-learning-py"><span class="std std-ref">Multi-class Probabilistic Active Learning</span></a></span><a class="headerlink" href="#id14" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 </div><div class="sphx-glr-clear"></div></section>

@@ -335,14 +335,16 @@
    skactiveml.classifier.SklearnClassifier
   </a>
  </li>
+</ul>
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.classifier.MultiAnnotClassifier.html">
-   skactiveml.classifier.MultiAnnotClassifier
+  <a class="reference internal" href="skactiveml.classifier.multi.LogisticRegressionRY.html">
+   skactiveml.classifier.multi.LogisticRegressionRY
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.classifier.LogisticRegressionRY.html">
-   skactiveml.classifier.LogisticRegressionRY
+  <a class="reference internal" href="skactiveml.classifier.multi.MultiAnnotEnsemble.html">
+   skactiveml.classifier.multi.MultiAnnotEnsemble
   </a>
  </li>
 </ul>
@@ -558,8 +560,8 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>mixture_model</strong><span class="classifier">{GaussianMixture, BayesianGaussianMixture, None},</span></dt><dd></dd>
-<dt><strong>default=None</strong></dt><dd><p>(Bayesian) Gaussian Mixture model that is trained with unsupervised
+<dt><strong>mixture_model</strong><span class="classifier">sklearn.mixture.GaussianMixture or</span></dt><dd></dd>
+<dt><strong>sklearn.mixture.BayesianGaussianMixture or None, default=None</strong></dt><dd><p>(Bayesian) Gaussian Mixture model that is trained with unsupervised
 algorithm on train data. If the initial mixture model is not fitted, it
 will be refitted in each call of the ‘fit’ method. If None,
 mixture_model=BayesianMixtureModel(n_components=n_classes) will be
@@ -573,19 +575,19 @@ similarities are used to compute the class frequency estimates.</p>
 <dt><strong>classes</strong><span class="classifier">array-like, shape (n_classes), default=None</span></dt><dd><p>Holds the label for each class. If none, the classes are determined
 during the fit.</p>
 </dd>
-<dt><strong>missing_label</strong><span class="classifier">{scalar, string, np.nan, None}, default=np.nan</span></dt><dd><p>Value to represent a missing label.</p>
+<dt><strong>missing_label</strong><span class="classifier">scalar or str or np.nan or None, default=np.nan</span></dt><dd><p>Value to represent a missing label.</p>
 </dd>
 <dt><strong>cost_matrix</strong><span class="classifier">array-like, shape (n_classes, n_classes)</span></dt><dd><p>Cost matrix with <cite>cost_matrix[i,j]</cite> indicating cost of predicting class
 <cite>classes[j]</cite>  for a sample of class <cite>classes[i]</cite>. Can be only set, if
-classes is not none.</p>
+<cite>classes</cite> is not none.</p>
 </dd>
-<dt><strong>class_prior</strong><span class="classifier">float | array-like, shape (n_classes), optional (default=0)</span></dt><dd><p>Prior observations of the class frequency estimates. If <cite>class_prior</cite>
+<dt><strong>class_prior</strong><span class="classifier">float or array-like of shape (n_classes), default=0</span></dt><dd><p>Prior observations of the class frequency estimates. If <cite>class_prior</cite>
 is an array, the entry <cite>class_prior[i]</cite> indicates the non-negative
 prior number of samples belonging to class <cite>classes_[i]</cite>. If
 <cite>class_prior</cite> is a float, <cite>class_prior</cite> indicates the non-negative
 prior number of samples per class.</p>
 </dd>
-<dt><strong>random_state</strong><span class="classifier">int, RandomState instance or None, optional (default=None)</span></dt><dd><p>Determines random number for ‘predict’ method. Pass an int for
+<dt><strong>random_state</strong><span class="classifier">int or RandomState instance or None, default=None</span></dt><dd><p>Determines random number for ‘predict’ method. Pass an int for
 reproducible results across multiple method calls.</p>
 </dd>
 </dl>
@@ -604,7 +606,8 @@ class <cite>classes_[j]</cite> for a sample of class <cite>classes_[i]</cite>.</
 <dt><strong>F_components_</strong><span class="classifier">numpy.ndarray, shape (n_components, n_classes)</span></dt><dd><p><cite>F[j,c]</cite> is a proxy for the number of sample of class c belonging to
 component j.</p>
 </dd>
-<dt><strong>mixture_model_</strong><span class="classifier">{GaussianMixture, BayesianGaussianMixture}</span></dt><dd><p>(Bayesian) Gaussian Mixture model that is trained with unsupervised
+<dt><strong>mixture_model_</strong><span class="classifier">sklearn.mixture.GaussianMixture or</span></dt><dd></dd>
+<dt><strong>sklearn.mixture.BayesianGaussianMixture</strong></dt><dd><p>(Bayesian) Gaussian Mixture model that is trained with unsupervised
 algorithm on train data.</p>
 </dd>
 </dl>
@@ -618,19 +621,19 @@ algorithm on train data.</p>
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.classifier.CMM.fit" title="skactiveml.classifier.CMM.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code></a>(X, y[, sample_weight])</p></td>
-<td><p>Fit the model using X as training data and y as class labels.</p></td>
+<td><p>Fit the model using <cite>X</cite> as training samples and <cite>y</cite> as class labels.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#skactiveml.classifier.CMM.get_params" title="skactiveml.classifier.CMM.get_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code></a>([deep])</p></td>
 <td><p>Get parameters for this estimator.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.classifier.CMM.predict" title="skactiveml.classifier.CMM.predict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict</span></code></a>(X)</p></td>
-<td><p>Return class label predictions for the test samples X.</p></td>
+<td><p>Return class label predictions for the test samples <cite>X</cite>.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#skactiveml.classifier.CMM.predict_freq" title="skactiveml.classifier.CMM.predict_freq"><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict_freq</span></code></a>(X)</p></td>
-<td><p>Return class frequency estimates for the input data X.</p></td>
+<td><p>Return class frequency estimates for the input data <cite>X</cite>.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.classifier.CMM.predict_proba" title="skactiveml.classifier.CMM.predict_proba"><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict_proba</span></code></a>(X)</p></td>
-<td><p>Return probability estimates for the test data X.</p></td>
+<td><p>Return probability estimates for the test data <cite>X</cite>.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#skactiveml.classifier.CMM.score" title="skactiveml.classifier.CMM.score"><code class="xref py py-obj docutils literal notranslate"><span class="pre">score</span></code></a>(X, y[, sample_weight])</p></td>
 <td><p>Return the mean accuracy on the given test data and labels.</p></td>
@@ -643,24 +646,23 @@ algorithm on train data.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="skactiveml.classifier.CMM.fit">
 <span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/classifier/_cmm.html#CMM.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.classifier.CMM.fit" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fit the model using X as training data and y as class labels.</p>
+<dd><p>Fit the model using <cite>X</cite> as training samples and <cite>y</cite> as class labels.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>X</strong><span class="classifier">matrix-like, shape (n_samples, n_features)</span></dt><dd><p>The sample matrix X is the feature matrix representing the samples.</p>
+<dt><strong>X</strong><span class="classifier">matrix-like of shape (n_samples, n_features)</span></dt><dd><p>The samples matrix <cite>X</cite> is the feature matrix representing the
+samples.</p>
 </dd>
-<dt><strong>y</strong><span class="classifier">array-like, shape (n_samples) or (n_samples, n_outputs)</span></dt><dd><p>It contains the class labels of the training samples.
-The number of class labels may be variable for the samples, where
-missing labels are represented the attribute ‘missing_label’.</p>
+<dt><strong>y</strong><span class="classifier">array-like of shape (n_samples,)</span></dt><dd><p>It contains the class labels of the training samples.</p>
 </dd>
-<dt><strong>sample_weight</strong><span class="classifier">array-like, shape (n_samples) or (n_samples, n_outputs)</span></dt><dd><p>It contains the weights of the training samples’ class labels. It
-must have the same shape as y.</p>
+<dt><strong>sample_weight</strong><span class="classifier">array-like, shape (n_samples,)</span></dt><dd><p>It contains the weights of the training samples’ class labels. It
+must have the same shape as <cite>y</cite>.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt>self: CMM,</dt><dd><p>The CMM is fitted on the training data.</p>
+<dt>self: skactiveml.classifier.CMM,</dt><dd><p><cite>skactiveml.classifier.CMM</cite> object fitted on the training data.</p>
 </dd>
 </dl>
 </dd>
@@ -691,19 +693,18 @@ contained subobjects that are estimators.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="skactiveml.classifier.CMM.predict">
 <span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#skactiveml.classifier.CMM.predict" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return class label predictions for the test samples X.</p>
+<dd><p>Return class label predictions for the test samples <cite>X</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>X</strong><span class="classifier">array-like, shape (n_samples, n_features) or</span></dt><dd></dd>
-<dt><strong>shape (n_samples, m_samples) if metric == ‘precomputed’</strong></dt><dd><p>Input samples.</p>
+<dt><strong>X</strong><span class="classifier">array-like of shape (n_samples, n_features)</span></dt><dd><p>Input samples.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>y</strong><span class="classifier">numpy.ndarray, shape (n_samples)</span></dt><dd><p>Predicted class labels of the test samples ‘X’. Classes are ordered
-according to ‘<a href="#id2"><span class="problematic" id="id3">classes_</span></a>’.</p>
+<dt><strong>y</strong><span class="classifier">numpy.ndarray of shape (n_samples)</span></dt><dd><p>Predicted class labels of the test samples <cite>X</cite>. Classes are ordered
+according to <cite>classes_</cite>.</p>
 </dd>
 </dl>
 </dd>
@@ -713,18 +714,18 @@ according to ‘<a href="#id2"><span class="problematic" id="id3">classes_</span
 <dl class="py method">
 <dt class="sig sig-object py" id="skactiveml.classifier.CMM.predict_freq">
 <span class="sig-name descname"><span class="pre">predict_freq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/classifier/_cmm.html#CMM.predict_freq"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.classifier.CMM.predict_freq" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return class frequency estimates for the input data X.</p>
+<dd><p>Return class frequency estimates for the input data <cite>X</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>X</strong><span class="classifier">array-like, shape (n_samples, n_features)</span></dt><dd><p>Input samples.</p>
+<dt><strong>X</strong><span class="classifier">array-like of shape (n_samples, n_features)</span></dt><dd><p>Input samples.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>F</strong><span class="classifier">array-like, shape (n_samples, classes)</span></dt><dd><p>The class frequency estimates of the input samples. Classes are
-ordered according to <a href="#id4"><span class="problematic" id="id5">classes_</span></a>.</p>
+<dt><strong>F</strong><span class="classifier">array-like of shape (n_samples, classes)</span></dt><dd><p>The class frequency estimates of the input samples. Classes are
+ordered according to <cite>classes_</cite>.</p>
 </dd>
 </dl>
 </dd>
@@ -734,7 +735,7 @@ ordered according to <a href="#id4"><span class="problematic" id="id5">classes_<
 <dl class="py method">
 <dt class="sig sig-object py" id="skactiveml.classifier.CMM.predict_proba">
 <span class="sig-name descname"><span class="pre">predict_proba</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#skactiveml.classifier.CMM.predict_proba" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return probability estimates for the test data X.</p>
+<dd><p>Return probability estimates for the test data <cite>X</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
@@ -745,8 +746,8 @@ ordered according to <a href="#id4"><span class="problematic" id="id5">classes_<
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>P</strong><span class="classifier">array-like, shape (n_samples, classes)</span></dt><dd><p>The class probabilities of the test samples. Classes are ordered
-according to <a href="#id6"><span class="problematic" id="id7">classes_</span></a>.</p>
+<dt><strong>P</strong><span class="classifier">array-like of shape (n_samples, classes)</span></dt><dd><p>The class probabilities of the test samples. Classes are ordered
+according to <a href="#id2"><span class="problematic" id="id3">classes_</span></a>.</p>
 </dd>
 </dl>
 </dd>
@@ -762,7 +763,7 @@ according to <a href="#id6"><span class="problematic" id="id7">classes_</span></
 <dd class="field-odd"><dl class="simple">
 <dt><strong>X</strong><span class="classifier">array-like of shape (n_samples, n_features)</span></dt><dd><p>Test samples.</p>
 </dd>
-<dt><strong>y</strong><span class="classifier">array-like of shape (n_samples,) or (n_samples, n_outputs)</span></dt><dd><p>True labels for X.</p>
+<dt><strong>y</strong><span class="classifier">array-like of shape (n_samples,)</span></dt><dd><p>True labels for <cite>X</cite>.</p>
 </dd>
 <dt><strong>sample_weight</strong><span class="classifier">array-like of shape (n_samples,), default=None</span></dt><dd><p>Sample weights.</p>
 </dd>
@@ -770,7 +771,7 @@ according to <a href="#id6"><span class="problematic" id="id7">classes_</span></
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>score</strong><span class="classifier">float</span></dt><dd><p>Mean accuracy of self.predict(X) wrt. y.</p>
+<dt><strong>score</strong><span class="classifier">float</span></dt><dd><p>Mean accuracy of <cite>self.predict(X)</cite> regarding <cite>y</cite>.</p>
 </dd>
 </dl>
 </dd>

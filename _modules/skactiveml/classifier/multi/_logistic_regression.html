@@ -5,39 +5,39 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>skactiveml.classifier._logistic_regression &#8212; scikit-activeml 0.1.1 documentation</title>
+    <title>skactiveml.classifier.multi._logistic_regression &#8212; scikit-activeml 0.1.1 documentation</title>
     
-  <link href="../../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <link href="../../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
-    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+    href="../../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
   <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
   <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     
       
 
     
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/css/blank.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sg_gallery-rendered-html.css" />
     
-  <link rel="preload" as="script" href="../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <link rel="preload" as="script" href="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-    <script src="../../../_static/jquery.js"></script>
-    <script src="../../../_static/underscore.js"></script>
-    <script src="../../../_static/doctools.js"></script>
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -56,8 +56,8 @@
     
     
 
-<a class="navbar-brand" href="../../../index.html">
-  <img src="../../../_static/scikit-activeml-logo.png" class="logo" alt="logo">
+<a class="navbar-brand" href="../../../../index.html">
+  <img src="../../../../_static/scikit-activeml-logo.png" class="logo" alt="logo">
 </a>
 
 
@@ -75,37 +75,37 @@
       <div class="navbar-center-item">
         <ul id="navbar-main-elements" class="navbar-nav">
     <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../../../index.html">
+ <a class="reference internal nav-link" href="../../../../index.html">
   Home
  </a>
 </li>
 
 <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../../../tutorials.html">
+ <a class="reference internal nav-link" href="../../../../tutorials.html">
   Tutorials
  </a>
 </li>
 
 <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../../../generated/strategy_overview/strategy_overview-Settles2012.html">
+ <a class="reference internal nav-link" href="../../../../generated/strategy_overview/strategy_overview-Settles2012.html">
   Strategy Overview
  </a>
 </li>
 
 <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../../../generated/api_reference.html">
+ <a class="reference internal nav-link" href="../../../../generated/api_reference.html">
   API Reference
  </a>
 </li>
 
 <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../../../generated/sphinx_gallery_examples/index.html">
+ <a class="reference internal nav-link" href="../../../../generated/sphinx_gallery_examples/index.html">
   Examples
  </a>
 </li>
 
 <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../../../developers_guide.html">
+ <a class="reference internal nav-link" href="../../../../developers_guide.html">
   Developer’s Guide
  </a>
 </li>
@@ -146,7 +146,7 @@
           
             
             <!-- Only show if we have sidebars configured, else just a small margin  -->
-            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../../../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
@@ -172,7 +172,7 @@
               
               <div>
                 
-  <h1>Source code for skactiveml.classifier._logistic_regression</h1><div class="highlight"><pre>
+  <h1>Source code for skactiveml.classifier.multi._logistic_regression</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Logistic Regression for Multiple Annotators</span>
 <span class="sd">&quot;&quot;&quot;</span>
@@ -190,12 +190,12 @@
 <span class="kn">from</span> <span class="nn">sklearn.utils.validation</span> <span class="kn">import</span> <span class="n">check_array</span><span class="p">,</span> <span class="n">check_is_fitted</span><span class="p">,</span> \
     <span class="n">column_or_1d</span>
 
-<span class="kn">from</span> <span class="nn">..base</span> <span class="kn">import</span> <span class="n">SkactivemlClassifier</span><span class="p">,</span> <span class="n">AnnotModelMixin</span>
-<span class="kn">from</span> <span class="nn">..utils</span> <span class="kn">import</span> <span class="n">MISSING_LABEL</span><span class="p">,</span> <span class="n">compute_vote_vectors</span><span class="p">,</span> \
+<span class="kn">from</span> <span class="nn">skactiveml.base</span> <span class="kn">import</span> <span class="n">SkactivemlClassifier</span><span class="p">,</span> <span class="n">AnnotModelMixin</span>
+<span class="kn">from</span> <span class="nn">skactiveml.utils</span> <span class="kn">import</span> <span class="n">MISSING_LABEL</span><span class="p">,</span> <span class="n">compute_vote_vectors</span><span class="p">,</span> \
     <span class="n">ext_confusion_matrix</span><span class="p">,</span> <span class="n">rand_argmax</span>
 
 
-<div class="viewcode-block" id="LogisticRegressionRY"><a class="viewcode-back" href="../../../generated/api/skactiveml.classifier.LogisticRegressionRY.html#skactiveml.classifier.LogisticRegressionRY">[docs]</a><span class="k">class</span> <span class="nc">LogisticRegressionRY</span><span class="p">(</span><span class="n">SkactivemlClassifier</span><span class="p">,</span> <span class="n">AnnotModelMixin</span><span class="p">):</span>
+<div class="viewcode-block" id="LogisticRegressionRY"><a class="viewcode-back" href="../../../../generated/api/skactiveml.classifier.multi.LogisticRegressionRY.html#skactiveml.classifier.multi.LogisticRegressionRY">[docs]</a><span class="k">class</span> <span class="nc">LogisticRegressionRY</span><span class="p">(</span><span class="n">SkactivemlClassifier</span><span class="p">,</span> <span class="n">AnnotModelMixin</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;LogisticRegressionRY</span>
 
 <span class="sd">    Logistic Regression based on Raykar [1] is a classification algorithm that</span>
@@ -283,9 +283,9 @@
 
 <span class="sd">    References</span>
 <span class="sd">    ----------</span>
-<span class="sd">    Raykar, V. C., Yu, S., Zhao, L. H., Valadez, G. H., Florin, C., Bogoni, L.,</span>
-<span class="sd">    &amp; Moy, L. (2010). Learning from crowds. Journal of Machine Learning</span>
-<span class="sd">    Research, 11(4).</span>
+<span class="sd">    .. [1] `Raykar, V. C., Yu, S., Zhao, L. H., Valadez, G. H., Florin, C.,</span>
+<span class="sd">       Bogoni, L., &amp; Moy, L. (2010). Learning from crowds. Journal of Machine</span>
+<span class="sd">       Learning Research, 11(4).`_</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1.e-2</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">fit_intercept</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
@@ -304,7 +304,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">solver</span> <span class="o">=</span> <span class="n">solver</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">solver_dict</span> <span class="o">=</span> <span class="n">solver_dict</span>
 
-<div class="viewcode-block" id="LogisticRegressionRY.fit"><a class="viewcode-back" href="../../../generated/api/skactiveml.classifier.LogisticRegressionRY.html#skactiveml.classifier.LogisticRegressionRY.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="LogisticRegressionRY.fit"><a class="viewcode-back" href="../../../../generated/api/skactiveml.classifier.multi.LogisticRegressionRY.html#skactiveml.classifier.multi.LogisticRegressionRY.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Fit the model using X as training data and y as class labels.</span>
 
 <span class="sd">        Parameters</span>
@@ -326,7 +326,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Check input data.</span>
         <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_data</span><span class="p">(</span>
-            <span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="n">sample_weight</span>
+            <span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">,</span> <span class="n">y_ensure_1d</span><span class="o">=</span><span class="kc">False</span>
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_check_n_features</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">reset</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
@@ -361,22 +361,22 @@
                              <span class="s2">&quot;&#39;float&#39;, got </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">weights_prior</span><span class="p">))</span>
 
         <span class="c1"># Check for empty training data.</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_features_in_</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s1">&#39;`y` must be an array-like of shape &#39;</span>
+                <span class="s1">&#39;`(n_samples, n_annotators)`.&#39;</span>
+            <span class="p">)</span>
 
         <span class="c1"># Insert bias, if &#39;fit_intercept&#39; is set to &#39;True&#39;.</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fit_intercept</span><span class="p">:</span>
             <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-        <span class="c1"># Ensure class labels to form a 2d array.</span>
-        <span class="k">if</span> <span class="n">y</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-
         <span class="c1"># Ensure sample weights to form a 2d array.</span>
         <span class="k">if</span> <span class="n">sample_weight</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">sample_weight</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">sample_weight</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">sample_weight</span> <span class="o">=</span> <span class="n">sample_weight</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
         <span class="c1"># Set auxiliary variables.</span>
         <span class="n">n_samples</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -551,19 +551,19 @@
 
         <span class="k">return</span> <span class="bp">self</span></div>
 
-<div class="viewcode-block" id="LogisticRegressionRY.predict_proba"><a class="viewcode-back" href="../../../generated/api/skactiveml.classifier.LogisticRegressionRY.html#skactiveml.classifier.LogisticRegressionRY.predict_proba">[docs]</a>    <span class="k">def</span> <span class="nf">predict_proba</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Return probability estimates for the test data X.</span>
+<div class="viewcode-block" id="LogisticRegressionRY.predict_proba"><a class="viewcode-back" href="../../../../generated/api/skactiveml.classifier.multi.LogisticRegressionRY.html#skactiveml.classifier.multi.LogisticRegressionRY.predict_proba">[docs]</a>    <span class="k">def</span> <span class="nf">predict_proba</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return probability estimates for the test data `X`.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        X : array-like, shape (n_samples, n_features)</span>
+<span class="sd">        X : array-like of shape (n_samples, n_features)</span>
 <span class="sd">            Test samples.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        P : numpy.ndarray, shape (n_samples, classes)</span>
+<span class="sd">        P : numpy.ndarray of shape (n_samples, classes)</span>
 <span class="sd">            The class probabilities of the test samples. Classes are ordered</span>
-<span class="sd">            according to classes_.</span>
+<span class="sd">            according to `classes_`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Check test samples.</span>
         <span class="n">check_is_fitted</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
@@ -582,22 +582,22 @@
         <span class="n">P</span> <span class="o">=</span> <span class="n">softmax</span><span class="p">(</span><span class="n">X</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">W_</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">P</span></div>
 
-<div class="viewcode-block" id="LogisticRegressionRY.predict_annot_perf"><a class="viewcode-back" href="../../../generated/api/skactiveml.classifier.LogisticRegressionRY.html#skactiveml.classifier.LogisticRegressionRY.predict_annot_perf">[docs]</a>    <span class="k">def</span> <span class="nf">predict_annot_perf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+<div class="viewcode-block" id="LogisticRegressionRY.predict_annot_perf"><a class="viewcode-back" href="../../../../generated/api/skactiveml.classifier.multi.LogisticRegressionRY.html#skactiveml.classifier.multi.LogisticRegressionRY.predict_annot_perf">[docs]</a>    <span class="k">def</span> <span class="nf">predict_annot_perf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Calculates the probability that an annotator provides the true label</span>
 <span class="sd">        for a given sample. The true label is hereby provided by the</span>
 <span class="sd">        classification model. The label provided by an annotator l is based</span>
-<span class="sd">        on his/her confusion matrix (i.e., attribute Alpha_[l]).</span>
+<span class="sd">        on his/her confusion matrix (i.e., attribute `Alpha_[l]`).</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        X : array-like, shape (n_samples, n_features)</span>
+<span class="sd">        X : array-like of shape (n_samples, n_features)</span>
 <span class="sd">            Test samples.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        P_annot : numpy.ndarray, shape (n_samples, classes)</span>
-<span class="sd">            P_annot[i,l] is the probability, that annotator l provides the</span>
-<span class="sd">            correct class label for sample X[i].</span>
+<span class="sd">        P_annot : numpy.ndarray of shape (n_samples, classes)</span>
+<span class="sd">            `P_annot[i,l]` is the probability, that annotator l provides the</span>
+<span class="sd">            correct class label for sample `X[i]`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Prediction without training data.</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_features_in_</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -620,9 +620,9 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        y: numpy.ndarray, shape (n_samples, n_annotators)</span>
+<span class="sd">        y: numpy.ndarray of shape (n_samples, n_annotators)</span>
 <span class="sd">            The class labels provided by the annotators for all samples.</span>
-<span class="sd">        Alpha: numpy.ndarray, shape (n_annotators, n_classes, n_classes)</span>
+<span class="sd">        Alpha: numpy.ndarray of shape (n_annotators, n_classes, n_classes)</span>
 <span class="sd">            annot_prior vector (n_annotators, n_classes, n_classes) containing</span>
 <span class="sd">            the new estimates for Alpha. This is effectively a confusion matrix</span>
 <span class="sd">            for each annotator, where each row is normalized.</span>
@@ -650,21 +650,21 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        y : numpy.ndarray, shape (n_samples, n_annotators)</span>
+<span class="sd">        y : numpy.ndarray of shape (n_samples, n_annotators)</span>
 <span class="sd">            The class labels provided by the annotators for all samples.</span>
-<span class="sd">        Mu : numpy.ndarray, shape (n_samples, n_classes)</span>
+<span class="sd">        Mu : numpy.ndarray of shape (n_samples, n_classes)</span>
 <span class="sd">            Mu[i,k] contains the probability of a sample X[i] to be of class</span>
 <span class="sd">            classes_[k] estimated according to the EM-algorithm.</span>
-<span class="sd">        A : numpy.ndarray, shape (n_annotators, n_classes, n_classes)</span>
+<span class="sd">        A : numpy.ndarray of shape (n_annotators, n_classes, n_classes)</span>
 <span class="sd">            A[l,i,j] is the estimated number of times.</span>
 <span class="sd">            annotator l has provided label j for an instance of true label i.</span>
-<span class="sd">        sample_weight : numpy.ndarray, shape (n_samples, n_annotators)</span>
+<span class="sd">        sample_weight : numpy.ndarray of shape (n_samples, n_annotators)</span>
 <span class="sd">            It contains the weights of the training samples&#39; class labels.</span>
 <span class="sd">            It must have the same shape as y.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        ----------</span>
-<span class="sd">        new_Alpha : numpy..ndarray, shape (n_annotators, n_classes, n_classes)</span>
+<span class="sd">        new_Alpha : numpy..ndarray of shape (n_annotators, n_classes, n_classes)</span>
 <span class="sd">            This is a confusion matrix for each annotator, where each</span>
 <span class="sd">            row is normalized. `new_Alpha[l,k,c]` describes the probability</span>
 <span class="sd">            that annotator l provides the class label c for a sample belonging</span>
@@ -770,7 +770,7 @@
       </div>
     </div>
   
-  <script src="../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <script src="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 <footer class="footer mt-5 mt-md-0">
   <div class="container">
     

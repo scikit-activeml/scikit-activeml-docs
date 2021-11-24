@@ -21,7 +21,7 @@
 Expected Average Precision
 ==========================
 
-.. GENERATED FROM PYTHON SOURCE LINES 8-73
+.. GENERATED FROM PYTHON SOURCE LINES 8-75
 
 .. code-block:: default
    :lineno-start: 9
@@ -31,8 +31,10 @@ Expected Average Precision
     import numpy as np
     from matplotlib import pyplot as plt, animation
     from sklearn.datasets import make_blobs
+
     from skactiveml.utils import MISSING_LABEL, unlabeled_indices, labeled_indices
     from skactiveml.visualization import plot_utility, plot_decision_boundary
+
     from skactiveml.pool import UncertaintySampling
     from skactiveml.classifier import PWC
 
@@ -40,8 +42,8 @@ Expected Average Precision
 
     # Build a dataset.
     X, y_true = make_blobs(n_samples=100, n_features=2,
-                      centers=[[0, 1], [-3, .5], [-1, -1], [2, 1], [1, -.5]],
-                      cluster_std=.7, random_state=random_state)
+                           centers=[[0, 1], [-3, .5], [-1, -1], [2, 1], [1, -.5]],
+                           cluster_std=.7, random_state=random_state)
     y_true = y_true % 2
     y = np.full(shape=y_true.shape, fill_value=MISSING_LABEL)
 
@@ -283,42 +285,42 @@ Expected Average Precision
      </style>
 
      <div class="animation">
-       <img id="_anim_imge2cd599169074de293e56ce427d82811">
+       <img id="_anim_imga2f1dcffddc94cf68e89e56df36ea2e1">
        <div class="anim-controls">
-         <input id="_anim_slidere2cd599169074de293e56ce427d82811" type="range" class="anim-slider"
+         <input id="_anim_slidera2f1dcffddc94cf68e89e56df36ea2e1" type="range" class="anim-slider"
                 name="points" min="0" max="1" step="1" value="0"
-                oninput="anime2cd599169074de293e56ce427d82811.set_frame(parseInt(this.value));"></input>
+                oninput="anima2f1dcffddc94cf68e89e56df36ea2e1.set_frame(parseInt(this.value));"></input>
          <div class="anim-buttons">
-           <button title="Decrease speed" aria-label="Decrease speed" onclick="anime2cd599169074de293e56ce427d82811.slower()">
+           <button title="Decrease speed" aria-label="Decrease speed" onclick="anima2f1dcffddc94cf68e89e56df36ea2e1.slower()">
                <i class="fa fa-minus"></i></button>
-           <button title="First frame" aria-label="First frame" onclick="anime2cd599169074de293e56ce427d82811.first_frame()">
+           <button title="First frame" aria-label="First frame" onclick="anima2f1dcffddc94cf68e89e56df36ea2e1.first_frame()">
              <i class="fa fa-fast-backward"></i></button>
-           <button title="Previous frame" aria-label="Previous frame" onclick="anime2cd599169074de293e56ce427d82811.previous_frame()">
+           <button title="Previous frame" aria-label="Previous frame" onclick="anima2f1dcffddc94cf68e89e56df36ea2e1.previous_frame()">
                <i class="fa fa-step-backward"></i></button>
-           <button title="Play backwards" aria-label="Play backwards" onclick="anime2cd599169074de293e56ce427d82811.reverse_animation()">
+           <button title="Play backwards" aria-label="Play backwards" onclick="anima2f1dcffddc94cf68e89e56df36ea2e1.reverse_animation()">
                <i class="fa fa-play fa-flip-horizontal"></i></button>
-           <button title="Pause" aria-label="Pause" onclick="anime2cd599169074de293e56ce427d82811.pause_animation()">
+           <button title="Pause" aria-label="Pause" onclick="anima2f1dcffddc94cf68e89e56df36ea2e1.pause_animation()">
                <i class="fa fa-pause"></i></button>
-           <button title="Play" aria-label="Play" onclick="anime2cd599169074de293e56ce427d82811.play_animation()">
+           <button title="Play" aria-label="Play" onclick="anima2f1dcffddc94cf68e89e56df36ea2e1.play_animation()">
                <i class="fa fa-play"></i></button>
-           <button title="Next frame" aria-label="Next frame" onclick="anime2cd599169074de293e56ce427d82811.next_frame()">
+           <button title="Next frame" aria-label="Next frame" onclick="anima2f1dcffddc94cf68e89e56df36ea2e1.next_frame()">
                <i class="fa fa-step-forward"></i></button>
-           <button title="Last frame" aria-label="Last frame" onclick="anime2cd599169074de293e56ce427d82811.last_frame()">
+           <button title="Last frame" aria-label="Last frame" onclick="anima2f1dcffddc94cf68e89e56df36ea2e1.last_frame()">
                <i class="fa fa-fast-forward"></i></button>
-           <button title="Increase speed" aria-label="Increase speed" onclick="anime2cd599169074de293e56ce427d82811.faster()">
+           <button title="Increase speed" aria-label="Increase speed" onclick="anima2f1dcffddc94cf68e89e56df36ea2e1.faster()">
                <i class="fa fa-plus"></i></button>
          </div>
-         <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_selecte2cd599169074de293e56ce427d82811"
+         <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_selecta2f1dcffddc94cf68e89e56df36ea2e1"
                class="anim-state">
-           <input type="radio" name="state" value="once" id="_anim_radio1_e2cd599169074de293e56ce427d82811"
+           <input type="radio" name="state" value="once" id="_anim_radio1_a2f1dcffddc94cf68e89e56df36ea2e1"
                   >
-           <label for="_anim_radio1_e2cd599169074de293e56ce427d82811">Once</label>
-           <input type="radio" name="state" value="loop" id="_anim_radio2_e2cd599169074de293e56ce427d82811"
+           <label for="_anim_radio1_a2f1dcffddc94cf68e89e56df36ea2e1">Once</label>
+           <input type="radio" name="state" value="loop" id="_anim_radio2_a2f1dcffddc94cf68e89e56df36ea2e1"
                   checked>
-           <label for="_anim_radio2_e2cd599169074de293e56ce427d82811">Loop</label>
-           <input type="radio" name="state" value="reflect" id="_anim_radio3_e2cd599169074de293e56ce427d82811"
+           <label for="_anim_radio2_a2f1dcffddc94cf68e89e56df36ea2e1">Loop</label>
+           <input type="radio" name="state" value="reflect" id="_anim_radio3_a2f1dcffddc94cf68e89e56df36ea2e1"
                   >
-           <label for="_anim_radio3_e2cd599169074de293e56ce427d82811">Reflect</label>
+           <label for="_anim_radio3_a2f1dcffddc94cf68e89e56df36ea2e1">Reflect</label>
          </form>
        </div>
      </div>
@@ -328,9 +330,9 @@ Expected Average Precision
        /* Instantiate the Animation class. */
        /* The IDs given should match those used in the template above. */
        (function() {
-         var img_id = "_anim_imge2cd599169074de293e56ce427d82811";
-         var slider_id = "_anim_slidere2cd599169074de293e56ce427d82811";
-         var loop_select_id = "_anim_loop_selecte2cd599169074de293e56ce427d82811";
+         var img_id = "_anim_imga2f1dcffddc94cf68e89e56df36ea2e1";
+         var slider_id = "_anim_slidera2f1dcffddc94cf68e89e56df36ea2e1";
+         var loop_select_id = "_anim_loop_selecta2f1dcffddc94cf68e89e56df36ea2e1";
          var frames = new Array(25);
     
        frames[0] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
@@ -21957,7 +21959,7 @@ Expected Average Precision
          /* set a timeout to make sure all the above elements are created before
             the object is initialized. */
          setTimeout(function() {
-             anime2cd599169074de293e56ce427d82811 = new Animation(frames, img_id, slider_id, 1000.0,
+             anima2f1dcffddc94cf68e89e56df36ea2e1 = new Animation(frames, img_id, slider_id, 1000.0,
                                       loop_select_id);
          }, 0);
        })()
@@ -21968,7 +21970,7 @@ Expected Average Precision
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 74-79
+.. GENERATED FROM PYTHON SOURCE LINES 76-81
 
 .. rubric:: References:
 
@@ -21979,7 +21981,7 @@ The implementation of this strategy is based on :footcite:t:`wang2018uncertainty
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 2 minutes  47.239 seconds)
+   **Total running time of the script:** ( 2 minutes  50.916 seconds)
 
 
 .. _sphx_glr_download_generated_sphinx_gallery_examples_pool_plot_UncertaintySampling_Expected_Average_Precision.py:
