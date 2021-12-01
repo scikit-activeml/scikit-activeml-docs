@@ -41,7 +41,7 @@
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Strategy Overview By Settles" href="../strategy_overview/strategy_overview-Settles2012.html" />
+    <link rel="next" title="Batch Stream Active Learning With Pool Query Strategies" href="21_stream_batch_with_pool_al.html" />
     <link rel="prev" title="Multi-annotator Pool-based Active Learning - Getting Started" href="10_multiple_annotators_getting_started.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -175,6 +175,11 @@
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Stream-based Active Learning - Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="21_stream_batch_with_pool_al.html">
+   Batch Stream Active Learning With Pool Query Strategies
   </a>
  </li>
 </ul>
@@ -493,15 +498,13 @@ div.rendered_html tbody tr:hover {
 </style>
 <section id="Stream-based-Active-Learning---Getting-Started">
 <h1>Stream-based Active Learning - Getting Started<a class="headerlink" href="#Stream-based-Active-Learning---Getting-Started" title="Permalink to this headline">¶</a></h1>
-<p>In this notebook, we will show how stream-based active learning strategies are used and compared them to one another. We showcase the methods available in the stream package.</p>
+<p>In this notebook, we will show how stream-based active learning strategies are used and compared them to one another. We showcase the methods available in the <code class="docutils literal notranslate"><span class="pre">skactiveml</span></code> stream package.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">sys</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;..&#39;</span><span class="p">)</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">sklearn</span>
 <span class="kn">import</span> <span class="nn">sklearn.datasets</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -516,15 +519,13 @@ div.rendered_html tbody tr:hover {
 </div>
 <section id="Initialize-Stream-Parameters">
 <h2>Initialize Stream Parameters<a class="headerlink" href="#Initialize-Stream-Parameters" title="Permalink to this headline">¶</a></h2>
-<p>Before the experiments can start, we need to construct a random data set. For this, we specify the necessary parameters in the cell below. To make the experiment repeatable, we will use the random_state object to generate all other random seeds, such that we only need to explicitly specify a single random seed. Furthermore, we specify the length of the data stream (stream_length) and the size of the sliding window that defines the available training data (training_size).</p>
+<p>Before the experiments can start, we need to construct a random data set. For this, we specify the necessary parameters in the cell below. We specify the length of the data stream (stream_length) and the size of the sliding window that defines the available training data (training_size).</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># random state that is used to generate random seeds</span>
-<span class="n">random_state</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="c1"># number of instances that are provided to the classifier</span>
+<span></span><span class="c1"># number of instances that are provided to the classifier</span>
 <span class="n">init_train_length</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="c1"># the length of the data stream</span>
 <span class="n">stream_length</span> <span class="o">=</span> <span class="mi">10000</span>
@@ -536,13 +537,16 @@ div.rendered_html tbody tr:hover {
 </section>
 <section id="Random-Seed-Generation">
 <h2>Random Seed Generation<a class="headerlink" href="#Random-Seed-Generation" title="Permalink to this headline">¶</a></h2>
-<p>The get_randomseed function simplifies the generation of a new random seed from a given random state object. For this notebook, this random state object will be always the random_state obejct defined above.</p>
+<p>To make the experiments repeatable, we will use the random_state object to generate all other random seeds, such that we only need to explicitly specify a single random seed. The get_randomseed function simplifies the generation of a new random seed using the random_state object.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">def</span> <span class="nf">get_randomseed</span><span class="p">(</span><span class="n">random_state</span><span class="p">):</span>
+<span></span><span class="c1"># random state that is used to generate random seeds</span>
+<span class="n">random_state</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">get_randomseed</span><span class="p">(</span><span class="n">random_state</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">random_state</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">31</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -550,8 +554,8 @@ div.rendered_html tbody tr:hover {
 </section>
 <section id="Generate-And-Initialize-Data-Set">
 <h2>Generate And Initialize Data Set<a class="headerlink" href="#Generate-And-Initialize-Data-Set" title="Permalink to this headline">¶</a></h2>
-<p>The next block initializes the tested data set. We use scikit-learn to generate a random dataset with our pre-defined stream length. The data set consists of multiple parts. X represents the location of the instance within the feature space. The class for each instance is denoted by y. For models that need at least some initial training data, we generate samples to train an initial model. These are denoted by the suffix “_init“, while all data used within the active learning cycle are denoted by
-the suffix”_stream”.</p>
+<p>The next block initializes the tested data set. We use <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> to generate a random dataset with our pre-defined stream length. The data set consists of multiple parts. X represents the location of the instance within the feature space. The class for each instance is denoted by y. For models that need at least some initial training data, we generate samples to train an initial model. These are denoted by the suffix “_init“, while all data used within the active learning cycle are
+denoted by the suffix”_stream”. For this notebook we evaluate the performance of each query strategy using Prequential Evaluation. If a hold-out test dataset is used, it should be initialized here as well.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
@@ -568,7 +572,7 @@ the suffix”_stream”.</p>
 </section>
 <section id="Initialize-Query-Strategies">
 <h2>Initialize Query Strategies<a class="headerlink" href="#Initialize-Query-Strategies" title="Permalink to this headline">¶</a></h2>
-<p>Next, we initialize the classifier and the base query strategies that we want to compare. To guarantee that the classifier is not affected by previous repetitions, we use factory functions to separate the classifier for each experiment run. Since all query strategies hav ea defaulr budget manag,,r we uset hat for the sake of simplicity.</p>
+<p>Next, we initialize the classifier and the base query strategies that we want to compare. To guarantee that the classifier is not affected by previous repetitions, we use factory functions to separate the classifier for each experiment run. Since all query strategies have a default budget managager we use that for the sake of simplicity.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
@@ -608,8 +612,11 @@ the suffix”_stream”.</p>
     <span class="n">correct_classifications</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">t</span><span class="p">,</span> <span class="p">(</span><span class="n">x_t</span><span class="p">,</span> <span class="n">y_t</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">X_stream</span><span class="p">,</span> <span class="n">y_stream</span><span class="p">)):</span>
+        <span class="c1"># create stream samples</span>
         <span class="n">X_cand</span> <span class="o">=</span> <span class="n">x_t</span><span class="o">.</span><span class="n">reshape</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>
         <span class="n">y_cand</span> <span class="o">=</span> <span class="n">y_t</span>
+        <span class="c1"># train the classifier</span>
+        <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
         <span class="n">correct_classifications</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_cand</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">y_cand</span><span class="p">)</span>
         <span class="c1"># check whether to sample the instance or not</span>
         <span class="c1"># call_func is used since a classifier is not needed for RandomSampler and PeriodicSampler</span>
@@ -618,12 +625,12 @@ the suffix”_stream”.</p>
         <span class="n">budget_manager_param_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;utilities&quot;</span><span class="p">:</span> <span class="n">utilities</span><span class="p">}</span>
         <span class="c1"># update the query strategy and budget_manager to calculate the right budget</span>
         <span class="n">query_strategy</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">X_cand</span><span class="p">,</span> <span class="n">sampled_indices</span><span class="p">,</span> <span class="n">budget_manager_param_dict</span><span class="p">)</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sampled_indices</span><span class="p">):</span>
-            <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="c1"># count the number of queries</span>
+        <span class="n">count</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">sampled_indices</span><span class="p">)</span>
+        <span class="c1"># add X_cand to X_train</span>
         <span class="n">X_train</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x_t</span><span class="p">)</span>
+        <span class="c1"># add label or missing_label to y_train</span>
         <span class="n">y_train</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y_cand</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sampled_indices</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">clf</span><span class="o">.</span><span class="n">missing_label</span><span class="p">)</span>
-        <span class="c1"># train the classifier</span>
-        <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
     <span class="c1"># calculate and show the average accuracy</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Query Strategy: &quot;</span><span class="p">,</span> <span class="n">query_strategy_name</span><span class="p">,</span> <span class="s2">&quot;, Avg Accuracy: &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">correct_classifications</span><span class="p">),</span> <span class="s2">&quot;, Acquisation count:&quot;</span><span class="p">,</span> <span class="n">count</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gaussian_filter1d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">correct_classifications</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">),</span> <span class="mi">50</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="n">query_strategy_name</span><span class="p">)</span>
@@ -676,10 +683,10 @@ Query Strategy:  PALS , Avg Accuracy:  0.8205 , Acquisation count: 999
             <p class="prev-next-title">Multi-annotator Pool-based Active Learning - Getting Started</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="../strategy_overview/strategy_overview-Settles2012.html" title="next page">
+    <a class='right-next' id="next-link" href="21_stream_batch_with_pool_al.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Strategy Overview By Settles</p>
+        <p class="prev-next-title">Batch Stream Active Learning With Pool Query Strategies</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
