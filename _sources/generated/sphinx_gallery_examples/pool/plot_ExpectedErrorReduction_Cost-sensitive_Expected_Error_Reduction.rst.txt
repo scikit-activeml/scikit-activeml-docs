@@ -285,42 +285,42 @@ Cost-sensitive Expected Error Reduction
      </style>
 
      <div class="animation">
-       <img id="_anim_imgf195becb89104ef8b51db9bfc1c61a8c">
+       <img id="_anim_img8bee503731fc410daf7de46fc1d4d773">
        <div class="anim-controls">
-         <input id="_anim_sliderf195becb89104ef8b51db9bfc1c61a8c" type="range" class="anim-slider"
+         <input id="_anim_slider8bee503731fc410daf7de46fc1d4d773" type="range" class="anim-slider"
                 name="points" min="0" max="1" step="1" value="0"
-                oninput="animf195becb89104ef8b51db9bfc1c61a8c.set_frame(parseInt(this.value));"></input>
+                oninput="anim8bee503731fc410daf7de46fc1d4d773.set_frame(parseInt(this.value));"></input>
          <div class="anim-buttons">
-           <button title="Decrease speed" aria-label="Decrease speed" onclick="animf195becb89104ef8b51db9bfc1c61a8c.slower()">
+           <button title="Decrease speed" aria-label="Decrease speed" onclick="anim8bee503731fc410daf7de46fc1d4d773.slower()">
                <i class="fa fa-minus"></i></button>
-           <button title="First frame" aria-label="First frame" onclick="animf195becb89104ef8b51db9bfc1c61a8c.first_frame()">
+           <button title="First frame" aria-label="First frame" onclick="anim8bee503731fc410daf7de46fc1d4d773.first_frame()">
              <i class="fa fa-fast-backward"></i></button>
-           <button title="Previous frame" aria-label="Previous frame" onclick="animf195becb89104ef8b51db9bfc1c61a8c.previous_frame()">
+           <button title="Previous frame" aria-label="Previous frame" onclick="anim8bee503731fc410daf7de46fc1d4d773.previous_frame()">
                <i class="fa fa-step-backward"></i></button>
-           <button title="Play backwards" aria-label="Play backwards" onclick="animf195becb89104ef8b51db9bfc1c61a8c.reverse_animation()">
+           <button title="Play backwards" aria-label="Play backwards" onclick="anim8bee503731fc410daf7de46fc1d4d773.reverse_animation()">
                <i class="fa fa-play fa-flip-horizontal"></i></button>
-           <button title="Pause" aria-label="Pause" onclick="animf195becb89104ef8b51db9bfc1c61a8c.pause_animation()">
+           <button title="Pause" aria-label="Pause" onclick="anim8bee503731fc410daf7de46fc1d4d773.pause_animation()">
                <i class="fa fa-pause"></i></button>
-           <button title="Play" aria-label="Play" onclick="animf195becb89104ef8b51db9bfc1c61a8c.play_animation()">
+           <button title="Play" aria-label="Play" onclick="anim8bee503731fc410daf7de46fc1d4d773.play_animation()">
                <i class="fa fa-play"></i></button>
-           <button title="Next frame" aria-label="Next frame" onclick="animf195becb89104ef8b51db9bfc1c61a8c.next_frame()">
+           <button title="Next frame" aria-label="Next frame" onclick="anim8bee503731fc410daf7de46fc1d4d773.next_frame()">
                <i class="fa fa-step-forward"></i></button>
-           <button title="Last frame" aria-label="Last frame" onclick="animf195becb89104ef8b51db9bfc1c61a8c.last_frame()">
+           <button title="Last frame" aria-label="Last frame" onclick="anim8bee503731fc410daf7de46fc1d4d773.last_frame()">
                <i class="fa fa-fast-forward"></i></button>
-           <button title="Increase speed" aria-label="Increase speed" onclick="animf195becb89104ef8b51db9bfc1c61a8c.faster()">
+           <button title="Increase speed" aria-label="Increase speed" onclick="anim8bee503731fc410daf7de46fc1d4d773.faster()">
                <i class="fa fa-plus"></i></button>
          </div>
-         <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_selectf195becb89104ef8b51db9bfc1c61a8c"
+         <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_select8bee503731fc410daf7de46fc1d4d773"
                class="anim-state">
-           <input type="radio" name="state" value="once" id="_anim_radio1_f195becb89104ef8b51db9bfc1c61a8c"
+           <input type="radio" name="state" value="once" id="_anim_radio1_8bee503731fc410daf7de46fc1d4d773"
                   >
-           <label for="_anim_radio1_f195becb89104ef8b51db9bfc1c61a8c">Once</label>
-           <input type="radio" name="state" value="loop" id="_anim_radio2_f195becb89104ef8b51db9bfc1c61a8c"
+           <label for="_anim_radio1_8bee503731fc410daf7de46fc1d4d773">Once</label>
+           <input type="radio" name="state" value="loop" id="_anim_radio2_8bee503731fc410daf7de46fc1d4d773"
                   checked>
-           <label for="_anim_radio2_f195becb89104ef8b51db9bfc1c61a8c">Loop</label>
-           <input type="radio" name="state" value="reflect" id="_anim_radio3_f195becb89104ef8b51db9bfc1c61a8c"
+           <label for="_anim_radio2_8bee503731fc410daf7de46fc1d4d773">Loop</label>
+           <input type="radio" name="state" value="reflect" id="_anim_radio3_8bee503731fc410daf7de46fc1d4d773"
                   >
-           <label for="_anim_radio3_f195becb89104ef8b51db9bfc1c61a8c">Reflect</label>
+           <label for="_anim_radio3_8bee503731fc410daf7de46fc1d4d773">Reflect</label>
          </form>
        </div>
      </div>
@@ -330,13 +330,13 @@ Cost-sensitive Expected Error Reduction
        /* Instantiate the Animation class. */
        /* The IDs given should match those used in the template above. */
        (function() {
-         var img_id = "_anim_imgf195becb89104ef8b51db9bfc1c61a8c";
-         var slider_id = "_anim_sliderf195becb89104ef8b51db9bfc1c61a8c";
-         var loop_select_id = "_anim_loop_selectf195becb89104ef8b51db9bfc1c61a8c";
+         var img_id = "_anim_img8bee503731fc410daf7de46fc1d4d773";
+         var slider_id = "_anim_slider8bee503731fc410daf7de46fc1d4d773";
+         var loop_select_id = "_anim_loop_select8bee503731fc410daf7de46fc1d4d773";
          var frames = new Array(25);
     
        frames[0] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMCwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8/fFQqAAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAABhlElEQVR4nO3dd3gU1f4G8HdmezohIRWSEEBAEBCkd1FAQbmKqD+VKiACVyyo\
      eEXEhr1hQa4Iil2kXVCKFFERBARRpBNqCCG9b5k5vz/WLIQUEkgym9n38zx5HnaY3fnOltl3zzlz\
      RhJCCBARERGRbslaF0BERERENYuBj4iIiEjnGPiIiIiIdI6Bj4iIiEjnGPiIiIiIdI6Bj4iIiEjn\
@@ -778,7 +778,7 @@ Cost-sensitive Expected Error Reduction
      Ip1j4CMiIiLSOQY+IiIiIp1j4CMiIiLSuf8HiYnvnfgqVL0AAAAASUVORK5CYII=\
      "
        frames[1] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMCwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8/fFQqAAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAABipUlEQVR4nO3dd3QUVf8G8GdmazYNAiGFVAJSBAGD9A4KKCA21J9KFRDBVyzY\
      XlGxYW9YeUVQsKMUEQREikoRUEQRkBJqCOk92TJzf3+sWQgpJDHJbGafzzk5JzOZ3f3O7mb22Xvv\
      3JGEEAJEREREpFuy1gUQERERUd1i4CMiIiLSOQY+IiIiIp1j4CMiIiLSOQY+IiIiIp1j4CMiIiLS\
@@ -1225,7 +1225,7 @@ Cost-sensitive Expected Error Reduction
      ERERkc4x8BERERHp3P8DcKksVCpB9BwAAAAASUVORK5CYII=\
      "
        frames[2] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMCwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8/fFQqAAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAABke0lEQVR4nO3dd3gU1f4G8HdmazabQiCkEEgDKYKAIL2DFAXEhvpTqQIieC/2\
      cm3YsDesXBEU7CjCRapIUekooghIbyGk92TLzPn9sWYhpJCEJLOZfT/Pk+dhhtnd72yZffecM2ck\
      IYQAEREREemWrHUBRERERFS7GPiIiIiIdI6Bj4iIiEjnGPiIiIiIdI6Bj4iIiEjnGPiIiIiIdI6B\
@@ -1680,7 +1680,7 @@ Cost-sensitive Expected Error Reduction
      ERER6RwDHxEREZHOMfARERER6RwDHxEREZHO/T80iefdHQ9IBgAAAABJRU5ErkJggg==\
      "
        frames[3] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMCwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8/fFQqAAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAAC8xElEQVR4nOydd3xb5fX/P/dqy7Ys772d2Inj7A0ZBGjChkKBlj07oN/S9f2W\
      fn8ddNG9B+VbCi1QyqbsDUkgO2QndmLHe2/ZljXv8/tD1pVkS7JkX+3zfr0Cj67ufZ6jYemjc55z\
      DscYYyAIgiAIgiDiFj7SBhAEQRAEQRChhQQfQRAEQRBEnEOCjyAIgiAIIs4hwUcQBEEQBBHnkOAj\
@@ -2532,7 +2532,7 @@ Cost-sensitive Expected Error Reduction
      f9dE7LdUnwoEAAAAAElFTkSuQmCC\
      "
        frames[4] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMCwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8/fFQqAAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAADCC0lEQVR4nOyddXgc57n275nl1YqZ0ZYtW2aIGQIONwyFUANNg03TnpOepm3a\
      pPlO4ZRO2ySngTbUJA4zObETM1u2DJIFFrN2Bcvzfn+sdnYlraSFWdTzuy5ffnc088670uzMvQ9y\
      jDEGgiAIgiAIImbhw70AgiAIgiAIIriQ4CMIgiAIgohxSPARBEEQBEHEOCT4CIIgCIIgYhwSfARB\
@@ -3408,7 +3408,7 @@ Cost-sensitive Expected Error Reduction
      rkJggg==\
      "
        frames[5] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMCwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8/fFQqAAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAAC/W0lEQVR4nOydd3xb1d3/P/dqS7a89x6JEycmOyGDJARo2IVSVlsgtIWWAi3Q\
      0qe0hacUWn5PW1q6KS0FCpQyyt4bQybZ27HjEe9ty0P7nt8fsq5kW7LW1fT3/XrllaPrc889sq+k\
      j76TY4wxEARBEARBEAkLH+0NEARBEARBEOGFBB9BEARBEESCQ4KPIAiCIAgiwSHBRxAEQRAEkeCQ\
@@ -4271,7 +4271,7 @@ Cost-sensitive Expected Error Reduction
      ERER6RwDHxEREZHOMfARERER6RwDHxEREZHOMfARERER6dz/B1pp4XVOTBMuAAAAAElFTkSuQmCC\
      "
        frames[6] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMCwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8/fFQqAAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAAC9AklEQVR4nOydd3xbV93/P/deTcuW996OEyfO3s1oks50D0oX0MUoT2kLpVB+\
      lIcWCoU+D1Ao8ABtobTQlkL33jNtRtOk2cOJ4xHvbcuytu75/SHrSrZlzavp7/v1yitHV+eee2xf\
      SR99J8cYYyAIgiAIgiBSFj7eGyAIgiAIgiCiCwk+giAIgiCIFIcEH0EQBEEQRIpDgo8gCIIgCCLF\
@@ -5124,7 +5124,7 @@ Cost-sensitive Expected Error Reduction
      iIhI4/4/xP8hkGXcLYIAAAAASUVORK5CYII=\
      "
        frames[7] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMCwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8/fFQqAAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAAC71ElEQVR4nOydd3xbZ73/P+doS5a8t+OdOHGSZidNkybpTDcthQ6gi1EobaGU\
      8aOXW6CXQu8FCgUuUAql5XZBJ917pU3SpNnbGXYc723LsrbO8/tD1pFky1o+R8vf9+uVVx4dnXOe\
      R/KRzkffyTHGGAiCIAiCIIiMhU/2AgiCIAiCIAh5IcFHEARBEASR4ZDgIwiCIAiCyHBI8BEEQRAE\
@@ -5972,7 +5972,7 @@ Cost-sensitive Expected Error Reduction
      AElFTkSuQmCC\
      "
        frames[8] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMCwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8/fFQqAAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAAC+MElEQVR4nOydd3xb5b3/P+ccbcnyXrFjxyNx4iRkJ0BCElbDLpSWQlsgtAUu\
      BVpKxy2/Flpuabm343bdFkpLgQKlZa+yZ4CQhCRkLzt2HO9ty9aWzvP7Q9aRZMuyJJ+j5e/79cor\
      j47OeZ7H9pH00XdyjDEGgiAIgiAIImPhk70BgiAIgiAIQllI8BEEQRAEQWQ4JPgIgiAIgiAyHBJ8\
@@ -6830,7 +6830,7 @@ Cost-sensitive Expected Error Reduction
      iIiIiBSOgY+IiIhI4Rj4iIiIiBTu/wOq33QJDYzCEgAAAABJRU5ErkJggg==\
      "
        frames[9] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMCwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8/fFQqAAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAAC8JklEQVR4nOydd3wb9f3/X3enLe+9YscjceIkZJNAgsNsCJtCGW3Z60uBFuj4\
      ll9LW1pavt/u8W1LaSm0QGnZe89AQhKytxPHjuO9bdna0n1+f8g6SbYsS/Kdlt/PxyOPfHT63N1H\
      8kl63XtyjDEGgiAIgiAIImXh470AgiAIgiAIQllI8BEEQRAEQaQ4JPgIgiAIgiBSHBJ8BEEQBEEQ\
@@ -7679,7 +7679,7 @@ Cost-sensitive Expected Error Reduction
      IiIijWPgIyIiItK4/w+OqDh8ZBZrmgAAAABJRU5ErkJggg==\
      "
        frames[10] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMCwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8/fFQqAAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAAC8XUlEQVR4nOydd3wb9f3/X3enLUveK3a8Mpw4OyGEDJKwCavQUkoHe30LtKV0\
      /Epb2vLt4Ns9+LYFWgr9AqWFAGWvAkmAJGSQvR07jve2ZWtL9/n9cdZJsmVZkk/T7+fjkUc+Ot19\
      7iPrJL3uPTnGGANBEARBEASRsfDJXgBBEARBEAQRX0jwEQRBEARBZDgk+AiCIAiCIDIcEnwEQRAE\
@@ -8529,7 +8529,7 @@ Cost-sensitive Expected Error Reduction
      EWkcAx8RERGRxv1/yN/mxOG00AAAAAAASUVORK5CYII=\
      "
        frames[11] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMCwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8/fFQqAAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAAC86UlEQVR4nOydd3xb5b3/P8852rLkvR07HomzJ0kICRmssMdty7gtqwV6KdBS\
      2t5fuS1t6YDbvQulpdAC5RYoFCh7BzJJyN6OHTt24j1kW1vn+f1xrCPJlm1JPhqWv+/XK688OnrO\
      cx5Z66PvZJxzDoIgCIIgCCJtEZK9AYIgCIIgCCK+kOAjCIIgCIJIc0jwEQRBEARBpDkk+AiCIAiC\
@@ -9382,7 +9382,7 @@ Cost-sensitive Expected Error Reduction
      gg==\
      "
        frames[12] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMCwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8/fFQqAAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAAC/MklEQVR4nOydd3xb1d3/P/debVny3nskTpydkISQkIQZ9mjLasss0LJaStvn\
      Ke1DW0pbft0tHVBaCi1QWqBQoOyZQAYhIXs4cew4tuO9ZGtL9/z+kHUl2bKtcTX9fb9eeeXo6txz\
      j6z10XdyjDEGgiAIgiAIIm3hE70BgiAIgiAIIraQ4CMIgiAIgkhzSPARBEEQBEGkOST4CIIgCIIg\
@@ -10245,7 +10245,7 @@ Cost-sensitive Expected Error Reduction
      Jila8gAAAABJRU5ErkJggg==\
      "
        frames[13] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMCwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8/fFQqAAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAADAxUlEQVR4nOydd3xb1d3/P/debdny3o5nEifOXiQkIQkz7NEy2wKhjA6gpbR9\
      fqV9oKUDnu5dKB3QAqVllr0JBEhCyN7TjuO9bcna0j2/P2RdSbYsS/LV/r5fr7xydHXuuce2xud+\
      J8cYYyAIgiAIgiDSFj7RGyAIgiAIgiBiCwk+giAIgiCINIcEH0EQBEEQRJpDgo8gCIIgCCLNIcFH\
@@ -11115,7 +11115,7 @@ Cost-sensitive Expected Error Reduction
      kkBus+WOkrIAAAAASUVORK5CYII=\
      "
        frames[14] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMCwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8/fFQqAAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAAC/aUlEQVR4nOydd3xb5b3/P885mpYl7xU7nkmcSRYhQCBh79lSCh2sUrgFWigd\
      t9xeaLlA6bxt6a8tpaXQW1paoFCglL0ChBASSMh04thxvLctW/voPL8/ZB1JtmxL8tH+vl+vvPJI\
      es55HllH0kffyTjnHARBEARBEETGIiR7AwRBEARBEER8IcFHEARBEASR4ZDgIwiCIAiCyHBI8BEE\
@@ -11979,7 +11979,7 @@ Cost-sensitive Expected Error Reduction
      9ewAAAAASUVORK5CYII=\
      "
        frames[15] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMCwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8/fFQqAAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAADAz0lEQVR4nOydd3xb5b3/P+ccbVny3o5XnOUkZCeMkIS9yuqg0BYKLaMF2tJ1\
      f+XeQuGWltv2dsFtS2kptEBp2aOUvQIZBEL2cOLYcby3LVv76Dy/P451JNmyLclHy/q+X6+88kh6\
      znkeWUfSR9/JMcYYCIIgCIIgiFkLn+wNEARBEARBEPGFBB9BEARBEMQshwQfQRAEQRDELIcEH0EQ\
@@ -12849,7 +12849,7 @@ Cost-sensitive Expected Error Reduction
      joGPiIiISOX+P/PSqzCDGYS4AAAAAElFTkSuQmCC\
      "
        frames[16] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMCwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8/fFQqAAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAADA9ElEQVR4nOydd3hc1Z2/33una9S7LFmy3AvGDTBgY1NDC22TkJBCTBJgAyQh\
      JNlN9rekbAqbnsAmIWQTyIZUCARIQm8GTDU2uDfJsoqtLo2k6XPP74/R3Bn1GWmq5rzPYz9n7px7\
      zxlN+8y3KkIIgUQikUgkEolk1qKmegMSiUQikUgkksQiBZ9EIpFIJBLJLEcKPolEIpFIJJJZjhR8\
@@ -13720,7 +13720,7 @@ Cost-sensitive Expected Error Reduction
      AABJRU5ErkJggg==\
      "
        frames[17] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMCwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8/fFQqAAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAADA60lEQVR4nOydd3wc5Z3/3zPbtepdlqzm3rDBgAGDTW8JhDQCSSCQBLhAEki7\
      X7hLb9wlubuEXBJCCuQCKUBIgCS00AwYDBjbuNuyZLlIVpdWZfs8vz9WO7ururvaKj3v18vw7OzM\
      PM9Ko53PfKsihBBIJBKJRCKRSGYtaroXIJFIJBKJRCJJLlLwSSQSiUQikcxypOCTSCQSiUQimeVI\
@@ -14591,7 +14591,7 @@ Cost-sensitive Expected Error Reduction
      gg==\
      "
        frames[18] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMCwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8/fFQqAAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAADAeElEQVR4nOydd3wc5Z3/3zPbtepdlmzZcm/YYMBUm94CBFIgpFBS4AjkIPWS\
      u5Ce8EtyySXhkhDukpADUqgJJKE3A8YUg417kyxLLup96+w8vz9WO7uSVtLuaqv0vF8vw+zsM/M8\
      q53d+ey3KkIIgUQikUgkEolk2qJmegESiUQikUgkktQiBZ9EIpFIJBLJNEcKPolEIpFIJJJpjhR8\
@@ -15459,7 +15459,7 @@ Cost-sensitive Expected Error Reduction
      ERERmRwDHxEREZHJMfARERERmRwDHxEREZHJMfARERERmdz/Bz6rRDlsnrUvAAAAAElFTkSuQmCC\
      "
        frames[19] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMCwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8/fFQqAAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAAC+wklEQVR4nOydd3gc1b3+3zMz29W7LNlqtuXescE2tum9BUJJAhhCSYAkhCT3\
      F24uJCQk3HRCbhLCDYFcIIUaem8GbFOMe5cly5Ks3lbS9p3z+2O1s7vSarVttun7eR7D2d0zc84W\
      7b7zrYxzzkEQBEEQBEFkLEKyN0AQBEEQBEGoCwk+giAIgiCIDIcEH0EQBEEQRIZDgo8gCIIgCCLD\
@@ -16320,7 +16320,7 @@ Cost-sensitive Expected Error Reduction
      uhJ1fEAaAAAAAElFTkSuQmCC\
      "
        frames[20] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMCwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8/fFQqAAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAAC/GUlEQVR4nOydd3gc1b3+3zMz26VVb5asZrnb2GBswBjbgAEDoSXUkNBCuQkk\
      kHbv5d6QhDTuL+2mh3BDIAFCAoSWhBqaAWPAxjbutixZVu/SSto6O+f3x2hnd6WVtL3p++Hxw9nZ\
      M3POrra8+62Mc85BEARBEARBZC1CqjdAEARBEARBJBYSfARBEARBEFkOCT6CIAiCIIgshwQfQRAE\
@@ -17182,7 +17182,7 @@ Cost-sensitive Expected Error Reduction
      iIhMjoGPiIiIyOQY+IiIiIhMjoGPiIiIyOT+P6hfoEt8PLSrAAAAAElFTkSuQmCC\
      "
        frames[21] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMCwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8/fFQqAAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAAC+MElEQVR4nOydd3wb9f3/X3enLe+94hUnzp4kISQkYYY9WmZp2eNLoS2l41u+\
      /ZaWDvi1/XYPKC2FllVGoUDZDSNAEgIhezt2HO9ty9Y+3ef3x1knyZZsST5Nv5+PRx756HR3n49k\
      Sfe69+QYYwwEQRAEQRBE2sInegEEQRAEQRBEbCHBRxAEQRAEkeaQ4CMIgiAIgkhzSPARBEEQBEGk\
@@ -18040,7 +18040,7 @@ Cost-sensitive Expected Error Reduction
      HxEREZHJMfARERERmRwDHxEREZHJ/X+jz/U8MNJiAQAAAABJRU5ErkJggg==\
      "
        frames[22] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMCwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8/fFQqAAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAAC+zklEQVR4nOydd3gc1dm375ntq94lS7aKu42xsek2Nt30FmoSaighQEJI8ia8\
      CaSQhC/Jm0YKCSmQAEkogQChY4oTwIANBvcqy7Ykq3etts35/ljt7K60knalrdK5r0uXzsyemTkr\
      bfnNUxUhhEAikUgkEolEMmlRk70AiUQikUgkEkl8kYJPIpFIJBKJZJIjBZ9EIpFIJBLJJEcKPolE\
@@ -18901,7 +18901,7 @@ Cost-sensitive Expected Error Reduction
      x8BHREREZHD/H5gwuvIJah0TAAAAAElFTkSuQmCC\
      "
        frames[23] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMCwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8/fFQqAAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAADkFUlEQVR4nOy9d5wb1b2//8yM2kra3ovLuq07NsY21TSD6YEktC+hJAFyE5Ib\
      0u4NuT+SkN6Tmx5uSLgBkgshJBBaaAbTsY2NcV/b6+7tfdVnzu8Prcp2aVd19zy8/GIknZlzpJVm\
      3vOpihBCIJFIJBKJRCKZtKjpXoBEIpFIJBKJJLlIwSeRSCQSiUQyyZGCTyKRSCQSiWSSIwWfRCKR\
@@ -19929,7 +19929,7 @@ Cost-sensitive Expected Error Reduction
      IYQQQng5CfiEEEIIIbycBHxCCCGEEF5OAj4hhBBCCC/3/27/Daqi0ns2AAAAAElFTkSuQmCC\
      "
        frames[24] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMCwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8/fFQqAAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAAEAAElEQVR4nOydd3Qc1f23n5mtWlWry5It23Lvxsa90XsvgZcApidAAqSTBAIB\
      QnohhcAPAgktgEPv3QYXjI17tywX2eq9bpv7/rHa0arvame1Kvc5R+fc2Z2590q72v3MtypCCIFE\
      IpFIJBKJZNCiRnsDEolEIpFIJJLIIgWfRCKRSCQSySBHCj6JRCKRSCSSQY4UfBKJRCKRSCSDHCn4\
@@ -21096,7 +21096,7 @@ Cost-sensitive Expected Error Reduction
          /* set a timeout to make sure all the above elements are created before
             the object is initialized. */
          setTimeout(function() {
-             animf195becb89104ef8b51db9bfc1c61a8c = new Animation(frames, img_id, slider_id, 1000.0,
+             anim8bee503731fc410daf7de46fc1d4d773 = new Animation(frames, img_id, slider_id, 1000.0,
                                       loop_select_id);
          }, 0);
        })()
@@ -21118,7 +21118,7 @@ The implementation of this strategy is based on :footcite:t:`margineantu2005acti
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  28.364 seconds)
+   **Total running time of the script:** ( 0 minutes  17.723 seconds)
 
 
 .. _sphx_glr_download_generated_sphinx_gallery_examples_pool_plot_ExpectedErrorReduction_Cost-sensitive_Expected_Error_Reduction.py:
