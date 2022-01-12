@@ -111,7 +111,7 @@
 
 <li class="toctree-l1 nav-item">
  <a class="reference internal nav-link" href="../../developers_guide.html">
-  Developer’s Guide
+  Developer Guide
  </a>
 </li>
 
@@ -458,7 +458,7 @@ div.nboutput.container div.output_area > div[class^='highlight']{
 }
 
 /* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
-.prompt a.copybtn {
+.prompt .copybtn {
     display: none;
 }
 
@@ -503,8 +503,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">sklearn</span>
 <span class="kn">import</span> <span class="nn">sklearn.datasets</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -524,8 +523,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># number of instances that are provided to the classifier</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># number of instances that are provided to the classifier</span>
 <span class="n">init_train_length</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="c1"># the length of the data stream</span>
 <span class="n">stream_length</span> <span class="o">=</span> <span class="mi">10000</span>
@@ -542,8 +540,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># random state that is used to generate random seeds</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># random state that is used to generate random seeds</span>
 <span class="n">random_state</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">get_randomseed</span><span class="p">(</span><span class="n">random_state</span><span class="p">):</span>
@@ -560,8 +557,7 @@ denoted by the suffix”_stream”. For this notebook we evaluate the performanc
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">make_classification</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="n">init_train_length</span> <span class="o">+</span> <span class="n">stream_length</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">get_randomseed</span><span class="p">(</span><span class="n">random_state</span><span class="p">),</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">make_classification</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="n">init_train_length</span> <span class="o">+</span> <span class="n">stream_length</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">get_randomseed</span><span class="p">(</span><span class="n">random_state</span><span class="p">),</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">X_init</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:</span><span class="n">init_train_length</span><span class="p">,</span> <span class="p">:]</span>
 <span class="n">y_init</span> <span class="o">=</span> <span class="n">y</span><span class="p">[:</span><span class="n">init_train_length</span><span class="p">]</span>
 <span class="n">X_stream</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">init_train_length</span><span class="p">:,</span> <span class="p">:]</span>
@@ -577,8 +573,7 @@ denoted by the suffix”_stream”. For this notebook we evaluate the performanc
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">clf_factory</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">PWC</span><span class="p">(</span><span class="n">classes</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">random_state</span><span class="o">=</span><span class="n">get_randomseed</span><span class="p">(</span><span class="n">random_state</span><span class="p">))</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clf_factory</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">PWC</span><span class="p">(</span><span class="n">classes</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">random_state</span><span class="o">=</span><span class="n">get_randomseed</span><span class="p">(</span><span class="n">random_state</span><span class="p">))</span>
 <span class="n">query_strategies</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;RandomSampler&#39;</span><span class="p">:</span> <span class="n">RandomSampler</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">get_randomseed</span><span class="p">(</span><span class="n">random_state</span><span class="p">)),</span>
     <span class="s1">&#39;PeriodicSampler&#39;</span><span class="p">:</span> <span class="n">PeriodicSampler</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">get_randomseed</span><span class="p">(</span><span class="n">random_state</span><span class="p">)),</span>
@@ -598,8 +593,7 @@ denoted by the suffix”_stream”. For this notebook we evaluate the performanc
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">for</span> <span class="n">query_strategy_name</span><span class="p">,</span> <span class="n">query_strategy</span> <span class="ow">in</span> <span class="n">query_strategies</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">query_strategy_name</span><span class="p">,</span> <span class="n">query_strategy</span> <span class="ow">in</span> <span class="n">query_strategies</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
     <span class="n">clf</span> <span class="o">=</span> <span class="n">clf_factory</span><span class="p">()</span>
     <span class="c1"># initializing the training data</span>
     <span class="n">X_train</span> <span class="o">=</span> <span class="n">deque</span><span class="p">(</span><span class="n">maxlen</span><span class="o">=</span><span class="n">training_size</span><span class="p">)</span>
