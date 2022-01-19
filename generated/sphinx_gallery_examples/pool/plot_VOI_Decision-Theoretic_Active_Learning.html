@@ -8,30 +8,30 @@
 
     <title>Decision-Theoretic Active Learning &#8212; scikit-activeml 0.1.1 documentation</title>
     
-  <link href="../../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
-
+    <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  
     
-  <link rel="stylesheet"
-    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-
+    <link rel="stylesheet"
+      href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+    <link rel="preload" as="font" type="font/woff2" crossorigin
+      href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+    <link rel="preload" as="font" type="font/woff2" crossorigin
+      href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
     
       
-
+  
     
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/pydata-sphinx-theme.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css" />
     
-  <link rel="preload" as="script" href="../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
-
+    <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
@@ -124,16 +124,12 @@
       <div class="navbar-end-item">
         <ul id="navbar-icon-links" class="navbar-nav" aria-label="Quick Links">
         <li class="nav-item">
-          <a class="nav-link" href="https://github.com/scikit-activeml/scikit-activeml" rel="noopener" target="_blank" title="GitHub">
-            <span><i class="fab fa-github-square"></i></span>
-            <label class="sr-only">GitHub</label>
-          </a>
+          <a class="nav-link" href="https://github.com/scikit-activeml/scikit-activeml" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="https://pypi.org/project/scikit-activeml" rel="noopener" target="_blank" title="PyPI">
-            <span><i class="fas fa-box"></i></span>
-            <label class="sr-only">PyPI</label>
-          </a>
+          <a class="nav-link" href="https://pypi.org/project/scikit-activeml" rel="noopener" target="_blank" title="PyPI"><span><i class="fas fa-box"></i></span>
+            <label class="sr-only">PyPI</label></a>
         </li>
       </ul>
       </div>
@@ -149,7 +145,8 @@
           
             
             <!-- Only show if we have sidebars configured, else just a small margin  -->
-            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
@@ -184,15 +181,15 @@
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="plot_UncertaintySampling_Margin-based_Uncertainty_Sampling.html">
-   Margin-based Uncertainty Sampling
+  <a class="reference internal" href="plot_UncertaintySampling_Least-confident-based_Uncertainty_Sampling.html">
+   Least-confident-based Uncertainty Sampling
   </a>
  </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="plot_UncertaintySampling_Least-confident-based_Uncertainty_Sampling.html">
-   Least-confident-based Uncertainty Sampling
+  <a class="reference internal" href="plot_UncertaintySampling_Margin-based_Uncertainty_Sampling.html">
+   Margin-based Uncertainty Sampling
   </a>
  </li>
 </ul>
@@ -262,6 +259,9 @@
 
   </div>
 </nav>
+              </div>
+              <div class="sidebar-end-items">
+              </div>
             </div>
             
           
@@ -554,42 +554,42 @@ input[type=range].anim-slider {
 </style>
 
 <div class="animation">
-  <img id="_anim_imgcbce80461b984e1995f6b13a38026d44">
+  <img id="_anim_img6d74590fdb804f7f997448db20d69fab">
   <div class="anim-controls">
-    <input id="_anim_slidercbce80461b984e1995f6b13a38026d44" type="range" class="anim-slider"
+    <input id="_anim_slider6d74590fdb804f7f997448db20d69fab" type="range" class="anim-slider"
            name="points" min="0" max="1" step="1" value="0"
-           oninput="animcbce80461b984e1995f6b13a38026d44.set_frame(parseInt(this.value));"></input>
+           oninput="anim6d74590fdb804f7f997448db20d69fab.set_frame(parseInt(this.value));"></input>
     <div class="anim-buttons">
-      <button title="Decrease speed" aria-label="Decrease speed" onclick="animcbce80461b984e1995f6b13a38026d44.slower()">
+      <button title="Decrease speed" aria-label="Decrease speed" onclick="anim6d74590fdb804f7f997448db20d69fab.slower()">
           <i class="fa fa-minus"></i></button>
-      <button title="First frame" aria-label="First frame" onclick="animcbce80461b984e1995f6b13a38026d44.first_frame()">
+      <button title="First frame" aria-label="First frame" onclick="anim6d74590fdb804f7f997448db20d69fab.first_frame()">
         <i class="fa fa-fast-backward"></i></button>
-      <button title="Previous frame" aria-label="Previous frame" onclick="animcbce80461b984e1995f6b13a38026d44.previous_frame()">
+      <button title="Previous frame" aria-label="Previous frame" onclick="anim6d74590fdb804f7f997448db20d69fab.previous_frame()">
           <i class="fa fa-step-backward"></i></button>
-      <button title="Play backwards" aria-label="Play backwards" onclick="animcbce80461b984e1995f6b13a38026d44.reverse_animation()">
+      <button title="Play backwards" aria-label="Play backwards" onclick="anim6d74590fdb804f7f997448db20d69fab.reverse_animation()">
           <i class="fa fa-play fa-flip-horizontal"></i></button>
-      <button title="Pause" aria-label="Pause" onclick="animcbce80461b984e1995f6b13a38026d44.pause_animation()">
+      <button title="Pause" aria-label="Pause" onclick="anim6d74590fdb804f7f997448db20d69fab.pause_animation()">
           <i class="fa fa-pause"></i></button>
-      <button title="Play" aria-label="Play" onclick="animcbce80461b984e1995f6b13a38026d44.play_animation()">
+      <button title="Play" aria-label="Play" onclick="anim6d74590fdb804f7f997448db20d69fab.play_animation()">
           <i class="fa fa-play"></i></button>
-      <button title="Next frame" aria-label="Next frame" onclick="animcbce80461b984e1995f6b13a38026d44.next_frame()">
+      <button title="Next frame" aria-label="Next frame" onclick="anim6d74590fdb804f7f997448db20d69fab.next_frame()">
           <i class="fa fa-step-forward"></i></button>
-      <button title="Last frame" aria-label="Last frame" onclick="animcbce80461b984e1995f6b13a38026d44.last_frame()">
+      <button title="Last frame" aria-label="Last frame" onclick="anim6d74590fdb804f7f997448db20d69fab.last_frame()">
           <i class="fa fa-fast-forward"></i></button>
-      <button title="Increase speed" aria-label="Increase speed" onclick="animcbce80461b984e1995f6b13a38026d44.faster()">
+      <button title="Increase speed" aria-label="Increase speed" onclick="anim6d74590fdb804f7f997448db20d69fab.faster()">
           <i class="fa fa-plus"></i></button>
     </div>
-    <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_selectcbce80461b984e1995f6b13a38026d44"
+    <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_select6d74590fdb804f7f997448db20d69fab"
           class="anim-state">
-      <input type="radio" name="state" value="once" id="_anim_radio1_cbce80461b984e1995f6b13a38026d44"
+      <input type="radio" name="state" value="once" id="_anim_radio1_6d74590fdb804f7f997448db20d69fab"
              >
-      <label for="_anim_radio1_cbce80461b984e1995f6b13a38026d44">Once</label>
-      <input type="radio" name="state" value="loop" id="_anim_radio2_cbce80461b984e1995f6b13a38026d44"
+      <label for="_anim_radio1_6d74590fdb804f7f997448db20d69fab">Once</label>
+      <input type="radio" name="state" value="loop" id="_anim_radio2_6d74590fdb804f7f997448db20d69fab"
              checked>
-      <label for="_anim_radio2_cbce80461b984e1995f6b13a38026d44">Loop</label>
-      <input type="radio" name="state" value="reflect" id="_anim_radio3_cbce80461b984e1995f6b13a38026d44"
+      <label for="_anim_radio2_6d74590fdb804f7f997448db20d69fab">Loop</label>
+      <input type="radio" name="state" value="reflect" id="_anim_radio3_6d74590fdb804f7f997448db20d69fab"
              >
-      <label for="_anim_radio3_cbce80461b984e1995f6b13a38026d44">Reflect</label>
+      <label for="_anim_radio3_6d74590fdb804f7f997448db20d69fab">Reflect</label>
     </form>
   </div>
 </div>
@@ -599,9 +599,9 @@ input[type=range].anim-slider {
   /* Instantiate the Animation class. */
   /* The IDs given should match those used in the template above. */
   (function() {
-    var img_id = "_anim_imgcbce80461b984e1995f6b13a38026d44";
-    var slider_id = "_anim_slidercbce80461b984e1995f6b13a38026d44";
-    var loop_select_id = "_anim_loop_selectcbce80461b984e1995f6b13a38026d44";
+    var img_id = "_anim_img6d74590fdb804f7f997448db20d69fab";
+    var slider_id = "_anim_slider6d74590fdb804f7f997448db20d69fab";
+    var loop_select_id = "_anim_loop_select6d74590fdb804f7f997448db20d69fab";
     var frames = new Array(25);
 
   frames[0] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
@@ -20319,7 +20319,7 @@ t1VDlXSNJgAAAABJRU5ErkJggg==\
     /* set a timeout to make sure all the above elements are created before
        the object is initialized. */
     setTimeout(function() {
-        animcbce80461b984e1995f6b13a38026d44 = new Animation(frames, img_id, slider_id, 1000.0,
+        anim6d74590fdb804f7f997448db20d69fab = new Animation(frames, img_id, slider_id, 1000.0,
                                  loop_select_id);
     }, 0);
   })()
@@ -20332,7 +20332,7 @@ t1VDlXSNJgAAAABJRU5ErkJggg==\
 </dd>
 </dl>
 </p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  56.447 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  41.489 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-generated-sphinx-gallery-examples-pool-plot-voi-decision-theoretic-active-learning-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../../_downloads/ddc4c95c1ee41def1a987379b3c00ed1/plot_VOI_Decision-Theoretic_Active_Learning.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_VOI_Decision-Theoretic_Active_Learning.py</span></code></a></p>
@@ -20349,7 +20349,7 @@ t1VDlXSNJgAAAABJRU5ErkJggg==\
               
               
               <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="plot_McPAL_Multi-class_Probabilistic_Active_Learning.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -20372,8 +20372,8 @@ t1VDlXSNJgAAAABJRU5ErkJggg==\
       </div>
     </div>
   
-  <script src="../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
-<footer class="footer mt-5 mt-md-0">
+    <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <footer class="footer mt-5 mt-md-0">
   <div class="container">
     
     <div class="footer-item">
