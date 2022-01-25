@@ -181,7 +181,6 @@
 <span class="kn">import</span> <span class="nn">sklearn</span>
 <span class="kn">from</span> <span class="nn">sklearn.utils.validation</span> <span class="kn">import</span> <span class="n">check_array</span><span class="p">,</span> <span class="n">column_or_1d</span><span class="p">,</span> \
     <span class="n">assert_all_finite</span><span class="p">,</span> <span class="n">check_consistent_length</span>
-
 <span class="c1"># Define constant for missing label used throughout the package.</span>
 <span class="n">MISSING_LABEL</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
 
@@ -717,6 +716,27 @@
         <span class="k">return</span> <span class="n">bound</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;`X` or `bound` must not be None.&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="check_budget_manager"><a class="viewcode-back" href="../../../generated/api/skactiveml.utils.check_budget_manager.html#skactiveml.utils.check_budget_manager">[docs]</a><span class="k">def</span> <span class="nf">check_budget_manager</span><span class="p">(</span><span class="n">budget</span><span class="p">,</span> <span class="n">budget_manager</span><span class="p">,</span> <span class="n">default_budget_manager_class</span><span class="p">,</span>
+                         <span class="n">default_budget_manager_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Validate if budget manager is a budget_manager class and create a</span>
+<span class="sd">        copy &#39;budget_manager_&#39;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">default_budget_manager_dict</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">default_budget_manager_dict</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">if</span> <span class="n">budget_manager</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">budget_manager_</span> <span class="o">=</span> <span class="n">default_budget_manager_class</span><span class="p">(</span>
+            <span class="n">budget</span><span class="o">=</span><span class="n">budget</span><span class="p">,</span> <span class="o">**</span><span class="n">default_budget_manager_dict</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">budget</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">budget</span> <span class="o">!=</span> <span class="n">budget_manager</span><span class="o">.</span><span class="n">budget</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="s2">&quot;budget_manager is already given such that the budget &quot;</span>
+                <span class="s2">&quot;is not used. The given budget differs from the &quot;</span>
+                <span class="s2">&quot;budget_managers budget.&quot;</span>
+            <span class="p">)</span>
+        <span class="n">budget_manager_</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">budget_manager</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">budget_manager_</span></div>
 </pre></div>
 
               </div>

@@ -39,7 +39,7 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="skactiveml.classifier.PWC" href="skactiveml.classifier.PWC.html" />
+    <link rel="next" title="skactiveml.stream.RandomVariableUncertainty" href="skactiveml.stream.RandomVariableUncertainty.html" />
     <link rel="prev" title="skactiveml.stream.Split" href="skactiveml.stream.Split.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -320,6 +320,11 @@
    skactiveml.stream.PALS
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.RandomVariableUncertainty.html">
+   skactiveml.stream.RandomVariableUncertainty
+  </a>
+ </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -500,6 +505,11 @@
    skactiveml.utils.check_bound
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.utils.check_budget_manager.html">
+   skactiveml.utils.check_budget_manager
+  </a>
+ </li>
 </ul>
 
   </div>
@@ -543,7 +553,7 @@
 <h1>skactiveml.stream.PALS<a class="headerlink" href="#skactiveml-stream-pals" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="skactiveml.stream.PALS">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">skactiveml.stream.</span></span><span class="sig-name descname"><span class="pre">PALS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">budget_manager</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prior</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/stream/_pals.html#PALS"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.stream.PALS" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">skactiveml.stream.</span></span><span class="sig-name descname"><span class="pre">PALS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">budget_manager</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">budget</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prior</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/stream/_pals.html#PALS"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.stream.PALS" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="skactiveml.base.SingleAnnotStreamBasedQueryStrategy.html#skactiveml.base.SingleAnnotStreamBasedQueryStrategy" title="skactiveml.base.SingleAnnotStreamBasedQueryStrategy"><code class="xref py py-class docutils literal notranslate"><span class="pre">skactiveml.base.SingleAnnotStreamBasedQueryStrategy</span></code></a></p>
 <p>Probabilistic Active Learning in Datastreams (PALS) is an extension to
 Multi-Class Probabilistic Active Learning (see pool.McPAL). It assesses
@@ -551,12 +561,25 @@ MCPAL spatial to assess the spatial utility. The Balanced Incremental
 Quantile Filter (BIQF), that is implemented within the default
 budget_manager, is used to evaluate the temporal utility
 (see stream.budget_manager.BIQF).</p>
-<dl class="field-list simple">
+<dl class="field-list">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>budget_manager</strong><span class="classifier">BudgetManager</span></dt><dd><p>The BudgetManager which models the budgeting constraint used in
-the stream-based active learning setting. if set to None, BIQF will be
-used by default.</p>
+<dd class="field-odd"><dl>
+<dt><strong>budget</strong><span class="classifier">float, default=None</span></dt><dd><p>The budget which models the budgeting constraint used in
+the stream-based active learning setting.</p>
+</dd>
+<dt><strong>budget_manager</strong><span class="classifier">BudgetManager, default=None</span></dt><dd><p>The BudgetManager which models the budgeting constraint used in
+the stream-based active learning setting. if set to None,
+FixedUncertaintyBudget will be used by default. The budget_manager will
+be initialized based on the following conditions:</p>
+<blockquote>
+<div><p>If only a budget is given the default budget_manager is initialized
+with the given budget.
+If only a budget_manager is given use the budget_manager.
+If both are not given the default budget_manager with the
+default budget.
+If both are given and the budget differs from budget_manager.budget
+a warning is thrown.</p>
+</div></blockquote>
 </dd>
 <dt><strong>random_state</strong><span class="classifier">int, RandomState instance, default=None</span></dt><dd><p>Controls the randomness of the query strategy.</p>
 </dd>
@@ -581,37 +604,20 @@ Notes in Computer Science, vol 9385. Springer, Cham.</p>
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.stream.PALS.get_default_budget_manager" title="skactiveml.stream.PALS.get_default_budget_manager"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_default_budget_manager</span></code></a>()</p></td>
-<td><p>Provide the budget manager that will be used as default.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#skactiveml.stream.PALS.get_params" title="skactiveml.stream.PALS.get_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code></a>([deep])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.stream.PALS.get_params" title="skactiveml.stream.PALS.get_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code></a>([deep])</p></td>
 <td><p>Get parameters for this estimator.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.stream.PALS.query" title="skactiveml.stream.PALS.query"><code class="xref py py-obj docutils literal notranslate"><span class="pre">query</span></code></a>(X_cand, clf[, X, y, sample_weight, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#skactiveml.stream.PALS.query" title="skactiveml.stream.PALS.query"><code class="xref py py-obj docutils literal notranslate"><span class="pre">query</span></code></a>(X_cand, clf[, X, y, sample_weight, ...])</p></td>
 <td><p>Ask the query strategy which instances in X_cand to acquire.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#skactiveml.stream.PALS.set_params" title="skactiveml.stream.PALS.set_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code></a>(**params)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.stream.PALS.set_params" title="skactiveml.stream.PALS.set_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code></a>(**params)</p></td>
 <td><p>Set the parameters of this estimator.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.stream.PALS.update" title="skactiveml.stream.PALS.update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code></a>(X_cand, queried_indices[, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#skactiveml.stream.PALS.update" title="skactiveml.stream.PALS.update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code></a>(X_cand, queried_indices[, ...])</p></td>
 <td><p>Updates the budget manager</p></td>
 </tr>
 </tbody>
 </table>
-<dl class="py method">
-<dt class="sig sig-object py" id="skactiveml.stream.PALS.get_default_budget_manager">
-<span class="sig-name descname"><span class="pre">get_default_budget_manager</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/stream/_pals.html#PALS.get_default_budget_manager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.stream.PALS.get_default_budget_manager" title="Permalink to this definition">¶</a></dt>
-<dd><p>Provide the budget manager that will be used as default.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>budget_manager</strong><span class="classifier">BudgetManager</span></dt><dd><p>The BudgetManager that should be used by default.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="skactiveml.stream.PALS.get_params">
 <span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#skactiveml.stream.PALS.get_params" title="Permalink to this definition">¶</a></dt>
@@ -635,7 +641,7 @@ contained subobjects that are estimators.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="skactiveml.stream.PALS.query">
-<span class="sig-name descname"><span class="pre">query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_cand</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">utility_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_utilities</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/stream/_pals.html#PALS.query"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.stream.PALS.query" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_cand</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fit_clf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">utility_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_utilities</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/stream/_pals.html#PALS.query"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.stream.PALS.query" title="Permalink to this definition">¶</a></dt>
 <dd><p>Ask the query strategy which instances in X_cand to acquire.</p>
 <p>Please note that, when the decisions from this function may differ from
 the final sampling, simulate=True can be set, so that the query
@@ -655,6 +661,8 @@ only if they are supported by the base query strategy.</p>
 <dt><strong>y</strong><span class="classifier">array-like of shape (n_samples), optional (default=None)</span></dt><dd><p>Labels of the input samples ‘X’. There may be missing labels.</p>
 </dd>
 <dt><strong>sample_weight</strong><span class="classifier">array-like of shape (n_samples,) (default=None)</span></dt><dd><p>Sample weights for X, used to fit the clf.</p>
+</dd>
+<dt><strong>fit_clf</strong><span class="classifier">bool,</span></dt><dd><p>If true, refit the classifier also requires X and y to be given.</p>
 </dd>
 <dt><strong>utility_weight: array-like of shape (n_candidate_samples), optional</strong></dt><dd></dd>
 <dt><strong>(default=None)</strong></dt><dd><p>Densities for each sample in <cite>X_cand</cite>.</p>
@@ -743,10 +751,10 @@ only if they are supported by the base query strategy.</p>
             <p class="prev-next-title">skactiveml.stream.Split</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="skactiveml.classifier.PWC.html" title="next page">
+    <a class='right-next' id="next-link" href="skactiveml.stream.RandomVariableUncertainty.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">skactiveml.classifier.PWC</p>
+        <p class="prev-next-title">skactiveml.stream.RandomVariableUncertainty</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

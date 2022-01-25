@@ -320,6 +320,11 @@
    skactiveml.stream.PALS
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.RandomVariableUncertainty.html">
+   skactiveml.stream.RandomVariableUncertainty
+  </a>
+ </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -500,6 +505,11 @@
    skactiveml.utils.check_bound
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.utils.check_budget_manager.html">
+   skactiveml.utils.check_budget_manager
+  </a>
+ </li>
 </ul>
 
   </div>
@@ -543,7 +553,7 @@
 <h1>skactiveml.base.SingleAnnotStreamBasedQueryStrategy<a class="headerlink" href="#skactiveml-base-singleannotstreambasedquerystrategy" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="skactiveml.base.SingleAnnotStreamBasedQueryStrategy">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">skactiveml.base.</span></span><span class="sig-name descname"><span class="pre">SingleAnnotStreamBasedQueryStrategy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">budget_manager</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/base.html#SingleAnnotStreamBasedQueryStrategy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.base.SingleAnnotStreamBasedQueryStrategy" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">skactiveml.base.</span></span><span class="sig-name descname"><span class="pre">SingleAnnotStreamBasedQueryStrategy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">budget</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/base.html#SingleAnnotStreamBasedQueryStrategy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.base.SingleAnnotStreamBasedQueryStrategy" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="skactiveml.base.QueryStrategy.html#skactiveml.base.QueryStrategy" title="skactiveml.base.QueryStrategy"><code class="xref py py-class docutils literal notranslate"><span class="pre">skactiveml.base.QueryStrategy</span></code></a></p>
 <dl class="simple">
 <dt>Base class for all stream-based active learning query strategies in</dt><dd><p>scikit-activeml.</p>
@@ -552,7 +562,7 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>budget_manager</strong><span class="classifier">BudgetManager</span></dt><dd><p>The BudgetManager which models the budgeting constraint used in
+<dt><strong>budget</strong><span class="classifier">float, default=None</span></dt><dd><p>The budget which models the budgeting constraint used in
 the stream-based active learning setting.</p>
 </dd>
 <dt><strong>random_state</strong><span class="classifier">int, RandomState instance, default=None</span></dt><dd><p>Controls the randomness of the estimator.</p>
@@ -567,37 +577,20 @@ the stream-based active learning setting.</p>
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.base.SingleAnnotStreamBasedQueryStrategy.get_default_budget_manager" title="skactiveml.base.SingleAnnotStreamBasedQueryStrategy.get_default_budget_manager"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_default_budget_manager</span></code></a>()</p></td>
-<td><p>Provide the budget manager that will be used as default.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#skactiveml.base.SingleAnnotStreamBasedQueryStrategy.get_params" title="skactiveml.base.SingleAnnotStreamBasedQueryStrategy.get_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code></a>([deep])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.base.SingleAnnotStreamBasedQueryStrategy.get_params" title="skactiveml.base.SingleAnnotStreamBasedQueryStrategy.get_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code></a>([deep])</p></td>
 <td><p>Get parameters for this estimator.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.base.SingleAnnotStreamBasedQueryStrategy.query" title="skactiveml.base.SingleAnnotStreamBasedQueryStrategy.query"><code class="xref py py-obj docutils literal notranslate"><span class="pre">query</span></code></a>(X_cand, *args[, return_utilities])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#skactiveml.base.SingleAnnotStreamBasedQueryStrategy.query" title="skactiveml.base.SingleAnnotStreamBasedQueryStrategy.query"><code class="xref py py-obj docutils literal notranslate"><span class="pre">query</span></code></a>(X_cand, *args[, return_utilities])</p></td>
 <td><p>Ask the query strategy which instances in X_cand to acquire.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#skactiveml.base.SingleAnnotStreamBasedQueryStrategy.set_params" title="skactiveml.base.SingleAnnotStreamBasedQueryStrategy.set_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code></a>(**params)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.base.SingleAnnotStreamBasedQueryStrategy.set_params" title="skactiveml.base.SingleAnnotStreamBasedQueryStrategy.set_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code></a>(**params)</p></td>
 <td><p>Set the parameters of this estimator.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.base.SingleAnnotStreamBasedQueryStrategy.update" title="skactiveml.base.SingleAnnotStreamBasedQueryStrategy.update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code></a>(X_cand, queried_indices, *args[, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#skactiveml.base.SingleAnnotStreamBasedQueryStrategy.update" title="skactiveml.base.SingleAnnotStreamBasedQueryStrategy.update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code></a>(X_cand, queried_indices, *args[, ...])</p></td>
 <td><p>Update the query strategy with the decisions taken.</p></td>
 </tr>
 </tbody>
 </table>
-<dl class="py method">
-<dt class="sig sig-object py" id="skactiveml.base.SingleAnnotStreamBasedQueryStrategy.get_default_budget_manager">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">get_default_budget_manager</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/base.html#SingleAnnotStreamBasedQueryStrategy.get_default_budget_manager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.base.SingleAnnotStreamBasedQueryStrategy.get_default_budget_manager" title="Permalink to this definition">¶</a></dt>
-<dd><p>Provide the budget manager that will be used as default.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>budget_manager</strong><span class="classifier">BudgetManager</span></dt><dd><p>The BudgetManager that should be used by default.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="skactiveml.base.SingleAnnotStreamBasedQueryStrategy.get_params">
 <span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#skactiveml.base.SingleAnnotStreamBasedQueryStrategy.get_params" title="Permalink to this definition">¶</a></dt>

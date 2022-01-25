@@ -320,6 +320,11 @@
    skactiveml.stream.PALS
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.RandomVariableUncertainty.html">
+   skactiveml.stream.RandomVariableUncertainty
+  </a>
+ </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -500,6 +505,11 @@
    skactiveml.utils.check_bound
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.utils.check_budget_manager.html">
+   skactiveml.utils.check_budget_manager
+  </a>
+ </li>
 </ul>
 
   </div>
@@ -543,7 +553,7 @@
 <h1>skactiveml.stream.RandomSampler<a class="headerlink" href="#skactiveml-stream-randomsampler" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="skactiveml.stream.RandomSampler">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">skactiveml.stream.</span></span><span class="sig-name descname"><span class="pre">RandomSampler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">budget_manager</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/stream/_random.html#RandomSampler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.stream.RandomSampler" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">skactiveml.stream.</span></span><span class="sig-name descname"><span class="pre">RandomSampler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">budget</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_exceeding_budget</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/stream/_random.html#RandomSampler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.stream.RandomSampler" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="skactiveml.base.SingleAnnotStreamBasedQueryStrategy.html#skactiveml.base.SingleAnnotStreamBasedQueryStrategy" title="skactiveml.base.SingleAnnotStreamBasedQueryStrategy"><code class="xref py py-class docutils literal notranslate"><span class="pre">skactiveml.base.SingleAnnotStreamBasedQueryStrategy</span></code></a></p>
 <p>The RandomSampler samples instances completely randomly. The probability
 to sample an instance is dependent on the budget specified in the
@@ -554,9 +564,12 @@ the instance. Thus, it should only be used as a baseline strategy.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>budget_manager</strong><span class="classifier">BudgetManager</span></dt><dd><p>The BudgetManager which models the budgeting constraint used in
-the stream-based active learning setting. if set to None,
-FixedThresholdBudget will be used by default.</p>
+<dt><strong>budget</strong><span class="classifier">float, default=None</span></dt><dd><p>The budget which models the budgeting constraint used in
+the stream-based active learning setting.</p>
+</dd>
+<dt><strong>allow_exceeding_budget</strong><span class="classifier">bool, default=True</span></dt><dd><p>If True, the query strategy is allowed to exceed it’s budget as long as
+the average number of queries will be within the budget. If False,
+queries are not allowed if the budget is exhausted.</p>
 </dd>
 <dt><strong>random_state</strong><span class="classifier">int, RandomState instance, default=None</span></dt><dd><p>Controls the randomness of the estimator.</p>
 </dd>
@@ -570,37 +583,20 @@ FixedThresholdBudget will be used by default.</p>
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.stream.RandomSampler.get_default_budget_manager" title="skactiveml.stream.RandomSampler.get_default_budget_manager"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_default_budget_manager</span></code></a>()</p></td>
-<td><p>Provide the budget manager that will be used as default.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#skactiveml.stream.RandomSampler.get_params" title="skactiveml.stream.RandomSampler.get_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code></a>([deep])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.stream.RandomSampler.get_params" title="skactiveml.stream.RandomSampler.get_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code></a>([deep])</p></td>
 <td><p>Get parameters for this estimator.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.stream.RandomSampler.query" title="skactiveml.stream.RandomSampler.query"><code class="xref py py-obj docutils literal notranslate"><span class="pre">query</span></code></a>(X_cand[, return_utilities])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#skactiveml.stream.RandomSampler.query" title="skactiveml.stream.RandomSampler.query"><code class="xref py py-obj docutils literal notranslate"><span class="pre">query</span></code></a>(X_cand[, return_utilities])</p></td>
 <td><p>Ask the query strategy which instances in X_cand to acquire.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#skactiveml.stream.RandomSampler.set_params" title="skactiveml.stream.RandomSampler.set_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code></a>(**params)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.stream.RandomSampler.set_params" title="skactiveml.stream.RandomSampler.set_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code></a>(**params)</p></td>
 <td><p>Set the parameters of this estimator.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.stream.RandomSampler.update" title="skactiveml.stream.RandomSampler.update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code></a>(X_cand, queried_indices[, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#skactiveml.stream.RandomSampler.update" title="skactiveml.stream.RandomSampler.update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code></a>(X_cand, queried_indices)</p></td>
 <td><p>Updates the budget manager and the count for seen and queried instances</p></td>
 </tr>
 </tbody>
 </table>
-<dl class="py method">
-<dt class="sig sig-object py" id="skactiveml.stream.RandomSampler.get_default_budget_manager">
-<span class="sig-name descname"><span class="pre">get_default_budget_manager</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/stream/_random.html#RandomSampler.get_default_budget_manager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.stream.RandomSampler.get_default_budget_manager" title="Permalink to this definition">¶</a></dt>
-<dd><p>Provide the budget manager that will be used as default.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>budget_manager</strong><span class="classifier">BudgetManager</span></dt><dd><p>The BudgetManager that should be used by default.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="skactiveml.stream.RandomSampler.get_params">
 <span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#skactiveml.stream.RandomSampler.get_params" title="Permalink to this definition">¶</a></dt>
@@ -680,7 +676,7 @@ possible to update each component of a nested object.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="skactiveml.stream.RandomSampler.update">
-<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_cand</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">queried_indices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">budget_manager_param_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/stream/_random.html#RandomSampler.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.stream.RandomSampler.update" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_cand</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">queried_indices</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/stream/_random.html#RandomSampler.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.stream.RandomSampler.update" title="Permalink to this definition">¶</a></dt>
 <dd><p>Updates the budget manager and the count for seen and queried
 instances</p>
 <dl class="field-list simple">

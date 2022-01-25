@@ -175,17 +175,23 @@
   <h1>Source code for skactiveml.stream._pals</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">clone</span>
 <span class="kn">from</span> <span class="nn">sklearn.utils</span> <span class="kn">import</span> <span class="n">check_array</span><span class="p">,</span> <span class="n">check_consistent_length</span>
 
 <span class="kn">from</span> <span class="nn">..pool</span> <span class="kn">import</span> <span class="n">cost_reduction</span>
-<span class="kn">from</span> <span class="nn">..base</span> <span class="kn">import</span> <span class="n">SingleAnnotStreamBasedQueryStrategy</span><span class="p">,</span> <span class="n">SkactivemlClassifier</span>
+<span class="kn">from</span> <span class="nn">..base</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">SingleAnnotStreamBasedQueryStrategy</span><span class="p">,</span>
+    <span class="n">SkactivemlClassifier</span><span class="p">,</span>
+    <span class="n">BudgetManager</span><span class="p">,</span>
+<span class="p">)</span>
+
 
 <span class="kn">from</span> <span class="nn">..utils</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">fit_if_not_fitted</span><span class="p">,</span>
     <span class="n">check_type</span><span class="p">,</span>
     <span class="n">check_random_state</span><span class="p">,</span>
     <span class="n">check_scalar</span><span class="p">,</span>
     <span class="n">call_func</span><span class="p">,</span>
+    <span class="n">check_budget_manager</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="kn">from</span> <span class="nn">.budget_manager</span> <span class="kn">import</span> <span class="n">BIQF</span>
@@ -201,10 +207,21 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    budget_manager : BudgetManager</span>
+<span class="sd">    budget : float, default=None</span>
+<span class="sd">        The budget which models the budgeting constraint used in</span>
+<span class="sd">        the stream-based active learning setting.</span>
+<span class="sd">    budget_manager : BudgetManager, default=None</span>
 <span class="sd">        The BudgetManager which models the budgeting constraint used in</span>
-<span class="sd">        the stream-based active learning setting. if set to None, BIQF will be</span>
-<span class="sd">        used by default.</span>
+<span class="sd">        the stream-based active learning setting. if set to None,</span>
+<span class="sd">        FixedUncertaintyBudget will be used by default. The budget_manager will</span>
+<span class="sd">        be initialized based on the following conditions:</span>
+<span class="sd">            If only a budget is given the default budget_manager is initialized</span>
+<span class="sd">            with the given budget.</span>
+<span class="sd">            If only a budget_manager is given use the budget_manager.</span>
+<span class="sd">            If both are not given the default budget_manager with the</span>
+<span class="sd">            default budget.</span>
+<span class="sd">            If both are given and the budget differs from budget_manager.budget</span>
+<span class="sd">            a warning is thrown.</span>
 <span class="sd">    random_state : int, RandomState instance, default=None</span>
 <span class="sd">        Controls the randomness of the query strategy.</span>
 <span class="sd">    prior : float</span>
@@ -221,10 +238,15 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">budget_manager</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">prior</span><span class="o">=</span><span class="mf">1.0e-3</span><span class="p">,</span> <span class="n">m_max</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">budget_manager</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">budget</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">prior</span><span class="o">=</span><span class="mf">1.0e-3</span><span class="p">,</span>
+        <span class="n">m_max</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
     <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">budget</span><span class="o">=</span><span class="n">budget</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">budget_manager</span> <span class="o">=</span> <span class="n">budget_manager</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">random_state</span> <span class="o">=</span> <span class="n">random_state</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">prior</span> <span class="o">=</span> <span class="n">prior</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">m_max</span> <span class="o">=</span> <span class="n">m_max</span>
 
@@ -235,6 +257,7 @@
         <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">fit_clf</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">utility_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">return_utilities</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
@@ -259,6 +282,8 @@
 <span class="sd">            Labels of the input samples &#39;X&#39;. There may be missing labels.</span>
 <span class="sd">        sample_weight : array-like of shape (n_samples,) (default=None)</span>
 <span class="sd">            Sample weights for X, used to fit the clf.</span>
+<span class="sd">        fit_clf : bool,</span>
+<span class="sd">            If true, refit the classifier also requires X and y to be given.</span>
 <span class="sd">        utility_weight: array-like of shape (n_candidate_samples), optional</span>
 <span class="sd">        (default=None)</span>
 <span class="sd">            Densities for each sample in `X_cand`.</span>
@@ -282,6 +307,7 @@
             <span class="n">X</span><span class="p">,</span>
             <span class="n">y</span><span class="p">,</span>
             <span class="n">sample_weight</span><span class="p">,</span>
+            <span class="n">fit_clf</span><span class="p">,</span>
             <span class="n">utility_weight</span><span class="p">,</span>
             <span class="n">return_utilities</span><span class="p">,</span>
         <span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_data</span><span class="p">(</span>
@@ -290,6 +316,7 @@
             <span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span>
             <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span>
             <span class="n">sample_weight</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">,</span>
+            <span class="n">fit_clf</span><span class="o">=</span><span class="n">fit_clf</span><span class="p">,</span>
             <span class="n">utility_weight</span><span class="o">=</span><span class="n">utility_weight</span><span class="p">,</span>
             <span class="n">return_utilities</span><span class="o">=</span><span class="n">return_utilities</span><span class="p">,</span>
         <span class="p">)</span>
@@ -325,9 +352,18 @@
 <span class="sd">            PALS returns itself, after it is updated.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># check if a budget_manager is set</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_validate_budget_manager</span><span class="p">()</span>
-        <span class="n">budget_manager_param_dict</span> <span class="o">=</span> <span class="p">({}</span> <span class="k">if</span> <span class="n">budget_manager_param_dict</span> <span class="ow">is</span> <span class="kc">None</span>
-                                     <span class="k">else</span> <span class="n">budget_manager_param_dict</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;budget_manager_&quot;</span><span class="p">):</span>
+            <span class="n">check_type</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">budget_manager</span><span class="p">,</span> <span class="s2">&quot;budget_manager_&quot;</span><span class="p">,</span> <span class="n">BudgetManager</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">budget_manager_</span> <span class="o">=</span> <span class="n">check_budget_manager</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">budget</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">budget_manager</span><span class="p">,</span> <span class="n">BIQF</span>
+            <span class="p">)</span>
+        <span class="n">budget_manager_param_dict</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="p">{}</span>
+            <span class="k">if</span> <span class="n">budget_manager_param_dict</span> <span class="ow">is</span> <span class="kc">None</span>
+            <span class="k">else</span> <span class="n">budget_manager_param_dict</span>
+        <span class="p">)</span>
         <span class="n">call_func</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">budget_manager_</span><span class="o">.</span><span class="n">update</span><span class="p">,</span>
             <span class="n">X_cand</span><span class="o">=</span><span class="n">X_cand</span><span class="p">,</span>
@@ -336,16 +372,6 @@
         <span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 
-<div class="viewcode-block" id="PALS.get_default_budget_manager"><a class="viewcode-back" href="../../../generated/api/skactiveml.stream.PALS.html#skactiveml.stream.PALS.get_default_budget_manager">[docs]</a>    <span class="k">def</span> <span class="nf">get_default_budget_manager</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Provide the budget manager that will be used as default.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        budget_manager : BudgetManager</span>
-<span class="sd">            The BudgetManager that should be used by default.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">BIQF</span><span class="p">()</span></div>
-
     <span class="k">def</span> <span class="nf">_validate_data</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">X_cand</span><span class="p">,</span>
@@ -353,6 +379,7 @@
         <span class="n">X</span><span class="p">,</span>
         <span class="n">y</span><span class="p">,</span>
         <span class="n">sample_weight</span><span class="p">,</span>
+        <span class="n">fit_clf</span><span class="p">,</span>
         <span class="n">utility_weight</span><span class="p">,</span>
         <span class="n">return_utilities</span><span class="p">,</span>
         <span class="n">reset</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
@@ -372,6 +399,8 @@
 <span class="sd">            Labels of the input samples &#39;X&#39;. There may be missing labels.</span>
 <span class="sd">        sample_weight : array-like of shape (n_samples,) (default=None)</span>
 <span class="sd">            Sample weights for X, used to fit the clf.</span>
+<span class="sd">        fit_clf : bool,</span>
+<span class="sd">            If true, refit the classifier also requires X and y to be given.</span>
 <span class="sd">        utility_weight: array-like of shape (n_candidate_samples), optional</span>
 <span class="sd">        (default=None)</span>
 <span class="sd">            Densities for each sample in `X_cand`.</span>
@@ -396,6 +425,8 @@
 <span class="sd">            Checked training labels</span>
 <span class="sd">        sampling_weight: np.ndarray, shape (n_candidates)</span>
 <span class="sd">            Checked training sample weight</span>
+<span class="sd">        fit_clf : bool,</span>
+<span class="sd">            Checked boolean value of `fit_clf`</span>
 <span class="sd">        utility_weight: array-like of shape (n_candidate_samples), optional</span>
 <span class="sd">        (default=None)</span>
 <span class="sd">            Checked densities for each sample in `X_cand`.</span>
@@ -407,10 +438,20 @@
         <span class="n">X_cand</span><span class="p">,</span> <span class="n">return_utilities</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_validate_data</span><span class="p">(</span>
             <span class="n">X_cand</span><span class="p">,</span> <span class="n">return_utilities</span><span class="p">,</span> <span class="n">reset</span><span class="o">=</span><span class="n">reset</span><span class="p">,</span> <span class="o">**</span><span class="n">check_X_cand_params</span>
         <span class="p">)</span>
+        <span class="c1"># check if a budget_manager is set</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;budget_manager_&quot;</span><span class="p">):</span>
+            <span class="n">check_type</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">budget_manager</span><span class="p">,</span> <span class="s2">&quot;budget_manager_&quot;</span><span class="p">,</span> <span class="n">BudgetManager</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">budget_manager_</span> <span class="o">=</span> <span class="n">check_budget_manager</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">budget</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">budget_manager</span><span class="p">,</span> <span class="n">BIQF</span>
+            <span class="p">)</span>
+
         <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_X_y_sample_weight</span><span class="p">(</span>
             <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span>
         <span class="p">)</span>
-        <span class="n">clf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_clf</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">)</span>
+        <span class="n">clf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_clf</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">,</span> <span class="n">fit_clf</span><span class="p">)</span>
         <span class="n">utility_weight</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_utility_weight</span><span class="p">(</span><span class="n">utility_weight</span><span class="p">,</span> <span class="n">X_cand</span><span class="p">)</span>
         <span class="n">check_scalar</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">prior</span><span class="p">,</span> <span class="s2">&quot;prior&quot;</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="n">min_val</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">min_inclusive</span><span class="o">=</span><span class="kc">False</span>
@@ -424,6 +465,7 @@
             <span class="n">X</span><span class="p">,</span>
             <span class="n">y</span><span class="p">,</span>
             <span class="n">sample_weight</span><span class="p">,</span>
+            <span class="n">fit_clf</span><span class="p">,</span>
             <span class="n">utility_weight</span><span class="p">,</span>
             <span class="n">return_utilities</span><span class="p">,</span>
         <span class="p">)</span>
@@ -458,7 +500,7 @@
             <span class="n">check_consistent_length</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span>
 
-    <span class="k">def</span> <span class="nf">_validate_clf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clf</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_validate_clf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clf</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">,</span> <span class="n">fit_clf</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Validate if clf is a valid SkactivemlClassifier. If clf is</span>
 <span class="sd">        untrained, clf is trained using X, y and sample_weight.</span>
 
@@ -466,6 +508,12 @@
 <span class="sd">        ----------</span>
 <span class="sd">        clf : SkactivemlClassifier</span>
 <span class="sd">            Model implementing the methods `fit` and `predict_freq`.</span>
+<span class="sd">        X : array-like of shape (n_samples, n_features)</span>
+<span class="sd">            Input samples used to fit the classifier.</span>
+<span class="sd">        y : array-like of shape (n_samples)</span>
+<span class="sd">            Labels of the input samples &#39;X&#39;. There may be missing labels.</span>
+<span class="sd">        sample_weight : array-like of shape (n_samples,) (default=None)</span>
+<span class="sd">            Sample weights for X, used to fit the clf.</span>
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        clf : SkactivemlClassifier</span>
@@ -473,7 +521,10 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Check if the classifier and its arguments are valid.</span>
         <span class="n">check_type</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="s2">&quot;clf&quot;</span><span class="p">,</span> <span class="n">SkactivemlClassifier</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">fit_if_not_fitted</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">)</span>
+        <span class="n">check_type</span><span class="p">(</span><span class="n">fit_clf</span><span class="p">,</span> <span class="s2">&quot;fit_clf&quot;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">fit_clf</span><span class="p">:</span>
+            <span class="n">clf</span> <span class="o">=</span> <span class="n">clone</span><span class="p">(</span><span class="n">clf</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">clf</span>
 
     <span class="k">def</span> <span class="nf">_validate_utility_weight</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">utility_weight</span><span class="p">,</span> <span class="n">X_cand</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Validate if utility_weight is numeric and of equal length as X_cand.</span>

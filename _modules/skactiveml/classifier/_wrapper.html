@@ -399,9 +399,12 @@
             <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
                 <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">estimator</span><span class="si">}</span><span class="s2"> does not support `sample_weight`. &quot;</span>
                 <span class="sa">f</span><span class="s2">&quot;Therefore, this parameter will be ignored.&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">estimator_</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">estimator</span><span class="p">)</span>
-
-        <span class="c1"># Count labels per class.</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;estimator_&quot;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">fit_function</span> <span class="o">!=</span> <span class="s2">&quot;partial_fit&quot;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">estimator_</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">estimator</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">estimator_</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">estimator</span><span class="p">)</span>
+        <span class="c1"># count labels per class</span>
         <span class="n">is_lbld</span> <span class="o">=</span> <span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_label_counts</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">is_lbld</span><span class="p">]</span> <span class="o">==</span> <span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span>
                               <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_le</span><span class="o">.</span><span class="n">classes_</span><span class="p">))]</span>

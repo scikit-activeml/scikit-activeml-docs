@@ -320,6 +320,11 @@
    skactiveml.stream.PALS
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.RandomVariableUncertainty.html">
+   skactiveml.stream.RandomVariableUncertainty
+  </a>
+ </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -500,6 +505,11 @@
    skactiveml.utils.check_bound
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.utils.check_budget_manager.html">
+   skactiveml.utils.check_budget_manager
+  </a>
+ </li>
 </ul>
 
   </div>
@@ -543,16 +553,29 @@
 <h1>skactiveml.stream.Split<a class="headerlink" href="#skactiveml-stream-split" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="skactiveml.stream.Split">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">skactiveml.stream.</span></span><span class="sig-name descname"><span class="pre">Split</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">budget_manager</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/stream/_uncertainty.html#Split"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.stream.Split" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="skactiveml.base.SingleAnnotStreamBasedQueryStrategy.html#skactiveml.base.SingleAnnotStreamBasedQueryStrategy" title="skactiveml.base.SingleAnnotStreamBasedQueryStrategy"><code class="xref py py-class docutils literal notranslate"><span class="pre">skactiveml.base.SingleAnnotStreamBasedQueryStrategy</span></code></a></p>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">skactiveml.stream.</span></span><span class="sig-name descname"><span class="pre">Split</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">budget_manager</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">budget</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/stream/_uncertainty.html#Split"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.stream.Split" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">skactiveml.stream._uncertainty.UncertaintyZliobaite</span></code></p>
 <p>The Split [1] query strategy samples in 100*v% of instances randomly and
 in 100*(1-v)% of cases according to VariableUncertainty.</p>
-<dl class="field-list simple">
+<dl class="field-list">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>budget_manager</strong><span class="classifier">BudgetManager</span></dt><dd><p>The BudgetManager which models the budgeting constraint used in
-the stream-based active learning setting. if set to None, SplitBudget
-will be used by default.</p>
+<dd class="field-odd"><dl>
+<dt><strong>budget</strong><span class="classifier">float, default=None</span></dt><dd><p>The budget which models the budgeting constraint used in
+the stream-based active learning setting.</p>
+</dd>
+<dt><strong>budget_manager</strong><span class="classifier">BudgetManager, default=None</span></dt><dd><p>The BudgetManager which models the budgeting constraint used in
+the stream-based active learning setting. if set to None,
+FixedUncertaintyBudget will be used by default. The budget_manager will
+be initialized based on the following conditions:</p>
+<blockquote>
+<div><p>If only a budget is given the default budget_manager is initialized
+with the given budget.
+If only a budget_manager is given use the budget_manager.
+If both are not given the default budget_manager with the
+default budget.
+If both are given and the budget differs from budget_manager.budget
+a warning is thrown.</p>
+</div></blockquote>
 </dd>
 <dt><strong>random_state</strong><span class="classifier">int, RandomState instance, default=None</span></dt><dd><p>Controls the randomness of the estimator.</p>
 </dd>
@@ -572,37 +595,20 @@ Networks and Learning Systems, IEEE Transactions on. 25. 27-39.</p>
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.stream.Split.get_default_budget_manager" title="skactiveml.stream.Split.get_default_budget_manager"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_default_budget_manager</span></code></a>()</p></td>
-<td><p>Provide the budget manager that will be used as default.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#skactiveml.stream.Split.get_params" title="skactiveml.stream.Split.get_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code></a>([deep])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.stream.Split.get_params" title="skactiveml.stream.Split.get_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code></a>([deep])</p></td>
 <td><p>Get parameters for this estimator.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.stream.Split.query" title="skactiveml.stream.Split.query"><code class="xref py py-obj docutils literal notranslate"><span class="pre">query</span></code></a>(X_cand, clf[, X, y, sample_weight, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#skactiveml.stream.Split.query" title="skactiveml.stream.Split.query"><code class="xref py py-obj docutils literal notranslate"><span class="pre">query</span></code></a>(X_cand, clf[, X, y, sample_weight, ...])</p></td>
 <td><p>Ask the query strategy which instances in X_cand to acquire.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#skactiveml.stream.Split.set_params" title="skactiveml.stream.Split.set_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code></a>(**params)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.stream.Split.set_params" title="skactiveml.stream.Split.set_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code></a>(**params)</p></td>
 <td><p>Set the parameters of this estimator.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.stream.Split.update" title="skactiveml.stream.Split.update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code></a>(X_cand, queried_indices[, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#skactiveml.stream.Split.update" title="skactiveml.stream.Split.update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code></a>(X_cand, queried_indices[, ...])</p></td>
 <td><p>Updates the budget manager and the count for seen and queried instances</p></td>
 </tr>
 </tbody>
 </table>
-<dl class="py method">
-<dt class="sig sig-object py" id="skactiveml.stream.Split.get_default_budget_manager">
-<span class="sig-name descname"><span class="pre">get_default_budget_manager</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/stream/_uncertainty.html#Split.get_default_budget_manager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.stream.Split.get_default_budget_manager" title="Permalink to this definition">¶</a></dt>
-<dd><p>Provide the budget manager that will be used as default.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>budget_manager</strong><span class="classifier">BudgetManager</span></dt><dd><p>The BudgetManager that should be used by default.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="skactiveml.stream.Split.get_params">
 <span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#skactiveml.stream.Split.get_params" title="Permalink to this definition">¶</a></dt>
@@ -626,7 +632,7 @@ contained subobjects that are estimators.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="skactiveml.stream.Split.query">
-<span class="sig-name descname"><span class="pre">query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_cand</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_utilities</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/stream/_uncertainty.html#Split.query"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.stream.Split.query" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_cand</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fit_clf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_utilities</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#skactiveml.stream.Split.query" title="Permalink to this definition">¶</a></dt>
 <dd><p>Ask the query strategy which instances in X_cand to acquire.</p>
 <p>Please note that, when the decisions from this function may differ from
 the final sampling, simulate=True can be set, so that the query
@@ -644,7 +650,9 @@ only if they are supported by the base query strategy.</p>
 </dd>
 <dt><strong>y</strong><span class="classifier">array-like of shape (n_samples), optional</span></dt><dd><p>Labels of the input samples ‘X’. There may be missing labels.</p>
 </dd>
-<dt><strong>sample_weight</strong><span class="classifier">array-like of shape (n_samples,)</span></dt><dd><p>Sample weights for X, used to fit the clf.</p>
+<dt><strong>sample_weight</strong><span class="classifier">array-like of shape (n_samples,), optional</span></dt><dd><p>Sample weights for X, used to fit the clf.</p>
+</dd>
+<dt><strong>fit_clf</strong><span class="classifier">bool,</span></dt><dd><p>If true, refit the classifier also requires X and y to be given.</p>
 </dd>
 <dt><strong>return_utilities</strong><span class="classifier">bool, optional</span></dt><dd><p>If true, also return the utilities based on the query strategy.
 The default is False.</p>
@@ -690,7 +698,7 @@ possible to update each component of a nested object.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="skactiveml.stream.Split.update">
-<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_cand</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">queried_indices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">budget_manager_param_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/stream/_uncertainty.html#Split.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.stream.Split.update" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_cand</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">queried_indices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">budget_manager_param_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#skactiveml.stream.Split.update" title="Permalink to this definition">¶</a></dt>
 <dd><p>Updates the budget manager and the count for seen and queried
 instances</p>
 <dl class="field-list simple">
@@ -707,7 +715,7 @@ only if they are supported by the base query strategy.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>self</strong><span class="classifier">VariableUncertainty</span></dt><dd><p>The VariableUncertainty returns itself, after it is updated.</p>
+<dt><strong>self</strong><span class="classifier">UncertaintyZliobaite</span></dt><dd><p>The UncertaintyZliobaite returns itself, after it is updated.</p>
 </dd>
 </dl>
 </dd>
