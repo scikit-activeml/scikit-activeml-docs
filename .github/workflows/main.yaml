@@ -31,7 +31,9 @@ jobs:
           pip install -r scikit-activeml/requirements.txt
       - name: Create documentation with sphinx
         env:
+          N_SAMPLES: 100
           N_CYCLES: 25
+          RES: 21
         run: |
           pip install jupyter
           pip install sphinx==4.2.0
