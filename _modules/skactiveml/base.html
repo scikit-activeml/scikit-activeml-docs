@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>skactiveml.base &#8212; scikit-activeml 0.1.1 documentation</title>
+    <title>skactiveml.base &#8212; scikit-activeml 0.2.0 documentation</title>
     
     <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -183,33 +183,42 @@
 <span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">sklearn.base</span> <span class="kn">import</span> <span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">ClassifierMixin</span><span class="p">,</span> <span class="n">clone</span>
+<span class="kn">from</span> <span class="nn">sklearn.base</span> <span class="kn">import</span> <span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">ClassifierMixin</span>
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
 <span class="kn">from</span> <span class="nn">sklearn.utils.multiclass</span> <span class="kn">import</span> <span class="n">check_classification_targets</span>
-<span class="kn">from</span> <span class="nn">sklearn.utils.validation</span> <span class="kn">import</span> <span class="n">check_array</span><span class="p">,</span> <span class="n">check_consistent_length</span><span class="p">,</span> \
-    <span class="n">column_or_1d</span>
-
-<span class="kn">from</span> <span class="nn">.utils</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">MISSING_LABEL</span><span class="p">,</span>
-    <span class="n">check_classifier_params</span><span class="p">,</span>
-    <span class="n">check_random_state</span><span class="p">,</span>
-    <span class="n">rand_argmin</span><span class="p">,</span>
-    <span class="n">ExtLabelEncoder</span><span class="p">,</span>
-    <span class="n">check_cost_matrix</span><span class="p">,</span>
-    <span class="n">is_labeled</span><span class="p">,</span>
-    <span class="n">check_scalar</span><span class="p">,</span>
-    <span class="n">check_class_prior</span><span class="p">,</span>
+<span class="kn">from</span> <span class="nn">sklearn.utils.validation</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">check_array</span><span class="p">,</span>
+    <span class="n">check_consistent_length</span><span class="p">,</span>
+    <span class="n">column_or_1d</span><span class="p">,</span>
 <span class="p">)</span>
 
+<span class="kn">from</span> <span class="nn">.exceptions</span> <span class="kn">import</span> <span class="n">MappingError</span>
+<span class="kn">from</span> <span class="nn">.utils</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">MISSING_LABEL</span><span class="p">,</span>
+    <span class="n">is_labeled</span><span class="p">,</span>
+    <span class="n">is_unlabeled</span><span class="p">,</span>
+    <span class="n">unlabeled_indices</span><span class="p">,</span>
+    <span class="n">ExtLabelEncoder</span><span class="p">,</span>
+    <span class="n">rand_argmin</span><span class="p">,</span>
+    <span class="n">check_classifier_params</span><span class="p">,</span>
+    <span class="n">check_random_state</span><span class="p">,</span>
+    <span class="n">check_cost_matrix</span><span class="p">,</span>
+    <span class="n">check_scalar</span><span class="p">,</span>
+    <span class="n">check_class_prior</span><span class="p">,</span>
+    <span class="n">check_missing_label</span><span class="p">,</span>
+    <span class="n">check_indices</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># &#39;__all__&#39; is necessary to create the sphinx docs.</span>
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s2">&quot;QueryStrategy&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;SingleAnnotPoolBasedQueryStrategy&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;MultiAnnotPoolBasedQueryStrategy&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;SingleAnnotatorPoolQueryStrategy&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;MultiAnnotatorPoolQueryStrategy&quot;</span><span class="p">,</span>
     <span class="s2">&quot;BudgetManager&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;SingleAnnotStreamBasedQueryStrategy&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;SingleAnnotatorStreamQueryStrategy&quot;</span><span class="p">,</span>
     <span class="s2">&quot;SkactivemlClassifier&quot;</span><span class="p">,</span>
     <span class="s2">&quot;ClassFrequencyEstimator&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;AnnotModelMixin&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AnnotatorModelMixin&quot;</span><span class="p">,</span>
 <span class="p">]</span>
 
 
@@ -218,7 +227,7 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    random_state : int, RandomState instance, default=None</span>
+<span class="sd">    random_state : int or RandomState instance, optional (default=None)</span>
 <span class="sd">        Controls the randomness of the estimator.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -227,157 +236,161 @@
 
 <div class="viewcode-block" id="QueryStrategy.query"><a class="viewcode-back" href="../../generated/api/skactiveml.base.QueryStrategy.html#skactiveml.base.QueryStrategy.query">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Determines the query for active learning based on input arguments.</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Determines the query for active learning based on input arguments.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div></div>
 
 
-<div class="viewcode-block" id="SingleAnnotPoolBasedQueryStrategy"><a class="viewcode-back" href="../../generated/api/skactiveml.base.SingleAnnotPoolBasedQueryStrategy.html#skactiveml.base.SingleAnnotPoolBasedQueryStrategy">[docs]</a><span class="k">class</span> <span class="nc">SingleAnnotPoolBasedQueryStrategy</span><span class="p">(</span><span class="n">QueryStrategy</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Base class for all pool-based active learning query strategies with a</span>
-<span class="sd">    single annotator in scikit-activeml.</span>
+<span class="k">class</span> <span class="nc">PoolQueryStrategy</span><span class="p">(</span><span class="n">QueryStrategy</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Base class for all pool-based active learning query strategies in</span>
+<span class="sd">    scikit-activeml.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    random_state : int, RandomState instance, default=None</span>
+<span class="sd">    missing_label : scalar or string or np.nan or None, optional</span>
+<span class="sd">    (default=np.nan)</span>
+<span class="sd">        Value to represent a missing label.</span>
+<span class="sd">    random_state : int or RandomState instance, optional (default=None)</span>
 <span class="sd">        Controls the randomness of the estimator.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">missing_label</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">missing_label</span> <span class="o">=</span> <span class="n">missing_label</span>
 
-<div class="viewcode-block" id="SingleAnnotPoolBasedQueryStrategy.query"><a class="viewcode-back" href="../../generated/api/skactiveml.base.SingleAnnotPoolBasedQueryStrategy.html#skactiveml.base.SingleAnnotPoolBasedQueryStrategy.query">[docs]</a>    <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">query</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">X_cand</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">return_utilities</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="k">def</span> <span class="nf">_validate_data</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">X</span><span class="p">,</span>
+            <span class="n">y</span><span class="p">,</span>
+            <span class="n">candidates</span><span class="p">,</span>
+            <span class="n">batch_size</span><span class="p">,</span>
+            <span class="n">return_utilities</span><span class="p">,</span>
+            <span class="n">reset</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">check_X_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Determines which for which candidate samples labels are to be</span>
-<span class="sd">        queried.</span>
+        <span class="sd">&quot;&quot;&quot;Validate input data, all attributes and set or check the</span>
+<span class="sd">        `n_features_in_` attribute.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        X_cand : array-like, shape (n_samples, n_features)</span>
-<span class="sd">            Candidate samples from which the strategy can select.</span>
-<span class="sd">        batch_size : int, optional (default=1)</span>
+<span class="sd">        X : array-like of shape (n_samples, n_features)</span>
+<span class="sd">            Training data set, usually complete, i.e. including the labeled and</span>
+<span class="sd">            unlabeled samples.</span>
+<span class="sd">        y : array-like of shape (n_samples, *)</span>
+<span class="sd">            Labels of the training data set (possibly including unlabeled ones</span>
+<span class="sd">            indicated by self.MISSING_LABEL.</span>
+<span class="sd">        candidates : None or array-like of shape (n_candidates), dtype=int or</span>
+<span class="sd">            array-like of shape (n_candidates, n_features),</span>
+<span class="sd">            optional (default=None)</span>
+<span class="sd">            If candidates is None, the unlabeled samples from (X,y) are</span>
+<span class="sd">            considered as candidates.</span>
+<span class="sd">            If candidates is of shape (n_candidates) and of type int,</span>
+<span class="sd">            candidates is considered as the indices of the samples in (X,y).</span>
+<span class="sd">            If candidates is of shape (n_candidates, n_features), the</span>
+<span class="sd">            candidates are directly given in candidates (not necessarily</span>
+<span class="sd">            contained in X). This is not supported by all query strategies.</span>
+<span class="sd">        batch_size : int</span>
 <span class="sd">            The number of samples to be selected in one AL cycle.</span>
-<span class="sd">        return_utilities : bool, optional (default=False)</span>
+<span class="sd">        return_utilities : bool</span>
 <span class="sd">            If true, also return the utilities based on the query strategy.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        query_indices : numpy.ndarray, shape (batch_size)</span>
-<span class="sd">            The query_indices indicate for which candidate sample a label is</span>
-<span class="sd">            to queried, e.g., `query_indices[0]` indicates the first selected</span>
-<span class="sd">            sample.</span>
-<span class="sd">        utilities : numpy.ndarray, shape (batch_size, n_samples)</span>
-<span class="sd">            The utilities of all candidate samples after each selected</span>
-<span class="sd">            sample of the batch, e.g., `utilities[0]` indicates the utilities</span>
-<span class="sd">            used for selecting the first sample (with index `query_indices[0]`)</span>
-<span class="sd">            of the batch.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
-
-    <span class="k">def</span> <span class="nf">_validate_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X_cand</span><span class="p">,</span> <span class="n">return_utilities</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span>
-                       <span class="n">random_state</span><span class="p">,</span> <span class="n">reset</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">check_X_cand_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Validate input data and set or check the `n_features_in_` attribute.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        X_cand: array-like, shape (n_candidates, n_features)</span>
-<span class="sd">            Candidate samples.</span>
-<span class="sd">        batch_size : int,</span>
-<span class="sd">            The number of samples to be selected in one AL cycle.</span>
-<span class="sd">        return_utilities : bool,</span>
-<span class="sd">            If true, also return the utilities based on the query strategy.</span>
-<span class="sd">        random_state : numeric | np.random.RandomState, optional</span>
-<span class="sd">            The random state to use.</span>
 <span class="sd">        reset : bool, default=True</span>
 <span class="sd">            Whether to reset the `n_features_in_` attribute.</span>
 <span class="sd">            If False, the input will be checked for consistency with data</span>
 <span class="sd">            provided when reset was last True.</span>
-<span class="sd">        **check_X_cand_params : kwargs</span>
+<span class="sd">        **check_X_dict : kwargs</span>
 <span class="sd">            Parameters passed to :func:`sklearn.utils.check_array`.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        X_cand: np.ndarray, shape (n_candidates, n_features)</span>
-<span class="sd">            Checked candidate samples</span>
+<span class="sd">        X : np.ndarray of shape (n_samples, n_features)</span>
+<span class="sd">            Checked training data set.</span>
+<span class="sd">        y : np.ndarray of shape (n_samples, *)</span>
+<span class="sd">            Checked labels of the training data set.</span>
+<span class="sd">        candidates : None or np.ndarray of shape (n_candidates), dtype=int or</span>
+<span class="sd">            np.ndarray of shape (n_candidates, n_features)</span>
+<span class="sd">            Checked candidate samples.</span>
 <span class="sd">        batch_size : int</span>
 <span class="sd">            Checked number of samples to be selected in one AL cycle.</span>
 <span class="sd">        return_utilities : bool,</span>
 <span class="sd">            Checked boolean value of `return_utilities`.</span>
-<span class="sd">        random_state : np.random.RandomState,</span>
-<span class="sd">            Checked random state to use.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># Check candidate instances.</span>
-        <span class="k">if</span> <span class="n">check_X_cand_dict</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">check_X_cand_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;allow_nd&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
-        <span class="n">X_cand</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">X_cand</span><span class="p">,</span> <span class="o">**</span><span class="n">check_X_cand_dict</span><span class="p">)</span>
+        <span class="c1"># Check samples.</span>
+        <span class="k">if</span> <span class="n">check_X_dict</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">check_X_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;allow_nd&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="o">**</span><span class="n">check_X_dict</span><span class="p">)</span>
 
         <span class="c1"># Check number of features.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_check_n_features</span><span class="p">(</span><span class="n">X_cand</span><span class="p">,</span> <span class="n">reset</span><span class="o">=</span><span class="n">reset</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_n_features</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">reset</span><span class="o">=</span><span class="n">reset</span><span class="p">)</span>
+
+        <span class="c1"># Check labels</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">force_all_finite</span><span class="o">=</span><span class="s2">&quot;allow-nan&quot;</span><span class="p">)</span>
+        <span class="n">check_consistent_length</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+        <span class="c1"># Check missing_label</span>
+        <span class="n">check_missing_label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">missing_label</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">missing_label_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">missing_label</span>
+
+        <span class="c1"># Check candidates (+1 to avoid zero multiplier).</span>
+        <span class="n">seed_mult</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">is_unlabeled</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">missing_label_</span><span class="p">)))</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">candidates</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">candidates</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">candidates</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">candidates</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">candidates</span> <span class="o">=</span> <span class="n">check_indices</span><span class="p">(</span><span class="n">candidates</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">check_candidates_dict</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">check_X_dict</span><span class="p">)</span>
+                <span class="n">check_candidates_dict</span><span class="p">[</span><span class="s2">&quot;ensure_2d&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="n">candidates</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">candidates</span><span class="p">,</span> <span class="o">**</span><span class="n">check_candidates_dict</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_check_n_features</span><span class="p">(</span><span class="n">candidates</span><span class="p">,</span> <span class="n">reset</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
         <span class="c1"># Check return_utilities.</span>
         <span class="n">check_scalar</span><span class="p">(</span><span class="n">return_utilities</span><span class="p">,</span> <span class="s2">&quot;return_utilities&quot;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>
 
         <span class="c1"># Check batch size.</span>
         <span class="n">check_scalar</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">target_type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;batch_size&quot;</span><span class="p">,</span> <span class="n">min_val</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">batch_size</span> <span class="o">=</span> <span class="n">batch_size</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_cand</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">batch_size</span><span class="p">:</span>
-            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-                <span class="s2">&quot;&#39;batch_size=</span><span class="si">{}</span><span class="s2">&#39; is larger than number of candidate samples &quot;</span>
-                <span class="s2">&quot;in &#39;X_cand&#39;. Instead, &#39;batch_size=</span><span class="si">{}</span><span class="s2">&#39; was set &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                    <span class="n">batch_size</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_cand</span><span class="p">)</span>
-                <span class="p">)</span>
-            <span class="p">)</span>
-            <span class="n">batch_size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_cand</span><span class="p">)</span>
 
         <span class="c1"># Check random state.</span>
-        <span class="n">random_state</span> <span class="o">=</span> <span class="n">check_random_state</span><span class="p">(</span>
-            <span class="n">random_state</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state</span><span class="p">,</span> <span class="n">seed_multiplier</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">X_cand</span><span class="p">)</span>
-        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">random_state_</span> <span class="o">=</span> <span class="n">check_random_state</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state</span><span class="p">,</span> <span class="n">seed_mult</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">X_cand</span><span class="p">,</span> <span class="n">return_utilities</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">random_state</span></div>
+        <span class="k">return</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">candidates</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">return_utilities</span>
 
 
-<div class="viewcode-block" id="MultiAnnotPoolBasedQueryStrategy"><a class="viewcode-back" href="../../generated/api/skactiveml.base.MultiAnnotPoolBasedQueryStrategy.html#skactiveml.base.MultiAnnotPoolBasedQueryStrategy">[docs]</a><span class="k">class</span> <span class="nc">MultiAnnotPoolBasedQueryStrategy</span><span class="p">(</span><span class="n">QueryStrategy</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Base class for all pool-based active learning query strategies with</span>
-<span class="sd">    multiple annotators in scikit-activeml.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    random_state : int, RandomState instance, default=None</span>
-<span class="sd">        Controls the randomness of the estimator.</span>
-<span class="sd">    n_annotators : int,</span>
-<span class="sd">        Sets the number of annotators if `A_cand is None`.</span>
+<div class="viewcode-block" id="SingleAnnotatorPoolQueryStrategy"><a class="viewcode-back" href="../../generated/api/skactiveml.base.SingleAnnotatorPoolQueryStrategy.html#skactiveml.base.SingleAnnotatorPoolQueryStrategy">[docs]</a><span class="k">class</span> <span class="nc">SingleAnnotatorPoolQueryStrategy</span><span class="p">(</span><span class="n">PoolQueryStrategy</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Base class for all pool-based active learning query strategies with a</span>
+<span class="sd">    single annotator in scikit-activeml.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_annotators</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">n_annotators</span> <span class="o">=</span> <span class="n">n_annotators</span>
-
-<div class="viewcode-block" id="MultiAnnotPoolBasedQueryStrategy.query"><a class="viewcode-back" href="../../generated/api/skactiveml.base.MultiAnnotPoolBasedQueryStrategy.html#skactiveml.base.MultiAnnotPoolBasedQueryStrategy.query">[docs]</a>    <span class="nd">@abstractmethod</span>
+<div class="viewcode-block" id="SingleAnnotatorPoolQueryStrategy.query"><a class="viewcode-back" href="../../generated/api/skactiveml.base.SingleAnnotatorPoolQueryStrategy.html#skactiveml.base.SingleAnnotatorPoolQueryStrategy.query">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">query</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">X_cand</span><span class="p">,</span>
-        <span class="o">*</span><span class="n">args</span><span class="p">,</span>
-        <span class="n">A_cand</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-        <span class="n">return_utilities</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">X</span><span class="p">,</span>
+            <span class="n">y</span><span class="p">,</span>
+            <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+            <span class="n">candidates</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+            <span class="n">return_utilities</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Determines which candidate sample is to be annotated by which</span>
-<span class="sd">        annotator.</span>
+        <span class="sd">&quot;&quot;&quot;Determines for which candidate samples labels are to be queried.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        X_cand : array-like, shape (n_samples, n_features)</span>
-<span class="sd">            Candidate samples from which the strategy can select.</span>
-<span class="sd">        A_cand : array-like, shape (n_samples, n_annotators), optional</span>
-<span class="sd">        (default=None)</span>
-<span class="sd">            Boolean matrix where `A_cand[i,j] = True` indicates that</span>
-<span class="sd">            annotator `j` can be selected for annotating sample `X_cand[i]`,</span>
-<span class="sd">            while `A_cand[i,j] = False` indicates that annotator `j` cannot be</span>
-<span class="sd">            selected for annotating sample `X_cand[i]`. If A_cand=None, each</span>
-<span class="sd">            annotator is assumed to be available for labeling each sample.</span>
+<span class="sd">        X : array-like of shape (n_samples, n_features)</span>
+<span class="sd">            Training data set, usually complete, i.e. including the labeled and</span>
+<span class="sd">            unlabeled samples.</span>
+<span class="sd">        y : array-like of shape (n_samples)</span>
+<span class="sd">            Labels of the training data set (possibly including unlabeled ones</span>
+<span class="sd">            indicated by self.MISSING_LABEL.</span>
+<span class="sd">        candidates : None or array-like of shape (n_candidates), dtype=int or</span>
+<span class="sd">            array-like of shape (n_candidates, n_features),</span>
+<span class="sd">            optional (default=None)</span>
+<span class="sd">            If candidates is None, the unlabeled samples from (X,y) are</span>
+<span class="sd">            considered as candidates.</span>
+<span class="sd">            If candidates is of shape (n_candidates) and of type int,</span>
+<span class="sd">            candidates is considered as the indices of the samples in (X,y).</span>
+<span class="sd">            If candidates is of shape (n_candidates, n_features), the</span>
+<span class="sd">            candidates are directly given in candidates (not necessarily</span>
+<span class="sd">            contained in X). This is not supported by all query strategies.</span>
 <span class="sd">        batch_size : int, optional (default=1)</span>
 <span class="sd">            The number of samples to be selected in one AL cycle.</span>
 <span class="sd">        return_utilities : bool, optional (default=False)</span>
@@ -385,139 +398,517 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        query_indices : numpy.ndarray, shape (batch_size, 2)</span>
-<span class="sd">            The query_indices indicate which candidate sample is to be</span>
-<span class="sd">            annotated by which annotator, e.g., `query_indices[:, 0]`</span>
-<span class="sd">            indicates the selected candidate samples and `query_indices[:, 1]`</span>
-<span class="sd">            indicates the respectively selected annotators.</span>
-<span class="sd">        utilities: numpy.ndarray, shape (batch_size, n_samples, n_annotators)</span>
-<span class="sd">            The utilities of all candidate samples w.r.t. to the available</span>
-<span class="sd">            annotators after each selected sample of the batch, e.g.,</span>
-<span class="sd">            `utilities[0, :, j]` indicates the utilities used for selecting</span>
-<span class="sd">            the first sample-annotator pair (with indices `query_indices[0]`).</span>
+<span class="sd">        query_indices : numpy.ndarray of shape (batch_size)</span>
+<span class="sd">            The query_indices indicate for which candidate sample a label is</span>
+<span class="sd">            to queried, e.g., `query_indices[0]` indicates the first selected</span>
+<span class="sd">            sample.</span>
+<span class="sd">            If candidates is None or of shape (n_candidates), the indexing</span>
+<span class="sd">            refers to samples in X.</span>
+<span class="sd">            If candidates is of shape (n_candidates, n_features), the indexing</span>
+<span class="sd">            refers to samples in candidates.</span>
+<span class="sd">        utilities : numpy.ndarray of shape (batch_size, n_samples) or</span>
+<span class="sd">            numpy.ndarray of shape (batch_size, n_candidates)</span>
+<span class="sd">            The utilities of samples after each selected sample of the batch,</span>
+<span class="sd">            e.g., `utilities[0]` indicates the utilities used for selecting</span>
+<span class="sd">            the first sample (with index `query_indices[0]`) of the batch.</span>
+<span class="sd">            Utilities for labeled samples will be set to np.nan.</span>
+<span class="sd">            If candidates is None or of shape (n_candidates), the indexing</span>
+<span class="sd">            refers to samples in X.</span>
+<span class="sd">            If candidates is of shape (n_candidates, n_features), the indexing</span>
+<span class="sd">            refers to samples in candidates.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
     <span class="k">def</span> <span class="nf">_validate_data</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">X_cand</span><span class="p">,</span>
-        <span class="n">A_cand</span><span class="p">,</span>
-        <span class="n">return_utilities</span><span class="p">,</span>
-        <span class="n">batch_size</span><span class="p">,</span>
-        <span class="n">random_state</span><span class="p">,</span>
-        <span class="n">reset</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-        <span class="n">adaptive</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">check_X_cand_params</span><span class="p">,</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">X</span><span class="p">,</span>
+            <span class="n">y</span><span class="p">,</span>
+            <span class="n">candidates</span><span class="p">,</span>
+            <span class="n">batch_size</span><span class="p">,</span>
+            <span class="n">return_utilities</span><span class="p">,</span>
+            <span class="n">reset</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">check_X_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Validate input data and set or check the `n_features_in_` attribute.</span>
+        <span class="sd">&quot;&quot;&quot;Validate input data, all attributes and set or check the</span>
+<span class="sd">        `n_features_in_` attribute.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        X_cand: array-like, shape (n_candidates, n_features)</span>
-<span class="sd">            Candidate samples.</span>
-<span class="sd">        A_cand : array-like, shape (n_candidates, n_annotators), optional</span>
-<span class="sd">        (default=None)</span>
-<span class="sd">            Boolean matrix where `A_cand[i,j] = True` indicates that</span>
-<span class="sd">            annotator `j` can be selected for annotating sample `X_cand[i]`,</span>
-<span class="sd">            while `A_cand[i,j] = False` indicates that annotator `j` cannot be</span>
-<span class="sd">            selected for annotating sample `X_cand[i]`. If A_cand=None, each</span>
-<span class="sd">            annotator is assumed to be available for labeling each sample.</span>
-<span class="sd">        batch_size : &#39;adaptive&#39;|int,</span>
-<span class="sd">            The number of samples to be selected in one AL cycle. If &#39;adaptive&#39;</span>
-<span class="sd">            is set, the `batch_size` is determined by the query strategy or set</span>
-<span class="sd">            to 1 by default.</span>
-<span class="sd">        return_utilities : bool,</span>
+<span class="sd">        X : array-like of shape (n_samples, n_features)</span>
+<span class="sd">            Training data set, usually complete, i.e. including the labeled and</span>
+<span class="sd">            unlabeled samples.</span>
+<span class="sd">        y : array-like of shape (n_samples)</span>
+<span class="sd">            Labels of the training data set (possibly including unlabeled ones</span>
+<span class="sd">            indicated by self.MISSING_LABEL.</span>
+<span class="sd">        candidates : None or array-like of shape (n_candidates,), dtype=int or</span>
+<span class="sd">            array-like of shape (n_candidates, n_features),</span>
+<span class="sd">            optional (default=None)</span>
+<span class="sd">            If candidates is None, the unlabeled samples from (X,y) are</span>
+<span class="sd">            considered as candidates.</span>
+<span class="sd">            If candidates is of shape (n_candidates,) and of type int,</span>
+<span class="sd">            candidates is considered as the indices of the samples in (X,y).</span>
+<span class="sd">            If candidates is of shape (n_candidates, n_features), the</span>
+<span class="sd">            candidates are directly given in candidates (not necessarily</span>
+<span class="sd">            contained in X). This is not supported by all query strategies.</span>
+<span class="sd">        batch_size : int</span>
+<span class="sd">            The number of samples to be selected in one AL cycle.</span>
+<span class="sd">        return_utilities : bool</span>
 <span class="sd">            If true, also return the utilities based on the query strategy.</span>
-<span class="sd">        random_state : numeric | np.random.RandomState, optional</span>
-<span class="sd">            The random state to use.</span>
 <span class="sd">        reset : bool, default=True</span>
 <span class="sd">            Whether to reset the `n_features_in_` attribute.</span>
 <span class="sd">            If False, the input will be checked for consistency with data</span>
 <span class="sd">            provided when reset was last True.</span>
-<span class="sd">        adaptive : bool, default=False</span>
-<span class="sd">            Whether the query strategy implements an adaptive batch size or not.</span>
-<span class="sd">            If False and batch_size is set to adaptive, the batch_size will be</span>
-<span class="sd">            set to one.</span>
-<span class="sd">        **check_X_cand_params : kwargs</span>
+<span class="sd">        **check_X_dict : kwargs</span>
 <span class="sd">            Parameters passed to :func:`sklearn.utils.check_array`.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        X_cand: np.ndarray, shape (n_candidates, n_features)</span>
-<span class="sd">            Checked candidate samples</span>
-<span class="sd">        A_cand: np.ndarray, shape (n_candidates, n_annotators)</span>
+<span class="sd">        X : np.ndarray of shape (n_samples, n_features)</span>
+<span class="sd">            Checked training data set.</span>
+<span class="sd">        y : np.ndarray of shape (n_samples)</span>
+<span class="sd">            Checked labels of the training data set.</span>
+<span class="sd">        candidates :  None or np.ndarray of shape (n_candidates), dtype=int or</span>
+<span class="sd">            np.ndarray of shape (n_candidates, n_features)</span>
+<span class="sd">            Checked candidate samples.</span>
 <span class="sd">        batch_size : int</span>
 <span class="sd">            Checked number of samples to be selected in one AL cycle.</span>
 <span class="sd">        return_utilities : bool,</span>
 <span class="sd">            Checked boolean value of `return_utilities`.</span>
-<span class="sd">        random_state : np.random.RandomState,</span>
-<span class="sd">            Checked random state to use.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="c1"># Check candidate instances.</span>
-        <span class="n">X_cand</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">X_cand</span><span class="p">,</span> <span class="o">**</span><span class="n">check_X_cand_params</span><span class="p">)</span>
+        <span class="p">(</span>
+            <span class="n">X</span><span class="p">,</span>
+            <span class="n">y</span><span class="p">,</span>
+            <span class="n">candidates</span><span class="p">,</span>
+            <span class="n">batch_size</span><span class="p">,</span>
+            <span class="n">return_utilities</span><span class="p">,</span>
+        <span class="p">)</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_validate_data</span><span class="p">(</span>
+            <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">candidates</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">return_utilities</span><span class="p">,</span> <span class="n">reset</span><span class="p">,</span> <span class="n">check_X_dict</span>
+        <span class="p">)</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">column_or_1d</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">warn</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-        <span class="c1"># Check annotator instances.</span>
-        <span class="k">if</span> <span class="n">A_cand</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_annotators</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
-                    <span class="s2">&quot;The number of annotators can not be determined. &quot;</span>
-                    <span class="s2">&quot;Pass n_annotators in the Initialization or pass &quot;</span>
-                    <span class="s2">&quot;A_cand as the annotators matrix.&quot;</span>
+        <span class="k">if</span> <span class="n">candidates</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">n_candidates</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">is_unlabeled</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">missing_label</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">missing_label_</span><span class="p">))</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">n_candidates</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">candidates</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">n_candidates</span> <span class="o">&lt;</span> <span class="n">batch_size</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;&#39;batch_size=</span><span class="si">{</span><span class="n">batch_size</span><span class="si">}</span><span class="s2">&#39; is larger than number of &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;candidates. Instead, &#39;batch_size=</span><span class="si">{</span><span class="n">n_candidates</span><span class="si">}</span><span class="s2">&#39; was set.&quot;</span>
+            <span class="p">)</span>
+            <span class="n">batch_size</span> <span class="o">=</span> <span class="n">n_candidates</span>
+
+        <span class="k">return</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">candidates</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">return_utilities</span>
+
+    <span class="k">def</span> <span class="nf">_transform_candidates</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">candidates</span><span class="p">,</span>
+            <span class="n">X</span><span class="p">,</span>
+            <span class="n">y</span><span class="p">,</span>
+            <span class="n">enforce_mapping</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">allow_only_unlabeled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Transforms the `candidates` parameter into a sample array and the</span>
+<span class="sd">        corresponding index array `mapping` such that</span>
+<span class="sd">        `candidates = X[mapping]`.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        candidates :  None or np.ndarray of shape (n_candidates), dtype=int or</span>
+<span class="sd">            np.ndarray of shape (n_candidates, n_features)</span>
+<span class="sd">            Checked candidate samples.</span>
+<span class="sd">            If candidates is None, the unlabeled samples from (X,y) are</span>
+<span class="sd">            considered as candidates.</span>
+<span class="sd">            If candidates is of shape (n_candidates) and of type int,</span>
+<span class="sd">            candidates is considered as the indices of the samples in (X,y).</span>
+<span class="sd">            If candidates is of shape (n_candidates, n_features), the</span>
+<span class="sd">            candidates are directly given in candidates (not necessarily</span>
+<span class="sd">            contained in X). This is not supported by all query strategies.</span>
+<span class="sd">        X : np.ndarray of shape (n_samples, n_features)</span>
+<span class="sd">            Checked training data set.</span>
+<span class="sd">        y : np.ndarray of shape (n_samples)</span>
+<span class="sd">            Checked labels of the training data set.</span>
+<span class="sd">        enforce_mapping : bool, default=False</span>
+<span class="sd">            If True, an exception is raised when no exact mapping can be</span>
+<span class="sd">            determined (i.e., `mapping` is None).</span>
+<span class="sd">        allow_only_unlabeled : bool, default=False</span>
+<span class="sd">            If True, an exception is raised when indices of candidates contain</span>
+<span class="sd">            labeled samples.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        candidates : np.ndarray of shape (n_candidates, n_features)</span>
+<span class="sd">            Candidate samples from which the strategy can query the label.</span>
+<span class="sd">        mapping : np.ndarray of shape (n_candidates) or None</span>
+<span class="sd">            Index array that maps `candidates` to `X`.</span>
+<span class="sd">            (`candidates = X[mapping]`)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">candidates</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">ulbd_idx</span> <span class="o">=</span> <span class="n">unlabeled_indices</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">missing_label_</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">X</span><span class="p">[</span><span class="n">ulbd_idx</span><span class="p">],</span> <span class="n">ulbd_idx</span>
+        <span class="k">elif</span> <span class="n">candidates</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">allow_only_unlabeled</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">is_labeled</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">candidates</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">missing_label_</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                        <span class="s2">&quot;Candidates must not contain labeled &quot;</span> <span class="s2">&quot;samples.&quot;</span>
+                    <span class="p">)</span>
+            <span class="k">return</span> <span class="n">X</span><span class="p">[</span><span class="n">candidates</span><span class="p">],</span> <span class="n">candidates</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">enforce_mapping</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">MappingError</span><span class="p">(</span>
+                    <span class="s2">&quot;Mapping `candidates` to `X` is not &quot;</span>
+                    <span class="s2">&quot;possible but `enforce_mapping` is True. &quot;</span>
+                    <span class="s2">&quot;Use index array for `candidates` instead.&quot;</span>
                 <span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">check_scalar</span><span class="p">(</span>
-                    <span class="n">x</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_annotators</span><span class="p">,</span>
-                    <span class="n">target_type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span>
-                    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;n_annotators&quot;</span><span class="p">,</span>
-                    <span class="n">min_val</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-                <span class="p">)</span>
-                <span class="n">A_cand</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="n">X_cand</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_annotators</span><span class="p">),</span> <span class="kc">True</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">A_cand</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">A_cand</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">candidates</span><span class="p">,</span> <span class="kc">None</span></div>
 
-        <span class="n">check_consistent_length</span><span class="p">(</span><span class="n">X_cand</span><span class="p">,</span> <span class="n">A_cand</span><span class="p">)</span>
 
-        <span class="c1"># Check number of features.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_check_n_features</span><span class="p">(</span><span class="n">X_cand</span><span class="p">,</span> <span class="n">reset</span><span class="o">=</span><span class="n">reset</span><span class="p">)</span>
+<div class="viewcode-block" id="MultiAnnotatorPoolQueryStrategy"><a class="viewcode-back" href="../../generated/api/skactiveml.base.MultiAnnotatorPoolQueryStrategy.html#skactiveml.base.MultiAnnotatorPoolQueryStrategy">[docs]</a><span class="k">class</span> <span class="nc">MultiAnnotatorPoolQueryStrategy</span><span class="p">(</span><span class="n">PoolQueryStrategy</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Base class for all pool-based active learning query strategies with</span>
+<span class="sd">    multiple annotators in scikit-activeml.</span>
 
-        <span class="c1"># Check return_utilities.</span>
-        <span class="n">check_scalar</span><span class="p">(</span><span class="n">return_utilities</span><span class="p">,</span> <span class="s2">&quot;return_utilities&quot;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    missing_label : scalar or string or np.nan or None, optional</span>
+<span class="sd">    (default=np.nan)</span>
+<span class="sd">        Value to represent a missing label.</span>
+<span class="sd">    random_state : int or RandomState instance, optional (default=None)</span>
+<span class="sd">        Controls the randomness of the estimator.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
-        <span class="c1"># Check batch size.</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">batch_size</span> <span class="o">!=</span> <span class="s2">&quot;adaptive&quot;</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                    <span class="s2">&quot;If `batch_size` is a string, it &quot;</span>
-                    <span class="s2">&quot;must be set to `adaptive`.&quot;</span>
-                <span class="p">)</span>
-            <span class="k">elif</span> <span class="ow">not</span> <span class="n">adaptive</span><span class="p">:</span>
-                <span class="n">batch_size</span> <span class="o">=</span> <span class="mi">1</span>
-        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
-            <span class="n">check_scalar</span><span class="p">(</span>
-                <span class="n">batch_size</span><span class="p">,</span> <span class="n">target_type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;batch_size&quot;</span><span class="p">,</span> <span class="n">min_val</span><span class="o">=</span><span class="mi">1</span>
-            <span class="p">)</span>
+<div class="viewcode-block" id="MultiAnnotatorPoolQueryStrategy.query"><a class="viewcode-back" href="../../generated/api/skactiveml.base.MultiAnnotatorPoolQueryStrategy.html#skactiveml.base.MultiAnnotatorPoolQueryStrategy.query">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">query</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">X</span><span class="p">,</span>
+            <span class="n">y</span><span class="p">,</span>
+            <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+            <span class="n">candidates</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">annotators</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+            <span class="n">return_utilities</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Determines which candidate sample is to be annotated by which</span>
+<span class="sd">        annotator.</span>
 
-            <span class="n">n_queries</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">A_cand</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">n_queries</span> <span class="o">&lt;</span> <span class="n">batch_size</span><span class="p">:</span>
-                <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-                    <span class="s2">&quot;&#39;batch_size=</span><span class="si">{}</span><span class="s2">&#39; is larger than number of candidate queries &quot;</span>
-                    <span class="s2">&quot;in &#39;A_cand&#39;. Instead, &#39;batch_size=</span><span class="si">{}</span><span class="s2">&#39; was set.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                        <span class="n">batch_size</span><span class="p">,</span> <span class="n">n_queries</span>
-                    <span class="p">)</span>
-                <span class="p">)</span>
-                <span class="n">batch_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">n_queries</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
-                <span class="s2">&quot;`batch_size` must be either a string or an &quot;</span> <span class="s2">&quot;integer.&quot;</span>
-            <span class="p">)</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : array-like of shape (n_samples, n_features)</span>
+<span class="sd">            Training data set, usually complete, i.e., including the labeled</span>
+<span class="sd">            and unlabeled samples.</span>
+<span class="sd">        y : array-like of shape (n_samples, n_annotators)</span>
+<span class="sd">            Labels of the training data set for each annotator (possibly</span>
+<span class="sd">            including unlabeled ones indicated by self.MISSING_LABEL), meaning</span>
+<span class="sd">            that `y[i, j]` contains the label annotated by annotator `i` for</span>
+<span class="sd">            sample `j`.</span>
+<span class="sd">        candidates : None or array-like of shape (n_candidates), dtype=int or</span>
+<span class="sd">            array-like of shape (n_candidates, n_features),</span>
+<span class="sd">            optional (default=None)</span>
+<span class="sd">            If `candidates` is None, the samples from (X,y), for which an</span>
+<span class="sd">            annotator exists such that the annotator sample pair is</span>
+<span class="sd">            unlabeled are considered as sample candidates.</span>
+<span class="sd">            If `candidates` is of shape (n_candidates,) and of type int,</span>
+<span class="sd">            `candidates` is considered as the indices of the sample candidates</span>
+<span class="sd">            in (X,y).</span>
+<span class="sd">            If `candidates` is of shape (n_candidates, n_features), the</span>
+<span class="sd">            sample candidates are directly given in `candidates` (not</span>
+<span class="sd">            necessarily contained in `X`). This is not supported by all query</span>
+<span class="sd">            strategies.</span>
+<span class="sd">        annotators : array-like of shape (n_candidates, n_annotators), optional</span>
+<span class="sd">        (default=None)</span>
+<span class="sd">            If `annotators` is None, all annotators are considered as available</span>
+<span class="sd">            annotators.</span>
+<span class="sd">            If `annotators` is of shape (n_avl_annotators), and of type int,</span>
+<span class="sd">            `annotators` is considered as the indices of the available</span>
+<span class="sd">            annotators.</span>
+<span class="sd">            If candidate samples and available annotators are specified:</span>
+<span class="sd">            The annotator-sample-pairs, for which the sample is a candidate</span>
+<span class="sd">            sample and the annotator is an available annotator are considered</span>
+<span class="sd">            as candidate annotator-sample-pairs.</span>
+<span class="sd">            If `annotators` is a boolean array of shape (n_candidates,</span>
+<span class="sd">            n_avl_annotators) the annotator-sample-pairs, for which the sample</span>
+<span class="sd">            is a candidate sample and the boolean matrix has entry `True` are</span>
+<span class="sd">            considered as candidate sample pairs.</span>
+<span class="sd">        batch_size : int, optional (default=1)</span>
+<span class="sd">            The number of annotators sample pairs to be selected in one AL</span>
+<span class="sd">            cycle.</span>
+<span class="sd">        return_utilities : bool, optional (default=False)</span>
+<span class="sd">            If true, also return the utilities based on the query strategy.</span>
 
-        <span class="c1"># Check random state.</span>
-        <span class="n">random_state</span> <span class="o">=</span> <span class="n">check_random_state</span><span class="p">(</span>
-            <span class="n">random_state</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state</span><span class="p">,</span> <span class="n">seed_multiplier</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">X_cand</span><span class="p">)</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        query_indices : np.ndarray of shape (batchsize, 2)</span>
+<span class="sd">            The query_indices indicate which candidate sample pairs are to be</span>
+<span class="sd">            queried is, i.e., which candidate sample is to be annotated by</span>
+<span class="sd">            which annotator, e.g., `query_indices[:, 0]` indicates the selected</span>
+<span class="sd">            candidate samples and `query_indices[:, 1]` indicates the</span>
+<span class="sd">            respectively selected annotators.</span>
+<span class="sd">        utilities: numpy.ndarray of shape (batch_size, n_samples, n_annotators)</span>
+<span class="sd">         or numpy.ndarray of shape (batch_size, n_candidates, n_annotators)</span>
+<span class="sd">            The utilities of all candidate samples w.r.t. to the available</span>
+<span class="sd">            annotators after each selected sample of the batch, e.g.,</span>
+<span class="sd">            `utilities[0, :, j]` indicates the utilities used for selecting</span>
+<span class="sd">            the first sample-annotator-pair (with indices `query_indices[0]`).</span>
+<span class="sd">            If `candidates is None` or of shape (n_candidates), the indexing</span>
+<span class="sd">            refers to samples in `X`.</span>
+<span class="sd">            If `candidates` is of shape (n_candidates, n_features), the</span>
+<span class="sd">            indexing refers to samples in `candidates`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+    <span class="k">def</span> <span class="nf">_validate_data</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">X</span><span class="p">,</span>
+            <span class="n">y</span><span class="p">,</span>
+            <span class="n">candidates</span><span class="p">,</span>
+            <span class="n">annotators</span><span class="p">,</span>
+            <span class="n">batch_size</span><span class="p">,</span>
+            <span class="n">return_utilities</span><span class="p">,</span>
+            <span class="n">reset</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">check_X_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Validate input data, all attributes and set or check the</span>
+<span class="sd">        `n_features_in_` attribute.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : array-like of shape (n_samples, n_features)</span>
+<span class="sd">            Training data set, usually complete, i.e., including the labeled</span>
+<span class="sd">            and unlabeled samples.</span>
+<span class="sd">        y : array-like of shape (n_samples, n_annotators)</span>
+<span class="sd">            Labels of the training data set for each annotator (possibly</span>
+<span class="sd">            including unlabeled ones indicated by self.MISSING_LABEL), meaning</span>
+<span class="sd">            that `y[i, j]` contains the label annotated by annotator `i` for</span>
+<span class="sd">            sample `j`.</span>
+<span class="sd">        candidates : None or array-like of shape (n_candidates), dtype=int or</span>
+<span class="sd">            array-like of shape (n_candidates, n_features),</span>
+<span class="sd">            optional (default=None)</span>
+<span class="sd">            If `candidates` is None, the samples from (X,y), for which an</span>
+<span class="sd">            annotator exists such that the annotator sample pairs is</span>
+<span class="sd">            unlabeled are considered as sample candidates.</span>
+<span class="sd">            If `candidates` is of shape (n_candidates,) and of type int,</span>
+<span class="sd">            `candidates` is considered as the indices of the sample candidates</span>
+<span class="sd">            in (X,y).</span>
+<span class="sd">            If `candidates` is of shape (n_candidates, n_features), the</span>
+<span class="sd">            sample candidates are directly given in `candidates` (not</span>
+<span class="sd">            necessarily contained in `X`). This is not supported by all query</span>
+<span class="sd">            strategies.</span>
+<span class="sd">        annotators : array-like of shape (n_candidates, n_annotators), optional</span>
+<span class="sd">        (default=None)</span>
+<span class="sd">            If `annotators` is None, all annotators are considered as available</span>
+<span class="sd">            annotators.</span>
+<span class="sd">            If `annotators` is of shape (n_avl_annotators), and of type int,</span>
+<span class="sd">            `annotators` is considered as the indices of the available</span>
+<span class="sd">            annotators.</span>
+<span class="sd">            If candidate samples and available annotators are specified:</span>
+<span class="sd">            The annotator-sample-pairs, for which the sample is a candidate</span>
+<span class="sd">            sample and the annotator is an available annotator are considered</span>
+<span class="sd">            as candidate annotator-sample-pairs.</span>
+<span class="sd">            If `annotators` is a boolean array of shape (n_candidates,</span>
+<span class="sd">            n_avl_annotators) the annotator-sample-pairs, for which the sample</span>
+<span class="sd">            is a candidate sample and the boolean matrix has entry `True` are</span>
+<span class="sd">            considered as candidate sample pairs.</span>
+<span class="sd">        batch_size : int or string, optional (default=1)</span>
+<span class="sd">            The number of annotators sample pairs to be selected in one AL</span>
+<span class="sd">            cycle. If `adaptive = True` `batch_size = &#39;adaptive&#39;` is allowed.</span>
+<span class="sd">        return_utilities : bool</span>
+<span class="sd">            If true, also return the utilities based on the query strategy.</span>
+<span class="sd">        reset : bool, default=True</span>
+<span class="sd">            Whether to reset the `n_features_in_` attribute.</span>
+<span class="sd">            If False, the input will be checked for consistency with data</span>
+<span class="sd">            provided when reset was last True.</span>
+<span class="sd">        **check_X_dict : kwargs</span>
+<span class="sd">            Parameters passed to :func:`sklearn.utils.check_array`.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        X : np.ndarray of shape (n_samples, n_features)</span>
+<span class="sd">            Checked training data set.</span>
+<span class="sd">        y : np.ndarray of shape (n_samples, n_annotators)</span>
+<span class="sd">            Checked labels of the training data set.</span>
+<span class="sd">        candidates :  None or np.ndarray of shape (n_candidates), dtype=int or</span>
+<span class="sd">            np.ndarray of shape (n_candidates, n_features)</span>
+<span class="sd">            Checked candidate samples.</span>
+<span class="sd">        annotators : None or np.ndarray of shape (n_avl_annotators), dtype=int</span>
+<span class="sd">            or np.ndarray of shape (n_candidates, n_annotators)</span>
+<span class="sd">            Checked annotator boolean array</span>
+<span class="sd">        batch_size : int</span>
+<span class="sd">            Checked number of samples to be selected in one AL cycle.</span>
+<span class="sd">        return_utilities : bool,</span>
+<span class="sd">            Checked boolean value of `return_utilities`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="p">(</span>
+            <span class="n">X</span><span class="p">,</span>
+            <span class="n">y</span><span class="p">,</span>
+            <span class="n">candidates</span><span class="p">,</span>
+            <span class="n">batch_size</span><span class="p">,</span>
+            <span class="n">return_utilities</span><span class="p">,</span>
+        <span class="p">)</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_validate_data</span><span class="p">(</span>
+            <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">candidates</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">return_utilities</span><span class="p">,</span> <span class="n">reset</span><span class="p">,</span> <span class="n">check_X_dict</span>
         <span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">X_cand</span><span class="p">,</span> <span class="n">A_cand</span><span class="p">,</span> <span class="n">return_utilities</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">random_state</span></div>
+        <span class="n">check_array</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">force_all_finite</span><span class="o">=</span><span class="s2">&quot;allow-nan&quot;</span><span class="p">)</span>
+        <span class="n">unlabeled_pairs</span> <span class="o">=</span> <span class="n">is_unlabeled</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">missing_label</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">missing_label_</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">annotators</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">annotators</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span>
+                <span class="n">annotators</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">allow_nd</span><span class="o">=</span><span class="kc">True</span>
+            <span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">annotators</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">annotators</span> <span class="o">=</span> <span class="n">check_indices</span><span class="p">(</span><span class="n">annotators</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">annotators</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="n">annotators</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">annotators</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">candidates</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">candidates</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">check_consistent_length</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">annotators</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">check_consistent_length</span><span class="p">(</span><span class="n">candidates</span><span class="p">,</span> <span class="n">annotators</span><span class="p">)</span>
+                <span class="n">check_consistent_length</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">annotators</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">&quot;`annotators` must be either None, 1d or 2d &quot;</span> <span class="s2">&quot;array-like.&quot;</span>
+                <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">annotators</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">candidates</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">n_candidate_pairs</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">unlabeled_pairs</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="n">candidates</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">n_candidate_pairs</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">candidates</span><span class="p">)</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">n_candidate_pairs</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">candidates</span><span class="p">)</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">annotators</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">candidates</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">n_candidate_pairs</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">unlabeled_pairs</span><span class="p">[:,</span> <span class="n">annotators</span><span class="p">]))</span>
+            <span class="k">elif</span> <span class="n">candidates</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">n_candidate_pairs</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span>
+                    <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">unlabeled_pairs</span><span class="p">[</span><span class="n">candidates</span><span class="p">][:,</span> <span class="n">annotators</span><span class="p">])</span>
+                <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">n_candidate_pairs</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">candidates</span><span class="p">)</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">annotators</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">n_candidate_pairs</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">annotators</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">n_candidate_pairs</span> <span class="o">&lt;</span> <span class="n">batch_size</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;&#39;batch_size=</span><span class="si">{</span><span class="n">batch_size</span><span class="si">}</span><span class="s2">&#39; is larger than number of &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;candidates pairs. Instead, &#39;batch_size=</span><span class="si">{</span><span class="n">n_candidate_pairs</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
+                <span class="sa">f</span><span class="s2">&quot; was set.&quot;</span>
+            <span class="p">)</span>
+            <span class="n">batch_size</span> <span class="o">=</span> <span class="n">n_candidate_pairs</span>
+
+        <span class="k">return</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">candidates</span><span class="p">,</span> <span class="n">annotators</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">return_utilities</span>
+
+    <span class="k">def</span> <span class="nf">_transform_cand_annot</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span> <span class="n">candidates</span><span class="p">,</span> <span class="n">annotators</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">enforce_mapping</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Transforms the `candidates` parameter into a sample array and the</span>
+<span class="sd">        corresponding index array `mapping` such that</span>
+<span class="sd">        `candidates = X[mapping]`, and transforms `annotators` into a boolean</span>
+<span class="sd">        array such that `A_cand` represents the available annotator sample</span>
+<span class="sd">        pairs for the samples of candidates.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        candidates : None or array-like of shape (n_candidates), dtype=int or</span>
+<span class="sd">            array-like of shape (n_candidates, n_features),</span>
+<span class="sd">            optional (default=None)</span>
+<span class="sd">            If `candidates` is None, the samples from (X,y), for which an</span>
+<span class="sd">            annotator exists such that the annotator sample pairs is</span>
+<span class="sd">            unlabeled are considered as sample candidates.</span>
+<span class="sd">            If `candidates` is of shape (n_candidates,) and of type int,</span>
+<span class="sd">            `candidates` is considered as the indices of the sample candidates</span>
+<span class="sd">            in (X,y).</span>
+<span class="sd">            If `candidates` is of shape (n_candidates, n_features), the</span>
+<span class="sd">            sample candidates are directly given in `candidates` (not</span>
+<span class="sd">            necessarily contained in `X`). This is not supported by all query</span>
+<span class="sd">            strategies.</span>
+<span class="sd">        annotators : array-like of shape (n_candidates, n_annotators), optional</span>
+<span class="sd">        (default=None)</span>
+<span class="sd">            If `annotators` is None, all annotators are considered as available</span>
+<span class="sd">            annotators.</span>
+<span class="sd">            If `annotators` is of shape (n_avl_annotators), and of type int,</span>
+<span class="sd">            `annotators` is considered as the indices of the available</span>
+<span class="sd">            annotators.</span>
+<span class="sd">            If candidate samples and available annotators are specified:</span>
+<span class="sd">            The annotator-sample-pairs, for which the sample is a candidate</span>
+<span class="sd">            sample and the annotator is an available annotator are considered</span>
+<span class="sd">            as candidate annotator-sample-pairs.</span>
+<span class="sd">            If `annotators` is a boolean array of shape (n_candidates,</span>
+<span class="sd">            n_avl_annotators) the annotator-sample-pairs, for which the sample</span>
+<span class="sd">            is a candidate sample and the boolean matrix has entry `True` are</span>
+<span class="sd">            considered as candidate sample pairs.</span>
+<span class="sd">        X : np.ndarray of shape (n_samples, n_features)</span>
+<span class="sd">            Checked training data set.</span>
+<span class="sd">        y : np.ndarray of shape (n_samples,)</span>
+<span class="sd">            Checked labels of the training data set.</span>
+<span class="sd">        enforce_mapping : bool, optional (default=False)</span>
+<span class="sd">            If `True`, an exception is raised when no exact mapping can be</span>
+<span class="sd">            determined (i.e., `mapping` is None).</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        candidates : np.ndarray of shape (n_candidates, n_features)</span>
+<span class="sd">            Candidate samples from which the strategy can query the label.</span>
+<span class="sd">        mapping : np.ndarray of shape (n_candidates) or None</span>
+<span class="sd">            Index array that maps `candidates` to `X`</span>
+<span class="sd">            (`candidates = X[mapping]`).</span>
+<span class="sd">        A_cand : np.ndarray of shape(n_candidates, n_annotators)</span>
+<span class="sd">            Available annotator sample pair with respect to `candidates`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">unlbd_pairs</span> <span class="o">=</span> <span class="n">is_unlabeled</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">missing_label_</span><span class="p">)</span>
+        <span class="n">unlbd_sample_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">unlbd_pairs</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+        <span class="n">n_annotators</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">candidates</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">candidates</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">n_candidates</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">candidates</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">annotators</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">A_cand</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="n">n_candidates</span><span class="p">,</span> <span class="n">n_annotators</span><span class="p">),</span> <span class="kc">True</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">annotators</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">A_cand</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="n">n_candidates</span><span class="p">,</span> <span class="n">n_annotators</span><span class="p">),</span> <span class="kc">False</span><span class="p">)</span>
+                <span class="n">A_cand</span><span class="p">[:,</span> <span class="n">annotators</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">A_cand</span> <span class="o">=</span> <span class="n">annotators</span>
+
+            <span class="k">if</span> <span class="n">enforce_mapping</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">&quot;Mapping `candidates` to `X` is not posssible&quot;</span>
+                    <span class="s2">&quot;but `enforce_mapping` is True. Use index&quot;</span>
+                    <span class="s2">&quot;array for `candidates` instead.&quot;</span>
+                <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">candidates</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">A_cand</span>
+
+        <span class="k">if</span> <span class="n">candidates</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">candidates</span> <span class="o">=</span> <span class="n">unlbd_sample_indices</span>
+            <span class="n">only_candidates</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">elif</span> <span class="n">annotators</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">candidates</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">intersect1d</span><span class="p">(</span><span class="n">candidates</span><span class="p">,</span> <span class="n">unlbd_sample_indices</span><span class="p">)</span>
+            <span class="n">only_candidates</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">only_candidates</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="k">if</span> <span class="n">only_candidates</span><span class="p">:</span>
+            <span class="n">A_cand</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">candidates</span><span class="p">),</span> <span class="n">n_annotators</span><span class="p">),</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">annotators</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">A_cand</span> <span class="o">=</span> <span class="n">unlbd_pairs</span><span class="p">[</span><span class="n">candidates</span><span class="p">,</span> <span class="p">:]</span>
+        <span class="k">elif</span> <span class="n">annotators</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">available_pairs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full_like</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+            <span class="n">available_pairs</span><span class="p">[:,</span> <span class="n">annotators</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">A_cand</span> <span class="o">=</span> <span class="p">(</span><span class="n">unlbd_pairs</span> <span class="o">&amp;</span> <span class="n">available_pairs</span><span class="p">)[</span><span class="n">candidates</span><span class="p">,</span> <span class="p">:]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">A_cand</span> <span class="o">=</span> <span class="n">annotators</span>
+
+        <span class="k">return</span> <span class="n">X</span><span class="p">[</span><span class="n">candidates</span><span class="p">],</span> <span class="n">candidates</span><span class="p">,</span> <span class="n">A_cand</span></div>
 
 
 <div class="viewcode-block" id="BudgetManager"><a class="viewcode-back" href="../../generated/api/skactiveml.base.BudgetManager.html#skactiveml.base.BudgetManager">[docs]</a><span class="k">class</span> <span class="nc">BudgetManager</span><span class="p">(</span><span class="n">ABC</span><span class="p">,</span> <span class="n">BaseEstimator</span><span class="p">):</span>
@@ -556,16 +947,17 @@
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
 <div class="viewcode-block" id="BudgetManager.update"><a class="viewcode-back" href="../../generated/api/skactiveml.base.BudgetManager.html#skactiveml.base.BudgetManager.update">[docs]</a>    <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X_cand</span><span class="p">,</span> <span class="n">queried_indices</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">candidates</span><span class="p">,</span> <span class="n">queried_indices</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Updates the BudgetManager.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        X_cand : {array-like, sparse matrix} of shape (n_samples, n_features)</span>
+<span class="sd">        candidates : {array-like, sparse matrix} of shape</span>
+<span class="sd">        (n_samples, n_features)</span>
 <span class="sd">            The instances which may be queried. Sparse matrices are accepted</span>
 <span class="sd">            only if they are supported by the base query strategy.</span>
 <span class="sd">        queried_indices : array-like</span>
-<span class="sd">            Indicates which instances from X_cand have been queried.</span>
+<span class="sd">            Indicates which instances from candidates have been queried.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -615,7 +1007,7 @@
         <span class="k">return</span> <span class="n">utilities</span></div>
 
 
-<div class="viewcode-block" id="SingleAnnotStreamBasedQueryStrategy"><a class="viewcode-back" href="../../generated/api/skactiveml.base.SingleAnnotStreamBasedQueryStrategy.html#skactiveml.base.SingleAnnotStreamBasedQueryStrategy">[docs]</a><span class="k">class</span> <span class="nc">SingleAnnotStreamBasedQueryStrategy</span><span class="p">(</span><span class="n">QueryStrategy</span><span class="p">):</span>
+<div class="viewcode-block" id="SingleAnnotatorStreamQueryStrategy"><a class="viewcode-back" href="../../generated/api/skactiveml.base.SingleAnnotatorStreamQueryStrategy.html#skactiveml.base.SingleAnnotatorStreamQueryStrategy">[docs]</a><span class="k">class</span> <span class="nc">SingleAnnotatorStreamQueryStrategy</span><span class="p">(</span><span class="n">QueryStrategy</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Base class for all stream-based active learning query strategies in</span>
 <span class="sd">       scikit-activeml.</span>
 
@@ -632,13 +1024,13 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">budget</span> <span class="o">=</span> <span class="n">budget</span>
 
-<div class="viewcode-block" id="SingleAnnotStreamBasedQueryStrategy.query"><a class="viewcode-back" href="../../generated/api/skactiveml.base.SingleAnnotStreamBasedQueryStrategy.html#skactiveml.base.SingleAnnotStreamBasedQueryStrategy.query">[docs]</a>    <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X_cand</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">return_utilities</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Ask the query strategy which instances in X_cand to acquire.</span>
+<div class="viewcode-block" id="SingleAnnotatorStreamQueryStrategy.query"><a class="viewcode-back" href="../../generated/api/skactiveml.base.SingleAnnotatorStreamQueryStrategy.html#skactiveml.base.SingleAnnotatorStreamQueryStrategy.query">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">candidates</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">return_utilities</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Ask the query strategy which instances in candidates to acquire.</span>
 
-<span class="sd">        The query startegy determines the most useful instances in X_cand,</span>
+<span class="sd">        The query startegy determines the most useful instances in candidates,</span>
 <span class="sd">        which can be acquired within the budgeting constraint specified by the</span>
-<span class="sd">        budget_manager.</span>
+<span class="sd">        budgetmanager.</span>
 <span class="sd">        Please note that, when the decisions from this function</span>
 <span class="sd">        may differ from the final sampling, simulate=True can set, so that the</span>
 <span class="sd">        query strategy can be updated later with update(...) with the final</span>
@@ -647,7 +1039,8 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        X_cand : {array-like, sparse matrix} of shape (n_samples, n_features)</span>
+<span class="sd">        candidates : {array-like, sparse matrix} of shape</span>
+<span class="sd">        (n_samples, n_features)</span>
 <span class="sd">            The instances which may be queried. Sparse matrices are accepted</span>
 <span class="sd">            only if they are supported by the base query strategy.</span>
 
@@ -658,8 +1051,8 @@
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        queried_indices : ndarray of shape (n_sampled_instances,)</span>
-<span class="sd">            The indices of instances in X_cand which should be sampled, with</span>
-<span class="sd">            0 &lt;= n_sampled_instances &lt;= n_samples.</span>
+<span class="sd">            The indices of instances in candidates which should be sampled,</span>
+<span class="sd">            with 0 &lt;= n_sampled_instances &lt;= n_samples.</span>
 
 <span class="sd">        utilities: ndarray of shape (n_samples,), optional</span>
 <span class="sd">            The utilities based on the query strategy. Only provided if</span>
@@ -667,10 +1060,10 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
-<div class="viewcode-block" id="SingleAnnotStreamBasedQueryStrategy.update"><a class="viewcode-back" href="../../generated/api/skactiveml.base.SingleAnnotStreamBasedQueryStrategy.html#skactiveml.base.SingleAnnotStreamBasedQueryStrategy.update">[docs]</a>    <span class="nd">@abstractmethod</span>
+<div class="viewcode-block" id="SingleAnnotatorStreamQueryStrategy.update"><a class="viewcode-back" href="../../generated/api/skactiveml.base.SingleAnnotatorStreamQueryStrategy.html#skactiveml.base.SingleAnnotatorStreamQueryStrategy.update">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">update</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">X_cand</span><span class="p">,</span>
+        <span class="n">candidates</span><span class="p">,</span>
         <span class="n">queried_indices</span><span class="p">,</span>
         <span class="o">*</span><span class="n">args</span><span class="p">,</span>
         <span class="n">budget_manager_param_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -686,15 +1079,16 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        X_cand : {array-like, sparse matrix} of shape (n_samples, n_features)</span>
+<span class="sd">        candidates : {array-like, sparse matrix} of shape</span>
+<span class="sd">        (n_samples, n_features)</span>
 <span class="sd">            The instances which could be queried. Sparse matrices are accepted</span>
 <span class="sd">            only if they are supported by the base query strategy.</span>
 
 <span class="sd">        queried_indices : array-like</span>
-<span class="sd">            Indicates which instances from X_cand have been queried.</span>
+<span class="sd">            Indicates which instances from candidates have been queried.</span>
 
 <span class="sd">        budget_manager_param_dict : kwargs, optional</span>
-<span class="sd">            Optional kwargs for budget_manager.</span>
+<span class="sd">            Optional kwargs for budgetmanager.</span>
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        self : StreamBasedQueryStrategy</span>
@@ -716,22 +1110,28 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">budget_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">budget</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">budget_</span> <span class="o">=</span> <span class="mf">0.1</span>
-        <span class="n">check_scalar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">budget_</span><span class="p">,</span> <span class="s2">&quot;budget&quot;</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="n">min_val</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">max_val</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
-                     <span class="n">min_inclusive</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="p">)</span>
+        <span class="n">check_scalar</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">budget_</span><span class="p">,</span>
+            <span class="s2">&quot;budget&quot;</span><span class="p">,</span>
+            <span class="nb">float</span><span class="p">,</span>
+            <span class="n">min_val</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+            <span class="n">max_val</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+            <span class="n">min_inclusive</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_validate_data</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">X_cand</span><span class="p">,</span>
+        <span class="n">candidates</span><span class="p">,</span>
         <span class="n">return_utilities</span><span class="p">,</span>
         <span class="o">*</span><span class="n">args</span><span class="p">,</span>
         <span class="n">reset</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">check_X_cand_params</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">check_candidates_params</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Validate input data and set or check the `n_features_in_` attribute.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        X_cand: array-like of shape (n_candidates, n_features)</span>
+<span class="sd">        candidates: array-like of shape (n_candidates, n_features)</span>
 <span class="sd">            The instances which may be queried. Sparse matrices are accepted</span>
 <span class="sd">            only if they are supported by the base query strategy.</span>
 <span class="sd">        return_utilities : bool,</span>
@@ -740,21 +1140,21 @@
 <span class="sd">            Whether to reset the `n_features_in_` attribute.</span>
 <span class="sd">            If False, the input will be checked for consistency with data</span>
 <span class="sd">            provided when reset was last True.</span>
-<span class="sd">        **check_X_cand_params : kwargs</span>
+<span class="sd">        **check_candidates_params : kwargs</span>
 <span class="sd">            Parameters passed to :func:`sklearn.utils.check_array`.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        X_cand: np.ndarray, shape (n_candidates, n_features)</span>
+<span class="sd">        candidates: np.ndarray, shape (n_candidates, n_features)</span>
 <span class="sd">            Checked candidate samples</span>
 <span class="sd">        return_utilities : bool,</span>
 <span class="sd">            Checked boolean value of `return_utilities`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Check candidate instances.</span>
-        <span class="n">X_cand</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">X_cand</span><span class="p">,</span> <span class="o">**</span><span class="n">check_X_cand_params</span><span class="p">)</span>
+        <span class="n">candidates</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">candidates</span><span class="p">,</span> <span class="o">**</span><span class="n">check_candidates_params</span><span class="p">)</span>
 
         <span class="c1"># Check number of features.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_check_n_features</span><span class="p">(</span><span class="n">X_cand</span><span class="p">,</span> <span class="n">reset</span><span class="o">=</span><span class="n">reset</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_n_features</span><span class="p">(</span><span class="n">candidates</span><span class="p">,</span> <span class="n">reset</span><span class="o">=</span><span class="n">reset</span><span class="p">)</span>
 
         <span class="c1"># Check return_utilities.</span>
         <span class="n">check_scalar</span><span class="p">(</span><span class="n">return_utilities</span><span class="p">,</span> <span class="s2">&quot;return_utilities&quot;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>
@@ -762,10 +1162,10 @@
         <span class="c1"># Check random state.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_validate_random_state</span><span class="p">()</span>
 
-        <span class="c1"># Check budget_manager.</span>
+        <span class="c1"># Check budgetmanager.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_validate_budget</span><span class="p">()</span>
 
-        <span class="k">return</span> <span class="n">X_cand</span><span class="p">,</span> <span class="n">return_utilities</span></div>
+        <span class="k">return</span> <span class="n">candidates</span><span class="p">,</span> <span class="n">return_utilities</span></div>
 
 
 <div class="viewcode-block" id="SkactivemlClassifier"><a class="viewcode-back" href="../../generated/api/skactiveml.base.SkactivemlClassifier.html#skactiveml.base.SkactivemlClassifier">[docs]</a><span class="k">class</span> <span class="nc">SkactivemlClassifier</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">ClassifierMixin</span><span class="p">,</span> <span class="n">ABC</span><span class="p">):</span>
@@ -800,11 +1200,11 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">classes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">missing_label</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">,</span>
-        <span class="n">cost_matrix</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">classes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">missing_label</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">,</span>
+            <span class="n">cost_matrix</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">classes</span> <span class="o">=</span> <span class="n">classes</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">missing_label</span> <span class="o">=</span> <span class="n">missing_label</span>
@@ -895,20 +1295,30 @@
         <span class="n">y_pred</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_le</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">_validate_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">check_X_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                       <span class="n">check_y_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y_ensure_1d</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_validate_data</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">X</span><span class="p">,</span>
+            <span class="n">y</span><span class="p">,</span>
+            <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">check_X_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">check_y_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">y_ensure_1d</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">):</span>
         <span class="k">if</span> <span class="n">check_X_dict</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">check_X_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;ensure_min_samples&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;ensure_min_features&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+            <span class="n">check_X_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;ensure_min_samples&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;ensure_min_features&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
         <span class="k">if</span> <span class="n">check_y_dict</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">check_y_dict</span> <span class="o">=</span> <span class="p">{</span>
-                <span class="s1">&#39;ensure_min_samples&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;ensure_min_features&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-                <span class="s1">&#39;ensure_2d&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-                <span class="s1">&#39;force_all_finite&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;dtype&#39;</span><span class="p">:</span> <span class="kc">None</span>
+                <span class="s2">&quot;ensure_min_samples&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                <span class="s2">&quot;ensure_min_features&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                <span class="s2">&quot;ensure_2d&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                <span class="s2">&quot;force_all_finite&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                <span class="s2">&quot;dtype&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
             <span class="p">}</span>
 
         <span class="c1"># Check common classifier parameters.</span>
-        <span class="n">check_classifier_params</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">classes</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">missing_label</span><span class="p">,</span>
-                                <span class="bp">self</span><span class="o">.</span><span class="n">cost_matrix</span><span class="p">)</span>
+        <span class="n">check_classifier_params</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">classes</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">missing_label</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cost_matrix</span>
+        <span class="p">)</span>
 
         <span class="c1"># Store and check random state.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">random_state_</span> <span class="o">=</span> <span class="n">check_random_state</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state</span><span class="p">)</span>
@@ -934,7 +1344,7 @@
                 <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_le</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">classes</span><span class="p">)</span>
-            <span class="n">check_X_dict</span><span class="p">[</span><span class="s1">&#39;ensure_2d&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="n">check_X_dict</span><span class="p">[</span><span class="s2">&quot;ensure_2d&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="n">X</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="o">**</span><span class="n">check_X_dict</span><span class="p">)</span>
         <span class="n">check_consistent_length</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
@@ -946,9 +1356,9 @@
             <span class="n">sample_weight</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">sample_weight</span><span class="p">,</span> <span class="o">**</span><span class="n">check_y_dict</span><span class="p">)</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">.</span><span class="n">shape</span><span class="p">):</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                    <span class="sa">f</span><span class="s1">&#39;`y` has the shape </span><span class="si">{</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1"> and `sample_weight` has the &#39;</span>
-                    <span class="sa">f</span><span class="s1">&#39;shape </span><span class="si">{</span><span class="n">sample_weight</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">. Both need to have &#39;</span>
-                    <span class="sa">f</span><span class="s1">&#39;identical shapes.&#39;</span>
+                    <span class="sa">f</span><span class="s2">&quot;`y` has the shape </span><span class="si">{</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> and `sample_weight` has the &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;shape </span><span class="si">{</span><span class="n">sample_weight</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">. Both need to have &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;identical shapes.&quot;</span>
                 <span class="p">)</span>
 
         <span class="c1"># Update cost matrix.</span>
@@ -1015,6 +1425,22 @@
 <span class="sd">        class `classes_[j]` for a sample of class `classes_[i]`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">class_prior</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">classes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">missing_label</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">,</span>
+            <span class="n">cost_matrix</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">classes</span><span class="o">=</span><span class="n">classes</span><span class="p">,</span>
+            <span class="n">missing_label</span><span class="o">=</span><span class="n">missing_label</span><span class="p">,</span>
+            <span class="n">cost_matrix</span><span class="o">=</span><span class="n">cost_matrix</span><span class="p">,</span>
+            <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">class_prior</span> <span class="o">=</span> <span class="n">class_prior</span>
+
 <div class="viewcode-block" id="ClassFrequencyEstimator.predict_freq"><a class="viewcode-back" href="../../generated/api/skactiveml.base.ClassFrequencyEstimator.html#skactiveml.base.ClassFrequencyEstimator.predict_freq">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">predict_freq</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return class frequency estimates for the test samples `X`.</span>
@@ -1054,29 +1480,41 @@
         <span class="n">P</span><span class="p">[</span><span class="n">normalizer</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">classes_</span><span class="p">)]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">P</span></div>
 
-    <span class="k">def</span> <span class="nf">_validate_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">check_X_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                       <span class="n">check_y_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y_ensure_1d</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_validate_data</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">X</span><span class="p">,</span>
+            <span class="n">y</span><span class="p">,</span>
+            <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">check_X_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">check_y_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">y_ensure_1d</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">):</span>
         <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_validate_data</span><span class="p">(</span>
-            <span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">,</span> <span class="n">check_X_dict</span><span class="o">=</span><span class="n">check_X_dict</span><span class="p">,</span>
-            <span class="n">check_y_dict</span><span class="o">=</span><span class="n">check_y_dict</span><span class="p">,</span> <span class="n">y_ensure_1d</span><span class="o">=</span><span class="n">y_ensure_1d</span>
+            <span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span>
+            <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span>
+            <span class="n">sample_weight</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">,</span>
+            <span class="n">check_X_dict</span><span class="o">=</span><span class="n">check_X_dict</span><span class="p">,</span>
+            <span class="n">check_y_dict</span><span class="o">=</span><span class="n">check_y_dict</span><span class="p">,</span>
+            <span class="n">y_ensure_1d</span><span class="o">=</span><span class="n">y_ensure_1d</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="c1"># Check class prior.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">class_prior_</span> <span class="o">=</span> <span class="n">check_class_prior</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">class_prior</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span>
         <span class="p">)</span>
+
         <span class="k">return</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span></div>
 
 
-<div class="viewcode-block" id="AnnotModelMixin"><a class="viewcode-back" href="../../generated/api/skactiveml.base.AnnotModelMixin.html#skactiveml.base.AnnotModelMixin">[docs]</a><span class="k">class</span> <span class="nc">AnnotModelMixin</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;AnnotModelMixin</span>
+<div class="viewcode-block" id="AnnotatorModelMixin"><a class="viewcode-back" href="../../generated/api/skactiveml.base.AnnotatorModelMixin.html#skactiveml.base.AnnotatorModelMixin">[docs]</a><span class="k">class</span> <span class="nc">AnnotatorModelMixin</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;AnnotatorModelMixin</span>
 
 <span class="sd">    Base class of all annotator models estimating the performances of</span>
 <span class="sd">    annotators for given samples.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="AnnotModelMixin.predict_annot_perf"><a class="viewcode-back" href="../../generated/api/skactiveml.base.AnnotModelMixin.html#skactiveml.base.AnnotModelMixin.predict_annot_perf">[docs]</a>    <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">predict_annot_perf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+<div class="viewcode-block" id="AnnotatorModelMixin.predict_annotator_perf"><a class="viewcode-back" href="../../generated/api/skactiveml.base.AnnotatorModelMixin.html#skactiveml.base.AnnotatorModelMixin.predict_annotator_perf">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">predict_annotator_perf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Calculates the performance of an annotator to provide the true label</span>
 <span class="sd">        for a given sample.</span>
 

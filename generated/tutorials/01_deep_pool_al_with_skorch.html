@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Deep Pool-based Active Learning: Scikit-activeml with Skorch &#8212; scikit-activeml 0.1.1 documentation</title>
+    <title>Deep Pool-based Active Learning: Scikit-activeml with Skorch &#8212; scikit-activeml 0.2.0 documentation</title>
     
     <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -503,9 +503,10 @@ div.rendered_html tbody tr:hover {
 <span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
 
+<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
 <span class="kn">from</span> <span class="nn">skactiveml.classifier</span> <span class="kn">import</span> <span class="n">SklearnClassifier</span>
-<span class="kn">from</span> <span class="nn">skactiveml.pool</span> <span class="kn">import</span> <span class="n">UncertaintySampling</span><span class="p">,</span> <span class="n">QBC</span><span class="p">,</span> <span class="n">RandomSampler</span>
-<span class="kn">from</span> <span class="nn">skactiveml.utils</span> <span class="kn">import</span> <span class="n">unlabeled_indices</span><span class="p">,</span> <span class="n">call_func</span>
+<span class="kn">from</span> <span class="nn">skactiveml.pool</span> <span class="kn">import</span> <span class="n">UncertaintySampling</span><span class="p">,</span> <span class="n">QueryByCommittee</span><span class="p">,</span> <span class="n">RandomSampling</span>
+<span class="kn">from</span> <span class="nn">skactiveml.utils</span> <span class="kn">import</span> <span class="n">call_func</span>
 <span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_digits</span>
 <span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">VotingClassifier</span>
 <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
@@ -615,7 +616,7 @@ div.rendered_html tbody tr:hover {
                       <span class="p">)</span>
 
 <span class="c1"># Creat voting ensemble out of given ensemble list.</span>
-<span class="n">ensemble</span> <span class="o">=</span> <span class="n">SklearnClassifier</span><span class="p">(</span>
+<span class="n">ensemble_init</span> <span class="o">=</span> <span class="n">SklearnClassifier</span><span class="p">(</span>
     <span class="n">estimator</span><span class="o">=</span><span class="n">VotingClassifier</span><span class="p">(</span><span class="n">estimators</span><span class="o">=</span><span class="n">estimators</span><span class="p">,</span> <span class="n">voting</span><span class="o">=</span><span class="s1">&#39;soft&#39;</span><span class="p">),</span>
     <span class="n">missing_label</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">,</span> <span class="n">classes</span><span class="o">=</span><span class="n">classes</span>
 <span class="p">)</span>
@@ -634,19 +635,21 @@ div.rendered_html tbody tr:hover {
 <span class="n">n_cycles</span> <span class="o">=</span> <span class="mi">25</span>
 <span class="n">batch_size</span> <span class="o">=</span> <span class="mi">20</span>
 <span class="n">qs_dict</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;random sampling&#39;</span><span class="p">:</span> <span class="n">RandomSampler</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">),</span>
-    <span class="s1">&#39;uncertainty sampling&#39;</span><span class="p">:</span> <span class="n">UncertaintySampling</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">),</span>
-    <span class="s1">&#39;query-by-committee&#39;</span><span class="p">:</span> <span class="n">QBC</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">)</span>
+    <span class="s1">&#39;random sampling&#39;</span><span class="p">:</span> <span class="n">RandomSampling</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">,</span> <span class="n">missing_label</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">),</span>
+    <span class="s1">&#39;uncertainty sampling&#39;</span><span class="p">:</span> <span class="n">UncertaintySampling</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">,</span> <span class="n">missing_label</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">),</span>
+    <span class="s1">&#39;query-by-committee&#39;</span><span class="p">:</span> <span class="n">QueryByCommittee</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">,</span> <span class="n">missing_label</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">),</span>
 <span class="p">}</span>
-<span class="n">acc_dict</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;random sampling&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_cycles</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span>
-    <span class="s1">&#39;uncertainty sampling&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_cycles</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span>
-    <span class="s1">&#39;query-by-committee&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_cycles</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-<span class="p">}</span>
+<span class="n">acc_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_cycles</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">qs_dict</span><span class="p">}</span>
 
 <span class="c1"># Perform active learning with each query strategy.</span>
 <span class="k">for</span> <span class="n">qs_name</span><span class="p">,</span> <span class="n">qs</span> <span class="ow">in</span> <span class="n">qs_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="n">RANDOM_STATE</span><span class="p">)</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="n">RANDOM_STATE</span><span class="p">)</span>
+
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Execute active learning using </span><span class="si">{</span><span class="n">qs_name</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Copy initial ensemble model.</span>
+    <span class="n">ensemble</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">ensemble_init</span><span class="p">)</span>
 
     <span class="c1"># Create array of missing labels as initial labels.</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full_like</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
@@ -658,14 +661,10 @@ div.rendered_html tbody tr:hover {
         <span class="n">acc_dict</span><span class="p">[</span><span class="n">qs_name</span><span class="p">][</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">acc</span>
 
         <span class="c1"># Select and update training data.</span>
-        <span class="n">unlbld_idx</span> <span class="o">=</span> <span class="n">unlabeled_indices</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">missing_label</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">)</span>
-        <span class="n">X_cand</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">unlbld_idx</span><span class="p">]</span>
-        <span class="n">query_idx</span> <span class="o">=</span> <span class="n">unlbld_idx</span><span class="p">[</span>
-         <span class="n">call_func</span><span class="p">(</span>
-             <span class="n">qs</span><span class="o">.</span><span class="n">query</span><span class="p">,</span> <span class="n">X_cand</span><span class="o">=</span><span class="n">X_cand</span><span class="p">,</span> <span class="n">clf</span><span class="o">=</span><span class="n">ensemble</span><span class="p">,</span> <span class="n">ensemble</span><span class="o">=</span><span class="n">ensemble</span><span class="p">,</span>
-             <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span>
-         <span class="p">)</span>
-        <span class="p">]</span>
+        <span class="n">query_idx</span> <span class="o">=</span> <span class="n">call_func</span><span class="p">(</span>
+             <span class="n">qs</span><span class="o">.</span><span class="n">query</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">clf</span><span class="o">=</span><span class="n">ensemble</span><span class="p">,</span> <span class="n">fit_clf</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ensemble</span><span class="o">=</span><span class="n">ensemble</span><span class="p">,</span>
+             <span class="n">fit_ensemble</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span>
+        <span class="p">)</span>
         <span class="n">y</span><span class="p">[</span><span class="n">query_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_train</span><span class="p">[</span><span class="n">query_idx</span><span class="p">]</span>
 
     <span class="c1"># Fit and evaluate ensemble.</span>

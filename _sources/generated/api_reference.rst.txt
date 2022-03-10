@@ -26,13 +26,13 @@ Classes
    :template: class.rst
 
    base.QueryStrategy
-   base.SingleAnnotPoolBasedQueryStrategy
-   base.MultiAnnotPoolBasedQueryStrategy
+   base.SingleAnnotatorPoolQueryStrategy
+   base.MultiAnnotatorPoolQueryStrategy
    base.BudgetManager
-   base.SingleAnnotStreamBasedQueryStrategy
+   base.SingleAnnotatorStreamQueryStrategy
    base.SkactivemlClassifier
    base.ClassFrequencyEstimator
-   base.AnnotModelMixin
+   base.AnnotatorModelMixin
 
 :mod:`skactiveml.pool`:
 =======================
@@ -51,15 +51,15 @@ Classes
    :toctree: api
    :template: class.rst
 
-   pool.RandomSampler
-   pool.McPAL
+   pool.RandomSampling
+   pool.ProbabilisticAL
    pool.UncertaintySampling
-   pool.EpistemicUncertainty
-   pool.ExpectedErrorReduction
-   pool.QBC
-   pool.FourDS
-   pool.ALCE
-   pool.VOI
+   pool.EpistemicUncertaintySampling
+   pool.MonteCarloEER
+   pool.ValueOfInformationEER
+   pool.QueryByCommittee
+   pool.FourDs
+   pool.CostEmbeddingAL
 
 Functions
 ---------
@@ -72,14 +72,13 @@ Functions
    pool.cost_reduction
    pool.uncertainty_scores
    pool.expected_average_precision
-   pool.expected_error_reduction
    pool.average_kl_divergence
    pool.vote_entropy
 
-:mod:`skactiveml.pool.multi`:
-=============================
+:mod:`skactiveml.pool.multiannotator`:
+======================================
 
-.. automodule:: skactiveml.pool.multi
+.. automodule:: skactiveml.pool.multiannotator
     :no-members:
     :no-inherited-members:
 
@@ -93,9 +92,28 @@ Classes
    :toctree: api
    :template: class.rst
 
-   pool.multi.IEThresh
-   pool.multi.IEAnnotModel
-   pool.multi.MultiAnnotWrapper
+   pool.multiannotator.IntervalEstimationThreshold
+   pool.multiannotator.IntervalEstimationAnnotModel
+   pool.multiannotator.SingleAnnotatorWrapper
+
+:mod:`skactiveml.pool.utils`:
+=============================
+
+.. automodule:: skactiveml.pool.utils
+    :no-members:
+    :no-inherited-members:
+
+.. currentmodule:: skactiveml
+
+Classes
+-------
+
+.. autosummary::
+   :nosignatures:
+   :toctree: api
+   :template: class.rst
+
+   pool.utils.IndexClassifierWrapper
 
 :mod:`skactiveml.stream`:
 =========================
@@ -114,12 +132,12 @@ Classes
    :toctree: api
    :template: class.rst
 
-   stream.RandomSampler
-   stream.PeriodicSampler
+   stream.StreamRandomSampling
+   stream.PeriodicSampling
    stream.FixedUncertainty
    stream.VariableUncertainty
    stream.Split
-   stream.PALS
+   stream.StreamProbabilisticAL
    stream.RandomVariableUncertainty
 
 :mod:`skactiveml.classifier`:
@@ -139,14 +157,14 @@ Classes
    :toctree: api
    :template: class.rst
 
-   classifier.PWC
-   classifier.CMM
+   classifier.ParzenWindowClassifier
+   classifier.MixtureModelClassifier
    classifier.SklearnClassifier
 
-:mod:`skactiveml.classifier.multi`:
-===================================
+:mod:`skactiveml.classifier.multiannotator`:
+============================================
 
-.. automodule:: skactiveml.classifier.multi
+.. automodule:: skactiveml.classifier.multiannotator
     :no-members:
     :no-inherited-members:
 
@@ -160,8 +178,8 @@ Classes
    :toctree: api
    :template: class.rst
 
-   classifier.multi.LogisticRegressionRY
-   classifier.multi.MultiAnnotEnsemble
+   classifier.multiannotator.AnnotatorLogisticRegression
+   classifier.multiannotator.AnnotatorEnsembleClassifier
 
 :mod:`skactiveml.visualization`:
 ================================
@@ -180,11 +198,10 @@ Functions
    :toctree: api
    :template: function.rst
 
-   visualization.plot_utility
+   visualization.plot_utilities
    visualization.plot_decision_boundary
-   visualization.plot_ma_current_state
-   visualization.plot_ma_utility
-   visualization.plot_ma_decision_boundary
+   visualization.plot_contour_for_samples
+   visualization.plot_annotator_utilities
    visualization.mesh
 
 :mod:`skactiveml.utils`:
@@ -228,13 +245,33 @@ Functions
    utils.check_X_y
    utils.check_random_state
    utils.call_func
-   utils.simple_batch
    utils.check_class_prior
    utils.ext_confusion_matrix
-   utils.fit_if_not_fitted
    utils.labeled_indices
    utils.unlabeled_indices
    utils.check_type
    utils.check_bound
+   utils.check_equal_missing_label
    utils.check_budget_manager
+   utils.check_indices
+   utils.simple_batch
+
+:mod:`skactiveml.exceptions`:
+=============================
+
+.. automodule:: skactiveml.exceptions
+    :no-members:
+    :no-inherited-members:
+
+.. currentmodule:: skactiveml
+
+Classes
+-------
+
+.. autosummary::
+   :nosignatures:
+   :toctree: api
+   :template: class.rst
+
+   exceptions.MappingError
 

@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>skactiveml.utils._selection &#8212; scikit-activeml 0.1.1 documentation</title>
+    <title>skactiveml.utils._selection &#8212; scikit-activeml 0.2.0 documentation</title>
     
     <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -174,10 +174,12 @@
                 
   <h1>Source code for skactiveml.utils._selection</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Utilities for selection.&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.utils</span> <span class="kn">import</span> <span class="n">check_array</span>
 
-<span class="kn">from</span> <span class="nn">._validation</span> <span class="kn">import</span> <span class="n">check_random_state</span>
+<span class="kn">from</span> <span class="nn">._validation</span> <span class="kn">import</span> <span class="n">check_random_state</span><span class="p">,</span> <span class="n">check_scalar</span>
 
 
 <div class="viewcode-block" id="rand_argmin"><a class="viewcode-back" href="../../../generated/api/skactiveml.utils.rand_argmin.html#skactiveml.utils.rand_argmin">[docs]</a><span class="k">def</span> <span class="nf">rand_argmin</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">argmin_kwargs</span><span class="p">):</span>
@@ -204,9 +206,11 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">random_state</span> <span class="o">=</span> <span class="n">check_random_state</span><span class="p">(</span><span class="n">random_state</span><span class="p">)</span>
     <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-    <span class="n">index_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">random_state</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span>
-            <span class="n">a</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmin</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">argmin_kwargs</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)),</span>
-                            <span class="o">**</span><span class="n">argmin_kwargs</span><span class="p">)</span>
+    <span class="n">index_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span>
+        <span class="n">random_state</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="o">*</span> <span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmin</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">argmin_kwargs</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)),</span>
+        <span class="o">**</span><span class="n">argmin_kwargs</span>
+    <span class="p">)</span>
     <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">index_array</span><span class="p">)</span> <span class="ow">and</span> <span class="n">a</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
         <span class="n">index_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unravel_index</span><span class="p">(</span><span class="n">index_array</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
     <span class="n">index_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">index_array</span><span class="p">)</span>
@@ -236,13 +240,81 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">random_state</span> <span class="o">=</span> <span class="n">check_random_state</span><span class="p">(</span><span class="n">random_state</span><span class="p">)</span>
     <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-    <span class="n">index_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">random_state</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span>
-            <span class="n">a</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">argmax_kwargs</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)),</span>
-                            <span class="o">**</span><span class="n">argmax_kwargs</span><span class="p">)</span>
+    <span class="n">index_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span>
+        <span class="n">random_state</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="o">*</span> <span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">argmax_kwargs</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)),</span>
+        <span class="o">**</span><span class="n">argmax_kwargs</span>
+    <span class="p">)</span>
     <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">index_array</span><span class="p">)</span> <span class="ow">and</span> <span class="n">a</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
         <span class="n">index_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unravel_index</span><span class="p">(</span><span class="n">index_array</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
     <span class="n">index_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">index_array</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">index_array</span></div>
+
+
+<div class="viewcode-block" id="simple_batch"><a class="viewcode-back" href="../../../generated/api/skactiveml.utils.simple_batch.html#skactiveml.utils.simple_batch">[docs]</a><span class="k">def</span> <span class="nf">simple_batch</span><span class="p">(</span>
+        <span class="n">utilities</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">return_utilities</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Generates a batch by selecting the highest values in the &#39;utilities&#39;.</span>
+<span class="sd">    If utilities is an ND-array, the returned utilities will be an</span>
+<span class="sd">    (N+1)D-array, with the shape batch_size x utilities.shape, filled the given</span>
+<span class="sd">    utilities but set the n-th highest values in the n-th row to np.nan.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    utilities : np.ndarray</span>
+<span class="sd">        The utilities to be used to create the batch.</span>
+<span class="sd">    random_state : numeric | np.random.RandomState (default=None)</span>
+<span class="sd">        The random state to use. If `random_state is None` random</span>
+<span class="sd">        `random_state` is used.</span>
+<span class="sd">    batch_size : int, optional (default=1)</span>
+<span class="sd">        The number of samples to be selected in one AL cycle.</span>
+<span class="sd">    return_utilities : bool (default=False)</span>
+<span class="sd">        If True, the utilities are returned.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    best_indices : np.ndarray, shape (batch_size) if ndim == 1</span>
+<span class="sd">    (batch_size, ndim) else</span>
+<span class="sd">        The index of the batch instance.</span>
+<span class="sd">    batch_utilities : np.ndarray,  shape (batch_size, len(utilities))</span>
+<span class="sd">        The utilities of the batch (if return_utilities=True).</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># validation</span>
+    <span class="n">utilities</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span>
+        <span class="n">utilities</span><span class="p">,</span>
+        <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span>
+        <span class="n">force_all_finite</span><span class="o">=</span><span class="s2">&quot;allow-nan&quot;</span><span class="p">,</span>
+        <span class="n">allow_nd</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">check_scalar</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">target_type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;batch_size&quot;</span><span class="p">,</span> <span class="n">min_val</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">max_batch_size</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">utilities</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">max_batch_size</span> <span class="o">&lt;</span> <span class="n">batch_size</span><span class="p">:</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+            <span class="s2">&quot;&#39;batch_size=</span><span class="si">{}</span><span class="s2">&#39; is larger than number of candidate samples &quot;</span>
+            <span class="s2">&quot;in &#39;utilities&#39;. Instead, &#39;batch_size=</span><span class="si">{}</span><span class="s2">&#39; was set.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">batch_size</span><span class="p">,</span> <span class="n">max_batch_size</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">batch_size</span> <span class="o">=</span> <span class="n">max_batch_size</span>
+    <span class="c1"># generate batch</span>
+
+    <span class="n">batch_utilities</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">batch_size</span><span class="p">,)</span> <span class="o">+</span> <span class="n">utilities</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">best_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">utilities</span><span class="o">.</span><span class="n">ndim</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">batch_size</span><span class="p">):</span>
+        <span class="n">best_indices</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">rand_argmax</span><span class="p">(</span><span class="n">utilities</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span>
+        <span class="n">batch_utilities</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">utilities</span>
+        <span class="n">utilities</span><span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">best_indices</span><span class="p">[</span><span class="n">i</span><span class="p">])]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+    <span class="c1"># Check whether utilities are to be returned.</span>
+    <span class="k">if</span> <span class="n">utilities</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">best_indices</span> <span class="o">=</span> <span class="n">best_indices</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">return_utilities</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">best_indices</span><span class="p">,</span> <span class="n">batch_utilities</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">best_indices</span></div>
 </pre></div>
 
               </div>

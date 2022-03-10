@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Examples &#8212; scikit-activeml 0.1.1 documentation</title>
+    <title>Examples &#8212; scikit-activeml 0.2.0 documentation</title>
     
     <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -39,8 +39,8 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Random Sampling" href="pool/plot_RandomSampler_Random_Sampling.html" />
-    <link rel="prev" title="skactiveml.utils.check_budget_manager" href="../api/skactiveml.utils.check_budget_manager.html" />
+    <link rel="next" title="Random Sampling" href="pool/plot_RandomSampling_Random_Sampling.html" />
+    <link rel="prev" title="skactiveml.exceptions.MappingError" href="../api/skactiveml.exceptions.MappingError.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -153,71 +153,64 @@
   <div class="bd-toc-item active">
     <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="pool/plot_RandomSampler_Random_Sampling.html">
+  <a class="reference internal" href="pool/plot_RandomSampling_Random_Sampling.html">
    Random Sampling
   </a>
  </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="pool/plot_ALCE_Active_Learning_with_Cost_Embedding.html">
+  <a class="reference internal" href="pool/plot_CostEmbeddingAL_Active_Learning_with_Cost_Embedding_%28ALCE%29.html">
    Active Learning with Cost Embedding
   </a>
  </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="pool/plot_EpistemicUncertainty_Epistemic_Uncertainty_Sampling.html">
+  <a class="reference internal" href="pool/plot_UncertaintySampling_Uncertainty_Sampling_with_Entropy.html">
+   Uncertainty Sampling with Entropy
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="pool/plot_EpistemicUncertaintySampling_Epistemic_Uncertainty_Sampling.html">
    Epistemic Uncertainty Sampling
   </a>
  </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="pool/plot_UncertaintySampling_Entropy-based_Uncertainty_Sampling.html">
-   Entropy-based Uncertainty Sampling
+  <a class="reference internal" href="pool/plot_UncertaintySampling_Uncertainty_Sampling_with_Least-Confidence.html">
+   Uncertainty Sampling with Least-Confidence
   </a>
  </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="pool/plot_UncertaintySampling_Margin-based_Uncertainty_Sampling.html">
-   Margin-based Uncertainty Sampling
+  <a class="reference internal" href="pool/plot_UncertaintySampling_Uncertainty_Sampling_with_Margin.html">
+   Uncertainty Sampling with Margin
   </a>
  </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="pool/plot_UncertaintySampling_Least-confident-based_Uncertainty_Sampling.html">
-   Least-confident-based Uncertainty Sampling
+  <a class="reference internal" href="pool/plot_MonteCarloEER_Monte-Carlo_EER_with_Log-Loss.html">
+   Monte-Carlo EER with Log-Loss
   </a>
  </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="pool/plot_ExpectedErrorReduction_Cost-sensitive_Expected_Error_Reduction.html">
-   Cost-sensitive Expected Error Reduction
+  <a class="reference internal" href="pool/plot_FourDs_Density-Diversity-Distribution-Distance_Sampling_%284DS%29.html">
+   Density-Diversity-Distribution-Distance Sampling
   </a>
  </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="pool/plot_ExpectedErrorReduction_Expected_Misclassification_Risk.html">
-   Expected Misclassification Risk
-  </a>
- </li>
-</ul>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="pool/plot_ExpectedErrorReduction_Log_Loss_Expected_Error_Reduction.html">
-   Log Loss Expected Error Reduction
-  </a>
- </li>
-</ul>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="pool/plot_FourDS_4DS.html">
-   4DS
+  <a class="reference internal" href="pool/plot_MonteCarloEER_Monte-Carlo_EER_with_Misclassification-Loss.html">
+   Monte-Carlo EER with Misclassification-Loss
   </a>
  </li>
 </ul>
@@ -230,29 +223,43 @@
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="pool/plot_QBC_Query-by-Committee_with_Vote_Entropy.html">
-   Query-by-Committee with Vote Entropy
-  </a>
- </li>
-</ul>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="pool/plot_QBC_Query-by-Committee_with_Kullback-Leibler_Divergence.html">
-   Query-by-Committee with Kullback-Leibler Divergence
-  </a>
- </li>
-</ul>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="pool/plot_McPAL_Multi-class_Probabilistic_Active_Learning.html">
+  <a class="reference internal" href="pool/plot_ProbabilisticAL_Multi-class_Probabilistic_Active_Learning_%28McPAL%29.html">
    Multi-class Probabilistic Active Learning
   </a>
  </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="pool/plot_VOI_Decision-Theoretic_Active_Learning.html">
-   Decision-Theoretic Active Learning
+  <a class="reference internal" href="pool/plot_QueryByCommittee_Query-by-Committee_with_Vote_Entropy.html">
+   Query-by-Committee with Vote Entropy
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="pool/plot_QueryByCommittee_Query-by-Committee_with_Kullback-Leibler_Divergence.html">
+   Query-by-Committee with Kullback-Leibler Divergence
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="pool/plot_ValueOfInformationEER_Value_of_Information_%28VOI%29.html">
+   Value of Information
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="pool/plot_ValueOfInformationEER_Value_of_Information_on_Labeled_Samples.html">
+   Value of Information on Labeled Samples
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="pool/plot_ValueOfInformationEER_Value_of_Information_on_Unlabeled_Samples.html">
+   Value of Information on Unlabeled Samples
   </a>
  </li>
 </ul>
@@ -311,121 +318,129 @@
 <div class="sphx-glr-clear"></div><section id="pool-based">
 <span id="sphx-glr-generated-sphinx-gallery-examples-pool"></span><h2>Pool Based<a class="headerlink" href="#pool-based" title="Permalink to this headline">¶</a></h2>
 <div class="sphx-glr-thumbcontainer" tooltip="Random Sampling"><figure class="align-default" id="id1">
-<img alt="Random Sampling" src="../../_images/sphx_glr_plot_RandomSampler_Random_Sampling_thumb.gif" />
+<img alt="Random Sampling" src="../../_images/sphx_glr_plot_RandomSampling_Random_Sampling_thumb.gif" />
 <figcaption>
-<p><span class="caption-text"><a class="reference internal" href="pool/plot_RandomSampler_Random_Sampling.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-randomsampler-random-sampling-py"><span class="std std-ref">Random Sampling</span></a></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text"><a class="reference internal" href="pool/plot_RandomSampling_Random_Sampling.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-randomsampling-random-sampling-py"><span class="std std-ref">Random Sampling</span></a></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 </div><div class="toctree-wrapper compound">
 </div>
 <div class="sphx-glr-thumbcontainer" tooltip="Active Learning with Cost Embedding"><figure class="align-default" id="id2">
-<img alt="Active Learning with Cost Embedding" src="../../_images/sphx_glr_plot_ALCE_Active_Learning_with_Cost_Embedding_thumb.gif" />
+<img alt="Active Learning with Cost Embedding" src="../../_images/sphx_glr_plot_CostEmbeddingAL_Active_Learning_with_Cost_Embedding_(ALCE)_thumb.gif" />
 <figcaption>
-<p><span class="caption-text"><a class="reference internal" href="pool/plot_ALCE_Active_Learning_with_Cost_Embedding.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-alce-active-learning-with-cost-embedding-py"><span class="std std-ref">Active Learning with Cost Embedding</span></a></span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text"><a class="reference internal" href="pool/plot_CostEmbeddingAL_Active_Learning_with_Cost_Embedding_%28ALCE%29.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-costembeddingal-active-learning-with-cost-embedding-alce-py"><span class="std std-ref">Active Learning with Cost Embedding</span></a></span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 </div><div class="toctree-wrapper compound">
 </div>
-<div class="sphx-glr-thumbcontainer" tooltip="Epistemic Uncertainty Sampling"><figure class="align-default" id="id3">
-<img alt="Epistemic Uncertainty Sampling" src="../../_images/sphx_glr_plot_EpistemicUncertainty_Epistemic_Uncertainty_Sampling_thumb.gif" />
+<div class="sphx-glr-thumbcontainer" tooltip="Uncertainty Sampling with Entropy"><figure class="align-default" id="id3">
+<img alt="Uncertainty Sampling with Entropy" src="../../_images/sphx_glr_plot_UncertaintySampling_Uncertainty_Sampling_with_Entropy_thumb.gif" />
 <figcaption>
-<p><span class="caption-text"><a class="reference internal" href="pool/plot_EpistemicUncertainty_Epistemic_Uncertainty_Sampling.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-epistemicuncertainty-epistemic-uncertainty-sampling-py"><span class="std std-ref">Epistemic Uncertainty Sampling</span></a></span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text"><a class="reference internal" href="pool/plot_UncertaintySampling_Uncertainty_Sampling_with_Entropy.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-uncertaintysampling-uncertainty-sampling-with-entropy-py"><span class="std std-ref">Uncertainty Sampling with Entropy</span></a></span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 </div><div class="toctree-wrapper compound">
 </div>
-<div class="sphx-glr-thumbcontainer" tooltip="Entropy-based Uncertainty Sampling"><figure class="align-default" id="id4">
-<img alt="Entropy-based Uncertainty Sampling" src="../../_images/sphx_glr_plot_UncertaintySampling_Entropy-based_Uncertainty_Sampling_thumb.gif" />
+<div class="sphx-glr-thumbcontainer" tooltip="Epistemic Uncertainty Sampling"><figure class="align-default" id="id4">
+<img alt="Epistemic Uncertainty Sampling" src="../../_images/sphx_glr_plot_EpistemicUncertaintySampling_Epistemic_Uncertainty_Sampling_thumb.gif" />
 <figcaption>
-<p><span class="caption-text"><a class="reference internal" href="pool/plot_UncertaintySampling_Entropy-based_Uncertainty_Sampling.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-uncertaintysampling-entropy-based-uncertainty-sampling-py"><span class="std std-ref">Entropy-based Uncertainty Sampling</span></a></span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text"><a class="reference internal" href="pool/plot_EpistemicUncertaintySampling_Epistemic_Uncertainty_Sampling.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-epistemicuncertaintysampling-epistemic-uncertainty-sampling-py"><span class="std std-ref">Epistemic Uncertainty Sampling</span></a></span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 </div><div class="toctree-wrapper compound">
 </div>
-<div class="sphx-glr-thumbcontainer" tooltip="Margin-based Uncertainty Sampling"><figure class="align-default" id="id5">
-<img alt="Margin-based Uncertainty Sampling" src="../../_images/sphx_glr_plot_UncertaintySampling_Margin-based_Uncertainty_Sampling_thumb.gif" />
+<div class="sphx-glr-thumbcontainer" tooltip="Uncertainty Sampling with Least-Confidence"><figure class="align-default" id="id5">
+<img alt="Uncertainty Sampling with Least-Confidence" src="../../_images/sphx_glr_plot_UncertaintySampling_Uncertainty_Sampling_with_Least-Confidence_thumb.gif" />
 <figcaption>
-<p><span class="caption-text"><a class="reference internal" href="pool/plot_UncertaintySampling_Margin-based_Uncertainty_Sampling.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-uncertaintysampling-margin-based-uncertainty-sampling-py"><span class="std std-ref">Margin-based Uncertainty Sampling</span></a></span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text"><a class="reference internal" href="pool/plot_UncertaintySampling_Uncertainty_Sampling_with_Least-Confidence.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-uncertaintysampling-uncertainty-sampling-with-least-confidence-py"><span class="std std-ref">Uncertainty Sampling with Least-Confidence</span></a></span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 </div><div class="toctree-wrapper compound">
 </div>
-<div class="sphx-glr-thumbcontainer" tooltip="Least-confident-based Uncertainty Sampling"><figure class="align-default" id="id6">
-<img alt="Least-confident-based Uncertainty Sampling" src="../../_images/sphx_glr_plot_UncertaintySampling_Least-confident-based_Uncertainty_Sampling_thumb.gif" />
+<div class="sphx-glr-thumbcontainer" tooltip="Uncertainty Sampling with Margin"><figure class="align-default" id="id6">
+<img alt="Uncertainty Sampling with Margin" src="../../_images/sphx_glr_plot_UncertaintySampling_Uncertainty_Sampling_with_Margin_thumb.gif" />
 <figcaption>
-<p><span class="caption-text"><a class="reference internal" href="pool/plot_UncertaintySampling_Least-confident-based_Uncertainty_Sampling.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-uncertaintysampling-least-confident-based-uncertainty-sampling-py"><span class="std std-ref">Least-confident-based Uncertainty Sampling</span></a></span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text"><a class="reference internal" href="pool/plot_UncertaintySampling_Uncertainty_Sampling_with_Margin.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-uncertaintysampling-uncertainty-sampling-with-margin-py"><span class="std std-ref">Uncertainty Sampling with Margin</span></a></span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 </div><div class="toctree-wrapper compound">
 </div>
-<div class="sphx-glr-thumbcontainer" tooltip="Cost-sensitive Expected Error Reduction"><figure class="align-default" id="id7">
-<img alt="Cost-sensitive Expected Error Reduction" src="../../_images/sphx_glr_plot_ExpectedErrorReduction_Cost-sensitive_Expected_Error_Reduction_thumb.gif" />
+<div class="sphx-glr-thumbcontainer" tooltip="Monte-Carlo EER with Log-Loss"><figure class="align-default" id="id7">
+<img alt="Monte-Carlo EER with Log-Loss" src="../../_images/sphx_glr_plot_MonteCarloEER_Monte-Carlo_EER_with_Log-Loss_thumb.gif" />
 <figcaption>
-<p><span class="caption-text"><a class="reference internal" href="pool/plot_ExpectedErrorReduction_Cost-sensitive_Expected_Error_Reduction.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-expectederrorreduction-cost-sensitive-expected-error-reduction-py"><span class="std std-ref">Cost-sensitive Expected Error Reduction</span></a></span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text"><a class="reference internal" href="pool/plot_MonteCarloEER_Monte-Carlo_EER_with_Log-Loss.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-montecarloeer-monte-carlo-eer-with-log-loss-py"><span class="std std-ref">Monte-Carlo EER with Log-Loss</span></a></span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 </div><div class="toctree-wrapper compound">
 </div>
-<div class="sphx-glr-thumbcontainer" tooltip="Expected Misclassification Risk"><figure class="align-default" id="id8">
-<img alt="Expected Misclassification Risk" src="../../_images/sphx_glr_plot_ExpectedErrorReduction_Expected_Misclassification_Risk_thumb.gif" />
+<div class="sphx-glr-thumbcontainer" tooltip="Density-Diversity-Distribution-Distance Sampling"><figure class="align-default" id="id8">
+<img alt="Density-Diversity-Distribution-Distance Sampling" src="../../_images/sphx_glr_plot_FourDs_Density-Diversity-Distribution-Distance_Sampling_(4DS)_thumb.gif" />
 <figcaption>
-<p><span class="caption-text"><a class="reference internal" href="pool/plot_ExpectedErrorReduction_Expected_Misclassification_Risk.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-expectederrorreduction-expected-misclassification-risk-py"><span class="std std-ref">Expected Misclassification Risk</span></a></span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text"><a class="reference internal" href="pool/plot_FourDs_Density-Diversity-Distribution-Distance_Sampling_%284DS%29.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-fourds-density-diversity-distribution-distance-sampling-4ds-py"><span class="std std-ref">Density-Diversity-Distribution-Distance Sampling</span></a></span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 </div><div class="toctree-wrapper compound">
 </div>
-<div class="sphx-glr-thumbcontainer" tooltip="Log Loss Expected Error Reduction"><figure class="align-default" id="id9">
-<img alt="Log Loss Expected Error Reduction" src="../../_images/sphx_glr_plot_ExpectedErrorReduction_Log_Loss_Expected_Error_Reduction_thumb.gif" />
+<div class="sphx-glr-thumbcontainer" tooltip="Monte-Carlo EER with Misclassification-Loss"><figure class="align-default" id="id9">
+<img alt="Monte-Carlo EER with Misclassification-Loss" src="../../_images/sphx_glr_plot_MonteCarloEER_Monte-Carlo_EER_with_Misclassification-Loss_thumb.gif" />
 <figcaption>
-<p><span class="caption-text"><a class="reference internal" href="pool/plot_ExpectedErrorReduction_Log_Loss_Expected_Error_Reduction.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-expectederrorreduction-log-loss-expected-error-reduction-py"><span class="std std-ref">Log Loss Expected Error Reduction</span></a></span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text"><a class="reference internal" href="pool/plot_MonteCarloEER_Monte-Carlo_EER_with_Misclassification-Loss.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-montecarloeer-monte-carlo-eer-with-misclassification-loss-py"><span class="std std-ref">Monte-Carlo EER with Misclassification-Loss</span></a></span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 </div><div class="toctree-wrapper compound">
 </div>
-<div class="sphx-glr-thumbcontainer" tooltip="4DS"><figure class="align-default" id="id10">
-<img alt="4DS" src="../../_images/sphx_glr_plot_FourDS_4DS_thumb.gif" />
-<figcaption>
-<p><span class="caption-text"><a class="reference internal" href="pool/plot_FourDS_4DS.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-fourds-4ds-py"><span class="std std-ref">4DS</span></a></span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
-</div><div class="toctree-wrapper compound">
-</div>
-<div class="sphx-glr-thumbcontainer" tooltip="Expected Average Precision"><figure class="align-default" id="id11">
+<div class="sphx-glr-thumbcontainer" tooltip="Expected Average Precision"><figure class="align-default" id="id10">
 <img alt="Expected Average Precision" src="../../_images/sphx_glr_plot_UncertaintySampling_Expected_Average_Precision_thumb.gif" />
 <figcaption>
-<p><span class="caption-text"><a class="reference internal" href="pool/plot_UncertaintySampling_Expected_Average_Precision.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-uncertaintysampling-expected-average-precision-py"><span class="std std-ref">Expected Average Precision</span></a></span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text"><a class="reference internal" href="pool/plot_UncertaintySampling_Expected_Average_Precision.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-uncertaintysampling-expected-average-precision-py"><span class="std std-ref">Expected Average Precision</span></a></span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="Multi-class Probabilistic Active Learning"><figure class="align-default" id="id11">
+<img alt="Multi-class Probabilistic Active Learning" src="../../_images/sphx_glr_plot_ProbabilisticAL_Multi-class_Probabilistic_Active_Learning_(McPAL)_thumb.gif" />
+<figcaption>
+<p><span class="caption-text"><a class="reference internal" href="pool/plot_ProbabilisticAL_Multi-class_Probabilistic_Active_Learning_%28McPAL%29.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-probabilistical-multi-class-probabilistic-active-learning-mcpal-py"><span class="std std-ref">Multi-class Probabilistic Active Learning</span></a></span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 </div><div class="toctree-wrapper compound">
 </div>
 <div class="sphx-glr-thumbcontainer" tooltip="Query-by-Committee with Vote Entropy"><figure class="align-default" id="id12">
-<img alt="Query-by-Committee with Vote Entropy" src="../../_images/sphx_glr_plot_QBC_Query-by-Committee_with_Vote_Entropy_thumb.gif" />
+<img alt="Query-by-Committee with Vote Entropy" src="../../_images/sphx_glr_plot_QueryByCommittee_Query-by-Committee_with_Vote_Entropy_thumb.gif" />
 <figcaption>
-<p><span class="caption-text"><a class="reference internal" href="pool/plot_QBC_Query-by-Committee_with_Vote_Entropy.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-qbc-query-by-committee-with-vote-entropy-py"><span class="std std-ref">Query-by-Committee with Vote Entropy</span></a></span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text"><a class="reference internal" href="pool/plot_QueryByCommittee_Query-by-Committee_with_Vote_Entropy.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-querybycommittee-query-by-committee-with-vote-entropy-py"><span class="std std-ref">Query-by-Committee with Vote Entropy</span></a></span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 </div><div class="toctree-wrapper compound">
 </div>
 <div class="sphx-glr-thumbcontainer" tooltip="Query-by-Committee with Kullback-Leibler Divergence"><figure class="align-default" id="id13">
-<img alt="Query-by-Committee with Kullback-Leibler Divergence" src="../../_images/sphx_glr_plot_QBC_Query-by-Committee_with_Kullback-Leibler_Divergence_thumb.gif" />
+<img alt="Query-by-Committee with Kullback-Leibler Divergence" src="../../_images/sphx_glr_plot_QueryByCommittee_Query-by-Committee_with_Kullback-Leibler_Divergence_thumb.gif" />
 <figcaption>
-<p><span class="caption-text"><a class="reference internal" href="pool/plot_QBC_Query-by-Committee_with_Kullback-Leibler_Divergence.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-qbc-query-by-committee-with-kullback-leibler-divergence-py"><span class="std std-ref">Query-by-Committee with Kullback-Leibler Divergence</span></a></span><a class="headerlink" href="#id13" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text"><a class="reference internal" href="pool/plot_QueryByCommittee_Query-by-Committee_with_Kullback-Leibler_Divergence.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-querybycommittee-query-by-committee-with-kullback-leibler-divergence-py"><span class="std std-ref">Query-by-Committee with Kullback-Leibler Divergence</span></a></span><a class="headerlink" href="#id13" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 </div><div class="toctree-wrapper compound">
 </div>
-<div class="sphx-glr-thumbcontainer" tooltip="Multi-class Probabilistic Active Learning"><figure class="align-default" id="id14">
-<img alt="Multi-class Probabilistic Active Learning" src="../../_images/sphx_glr_plot_McPAL_Multi-class_Probabilistic_Active_Learning_thumb.gif" />
+<div class="sphx-glr-thumbcontainer" tooltip="Value of Information"><figure class="align-default" id="id14">
+<img alt="Value of Information" src="../../_images/sphx_glr_plot_ValueOfInformationEER_Value_of_Information_(VOI)_thumb.gif" />
 <figcaption>
-<p><span class="caption-text"><a class="reference internal" href="pool/plot_McPAL_Multi-class_Probabilistic_Active_Learning.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-mcpal-multi-class-probabilistic-active-learning-py"><span class="std std-ref">Multi-class Probabilistic Active Learning</span></a></span><a class="headerlink" href="#id14" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text"><a class="reference internal" href="pool/plot_ValueOfInformationEER_Value_of_Information_%28VOI%29.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-valueofinformationeer-value-of-information-voi-py"><span class="std std-ref">Value of Information</span></a></span><a class="headerlink" href="#id14" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 </div><div class="toctree-wrapper compound">
 </div>
-<div class="sphx-glr-thumbcontainer" tooltip="Decision-Theoretic Active Learning"><figure class="align-default" id="id15">
-<img alt="Decision-Theoretic Active Learning" src="../../_images/sphx_glr_plot_VOI_Decision-Theoretic_Active_Learning_thumb.gif" />
+<div class="sphx-glr-thumbcontainer" tooltip="Value of Information on Labeled Samples"><figure class="align-default" id="id15">
+<img alt="Value of Information on Labeled Samples" src="../../_images/sphx_glr_plot_ValueOfInformationEER_Value_of_Information_on_Labeled_Samples_thumb.gif" />
 <figcaption>
-<p><span class="caption-text"><a class="reference internal" href="pool/plot_VOI_Decision-Theoretic_Active_Learning.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-voi-decision-theoretic-active-learning-py"><span class="std std-ref">Decision-Theoretic Active Learning</span></a></span><a class="headerlink" href="#id15" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text"><a class="reference internal" href="pool/plot_ValueOfInformationEER_Value_of_Information_on_Labeled_Samples.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-valueofinformationeer-value-of-information-on-labeled-samples-py"><span class="std std-ref">Value of Information on Labeled Samples</span></a></span><a class="headerlink" href="#id15" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="Value of Information on Unlabeled Samples"><figure class="align-default" id="id16">
+<img alt="Value of Information on Unlabeled Samples" src="../../_images/sphx_glr_plot_ValueOfInformationEER_Value_of_Information_on_Unlabeled_Samples_thumb.gif" />
+<figcaption>
+<p><span class="caption-text"><a class="reference internal" href="pool/plot_ValueOfInformationEER_Value_of_Information_on_Unlabeled_Samples.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-valueofinformationeer-value-of-information-on-unlabeled-samples-py"><span class="std std-ref">Value of Information on Unlabeled Samples</span></a></span><a class="headerlink" href="#id16" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 </div><div class="toctree-wrapper compound">
@@ -448,14 +463,14 @@
               
               <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../api/skactiveml.utils.check_budget_manager.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="../api/skactiveml.exceptions.MappingError.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">skactiveml.utils.check_budget_manager</p>
+            <p class="prev-next-title">skactiveml.exceptions.MappingError</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="pool/plot_RandomSampler_Random_Sampling.html" title="next page">
+    <a class='right-next' id="next-link" href="pool/plot_RandomSampling_Random_Sampling.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Random Sampling</p>

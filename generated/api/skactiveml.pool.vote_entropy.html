@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>skactiveml.pool.vote_entropy &#8212; scikit-activeml 0.1.1 documentation</title>
+    <title>skactiveml.pool.vote_entropy &#8212; scikit-activeml 0.2.0 documentation</title>
     
     <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -39,7 +39,7 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="skactiveml.pool.multi.IEThresh" href="skactiveml.pool.multi.IEThresh.html" />
+    <link rel="next" title="skactiveml.pool.multiannotator.IntervalEstimationThreshold" href="skactiveml.pool.multiannotator.IntervalEstimationThreshold.html" />
     <link rel="prev" title="skactiveml.pool.average_kl_divergence" href="skactiveml.pool.average_kl_divergence.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -158,13 +158,13 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.base.SingleAnnotPoolBasedQueryStrategy.html">
-   skactiveml.base.SingleAnnotPoolBasedQueryStrategy
+  <a class="reference internal" href="skactiveml.base.SingleAnnotatorPoolQueryStrategy.html">
+   skactiveml.base.SingleAnnotatorPoolQueryStrategy
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.base.MultiAnnotPoolBasedQueryStrategy.html">
-   skactiveml.base.MultiAnnotPoolBasedQueryStrategy
+  <a class="reference internal" href="skactiveml.base.MultiAnnotatorPoolQueryStrategy.html">
+   skactiveml.base.MultiAnnotatorPoolQueryStrategy
   </a>
  </li>
  <li class="toctree-l1">
@@ -173,8 +173,8 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.base.SingleAnnotStreamBasedQueryStrategy.html">
-   skactiveml.base.SingleAnnotStreamBasedQueryStrategy
+  <a class="reference internal" href="skactiveml.base.SingleAnnotatorStreamQueryStrategy.html">
+   skactiveml.base.SingleAnnotatorStreamQueryStrategy
   </a>
  </li>
  <li class="toctree-l1">
@@ -188,20 +188,20 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.base.AnnotModelMixin.html">
-   skactiveml.base.AnnotModelMixin
+  <a class="reference internal" href="skactiveml.base.AnnotatorModelMixin.html">
+   skactiveml.base.AnnotatorModelMixin
   </a>
  </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.pool.RandomSampler.html">
-   skactiveml.pool.RandomSampler
+  <a class="reference internal" href="skactiveml.pool.RandomSampling.html">
+   skactiveml.pool.RandomSampling
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.pool.McPAL.html">
-   skactiveml.pool.McPAL
+  <a class="reference internal" href="skactiveml.pool.ProbabilisticAL.html">
+   skactiveml.pool.ProbabilisticAL
   </a>
  </li>
  <li class="toctree-l1">
@@ -210,33 +210,33 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.pool.EpistemicUncertainty.html">
-   skactiveml.pool.EpistemicUncertainty
+  <a class="reference internal" href="skactiveml.pool.EpistemicUncertaintySampling.html">
+   skactiveml.pool.EpistemicUncertaintySampling
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.pool.ExpectedErrorReduction.html">
-   skactiveml.pool.ExpectedErrorReduction
+  <a class="reference internal" href="skactiveml.pool.MonteCarloEER.html">
+   skactiveml.pool.MonteCarloEER
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.pool.QBC.html">
-   skactiveml.pool.QBC
+  <a class="reference internal" href="skactiveml.pool.ValueOfInformationEER.html">
+   skactiveml.pool.ValueOfInformationEER
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.pool.FourDS.html">
-   skactiveml.pool.FourDS
+  <a class="reference internal" href="skactiveml.pool.QueryByCommittee.html">
+   skactiveml.pool.QueryByCommittee
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.pool.ALCE.html">
-   skactiveml.pool.ALCE
+  <a class="reference internal" href="skactiveml.pool.FourDs.html">
+   skactiveml.pool.FourDs
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.pool.VOI.html">
-   skactiveml.pool.VOI
+  <a class="reference internal" href="skactiveml.pool.CostEmbeddingAL.html">
+   skactiveml.pool.CostEmbeddingAL
   </a>
  </li>
 </ul>
@@ -257,11 +257,6 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.pool.expected_error_reduction.html">
-   skactiveml.pool.expected_error_reduction
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="skactiveml.pool.average_kl_divergence.html">
    skactiveml.pool.average_kl_divergence
   </a>
@@ -274,30 +269,37 @@
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.pool.multi.IEThresh.html">
-   skactiveml.pool.multi.IEThresh
+  <a class="reference internal" href="skactiveml.pool.multiannotator.IntervalEstimationThreshold.html">
+   skactiveml.pool.multiannotator.IntervalEstimationThreshold
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.pool.multi.IEAnnotModel.html">
-   skactiveml.pool.multi.IEAnnotModel
+  <a class="reference internal" href="skactiveml.pool.multiannotator.IntervalEstimationAnnotModel.html">
+   skactiveml.pool.multiannotator.IntervalEstimationAnnotModel
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.pool.multi.MultiAnnotWrapper.html">
-   skactiveml.pool.multi.MultiAnnotWrapper
+  <a class="reference internal" href="skactiveml.pool.multiannotator.SingleAnnotatorWrapper.html">
+   skactiveml.pool.multiannotator.SingleAnnotatorWrapper
   </a>
  </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.stream.RandomSampler.html">
-   skactiveml.stream.RandomSampler
+  <a class="reference internal" href="skactiveml.pool.utils.IndexClassifierWrapper.html">
+   skactiveml.pool.utils.IndexClassifierWrapper
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.StreamRandomSampling.html">
+   skactiveml.stream.StreamRandomSampling
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.stream.PeriodicSampler.html">
-   skactiveml.stream.PeriodicSampler
+  <a class="reference internal" href="skactiveml.stream.PeriodicSampling.html">
+   skactiveml.stream.PeriodicSampling
   </a>
  </li>
  <li class="toctree-l1">
@@ -316,8 +318,8 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.stream.PALS.html">
-   skactiveml.stream.PALS
+  <a class="reference internal" href="skactiveml.stream.StreamProbabilisticAL.html">
+   skactiveml.stream.StreamProbabilisticAL
   </a>
  </li>
  <li class="toctree-l1">
@@ -328,13 +330,13 @@
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.classifier.PWC.html">
-   skactiveml.classifier.PWC
+  <a class="reference internal" href="skactiveml.classifier.ParzenWindowClassifier.html">
+   skactiveml.classifier.ParzenWindowClassifier
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.classifier.CMM.html">
-   skactiveml.classifier.CMM
+  <a class="reference internal" href="skactiveml.classifier.MixtureModelClassifier.html">
+   skactiveml.classifier.MixtureModelClassifier
   </a>
  </li>
  <li class="toctree-l1">
@@ -345,20 +347,20 @@
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.classifier.multi.LogisticRegressionRY.html">
-   skactiveml.classifier.multi.LogisticRegressionRY
+  <a class="reference internal" href="skactiveml.classifier.multiannotator.AnnotatorLogisticRegression.html">
+   skactiveml.classifier.multiannotator.AnnotatorLogisticRegression
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.classifier.multi.MultiAnnotEnsemble.html">
-   skactiveml.classifier.multi.MultiAnnotEnsemble
+  <a class="reference internal" href="skactiveml.classifier.multiannotator.AnnotatorEnsembleClassifier.html">
+   skactiveml.classifier.multiannotator.AnnotatorEnsembleClassifier
   </a>
  </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.visualization.plot_utility.html">
-   skactiveml.visualization.plot_utility
+  <a class="reference internal" href="skactiveml.visualization.plot_utilities.html">
+   skactiveml.visualization.plot_utilities
   </a>
  </li>
  <li class="toctree-l1">
@@ -367,18 +369,13 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.visualization.plot_ma_current_state.html">
-   skactiveml.visualization.plot_ma_current_state
+  <a class="reference internal" href="skactiveml.visualization.plot_contour_for_samples.html">
+   skactiveml.visualization.plot_contour_for_samples
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.visualization.plot_ma_utility.html">
-   skactiveml.visualization.plot_ma_utility
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.visualization.plot_ma_decision_boundary.html">
-   skactiveml.visualization.plot_ma_decision_boundary
+  <a class="reference internal" href="skactiveml.visualization.plot_annotator_utilities.html">
+   skactiveml.visualization.plot_annotator_utilities
   </a>
  </li>
  <li class="toctree-l1">
@@ -466,11 +463,6 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.utils.simple_batch.html">
-   skactiveml.utils.simple_batch
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="skactiveml.utils.check_class_prior.html">
    skactiveml.utils.check_class_prior
   </a>
@@ -478,11 +470,6 @@
  <li class="toctree-l1">
   <a class="reference internal" href="skactiveml.utils.ext_confusion_matrix.html">
    skactiveml.utils.ext_confusion_matrix
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.utils.fit_if_not_fitted.html">
-   skactiveml.utils.fit_if_not_fitted
   </a>
  </li>
  <li class="toctree-l1">
@@ -506,8 +493,30 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.utils.check_equal_missing_label.html">
+   skactiveml.utils.check_equal_missing_label
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="skactiveml.utils.check_budget_manager.html">
    skactiveml.utils.check_budget_manager
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.utils.check_indices.html">
+   skactiveml.utils.check_indices
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.utils.simple_batch.html">
+   skactiveml.utils.simple_batch
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.exceptions.MappingError.html">
+   skactiveml.exceptions.MappingError
   </a>
  </li>
 </ul>
@@ -553,9 +562,9 @@
 <h1>skactiveml.pool.vote_entropy<a class="headerlink" href="#skactiveml-pool-vote-entropy" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="skactiveml.pool.vote_entropy">
-<span class="sig-prename descclassname"><span class="pre">skactiveml.pool.</span></span><span class="sig-name descname"><span class="pre">vote_entropy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">votes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/pool/_qbc.html#vote_entropy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.pool.vote_entropy" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">skactiveml.pool.</span></span><span class="sig-name descname"><span class="pre">vote_entropy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">votes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/pool/_query_by_committee.html#vote_entropy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.pool.vote_entropy" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculates the vote entropy for measuring the level of disagreement in
-QBC.</p>
+QueryByCommittee.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
@@ -595,10 +604,10 @@ arXiv preprint cmp-lg/9606030 (1996).</p>
             <p class="prev-next-title">skactiveml.pool.average_kl_divergence</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="skactiveml.pool.multi.IEThresh.html" title="next page">
+    <a class='right-next' id="next-link" href="skactiveml.pool.multiannotator.IntervalEstimationThreshold.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">skactiveml.pool.multi.IEThresh</p>
+        <p class="prev-next-title">skactiveml.pool.multiannotator.IntervalEstimationThreshold</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

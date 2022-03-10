@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Pool-based Active Learning - Getting Started &#8212; scikit-activeml 0.1.1 documentation</title>
+    <title>Pool-based Active Learning - Getting Started &#8212; scikit-activeml 0.2.0 documentation</title>
     
     <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -507,7 +507,7 @@ div.rendered_html tbody tr:hover {
 <span class="kn">from</span> <span class="nn">skactiveml.classifier</span> <span class="kn">import</span> <span class="n">SklearnClassifier</span>
 <span class="kn">from</span> <span class="nn">skactiveml.pool</span> <span class="kn">import</span> <span class="n">UncertaintySampling</span>
 <span class="kn">from</span> <span class="nn">skactiveml.utils</span> <span class="kn">import</span> <span class="n">unlabeled_indices</span><span class="p">,</span> <span class="n">labeled_indices</span><span class="p">,</span> <span class="n">MISSING_LABEL</span>
-<span class="kn">from</span> <span class="nn">skactiveml.visualization</span> <span class="kn">import</span> <span class="n">plot_decision_boundary</span><span class="p">,</span> <span class="n">plot_utility</span>
+<span class="kn">from</span> <span class="nn">skactiveml.visualization</span> <span class="kn">import</span> <span class="n">plot_decision_boundary</span><span class="p">,</span> <span class="n">plot_utilities</span>
 
 <span class="kn">import</span> <span class="nn">warnings</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
@@ -587,10 +587,9 @@ div.rendered_html tbody tr:hover {
 </section>
 <section id="Active-Learning-Cycle">
 <h2>Active Learning Cycle<a class="headerlink" href="#Active-Learning-Cycle" title="Permalink to this headline">¶</a></h2>
-<p>In this example, we perform 20 iterations of the active learning cycle (<code class="docutils literal notranslate"><span class="pre">n_cycles=20</span></code>). In each iteration, we acquire one label (<code class="docutils literal notranslate"><span class="pre">batch_size=1</span></code>). The total number of labels to be acquired is <code class="docutils literal notranslate"><span class="pre">batch_size</span> <span class="pre">*</span> <span class="pre">n_cycles</span></code>. Inside the loop, we first get the indices of the unlabeled instances. In the first iteration, <code class="docutils literal notranslate"><span class="pre">unlbld_idx</span></code> contains all indices because all data points are unlabeled. Next, we use the unlabeled indices to create the list <code class="docutils literal notranslate"><span class="pre">X_cand</span></code> of candidate instances that can still be
-queried and ask the query strategy to give us the indices of the most informative data points in <code class="docutils literal notranslate"><span class="pre">X_cand</span></code>. The <code class="docutils literal notranslate"><span class="pre">query</span></code> method returns the indices of the best <code class="docutils literal notranslate"><span class="pre">batch_size</span></code> instances together with the corresponding instances. In our case, the output is just a single index, as <code class="docutils literal notranslate"><span class="pre">batch_size=1</span></code>.</p>
-<p>Finally, we ask the oracle for the true label of the selected data point and store it in <code class="docutils literal notranslate"><span class="pre">y</span></code> to train our classifier. We continue until we reach the 20 labeled data points. Below, we see the implementation of an active learning cycle. The first figure shows the decision boundary after acquiring the label of two data points. The second figure shows the decision boundary with 10 acquired labels, which shows significant improvement compared to the first figure. The last figure shows the decision
-boundary after acquiring labels for 20 data points. Finally, we use the accuracy score as a performance measure, which shows the accuracy of our classifier in the specified iterations.</p>
+<p>In this example, we perform 20 iterations of the active learning cycle (<code class="docutils literal notranslate"><span class="pre">n_cycles=20</span></code>). In each iteration, we select one unlabeled sample to be labeled (<code class="docutils literal notranslate"><span class="pre">batch_size=1</span></code>). The sample is selected by an index (<code class="docutils literal notranslate"><span class="pre">query_idx</span></code>).</p>
+<p>The label is acquired by assigning the label from <code class="docutils literal notranslate"><span class="pre">y_true</span></code> to <code class="docutils literal notranslate"><span class="pre">y</span></code>. Then we retrain our classifier. We continue until we reach the 20 labeled data points. Below, we see the implementation of an active learning cycle. The first figure shows the decision boundary after acquiring the label of two data points. The second figure shows the decision boundary with 10 acquired labels, which shows significant improvement compared to the first figure. The last figure shows the decision boundary after
+acquiring labels for 20 data points. Finally, we use the accuracy score as a performance measure, which shows the accuracy of our classifier in the specified iterations.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
@@ -599,10 +598,7 @@ boundary after acquiring labels for 20 data points. Finally, we use the accuracy
 <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">y_true</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">)</span>
 <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_cycles</span><span class="p">):</span>
-    <span class="n">unlbld_idx</span> <span class="o">=</span> <span class="n">unlabeled_indices</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-    <span class="n">X_cand</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">unlbld_idx</span><span class="p">]</span>
-    <span class="n">cand_idx</span> <span class="o">=</span> <span class="n">qs</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">X_cand</span><span class="o">=</span><span class="n">X_cand</span><span class="p">,</span> <span class="n">clf</span><span class="o">=</span><span class="n">clf</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">query_idx</span> <span class="o">=</span> <span class="n">unlbld_idx</span><span class="p">[</span><span class="n">cand_idx</span><span class="p">]</span>
+    <span class="n">query_idx</span> <span class="o">=</span> <span class="n">qs</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">clf</span><span class="o">=</span><span class="n">clf</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">y</span><span class="p">[</span><span class="n">query_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_true</span><span class="p">[</span><span class="n">query_idx</span><span class="p">]</span>
     <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
@@ -612,12 +608,12 @@ boundary after acquiring labels for 20 data points. Finally, we use the accuracy
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">lbld_idx</span><span class="p">)</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">]:</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;After </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">lbld_idx</span><span class="p">)</span><span class="si">}</span><span class="s1"> iterations:&#39;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The accuracy score is </span><span class="si">{</span><span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y_true</span><span class="p">)</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
-        <span class="n">plot_utility</span><span class="p">(</span><span class="n">qs</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;clf&#39;</span><span class="p">:</span> <span class="n">clf</span><span class="p">},</span> <span class="n">feature_bound</span><span class="o">=</span><span class="n">bound</span><span class="p">)</span>
+        <span class="n">plot_utilities</span><span class="p">(</span><span class="n">qs</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">clf</span><span class="o">=</span><span class="n">clf</span><span class="p">,</span> <span class="n">feature_bound</span><span class="o">=</span><span class="n">bound</span><span class="p">)</span>
         <span class="n">plot_decision_boundary</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">feature_bound</span><span class="o">=</span><span class="n">bound</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">unlbld_idx</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="n">unlbld_idx</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;jet&#39;</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-<br/></pre></div>
+</pre></div>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -626,7 +622,7 @@ boundary after acquiring labels for 20 data points. Finally, we use the accuracy
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 After 2 iterations:
-The accuracy score is 0.5.
+The accuracy score is 0.68.
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -642,7 +638,7 @@ The accuracy score is 0.5.
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 After 10 iterations:
-The accuracy score is 0.93.
+The accuracy score is 0.95.
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">

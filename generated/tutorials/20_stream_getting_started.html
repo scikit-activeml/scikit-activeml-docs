@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Stream-based Active Learning - Getting Started &#8212; scikit-activeml 0.1.1 documentation</title>
+    <title>Stream-based Active Learning - Getting Started &#8212; scikit-activeml 0.2.0 documentation</title>
     
     <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -504,21 +504,20 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">sklearn</span>
 <span class="kn">import</span> <span class="nn">sklearn.datasets</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
 <span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">gaussian_filter1d</span>
-<span class="kn">from</span> <span class="nn">skactiveml.classifier</span> <span class="kn">import</span> <span class="n">PWC</span>
-<span class="kn">from</span> <span class="nn">skactiveml.stream</span> <span class="kn">import</span> <span class="n">RandomSampler</span><span class="p">,</span> <span class="n">PeriodicSampler</span>
-<span class="kn">from</span> <span class="nn">skactiveml.stream</span> <span class="kn">import</span> <span class="n">FixedUncertainty</span><span class="p">,</span> <span class="n">VariableUncertainty</span><span class="p">,</span> <span class="n">Split</span><span class="p">,</span> <span class="n">PALS</span>
+<span class="kn">from</span> <span class="nn">skactiveml.classifier</span> <span class="kn">import</span> <span class="n">ParzenWindowClassifier</span>
+<span class="kn">from</span> <span class="nn">skactiveml.stream</span> <span class="kn">import</span> <span class="n">StreamRandomSampling</span><span class="p">,</span> <span class="n">PeriodicSampling</span>
+<span class="kn">from</span> <span class="nn">skactiveml.stream</span> <span class="kn">import</span> <span class="n">FixedUncertainty</span><span class="p">,</span> <span class="n">VariableUncertainty</span><span class="p">,</span> <span class="n">Split</span><span class="p">,</span> <span class="n">StreamProbabilisticAL</span>
 <span class="kn">from</span> <span class="nn">skactiveml.utils</span> <span class="kn">import</span> <span class="n">call_func</span>
 </pre></div>
 </div>
 </div>
 <section id="Initialize-Stream-Parameters">
 <h2>Initialize Stream Parameters<a class="headerlink" href="#Initialize-Stream-Parameters" title="Permalink to this headline">¶</a></h2>
-<p>Before the experiments can start, we need to construct a random data set. For this, we specify the necessary parameters in the cell below. We specify the length of the data stream (stream_length) and the size of the sliding window that defines the available training data (training_size). Additionally we define a parameter (fit_clf) to decide if X and y are needed and should be used.</p>
+<p>Before the experiments can start, we need to construct a random data set. For this, we specify the necessary parameters in the cell below. We specify the length of the data stream (<code class="docutils literal notranslate"><span class="pre">stream_length</span></code>) and the size of the sliding window that defines the available training data (<code class="docutils literal notranslate"><span class="pre">training_size</span></code>). Additionally, we define a parameter (<code class="docutils literal notranslate"><span class="pre">fit_clf</span></code>) to decide if <code class="docutils literal notranslate"><span class="pre">X</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> are needed and should be used.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
@@ -537,7 +536,7 @@ div.rendered_html tbody tr:hover {
 </section>
 <section id="Random-Seed-Generation">
 <h2>Random Seed Generation<a class="headerlink" href="#Random-Seed-Generation" title="Permalink to this headline">¶</a></h2>
-<p>To make the experiments repeatable, we will use the random_state object to generate all other random seeds, such that we only need to explicitly specify a single random seed. The get_randomseed function simplifies the generation of a new random seed using the random_state object.</p>
+<p>To make the experiments repeatable, we will use the <code class="docutils literal notranslate"><span class="pre">random_state</span></code> object to generate all other random seeds, such that we only need to explicitly specify a single random seed. The <code class="docutils literal notranslate"><span class="pre">get_randomseed</span></code> function simplifies the generation of a new random seed using the random_state object.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
@@ -553,8 +552,8 @@ div.rendered_html tbody tr:hover {
 </section>
 <section id="Generate-And-Initialize-Data-Set">
 <h2>Generate And Initialize Data Set<a class="headerlink" href="#Generate-And-Initialize-Data-Set" title="Permalink to this headline">¶</a></h2>
-<p>The next block initializes the tested data set. We use <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> to generate a random dataset with our pre-defined stream length. The data set consists of multiple parts. X represents the location of the instance within the feature space. The class for each instance is denoted by y. For models that need at least some initial training data, we generate samples to train an initial model. These are denoted by the suffix “_init“, while all data used within the active learning cycle are
-denoted by the suffix”_stream”. For this notebook we evaluate the performance of each query strategy using Prequential Evaluation. If a hold-out test dataset is used, it should be initialized here as well.</p>
+<p>The next block initializes the tested data set. We use <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> to generate a random dataset with our pre-defined stream length. The data set consists of multiple parts. <code class="docutils literal notranslate"><span class="pre">X</span></code> represents the location of the instance within the feature space. The class for each instance is denoted by y. For models that need at least some initial training data, we generate samples to train an initial model. These are denoted by the suffix <code class="docutils literal notranslate"><span class="pre">_init</span></code>, while all data used within the active learning cycle are
+denoted by the suffix <code class="docutils literal notranslate"><span class="pre">_stream</span></code>. For this notebook we evaluate the performance of each query strategy using Prequential Evaluation. If a hold-out test dataset is used, it should be initialized here as well.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
@@ -575,14 +574,14 @@ denoted by the suffix”_stream”. For this notebook we evaluate the performanc
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clf_factory</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">PWC</span><span class="p">(</span><span class="n">classes</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">random_state</span><span class="o">=</span><span class="n">get_randomseed</span><span class="p">(</span><span class="n">random_state</span><span class="p">))</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clf_factory</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">ParzenWindowClassifier</span><span class="p">(</span><span class="n">classes</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">random_state</span><span class="o">=</span><span class="n">get_randomseed</span><span class="p">(</span><span class="n">random_state</span><span class="p">))</span>
 <span class="n">query_strategies</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;RandomSampler&#39;</span><span class="p">:</span> <span class="n">RandomSampler</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">get_randomseed</span><span class="p">(</span><span class="n">random_state</span><span class="p">)),</span>
-    <span class="s1">&#39;PeriodicSampler&#39;</span><span class="p">:</span> <span class="n">PeriodicSampler</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">get_randomseed</span><span class="p">(</span><span class="n">random_state</span><span class="p">)),</span>
+    <span class="s1">&#39;StreamRandomSampling&#39;</span><span class="p">:</span> <span class="n">StreamRandomSampling</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">get_randomseed</span><span class="p">(</span><span class="n">random_state</span><span class="p">)),</span>
+    <span class="s1">&#39;PeriodicSampling&#39;</span><span class="p">:</span> <span class="n">PeriodicSampling</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">get_randomseed</span><span class="p">(</span><span class="n">random_state</span><span class="p">)),</span>
     <span class="s1">&#39;FixedUncertainty&#39;</span><span class="p">:</span> <span class="n">FixedUncertainty</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">get_randomseed</span><span class="p">(</span><span class="n">random_state</span><span class="p">)),</span>
     <span class="s1">&#39;VariableUncertainty&#39;</span><span class="p">:</span> <span class="n">VariableUncertainty</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">get_randomseed</span><span class="p">(</span><span class="n">random_state</span><span class="p">)),</span>
     <span class="s1">&#39;Split&#39;</span><span class="p">:</span> <span class="n">Split</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">get_randomseed</span><span class="p">(</span><span class="n">random_state</span><span class="p">)),</span>
-    <span class="s1">&#39;PALS&#39;</span><span class="p">:</span> <span class="n">PALS</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">get_randomseed</span><span class="p">(</span><span class="n">random_state</span><span class="p">))</span>
+    <span class="s1">&#39;StreamProbabilisticAL&#39;</span><span class="p">:</span> <span class="n">StreamProbabilisticAL</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">get_randomseed</span><span class="p">(</span><span class="n">random_state</span><span class="p">))</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -615,12 +614,12 @@ denoted by the suffix”_stream”. For this notebook we evaluate the performanc
         <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
         <span class="n">correct_classifications</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_cand</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">y_cand</span><span class="p">)</span>
         <span class="c1"># check whether to sample the instance or not</span>
-        <span class="c1"># call_func is used since a classifier is not needed for RandomSampler and PeriodicSampler</span>
-        <span class="n">sampled_indices</span><span class="p">,</span> <span class="n">utilities</span> <span class="o">=</span> <span class="n">call_func</span><span class="p">(</span><span class="n">query_strategy</span><span class="o">.</span><span class="n">query</span><span class="p">,</span> <span class="n">X_cand</span><span class="o">=</span><span class="n">X_cand</span><span class="p">,</span> <span class="n">clf</span><span class="o">=</span><span class="n">clf</span><span class="p">,</span> <span class="n">return_utilities</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fit_clf</span><span class="o">=</span><span class="n">fit_clf</span><span class="p">)</span>
-        <span class="c1"># create budget_manager_param_dict for BIQF used by PALS</span>
+        <span class="c1"># call_func is used since a classifier is not needed for RandomSampling and PeriodicSampling</span>
+        <span class="n">sampled_indices</span><span class="p">,</span> <span class="n">utilities</span> <span class="o">=</span> <span class="n">call_func</span><span class="p">(</span><span class="n">query_strategy</span><span class="o">.</span><span class="n">query</span><span class="p">,</span> <span class="n">candidates</span><span class="o">=</span><span class="n">X_cand</span><span class="p">,</span> <span class="n">clf</span><span class="o">=</span><span class="n">clf</span><span class="p">,</span> <span class="n">return_utilities</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fit_clf</span><span class="o">=</span><span class="n">fit_clf</span><span class="p">)</span>
+        <span class="c1"># create budget_manager_param_dict for BalancedIncrementalQuantileFilter used by StreamProbabilisticAL</span>
         <span class="n">budget_manager_param_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;utilities&quot;</span><span class="p">:</span> <span class="n">utilities</span><span class="p">}</span>
         <span class="c1"># update the query strategy and budget_manager to calculate the right budget</span>
-        <span class="n">call_func</span><span class="p">(</span><span class="n">query_strategy</span><span class="o">.</span><span class="n">update</span><span class="p">,</span> <span class="n">X_cand</span><span class="o">=</span><span class="n">X_cand</span><span class="p">,</span> <span class="n">queried_indices</span><span class="o">=</span><span class="n">sampled_indices</span><span class="p">,</span> <span class="n">budget_manager_param_dict</span><span class="o">=</span><span class="n">budget_manager_param_dict</span><span class="p">)</span>
+        <span class="n">call_func</span><span class="p">(</span><span class="n">query_strategy</span><span class="o">.</span><span class="n">update</span><span class="p">,</span> <span class="n">candidates</span><span class="o">=</span><span class="n">X_cand</span><span class="p">,</span> <span class="n">queried_indices</span><span class="o">=</span><span class="n">sampled_indices</span><span class="p">,</span> <span class="n">budget_manager_param_dict</span><span class="o">=</span><span class="n">budget_manager_param_dict</span><span class="p">)</span>
         <span class="c1"># count the number of queries</span>
         <span class="n">count</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">sampled_indices</span><span class="p">)</span>
         <span class="c1"># add X_cand to X_train</span>
@@ -628,7 +627,7 @@ denoted by the suffix”_stream”. For this notebook we evaluate the performanc
         <span class="c1"># add label or missing_label to y_train</span>
         <span class="n">y_train</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y_cand</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sampled_indices</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">clf</span><span class="o">.</span><span class="n">missing_label</span><span class="p">)</span>
     <span class="c1"># calculate and show the average accuracy</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Query Strategy: &quot;</span><span class="p">,</span> <span class="n">query_strategy_name</span><span class="p">,</span> <span class="s2">&quot;, Avg Accuracy: &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">correct_classifications</span><span class="p">),</span> <span class="s2">&quot;, Acquisation count:&quot;</span><span class="p">,</span> <span class="n">count</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Query Strategy: &quot;</span><span class="p">,</span> <span class="n">query_strategy_name</span><span class="p">,</span> <span class="s2">&quot;, Avg Accuracy: &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">correct_classifications</span><span class="p">),</span> <span class="s2">&quot;, Acquisition count:&quot;</span><span class="p">,</span> <span class="n">count</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gaussian_filter1d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">correct_classifications</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">),</span> <span class="mi">50</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="n">query_strategy_name</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 </pre></div>
@@ -639,12 +638,12 @@ denoted by the suffix”_stream”. For this notebook we evaluate the performanc
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Query Strategy:  RandomSampler , Avg Accuracy:  0.7525 , Acquisation count: 994
-Query Strategy:  PeriodicSampler , Avg Accuracy:  0.7687 , Acquisation count: 1000
-Query Strategy:  FixedUncertainty , Avg Accuracy:  0.8235 , Acquisation count: 1040
-Query Strategy:  VariableUncertainty , Avg Accuracy:  0.8044 , Acquisation count: 1039
-Query Strategy:  Split , Avg Accuracy:  0.8168 , Acquisation count: 1038
-Query Strategy:  PALS , Avg Accuracy:  0.8205 , Acquisation count: 999
+Query Strategy:  StreamRandomSampling , Avg Accuracy:  0.7525 , Acquisition count: 994
+Query Strategy:  PeriodicSampling , Avg Accuracy:  0.7687 , Acquisition count: 1000
+Query Strategy:  FixedUncertainty , Avg Accuracy:  0.8235 , Acquisition count: 1040
+Query Strategy:  VariableUncertainty , Avg Accuracy:  0.8044 , Acquisition count: 1039
+Query Strategy:  Split , Avg Accuracy:  0.8168 , Acquisition count: 1038
+Query Strategy:  StreamProbabilisticAL , Avg Accuracy:  0.8205 , Acquisition count: 999
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -653,7 +652,7 @@ Query Strategy:  PALS , Avg Accuracy:  0.8205 , Acquisation count: 999
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;matplotlib.legend.Legend at 0x27c24868dc0&gt;
+&lt;matplotlib.legend.Legend at 0x145edf917c0&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">

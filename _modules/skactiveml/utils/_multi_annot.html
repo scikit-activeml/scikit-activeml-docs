@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>skactiveml.utils._multi_annot &#8212; scikit-activeml 0.1.1 documentation</title>
+    <title>skactiveml.utils._multi_annot &#8212; scikit-activeml 0.2.0 documentation</title>
     
     <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -175,14 +175,20 @@
   <h1>Source code for skactiveml.utils._multi_annot</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span>
-<span class="kn">from</span> <span class="nn">sklearn.utils.validation</span> <span class="kn">import</span> <span class="n">check_consistent_length</span><span class="p">,</span> <span class="n">column_or_1d</span><span class="p">,</span> \
-    <span class="n">check_array</span>
+<span class="kn">from</span> <span class="nn">sklearn.utils.validation</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">check_consistent_length</span><span class="p">,</span>
+    <span class="n">column_or_1d</span><span class="p">,</span>
+    <span class="n">check_array</span><span class="p">,</span>
+<span class="p">)</span>
 
-<span class="kn">from</span> <span class="nn">._label</span> <span class="kn">import</span> <span class="n">MISSING_LABEL</span><span class="p">,</span> <span class="n">ExtLabelEncoder</span>
+<span class="kn">from</span> <span class="nn">._label</span> <span class="kn">import</span> <span class="n">MISSING_LABEL</span><span class="p">,</span> <span class="n">is_labeled</span><span class="p">,</span> <span class="n">is_unlabeled</span>
+<span class="kn">from</span> <span class="nn">._label_encoder</span> <span class="kn">import</span> <span class="n">ExtLabelEncoder</span>
 
 
-<div class="viewcode-block" id="ext_confusion_matrix"><a class="viewcode-back" href="../../../generated/api/skactiveml.utils.ext_confusion_matrix.html#skactiveml.utils.ext_confusion_matrix">[docs]</a><span class="k">def</span> <span class="nf">ext_confusion_matrix</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">classes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                         <span class="n">missing_label</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="ext_confusion_matrix"><a class="viewcode-back" href="../../../generated/api/skactiveml.utils.ext_confusion_matrix.html#skactiveml.utils.ext_confusion_matrix">[docs]</a><span class="k">def</span> <span class="nf">ext_confusion_matrix</span><span class="p">(</span>
+        <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">classes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">missing_label</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">,</span>
+        <span class="n">normalize</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Compute confusion matrix to evaluate the accuracy of a classification.</span>
 
 <span class="sd">    This is an extension of the &#39;sklearn.metric.confusion_matrix function&#39; by</span>
@@ -232,18 +238,20 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Check input.</span>
     <span class="n">y_true</span> <span class="o">=</span> <span class="n">column_or_1d</span><span class="p">(</span><span class="n">y_true</span><span class="p">)</span>
-    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">force_all_finite</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                         <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span>
+        <span class="n">y_pred</span><span class="p">,</span> <span class="n">force_all_finite</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span>
+    <span class="p">)</span>
     <span class="k">if</span> <span class="n">y_pred</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
         <span class="n">y_pred</span> <span class="o">=</span> <span class="n">y_pred</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">check_consistent_length</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">normalize</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;true&#39;</span><span class="p">,</span> <span class="s1">&#39;pred&#39;</span><span class="p">,</span> <span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;normalize&#39; must be one of {&#39;true&#39;, &#39;pred&#39;, &#39;all&#39;, &quot;</span>
-                         <span class="s2">&quot;None}.&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">normalize</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;true&quot;</span><span class="p">,</span> <span class="s2">&quot;pred&quot;</span><span class="p">,</span> <span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;&#39;normalize&#39; must be one of {&#39;true&#39;, &#39;pred&#39;, &#39;all&#39;, &quot;</span> <span class="s2">&quot;None}.&quot;</span>
+        <span class="p">)</span>
     <span class="n">le</span> <span class="o">=</span> <span class="n">ExtLabelEncoder</span><span class="p">(</span><span class="n">classes</span><span class="o">=</span><span class="n">classes</span><span class="p">,</span> <span class="n">missing_label</span><span class="o">=</span><span class="n">missing_label</span><span class="p">)</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">le</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">y</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])):</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">is_unlabeled</span><span class="p">(</span><span class="n">y</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">missing_label</span><span class="o">=-</span><span class="mi">1</span><span class="p">)):</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;y_true&#39; is not allowed to contain missing labels.&quot;</span><span class="p">)</span>
     <span class="n">n_classes</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">le</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span>
     <span class="n">n_annotators</span> <span class="o">=</span> <span class="n">y_pred</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
@@ -251,21 +259,23 @@
     <span class="c1"># Determine confusion matrix for each annotator.</span>
     <span class="n">conf_matrices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_annotators</span><span class="p">,</span> <span class="n">n_classes</span><span class="p">,</span> <span class="n">n_classes</span><span class="p">))</span>
     <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_annotators</span><span class="p">):</span>
-        <span class="n">is_not_nan_a</span> <span class="o">=</span> <span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">y</span><span class="p">[:,</span> <span class="n">a</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">is_not_nan_a</span> <span class="o">=</span> <span class="n">is_labeled</span><span class="p">(</span><span class="n">y</span><span class="p">[:,</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">missing_label</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">is_not_nan_a</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">cm</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_true</span><span class="o">=</span><span class="n">y</span><span class="p">[</span><span class="n">is_not_nan_a</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-                                  <span class="n">y_pred</span><span class="o">=</span><span class="n">y</span><span class="p">[</span><span class="n">is_not_nan_a</span><span class="p">,</span> <span class="n">a</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span>
-                                  <span class="n">labels</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_classes</span><span class="p">))</span>
+            <span class="n">cm</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span>
+                <span class="n">y_true</span><span class="o">=</span><span class="n">y</span><span class="p">[</span><span class="n">is_not_nan_a</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                <span class="n">y_pred</span><span class="o">=</span><span class="n">y</span><span class="p">[</span><span class="n">is_not_nan_a</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span>
+                <span class="n">labels</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_classes</span><span class="p">),</span>
+            <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">cm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_classes</span><span class="p">,</span> <span class="n">n_classes</span><span class="p">))</span>
-        <span class="k">with</span> <span class="n">np</span><span class="o">.</span><span class="n">errstate</span><span class="p">(</span><span class="nb">all</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">normalize</span> <span class="o">==</span> <span class="s1">&#39;true&#39;</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">np</span><span class="o">.</span><span class="n">errstate</span><span class="p">(</span><span class="nb">all</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">normalize</span> <span class="o">==</span> <span class="s2">&quot;true&quot;</span><span class="p">:</span>
                 <span class="n">cm</span> <span class="o">=</span> <span class="n">cm</span> <span class="o">/</span> <span class="n">cm</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
                 <span class="n">conf_matrices</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan_to_num</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">nan</span><span class="o">=</span><span class="mi">1</span> <span class="o">/</span> <span class="n">n_classes</span><span class="p">)</span>
-            <span class="k">elif</span> <span class="n">normalize</span> <span class="o">==</span> <span class="s1">&#39;pred&#39;</span><span class="p">:</span>
+            <span class="k">elif</span> <span class="n">normalize</span> <span class="o">==</span> <span class="s2">&quot;pred&quot;</span><span class="p">:</span>
                 <span class="n">cm</span> <span class="o">=</span> <span class="n">cm</span> <span class="o">/</span> <span class="n">cm</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
                 <span class="n">conf_matrices</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan_to_num</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">nan</span><span class="o">=</span><span class="mi">1</span> <span class="o">/</span> <span class="n">n_classes</span><span class="p">)</span>
-            <span class="k">elif</span> <span class="n">normalize</span> <span class="o">==</span> <span class="s1">&#39;all&#39;</span><span class="p">:</span>
+            <span class="k">elif</span> <span class="n">normalize</span> <span class="o">==</span> <span class="s2">&quot;all&quot;</span><span class="p">:</span>
                 <span class="n">cm</span> <span class="o">=</span> <span class="n">cm</span> <span class="o">/</span> <span class="n">cm</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
                 <span class="n">conf_matrices</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan_to_num</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">nan</span><span class="o">=</span><span class="mi">1</span> <span class="o">/</span> <span class="n">cm</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
 

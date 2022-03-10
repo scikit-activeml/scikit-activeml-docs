@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Developer Guide &#8212; scikit-activeml 0.1.1 documentation</title>
+    <title>Developer Guide &#8212; scikit-activeml 0.2.0 documentation</title>
     
     <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -39,7 +39,7 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Decision-Theoretic Active Learning" href="generated/sphinx_gallery_examples/pool/plot_VOI_Decision-Theoretic_Active_Learning.html" />
+    <link rel="prev" title="Value of Information on Unlabeled Samples" href="generated/sphinx_gallery_examples/pool/plot_ValueOfInformationEER_Value_of_Information_on_Unlabeled_Samples.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -522,10 +522,10 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#predict-annot-perf-function">
+    <a class="reference internal nav-link" href="#predict-annotator-perf-function">
      <code class="docutils literal notranslate">
       <span class="pre">
-       predict_annot_perf
+       predict_annotator_perf
       </span>
      </code>
      function
@@ -732,7 +732,7 @@ $ git push
 <h4>General<a class="headerlink" href="#general" title="Permalink to this headline">¶</a></h4>
 <p>All query strategies are stored in a file
 <code class="docutils literal notranslate"><span class="pre">skactiveml/pool/_query_strategy.py</span></code>. Every class inherits from
-<code class="docutils literal notranslate"><span class="pre">SingleAnnotatorPoolBasedQueryStrategy</span></code>. The class must implement the
+<code class="docutils literal notranslate"><span class="pre">SingleAnnotatorPoolQueryStrategy</span></code>. The class must implement the
 <code class="docutils literal notranslate"><span class="pre">__init__</span></code> function for initialization and a <code class="docutils literal notranslate"><span class="pre">query</span></code> function.</p>
 </section>
 <section id="init-function">
@@ -857,7 +857,7 @@ utils for return value.</p>
 (<code class="docutils literal notranslate"><span class="pre">test_pool.py</span></code>). Querying of every method is tested with standard
 configurations with 0, 1, and 5 initial labels. For every class
 <code class="docutils literal notranslate"><span class="pre">ExampleQueryStrategy</span></code> that inherits from
-<code class="docutils literal notranslate"><span class="pre">SingleAnnotPoolBasedQueryStrategy</span></code> (stored in <code class="docutils literal notranslate"><span class="pre">_example.py</span></code>), it is
+<code class="docutils literal notranslate"><span class="pre">SingleAnnotatorPoolQueryStrategy</span></code> (stored in <code class="docutils literal notranslate"><span class="pre">_example.py</span></code>), it is
 automatically tested if there exists a file <code class="docutils literal notranslate"><span class="pre">test/test_example.py</span></code>. It
 is necessary that both filenames are the same. Moreover, the test class
 must be called <code class="docutils literal notranslate"><span class="pre">TestExampleQueryStrategy(unittest.TestCase)</span></code>. Every
@@ -878,7 +878,7 @@ not have to be tested in the specific tests.</p>
 <span id="id1"></span><h4>General<a class="headerlink" href="#general-1" title="Permalink to this headline">¶</a></h4>
 <p>All query strategies are stored in a file <code class="docutils literal notranslate"><span class="pre">skactivml/stream/*.py</span></code>.
 Every query strategy inherits from
-<code class="docutils literal notranslate"><span class="pre">SingleAnnotatorStreamBasedQueryStrategy</span></code>. Every query strategy has
+<code class="docutils literal notranslate"><span class="pre">SingleAnnotatorStreamQueryStrategy</span></code>. Every query strategy has
 either an internal budget handling or an outsourced <code class="docutils literal notranslate"><span class="pre">budget_manager</span></code>.</p>
 <p>For typical class parameters we use standard names:</p>
 <table class="table">
@@ -1054,7 +1054,7 @@ update). If a <code class="docutils literal notranslate"><span class="pre">budge
 <p>All stream query strategies are tested by a general unittest
 (<code class="docutils literal notranslate"><span class="pre">stream/tests/test_stream.py</span></code>) -For every class
 <code class="docutils literal notranslate"><span class="pre">ExampleQueryStrategy</span></code> that inherits from
-<code class="docutils literal notranslate"><span class="pre">SingleAnnotStreamBasedQueryStrategy</span></code> (stored in <code class="docutils literal notranslate"><span class="pre">_example.py</span></code>), it
+<code class="docutils literal notranslate"><span class="pre">SingleAnnotatorStreamQueryStrategy</span></code> (stored in <code class="docutils literal notranslate"><span class="pre">_example.py</span></code>), it
 is automatically tested if there exists a file <code class="docutils literal notranslate"><span class="pre">test/test_example.py</span></code>.
 It is necessary that both filenames are the same. Moreover, the test
 class must be called <code class="docutils literal notranslate"><span class="pre">TestExampleQueryStrategy</span></code> and inherit from
@@ -1180,7 +1180,7 @@ testclass <code class="docutils literal notranslate"><span class="pre">TestExamp
 <h3>Multi-Annotator Pool-based Query Strategies<a class="headerlink" href="#multi-annotator-pool-based-query-strategies" title="Permalink to this headline">¶</a></h3>
 <p>All query strategies are stored in a file
 <code class="docutils literal notranslate"><span class="pre">skactiveml/pool/multi/_query_strategy.py</span></code>. Every class inherits from
-<code class="docutils literal notranslate"><span class="pre">MultiAnnotatorPoolBasedQueryStrategy</span></code>. The class must implement the
+<code class="docutils literal notranslate"><span class="pre">MultiAnnotatorPoolQueryStrategy</span></code>. The class must implement the
 following functions:</p>
 <table class="table">
 <colgroup>
@@ -1317,7 +1317,7 @@ estimate:</p>
 <ul class="simple">
 <li><p>Define an aggregation function</p></li>
 <li><p>Evaluate the performance for each annotator sample pair</p></li>
-<li><p>Use the <code class="docutils literal notranslate"><span class="pre">MultiAnnotWrapper</span></code></p></li>
+<li><p>Use the <code class="docutils literal notranslate"><span class="pre">SingleAnnotatorWrapper</span></code></p></li>
 </ul>
 <p>If the strategy is a <code class="docutils literal notranslate"><span class="pre">greedy</span></code> method regarding the utilities:</p>
 <ul class="simple">
@@ -1688,11 +1688,11 @@ intended.</p>
 <code class="docutils literal notranslate"><span class="pre">skactiveml.base.AnnotMixing</span></code>. These models can estimate the
 performances of annotators for given samples. Every class of a
 classifier inherits from <code class="docutils literal notranslate"><span class="pre">skactiveml.base.SkactivemlClassifier</span></code>. The
-class of an annotator model must implement the <code class="docutils literal notranslate"><span class="pre">predict_annot_perf</span></code>
+class of an annotator model must implement the <code class="docutils literal notranslate"><span class="pre">predict_annotator_perf</span></code>
 method estimating the performances per sample of each annotator as
 proxies of the provided annotation’s qualities.</p>
-<section id="predict-annot-perf-function">
-<h3><code class="docutils literal notranslate"><span class="pre">predict_annot_perf</span></code> function<a class="headerlink" href="#predict-annot-perf-function" title="Permalink to this headline">¶</a></h3>
+<section id="predict-annotator-perf-function">
+<h3><code class="docutils literal notranslate"><span class="pre">predict_annotator_perf</span></code> function<a class="headerlink" href="#predict-annotator-perf-function" title="Permalink to this headline">¶</a></h3>
 <p>Required Parameters:</p>
 <table class="table">
 <colgroup>
@@ -1820,11 +1820,11 @@ label) using the search box on the top of the issue tracker page.</p>
               
               <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="generated/sphinx_gallery_examples/pool/plot_VOI_Decision-Theoretic_Active_Learning.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="generated/sphinx_gallery_examples/pool/plot_ValueOfInformationEER_Value_of_Information_on_Unlabeled_Samples.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Decision-Theoretic Active Learning</p>
+            <p class="prev-next-title">Value of Information on Unlabeled Samples</p>
         </div>
     </a>
 </div>

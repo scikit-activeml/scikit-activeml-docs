@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>skactiveml.utils.unlabeled_indices &#8212; scikit-activeml 0.1.1 documentation</title>
+    <title>skactiveml.utils.unlabeled_indices &#8212; scikit-activeml 0.2.0 documentation</title>
     
     <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -158,13 +158,13 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.base.SingleAnnotPoolBasedQueryStrategy.html">
-   skactiveml.base.SingleAnnotPoolBasedQueryStrategy
+  <a class="reference internal" href="skactiveml.base.SingleAnnotatorPoolQueryStrategy.html">
+   skactiveml.base.SingleAnnotatorPoolQueryStrategy
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.base.MultiAnnotPoolBasedQueryStrategy.html">
-   skactiveml.base.MultiAnnotPoolBasedQueryStrategy
+  <a class="reference internal" href="skactiveml.base.MultiAnnotatorPoolQueryStrategy.html">
+   skactiveml.base.MultiAnnotatorPoolQueryStrategy
   </a>
  </li>
  <li class="toctree-l1">
@@ -173,8 +173,8 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.base.SingleAnnotStreamBasedQueryStrategy.html">
-   skactiveml.base.SingleAnnotStreamBasedQueryStrategy
+  <a class="reference internal" href="skactiveml.base.SingleAnnotatorStreamQueryStrategy.html">
+   skactiveml.base.SingleAnnotatorStreamQueryStrategy
   </a>
  </li>
  <li class="toctree-l1">
@@ -188,20 +188,20 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.base.AnnotModelMixin.html">
-   skactiveml.base.AnnotModelMixin
+  <a class="reference internal" href="skactiveml.base.AnnotatorModelMixin.html">
+   skactiveml.base.AnnotatorModelMixin
   </a>
  </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.pool.RandomSampler.html">
-   skactiveml.pool.RandomSampler
+  <a class="reference internal" href="skactiveml.pool.RandomSampling.html">
+   skactiveml.pool.RandomSampling
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.pool.McPAL.html">
-   skactiveml.pool.McPAL
+  <a class="reference internal" href="skactiveml.pool.ProbabilisticAL.html">
+   skactiveml.pool.ProbabilisticAL
   </a>
  </li>
  <li class="toctree-l1">
@@ -210,33 +210,33 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.pool.EpistemicUncertainty.html">
-   skactiveml.pool.EpistemicUncertainty
+  <a class="reference internal" href="skactiveml.pool.EpistemicUncertaintySampling.html">
+   skactiveml.pool.EpistemicUncertaintySampling
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.pool.ExpectedErrorReduction.html">
-   skactiveml.pool.ExpectedErrorReduction
+  <a class="reference internal" href="skactiveml.pool.MonteCarloEER.html">
+   skactiveml.pool.MonteCarloEER
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.pool.QBC.html">
-   skactiveml.pool.QBC
+  <a class="reference internal" href="skactiveml.pool.ValueOfInformationEER.html">
+   skactiveml.pool.ValueOfInformationEER
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.pool.FourDS.html">
-   skactiveml.pool.FourDS
+  <a class="reference internal" href="skactiveml.pool.QueryByCommittee.html">
+   skactiveml.pool.QueryByCommittee
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.pool.ALCE.html">
-   skactiveml.pool.ALCE
+  <a class="reference internal" href="skactiveml.pool.FourDs.html">
+   skactiveml.pool.FourDs
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.pool.VOI.html">
-   skactiveml.pool.VOI
+  <a class="reference internal" href="skactiveml.pool.CostEmbeddingAL.html">
+   skactiveml.pool.CostEmbeddingAL
   </a>
  </li>
 </ul>
@@ -257,11 +257,6 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.pool.expected_error_reduction.html">
-   skactiveml.pool.expected_error_reduction
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="skactiveml.pool.average_kl_divergence.html">
    skactiveml.pool.average_kl_divergence
   </a>
@@ -274,30 +269,37 @@
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.pool.multi.IEThresh.html">
-   skactiveml.pool.multi.IEThresh
+  <a class="reference internal" href="skactiveml.pool.multiannotator.IntervalEstimationThreshold.html">
+   skactiveml.pool.multiannotator.IntervalEstimationThreshold
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.pool.multi.IEAnnotModel.html">
-   skactiveml.pool.multi.IEAnnotModel
+  <a class="reference internal" href="skactiveml.pool.multiannotator.IntervalEstimationAnnotModel.html">
+   skactiveml.pool.multiannotator.IntervalEstimationAnnotModel
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.pool.multi.MultiAnnotWrapper.html">
-   skactiveml.pool.multi.MultiAnnotWrapper
+  <a class="reference internal" href="skactiveml.pool.multiannotator.SingleAnnotatorWrapper.html">
+   skactiveml.pool.multiannotator.SingleAnnotatorWrapper
   </a>
  </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.stream.RandomSampler.html">
-   skactiveml.stream.RandomSampler
+  <a class="reference internal" href="skactiveml.pool.utils.IndexClassifierWrapper.html">
+   skactiveml.pool.utils.IndexClassifierWrapper
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.StreamRandomSampling.html">
+   skactiveml.stream.StreamRandomSampling
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.stream.PeriodicSampler.html">
-   skactiveml.stream.PeriodicSampler
+  <a class="reference internal" href="skactiveml.stream.PeriodicSampling.html">
+   skactiveml.stream.PeriodicSampling
   </a>
  </li>
  <li class="toctree-l1">
@@ -316,8 +318,8 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.stream.PALS.html">
-   skactiveml.stream.PALS
+  <a class="reference internal" href="skactiveml.stream.StreamProbabilisticAL.html">
+   skactiveml.stream.StreamProbabilisticAL
   </a>
  </li>
  <li class="toctree-l1">
@@ -328,13 +330,13 @@
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.classifier.PWC.html">
-   skactiveml.classifier.PWC
+  <a class="reference internal" href="skactiveml.classifier.ParzenWindowClassifier.html">
+   skactiveml.classifier.ParzenWindowClassifier
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.classifier.CMM.html">
-   skactiveml.classifier.CMM
+  <a class="reference internal" href="skactiveml.classifier.MixtureModelClassifier.html">
+   skactiveml.classifier.MixtureModelClassifier
   </a>
  </li>
  <li class="toctree-l1">
@@ -345,20 +347,20 @@
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.classifier.multi.LogisticRegressionRY.html">
-   skactiveml.classifier.multi.LogisticRegressionRY
+  <a class="reference internal" href="skactiveml.classifier.multiannotator.AnnotatorLogisticRegression.html">
+   skactiveml.classifier.multiannotator.AnnotatorLogisticRegression
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.classifier.multi.MultiAnnotEnsemble.html">
-   skactiveml.classifier.multi.MultiAnnotEnsemble
+  <a class="reference internal" href="skactiveml.classifier.multiannotator.AnnotatorEnsembleClassifier.html">
+   skactiveml.classifier.multiannotator.AnnotatorEnsembleClassifier
   </a>
  </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.visualization.plot_utility.html">
-   skactiveml.visualization.plot_utility
+  <a class="reference internal" href="skactiveml.visualization.plot_utilities.html">
+   skactiveml.visualization.plot_utilities
   </a>
  </li>
  <li class="toctree-l1">
@@ -367,18 +369,13 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.visualization.plot_ma_current_state.html">
-   skactiveml.visualization.plot_ma_current_state
+  <a class="reference internal" href="skactiveml.visualization.plot_contour_for_samples.html">
+   skactiveml.visualization.plot_contour_for_samples
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.visualization.plot_ma_utility.html">
-   skactiveml.visualization.plot_ma_utility
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.visualization.plot_ma_decision_boundary.html">
-   skactiveml.visualization.plot_ma_decision_boundary
+  <a class="reference internal" href="skactiveml.visualization.plot_annotator_utilities.html">
+   skactiveml.visualization.plot_annotator_utilities
   </a>
  </li>
  <li class="toctree-l1">
@@ -466,11 +463,6 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.utils.simple_batch.html">
-   skactiveml.utils.simple_batch
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="skactiveml.utils.check_class_prior.html">
    skactiveml.utils.check_class_prior
   </a>
@@ -478,11 +470,6 @@
  <li class="toctree-l1">
   <a class="reference internal" href="skactiveml.utils.ext_confusion_matrix.html">
    skactiveml.utils.ext_confusion_matrix
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.utils.fit_if_not_fitted.html">
-   skactiveml.utils.fit_if_not_fitted
   </a>
  </li>
  <li class="toctree-l1">
@@ -506,8 +493,30 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.utils.check_equal_missing_label.html">
+   skactiveml.utils.check_equal_missing_label
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="skactiveml.utils.check_budget_manager.html">
    skactiveml.utils.check_budget_manager
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.utils.check_indices.html">
+   skactiveml.utils.check_indices
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.utils.simple_batch.html">
+   skactiveml.utils.simple_batch
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.exceptions.MappingError.html">
+   skactiveml.exceptions.MappingError
   </a>
  </li>
 </ul>
@@ -527,24 +536,9 @@
               
               <div class="toc-item">
                 
-<div class="tocsection onthispage pt-5 pb-3">
-    <i class="fas fa-list"></i> On this page
-</div>
 
 <nav id="bd-toc-nav">
-    <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#examples-using-skactiveml-utils-unlabeled-indices">
-   Examples using
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     skactiveml.utils.unlabeled_indices
-    </span>
-   </code>
-  </a>
- </li>
-</ul>
-
+    
 </nav>
               </div>
               
@@ -589,100 +583,7 @@ have shape <cite>(n_samples, 2), otherwise it has the shape `(n_samples)</cite>.
 </dl>
 </dd></dl>
 
-<section id="examples-using-skactiveml-utils-unlabeled-indices">
-<span id="sphx-glr-backref-skactiveml-utils-unlabeled-indices"></span><h2>Examples using <code class="docutils literal notranslate"><span class="pre">skactiveml.utils.unlabeled_indices</span></code><a class="headerlink" href="#examples-using-skactiveml-utils-unlabeled-indices" title="Permalink to this headline">¶</a></h2>
-<div class="sphx-glr-thumbcontainer" tooltip="Random Sampling"><figure class="align-default" id="id1">
-<img alt="Random Sampling" src="../../_images/sphx_glr_plot_RandomSampler_Random_Sampling_thumb.gif" />
-<figcaption>
-<p><span class="caption-text"><a class="reference internal" href="../sphinx_gallery_examples/pool/plot_RandomSampler_Random_Sampling.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-randomsampler-random-sampling-py"><span class="std std-ref">Random Sampling</span></a></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Active Learning with Cost Embedding"><figure class="align-default" id="id2">
-<img alt="Active Learning with Cost Embedding" src="../../_images/sphx_glr_plot_ALCE_Active_Learning_with_Cost_Embedding_thumb.gif" />
-<figcaption>
-<p><span class="caption-text"><a class="reference internal" href="../sphinx_gallery_examples/pool/plot_ALCE_Active_Learning_with_Cost_Embedding.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-alce-active-learning-with-cost-embedding-py"><span class="std std-ref">Active Learning with Cost Embedding</span></a></span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Epistemic Uncertainty Sampling"><figure class="align-default" id="id3">
-<img alt="Epistemic Uncertainty Sampling" src="../../_images/sphx_glr_plot_EpistemicUncertainty_Epistemic_Uncertainty_Sampling_thumb.gif" />
-<figcaption>
-<p><span class="caption-text"><a class="reference internal" href="../sphinx_gallery_examples/pool/plot_EpistemicUncertainty_Epistemic_Uncertainty_Sampling.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-epistemicuncertainty-epistemic-uncertainty-sampling-py"><span class="std std-ref">Epistemic Uncertainty Sampling</span></a></span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Entropy-based Uncertainty Sampling"><figure class="align-default" id="id4">
-<img alt="Entropy-based Uncertainty Sampling" src="../../_images/sphx_glr_plot_UncertaintySampling_Entropy-based_Uncertainty_Sampling_thumb.gif" />
-<figcaption>
-<p><span class="caption-text"><a class="reference internal" href="../sphinx_gallery_examples/pool/plot_UncertaintySampling_Entropy-based_Uncertainty_Sampling.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-uncertaintysampling-entropy-based-uncertainty-sampling-py"><span class="std std-ref">Entropy-based Uncertainty Sampling</span></a></span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Margin-based Uncertainty Sampling"><figure class="align-default" id="id5">
-<img alt="Margin-based Uncertainty Sampling" src="../../_images/sphx_glr_plot_UncertaintySampling_Margin-based_Uncertainty_Sampling_thumb.gif" />
-<figcaption>
-<p><span class="caption-text"><a class="reference internal" href="../sphinx_gallery_examples/pool/plot_UncertaintySampling_Margin-based_Uncertainty_Sampling.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-uncertaintysampling-margin-based-uncertainty-sampling-py"><span class="std std-ref">Margin-based Uncertainty Sampling</span></a></span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Least-confident-based Uncertainty Sampling"><figure class="align-default" id="id6">
-<img alt="Least-confident-based Uncertainty Sampling" src="../../_images/sphx_glr_plot_UncertaintySampling_Least-confident-based_Uncertainty_Sampling_thumb.gif" />
-<figcaption>
-<p><span class="caption-text"><a class="reference internal" href="../sphinx_gallery_examples/pool/plot_UncertaintySampling_Least-confident-based_Uncertainty_Sampling.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-uncertaintysampling-least-confident-based-uncertainty-sampling-py"><span class="std std-ref">Least-confident-based Uncertainty Sampling</span></a></span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Cost-sensitive Expected Error Reduction"><figure class="align-default" id="id7">
-<img alt="Cost-sensitive Expected Error Reduction" src="../../_images/sphx_glr_plot_ExpectedErrorReduction_Cost-sensitive_Expected_Error_Reduction_thumb.gif" />
-<figcaption>
-<p><span class="caption-text"><a class="reference internal" href="../sphinx_gallery_examples/pool/plot_ExpectedErrorReduction_Cost-sensitive_Expected_Error_Reduction.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-expectederrorreduction-cost-sensitive-expected-error-reduction-py"><span class="std std-ref">Cost-sensitive Expected Error Reduction</span></a></span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Expected Misclassification Risk"><figure class="align-default" id="id8">
-<img alt="Expected Misclassification Risk" src="../../_images/sphx_glr_plot_ExpectedErrorReduction_Expected_Misclassification_Risk_thumb.gif" />
-<figcaption>
-<p><span class="caption-text"><a class="reference internal" href="../sphinx_gallery_examples/pool/plot_ExpectedErrorReduction_Expected_Misclassification_Risk.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-expectederrorreduction-expected-misclassification-risk-py"><span class="std std-ref">Expected Misclassification Risk</span></a></span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Log Loss Expected Error Reduction"><figure class="align-default" id="id9">
-<img alt="Log Loss Expected Error Reduction" src="../../_images/sphx_glr_plot_ExpectedErrorReduction_Log_Loss_Expected_Error_Reduction_thumb.gif" />
-<figcaption>
-<p><span class="caption-text"><a class="reference internal" href="../sphinx_gallery_examples/pool/plot_ExpectedErrorReduction_Log_Loss_Expected_Error_Reduction.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-expectederrorreduction-log-loss-expected-error-reduction-py"><span class="std std-ref">Log Loss Expected Error Reduction</span></a></span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
-</div><div class="sphx-glr-thumbcontainer" tooltip="4DS"><figure class="align-default" id="id10">
-<img alt="4DS" src="../../_images/sphx_glr_plot_FourDS_4DS_thumb.gif" />
-<figcaption>
-<p><span class="caption-text"><a class="reference internal" href="../sphinx_gallery_examples/pool/plot_FourDS_4DS.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-fourds-4ds-py"><span class="std std-ref">4DS</span></a></span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Expected Average Precision"><figure class="align-default" id="id11">
-<img alt="Expected Average Precision" src="../../_images/sphx_glr_plot_UncertaintySampling_Expected_Average_Precision_thumb.gif" />
-<figcaption>
-<p><span class="caption-text"><a class="reference internal" href="../sphinx_gallery_examples/pool/plot_UncertaintySampling_Expected_Average_Precision.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-uncertaintysampling-expected-average-precision-py"><span class="std std-ref">Expected Average Precision</span></a></span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Query-by-Committee with Vote Entropy"><figure class="align-default" id="id12">
-<img alt="Query-by-Committee with Vote Entropy" src="../../_images/sphx_glr_plot_QBC_Query-by-Committee_with_Vote_Entropy_thumb.gif" />
-<figcaption>
-<p><span class="caption-text"><a class="reference internal" href="../sphinx_gallery_examples/pool/plot_QBC_Query-by-Committee_with_Vote_Entropy.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-qbc-query-by-committee-with-vote-entropy-py"><span class="std std-ref">Query-by-Committee with Vote Entropy</span></a></span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Query-by-Committee with Kullback-Leibler Divergence"><figure class="align-default" id="id13">
-<img alt="Query-by-Committee with Kullback-Leibler Divergence" src="../../_images/sphx_glr_plot_QBC_Query-by-Committee_with_Kullback-Leibler_Divergence_thumb.gif" />
-<figcaption>
-<p><span class="caption-text"><a class="reference internal" href="../sphinx_gallery_examples/pool/plot_QBC_Query-by-Committee_with_Kullback-Leibler_Divergence.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-qbc-query-by-committee-with-kullback-leibler-divergence-py"><span class="std std-ref">Query-by-Committee with Kullback-Leibler Divergence</span></a></span><a class="headerlink" href="#id13" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Multi-class Probabilistic Active Learning"><figure class="align-default" id="id14">
-<img alt="Multi-class Probabilistic Active Learning" src="../../_images/sphx_glr_plot_McPAL_Multi-class_Probabilistic_Active_Learning_thumb.gif" />
-<figcaption>
-<p><span class="caption-text"><a class="reference internal" href="../sphinx_gallery_examples/pool/plot_McPAL_Multi-class_Probabilistic_Active_Learning.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-mcpal-multi-class-probabilistic-active-learning-py"><span class="std std-ref">Multi-class Probabilistic Active Learning</span></a></span><a class="headerlink" href="#id14" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Decision-Theoretic Active Learning"><figure class="align-default" id="id15">
-<img alt="Decision-Theoretic Active Learning" src="../../_images/sphx_glr_plot_VOI_Decision-Theoretic_Active_Learning_thumb.gif" />
-<figcaption>
-<p><span class="caption-text"><a class="reference internal" href="../sphinx_gallery_examples/pool/plot_VOI_Decision-Theoretic_Active_Learning.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-voi-decision-theoretic-active-learning-py"><span class="std std-ref">Decision-Theoretic Active Learning</span></a></span><a class="headerlink" href="#id15" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
-</div><div class="sphx-glr-clear"></div></section>
-</section>
+<span class="target" id="sphx-glr-backref-skactiveml-utils-unlabeled-indices"></span></section>
 
 
               </div>

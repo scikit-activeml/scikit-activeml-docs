@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>skactiveml.stream.FixedUncertainty &#8212; scikit-activeml 0.1.1 documentation</title>
+    <title>skactiveml.stream.FixedUncertainty &#8212; scikit-activeml 0.2.0 documentation</title>
     
     <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -40,7 +40,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="skactiveml.stream.VariableUncertainty" href="skactiveml.stream.VariableUncertainty.html" />
-    <link rel="prev" title="skactiveml.stream.PeriodicSampler" href="skactiveml.stream.PeriodicSampler.html" />
+    <link rel="prev" title="skactiveml.stream.PeriodicSampling" href="skactiveml.stream.PeriodicSampling.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -158,13 +158,13 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.base.SingleAnnotPoolBasedQueryStrategy.html">
-   skactiveml.base.SingleAnnotPoolBasedQueryStrategy
+  <a class="reference internal" href="skactiveml.base.SingleAnnotatorPoolQueryStrategy.html">
+   skactiveml.base.SingleAnnotatorPoolQueryStrategy
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.base.MultiAnnotPoolBasedQueryStrategy.html">
-   skactiveml.base.MultiAnnotPoolBasedQueryStrategy
+  <a class="reference internal" href="skactiveml.base.MultiAnnotatorPoolQueryStrategy.html">
+   skactiveml.base.MultiAnnotatorPoolQueryStrategy
   </a>
  </li>
  <li class="toctree-l1">
@@ -173,8 +173,8 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.base.SingleAnnotStreamBasedQueryStrategy.html">
-   skactiveml.base.SingleAnnotStreamBasedQueryStrategy
+  <a class="reference internal" href="skactiveml.base.SingleAnnotatorStreamQueryStrategy.html">
+   skactiveml.base.SingleAnnotatorStreamQueryStrategy
   </a>
  </li>
  <li class="toctree-l1">
@@ -188,20 +188,20 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.base.AnnotModelMixin.html">
-   skactiveml.base.AnnotModelMixin
+  <a class="reference internal" href="skactiveml.base.AnnotatorModelMixin.html">
+   skactiveml.base.AnnotatorModelMixin
   </a>
  </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.pool.RandomSampler.html">
-   skactiveml.pool.RandomSampler
+  <a class="reference internal" href="skactiveml.pool.RandomSampling.html">
+   skactiveml.pool.RandomSampling
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.pool.McPAL.html">
-   skactiveml.pool.McPAL
+  <a class="reference internal" href="skactiveml.pool.ProbabilisticAL.html">
+   skactiveml.pool.ProbabilisticAL
   </a>
  </li>
  <li class="toctree-l1">
@@ -210,33 +210,33 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.pool.EpistemicUncertainty.html">
-   skactiveml.pool.EpistemicUncertainty
+  <a class="reference internal" href="skactiveml.pool.EpistemicUncertaintySampling.html">
+   skactiveml.pool.EpistemicUncertaintySampling
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.pool.ExpectedErrorReduction.html">
-   skactiveml.pool.ExpectedErrorReduction
+  <a class="reference internal" href="skactiveml.pool.MonteCarloEER.html">
+   skactiveml.pool.MonteCarloEER
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.pool.QBC.html">
-   skactiveml.pool.QBC
+  <a class="reference internal" href="skactiveml.pool.ValueOfInformationEER.html">
+   skactiveml.pool.ValueOfInformationEER
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.pool.FourDS.html">
-   skactiveml.pool.FourDS
+  <a class="reference internal" href="skactiveml.pool.QueryByCommittee.html">
+   skactiveml.pool.QueryByCommittee
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.pool.ALCE.html">
-   skactiveml.pool.ALCE
+  <a class="reference internal" href="skactiveml.pool.FourDs.html">
+   skactiveml.pool.FourDs
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.pool.VOI.html">
-   skactiveml.pool.VOI
+  <a class="reference internal" href="skactiveml.pool.CostEmbeddingAL.html">
+   skactiveml.pool.CostEmbeddingAL
   </a>
  </li>
 </ul>
@@ -257,11 +257,6 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.pool.expected_error_reduction.html">
-   skactiveml.pool.expected_error_reduction
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="skactiveml.pool.average_kl_divergence.html">
    skactiveml.pool.average_kl_divergence
   </a>
@@ -274,30 +269,37 @@
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.pool.multi.IEThresh.html">
-   skactiveml.pool.multi.IEThresh
+  <a class="reference internal" href="skactiveml.pool.multiannotator.IntervalEstimationThreshold.html">
+   skactiveml.pool.multiannotator.IntervalEstimationThreshold
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.pool.multi.IEAnnotModel.html">
-   skactiveml.pool.multi.IEAnnotModel
+  <a class="reference internal" href="skactiveml.pool.multiannotator.IntervalEstimationAnnotModel.html">
+   skactiveml.pool.multiannotator.IntervalEstimationAnnotModel
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.pool.multi.MultiAnnotWrapper.html">
-   skactiveml.pool.multi.MultiAnnotWrapper
+  <a class="reference internal" href="skactiveml.pool.multiannotator.SingleAnnotatorWrapper.html">
+   skactiveml.pool.multiannotator.SingleAnnotatorWrapper
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.utils.IndexClassifierWrapper.html">
+   skactiveml.pool.utils.IndexClassifierWrapper
   </a>
  </li>
 </ul>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.stream.RandomSampler.html">
-   skactiveml.stream.RandomSampler
+  <a class="reference internal" href="skactiveml.stream.StreamRandomSampling.html">
+   skactiveml.stream.StreamRandomSampling
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.stream.PeriodicSampler.html">
-   skactiveml.stream.PeriodicSampler
+  <a class="reference internal" href="skactiveml.stream.PeriodicSampling.html">
+   skactiveml.stream.PeriodicSampling
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -316,8 +318,8 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.stream.PALS.html">
-   skactiveml.stream.PALS
+  <a class="reference internal" href="skactiveml.stream.StreamProbabilisticAL.html">
+   skactiveml.stream.StreamProbabilisticAL
   </a>
  </li>
  <li class="toctree-l1">
@@ -328,13 +330,13 @@
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.classifier.PWC.html">
-   skactiveml.classifier.PWC
+  <a class="reference internal" href="skactiveml.classifier.ParzenWindowClassifier.html">
+   skactiveml.classifier.ParzenWindowClassifier
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.classifier.CMM.html">
-   skactiveml.classifier.CMM
+  <a class="reference internal" href="skactiveml.classifier.MixtureModelClassifier.html">
+   skactiveml.classifier.MixtureModelClassifier
   </a>
  </li>
  <li class="toctree-l1">
@@ -345,20 +347,20 @@
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.classifier.multi.LogisticRegressionRY.html">
-   skactiveml.classifier.multi.LogisticRegressionRY
+  <a class="reference internal" href="skactiveml.classifier.multiannotator.AnnotatorLogisticRegression.html">
+   skactiveml.classifier.multiannotator.AnnotatorLogisticRegression
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.classifier.multi.MultiAnnotEnsemble.html">
-   skactiveml.classifier.multi.MultiAnnotEnsemble
+  <a class="reference internal" href="skactiveml.classifier.multiannotator.AnnotatorEnsembleClassifier.html">
+   skactiveml.classifier.multiannotator.AnnotatorEnsembleClassifier
   </a>
  </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.visualization.plot_utility.html">
-   skactiveml.visualization.plot_utility
+  <a class="reference internal" href="skactiveml.visualization.plot_utilities.html">
+   skactiveml.visualization.plot_utilities
   </a>
  </li>
  <li class="toctree-l1">
@@ -367,18 +369,13 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.visualization.plot_ma_current_state.html">
-   skactiveml.visualization.plot_ma_current_state
+  <a class="reference internal" href="skactiveml.visualization.plot_contour_for_samples.html">
+   skactiveml.visualization.plot_contour_for_samples
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.visualization.plot_ma_utility.html">
-   skactiveml.visualization.plot_ma_utility
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.visualization.plot_ma_decision_boundary.html">
-   skactiveml.visualization.plot_ma_decision_boundary
+  <a class="reference internal" href="skactiveml.visualization.plot_annotator_utilities.html">
+   skactiveml.visualization.plot_annotator_utilities
   </a>
  </li>
  <li class="toctree-l1">
@@ -466,11 +463,6 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.utils.simple_batch.html">
-   skactiveml.utils.simple_batch
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="skactiveml.utils.check_class_prior.html">
    skactiveml.utils.check_class_prior
   </a>
@@ -478,11 +470,6 @@
  <li class="toctree-l1">
   <a class="reference internal" href="skactiveml.utils.ext_confusion_matrix.html">
    skactiveml.utils.ext_confusion_matrix
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="skactiveml.utils.fit_if_not_fitted.html">
-   skactiveml.utils.fit_if_not_fitted
   </a>
  </li>
  <li class="toctree-l1">
@@ -506,8 +493,30 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.utils.check_equal_missing_label.html">
+   skactiveml.utils.check_equal_missing_label
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="skactiveml.utils.check_budget_manager.html">
    skactiveml.utils.check_budget_manager
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.utils.check_indices.html">
+   skactiveml.utils.check_indices
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.utils.simple_batch.html">
+   skactiveml.utils.simple_batch
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.exceptions.MappingError.html">
+   skactiveml.exceptions.MappingError
   </a>
  </li>
 </ul>
@@ -553,8 +562,8 @@
 <h1>skactiveml.stream.FixedUncertainty<a class="headerlink" href="#skactiveml-stream-fixeduncertainty" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="skactiveml.stream.FixedUncertainty">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">skactiveml.stream.</span></span><span class="sig-name descname"><span class="pre">FixedUncertainty</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">budget_manager</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">budget</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/stream/_uncertainty.html#FixedUncertainty"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.stream.FixedUncertainty" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">skactiveml.stream._uncertainty.UncertaintyZliobaite</span></code></p>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">skactiveml.stream.</span></span><span class="sig-name descname"><span class="pre">FixedUncertainty</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">budget_manager</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">budget</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/stream/_uncertainty_zliobaite.html#FixedUncertainty"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.stream.FixedUncertainty" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">skactiveml.stream._uncertainty_zliobaite.UncertaintyZliobaite</span></code></p>
 <p>The FixedUncertainty (Fixed-Uncertainty in [1]) query strategy samples
 instances based on the classifiers uncertainty assessed based on the
 classifier’s predictions. The instance is queried when the probability of
@@ -566,17 +575,17 @@ and the number of classes.</p>
 <dt><strong>budget</strong><span class="classifier">float, default=None</span></dt><dd><p>The budget which models the budgeting constraint used in
 the stream-based active learning setting.</p>
 </dd>
-<dt><strong>budget_manager</strong><span class="classifier">BudgetManager, default=None</span></dt><dd><p>The BudgetManager which models the budgeting constraint used in
+<dt><strong>budgetmanager</strong><span class="classifier">BudgetManager, default=None</span></dt><dd><p>The BudgetManager which models the budgeting constraint used in
 the stream-based active learning setting. if set to None,
-FixedUncertaintyBudget will be used by default. The budget_manager will
-be initialized based on the following conditions:</p>
+FixedUncertaintyBudgetManager will be used by default. The budget
+manager will be initialized based on the following conditions:</p>
 <blockquote>
-<div><p>If only a budget is given the default budget_manager is initialized
+<div><p>If only a budget is given the default budget manager is initialized
 with the given budget.
-If only a budget_manager is given use the budget_manager.
-If both are not given the default budget_manager with the
+If only a budget manager is given use the budget manager.
+If both are not given the default budget manager with the
 default budget.
-If both are given and the budget differs from budget_manager.budget
+If both are given and the budget differs from budget manager.budget
 a warning is thrown.</p>
 </div></blockquote>
 </dd>
@@ -601,13 +610,13 @@ Networks and Learning Systems, IEEE Transactions on. 25. 27-39.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.stream.FixedUncertainty.get_params" title="skactiveml.stream.FixedUncertainty.get_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code></a>([deep])</p></td>
 <td><p>Get parameters for this estimator.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#skactiveml.stream.FixedUncertainty.query" title="skactiveml.stream.FixedUncertainty.query"><code class="xref py py-obj docutils literal notranslate"><span class="pre">query</span></code></a>(X_cand, clf[, X, y, sample_weight, ...])</p></td>
-<td><p>Ask the query strategy which instances in X_cand to acquire.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#skactiveml.stream.FixedUncertainty.query" title="skactiveml.stream.FixedUncertainty.query"><code class="xref py py-obj docutils literal notranslate"><span class="pre">query</span></code></a>(candidates, clf[, X, y, ...])</p></td>
+<td><p>Ask the query strategy which instances in candidates to acquire.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.stream.FixedUncertainty.set_params" title="skactiveml.stream.FixedUncertainty.set_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code></a>(**params)</p></td>
 <td><p>Set the parameters of this estimator.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#skactiveml.stream.FixedUncertainty.update" title="skactiveml.stream.FixedUncertainty.update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code></a>(X_cand, queried_indices[, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#skactiveml.stream.FixedUncertainty.update" title="skactiveml.stream.FixedUncertainty.update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code></a>(candidates, queried_indices[, ...])</p></td>
 <td><p>Updates the budget manager and the count for seen and queried instances</p></td>
 </tr>
 </tbody>
@@ -635,8 +644,8 @@ contained subobjects that are estimators.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="skactiveml.stream.FixedUncertainty.query">
-<span class="sig-name descname"><span class="pre">query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_cand</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fit_clf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_utilities</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#skactiveml.stream.FixedUncertainty.query" title="Permalink to this definition">¶</a></dt>
-<dd><p>Ask the query strategy which instances in X_cand to acquire.</p>
+<span class="sig-name descname"><span class="pre">query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">candidates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fit_clf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_utilities</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#skactiveml.stream.FixedUncertainty.query" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ask the query strategy which instances in candidates to acquire.</p>
 <p>Please note that, when the decisions from this function may differ from
 the final sampling, simulate=True can be set, so that the query
 strategy can be updated later with update(…) with the final sampling.
@@ -644,7 +653,8 @@ This is especially helpful when developing wrapper query strategies.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>X_cand</strong><span class="classifier">{array-like, sparse matrix} of shape (n_samples, n_features)</span></dt><dd><p>The instances which may be queried. Sparse matrices are accepted
+<dt><strong>candidates</strong><span class="classifier">{array-like, sparse matrix} of shape</span></dt><dd></dd>
+<dt><strong>(n_samples, n_features)</strong></dt><dd><p>The instances which may be queried. Sparse matrices are accepted
 only if they are supported by the base query strategy.</p>
 </dd>
 <dt><strong>clf</strong><span class="classifier">SkactivemlClassifier</span></dt><dd><p>Model implementing the methods <cite>fit</cite> and <cite>predict_freq</cite>.</p>
@@ -664,8 +674,8 @@ The default is False.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>queried_indices</strong><span class="classifier">ndarray of shape (n_queried_instances,)</span></dt><dd><p>The indices of instances in X_cand which should be queried, with
-0 &lt;= n_queried_instances &lt;= n_samples.</p>
+<dt><strong>queried_indices</strong><span class="classifier">ndarray of shape (n_queried_instances,)</span></dt><dd><p>The indices of instances in candidates which should be queried,
+with 0 &lt;= n_queried_instances &lt;= n_samples.</p>
 </dd>
 <dt>utilities: ndarray of shape (n_samples,), optional</dt><dd><p>The utilities based on the query strategy. Only provided if
 return_utilities is True.</p>
@@ -701,18 +711,19 @@ possible to update each component of a nested object.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="skactiveml.stream.FixedUncertainty.update">
-<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_cand</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">queried_indices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">budget_manager_param_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#skactiveml.stream.FixedUncertainty.update" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">candidates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">queried_indices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">budget_manager_param_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#skactiveml.stream.FixedUncertainty.update" title="Permalink to this definition">¶</a></dt>
 <dd><p>Updates the budget manager and the count for seen and queried
 instances</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>X_cand</strong><span class="classifier">{array-like, sparse matrix} of shape (n_samples, n_features)</span></dt><dd><p>The instances which could be queried. Sparse matrices are accepted
+<dt><strong>candidates</strong><span class="classifier">{array-like, sparse matrix} of shape</span></dt><dd></dd>
+<dt><strong>(n_samples, n_features)</strong></dt><dd><p>The instances which could be queried. Sparse matrices are accepted
 only if they are supported by the base query strategy.</p>
 </dd>
-<dt><strong>queried_indices</strong><span class="classifier">array-like of shape (n_samples,)</span></dt><dd><p>Indicates which instances from X_cand have been queried.</p>
+<dt><strong>queried_indices</strong><span class="classifier">array-like of shape (n_samples,)</span></dt><dd><p>Indicates which instances from candidates have been queried.</p>
 </dd>
-<dt><strong>budget_manager_param_dict</strong><span class="classifier">kwargs</span></dt><dd><p>Optional kwargs for budget_manager.</p>
+<dt><strong>budget_manager_param_dict</strong><span class="classifier">kwargs</span></dt><dd><p>Optional kwargs for budget manager.</p>
 </dd>
 </dl>
 </dd>
@@ -735,11 +746,11 @@ only if they are supported by the base query strategy.</p>
               
               <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="skactiveml.stream.PeriodicSampler.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="skactiveml.stream.PeriodicSampling.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">skactiveml.stream.PeriodicSampler</p>
+            <p class="prev-next-title">skactiveml.stream.PeriodicSampling</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="skactiveml.stream.VariableUncertainty.html" title="next page">

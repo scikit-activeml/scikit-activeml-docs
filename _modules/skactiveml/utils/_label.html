@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>skactiveml.utils._label &#8212; scikit-activeml 0.1.1 documentation</title>
+    <title>skactiveml.utils._label &#8212; scikit-activeml 0.2.0 documentation</title>
     
     <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -175,12 +175,9 @@
   <h1>Source code for skactiveml.utils._label</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">iteration_utilities</span> <span class="kn">import</span> <span class="n">deepflatten</span>
-<span class="kn">from</span> <span class="nn">sklearn.base</span> <span class="kn">import</span> <span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span>
-<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
-<span class="kn">from</span> <span class="nn">sklearn.utils.validation</span> <span class="kn">import</span> <span class="n">check_is_fitted</span><span class="p">,</span> <span class="n">check_array</span>
 
-<span class="kn">from</span> <span class="nn">..utils._validation</span> <span class="kn">import</span> <span class="n">check_classifier_params</span><span class="p">,</span> <span class="n">check_missing_label</span><span class="p">,</span> \
-    <span class="n">MISSING_LABEL</span>
+<span class="c1"># Define constant for missing label used throughout the package.</span>
+<span class="n">MISSING_LABEL</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
 
 
 <div class="viewcode-block" id="is_unlabeled"><a class="viewcode-back" href="../../../generated/api/skactiveml.utils.is_unlabeled.html#skactiveml.utils.is_unlabeled">[docs]</a><span class="k">def</span> <span class="nf">is_unlabeled</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">missing_label</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">):</span>
@@ -200,29 +197,34 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">check_missing_label</span><span class="p">(</span><span class="n">missing_label</span><span class="p">)</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;y&#39; is not allowed to be empty.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
         <span class="n">types</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span>
-            <span class="n">t</span><span class="o">.</span><span class="vm">__qualname__</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">deepflatten</span><span class="p">(</span><span class="n">y</span><span class="p">)))</span>
+            <span class="n">t</span><span class="o">.</span><span class="vm">__qualname__</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">deepflatten</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+        <span class="p">)</span>
         <span class="n">types</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">missing_label</span><span class="p">)</span><span class="o">.</span><span class="vm">__qualname__</span><span class="p">)</span>
         <span class="n">is_number</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="n">is_character</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">types</span><span class="p">:</span>
-            <span class="n">t</span> <span class="o">=</span> <span class="nb">object</span> <span class="k">if</span> <span class="n">t</span> <span class="o">==</span> <span class="s1">&#39;NoneType&#39;</span> <span class="k">else</span> <span class="n">t</span>
-            <span class="n">is_character</span> <span class="o">=</span> <span class="kc">True</span> \
-                <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">character</span><span class="p">)</span> <span class="k">else</span> <span class="n">is_character</span>
+            <span class="n">t</span> <span class="o">=</span> <span class="nb">object</span> <span class="k">if</span> <span class="n">t</span> <span class="o">==</span> <span class="s2">&quot;NoneType&quot;</span> <span class="k">else</span> <span class="n">t</span>
+            <span class="n">is_character</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="kc">True</span> <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">character</span><span class="p">)</span> <span class="k">else</span> <span class="n">is_character</span>
+            <span class="p">)</span>
             <span class="n">is_number</span> <span class="o">=</span> <span class="kc">True</span> <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">)</span> <span class="k">else</span> <span class="n">is_number</span>
             <span class="k">if</span> <span class="n">is_character</span> <span class="ow">and</span> <span class="n">is_number</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
                     <span class="s2">&quot;&#39;y&#39; must be uniformly strings or numbers. &quot;</span>
-                    <span class="s2">&quot;&#39;NoneType&#39; is allowed. Got </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">types</span><span class="p">))</span>
+                    <span class="s2">&quot;&#39;NoneType&#39; is allowed. Got </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">types</span><span class="p">)</span>
+                <span class="p">)</span>
         <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
     <span class="n">target_type</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">missing_label</span><span class="p">)</span><span class="o">.</span><span class="n">dtype</span>
-    <span class="n">check_missing_label</span><span class="p">(</span><span class="n">missing_label</span><span class="p">,</span> <span class="n">target_type</span><span class="o">=</span><span class="n">target_type</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+    <span class="n">check_missing_label</span><span class="p">(</span><span class="n">missing_label</span><span class="p">,</span> <span class="n">target_type</span><span class="o">=</span><span class="n">target_type</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;y&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span> <span class="n">y</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;y&#39; must be of shape (n_samples) or &#39;(n_samples, &quot;</span>
-                         <span class="s2">&quot;n_features)&#39; with &#39;n_samples &gt; 0&#39; and &quot;</span>
-                         <span class="s2">&quot;&#39;n_features &gt; 0&#39;.&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;&#39;y&#39; must be of shape (n_samples) or &#39;(n_samples, &quot;</span>
+            <span class="s2">&quot;n_features)&#39; with &#39;n_samples &gt; 0&#39; and &quot;</span>
+            <span class="s2">&quot;&#39;n_features &gt; 0&#39;.&quot;</span>
+        <span class="p">)</span>
     <span class="k">if</span> <span class="n">missing_label</span> <span class="ow">is</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
@@ -289,113 +291,65 @@
     <span class="k">return</span> <span class="n">lbld_indices</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">is_lbld</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">lbld_indices</span></div>
 
 
-<div class="viewcode-block" id="ExtLabelEncoder"><a class="viewcode-back" href="../../../generated/api/skactiveml.utils.ExtLabelEncoder.html#skactiveml.utils.ExtLabelEncoder">[docs]</a><span class="k">class</span> <span class="nc">ExtLabelEncoder</span><span class="p">(</span><span class="n">TransformerMixin</span><span class="p">,</span> <span class="n">BaseEstimator</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Encode class labels with value between 0 and classes-1.</span>
-<span class="sd">    This transformer should be used to encode class labels, *i.e.* `y`, and</span>
-<span class="sd">    not the input `X`.</span>
+<div class="viewcode-block" id="check_missing_label"><a class="viewcode-back" href="../../../generated/api/skactiveml.utils.check_missing_label.html#skactiveml.utils.check_missing_label">[docs]</a><span class="k">def</span> <span class="nf">check_missing_label</span><span class="p">(</span><span class="n">missing_label</span><span class="p">,</span> <span class="n">target_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Check whether a missing label is compatible to a given target type.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    classes: array-like, shape (n_classes), default=None</span>
-<span class="sd">        Holds the label for each class.</span>
-<span class="sd">    missing_label: scalar|string|np.nan|None, default=np.nan</span>
-<span class="sd">        Value to represent a missing label.</span>
-
-<span class="sd">    Attributes</span>
-<span class="sd">    ----------</span>
-<span class="sd">    classes_: array-like, shape (n_classes)</span>
-<span class="sd">        Holds the label for each class.</span>
+<span class="sd">    missing_label : number | str | None | np.nan</span>
+<span class="sd">        Symbol to represent a missing label.</span>
+<span class="sd">    target_type : type or tuple</span>
+<span class="sd">        Acceptable data types for the parameter &#39;missing_label&#39;.</span>
+<span class="sd">    name : str</span>
+<span class="sd">        The name of the variable to which &#39;missing_label&#39; is not compatible.</span>
+<span class="sd">        The name will be printed in error messages.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">classes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">missing_label</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">classes</span> <span class="o">=</span> <span class="n">classes</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">missing_label</span> <span class="o">=</span> <span class="n">missing_label</span>
+    <span class="n">is_None</span> <span class="o">=</span> <span class="n">missing_label</span> <span class="ow">is</span> <span class="kc">None</span>
+    <span class="n">is_character</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">missing_label</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">character</span><span class="p">)</span>
+    <span class="n">is_number</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">missing_label</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">is_number</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">is_character</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">is_None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+            <span class="s2">&quot;&#39;missing_label&#39; has type &#39;</span><span class="si">{}</span><span class="s2">&#39;, but must be a either a number, &quot;</span>
+            <span class="s2">&quot;a string, np.nan, or None.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">missing_label</span><span class="p">))</span>
+        <span class="p">)</span>
+    <span class="k">if</span> <span class="n">target_type</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">is_object_type</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">target_type</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">object_</span><span class="p">)</span>
+        <span class="n">is_character_type</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">target_type</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">character</span><span class="p">)</span>
+        <span class="n">is_number_type</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">target_type</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span>
+                <span class="p">(</span><span class="n">is_character_type</span> <span class="ow">and</span> <span class="n">is_number</span><span class="p">)</span>
+                <span class="ow">or</span> <span class="p">(</span><span class="n">is_number_type</span> <span class="ow">and</span> <span class="n">is_character</span><span class="p">)</span>
+                <span class="ow">or</span> <span class="p">(</span><span class="n">is_object_type</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">is_None</span><span class="p">)</span>
+        <span class="p">):</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;target object&quot;</span> <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="nb">str</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                <span class="s2">&quot;&#39;missing_label&#39; has type &#39;</span><span class="si">{}</span><span class="s2">&#39; and is not compatible to the &quot;</span>
+                <span class="s2">&quot;type &#39;</span><span class="si">{}</span><span class="s2">&#39; of &#39;</span><span class="si">{}</span><span class="s2">&#39;.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="nb">type</span><span class="p">(</span><span class="n">missing_label</span><span class="p">),</span> <span class="n">target_type</span><span class="p">,</span> <span class="n">name</span>
+                <span class="p">)</span>
+            <span class="p">)</span></div>
 
-<div class="viewcode-block" id="ExtLabelEncoder.fit"><a class="viewcode-back" href="../../../generated/api/skactiveml.utils.ExtLabelEncoder.html#skactiveml.utils.ExtLabelEncoder.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Fit label encoder.</span>
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        y: array-like, shape (n_samples) or (n_samples, n_outputs)</span>
-<span class="sd">            Class labels.</span>
+<div class="viewcode-block" id="check_equal_missing_label"><a class="viewcode-back" href="../../../generated/api/skactiveml.utils.check_equal_missing_label.html#skactiveml.utils.check_equal_missing_label">[docs]</a><span class="k">def</span> <span class="nf">check_equal_missing_label</span><span class="p">(</span><span class="n">missing_label1</span><span class="p">,</span> <span class="n">missing_label2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Check whether two missing label values are equal to each other.</span>
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        self: returns an instance of self.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">check_classifier_params</span><span class="p">(</span><span class="n">classes</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">classes</span><span class="p">,</span>
-                                <span class="n">missing_label</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">missing_label</span><span class="p">)</span>
-        <span class="n">y</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">force_all_finite</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_le</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">classes</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-            <span class="n">is_lbld</span> <span class="o">=</span> <span class="n">is_labeled</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">missing_label</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">missing_label</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_dtype</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">missing_label</span><span class="p">)</span><span class="o">.</span><span class="n">dtype</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_le</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">is_lbld</span><span class="p">])</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_dtype</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">classes</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">missing_label</span><span class="p">)</span><span class="o">.</span><span class="n">dtype</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_le</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">classes</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">classes_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_le</span><span class="o">.</span><span class="n">classes_</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">classes_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_le</span><span class="o">.</span><span class="n">classes_</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    missing_label1 : number | str | None | np.nan</span>
+<span class="sd">        Symbol to represent a missing label.</span>
+<span class="sd">    missing_label2 : number | str | None | np.nan</span>
+<span class="sd">        Other symbol to represent a missing label.</span>
 
-        <span class="k">return</span> <span class="bp">self</span></div>
-
-<div class="viewcode-block" id="ExtLabelEncoder.fit_transform"><a class="viewcode-back" href="../../../generated/api/skactiveml.utils.ExtLabelEncoder.html#skactiveml.utils.ExtLabelEncoder.fit_transform">[docs]</a>    <span class="k">def</span> <span class="nf">fit_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Fit label encoder and return encoded labels.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        y: array-like, shape (n_samples) or (n_samples, n_outputs)</span>
-<span class="sd">            Class labels.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        y: array-like, shape (n_samples) or (n_samples, n_outputs)</span>
-<span class="sd">            Class labels.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">y</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="ExtLabelEncoder.transform"><a class="viewcode-back" href="../../../generated/api/skactiveml.utils.ExtLabelEncoder.html#skactiveml.utils.ExtLabelEncoder.transform">[docs]</a>    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Transform labels to normalized encoding.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        y : array-like of shape (n_samples)</span>
-<span class="sd">            Target values.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        y_enc : array-like of shape (n_samples</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">check_is_fitted</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attributes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;classes_&#39;</span><span class="p">])</span>
-        <span class="n">y</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">force_all_finite</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-        <span class="n">is_lbld</span> <span class="o">=</span> <span class="n">is_labeled</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">missing_label</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">missing_label</span><span class="p">)</span>
-        <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-        <span class="n">y_enc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
-        <span class="n">y_enc</span><span class="p">[</span><span class="n">is_lbld</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_le</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">is_lbld</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>
-        <span class="n">y_enc</span><span class="p">[</span><span class="o">~</span><span class="n">is_lbld</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
-        <span class="k">return</span> <span class="n">y_enc</span></div>
-
-<div class="viewcode-block" id="ExtLabelEncoder.inverse_transform"><a class="viewcode-back" href="../../../generated/api/skactiveml.utils.ExtLabelEncoder.html#skactiveml.utils.ExtLabelEncoder.inverse_transform">[docs]</a>    <span class="k">def</span> <span class="nf">inverse_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Transform labels back to original encoding.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        y : numpy array of shape [n_samples]</span>
-<span class="sd">            Target values.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        y_dec : numpy array of shape [n_samples]</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">check_is_fitted</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attributes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;classes_&#39;</span><span class="p">])</span>
-        <span class="n">y</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">force_all_finite</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-        <span class="n">is_lbld</span> <span class="o">=</span> <span class="n">is_labeled</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">missing_label</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
-        <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-        <span class="n">y_dec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_dtype</span><span class="p">)</span>
-        <span class="n">y_dec</span><span class="p">[</span><span class="n">is_lbld</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_le</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span>
-            <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">is_lbld</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">))</span>
-        <span class="n">y_dec</span><span class="p">[</span><span class="o">~</span><span class="n">is_lbld</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">missing_label</span>
-        <span class="k">return</span> <span class="n">y_dec</span></div></div>
+<span class="sd">    Raises</span>
+<span class="sd">    -------</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If the parameter&#39;s value violates the given bounds.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">is_unlabeled</span><span class="p">([</span><span class="n">missing_label1</span><span class="p">],</span> <span class="n">missing_label</span><span class="o">=</span><span class="n">missing_label2</span><span class="p">)[</span><span class="mi">0</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;missing_label1=</span><span class="si">{</span><span class="n">missing_label1</span><span class="si">}</span><span class="s2"> and &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;missing_label2=</span><span class="si">{</span><span class="n">missing_label2</span><span class="si">}</span><span class="s2"> must be equal.&quot;</span>
+        <span class="p">)</span></div>
 </pre></div>
 
               </div>
