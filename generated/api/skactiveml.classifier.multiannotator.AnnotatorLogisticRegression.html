@@ -6,32 +6,29 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>skactiveml.classifier.multiannotator.AnnotatorLogisticRegression &#8212; scikit-activeml 0.2.0 documentation</title>
+    <title>skactiveml.classifier.multiannotator.AnnotatorLogisticRegression &#8212; scikit-activeml latest documentation</title>
     
-    <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-  
+
     
-    <link rel="stylesheet"
-      href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-  
-    
-      
-  
-    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/pydata-sphinx-theme.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css" />
     
-    <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
-  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
@@ -48,7 +45,7 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -559,10 +556,10 @@
               <div>
                 
   <section id="skactiveml-classifier-multiannotator-annotatorlogisticregression">
-<h1>skactiveml.classifier.multiannotator.AnnotatorLogisticRegression<a class="headerlink" href="#skactiveml-classifier-multiannotator-annotatorlogisticregression" title="Permalink to this headline">¶</a></h1>
+<h1>skactiveml.classifier.multiannotator.AnnotatorLogisticRegression<a class="headerlink" href="#skactiveml-classifier-multiannotator-annotatorlogisticregression" title="Permalink to this headline">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="skactiveml.classifier.multiannotator.AnnotatorLogisticRegression">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">skactiveml.classifier.multiannotator.</span></span><span class="sig-name descname"><span class="pre">AnnotatorLogisticRegression</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_iter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fit_intercept</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annot_prior_full</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annot_prior_diag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weights_prior</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Newton-CG'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cost_matrix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">missing_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">nan</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/classifier/multiannotator/_annotator_logistic_regression.html#AnnotatorLogisticRegression"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.classifier.multiannotator.AnnotatorLogisticRegression" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">skactiveml.classifier.multiannotator.</span></span><span class="sig-name descname"><span class="pre">AnnotatorLogisticRegression</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_iter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fit_intercept</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annot_prior_full</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annot_prior_diag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weights_prior</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Newton-CG'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cost_matrix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">missing_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">nan</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/classifier/multiannotator/_annotator_logistic_regression.html#AnnotatorLogisticRegression"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.classifier.multiannotator.AnnotatorLogisticRegression" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="skactiveml.base.SkactivemlClassifier.html#skactiveml.base.SkactivemlClassifier" title="skactiveml.base.SkactivemlClassifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">skactiveml.base.SkactivemlClassifier</span></code></a>, <a class="reference internal" href="skactiveml.base.AnnotatorModelMixin.html#skactiveml.base.AnnotatorModelMixin" title="skactiveml.base.AnnotatorModelMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">skactiveml.base.AnnotatorModelMixin</span></code></a></p>
 <p>Logistic Regression based on Raykar [1] is a classification algorithm that
 learns from multiple annotators. Besides, building a model for the
@@ -690,7 +687,7 @@ for a sample of class classes_[i].</p>
 </table>
 <dl class="py method">
 <dt class="sig sig-object py" id="skactiveml.classifier.multiannotator.AnnotatorLogisticRegression.fit">
-<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/classifier/multiannotator/_annotator_logistic_regression.html#AnnotatorLogisticRegression.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.classifier.multiannotator.AnnotatorLogisticRegression.fit" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/classifier/multiannotator/_annotator_logistic_regression.html#AnnotatorLogisticRegression.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.classifier.multiannotator.AnnotatorLogisticRegression.fit" title="Permalink to this definition">#</a></dt>
 <dd><p>Fit the model using X as training data and y as class labels.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -717,7 +714,7 @@ It must have the same shape as y.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="skactiveml.classifier.multiannotator.AnnotatorLogisticRegression.get_params">
-<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#skactiveml.classifier.multiannotator.AnnotatorLogisticRegression.get_params" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#skactiveml.classifier.multiannotator.AnnotatorLogisticRegression.get_params" title="Permalink to this definition">#</a></dt>
 <dd><p>Get parameters for this estimator.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -738,7 +735,7 @@ contained subobjects that are estimators.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="skactiveml.classifier.multiannotator.AnnotatorLogisticRegression.predict">
-<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#skactiveml.classifier.multiannotator.AnnotatorLogisticRegression.predict" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#skactiveml.classifier.multiannotator.AnnotatorLogisticRegression.predict" title="Permalink to this definition">#</a></dt>
 <dd><p>Return class label predictions for the test samples <cite>X</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -759,7 +756,7 @@ according to <cite>classes_</cite>.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="skactiveml.classifier.multiannotator.AnnotatorLogisticRegression.predict_annotator_perf">
-<span class="sig-name descname"><span class="pre">predict_annotator_perf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/classifier/multiannotator/_annotator_logistic_regression.html#AnnotatorLogisticRegression.predict_annotator_perf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.classifier.multiannotator.AnnotatorLogisticRegression.predict_annotator_perf" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">predict_annotator_perf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/classifier/multiannotator/_annotator_logistic_regression.html#AnnotatorLogisticRegression.predict_annotator_perf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.classifier.multiannotator.AnnotatorLogisticRegression.predict_annotator_perf" title="Permalink to this definition">#</a></dt>
 <dd><p>Calculates the probability that an annotator provides the true label
 for a given sample. The true label is hereby provided by the
 classification model. The label provided by an annotator l is based
@@ -783,7 +780,7 @@ correct class label for sample <cite>X[i]</cite>.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="skactiveml.classifier.multiannotator.AnnotatorLogisticRegression.predict_proba">
-<span class="sig-name descname"><span class="pre">predict_proba</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/classifier/multiannotator/_annotator_logistic_regression.html#AnnotatorLogisticRegression.predict_proba"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.classifier.multiannotator.AnnotatorLogisticRegression.predict_proba" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">predict_proba</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/classifier/multiannotator/_annotator_logistic_regression.html#AnnotatorLogisticRegression.predict_proba"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.classifier.multiannotator.AnnotatorLogisticRegression.predict_proba" title="Permalink to this definition">#</a></dt>
 <dd><p>Return probability estimates for the test data <cite>X</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -804,7 +801,7 @@ according to <cite>classes_</cite>.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="skactiveml.classifier.multiannotator.AnnotatorLogisticRegression.score">
-<span class="sig-name descname"><span class="pre">score</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#skactiveml.classifier.multiannotator.AnnotatorLogisticRegression.score" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">score</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#skactiveml.classifier.multiannotator.AnnotatorLogisticRegression.score" title="Permalink to this definition">#</a></dt>
 <dd><p>Return the mean accuracy on the given test data and labels.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -828,7 +825,7 @@ according to <cite>classes_</cite>.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="skactiveml.classifier.multiannotator.AnnotatorLogisticRegression.set_params">
-<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#skactiveml.classifier.multiannotator.AnnotatorLogisticRegression.set_params" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#skactiveml.classifier.multiannotator.AnnotatorLogisticRegression.set_params" title="Permalink to this definition">#</a></dt>
 <dd><p>Set the parameters of this estimator.</p>
 <p>The method works on simple estimators as well as on nested objects
 (such as <code class="xref py py-class docutils literal notranslate"><span class="pre">Pipeline</span></code>). The latter have
@@ -882,8 +879,9 @@ possible to update each component of a nested object.</p>
       </div>
     </div>
   
-    <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-  <footer class="footer mt-5 mt-md-0">
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
   <div class="container">
     
     <div class="footer-item">

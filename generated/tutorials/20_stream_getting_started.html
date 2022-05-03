@@ -6,32 +6,29 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Stream-based Active Learning - Getting Started &#8212; scikit-activeml 0.2.0 documentation</title>
+    <title>Stream-based Active Learning - Getting Started &#8212; scikit-activeml latest documentation</title>
     
-    <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-  
+
     
-    <link rel="stylesheet"
-      href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-  
-    
-      
-  
-    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/pydata-sphinx-theme.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css" />
     
-    <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
-  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
@@ -50,7 +47,7 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -196,7 +193,7 @@
               
               <div class="toc-item">
                 
-<div class="tocsection onthispage pt-5 pb-3">
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
     <i class="fas fa-list"></i> On this page
 </div>
 
@@ -497,7 +494,7 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <section id="Stream-based-Active-Learning---Getting-Started">
-<h1>Stream-based Active Learning - Getting Started<a class="headerlink" href="#Stream-based-Active-Learning---Getting-Started" title="Permalink to this headline">¶</a></h1>
+<h1>Stream-based Active Learning - Getting Started<a class="headerlink" href="#Stream-based-Active-Learning---Getting-Started" title="Permalink to this headline">#</a></h1>
 <p>In this notebook, we will show how stream-based active learning strategies are used and compared them to one another. We showcase the methods available in the <code class="docutils literal notranslate"><span class="pre">skactiveml</span></code> stream package.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
@@ -516,7 +513,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <section id="Initialize-Stream-Parameters">
-<h2>Initialize Stream Parameters<a class="headerlink" href="#Initialize-Stream-Parameters" title="Permalink to this headline">¶</a></h2>
+<h2>Initialize Stream Parameters<a class="headerlink" href="#Initialize-Stream-Parameters" title="Permalink to this headline">#</a></h2>
 <p>Before the experiments can start, we need to construct a random data set. For this, we specify the necessary parameters in the cell below. We specify the length of the data stream (<code class="docutils literal notranslate"><span class="pre">stream_length</span></code>) and the size of the sliding window that defines the available training data (<code class="docutils literal notranslate"><span class="pre">training_size</span></code>). Additionally, we define a parameter (<code class="docutils literal notranslate"><span class="pre">fit_clf</span></code>) to decide if <code class="docutils literal notranslate"><span class="pre">X</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> are needed and should be used.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
@@ -535,7 +532,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </section>
 <section id="Random-Seed-Generation">
-<h2>Random Seed Generation<a class="headerlink" href="#Random-Seed-Generation" title="Permalink to this headline">¶</a></h2>
+<h2>Random Seed Generation<a class="headerlink" href="#Random-Seed-Generation" title="Permalink to this headline">#</a></h2>
 <p>To make the experiments repeatable, we will use the <code class="docutils literal notranslate"><span class="pre">random_state</span></code> object to generate all other random seeds, such that we only need to explicitly specify a single random seed. The <code class="docutils literal notranslate"><span class="pre">get_randomseed</span></code> function simplifies the generation of a new random seed using the random_state object.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
@@ -551,7 +548,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </section>
 <section id="Generate-And-Initialize-Data-Set">
-<h2>Generate And Initialize Data Set<a class="headerlink" href="#Generate-And-Initialize-Data-Set" title="Permalink to this headline">¶</a></h2>
+<h2>Generate And Initialize Data Set<a class="headerlink" href="#Generate-And-Initialize-Data-Set" title="Permalink to this headline">#</a></h2>
 <p>The next block initializes the tested data set. We use <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> to generate a random dataset with our pre-defined stream length. The data set consists of multiple parts. <code class="docutils literal notranslate"><span class="pre">X</span></code> represents the location of the instance within the feature space. The class for each instance is denoted by y. For models that need at least some initial training data, we generate samples to train an initial model. These are denoted by the suffix <code class="docutils literal notranslate"><span class="pre">_init</span></code>, while all data used within the active learning cycle are
 denoted by the suffix <code class="docutils literal notranslate"><span class="pre">_stream</span></code>. For this notebook we evaluate the performance of each query strategy using Prequential Evaluation. If a hold-out test dataset is used, it should be initialized here as well.</p>
 <div class="nbinput nblast docutils container">
@@ -568,7 +565,7 @@ denoted by the suffix <code class="docutils literal notranslate"><span class="pr
 </div>
 </section>
 <section id="Initialize-Query-Strategies">
-<h2>Initialize Query Strategies<a class="headerlink" href="#Initialize-Query-Strategies" title="Permalink to this headline">¶</a></h2>
+<h2>Initialize Query Strategies<a class="headerlink" href="#Initialize-Query-Strategies" title="Permalink to this headline">#</a></h2>
 <p>Next, we initialize the classifier and the base query strategies that we want to compare. To guarantee that the classifier is not affected by previous repetitions, we use factory functions to separate the classifier for each experiment run. Since all query strategies have a default budget managager we use that for the sake of simplicity.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
@@ -588,7 +585,7 @@ denoted by the suffix <code class="docutils literal notranslate"><span class="pr
 </div>
 </section>
 <section id="Start-Active-Learning-Cycle">
-<h2>Start Active Learning Cycle<a class="headerlink" href="#Start-Active-Learning-Cycle" title="Permalink to this headline">¶</a></h2>
+<h2>Start Active Learning Cycle<a class="headerlink" href="#Start-Active-Learning-Cycle" title="Permalink to this headline">#</a></h2>
 <p>After all, variables are initialized, we can start the experiment. The experiment loop below goes through all query strategies defined in query_strategies. For each experiment run, the average accuracy of the selected query strategies will be displayed. Lastly, the accuracy over time will be plotted.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
@@ -693,8 +690,9 @@ Query Strategy:  StreamProbabilisticAL , Avg Accuracy:  0.8205 , Acquisition cou
       </div>
     </div>
   
-    <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-  <footer class="footer mt-5 mt-md-0">
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
   <div class="container">
     
     <div class="footer-item">

@@ -6,32 +6,29 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>skactiveml.base.BudgetManager &#8212; scikit-activeml 0.2.0 documentation</title>
+    <title>skactiveml.base.BudgetManager &#8212; scikit-activeml latest documentation</title>
     
-    <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-  
+
     
-    <link rel="stylesheet"
-      href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-  
-    
-      
-  
-    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/pydata-sphinx-theme.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css" />
     
-    <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
-  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
@@ -48,7 +45,7 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -559,10 +556,10 @@
               <div>
                 
   <section id="skactiveml-base-budgetmanager">
-<h1>skactiveml.base.BudgetManager<a class="headerlink" href="#skactiveml-base-budgetmanager" title="Permalink to this headline">¶</a></h1>
+<h1>skactiveml.base.BudgetManager<a class="headerlink" href="#skactiveml-base-budgetmanager" title="Permalink to this headline">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="skactiveml.base.BudgetManager">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">skactiveml.base.</span></span><span class="sig-name descname"><span class="pre">BudgetManager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">budget</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/base.html#BudgetManager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.base.BudgetManager" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">skactiveml.base.</span></span><span class="sig-name descname"><span class="pre">BudgetManager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">budget</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/base.html#BudgetManager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.base.BudgetManager" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/abc.html#abc.ABC" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.base.BaseEstimator</span></code></p>
 <p>Base class for all budget managers for stream-based active learning
 in scikit-activeml to model budgeting constraints.</p>
@@ -599,7 +596,7 @@ budget 0.1.</p>
 </table>
 <dl class="py method">
 <dt class="sig sig-object py" id="skactiveml.base.BudgetManager.get_params">
-<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#skactiveml.base.BudgetManager.get_params" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#skactiveml.base.BudgetManager.get_params" title="Permalink to this definition">#</a></dt>
 <dd><p>Get parameters for this estimator.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -620,7 +617,7 @@ contained subobjects that are estimators.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="skactiveml.base.BudgetManager.query_by_utility">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">query_by_utility</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">utilities</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/base.html#BudgetManager.query_by_utility"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.base.BudgetManager.query_by_utility" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">query_by_utility</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">utilities</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/base.html#BudgetManager.query_by_utility"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.base.BudgetManager.query_by_utility" title="Permalink to this definition">#</a></dt>
 <dd><p>Ask the budget manager which utilities are sufficient to query the
 corresponding instance.</p>
 <dl class="field-list simple">
@@ -644,7 +641,7 @@ queried, with 0 &lt;= n_queried_instances &lt;= n_samples.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="skactiveml.base.BudgetManager.set_params">
-<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#skactiveml.base.BudgetManager.set_params" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#skactiveml.base.BudgetManager.set_params" title="Permalink to this definition">#</a></dt>
 <dd><p>Set the parameters of this estimator.</p>
 <p>The method works on simple estimators as well as on nested objects
 (such as <code class="xref py py-class docutils literal notranslate"><span class="pre">Pipeline</span></code>). The latter have
@@ -668,7 +665,7 @@ possible to update each component of a nested object.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="skactiveml.base.BudgetManager.update">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">candidates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">queried_indices</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/base.html#BudgetManager.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.base.BudgetManager.update" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">candidates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">queried_indices</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/base.html#BudgetManager.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.base.BudgetManager.update" title="Permalink to this definition">#</a></dt>
 <dd><p>Updates the BudgetManager.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -722,8 +719,9 @@ only if they are supported by the base query strategy.</p>
       </div>
     </div>
   
-    <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-  <footer class="footer mt-5 mt-md-0">
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
   <div class="container">
     
     <div class="footer-item">

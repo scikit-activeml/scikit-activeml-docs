@@ -6,32 +6,29 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Developer Guide &#8212; scikit-activeml 0.2.0 documentation</title>
+    <title>Developer Guide &#8212; scikit-activeml latest documentation</title>
     
-    <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-  
+
     
-    <link rel="stylesheet"
-      href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-  
-    
-      
-  
-    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/pydata-sphinx-theme.css" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-rendered-html.css" />
     
-    <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
-  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
@@ -47,7 +44,7 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -166,7 +163,7 @@
               
               <div class="toc-item">
                 
-<div class="tocsection onthispage pt-5 pb-3">
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
     <i class="fas fa-list"></i> On this page
 </div>
 
@@ -601,20 +598,20 @@
               <div>
                 
   <section id="developer-guide">
-<h1>Developer Guide<a class="headerlink" href="#developer-guide" title="Permalink to this headline">¶</a></h1>
+<h1>Developer Guide<a class="headerlink" href="#developer-guide" title="Permalink to this headline">#</a></h1>
 <p><strong>Scikit-ActiveML</strong> is a library that implements the most important
 query strategies of active learning. It is built upon the well-known
 machine learning framework
 <a class="reference external" href="https://scikit-learn.org/stable/">scikit-learn</a>.</p>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <section id="thank-you-contributors">
-<h3>Thank you, contributors!<a class="headerlink" href="#thank-you-contributors" title="Permalink to this headline">¶</a></h3>
+<h3>Thank you, contributors!<a class="headerlink" href="#thank-you-contributors" title="Permalink to this headline">#</a></h3>
 <p>A big thank you to all contributors who provide the <strong>Scikit-ActiveML</strong>
 project with new enhancements and bug fixes.</p>
 </section>
 <section id="getting-help">
-<h3>Getting Help<a class="headerlink" href="#getting-help" title="Permalink to this headline">¶</a></h3>
+<h3>Getting Help<a class="headerlink" href="#getting-help" title="Permalink to this headline">#</a></h3>
 <p>If you have any questions, please reach out to other developers via the
 following channels:</p>
 <ul class="simple">
@@ -623,17 +620,17 @@ Issues</a></p></li>
 </ul>
 </section>
 <section id="roadmap">
-<h3>Roadmap<a class="headerlink" href="#roadmap" title="Permalink to this headline">¶</a></h3>
+<h3>Roadmap<a class="headerlink" href="#roadmap" title="Permalink to this headline">#</a></h3>
 <p>Our Roadmap is summarized in the issue <a class="reference external" href="https://github.com/scikit-activeml/scikit-activeml/issues/145">Upcoming
 Features</a>.</p>
 </section>
 </section>
 <section id="get-started">
-<h2>Get Started<a class="headerlink" href="#get-started" title="Permalink to this headline">¶</a></h2>
+<h2>Get Started<a class="headerlink" href="#get-started" title="Permalink to this headline">#</a></h2>
 <p>Before you can contribute to this project, you might execute the
 following steps.</p>
 <section id="setup-development-environment">
-<h3>Setup Development Environment<a class="headerlink" href="#setup-development-environment" title="Permalink to this headline">¶</a></h3>
+<h3>Setup Development Environment<a class="headerlink" href="#setup-development-environment" title="Permalink to this headline">#</a></h3>
 <p>There are several ways to create a local Python environment, such as
 <a class="reference external" href="https://www.google.com/search?client=safari&amp;rls=en&amp;q=virtualenv&amp;ie=UTF-8&amp;oe=UTF-8">virtualenv</a>,
 <a class="reference external" href="https://pipenv.pypa.io/enz/latest/">pipenv</a>,
@@ -642,7 +639,7 @@ possible workflow is to install <code class="docutils literal notranslate"><span
 Python environment. And use <code class="docutils literal notranslate"><span class="pre">pip</span></code> to install packages in this
 environment.</p>
 <section id="example-with-miniconda">
-<h4>Example With miniconda<a class="headerlink" href="#example-with-miniconda" title="Permalink to this headline">¶</a></h4>
+<h4>Example With miniconda<a class="headerlink" href="#example-with-miniconda" title="Permalink to this headline">#</a></h4>
 <p>Create a new Python environment named <strong>scikit-activeml</strong>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create -n scikit-activeml
 </pre></div>
@@ -658,7 +655,7 @@ environment.</p>
 </section>
 </section>
 <section id="install-dependencies">
-<h3>Install Dependencies<a class="headerlink" href="#install-dependencies" title="Permalink to this headline">¶</a></h3>
+<h3>Install Dependencies<a class="headerlink" href="#install-dependencies" title="Permalink to this headline">#</a></h3>
 <p>Now we can install some required project dependencies, which are defined
 in the <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make sure your scikit-activeml python env is active!</span>
@@ -670,7 +667,7 @@ pip install -r requirements_extra.txt
 <p>After the pip installation was successful, we have to install <code class="docutils literal notranslate"><span class="pre">pandoc</span></code>
 and <code class="docutils literal notranslate"><span class="pre">ghostscript</span></code> if it is not already installed.</p>
 <section id="example-with-macos-homebrew">
-<h4>Example with MacOS (Homebrew)<a class="headerlink" href="#example-with-macos-homebrew" title="Permalink to this headline">¶</a></h4>
+<h4>Example with MacOS (Homebrew)<a class="headerlink" href="#example-with-macos-homebrew" title="Permalink to this headline">#</a></h4>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>brew install pandoc ghostscript
 </pre></div>
 </div>
@@ -678,9 +675,9 @@ and <code class="docutils literal notranslate"><span class="pre">ghostscript</sp
 </section>
 </section>
 <section id="contributing-code">
-<h2>Contributing Code<a class="headerlink" href="#contributing-code" title="Permalink to this headline">¶</a></h2>
+<h2>Contributing Code<a class="headerlink" href="#contributing-code" title="Permalink to this headline">#</a></h2>
 <section id="general-coding-conventions">
-<h3>General Coding Conventions<a class="headerlink" href="#general-coding-conventions" title="Permalink to this headline">¶</a></h3>
+<h3>General Coding Conventions<a class="headerlink" href="#general-coding-conventions" title="Permalink to this headline">#</a></h3>
 <p>As this library conforms to the convention of
 <a class="reference external" href="https://scikit-learn.org/stable/developers/develop.html#coding-guidelines">scikit-learn</a>,
 the code should conform to <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">PEP
@@ -689,7 +686,7 @@ Code. For linting, the use of
 <a class="reference external" href="https://flake8.pycqa.org/en/latest/">flake8</a> is recommended.</p>
 </section>
 <section id="example-for-c3-code-contribution-cycle-and-pull-requests">
-<h3>Example for C3 (Code Contribution Cycle) and Pull Requests<a class="headerlink" href="#example-for-c3-code-contribution-cycle-and-pull-requests" title="Permalink to this headline">¶</a></h3>
+<h3>Example for C3 (Code Contribution Cycle) and Pull Requests<a class="headerlink" href="#example-for-c3-code-contribution-cycle-and-pull-requests" title="Permalink to this headline">#</a></h3>
 <ol class="arabic simple">
 <li><p>Fork the repository using the Github <code class="docutils literal notranslate"><span class="pre">Fork</span></code> button.</p></li>
 <li><p>Then, clone your fork to your local machine:</p></li>
@@ -725,18 +722,18 @@ $ git push
 </section>
 </section>
 <section id="query-strategies">
-<h2>Query Strategies<a class="headerlink" href="#query-strategies" title="Permalink to this headline">¶</a></h2>
+<h2>Query Strategies<a class="headerlink" href="#query-strategies" title="Permalink to this headline">#</a></h2>
 <section id="pool-based-query-strategies">
-<h3>Pool-based Query Strategies<a class="headerlink" href="#pool-based-query-strategies" title="Permalink to this headline">¶</a></h3>
+<h3>Pool-based Query Strategies<a class="headerlink" href="#pool-based-query-strategies" title="Permalink to this headline">#</a></h3>
 <section id="general">
-<h4>General<a class="headerlink" href="#general" title="Permalink to this headline">¶</a></h4>
+<h4>General<a class="headerlink" href="#general" title="Permalink to this headline">#</a></h4>
 <p>All query strategies are stored in a file
 <code class="docutils literal notranslate"><span class="pre">skactiveml/pool/_query_strategy.py</span></code>. Every class inherits from
 <code class="docutils literal notranslate"><span class="pre">SingleAnnotatorPoolQueryStrategy</span></code>. The class must implement the
 <code class="docutils literal notranslate"><span class="pre">__init__</span></code> function for initialization and a <code class="docutils literal notranslate"><span class="pre">query</span></code> function.</p>
 </section>
 <section id="init-function">
-<h4><code class="docutils literal notranslate"><span class="pre">__init__</span></code> function<a class="headerlink" href="#init-function" title="Permalink to this headline">¶</a></h4>
+<h4><code class="docutils literal notranslate"><span class="pre">__init__</span></code> function<a class="headerlink" href="#init-function" title="Permalink to this headline">#</a></h4>
 <p>For typical class parameters we use standard names:</p>
 <table class="table">
 <colgroup>
@@ -770,7 +767,7 @@ predicting instances wrong</p></td>
 </table>
 </section>
 <section id="query-function">
-<h4><code class="docutils literal notranslate"><span class="pre">query</span></code> function<a class="headerlink" href="#query-function" title="Permalink to this headline">¶</a></h4>
+<h4><code class="docutils literal notranslate"><span class="pre">query</span></code> function<a class="headerlink" href="#query-function" title="Permalink to this headline">#</a></h4>
 <p>Required Parameters:</p>
 <table class="table">
 <colgroup>
@@ -843,7 +840,7 @@ instances, only if
 </tbody>
 </table>
 <section id="general-advice">
-<h5>General advice<a class="headerlink" href="#general-advice" title="Permalink to this headline">¶</a></h5>
+<h5>General advice<a class="headerlink" href="#general-advice" title="Permalink to this headline">#</a></h5>
 <p>Use <code class="docutils literal notranslate"><span class="pre">self._validate_data</span></code> function (Is implemented in the superclass).
 Check the input <code class="docutils literal notranslate"><span class="pre">X</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> only once. Fit classifier if it is not
 yet fitted (May use <code class="docutils literal notranslate"><span class="pre">fit_if_not_fitted</span></code> form utils). Calculate
@@ -852,7 +849,7 @@ utils for return value.</p>
 </section>
 </section>
 <section id="testing">
-<h4>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h4>
+<h4>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">#</a></h4>
 <p>All query strategies are tested by a general unittest
 (<code class="docutils literal notranslate"><span class="pre">test_pool.py</span></code>). Querying of every method is tested with standard
 configurations with 0, 1, and 5 initial labels. For every class
@@ -873,9 +870,9 @@ not have to be tested in the specific tests.</p>
 </section>
 </section>
 <section id="stream-based-query-strategies">
-<h3>Stream-based Query Strategies<a class="headerlink" href="#stream-based-query-strategies" title="Permalink to this headline">¶</a></h3>
+<h3>Stream-based Query Strategies<a class="headerlink" href="#stream-based-query-strategies" title="Permalink to this headline">#</a></h3>
 <section id="general-1">
-<span id="id1"></span><h4>General<a class="headerlink" href="#general-1" title="Permalink to this headline">¶</a></h4>
+<span id="id1"></span><h4>General<a class="headerlink" href="#general-1" title="Permalink to this headline">#</a></h4>
 <p>All query strategies are stored in a file <code class="docutils literal notranslate"><span class="pre">skactivml/stream/*.py</span></code>.
 Every query strategy inherits from
 <code class="docutils literal notranslate"><span class="pre">SingleAnnotatorStreamQueryStrategy</span></code>. Every query strategy has
@@ -931,7 +928,7 @@ allowed to query</p></td>
 </table>
 </section>
 <section id="query-function-1">
-<span id="id2"></span><h4><code class="docutils literal notranslate"><span class="pre">query</span></code> function<a class="headerlink" href="#query-function-1" title="Permalink to this headline">¶</a></h4>
+<span id="id2"></span><h4><code class="docutils literal notranslate"><span class="pre">query</span></code> function<a class="headerlink" href="#query-function-1" title="Permalink to this headline">#</a></h4>
 <p>Required Parameters:</p>
 <table class="table">
 <colgroup>
@@ -999,7 +996,7 @@ instances, only if
 </tbody>
 </table>
 <section id="general-advice-1">
-<span id="id3"></span><h5>General advice<a class="headerlink" href="#general-advice-1" title="Permalink to this headline">¶</a></h5>
+<span id="id3"></span><h5>General advice<a class="headerlink" href="#general-advice-1" title="Permalink to this headline">#</a></h5>
 <p>The <code class="docutils literal notranslate"><span class="pre">query</span></code> function must not change the internal state of the
 <code class="docutils literal notranslate"><span class="pre">query</span></code> strategy (<code class="docutils literal notranslate"><span class="pre">budget</span></code> and <code class="docutils literal notranslate"><span class="pre">random_state</span></code> included) to allow
 for assessing multiple instances with the same state. Update the the
@@ -1010,7 +1007,7 @@ only once. Fit classifier if it is not yet fitted (may use
 </section>
 </section>
 <section id="update-function">
-<h4><code class="docutils literal notranslate"><span class="pre">update</span></code> function<a class="headerlink" href="#update-function" title="Permalink to this headline">¶</a></h4>
+<h4><code class="docutils literal notranslate"><span class="pre">update</span></code> function<a class="headerlink" href="#update-function" title="Permalink to this headline">#</a></h4>
 <p>Required Parameters:</p>
 <table class="table">
 <colgroup>
@@ -1042,7 +1039,7 @@ if a <code class="docutils literal notranslate"><span class="pre">budget_manager
 </tbody>
 </table>
 <section id="general-advice-2">
-<span id="id4"></span><h5>General advice<a class="headerlink" href="#general-advice-2" title="Permalink to this headline">¶</a></h5>
+<span id="id4"></span><h5>General advice<a class="headerlink" href="#general-advice-2" title="Permalink to this headline">#</a></h5>
 <p>Use <code class="docutils literal notranslate"><span class="pre">self._validate_data</span></code> in case the strategy is used without using
 the <code class="docutils literal notranslate"><span class="pre">query</span></code> method (if parameters need to be initialized before the
 update). If a <code class="docutils literal notranslate"><span class="pre">budget_manager</span></code> is used forward the update call to the
@@ -1050,7 +1047,7 @@ update). If a <code class="docutils literal notranslate"><span class="pre">budge
 </section>
 </section>
 <section id="testing-1">
-<span id="id5"></span><h4>Testing<a class="headerlink" href="#testing-1" title="Permalink to this headline">¶</a></h4>
+<span id="id5"></span><h4>Testing<a class="headerlink" href="#testing-1" title="Permalink to this headline">#</a></h4>
 <p>All stream query strategies are tested by a general unittest
 (<code class="docutils literal notranslate"><span class="pre">stream/tests/test_stream.py</span></code>) -For every class
 <code class="docutils literal notranslate"><span class="pre">ExampleQueryStrategy</span></code> that inherits from
@@ -1067,7 +1064,7 @@ method in the testclass <code class="docutils literal notranslate"><span class="
 <code class="docutils literal notranslate"><span class="pre">test_query_param_arg()</span></code>.</p>
 </section>
 <section id="general-advice-for-the-budget-manager">
-<h4>General advice for the <code class="docutils literal notranslate"><span class="pre">budget_manager</span></code><a class="headerlink" href="#general-advice-for-the-budget-manager" title="Permalink to this headline">¶</a></h4>
+<h4>General advice for the <code class="docutils literal notranslate"><span class="pre">budget_manager</span></code><a class="headerlink" href="#general-advice-for-the-budget-manager" title="Permalink to this headline">#</a></h4>
 <p>All budget managers are stored in
 <code class="docutils literal notranslate"><span class="pre">skactivml/stream/budget_manager/\*.py</span></code>. The class must implement the
 following functions:</p>
@@ -1097,7 +1094,7 @@ based on the assessed utility</p></td>
 </table>
 </section>
 <section id="update-function-1">
-<span id="id6"></span><h4><code class="docutils literal notranslate"><span class="pre">update</span></code> function<a class="headerlink" href="#update-function-1" title="Permalink to this headline">¶</a></h4>
+<span id="id6"></span><h4><code class="docutils literal notranslate"><span class="pre">update</span></code> function<a class="headerlink" href="#update-function-1" title="Permalink to this headline">#</a></h4>
 <p>The update function of the budget manager has the same functionality as
 the query strategy update.</p>
 <p>Required Parameters:</p>
@@ -1125,7 +1122,7 @@ sklearn</p></td>
 </table>
 </section>
 <section id="query-by-utilities-function">
-<h4><code class="docutils literal notranslate"><span class="pre">query_by_utilities</span></code> function<a class="headerlink" href="#query-by-utilities-function" title="Permalink to this headline">¶</a></h4>
+<h4><code class="docutils literal notranslate"><span class="pre">query_by_utilities</span></code> function<a class="headerlink" href="#query-by-utilities-function" title="Permalink to this headline">#</a></h4>
 <p>Required Parameters:</p>
 <table class="table">
 <colgroup>
@@ -1147,7 +1144,7 @@ inherited from <code class="docutils literal notranslate"><span class="pre">Budg
 </table>
 </section>
 <section id="general-advice-for-working-with-a-budget-manager">
-<h4>General advice for working with a <code class="docutils literal notranslate"><span class="pre">budget_manager</span></code>:<a class="headerlink" href="#general-advice-for-working-with-a-budget-manager" title="Permalink to this headline">¶</a></h4>
+<h4>General advice for working with a <code class="docutils literal notranslate"><span class="pre">budget_manager</span></code>:<a class="headerlink" href="#general-advice-for-working-with-a-budget-manager" title="Permalink to this headline">#</a></h4>
 <p>If a <code class="docutils literal notranslate"><span class="pre">budget_manager</span></code> is used, the <code class="docutils literal notranslate"><span class="pre">_validate_data</span></code> of the query
 strategy needs to be adapted accordingly:</p>
 <ul class="simple">
@@ -1177,7 +1174,7 @@ testclass <code class="docutils literal notranslate"><span class="pre">TestExamp
 </section>
 </section>
 <section id="multi-annotator-pool-based-query-strategies">
-<h3>Multi-Annotator Pool-based Query Strategies<a class="headerlink" href="#multi-annotator-pool-based-query-strategies" title="Permalink to this headline">¶</a></h3>
+<h3>Multi-Annotator Pool-based Query Strategies<a class="headerlink" href="#multi-annotator-pool-based-query-strategies" title="Permalink to this headline">#</a></h3>
 <p>All query strategies are stored in a file
 <code class="docutils literal notranslate"><span class="pre">skactiveml/pool/multi/_query_strategy.py</span></code>. Every class inherits from
 <code class="docutils literal notranslate"><span class="pre">MultiAnnotatorPoolQueryStrategy</span></code>. The class must implement the
@@ -1219,7 +1216,7 @@ following functions:</p>
 </tbody>
 </table>
 <section id="query-function-2">
-<span id="id7"></span><h4><code class="docutils literal notranslate"><span class="pre">query</span></code> function<a class="headerlink" href="#query-function-2" title="Permalink to this headline">¶</a></h4>
+<span id="id7"></span><h4><code class="docutils literal notranslate"><span class="pre">query</span></code> function<a class="headerlink" href="#query-function-2" title="Permalink to this headline">#</a></h4>
 <p>Required Parameters:</p>
 <table class="table">
 <colgroup>
@@ -1308,7 +1305,7 @@ if <code class="docutils literal notranslate"><span class="pre">return_utilities
 </tbody>
 </table>
 <section id="general-advice-3">
-<span id="id8"></span><h5>General advice<a class="headerlink" href="#general-advice-3" title="Permalink to this headline">¶</a></h5>
+<span id="id8"></span><h5>General advice<a class="headerlink" href="#general-advice-3" title="Permalink to this headline">#</a></h5>
 <p>Use <code class="docutils literal notranslate"><span class="pre">self._validate_data</span> <span class="pre">function</span></code> (is implemented in superclass).
 Check the input <code class="docutils literal notranslate"><span class="pre">X</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> only once. Fit classifier if it is not
 yet fitted (may use <code class="docutils literal notranslate"><span class="pre">fit_if_not_fitted</span></code> form <code class="docutils literal notranslate"><span class="pre">utils</span></code>). If the
@@ -1329,7 +1326,7 @@ estimate:</p>
 </section>
 </section>
 <section id="classifiers">
-<h2>Classifiers<a class="headerlink" href="#classifiers" title="Permalink to this headline">¶</a></h2>
+<h2>Classifiers<a class="headerlink" href="#classifiers" title="Permalink to this headline">#</a></h2>
 <p>Standard classifier implementations are part of the subpackage
 <code class="docutils literal notranslate"><span class="pre">skactiveml.classifier</span></code> and classifiers learning from multiple
 annotators are implemented in its subpackage
@@ -1348,7 +1345,7 @@ implementation of the method <code class="docutils literal notranslate"><span cl
 as prior parameters of a Dirichlet distribution over the class
 membership probabilities of a sample.</p>
 <section id="id9">
-<h3><code class="docutils literal notranslate"><span class="pre">init</span></code> function<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">init</span></code> function<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h3>
 <p>Required Parameters:</p>
 <table class="table">
 <colgroup>
@@ -1394,7 +1391,7 @@ of the class frequency estimates</p></td>
 </table>
 </section>
 <section id="fit-function">
-<h3><code class="docutils literal notranslate"><span class="pre">fit</span></code> function<a class="headerlink" href="#fit-function" title="Permalink to this headline">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">fit</span></code> function<a class="headerlink" href="#fit-function" title="Permalink to this headline">#</a></h3>
 <p>Required Parameters:</p>
 <table class="table">
 <colgroup>
@@ -1449,7 +1446,7 @@ It must have the same shape as
 </tbody>
 </table>
 <section id="general-advice-4">
-<span id="id10"></span><h4>General advice<a class="headerlink" href="#general-advice-4" title="Permalink to this headline">¶</a></h4>
+<span id="id10"></span><h4>General advice<a class="headerlink" href="#general-advice-4" title="Permalink to this headline">#</a></h4>
 <p>Use <code class="docutils literal notranslate"><span class="pre">self._validate_data</span></code> method (is implemented in superclass) to
 check standard parameters of <code class="docutils literal notranslate"><span class="pre">__init__</span></code> and <code class="docutils literal notranslate"><span class="pre">fit</span></code> method. If
 <code class="docutils literal notranslate"><span class="pre">self.n_features_</span></code> is None, no samples were provided as training data.
@@ -1460,7 +1457,7 @@ classifier can handle missing labels.</p>
 </section>
 </section>
 <section id="predict-proba-function">
-<h3><code class="docutils literal notranslate"><span class="pre">predict_proba</span></code> function<a class="headerlink" href="#predict-proba-function" title="Permalink to this headline">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">predict_proba</span></code> function<a class="headerlink" href="#predict-proba-function" title="Permalink to this headline">#</a></h3>
 <p>Required Parameters:</p>
 <table class="table">
 <colgroup>
@@ -1499,7 +1496,7 @@ predictions</p></td>
 </tbody>
 </table>
 <section id="general-advice-5">
-<span id="id11"></span><h4>General advice<a class="headerlink" href="#general-advice-5" title="Permalink to this headline">¶</a></h4>
+<span id="id11"></span><h4>General advice<a class="headerlink" href="#general-advice-5" title="Permalink to this headline">#</a></h4>
 <p>Check parameter <code class="docutils literal notranslate"><span class="pre">X</span></code> regarding its shape, i.e., use superclass method
 <code class="docutils literal notranslate"><span class="pre">self._check_n_features</span></code> to ensure a correct number of features. Check
 that the classifier has been fitted. If the classifier is a
@@ -1510,7 +1507,7 @@ membership probabilities are to be outputted.</p>
 </section>
 </section>
 <section id="predict-freq-function">
-<h3><code class="docutils literal notranslate"><span class="pre">predict_freq</span></code> function<a class="headerlink" href="#predict-freq-function" title="Permalink to this headline">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">predict_freq</span></code> function<a class="headerlink" href="#predict-freq-function" title="Permalink to this headline">#</a></h3>
 <p>Required Parameters:</p>
 <table class="table">
 <colgroup>
@@ -1551,7 +1548,7 @@ observations)</p></td>
 </tbody>
 </table>
 <section id="general-advice-6">
-<span id="id12"></span><h4>General advice<a class="headerlink" href="#general-advice-6" title="Permalink to this headline">¶</a></h4>
+<span id="id12"></span><h4>General advice<a class="headerlink" href="#general-advice-6" title="Permalink to this headline">#</a></h4>
 <p>Check parameter X regarding its shape, i.e., use superclass method
 <code class="docutils literal notranslate"><span class="pre">self._check_n_features</span></code> to ensure a correct number of features. Check
 that the classifier has been fitted. If no samples or class labels were
@@ -1560,7 +1557,7 @@ zeros is to be outputted.</p>
 </section>
 </section>
 <section id="predict-function">
-<h3><code class="docutils literal notranslate"><span class="pre">predict</span></code> function<a class="headerlink" href="#predict-function" title="Permalink to this headline">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">predict</span></code> function<a class="headerlink" href="#predict-function" title="Permalink to this headline">#</a></h3>
 <p>Required Parameters:</p>
 <table class="table">
 <colgroup>
@@ -1599,7 +1596,7 @@ predictions</p></td>
 </tbody>
 </table>
 <section id="general-advice-7">
-<span id="id13"></span><h4>General advice<a class="headerlink" href="#general-advice-7" title="Permalink to this headline">¶</a></h4>
+<span id="id13"></span><h4>General advice<a class="headerlink" href="#general-advice-7" title="Permalink to this headline">#</a></h4>
 <p>Usually, this method is already implemented by the superclass through
 calling the <code class="docutils literal notranslate"><span class="pre">predict_proba</span></code> method. If the superclass method is
 overwritten, ensure that it can handle imbalanced costs and missing
@@ -1609,7 +1606,7 @@ outputted.</p>
 </section>
 </section>
 <section id="score-function">
-<h3><code class="docutils literal notranslate"><span class="pre">score</span></code> function<a class="headerlink" href="#score-function" title="Permalink to this headline">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">score</span></code> function<a class="headerlink" href="#score-function" title="Permalink to this headline">#</a></h3>
 <p>Required Parameters:</p>
 <table class="table">
 <colgroup>
@@ -1657,14 +1654,14 @@ accuracy of the classifier</p></td>
 </tbody>
 </table>
 <section id="general-advice-8">
-<span id="id14"></span><h4>General advice<a class="headerlink" href="#general-advice-8" title="Permalink to this headline">¶</a></h4>
+<span id="id14"></span><h4>General advice<a class="headerlink" href="#general-advice-8" title="Permalink to this headline">#</a></h4>
 <p>Usually, this method is already implemented by the superclass. If the
 superclass method is overwritten, ensure that it checks the parameters
 and that the classifier has been fitted.</p>
 </section>
 </section>
 <section id="testing-2">
-<span id="id15"></span><h3>Testing<a class="headerlink" href="#testing-2" title="Permalink to this headline">¶</a></h3>
+<span id="id15"></span><h3>Testing<a class="headerlink" href="#testing-2" title="Permalink to this headline">#</a></h3>
 <p>All classifiers are tested by a general unittest
 (<code class="docutils literal notranslate"><span class="pre">skactiveml/classifier/tests/test_classifier.py</span></code>). For every class
 <code class="docutils literal notranslate"><span class="pre">ExampleClassifier</span></code> that inherits from
@@ -1683,7 +1680,7 @@ intended.</p>
 </section>
 </section>
 <section id="annotators-models">
-<h2>Annotators Models<a class="headerlink" href="#annotators-models" title="Permalink to this headline">¶</a></h2>
+<h2>Annotators Models<a class="headerlink" href="#annotators-models" title="Permalink to this headline">#</a></h2>
 <p>Annotator models are marked by implementing the interface
 <code class="docutils literal notranslate"><span class="pre">skactiveml.base.AnnotMixing</span></code>. These models can estimate the
 performances of annotators for given samples. Every class of a
@@ -1692,7 +1689,7 @@ class of an annotator model must implement the <code class="docutils literal not
 method estimating the performances per sample of each annotator as
 proxies of the provided annotation’s qualities.</p>
 <section id="predict-annotator-perf-function">
-<h3><code class="docutils literal notranslate"><span class="pre">predict_annotator_perf</span></code> function<a class="headerlink" href="#predict-annotator-perf-function" title="Permalink to this headline">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">predict_annotator_perf</span></code> function<a class="headerlink" href="#predict-annotator-perf-function" title="Permalink to this headline">#</a></h3>
 <p>Required Parameters:</p>
 <table class="table">
 <colgroup>
@@ -1728,7 +1725,7 @@ proxies of the provided annotation’s qualities.</p>
 </tbody>
 </table>
 <section id="general-advice-9">
-<span id="id16"></span><h4>General advice<a class="headerlink" href="#general-advice-9" title="Permalink to this headline">¶</a></h4>
+<span id="id16"></span><h4>General advice<a class="headerlink" href="#general-advice-9" title="Permalink to this headline">#</a></h4>
 <p>Check parameter <code class="docutils literal notranslate"><span class="pre">X</span></code> regarding its shape and check that the annotator
 model has been fitted. If no samples or class labels were provided
 during the previous call of the <code class="docutils literal notranslate"><span class="pre">fit</span></code> method, the maximum value of
@@ -1738,36 +1735,36 @@ pair.</p>
 </section>
 </section>
 <section id="testing-and-code-coverage">
-<h2>Testing and code coverage<a class="headerlink" href="#testing-and-code-coverage" title="Permalink to this headline">¶</a></h2>
+<h2>Testing and code coverage<a class="headerlink" href="#testing-and-code-coverage" title="Permalink to this headline">#</a></h2>
 <p>Please ensure test coverage is close to 100%. The current code coverage
 can be viewed
 <a class="reference external" href="https://app.codecov.io/gh/scikit-activeml/scikit-activeml">here</a>.</p>
 </section>
 <section id="documentation-user-guide-and-developer-guide">
-<h2>Documentation (User guide and Developer guide)<a class="headerlink" href="#documentation-user-guide-and-developer-guide" title="Permalink to this headline">¶</a></h2>
+<h2>Documentation (User guide and Developer guide)<a class="headerlink" href="#documentation-user-guide-and-developer-guide" title="Permalink to this headline">#</a></h2>
 <section id="guidelines-for-writing-documentation">
-<h3>Guidelines for writing documentation<a class="headerlink" href="#guidelines-for-writing-documentation" title="Permalink to this headline">¶</a></h3>
+<h3>Guidelines for writing documentation<a class="headerlink" href="#guidelines-for-writing-documentation" title="Permalink to this headline">#</a></h3>
 <p>In <code class="docutils literal notranslate"><span class="pre">Scikit-ActiveML</span></code>, the
 <a class="reference external" href="https://scikit-learn.org/stable/developers/contributing.html#guidelines-for-writing-documentation">guidelines</a>
 for writing the documentation are adopted from
 <a class="reference external" href="https://scikit-learn.org/stable/">scikit-learn</a>.</p>
 </section>
 <section id="building-the-documentation">
-<h3>Building the documentation<a class="headerlink" href="#building-the-documentation" title="Permalink to this headline">¶</a></h3>
+<h3>Building the documentation<a class="headerlink" href="#building-the-documentation" title="Permalink to this headline">#</a></h3>
 <blockquote>
 <div><p>TODO: How to build the user guide and developer guide?</p>
 </div></blockquote>
 </section>
 </section>
 <section id="issue-tracking">
-<h2>Issue Tracking<a class="headerlink" href="#issue-tracking" title="Permalink to this headline">¶</a></h2>
+<h2>Issue Tracking<a class="headerlink" href="#issue-tracking" title="Permalink to this headline">#</a></h2>
 <p>We use <a class="reference external" href="https://github.com/scikit-activeml/scikit-activeml/issues">Github
 Issues</a> as
 our issue tracker. If you think you have found a bug in
 <code class="docutils literal notranslate"><span class="pre">Scikit-ActiveML</span></code>, you can report it to the issue tracker.
 Documentation bugs can also be reported there.</p>
 <section id="checking-if-a-bug-already-exists">
-<h3>Checking If A Bug Already Exists<a class="headerlink" href="#checking-if-a-bug-already-exists" title="Permalink to this headline">¶</a></h3>
+<h3>Checking If A Bug Already Exists<a class="headerlink" href="#checking-if-a-bug-already-exists" title="Permalink to this headline">#</a></h3>
 <p>The first step before filing an issue report is to see whether the
 problem has already been reported. Checking if the problem is an
 existing issue will:</p>
@@ -1783,7 +1780,7 @@ issue, is needed</p></li>
 label) using the search box on the top of the issue tracker page.</p>
 </section>
 <section id="reporting-an-issue">
-<h3>Reporting an issue<a class="headerlink" href="#reporting-an-issue" title="Permalink to this headline">¶</a></h3>
+<h3>Reporting an issue<a class="headerlink" href="#reporting-an-issue" title="Permalink to this headline">#</a></h3>
 <p>Use the following labels to report an issue:</p>
 <table class="table">
 <colgroup>
@@ -1835,8 +1832,9 @@ label) using the search box on the top of the issue tracker page.</p>
       </div>
     </div>
   
-    <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-  <footer class="footer mt-5 mt-md-0">
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
   <div class="container">
     
     <div class="footer-item">

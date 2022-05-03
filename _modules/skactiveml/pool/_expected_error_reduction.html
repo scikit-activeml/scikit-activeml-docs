@@ -5,32 +5,29 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>skactiveml.pool._expected_error_reduction &#8212; scikit-activeml 0.2.0 documentation</title>
+    <title>skactiveml.pool._expected_error_reduction &#8212; scikit-activeml latest documentation</title>
     
-    <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-  
+
     
-    <link rel="stylesheet"
-      href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-  
-    
-      
-  
-    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/styles/pydata-sphinx-theme.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css" />
     
-    <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
-  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
@@ -45,7 +42,7 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -239,11 +236,11 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span>
-            <span class="n">enforce_mapping</span><span class="p">,</span>
-            <span class="n">cost_matrix</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">missing_label</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">,</span>
-            <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">enforce_mapping</span><span class="p">,</span>
+        <span class="n">cost_matrix</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">missing_label</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">,</span>
+        <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="n">missing_label</span><span class="o">=</span><span class="n">missing_label</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span>
@@ -252,19 +249,19 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">enforce_mapping</span> <span class="o">=</span> <span class="n">enforce_mapping</span>
 
     <span class="k">def</span> <span class="nf">query</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span>
-            <span class="n">X</span><span class="p">,</span>
-            <span class="n">y</span><span class="p">,</span>
-            <span class="n">clf</span><span class="p">,</span>
-            <span class="n">fit_clf</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="n">ignore_partial_fit</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">candidates</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">sample_weight_candidates</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">X_eval</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">sample_weight_eval</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-            <span class="n">return_utilities</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">X</span><span class="p">,</span>
+        <span class="n">y</span><span class="p">,</span>
+        <span class="n">clf</span><span class="p">,</span>
+        <span class="n">fit_clf</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">ignore_partial_fit</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">candidates</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">sample_weight_candidates</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">X_eval</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">sample_weight_eval</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">return_utilities</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Determines for which candidate samples labels are to be queried.</span>
 
@@ -457,19 +454,19 @@
         <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_validate_data</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span>
-            <span class="n">X</span><span class="p">,</span>
-            <span class="n">y</span><span class="p">,</span>
-            <span class="n">sample_weight</span><span class="p">,</span>
-            <span class="n">clf</span><span class="p">,</span>
-            <span class="n">candidates</span><span class="p">,</span>
-            <span class="n">sample_weight_candidates</span><span class="p">,</span>
-            <span class="n">X_eval</span><span class="p">,</span>
-            <span class="n">sample_weight_eval</span><span class="p">,</span>
-            <span class="n">batch_size</span><span class="p">,</span>
-            <span class="n">return_utilities</span><span class="p">,</span>
-            <span class="n">reset</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="n">check_X_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">X</span><span class="p">,</span>
+        <span class="n">y</span><span class="p">,</span>
+        <span class="n">sample_weight</span><span class="p">,</span>
+        <span class="n">clf</span><span class="p">,</span>
+        <span class="n">candidates</span><span class="p">,</span>
+        <span class="n">sample_weight_candidates</span><span class="p">,</span>
+        <span class="n">X_eval</span><span class="p">,</span>
+        <span class="n">sample_weight_eval</span><span class="p">,</span>
+        <span class="n">batch_size</span><span class="p">,</span>
+        <span class="n">return_utilities</span><span class="p">,</span>
+        <span class="n">reset</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">check_X_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
 
         <span class="c1"># Validate input parameters.</span>
@@ -515,21 +512,21 @@
         <span class="k">pass</span>
 
     <span class="k">def</span> <span class="nf">_precompute_and_fit_clf</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span>
-            <span class="n">id_clf</span><span class="p">,</span>
-            <span class="n">X_full</span><span class="p">,</span>
-            <span class="n">y_full</span><span class="p">,</span>
-            <span class="n">idx_train</span><span class="p">,</span>
-            <span class="n">idx_cand</span><span class="p">,</span>
-            <span class="n">idx_eval</span><span class="p">,</span>
-            <span class="n">fit_clf</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">id_clf</span><span class="p">,</span>
+        <span class="n">X_full</span><span class="p">,</span>
+        <span class="n">y_full</span><span class="p">,</span>
+        <span class="n">idx_train</span><span class="p">,</span>
+        <span class="n">idx_cand</span><span class="p">,</span>
+        <span class="n">idx_eval</span><span class="p">,</span>
+        <span class="n">fit_clf</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="k">if</span> <span class="n">fit_clf</span><span class="p">:</span>
             <span class="n">id_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">idx_train</span><span class="p">,</span> <span class="n">set_base_clf</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">id_clf</span>
 
     <span class="k">def</span> <span class="nf">_estimate_current_error</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span> <span class="n">id_clf</span><span class="p">,</span> <span class="n">idx_train</span><span class="p">,</span> <span class="n">idx_cand</span><span class="p">,</span> <span class="n">idx_eval</span><span class="p">,</span> <span class="n">w_eval</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">id_clf</span><span class="p">,</span> <span class="n">idx_train</span><span class="p">,</span> <span class="n">idx_cand</span><span class="p">,</span> <span class="n">idx_eval</span><span class="p">,</span> <span class="n">w_eval</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Result must be of float or of shape (len(idx_eval))</span>
@@ -537,7 +534,7 @@
         <span class="k">return</span> <span class="mf">0.0</span>
 
     <span class="k">def</span> <span class="nf">_estimate_error_for_candidate</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span> <span class="n">uclf</span><span class="p">,</span> <span class="n">idx_cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">,</span> <span class="n">idx_train</span><span class="p">,</span> <span class="n">idx_cand</span><span class="p">,</span> <span class="n">idx_eval</span><span class="p">,</span> <span class="n">w_eval</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">uclf</span><span class="p">,</span> <span class="n">idx_cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">,</span> <span class="n">idx_train</span><span class="p">,</span> <span class="n">idx_cand</span><span class="p">,</span> <span class="n">idx_eval</span><span class="p">,</span> <span class="n">w_eval</span>
     <span class="p">):</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
             <span class="s2">&quot;Error estimation method must be implemented&quot;</span>
@@ -554,19 +551,19 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">cost_matrix_</span> <span class="o">=</span> <span class="n">check_cost_matrix</span><span class="p">(</span><span class="n">cost_matrix</span><span class="p">,</span> <span class="n">n_classes</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_concatenate_samples</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span>
-            <span class="n">X</span><span class="p">,</span>
-            <span class="n">y</span><span class="p">,</span>
-            <span class="n">sample_weight</span><span class="p">,</span>
-            <span class="n">candidates</span><span class="p">,</span>
-            <span class="n">sample_weight_candidates</span><span class="p">,</span>
-            <span class="n">X_eval</span><span class="p">,</span>
-            <span class="n">sample_weight_eval</span><span class="p">,</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">X</span><span class="p">,</span>
+        <span class="n">y</span><span class="p">,</span>
+        <span class="n">sample_weight</span><span class="p">,</span>
+        <span class="n">candidates</span><span class="p">,</span>
+        <span class="n">sample_weight_candidates</span><span class="p">,</span>
+        <span class="n">X_eval</span><span class="p">,</span>
+        <span class="n">sample_weight_eval</span><span class="p">,</span>
     <span class="p">):</span>
 
         <span class="c1"># Check if candidates are samples if sample_weight_candidates is set</span>
         <span class="k">if</span> <span class="p">(</span>
-                <span class="n">candidates</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">candidates</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span>
+            <span class="n">candidates</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">candidates</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span>
         <span class="p">)</span> <span class="ow">and</span> <span class="n">sample_weight_candidates</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
                 <span class="s2">&quot;Attribute `sample_weight_candidates` can only &quot;</span>
@@ -582,7 +579,7 @@
             <span class="p">)</span>
 
         <span class="k">if</span> <span class="n">sample_weight_candidates</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">candidates</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span>
-                <span class="n">sample_weight_candidates</span>
+            <span class="n">sample_weight_candidates</span>
         <span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
                 <span class="s2">&quot;If `sample_weight` is set, it must have same &quot;</span>
@@ -649,7 +646,7 @@
         <span class="k">return</span> <span class="n">X_full</span><span class="p">,</span> <span class="n">y_full</span><span class="p">,</span> <span class="n">w_full</span><span class="p">,</span> <span class="n">w_eval</span><span class="p">,</span> <span class="n">idx_train</span><span class="p">,</span> <span class="n">idx_cand</span><span class="p">,</span> <span class="n">idx_eval</span>
 
     <span class="k">def</span> <span class="nf">_risk_estimation</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span> <span class="n">prob_true</span><span class="p">,</span> <span class="n">prob_pred</span><span class="p">,</span> <span class="n">cost_matrix</span><span class="p">,</span> <span class="n">sample_weight</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">prob_true</span><span class="p">,</span> <span class="n">prob_pred</span><span class="p">,</span> <span class="n">cost_matrix</span><span class="p">,</span> <span class="n">sample_weight</span>
     <span class="p">):</span>
         <span class="k">if</span> <span class="n">prob_true</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">prob_pred</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
             <span class="n">cost_est</span> <span class="o">=</span> <span class="n">cost_matrix</span><span class="p">[</span><span class="n">prob_true</span><span class="p">,</span> <span class="p">:][</span>
@@ -672,7 +669,7 @@
             <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">prob_mat</span> <span class="o">=</span> <span class="p">(</span>
-                    <span class="n">prob_true</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">@</span> <span class="n">prob_pred</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:]</span>
+                <span class="n">prob_true</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">@</span> <span class="n">prob_pred</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:]</span>
             <span class="p">)</span>
             <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span>
                 <span class="n">sample_weight</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
@@ -703,6 +700,9 @@
 <span class="sd">        Cost matrix with `cost_matrix[i,j]` defining the cost of predicting</span>
 <span class="sd">        class `j` for a sample with the actual class `i`.</span>
 <span class="sd">        Used for misclassification loss and ignored for log loss.</span>
+<span class="sd">    subtract_current : bool, optional (default=False)</span>
+<span class="sd">        If True, the current error estimate is subtracted from the simulated</span>
+<span class="sd">        score. This might be helpful to define a stopping criterion.</span>
 <span class="sd">    missing_label : scalar or string or np.nan or None, default=np.nan</span>
 <span class="sd">        Value to represent a missing label.</span>
 <span class="sd">    random_state : numeric or np.random.RandomState</span>
@@ -714,11 +714,12 @@
 <span class="sd">        monte carlo estimation of error reduction. ICML, (pp. 441-448).&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span>
-            <span class="n">method</span><span class="o">=</span><span class="s2">&quot;misclassification_loss&quot;</span><span class="p">,</span>
-            <span class="n">cost_matrix</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">missing_label</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">,</span>
-            <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">method</span><span class="o">=</span><span class="s2">&quot;misclassification_loss&quot;</span><span class="p">,</span>
+        <span class="n">cost_matrix</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">subtract_current</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">missing_label</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">,</span>
+        <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="n">enforce_mapping</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
@@ -727,11 +728,10 @@
             <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">method</span> <span class="o">=</span> <span class="n">method</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">subtract_current</span> <span class="o">=</span> <span class="n">subtract_current</span>
 
     <span class="k">def</span> <span class="nf">_validate_init_params</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_validate_init_params</span><span class="p">()</span>
-        <span class="c1"># TODO check if cost_matrix is None for log_loss</span>
-
         <span class="c1"># Validate method.</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">method</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
@@ -744,16 +744,33 @@
                 <span class="sa">f</span><span class="s2">&quot;`log_loss` the given one is: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">method</span><span class="si">}</span><span class="s2">&quot;</span>
             <span class="p">)</span>
 
+        <span class="n">check_type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">subtract_current</span><span class="p">,</span> <span class="s2">&quot;subtract_current&quot;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;log_loss&quot;</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">cost_matrix</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;`cost_matrix` must be None if `method` is set to `log_loss`&quot;</span>
+            <span class="p">)</span>
+
     <span class="k">def</span> <span class="nf">_estimate_current_error</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span> <span class="n">id_clf</span><span class="p">,</span> <span class="n">idx_train</span><span class="p">,</span> <span class="n">idx_cand</span><span class="p">,</span> <span class="n">idx_eval</span><span class="p">,</span> <span class="n">w_eval</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">id_clf</span><span class="p">,</span> <span class="n">idx_train</span><span class="p">,</span> <span class="n">idx_cand</span><span class="p">,</span> <span class="n">idx_eval</span><span class="p">,</span> <span class="n">w_eval</span>
     <span class="p">):</span>
-        <span class="c1"># TODO: implement</span>
-        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_estimate_current_error</span><span class="p">(</span>
-            <span class="n">id_clf</span><span class="p">,</span> <span class="n">idx_train</span><span class="p">,</span> <span class="n">idx_cand</span><span class="p">,</span> <span class="n">idx_eval</span><span class="p">,</span> <span class="n">w_eval</span>
-        <span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">subtract_current</span><span class="p">:</span>
+            <span class="n">probs</span> <span class="o">=</span> <span class="n">id_clf</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">idx_eval</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;misclassification_loss&quot;</span><span class="p">:</span>
+                <span class="n">preds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">probs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cost_matrix_</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">err</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_risk_estimation</span><span class="p">(</span>
+                    <span class="n">probs</span><span class="p">,</span> <span class="n">preds</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cost_matrix_</span><span class="p">,</span> <span class="n">w_eval</span><span class="p">[</span><span class="n">idx_eval</span><span class="p">]</span>
+                <span class="p">)</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;log_loss&quot;</span><span class="p">:</span>
+                <span class="n">err</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_logloss_estimation</span><span class="p">(</span><span class="n">probs</span><span class="p">,</span> <span class="n">probs</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">err</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_estimate_current_error</span><span class="p">(</span>
+                <span class="n">id_clf</span><span class="p">,</span> <span class="n">idx_train</span><span class="p">,</span> <span class="n">idx_cand</span><span class="p">,</span> <span class="n">idx_eval</span><span class="p">,</span> <span class="n">w_eval</span>
+            <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_estimate_error_for_candidate</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span> <span class="n">id_clf</span><span class="p">,</span> <span class="n">idx_cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">,</span> <span class="n">idx_train</span><span class="p">,</span> <span class="n">idx_cand</span><span class="p">,</span> <span class="n">idx_eval</span><span class="p">,</span> <span class="n">w_eval</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">id_clf</span><span class="p">,</span> <span class="n">idx_cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">,</span> <span class="n">idx_train</span><span class="p">,</span> <span class="n">idx_cand</span><span class="p">,</span> <span class="n">idx_eval</span><span class="p">,</span> <span class="n">w_eval</span>
     <span class="p">):</span>
         <span class="n">id_clf</span><span class="o">.</span><span class="n">partial_fit</span><span class="p">(</span><span class="n">idx_cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">,</span> <span class="n">use_base_clf</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">set_base_clf</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="n">probs</span> <span class="o">=</span> <span class="n">id_clf</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">idx_eval</span><span class="p">)</span>
@@ -765,12 +782,10 @@
             <span class="p">)</span>
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;log_loss&quot;</span><span class="p">:</span>
             <span class="n">err</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_logloss_estimation</span><span class="p">(</span><span class="n">probs</span><span class="p">,</span> <span class="n">probs</span><span class="p">)</span>
-
         <span class="k">return</span> <span class="n">err</span>
 
     <span class="k">def</span> <span class="nf">_precompute_and_fit_clf</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span> <span class="n">id_clf</span><span class="p">,</span> <span class="n">X_full</span><span class="p">,</span> <span class="n">y_full</span><span class="p">,</span> <span class="n">idx_train</span><span class="p">,</span> <span class="n">idx_cand</span><span class="p">,</span> <span class="n">idx_eval</span><span class="p">,</span>
-            <span class="n">fit_clf</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">id_clf</span><span class="p">,</span> <span class="n">X_full</span><span class="p">,</span> <span class="n">y_full</span><span class="p">,</span> <span class="n">idx_train</span><span class="p">,</span> <span class="n">idx_cand</span><span class="p">,</span> <span class="n">idx_eval</span><span class="p">,</span> <span class="n">fit_clf</span>
     <span class="p">):</span>
         <span class="n">id_clf</span><span class="o">.</span><span class="n">precompute</span><span class="p">(</span><span class="n">idx_train</span><span class="p">,</span> <span class="n">idx_cand</span><span class="p">)</span>
         <span class="n">id_clf</span><span class="o">.</span><span class="n">precompute</span><span class="p">(</span><span class="n">idx_train</span><span class="p">,</span> <span class="n">idx_eval</span><span class="p">)</span>
@@ -838,15 +853,15 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span>
-            <span class="n">cost_matrix</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">consider_unlabeled</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="n">consider_labeled</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="n">candidate_to_labeled</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="n">subtract_current</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-            <span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-            <span class="n">missing_label</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">,</span>
-            <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">cost_matrix</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">consider_unlabeled</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">consider_labeled</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">candidate_to_labeled</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">subtract_current</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">missing_label</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">,</span>
+        <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="n">enforce_mapping</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
@@ -869,16 +884,16 @@
         <span class="n">check_type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">normalize</span><span class="p">,</span> <span class="s2">&quot;normalize&quot;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>
 
 <div class="viewcode-block" id="ValueOfInformationEER.query"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.ValueOfInformationEER.html#skactiveml.pool.ValueOfInformationEER.query">[docs]</a>    <span class="k">def</span> <span class="nf">query</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span>
-            <span class="n">X</span><span class="p">,</span>
-            <span class="n">y</span><span class="p">,</span>
-            <span class="n">clf</span><span class="p">,</span>
-            <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">fit_clf</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="n">ignore_partial_fit</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="n">candidates</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-            <span class="n">return_utilities</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">X</span><span class="p">,</span>
+        <span class="n">y</span><span class="p">,</span>
+        <span class="n">clf</span><span class="p">,</span>
+        <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">fit_clf</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">ignore_partial_fit</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">candidates</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">return_utilities</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Determines for which candidate samples labels are to be queried.</span>
 
@@ -954,7 +969,7 @@
         <span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">_estimate_error_for_candidate</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span> <span class="n">id_clf</span><span class="p">,</span> <span class="n">idx_cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">,</span> <span class="n">idx_train</span><span class="p">,</span> <span class="n">idx_cand</span><span class="p">,</span> <span class="n">idx_eval</span><span class="p">,</span> <span class="n">w_eval</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">id_clf</span><span class="p">,</span> <span class="n">idx_cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">,</span> <span class="n">idx_train</span><span class="p">,</span> <span class="n">idx_cand</span><span class="p">,</span> <span class="n">idx_eval</span><span class="p">,</span> <span class="n">w_eval</span>
     <span class="p">):</span>
         <span class="n">id_clf</span><span class="o">.</span><span class="n">partial_fit</span><span class="p">(</span><span class="n">idx_cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">,</span> <span class="n">use_base_clf</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">set_base_clf</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
@@ -994,12 +1009,15 @@
             <span class="p">)</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">normalize</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">err</span> <span class="o">/</span> <span class="n">norm</span>
+            <span class="k">if</span> <span class="n">norm</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="mf">0.0</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">err</span> <span class="o">/</span> <span class="n">norm</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">err</span>
 
     <span class="k">def</span> <span class="nf">_estimate_current_error</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span> <span class="n">id_clf</span><span class="p">,</span> <span class="n">idx_train</span><span class="p">,</span> <span class="n">idx_cand</span><span class="p">,</span> <span class="n">idx_eval</span><span class="p">,</span> <span class="n">w_eval</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">id_clf</span><span class="p">,</span> <span class="n">idx_train</span><span class="p">,</span> <span class="n">idx_cand</span><span class="p">,</span> <span class="n">idx_eval</span><span class="p">,</span> <span class="n">w_eval</span>
     <span class="p">):</span>
         <span class="c1"># estimate current utility score if required</span>
         <span class="c1"># TODO: maybe use function for code below to reduce redundancies</span>
@@ -1036,11 +1054,12 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">err</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="mf">0.0</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_estimate_current_error</span><span class="p">(</span>
+                <span class="n">id_clf</span><span class="p">,</span> <span class="n">idx_train</span><span class="p">,</span> <span class="n">idx_cand</span><span class="p">,</span> <span class="n">idx_eval</span><span class="p">,</span> <span class="n">w_eval</span>
+            <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_precompute_and_fit_clf</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span> <span class="n">id_clf</span><span class="p">,</span> <span class="n">X_full</span><span class="p">,</span> <span class="n">y_full</span><span class="p">,</span> <span class="n">idx_train</span><span class="p">,</span> <span class="n">idx_cand</span><span class="p">,</span> <span class="n">idx_eval</span><span class="p">,</span>
-            <span class="n">fit_clf</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">id_clf</span><span class="p">,</span> <span class="n">X_full</span><span class="p">,</span> <span class="n">y_full</span><span class="p">,</span> <span class="n">idx_train</span><span class="p">,</span> <span class="n">idx_cand</span><span class="p">,</span> <span class="n">idx_eval</span><span class="p">,</span> <span class="n">fit_clf</span>
     <span class="p">):</span>
 
         <span class="c1"># TODO: replace the following line by more efficient code</span>
@@ -1095,8 +1114,9 @@
       </div>
     </div>
   
-    <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-  <footer class="footer mt-5 mt-md-0">
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
   <div class="container">
     
     <div class="footer-item">

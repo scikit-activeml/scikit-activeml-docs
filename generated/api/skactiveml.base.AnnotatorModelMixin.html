@@ -6,32 +6,29 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>skactiveml.base.AnnotatorModelMixin &#8212; scikit-activeml 0.2.0 documentation</title>
+    <title>skactiveml.base.AnnotatorModelMixin &#8212; scikit-activeml latest documentation</title>
     
-    <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-  
+
     
-    <link rel="stylesheet"
-      href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-  
-    
-      
-  
-    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/pydata-sphinx-theme.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css" />
     
-    <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
-  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
@@ -48,7 +45,7 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -559,10 +556,10 @@
               <div>
                 
   <section id="skactiveml-base-annotatormodelmixin">
-<h1>skactiveml.base.AnnotatorModelMixin<a class="headerlink" href="#skactiveml-base-annotatormodelmixin" title="Permalink to this headline">¶</a></h1>
+<h1>skactiveml.base.AnnotatorModelMixin<a class="headerlink" href="#skactiveml-base-annotatormodelmixin" title="Permalink to this headline">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="skactiveml.base.AnnotatorModelMixin">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">skactiveml.base.</span></span><span class="sig-name descname"><span class="pre">AnnotatorModelMixin</span></span><a class="reference internal" href="../../_modules/skactiveml/base.html#AnnotatorModelMixin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.base.AnnotatorModelMixin" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">skactiveml.base.</span></span><span class="sig-name descname"><span class="pre">AnnotatorModelMixin</span></span><a class="reference internal" href="../../_modules/skactiveml/base.html#AnnotatorModelMixin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.base.AnnotatorModelMixin" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/abc.html#abc.ABC" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></a></p>
 <p>Base class of all annotator models estimating the performances of
 annotators for given samples.</p>
@@ -580,7 +577,7 @@ annotators for given samples.</p>
 </table>
 <dl class="py method">
 <dt class="sig sig-object py" id="skactiveml.base.AnnotatorModelMixin.predict_annotator_perf">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">predict_annotator_perf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/base.html#AnnotatorModelMixin.predict_annotator_perf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.base.AnnotatorModelMixin.predict_annotator_perf" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">predict_annotator_perf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/base.html#AnnotatorModelMixin.predict_annotator_perf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.base.AnnotatorModelMixin.predict_annotator_perf" title="Permalink to this definition">#</a></dt>
 <dd><p>Calculates the performance of an annotator to provide the true label
 for a given sample.</p>
 <dl class="field-list simple">
@@ -634,8 +631,9 @@ for a given sample.</p>
       </div>
     </div>
   
-    <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-  <footer class="footer mt-5 mt-md-0">
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
   <div class="container">
     
     <div class="footer-item">

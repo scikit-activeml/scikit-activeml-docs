@@ -6,32 +6,29 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Batch Stream Active Learning With Pool Query Strategies &#8212; scikit-activeml 0.2.0 documentation</title>
+    <title>Batch Stream Active Learning With Pool Query Strategies &#8212; scikit-activeml latest documentation</title>
     
-    <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-  
+
     
-    <link rel="stylesheet"
-      href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-  
-    
-      
-  
-    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/pydata-sphinx-theme.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css" />
     
-    <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
-  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
@@ -50,7 +47,7 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -196,7 +193,7 @@
               
               <div class="toc-item">
                 
-<div class="tocsection onthispage pt-5 pb-3">
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
     <i class="fas fa-list"></i> On this page
 </div>
 
@@ -497,7 +494,7 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <section id="Batch-Stream-Active-Learning-With-Pool-Query-Strategies">
-<h1>Batch Stream Active Learning With Pool Query Strategies<a class="headerlink" href="#Batch-Stream-Active-Learning-With-Pool-Query-Strategies" title="Permalink to this headline">¶</a></h1>
+<h1>Batch Stream Active Learning With Pool Query Strategies<a class="headerlink" href="#Batch-Stream-Active-Learning-With-Pool-Query-Strategies" title="Permalink to this headline">#</a></h1>
 <p>In this notebook, we will show how pool-based active learning strategies can be used in stream environments by processing the incoming data in batches.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
@@ -515,7 +512,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <section id="Initialize-Batch-Stream-Parameters">
-<h2>Initialize Batch Stream Parameters<a class="headerlink" href="#Initialize-Batch-Stream-Parameters" title="Permalink to this headline">¶</a></h2>
+<h2>Initialize Batch Stream Parameters<a class="headerlink" href="#Initialize-Batch-Stream-Parameters" title="Permalink to this headline">#</a></h2>
 <p>Before the experiments can start, we need to construct a random data set. For this, we specify the necessary parameters in the cell below. We specify the length of the data stream (stream_length) and the size of the sliding window that defines the available training data (training_size). To create the stream environment, we define the size for each batch (stream_batch_size) and the number of acquisitions within a batch (query_batch_size).</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
@@ -540,7 +537,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </section>
 <section id="Random-Seed-Generation">
-<h2>Random Seed Generation<a class="headerlink" href="#Random-Seed-Generation" title="Permalink to this headline">¶</a></h2>
+<h2>Random Seed Generation<a class="headerlink" href="#Random-Seed-Generation" title="Permalink to this headline">#</a></h2>
 <p>To make the experiments repeatable, we will use the random_state object to generate all other random seeds, such that we only need to explicitly specify a single random seed. The get_randomseed function simplifies the generation of a new random seed using the random_state object.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
@@ -556,7 +553,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </section>
 <section id="Generate-And-Initialize-Data-Set">
-<h2>Generate And Initialize Data Set<a class="headerlink" href="#Generate-And-Initialize-Data-Set" title="Permalink to this headline">¶</a></h2>
+<h2>Generate And Initialize Data Set<a class="headerlink" href="#Generate-And-Initialize-Data-Set" title="Permalink to this headline">#</a></h2>
 <p>The next block initializes the tested data set. We use <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> to generate a random dataset with our pre-defined stream length. The data set consists of multiple parts. X represents the location of the instance within the feature space. The class for each instance is denoted by y. For models that need at least some initial training data, we generate samples to train an initial model. These are denoted by the suffix “_init“, while all data used within the active learning cycle are
 denoted by the suffix”_stream”. For this notebook we evaluate the performance of each query strategy using Prequential Evaluation. If a hold-out test dataset is used, it should be initialized here as well.</p>
 <div class="nbinput nblast docutils container">
@@ -573,7 +570,7 @@ denoted by the suffix”_stream”. For this notebook we evaluate the performanc
 </div>
 </section>
 <section id="Initialize-Query-Strategies">
-<h2>Initialize Query Strategies<a class="headerlink" href="#Initialize-Query-Strategies" title="Permalink to this headline">¶</a></h2>
+<h2>Initialize Query Strategies<a class="headerlink" href="#Initialize-Query-Strategies" title="Permalink to this headline">#</a></h2>
 <p>Next, we initialize the classifier and the query strategies that we want to compare. To guarantee that the classifier is not affected by previous repetitions, we use factory functions to separate the classifier for each experiment run.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
@@ -592,7 +589,7 @@ denoted by the suffix”_stream”. For this notebook we evaluate the performanc
 </div>
 </section>
 <section id="Start-Active-Learning-Cycle">
-<h2>Start Active Learning Cycle<a class="headerlink" href="#Start-Active-Learning-Cycle" title="Permalink to this headline">¶</a></h2>
+<h2>Start Active Learning Cycle<a class="headerlink" href="#Start-Active-Learning-Cycle" title="Permalink to this headline">#</a></h2>
 <p>After all variables are initialized, we can start the experiment. The experiment loop below goes through all query strategies defined by query_strategies. For each experiment run, the average accuracy of the selected query strategies will be displayed. Lastly, the accuracy over time will be plotted.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
@@ -697,8 +694,9 @@ Query Strategy: CostEmbeddingAL, Avg Accuracy: 0.7851, Acquisation count: 2000
       </div>
     </div>
   
-    <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-  <footer class="footer mt-5 mt-md-0">
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
   <div class="container">
     
     <div class="footer-item">

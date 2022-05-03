@@ -286,42 +286,42 @@ Epistemic Uncertainty Sampling
      </style>
 
      <div class="animation">
-       <img id="_anim_imga3caeaf66f0246cebfdcd2404d49cf0b">
+       <img id="_anim_img136fe52165bc4497b9c4fa5a6ab8c38d">
        <div class="anim-controls">
-         <input id="_anim_slidera3caeaf66f0246cebfdcd2404d49cf0b" type="range" class="anim-slider"
+         <input id="_anim_slider136fe52165bc4497b9c4fa5a6ab8c38d" type="range" class="anim-slider"
                 name="points" min="0" max="1" step="1" value="0"
-                oninput="anima3caeaf66f0246cebfdcd2404d49cf0b.set_frame(parseInt(this.value));"></input>
+                oninput="anim136fe52165bc4497b9c4fa5a6ab8c38d.set_frame(parseInt(this.value));">
          <div class="anim-buttons">
-           <button title="Decrease speed" aria-label="Decrease speed" onclick="anima3caeaf66f0246cebfdcd2404d49cf0b.slower()">
+           <button title="Decrease speed" aria-label="Decrease speed" onclick="anim136fe52165bc4497b9c4fa5a6ab8c38d.slower()">
                <i class="fa fa-minus"></i></button>
-           <button title="First frame" aria-label="First frame" onclick="anima3caeaf66f0246cebfdcd2404d49cf0b.first_frame()">
+           <button title="First frame" aria-label="First frame" onclick="anim136fe52165bc4497b9c4fa5a6ab8c38d.first_frame()">
              <i class="fa fa-fast-backward"></i></button>
-           <button title="Previous frame" aria-label="Previous frame" onclick="anima3caeaf66f0246cebfdcd2404d49cf0b.previous_frame()">
+           <button title="Previous frame" aria-label="Previous frame" onclick="anim136fe52165bc4497b9c4fa5a6ab8c38d.previous_frame()">
                <i class="fa fa-step-backward"></i></button>
-           <button title="Play backwards" aria-label="Play backwards" onclick="anima3caeaf66f0246cebfdcd2404d49cf0b.reverse_animation()">
+           <button title="Play backwards" aria-label="Play backwards" onclick="anim136fe52165bc4497b9c4fa5a6ab8c38d.reverse_animation()">
                <i class="fa fa-play fa-flip-horizontal"></i></button>
-           <button title="Pause" aria-label="Pause" onclick="anima3caeaf66f0246cebfdcd2404d49cf0b.pause_animation()">
+           <button title="Pause" aria-label="Pause" onclick="anim136fe52165bc4497b9c4fa5a6ab8c38d.pause_animation()">
                <i class="fa fa-pause"></i></button>
-           <button title="Play" aria-label="Play" onclick="anima3caeaf66f0246cebfdcd2404d49cf0b.play_animation()">
+           <button title="Play" aria-label="Play" onclick="anim136fe52165bc4497b9c4fa5a6ab8c38d.play_animation()">
                <i class="fa fa-play"></i></button>
-           <button title="Next frame" aria-label="Next frame" onclick="anima3caeaf66f0246cebfdcd2404d49cf0b.next_frame()">
+           <button title="Next frame" aria-label="Next frame" onclick="anim136fe52165bc4497b9c4fa5a6ab8c38d.next_frame()">
                <i class="fa fa-step-forward"></i></button>
-           <button title="Last frame" aria-label="Last frame" onclick="anima3caeaf66f0246cebfdcd2404d49cf0b.last_frame()">
+           <button title="Last frame" aria-label="Last frame" onclick="anim136fe52165bc4497b9c4fa5a6ab8c38d.last_frame()">
                <i class="fa fa-fast-forward"></i></button>
-           <button title="Increase speed" aria-label="Increase speed" onclick="anima3caeaf66f0246cebfdcd2404d49cf0b.faster()">
+           <button title="Increase speed" aria-label="Increase speed" onclick="anim136fe52165bc4497b9c4fa5a6ab8c38d.faster()">
                <i class="fa fa-plus"></i></button>
          </div>
-         <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_selecta3caeaf66f0246cebfdcd2404d49cf0b"
+         <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_select136fe52165bc4497b9c4fa5a6ab8c38d"
                class="anim-state">
-           <input type="radio" name="state" value="once" id="_anim_radio1_a3caeaf66f0246cebfdcd2404d49cf0b"
+           <input type="radio" name="state" value="once" id="_anim_radio1_136fe52165bc4497b9c4fa5a6ab8c38d"
                   >
-           <label for="_anim_radio1_a3caeaf66f0246cebfdcd2404d49cf0b">Once</label>
-           <input type="radio" name="state" value="loop" id="_anim_radio2_a3caeaf66f0246cebfdcd2404d49cf0b"
+           <label for="_anim_radio1_136fe52165bc4497b9c4fa5a6ab8c38d">Once</label>
+           <input type="radio" name="state" value="loop" id="_anim_radio2_136fe52165bc4497b9c4fa5a6ab8c38d"
                   checked>
-           <label for="_anim_radio2_a3caeaf66f0246cebfdcd2404d49cf0b">Loop</label>
-           <input type="radio" name="state" value="reflect" id="_anim_radio3_a3caeaf66f0246cebfdcd2404d49cf0b"
+           <label for="_anim_radio2_136fe52165bc4497b9c4fa5a6ab8c38d">Loop</label>
+           <input type="radio" name="state" value="reflect" id="_anim_radio3_136fe52165bc4497b9c4fa5a6ab8c38d"
                   >
-           <label for="_anim_radio3_a3caeaf66f0246cebfdcd2404d49cf0b">Reflect</label>
+           <label for="_anim_radio3_136fe52165bc4497b9c4fa5a6ab8c38d">Reflect</label>
          </form>
        </div>
      </div>
@@ -331,13 +331,13 @@ Epistemic Uncertainty Sampling
        /* Instantiate the Animation class. */
        /* The IDs given should match those used in the template above. */
        (function() {
-         var img_id = "_anim_imga3caeaf66f0246cebfdcd2404d49cf0b";
-         var slider_id = "_anim_slidera3caeaf66f0246cebfdcd2404d49cf0b";
-         var loop_select_id = "_anim_loop_selecta3caeaf66f0246cebfdcd2404d49cf0b";
+         var img_id = "_anim_img136fe52165bc4497b9c4fa5a6ab8c38d";
+         var slider_id = "_anim_slider136fe52165bc4497b9c4fa5a6ab8c38d";
+         var loop_select_id = "_anim_loop_select136fe52165bc4497b9c4fa5a6ab8c38d";
          var frames = new Array(25);
     
        frames[0] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAABhf0lEQVR4nO3dd3gU1f4G8HdmeyoEUklCCSgiVZBQpUpRRCxYLtLkAnJBxV5+\
      KmLD3lBBFAFRLihKuUgRpakgAoooTXqHkN42W2bO7481S5YUkphkNrPv53ny6A6zO9/ZTGbfPefM\
      GUkIIUBEREREuiVrXQARERERVS8GPiIiIiKdY+AjIiIi0jkGPiIiIiKdY+AjIiIi0jkGPiIiIiKd\
@@ -779,7 +779,7 @@ Epistemic Uncertainty Sampling
      IiLSuf8HXGYgBQ3tAAQAAAAASUVORK5CYII=\
      "
        frames[1] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAACCd0lEQVR4nO3dd5hU5f028PtM3d5gl+3LsqwgIL0oCIKgWJBYAmqMoiZ2k2iM\
      ifr+1JhoiCXGRCOaIhpLLNh7oYgFkCLSYYGlbWFZtrdp53n/GGaYrWyZU+f+XNdeusPMnGd2Z8/c\
      5/s0SQghQERERESmZdG6AURERESkLAY+IiIiIpNj4CMiIiIyOQY+IiIiIpNj4CMiIiIyOQY+IiIi\
@@ -1369,7 +1369,7 @@ Epistemic Uncertainty Sampling
      joGPiIiIyOT+P73xP/VKnK4yAAAAAElFTkSuQmCC\
      "
        frames[2] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAAC/tUlEQVR4nOydd3gc5bn275ntWvXeq2W5d2NjY2NjwPRQAoTkhJYAIZAEQpID\
      +Q4hOSmEVJIQIIUWCCf03ovBYGzjgrsly7Z6L6u+fd7vj9UWSStpZ7SzM7v7/K7Ll2dXM+88Wu3u\
      3PNUjjHGQBAEQRAEQcQsvNIGEARBEARBEPJCgo8gCIIgCCLGIcFHEARBEAQR45DgIwiCIAiCiHFI\
@@ -2234,7 +2234,7 @@ Epistemic Uncertainty Sampling
      ERE5HAMfERERkcP9fxw7FO8vIgFIAAAAAElFTkSuQmCC\
      "
        frames[3] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAAD/hUlEQVR4nOydd3wb9f3/X3fakvfeI45jxxnOXpAdCAQIe5UyW6AU2tJvx7f0\
      +6N0U6BQ2tJSWiC0jDLCSthkQ/ZOnMSJ997bsvZ9fn+ctWzJ0kmn6c/z8cgjJ/nucx9JN173ngwh\
      hIBCoVAoFAqFErWwoZ4AhUKhUCgUCiWwUMFHoVAoFAqFEuVQwUehUCgUCoUS5VDBR6FQKBQKhRLl\
@@ -3386,7 +3386,7 @@ Epistemic Uncertainty Sampling
      AABJRU5ErkJggg==\
      "
        frames[4] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAADsz0lEQVR4nOydd5jc1Nn2b0nTy/be1+veKzaYYmODqQ4lBAgJNcDLRw0k75sG\
      CWmEEBKSECAkBAglgZjQO8bYgAs2Nu5lbW/x9jZbpo+k8/2hHc3M1hmNpu75XZcva2alo7Ozo6Nb\
      T2UIIQQUCoVCoVAolLSFTfQEKBQKhUKhUCixhQo+CoVCoVAolDSHCj4KhUKhUCiUNIcKPgqFQqFQ\
@@ -4454,7 +4454,7 @@ Epistemic Uncertainty Sampling
      SUVORK5CYII=\
      "
        frames[5] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAADlI0lEQVR4nOydd3Qc1f32n5nZXiSteq/ulruNjcFgY4PBgOktdBIgBELPL5A3\
      tDQCBAIJAUJCCyUQTO/FNqa5YuMmF9mWZKu3lbR9d2bu+8dqm7WStsxW3c85Pp5dzdy5Wu3MPPdb\
      GUIIAYVCoVAoFAolbWETPQEKhUKhUCgUSmyhgo9CoVAoFAolzaGCj0KhUCgUCiXNoYKPQqFQKBQK\
@@ -5487,7 +5487,7 @@ Epistemic Uncertainty Sampling
      QRAEQRAahwQfQRAEQRCExvn/AaKT4bG+DnWeAAAAAElFTkSuQmCC\
      "
        frames[6] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAADzvElEQVR4nOydd3QbVdrGn5lRtSX3XuKW3iskJCGVJAQIofe6H7Asve7CLn3p\
      ZekdAhtgKQkECCUhFQgJ6b0nTpy4d1u26sz9/hhrJNmyrTIaSfb9nZOTkTxz51qWrp77VoYQQkCh\
      UCgUCoVC6bGw4Z4AhUKhUCgUCiW0UMFHoVAoFAqF0sOhgo9CoVAoFAqlh0MFH4VCoVAoFEoPhwo+\
@@ -6586,7 +6586,7 @@ Epistemic Uncertainty Sampling
      /EcAAAAASUVORK5CYII=\
      "
        frames[7] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAADpHUlEQVR4nOydd5Qb1dnGn5lRb9t7L+69YWyDbbDBgMEU0wmYElrokEa+ACEh\
      IaEkhBBaSIBQQjG9Y8DYgG1cwL2uvd6119ubVr3M/f6Y1UjapjYaSbv3d84ej7Qzd67W0tVz38oQ\
      QggoFAqFQqFQKMMWNtEToFAoFAqFQqHEFyr4KBQKhUKhUIY5VPBRKBQKhUKhDHOo4KNQKBQKhUIZ\
@@ -7637,7 +7637,7 @@ Epistemic Uncertainty Sampling
      4CMIgiAIgshy/n/+kx7X3rqjUQAAAABJRU5ErkJggg==\
      "
        frames[8] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAADvY0lEQVR4nOydd3wb5f3HP3fay/Ke8XaWk5C9J0lIwgqBsCkQoEAplE1b+uui\
      paXMQkuZZW8aRsIICZCEEBJC9t7TiffWXvf8/pB1kmzZ1kmnk2Q/79fLr5zONx4r0nOf5zsZQggB\
      hUKhUCgUCqXPwsZ7ABQKhUKhUCiU2EIFH4VCoVAoFEofhwo+CoVCoVAolD4OFXwUCoVCoVAofRwq\
@@ -8716,7 +8716,7 @@ Epistemic Uncertainty Sampling
      4CMIgiAIgqhySPARBEEQBEFUOf8fhPRBPnurQtkAAAAASUVORK5CYII=\
      "
        frames[9] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAAD9aklEQVR4nOydd3wb9f3/X3enZS3vvWNn70XIniQhQNh7hFE2pZRO+LVQ2m9L\
      S4FSNrQUKKtA2GElkJCEJJC9t+M4duI9JNvad5/fH2edJE+ddBq2P8/HI4+cpLvP52Nb+uh178kQ\
      QggoFAqFQqFQKAMWNtYLoFAoFAqFQqFEFir4KBQKhUKhUAY4VPBRKBQKhUKhDHCo4KNQKBQKhUIZ\
@@ -9858,7 +9858,7 @@ Epistemic Uncertainty Sampling
      BAKBQCAQYhwi+AgEAoFAIBBinP8HNRBgYNVAcEQAAAAASUVORK5CYII=\
      "
        frames[10] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAAD5z0lEQVR4nOydd3wb5f3HP3envby3Ha/svUN2SAgJhFk2lNUfoxRaVmkLbRkd\
      UGYpZbZQoIwywt4JZBCSQAbZezhO7HhvWfvu+f0h6yTZsq1xd5Ls5/165ZWTdOORfOPzfCdDCCGg\
      UCgUCoVCoQxY2HgPgEKhUCgUCoUiL1TwUSgUCoVCoQxwqOCjUCgUCoVCGeBQwUehUCgUCoUywKGC\
@@ -10984,7 +10984,7 @@ Epistemic Uncertainty Sampling
      IBAIBAJBgvP/AZYUqkMRBqPBAAAAAElFTkSuQmCC\
      "
        frames[11] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAAEAAElEQVR4nOydd3wb5f3HP3enLVne245X9l4QkhCySUJC2HuGFigFyuqiv7JK\
      KWUWWmbZewVI2TsJI3vvbTvx3lP77vn9Iesk2bKtcdKd7Of9euWVR9Ldc49k6e5z38kQQggoFAqF\
      QqFQKAMWVu4FUCgUCoVCoVCiCxV8FAqFQqFQKAMcKvgoFAqFQqFQBjhU8FEoFAqFQqEMcKjgo1Ao\
@@ -12152,7 +12152,7 @@ Epistemic Uncertainty Sampling
      YII=\
      "
        frames[12] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAAD+IElEQVR4nOydd3wb5f3HP3enZUmW97ZjO46z955kkkEgEPYou6xCgZaWAr+y\
      V8sqlL03ZQQIEGYgg5GdkD2dOM7wnrKtfff8/pB1kmzL1jhJJ/l5v1565ZF845Fy43PfyRBCCCgU\
      CoVCoVAocQsb7QlQKBQKhUKhUMILFXwUCoVCoVAocQ4VfBQKhUKhUChxDhV8FAqFQqFQKHEOFXwU\
@@ -13297,7 +13297,7 @@ Epistemic Uncertainty Sampling
      IcFHEARBEAQR5ZDgIwiCIAiCiHJI8BEEQRAEQUQ5/x+7+TS9OhDR+wAAAABJRU5ErkJggg==\
      "
        frames[13] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAAD1AElEQVR4nOydd5wU5f3HPzPby/XeucLRe5GmgCKoIPYeC8YSo0YTUzS/GBON\
      msQSE7uoqKhRgx2xAyoISO+dg4PrvWzfnef3x9zO7t7t3m2Z2Z3de96vFy9m96Y8uzszz2e+lSGE\
      EFAoFAqFQqFQEhY21gOgUCgUCoVCoUgLFXwUCoVCoVAoCQ4VfBQKhUKhUCgJDhV8FAqFQqFQKAkO\
@@ -14401,7 +14401,7 @@ Epistemic Uncertainty Sampling
      4JDgIwiCIAiCSHBI8BEEQRAEQSQ4JPgIgiAIgiASnP8PKP+ZSTRUo1UAAAAASUVORK5CYII=\
      "
        frames[14] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAAD6O0lEQVR4nOydd3wUZf7HPzOzfTe9NwJJ6B2kCUoRRQVRxIYFsOvZ23l6p57e\
      qWfXE3tBD/VnQUVEEAsggogU6Z1AEgjpySbbyzy/PzY7u5tski0zW5Ln/XrllZndKc/uTvnMtzKE\
      EAIKhUKhUCgUSreFjfYAKBQKhUKhUCjSQgUfhUKhUCgUSjeHCj4KhUKhUCiUbg4VfBQKhUKhUCjd\
@@ -15529,7 +15529,7 @@ Epistemic Uncertainty Sampling
      kpz/B2fq3apkw7RBAAAAAElFTkSuQmCC\
      "
        frames[15] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAAEAAElEQVR4nOydd5gT1RrG35nUTbK9N3Zh6b13AQGlKYgVRAX79arXfi3X3ntX\
      7KDYRUUFQVEQlA5K77C7tO0tu5tNmzn3j9lMsj3ZzGSS7Pk9Dw8z2Zk5J8lk5p2vMoQQAgqFQqFQ\
      KBRK2MIqPQEKhUKhUCgUirxQwUehUCgUCoUS5lDBR6FQKBQKhRLmUMFHoVAoFAqFEuZQwUehUCgU\
@@ -16716,7 +16716,7 @@ Epistemic Uncertainty Sampling
      BAKBQBDn/H+w6xbbPYu3ZwAAAABJRU5ErkJggg==\
      "
        frames[16] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAAEAAElEQVR4nOydd5gTVdvG75lJ3947W+i9g9IFlKYgoiA2sGDv9VU/u6+9vRaw\
      g4IFRAUFAUWa0nvvLAvbe8umzpzvj2wm2Z7dzKTt+V3XXjuTTM48SSYz9zznKQwhhIBCoVAoFAqF\
      ErCw3jaAQqFQKBQKhSIvVPBRKBQKhUKhBDhU8FEoFAqFQqEEOFTwUSgUCoVCoQQ4VPBRKBQKhUKh\
@@ -17880,7 +17880,7 @@ Epistemic Uncertainty Sampling
      JxAIBAKBQBDjCMEnEAgEAoFAEOP8Pw/1i4i1c8H4AAAAAElFTkSuQmCC\
      "
        frames[17] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAAD4wUlEQVR4nOydd3gU5fbHPzPbsum9kECo0nuzgCigIHjtvWK/tmu7P6/l2nu9\
      9t6xi4INCwqICoogiPQeWgohPdlsm/f3xyaTTSNta/J+noeHdyaz857dnd39zjnnPUcRQggkEolE\
      IpFIJJ0WNdgGSCQSiUQikUj8ixR8EolEIpFIJJ0cKfgkEolEIpFIOjlS8EkkEolEIpF0cqTgk0gk\
@@ -19001,7 +19001,7 @@ Epistemic Uncertainty Sampling
      whGCTyAQCAQCgSDCEYJPIBAIBAKBIML5f2pQ06QeQmgiAAAAAElFTkSuQmCC\
      "
        frames[18] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAAEAAElEQVR4nOydd3gU5fbHv1O2b3ohIQkJvTepUgQBBQFBEVQuKuhP5XrtvV2v\
      9dq7qFjRCxaKiogNkSrSey9JCJDek91sm5n398dmZ3dTN8n2vJ/n4eGd3dl5z25md75zznnPYQgh\
      BBQKhUKhUCiUsIUNtAEUCoVCoVAoFN9CBR+FQqFQKBRKmEMFH4VCoVAoFEqYQwUfhUKhUCgUSphD\
@@ -20159,7 +20159,7 @@ Epistemic Uncertainty Sampling
      gUAgEAgEEY4QfAKBQCAQCAQRjhB8AoFAIBAIBBHO/wP6JKO62ws54QAAAABJRU5ErkJggg==\
      "
        frames[19] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAAEAAElEQVR4nOydd3gU5drG75nZmt30TgohofcO0ptgQY4NARvosXfsej77sWFX\
      FDv2o4iIiiKgNEGUJr3XhJDeN1tn5v3+mOzsJtkku5vteX/XlSszs1Pe3Z2dueepDCGEgEKhUCgU\
      CoUSsbDBHgCFQqFQKBQKxb9QwUehUCgUCoUS4VDBR6FQKBQKhRLhUMFHoVAoFAqFEuFQwUehUCgU\
@@ -21337,7 +21337,7 @@ Epistemic Uncertainty Sampling
      4wjBJxAIBAKBQBDj/H8kq00BCv3jRwAAAABJRU5ErkJggg==\
      "
        frames[20] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAAEAAElEQVR4nOydd3gU5drG75nZvpteIJVAQu8oSK8CIsXeD6Iee+/1O5Zj7x27\
      qKBHFBUVLICACEiXXgIkJCG9J5vtM+/3x2ZnN303mdmW93dduTIzO+Xd3dmZe57KEEIIKBQKhUKh\
      UChhCxvoAVAoFAqFQqFQ5IUKPgqFQqFQKJQwhwo+CoVCoVAolDCHCj4KhUKhUCiUMIcKPgqFQqFQ\
@@ -22522,7 +22522,7 @@ Epistemic Uncertainty Sampling
      EHwCgUAgEAgEYY4QfAKBQCAQCARhzv8DMnzrWtgVeooAAAAASUVORK5CYII=\
      "
        frames[21] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAAEAAElEQVR4nOyddXjbVtvGb0lmO8zcQJkZt5W2rmvXMUPHHTN/Y3yHb7d1DB10\
      3MG7deu6dW0HXbkrQ9okbZg5jkk63x+OZTtoJ5Ip53ddvSrbks6xIku3HmQIIQQUCoVCoVAolJCF\
      9fcEKBQKhUKhUCjyQgUfhUKhUCgUSohDBR+FQqFQKBRKiEMFH4VCoVAoFEqIQwUfhUKhUCgUSohD\
@@ -23711,7 +23711,7 @@ Epistemic Uncertainty Sampling
      gUAgEAgEUc7/AxKUZbW9NlThAAAAAElFTkSuQmCC\
      "
        frames[22] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAAEAAElEQVR4nOyddZwT197Gn5mJJ+vOCmu4uxcphVIodaHcAqVCe6lTvW/ltvfW\
      XakDhRqlLaVUkEK5xd0dFpaFFdY3G5857x/ZTJLVZHeie7798OlkMnKSnZx55qcMIYSAQqFQKBQK\
      hRK2sIEeAIVCoVAoFArFt1DBR6FQKBQKhRLmUMFHoVAoFAqFEuZQwUehUCgUCoUS5lDBR6FQKBQK\
@@ -24886,7 +24886,7 @@ Epistemic Uncertainty Sampling
      gUAQ5vw/BfeTWOSoSi4AAAAASUVORK5CYII=\
      "
        frames[23] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAAEAAElEQVR4nOydd3QbVdrGn5lRl9x7b+m995ACJEBC6H0hhM7S21K+pS+w9LL0\
      FvrSCRBKApsESEgP6T124m7H3eqamfv9IWsk2bIt2aNm3985Pr6SplxJo5ln3soQQggoFAqFQqFQ\
      KH0WNtwToFAoFAqFQqEEFyr4KBQKhUKhUPo4VPBRKBQKhUKh9HGo4KNQKBQKhULp41DBR6FQKBQK\
@@ -26070,7 +26070,7 @@ Epistemic Uncertainty Sampling
      lCMEn0AgEAgEAkGUIwSfQCAQCAQCQZTz/9VpxhmgdvILAAAAAElFTkSuQmCC\
      "
        frames[24] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAAEAAElEQVR4nOydd3QbVdrGn5lRs2RL7j0usdN7Jz0kgQCB0NuyQOCjLr2XpcPS\
      SxZCXSBAgKWEuoSSQEIgpJNGuu24Je7dsvrM/f4YayS5Svao+v7OycmVPOVKmvLMWxlCCAGFQqFQ\
      KBQKJWJhgz0BCoVCoVAoFIp/oYKPQqFQKBQKJcKhgo9CoVAoFAolwqGCj0KhUCgUCiXCoYKPQqFQ\
@@ -27274,7 +27274,7 @@ Epistemic Uncertainty Sampling
          /* set a timeout to make sure all the above elements are created before
             the object is initialized. */
          setTimeout(function() {
-             anima3caeaf66f0246cebfdcd2404d49cf0b = new Animation(frames, img_id, slider_id, 1000.0,
+             anim136fe52165bc4497b9c4fa5a6ab8c38d = new Animation(frames, img_id, slider_id, 1000.0,
                                       loop_select_id);
          }, 0);
        })()
@@ -27296,7 +27296,7 @@ The implementation of this strategy is based on :footcite:t:`nguyen2019epistemic
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  22.824 seconds)
+   **Total running time of the script:** ( 0 minutes  22.351 seconds)
 
 
 .. _sphx_glr_download_generated_sphinx_gallery_examples_pool_plot_EpistemicUncertaintySampling_Epistemic_Uncertainty_Sampling.py:

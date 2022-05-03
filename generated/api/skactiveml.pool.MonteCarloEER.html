@@ -6,32 +6,29 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>skactiveml.pool.MonteCarloEER &#8212; scikit-activeml 0.2.0 documentation</title>
+    <title>skactiveml.pool.MonteCarloEER &#8212; scikit-activeml latest documentation</title>
     
-    <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-  
+
     
-    <link rel="stylesheet"
-      href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-  
-    
-      
-  
-    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/pydata-sphinx-theme.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css" />
     
-    <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
-  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
@@ -48,7 +45,7 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -536,7 +533,7 @@
               
               <div class="toc-item">
                 
-<div class="tocsection onthispage pt-5 pb-3">
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
     <i class="fas fa-list"></i> On this page
 </div>
 
@@ -574,10 +571,10 @@
               <div>
                 
   <section id="skactiveml-pool-montecarloeer">
-<h1>skactiveml.pool.MonteCarloEER<a class="headerlink" href="#skactiveml-pool-montecarloeer" title="Permalink to this headline">¶</a></h1>
+<h1>skactiveml.pool.MonteCarloEER<a class="headerlink" href="#skactiveml-pool-montecarloeer" title="Permalink to this headline">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="skactiveml.pool.MonteCarloEER">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">skactiveml.pool.</span></span><span class="sig-name descname"><span class="pre">MonteCarloEER</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'misclassification_loss'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cost_matrix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">missing_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">nan</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/pool/_expected_error_reduction.html#MonteCarloEER"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.pool.MonteCarloEER" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">skactiveml.pool.</span></span><span class="sig-name descname"><span class="pre">MonteCarloEER</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'misclassification_loss'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cost_matrix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subtract_current</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">missing_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">nan</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/pool/_expected_error_reduction.html#MonteCarloEER"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.pool.MonteCarloEER" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">skactiveml.pool._expected_error_reduction.ExpectedErrorReduction</span></code></p>
 <p>This class implements the expected error method from [1] that uses a
 Monte-Carlo approach to estimate the error.</p>
@@ -599,6 +596,9 @@ and ‘log_loss’.</p>
 <dt><strong>(default=None)</strong></dt><dd><p>Cost matrix with <cite>cost_matrix[i,j]</cite> defining the cost of predicting
 class <cite>j</cite> for a sample with the actual class <cite>i</cite>.
 Used for misclassification loss and ignored for log loss.</p>
+</dd>
+<dt><strong>subtract_current</strong><span class="classifier">bool, optional (default=False)</span></dt><dd><p>If True, the current error estimate is subtracted from the simulated
+score. This might be helpful to define a stopping criterion.</p>
 </dd>
 <dt><strong>missing_label</strong><span class="classifier">scalar or string or np.nan or None, default=np.nan</span></dt><dd><p>Value to represent a missing label.</p>
 </dd>
@@ -632,7 +632,7 @@ Used for misclassification loss and ignored for log loss.</p>
 </table>
 <dl class="py method">
 <dt class="sig sig-object py" id="skactiveml.pool.MonteCarloEER.get_params">
-<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#skactiveml.pool.MonteCarloEER.get_params" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#skactiveml.pool.MonteCarloEER.get_params" title="Permalink to this definition">#</a></dt>
 <dd><p>Get parameters for this estimator.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -653,7 +653,7 @@ contained subobjects that are estimators.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="skactiveml.pool.MonteCarloEER.query">
-<span class="sig-name descname"><span class="pre">query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fit_clf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_partial_fit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">candidates</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_weight_candidates</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X_eval</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_weight_eval</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_utilities</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#skactiveml.pool.MonteCarloEER.query" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fit_clf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_partial_fit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">candidates</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_weight_candidates</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X_eval</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_weight_eval</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_utilities</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#skactiveml.pool.MonteCarloEER.query" title="Permalink to this definition">#</a></dt>
 <dd><p>Determines for which candidate samples labels are to be queried.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -731,7 +731,7 @@ refers to samples in candidates.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="skactiveml.pool.MonteCarloEER.set_params">
-<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#skactiveml.pool.MonteCarloEER.set_params" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#skactiveml.pool.MonteCarloEER.set_params" title="Permalink to this definition">#</a></dt>
 <dd><p>Set the parameters of this estimator.</p>
 <p>The method works on simple estimators as well as on nested objects
 (such as <code class="xref py py-class docutils literal notranslate"><span class="pre">Pipeline</span></code>). The latter have
@@ -756,17 +756,17 @@ possible to update each component of a nested object.</p>
 </dd></dl>
 
 <section id="examples-using-skactiveml-pool-montecarloeer">
-<span id="sphx-glr-backref-skactiveml-pool-montecarloeer"></span><h2>Examples using <code class="docutils literal notranslate"><span class="pre">skactiveml.pool.MonteCarloEER</span></code><a class="headerlink" href="#examples-using-skactiveml-pool-montecarloeer" title="Permalink to this headline">¶</a></h2>
+<span id="sphx-glr-backref-skactiveml-pool-montecarloeer"></span><h2>Examples using <code class="docutils literal notranslate"><span class="pre">skactiveml.pool.MonteCarloEER</span></code><a class="headerlink" href="#examples-using-skactiveml-pool-montecarloeer" title="Permalink to this headline">#</a></h2>
 <div class="sphx-glr-thumbcontainer" tooltip="Monte-Carlo EER with Log-Loss"><figure class="align-default" id="id1">
 <img alt="Monte-Carlo EER with Log-Loss" src="../../_images/sphx_glr_plot_MonteCarloEER_Monte-Carlo_EER_with_Log-Loss_thumb.gif" />
 <figcaption>
-<p><span class="caption-text"><a class="reference internal" href="../sphinx_gallery_examples/pool/plot_MonteCarloEER_Monte-Carlo_EER_with_Log-Loss.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-montecarloeer-monte-carlo-eer-with-log-loss-py"><span class="std std-ref">Monte-Carlo EER with Log-Loss</span></a></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text"><a class="reference internal" href="../sphinx_gallery_examples/pool/plot_MonteCarloEER_Monte-Carlo_EER_with_Log-Loss.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-montecarloeer-monte-carlo-eer-with-log-loss-py"><span class="std std-ref">Monte-Carlo EER with Log-Loss</span></a></span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Monte-Carlo EER with Misclassification-Loss"><figure class="align-default" id="id2">
 <img alt="Monte-Carlo EER with Misclassification-Loss" src="../../_images/sphx_glr_plot_MonteCarloEER_Monte-Carlo_EER_with_Misclassification-Loss_thumb.gif" />
 <figcaption>
-<p><span class="caption-text"><a class="reference internal" href="../sphinx_gallery_examples/pool/plot_MonteCarloEER_Monte-Carlo_EER_with_Misclassification-Loss.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-montecarloeer-monte-carlo-eer-with-misclassification-loss-py"><span class="std std-ref">Monte-Carlo EER with Misclassification-Loss</span></a></span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text"><a class="reference internal" href="../sphinx_gallery_examples/pool/plot_MonteCarloEER_Monte-Carlo_EER_with_Misclassification-Loss.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-montecarloeer-monte-carlo-eer-with-misclassification-loss-py"><span class="std std-ref">Monte-Carlo EER with Misclassification-Loss</span></a></span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </div><div class="sphx-glr-clear"></div></section>
@@ -800,8 +800,9 @@ possible to update each component of a nested object.</p>
       </div>
     </div>
   
-    <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-  <footer class="footer mt-5 mt-md-0">
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
   <div class="container">
     
     <div class="footer-item">

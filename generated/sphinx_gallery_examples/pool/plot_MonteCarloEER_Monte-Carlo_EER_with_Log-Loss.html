@@ -6,32 +6,29 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Monte-Carlo EER with Log-Loss &#8212; scikit-activeml 0.2.0 documentation</title>
+    <title>Monte-Carlo EER with Log-Loss &#8212; scikit-activeml latest documentation</title>
     
-    <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-  
+
     
-    <link rel="stylesheet"
-      href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-  
-    
-      
-  
-    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/styles/pydata-sphinx-theme.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css" />
     
-    <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
-  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
@@ -48,7 +45,7 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -167,15 +164,15 @@
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="plot_UncertaintySampling_Uncertainty_Sampling_with_Entropy.html">
-   Uncertainty Sampling with Entropy
+  <a class="reference internal" href="plot_EpistemicUncertaintySampling_Epistemic_Uncertainty_Sampling.html">
+   Epistemic Uncertainty Sampling
   </a>
  </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="plot_EpistemicUncertaintySampling_Epistemic_Uncertainty_Sampling.html">
-   Epistemic Uncertainty Sampling
+  <a class="reference internal" href="plot_UncertaintySampling_Uncertainty_Sampling_with_Entropy.html">
+   Uncertainty Sampling with Entropy
   </a>
  </li>
 </ul>
@@ -307,7 +304,7 @@
 to download the full example code</p>
 </div>
 <section class="sphx-glr-example-title" id="monte-carlo-eer-with-log-loss">
-<span id="sphx-glr-generated-sphinx-gallery-examples-pool-plot-montecarloeer-monte-carlo-eer-with-log-loss-py"></span><h1>Monte-Carlo EER with Log-Loss<a class="headerlink" href="#monte-carlo-eer-with-log-loss" title="Permalink to this headline">¶</a></h1>
+<span id="sphx-glr-generated-sphinx-gallery-examples-pool-plot-montecarloeer-monte-carlo-eer-with-log-loss-py"></span><h1>Monte-Carlo EER with Log-Loss<a class="headerlink" href="#monte-carlo-eer-with-log-loss" title="Permalink to this headline">#</a></h1>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 9</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="linenos">10</span> <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span><span class="p">,</span> <span class="n">animation</span>
 <span class="linenos">11</span> <span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_blobs</span>
@@ -333,7 +330,7 @@ to download the full example code</p>
 <span class="linenos">31</span> <a href="../../api/skactiveml.pool.MonteCarloEER.html#skactiveml.pool.MonteCarloEER" title="skactiveml.pool.MonteCarloEER" class="sphx-glr-backref-module-skactiveml-pool sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">qs</span></a> <span class="o">=</span> <a href="../../api/skactiveml.pool.MonteCarloEER.html#skactiveml.pool.MonteCarloEER" title="skactiveml.pool.MonteCarloEER" class="sphx-glr-backref-module-skactiveml-pool sphx-glr-backref-type-py-class"><span class="n">MonteCarloEER</span></a><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;log_loss&#39;</span><span class="p">,</span> <a href="https://numpy.org/doc/stable/reference/random/legacy.html#numpy.random.RandomState" title="numpy.random.RandomState" class="sphx-glr-backref-module-numpy-random sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">random_state</span></a><span class="o">=</span><a href="https://numpy.org/doc/stable/reference/random/legacy.html#numpy.random.RandomState" title="numpy.random.RandomState" class="sphx-glr-backref-module-numpy-random sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">random_state</span></a><span class="p">)</span>
 <span class="linenos">32</span>
 <span class="linenos">33</span> <span class="c1"># Preparation for plotting.</span>
-<span class="linenos">34</span> <a href="https://matplotlib.org/api/figure_api.html#matplotlib.figure.Figure" title="matplotlib.figure.Figure" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fig</span></a><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.subplots.html#matplotlib.pyplot.subplots" title="matplotlib.pyplot.subplots" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span></a><span class="p">()</span>
+<span class="linenos">34</span> <a href="https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure" title="matplotlib.figure.Figure" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fig</span></a><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.subplots.html#matplotlib.pyplot.subplots" title="matplotlib.pyplot.subplots" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span></a><span class="p">()</span>
 <span class="linenos">35</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">feature_bound</span></a> <span class="o">=</span> <span class="p">[[</span><span class="nb">min</span><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">X</span></a><span class="p">[:,</span> <span class="mi">0</span><span class="p">]),</span> <span class="nb">min</span><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">X</span></a><span class="p">[:,</span> <span class="mi">1</span><span class="p">])],</span> <span class="p">[</span><span class="nb">max</span><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">X</span></a><span class="p">[:,</span> <span class="mi">0</span><span class="p">]),</span> <span class="nb">max</span><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">X</span></a><span class="p">[:,</span> <span class="mi">1</span><span class="p">])]]</span>
 <span class="linenos">36</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">artists</span></a> <span class="o">=</span> <span class="p">[]</span>
 <span class="linenos">37</span>
@@ -352,28 +349,28 @@ to download the full example code</p>
 <span class="linenos">50</span>
 <span class="linenos">51</span>     <span class="c1"># Plot the labeled data.</span>
 <span class="linenos">52</span>     <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">coll_old</span></a> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">collections</span><span class="p">)</span>
-<span class="linenos">53</span>     <a href="https://matplotlib.org/api/text_api.html#matplotlib.text.Text" title="matplotlib.text.Text" class="sphx-glr-backref-module-matplotlib-text sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">title</span></a> <span class="o">=</span> <a href="https://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.text.html#matplotlib.axes.Axes.text" title="matplotlib.axes.Axes.text" class="sphx-glr-backref-module-matplotlib-axes sphx-glr-backref-type-py-method"><span class="n">ax</span><span class="o">.</span><span class="n">text</span></a><span class="p">(</span>
+<span class="linenos">53</span>     <a href="https://matplotlib.org/stable/api/text_api.html#matplotlib.text.Text" title="matplotlib.text.Text" class="sphx-glr-backref-module-matplotlib-text sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">title</span></a> <span class="o">=</span> <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.text.html#matplotlib.axes.Axes.text" title="matplotlib.axes.Axes.text" class="sphx-glr-backref-module-matplotlib-axes sphx-glr-backref-type-py-method"><span class="n">ax</span><span class="o">.</span><span class="n">text</span></a><span class="p">(</span>
 <span class="linenos">54</span>         <span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.05</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Decision boundary after acquring </span><span class="si">{</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">c</span></a><span class="si">}</span><span class="s2"> labels&quot;</span><span class="p">,</span>
-<span class="linenos">55</span>         <span class="n">size</span><span class="o">=</span><a href="https://matplotlib.org/api/matplotlib_configuration_api.html#matplotlib.RcParams" title="matplotlib.RcParams" class="sphx-glr-backref-module-matplotlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span></a><span class="p">[</span><span class="s2">&quot;axes.titlesize&quot;</span><span class="p">],</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span>
-<span class="linenos">56</span>         <span class="n">transform</span><span class="o">=</span><a href="https://matplotlib.org/api/transformations.html#matplotlib.transforms.BboxTransformTo" title="matplotlib.transforms.BboxTransformTo" class="sphx-glr-backref-module-matplotlib-transforms sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span></a>
+<span class="linenos">55</span>         <span class="n">size</span><span class="o">=</span><a href="https://matplotlib.org/stable/api/matplotlib_configuration_api.html#matplotlib.RcParams" title="matplotlib.RcParams" class="sphx-glr-backref-module-matplotlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span></a><span class="p">[</span><span class="s2">&quot;axes.titlesize&quot;</span><span class="p">],</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span>
+<span class="linenos">56</span>         <span class="n">transform</span><span class="o">=</span><a href="https://matplotlib.org/stable/api/transformations.html#matplotlib.transforms.BboxTransformTo" title="matplotlib.transforms.BboxTransformTo" class="sphx-glr-backref-module-matplotlib-transforms sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span></a>
 <span class="linenos">57</span>     <span class="p">)</span>
 <span class="linenos">58</span>     <span class="n">ax</span> <span class="o">=</span> <a href="../../api/skactiveml.visualization.plot_utilities.html#skactiveml.visualization.plot_utilities" title="skactiveml.visualization.plot_utilities" class="sphx-glr-backref-module-skactiveml-visualization sphx-glr-backref-type-py-function"><span class="n">plot_utilities</span></a><span class="p">(</span><a href="../../api/skactiveml.pool.MonteCarloEER.html#skactiveml.pool.MonteCarloEER" title="skactiveml.pool.MonteCarloEER" class="sphx-glr-backref-module-skactiveml-pool sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">qs</span></a><span class="p">,</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">X</span></a><span class="o">=</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">X</span></a><span class="p">,</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">y</span></a><span class="o">=</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">y</span></a><span class="p">,</span> <span class="n">candidates</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
 <span class="linenos">59</span>                         <span class="o">**</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">query_params</span></a><span class="p">,</span>
 <span class="linenos">60</span>                         <span class="n">res</span><span class="o">=</span><span class="mi">21</span><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">feature_bound</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">feature_bound</span></a><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
-<span class="linenos">61</span>     <a href="https://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.scatter.html#matplotlib.axes.Axes.scatter" title="matplotlib.axes.Axes.scatter" class="sphx-glr-backref-module-matplotlib-axes sphx-glr-backref-type-py-method"><span class="n">ax</span><span class="o">.</span><span class="n">scatter</span></a><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">X</span></a><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">X</span></a><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">c</span></a><span class="o">=</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">y_true</span></a><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;coolwarm&quot;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;.&quot;</span><span class="p">,</span>
+<span class="linenos">61</span>     <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.scatter.html#matplotlib.axes.Axes.scatter" title="matplotlib.axes.Axes.scatter" class="sphx-glr-backref-module-matplotlib-axes sphx-glr-backref-type-py-method"><span class="n">ax</span><span class="o">.</span><span class="n">scatter</span></a><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">X</span></a><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">X</span></a><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">c</span></a><span class="o">=</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">y_true</span></a><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;coolwarm&quot;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;.&quot;</span><span class="p">,</span>
 <span class="linenos">62</span>                <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="linenos">63</span>     <a href="https://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.scatter.html#matplotlib.axes.Axes.scatter" title="matplotlib.axes.Axes.scatter" class="sphx-glr-backref-module-matplotlib-axes sphx-glr-backref-type-py-method"><span class="n">ax</span><span class="o">.</span><span class="n">scatter</span></a><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">X_labeled</span></a><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">X_labeled</span></a><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">c</span></a><span class="o">=</span><span class="s2">&quot;grey&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.8</span><span class="p">,</span>
+<span class="linenos">63</span>     <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.scatter.html#matplotlib.axes.Axes.scatter" title="matplotlib.axes.Axes.scatter" class="sphx-glr-backref-module-matplotlib-axes sphx-glr-backref-type-py-method"><span class="n">ax</span><span class="o">.</span><span class="n">scatter</span></a><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">X_labeled</span></a><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">X_labeled</span></a><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">c</span></a><span class="o">=</span><span class="s2">&quot;grey&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.8</span><span class="p">,</span>
 <span class="linenos">64</span>                <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
 <span class="linenos">65</span>     <span class="n">ax</span> <span class="o">=</span> <a href="../../api/skactiveml.visualization.plot_decision_boundary.html#skactiveml.visualization.plot_decision_boundary" title="skactiveml.visualization.plot_decision_boundary" class="sphx-glr-backref-module-skactiveml-visualization sphx-glr-backref-type-py-function"><span class="n">plot_decision_boundary</span></a><span class="p">(</span><a href="../../api/skactiveml.classifier.ParzenWindowClassifier.html#skactiveml.classifier.ParzenWindowClassifier" title="skactiveml.classifier.ParzenWindowClassifier" class="sphx-glr-backref-module-skactiveml-classifier sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">clf</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">feature_bound</span></a><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
 <span class="linenos">66</span>
 <span class="linenos">67</span>     <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">coll_new</span></a> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">collections</span><span class="p">)</span>
-<span class="linenos">68</span>     <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">coll_new</span></a><span class="o">.</span><span class="n">append</span><span class="p">(</span><a href="https://matplotlib.org/api/text_api.html#matplotlib.text.Text" title="matplotlib.text.Text" class="sphx-glr-backref-module-matplotlib-text sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">title</span></a><span class="p">)</span>
+<span class="linenos">68</span>     <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">coll_new</span></a><span class="o">.</span><span class="n">append</span><span class="p">(</span><a href="https://matplotlib.org/stable/api/text_api.html#matplotlib.text.Text" title="matplotlib.text.Text" class="sphx-glr-backref-module-matplotlib-text sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">title</span></a><span class="p">)</span>
 <span class="linenos">69</span>     <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">artists</span></a><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">coll_new</span></a> <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="ow">not</span> <span class="ow">in</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">coll_old</span></a><span class="p">)])</span>
 <span class="linenos">70</span>
 <span class="linenos">71</span>     <span class="c1"># Label the queried instances.</span>
 <span class="linenos">72</span>     <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">y</span></a><span class="p">[</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">query_idx</span></a><span class="p">]</span> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">y_true</span></a><span class="p">[</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">query_idx</span></a><span class="p">]</span>
 <span class="linenos">73</span>
-<span class="linenos">74</span> <a href="https://matplotlib.org/api/_as_gen/matplotlib.animation.ArtistAnimation.html#matplotlib.animation.ArtistAnimation" title="matplotlib.animation.ArtistAnimation" class="sphx-glr-backref-module-matplotlib-animation sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ani</span></a> <span class="o">=</span> <a href="https://matplotlib.org/api/_as_gen/matplotlib.animation.ArtistAnimation.html#matplotlib.animation.ArtistAnimation" title="matplotlib.animation.ArtistAnimation" class="sphx-glr-backref-module-matplotlib-animation sphx-glr-backref-type-py-class"><span class="n">animation</span><span class="o">.</span><span class="n">ArtistAnimation</span></a><span class="p">(</span><a href="https://matplotlib.org/api/figure_api.html#matplotlib.figure.Figure" title="matplotlib.figure.Figure" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fig</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">artists</span></a><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">blit</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos">74</span> <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.animation.ArtistAnimation.html#matplotlib.animation.ArtistAnimation" title="matplotlib.animation.ArtistAnimation" class="sphx-glr-backref-module-matplotlib-animation sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ani</span></a> <span class="o">=</span> <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.animation.ArtistAnimation.html#matplotlib.animation.ArtistAnimation" title="matplotlib.animation.ArtistAnimation" class="sphx-glr-backref-module-matplotlib-animation sphx-glr-backref-type-py-class"><span class="n">animation</span><span class="o">.</span><span class="n">ArtistAnimation</span></a><span class="p">(</span><a href="https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure" title="matplotlib.figure.Figure" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fig</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">artists</span></a><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">blit</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="sphx-glr-animation docutils container">
@@ -561,42 +558,42 @@ input[type=range].anim-slider {
 </style>
 
 <div class="animation">
-  <img id="_anim_img6b172ef617a043428869416003660067">
+  <img id="_anim_img4fa473b2468144bfad92a99702bbbe9d">
   <div class="anim-controls">
-    <input id="_anim_slider6b172ef617a043428869416003660067" type="range" class="anim-slider"
+    <input id="_anim_slider4fa473b2468144bfad92a99702bbbe9d" type="range" class="anim-slider"
            name="points" min="0" max="1" step="1" value="0"
-           oninput="anim6b172ef617a043428869416003660067.set_frame(parseInt(this.value));"></input>
+           oninput="anim4fa473b2468144bfad92a99702bbbe9d.set_frame(parseInt(this.value));">
     <div class="anim-buttons">
-      <button title="Decrease speed" aria-label="Decrease speed" onclick="anim6b172ef617a043428869416003660067.slower()">
+      <button title="Decrease speed" aria-label="Decrease speed" onclick="anim4fa473b2468144bfad92a99702bbbe9d.slower()">
           <i class="fa fa-minus"></i></button>
-      <button title="First frame" aria-label="First frame" onclick="anim6b172ef617a043428869416003660067.first_frame()">
+      <button title="First frame" aria-label="First frame" onclick="anim4fa473b2468144bfad92a99702bbbe9d.first_frame()">
         <i class="fa fa-fast-backward"></i></button>
-      <button title="Previous frame" aria-label="Previous frame" onclick="anim6b172ef617a043428869416003660067.previous_frame()">
+      <button title="Previous frame" aria-label="Previous frame" onclick="anim4fa473b2468144bfad92a99702bbbe9d.previous_frame()">
           <i class="fa fa-step-backward"></i></button>
-      <button title="Play backwards" aria-label="Play backwards" onclick="anim6b172ef617a043428869416003660067.reverse_animation()">
+      <button title="Play backwards" aria-label="Play backwards" onclick="anim4fa473b2468144bfad92a99702bbbe9d.reverse_animation()">
           <i class="fa fa-play fa-flip-horizontal"></i></button>
-      <button title="Pause" aria-label="Pause" onclick="anim6b172ef617a043428869416003660067.pause_animation()">
+      <button title="Pause" aria-label="Pause" onclick="anim4fa473b2468144bfad92a99702bbbe9d.pause_animation()">
           <i class="fa fa-pause"></i></button>
-      <button title="Play" aria-label="Play" onclick="anim6b172ef617a043428869416003660067.play_animation()">
+      <button title="Play" aria-label="Play" onclick="anim4fa473b2468144bfad92a99702bbbe9d.play_animation()">
           <i class="fa fa-play"></i></button>
-      <button title="Next frame" aria-label="Next frame" onclick="anim6b172ef617a043428869416003660067.next_frame()">
+      <button title="Next frame" aria-label="Next frame" onclick="anim4fa473b2468144bfad92a99702bbbe9d.next_frame()">
           <i class="fa fa-step-forward"></i></button>
-      <button title="Last frame" aria-label="Last frame" onclick="anim6b172ef617a043428869416003660067.last_frame()">
+      <button title="Last frame" aria-label="Last frame" onclick="anim4fa473b2468144bfad92a99702bbbe9d.last_frame()">
           <i class="fa fa-fast-forward"></i></button>
-      <button title="Increase speed" aria-label="Increase speed" onclick="anim6b172ef617a043428869416003660067.faster()">
+      <button title="Increase speed" aria-label="Increase speed" onclick="anim4fa473b2468144bfad92a99702bbbe9d.faster()">
           <i class="fa fa-plus"></i></button>
     </div>
-    <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_select6b172ef617a043428869416003660067"
+    <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_select4fa473b2468144bfad92a99702bbbe9d"
           class="anim-state">
-      <input type="radio" name="state" value="once" id="_anim_radio1_6b172ef617a043428869416003660067"
+      <input type="radio" name="state" value="once" id="_anim_radio1_4fa473b2468144bfad92a99702bbbe9d"
              >
-      <label for="_anim_radio1_6b172ef617a043428869416003660067">Once</label>
-      <input type="radio" name="state" value="loop" id="_anim_radio2_6b172ef617a043428869416003660067"
+      <label for="_anim_radio1_4fa473b2468144bfad92a99702bbbe9d">Once</label>
+      <input type="radio" name="state" value="loop" id="_anim_radio2_4fa473b2468144bfad92a99702bbbe9d"
              checked>
-      <label for="_anim_radio2_6b172ef617a043428869416003660067">Loop</label>
-      <input type="radio" name="state" value="reflect" id="_anim_radio3_6b172ef617a043428869416003660067"
+      <label for="_anim_radio2_4fa473b2468144bfad92a99702bbbe9d">Loop</label>
+      <input type="radio" name="state" value="reflect" id="_anim_radio3_4fa473b2468144bfad92a99702bbbe9d"
              >
-      <label for="_anim_radio3_6b172ef617a043428869416003660067">Reflect</label>
+      <label for="_anim_radio3_4fa473b2468144bfad92a99702bbbe9d">Reflect</label>
     </form>
   </div>
 </div>
@@ -606,13 +603,13 @@ input[type=range].anim-slider {
   /* Instantiate the Animation class. */
   /* The IDs given should match those used in the template above. */
   (function() {
-    var img_id = "_anim_img6b172ef617a043428869416003660067";
-    var slider_id = "_anim_slider6b172ef617a043428869416003660067";
-    var loop_select_id = "_anim_loop_select6b172ef617a043428869416003660067";
+    var img_id = "_anim_img4fa473b2468144bfad92a99702bbbe9d";
+    var slider_id = "_anim_slider4fa473b2468144bfad92a99702bbbe9d";
+    var loop_select_id = "_anim_loop_select4fa473b2468144bfad92a99702bbbe9d";
     var frames = new Array(25);
 
   frames[0] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAABhsklEQVR4nO3dd3xUVf4//teZPpMy6b0AoUkRkCYIStNgQyxY1hVQF5FVVyy7\
 K/v7uq6fLeza1rWBbYFFWVQUdW2I0lRAmkhRkB6SkJ5M6tR7fn8MGQhJIIlJ7uTO6/l45KH3cmfu\
 605uZt5zzrnnCimlBBERERFplk7tAERERETUsVjwEREREWkcCz4iIiIijWPBR0RERKRxLPiIiIiI\
@@ -1055,7 +1052,7 @@ jWPBR0RERKRxLPiIiIiINI4FHxEREZHGseAjIiIi0jgWfEREREQax4KPiIiISONY8BERERFp3P8P\
 roFvTq13vegAAAAASUVORK5CYII=\
 "
   frames[1] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAABjxElEQVR4nO3dd3hUZcI+/vuZPpMy6b0AoUmvIihSRIMNsWBZXwXdRcSyoq67\
 sr+v6/ruuqyuuq4NO7iW14KiWAGlWUCKIkVBekjvk0mZep7fH0MGQhJIIMmZnLk/15VLz+HMzD3J\
 JHPPc855jpBSShARERGRZunUDkBEREREnYuFj4iIiEjjWPiIiIiINI6Fj4iIiEjjWPiIiIiINI6F\
@@ -1507,7 +1504,7 @@ ERGRxrHwEREREWkcCx8RERGRxrHwEREREWkcCx8RERGRxrHwEREREWkcCx8RERGRxrHwEREREWkc\
 Cx8RERGRxrHwEREREWnc/w+tbssXKz8aKwAAAABJRU5ErkJggg==\
 "
   frames[2] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAACaNklEQVR4nOzdd5xcdb0//tfnnOlley9JNr1XQugkBAg1olL1QgBFRFAR1Cv3\
 91X0er1crKgg6BVBQa5AQASkh0AwEAiElrKbTbKbsr3Ozk6fcz6/P2anZdvMnDN7pryfj0ceOTt7\
 5sxndmd33/P5fN7vN+OccxBCCCGEkJwlaD0AQgghhBCSXhTwEUIIIYTkOAr4CCGEEEJyHAV8hBBC\
@@ -2204,7 +2201,7 @@ OI7CBwAA4DgKHwAAgOMofAAAAI6j8AEAADiOwgcAAOA4Ch8AAIDjKHwAAACO+xud28PAxkEgqwAA\
 AABJRU5ErkJggg==\
 "
   frames[3] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAChYElEQVR4nOzdd3xcxbk//s+cs12rVe+SJUuy5YIbNhAM2AYMDs0hCYSQhJZc\
 QgjkBtK+4f5u2s3N5aZeUkkHAmn0GEIPxYAN2BTbuEuWZFu9r6Tt58zvj9We3ZVW0u6es/15v15+\
 ebQ6OzuSVtpnn5l5hnHOOQghhBBCSNYSUj0AQgghhBCSWBTwEUIIIYRkOQr4CCGEEEKyHAV8hBBC\
@@ -2933,7 +2930,7 @@ RBrHwkdERESkcSx8RERERBrHwkdERESkcSx8RERERBrHwkdERESkcSx8RERERBrHwkdERESkcf8P\
 qk9+/sl71kAAAAAASUVORK5CYII=\
 "
   frames[4] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAACebElEQVR4nOzdeXgc1ZU3/u+t6n3Rvu+yLcsrXrCxWQxmNXtCSEgICVuG8DKQ\
 hCwzE+aXkOSdyTBZh6wkZAEGyBsIBEIg7Jgdg8HYRl5k2ZZkW9aullrdUm9V9/dHq6u7rZbU3VXq\
 9Xyeh4dSq7rqSm61js699xzGOecghBBCCCE5S0j3AAghhBBCyPyigI8QQgghJMdRwEcIIYQQkuMo\
@@ -3649,7 +3646,7 @@ kcax8BERERFpHAsfERERkcax8BERERFpHAsfERERkcax8BERERFp3P8B6WsEIYH9ywgAAAAASUVO\
 RK5CYII=\
 "
   frames[5] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAChuElEQVR4nOzdd3yc1Z3o/895nmnqvcu9yLjb2JjewQQICSF1Uyi7JJcNm757\
 k/1tspu9u5fdZJObbAoJKcAFclMghZAChN5cwGDjLtuSbMvqvc/M85zfHyPNSFadopnR6Pt+vfzi\
 aPSUIzGa+c455/s9SmutEUIIIYQQKctIdAeEEEIIIcTskoBPCCGEECLFScAnhBBCCJHiJOATQggh\
@@ -4379,7 +4376,7 @@ REQ6x8BHREREpHMMfEREREQ6x8BHREREpHMMfEREREQ6x8BHREREpHMMfEREREQ6x8BHREREpHMM\
 fEREREQ6x8BHREREpHMMfEREREQ6x8BHREREpHP/Dz6YiV/R7FD1AAAAAElFTkSuQmCC\
 "
   frames[6] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAACk0UlEQVR4nOz9d3xj1Z34/7/OvWq25d5n7PH0XhkY6sAAkww9kEqSTShZwmZD\
 Nm1Lsr9P2nc3m02yybJJNmRJg4VkUyDUhDZ0GGAKDNO7PX3ce1G59/z+kC3Z4y7Jliy9n48HD47l\
 q6Njjyy99T7nvI/SWmuEEEIIIUTKMhI9ACGEEEIIMbEk4BNCCCGESHES8AkhhBBCpDgJ+IQQQggh\
@@ -5123,7 +5120,7 @@ PiIiIiKdY+AjIiIi0jkGPiIiIiKdY+AjIiIi0jkGPiIiIiKdY+AjIiIi0jkGPiIiIiKdY+AjIiIi\
 0jkGPiIiIiKdY+AjIiIi0jkGPiIiIiKd+39vFj1VItdUNgAAAABJRU5ErkJggg==\
 "
   frames[7] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAACkhElEQVR4nOzdd3icV5nw/+95nmnqvVmSJffe4jQnceLETpwOSegtCWzIsmSX\
 to19X2B5t2SBhWWBBTYsJPxSlkACaZDm9O6SOC5ytyXLsq3ey5TnOb8/RhpJttoUaUaj+3NduXI0\
 eubMkTyauec+59xHaa01QgghhBAiaRnxHoAQQgghhJhcEvAJIYQQQiQ5CfiEEEIIIZKcBHxCCCGE\
@@ -5866,7 +5863,7 @@ MeEjIiIiMjgmfEREREQGx4SPiIiIyOCY8BEREREZHBM+IiIiIoNjwkdERERkcEz4iIiIiAyOCR8R\
 ERGRwf0/3f+v38fmnyoAAAAASUVORK5CYII=\
 "
   frames[8] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAClWElEQVR4nOzdd3xk1Xn4/8+5d5p679KutvfGwtJhgYWlrg24N4oDxDHucRIn\
 X9shjkNsx/k5sWMcHBsItmNssA3Gpi2wtAW2wLIs2r4qW7TqvUy59/z+GGkkreoUaaTR8369eHE0\
 unPmSDuaeeac8zxHaa01QgghhBAiYRnxHoAQQgghhJhcEvAJIYQQQiQ4CfiEEEIIIRKcBHxCCCGE\
@@ -6613,7 +6610,7 @@ Ax8RERGRwTHwERERERkcAx8RERGRwTHwERERERkcAx8RERGRwTHwERERERnc/wMInhG5QOjWGwAA\
 AABJRU5ErkJggg==\
 "
   frames[9] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAACqR0lEQVR4nOzdd3xc1Zn4/8+9d5p6b1Zx790GbMCAqaaFhCSkJ0CyJMsmm77Z\
 JL9N290sm7rZTSFLCmQhfEMCCSEkdAymGRsb4y7LtiTbsnqvU+49vz9GmpGsNk2a0eh5v15+cWZ0\
 y5EYjZ455zzP0ZRSCiGEEEIIkbT0eHdACCGEEEJMLQn4hBBCCCGSnAR8QgghhBBJTgI+IYQQQogk\
@@ -7382,7 +7379,7 @@ g2PgIyIiIjI4Bj4iIiIig2PgIyIiIjI4Bj4iIiIig2PgIyIiIjI4Bj4iIiIig2PgIyIiIjK4/wfo\
 IFpzNjd0cwAAAABJRU5ErkJggg==\
 "
   frames[10] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAACoQUlEQVR4nOzdd3xc1Zn4/8+9d5p675LlLvcGNsUUGwOGQEgvhE2A7JIsG76b\
 tsk3yXc3bXeTTd3sprcFFpJfICQhCYQWMM1gbNPdZNmWZEtW73XKvef3x0gzktWmSTMaPe/Xyy9f\
 je4990gajZ55zjnP0ZRSCiGEEEIIkbT0eHdACCGEEELMLgn4hBBCCCGSnAR8QgghhBBJTgI+IYQQ\
@@ -8142,7 +8139,7 @@ iEjnmPARERER6RwTPiIiIiKdY8JHREREpHNM+IiIiIh0jgkfERERkc4x4SMiIiLSuf8HU458gX3W\
 9wAAAAAASUVORK5CYII=\
 "
   frames[11] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAACr9UlEQVR4nOzdd3xcV5n4/8+5d5p677Jly73bcZxe7DQnJAQCBAhZSPluwmZh\
 WdqysL/vwsIuy5e6YekQSLIJLAkBQhLSY6c3p7rbsi25yOq9Trn3/P4YaSRZdYo0o9Hzfr3yytXo\
 3nOP5NHMM8855zlKa60RQgghhBBJy4h3B4QQQgghxPSSgE8IIYQQIslJwCeEEEIIkeQk4BNCCCGE\
@@ -8918,7 +8915,7 @@ TI4JHxEREZHJMeEjIiIiMjkmfEREREQmx4SPiIiIyOSY8BERERGZHBM+IiIiIpNjwkdERERkckz4\
 iIiIiEyOCR8RERGRyTHhIyIiIjI5JnxEREREJvffwJ+zR2GoNqYAAAAASUVORK5CYII=\
 "
   frames[12] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAACxQ0lEQVR4nOzdd3hc1Zk/8O+9d/qMRr13We4dF4y7jcGAiUMnhISWhSwbkpCQ\
 ZMP+NhCySUhfkpCQxgKBECAECL26gbuNe5EtWd3q0mhUpt57fn9czR3JatPr+3keHs6MbjmSR5p3\
 3nPOezjGGAMhhBBCCElYfLQ7QAghhBBCwosCPkIIIYSQBEcBHyGEEEJIgqOAjxBCCCEkwVHARwgh\
@@ -9718,7 +9715,7 @@ fEREREQmx4CPiIiIyOQY8BERERGZHAM+IiIiIpNjwEdERERkcgz4iIiIiEyOAR8RERGRyTHgIyIi\
 IjI5BnxEREREJseAj4iIiMjk/j9ui52kcUz8cgAAAABJRU5ErkJggg==\
 "
   frames[13] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAC0yUlEQVR4nOzdd3xc1Zn4/8+900e9S5ZkWe4V29iAMRibaloIBFJJaFnCsmE3\
 dXeTfH9JNtnNsqlLsllIXSAEEhJCCCF0bGzANsYG3Ltl2ZbVe5t6z++PkUaS1aZJU/S8Xy+9fHV1\
 y5E85ZnnnPMcTSmlEEIIIYQQKUuPdwOEEEIIIcTEkoBPCCGEECLFScAnhBBCCJHiJOATQgghhEhx\
@@ -10534,7 +10531,7 @@ iIjI4JjwERERERkcEz4iIiIig2PCR0RERGRwTPiIiIiIDI4JHxEREZHBMeEjIiIiMjgmfEREREQG\
 x4SPiIiIyOD+P0goVBElQ2DsAAAAAElFTkSuQmCC\
 "
   frames[14] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAADS8UlEQVR4nOydd3gb15X235lBB0iw905RhaJ675IlW66yHfd43ZJ1vE6cxOnr\
 3Y2TOMVfEidxqtNtxyXuvRdVq3eJokRRFLvYSYBEB2bu98eQA1Js6INyf8/DR3egmTsHwAB455xz\
 z2EIIQQUCoVCoVAolLiFldsACoVCoVAoFEp4oYKPQqFQKBQKJc6hgo9CoVAoFAolzqGCj0KhUCgU\
@@ -11485,7 +11482,7 @@ hBgcBXyEEEIIIQZHAR8hhBBCiMFRwEcIIYQQYnAU8BFCCCGEGBwFfIQQQgghBkcBHyGEEEKIwVHA\
 RwghhBBicBTwEUIIIYQYHAV8hBBCCCEGRwEfIYQQQojB/f+OhTARD7aFPgAAAABJRU5ErkJggg==\
 "
   frames[15] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAADzOElEQVR4nOyddXwcZf7H3zMr2bgnjTdSd6eu0EJLcbfCoQeHHPI77g6/gwMO\
 OfyQK64FikuhpS1toe6eRpo27rZZmfn9scluXHezu8nzfr3yyuzszDPP2sxnviqpqqoiEAgEAoFA\
 IOizyO6egEAgEAgEAoHAtQjBJxAIBAKBQNDHEYJPIBAIBAKBoI8jBJ9AIBAIBAJBH0cIPoFAIBAI\
@@ -12581,7 +12578,7 @@ PiGEEEKIDCcBnxBCCCFEhpOATwghhBAiw0nAJ4QQQgiR4STgE0IIIYTIcBLwCSGEEEJkOAn4hBBC\
 CCEynAR8QgghhBAZTgI+IYQQQogMJwGfEEIIIUSG+/8BoPo8xyIzrzYAAAAASUVORK5CYII=\
 "
   frames[16] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAADxkUlEQVR4nOydd3wT9/3/n3eSJXkbT7ywjQGzNyTsmUBCQrNnG0jarGZ3J/22\
 TcevI23S7NWmJE1CdrOAEEggkLDNxmxjbLz3tqxx9/tDtrxtWZYsWf48Hw8enD66+9xHsnR63XtK\
 qqqqCAQCgUAgEAh8FtnTCxAIBAKBQCAQuBch+AQCgUAgEAh8HCH4BAKBQCAQCHwcIfgEAoFAIBAI\
@@ -13670,7 +13667,7 @@ EAQhzxHBJwiCIAiCkOeI4BMEQRAEQchzRPAJgiAIgiDkOSL4BEEQBEEQ8hwRfIIgCIIgCHmOCD5B\
 EARBEIQ85/8HAkH7BFk8vTQAAAAASUVORK5CYII=\
 "
   frames[17] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAADwCElEQVR4nOyddXgU5/7275nVbDburpBAEoJTXAu0UEq91KA9ldNT/7XH357K\
 kZ66u9FTb6GlFGiR4k5wEgghhLjbxlbnef/YZDYbXZn159OLq7OzM8882Z2dueerDCGEgEKhUCgU\
 CoXitbCungCFQqFQKBQKxbFQwUehUCgUCoXi5VDBR6FQKBQKheLlUMFHoVAoFAqF4uVQwUehUCgU\
@@ -14752,7 +14749,7 @@ fEIIIYQQOU4CPiGEEEKIHCcBnxBCCCFEjpOATwghhBAix0nAJ4QQQgiR4yTgE0IIIYTIcRLwCSGE\
 EELkOAn4hBBCCCFy3P8P7zNHyZSW2coAAAAASUVORK5CYII=\
 "
   frames[18] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAADtNElEQVR4nOydd3wb5f3H33ea3ns7cYYTZ+9F9oIwQti7ZbVAKRTo/JXuTVsK\
 pUChUGbZEPZMQjZZZJDEWc6ynThe8Z6ad78/ZEl2vGRZsiT7eb9eeeV0unvukXy6+9x3SqqqqggE\
 AoFAIBAI+i1yoCcgEAgEAoFAIPAvQvAJBAKBQCAQ9HOE4BMIBAKBQCDo5wjBJxAIBAKBQNDPEYJP\
@@ -15821,7 +15818,7 @@ TwghhBAix0nAJ4QQQgiR4yTgE0IIIYTIcRLwCSGEEELkOAn4hBBCCCFynAR8QgghhBA5TgI+IYQQ\
 QogcJwGfEEIIIUSOk4BPCCGEECLHScAnhBBCCJHj/n+Rj9BX5UjcCwAAAABJRU5ErkJggg==\
 "
   frames[19] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAADwuklEQVR4nOydd3wb9f3/n3ealveeieM4ibN3yN5AIEDKnmW1zLJLd79tKbTl\
 By0UyiyFhtFS9t4jg5C9lzOdxI4T771kjbvfH7Ik7yHJkiV/no9HHjmd7j73kXy6e917SqqqqggE\
 AoFAIBAIQhY50BMQCAQCgUAgEPQvQvAJBAKBQCAQhDhC8AkEAoFAIBCEOELwCQQCgUAgEIQ4QvAJ\
@@ -16906,7 +16903,7 @@ IYQQQgocBXyEEEIIIQWOAj5CCCGEkAJHAR8hhBBCSIGjgI8QQgghpMBRwEcIIYQQUuAo4COEEEII\
 KXAU8BFCCCGEFDgK+AghhBBCCtz/A0fzNkTmgZd9AAAAAElFTkSuQmCC\
 "
   frames[20] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAADv7klEQVR4nOydd3Qc1dmHn5mt6l2yJdmybLn3jnHB2IAxBkKvoSUBEiBAeki+\
 9IQESKeGFCD0XkIvbmDce5VcZUu2JKvXrXO/P1a7q65t0u5K9zlHxzOzU+56p/zmrYoQQiCRSCQS\
 iUQiGbCo4R6ARCKRSCQSiaRvkYJPIpFIJBKJZIAjBZ9EIpFIJBLJAEcKPolEIpFIJJIBjhR8EolE\
@@ -17988,7 +17985,7 @@ gE8IIYQQoshJwCeEEEIIUeQk4BNCCCGEKHIS8AkhhBBCFDkJ+IQQQgghitz/D+eIpOieS02eAAAA\
 AElFTkSuQmCC\
 "
   frames[21] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAADsqElEQVR4nOydd3gc1dm375mt6r1Zcu+9N2zcwVTTe8BAQnh5SSGB1PdLDySB\
 FEgBkpDQu0MLzRTb2Bgb9yJXuVuy1btW2jbn+2O1u5LVtu9KOvd1+fLMaObM0Wp25jdPVYQQAolE\
 IpFIJBJJn0WN9gQkEolEIpFIJOFFCj6JRCKRSCSSPo4UfBKJRCKRSCR9HCn4JBKJRCKRSPo4UvBJ\
@@ -19055,7 +19052,7 @@ IQqcBHxCCCGEEAVOAj4hhBBCiAInAZ8QQgghRIGTgE8IIYQQosBJwCeEEEIIUeAk4BNCCCGEKHAS\
 QghR4P5/H2+6wavWVTMAAAAASUVORK5CYII=\
 "
   frames[22] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAADyeklEQVR4nOyddZwc5f3H3zPr5665XJKLuxMhBAkECAQr/itaoBRaqENb2tKW\
 UqVAaSmlFChS3Io7BIi768XP3fZW5vn9sbdyvr57d8+bV17MzM0889ze7MxnvqoIIQQSiUQikUgk\
 kkGLGusJSCQSiUQikUgiixR8EolEIpFIJIMcKfgkEolEIpFIBjlS8EkkEolEIpEMcqTgk0gkEolE\
@@ -20148,7 +20145,7 @@ hBBCCCHynAR8QgghhBB5TgI+IYQQQog8JwGfEEIIIUSek4BPCCGEECLPScAnhBBCCJHnJOATQggh\
 hMhzEvAJIYQQQuS5/x8csdHCkVnM6AAAAABJRU5ErkJggg==\
 "
   frames[23] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAADrX0lEQVR4nOydd3xddf3/n+fcnb3TJE3TNt170UIHLUPL3kNAWYrIF1QU/Qkq\
 Ii5URFERVERQhrKhUIYUSlugLd17jzRt06TZ6+7z+f1xc0f2Xckd/Twfjz56zrlnfHLvGa/znooQ\
 QiCRSCQSiUQiSVrUWA9AIpFIJBKJRDKwSMEnkUgkEolEkuRIwSeRSCQSiUSS5EjBJ5FIJBKJRJLk\
@@ -21209,7 +21206,7 @@ EKLIScAnhBBCCFHkJOATQgghhChyEvAJIYQQQhQ5CfiEEEIIIYqcBHxCCCGEEEVOAj4hhBBCiCIn\
 AZ8QQgghRJGTgE8IIYQQosj9/4cEiGYXqLrsAAAAAElFTkSuQmCC\
 "
   frames[24] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAADl2UlEQVR4nOydd3gc1dm375nt6l2WZLn33jAYbGNMMb2EHl5KCvDyJW8CIT0B\
 AiEkpJBGICQhkNB7L6bYYGOKG+6Wbcm9SLJ63Trn+2O1RX3LrHa1Ovd16dLO7syZs9KU3zxVEUII\
 JBKJRCKRSCRJixrvCUgkEolEIpFIYosUfBKJRCKRSCRJjhR8EolEIpFIJEmOFHwSiUQikUgkSY4U\
@@ -22249,20 +22246,21 @@ YXES8AkhhBBCWJwEfEIIIYQQFicBnxBCCCGExf3/m5GNjUoFMpsAAAAASUVORK5CYII=\
     /* set a timeout to make sure all the above elements are created before
        the object is initialized. */
     setTimeout(function() {
-        anim6b172ef617a043428869416003660067 = new Animation(frames, img_id, slider_id, 1000.0,
+        anim4fa473b2468144bfad92a99702bbbe9d = new Animation(frames, img_id, slider_id, 1000.0,
                                  loop_select_id);
     }, 0);
   })()
 </script></div>
 <p class="rubric">References:</p>
 <p>The implementation of this strategy is based on Roy and McCallum<a class="footnote-reference brackets" href="#footcite-roy2001toward" id="id1">1</a>.</p>
-<p id="id2"><dl class="footnote brackets">
+<div class="docutils container" id="id2">
+<dl class="footnote brackets">
 <dt class="label" id="footcite-roy2001toward"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
 <dd><p>Nicholas Roy and Andrew McCallum. Toward optimal active learning through monte carlo estimation of error reduction. In <em>Proceedings of the International Conference on Machine Learning</em>, 441–448. 2001.</p>
 </dd>
 </dl>
-</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 1 minutes  15.293 seconds)</p>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 1 minutes  24.816 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-generated-sphinx-gallery-examples-pool-plot-montecarloeer-monte-carlo-eer-with-log-loss-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../../_downloads/9406f7a889e992e7dce5c97f807399be/plot_MonteCarloEER_Monte-Carlo_EER_with_Log-Loss.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_MonteCarloEER_Monte-Carlo_EER_with_Log-Loss.py</span></code></a></p>
@@ -22302,8 +22300,9 @@ YXES8AkhhBBCWJwEfEIIIYQQFicBnxBCCCGExf3/m5GNjUoFMpsAAAAASUVORK5CYII=\
       </div>
     </div>
   
-    <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-  <footer class="footer mt-5 mt-md-0">
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
   <div class="container">
     
     <div class="footer-item">
