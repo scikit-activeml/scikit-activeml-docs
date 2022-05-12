@@ -187,13 +187,13 @@
 
 
 <div class="viewcode-block" id="check_scalar"><a class="viewcode-back" href="../../../generated/api/skactiveml.utils.check_scalar.html#skactiveml.utils.check_scalar">[docs]</a><span class="k">def</span> <span class="nf">check_scalar</span><span class="p">(</span>
-        <span class="n">x</span><span class="p">,</span>
-        <span class="n">name</span><span class="p">,</span>
-        <span class="n">target_type</span><span class="p">,</span>
-        <span class="n">min_inclusive</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-        <span class="n">max_inclusive</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-        <span class="n">min_val</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">max_val</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">name</span><span class="p">,</span>
+    <span class="n">target_type</span><span class="p">,</span>
+    <span class="n">min_inclusive</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">max_inclusive</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">min_val</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">max_val</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
 <span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Validate scalar parameters type and value.</span>
 
@@ -350,11 +350,11 @@
 
 
 <div class="viewcode-block" id="check_cost_matrix"><a class="viewcode-back" href="../../../generated/api/skactiveml.utils.check_cost_matrix.html#skactiveml.utils.check_cost_matrix">[docs]</a><span class="k">def</span> <span class="nf">check_cost_matrix</span><span class="p">(</span>
-        <span class="n">cost_matrix</span><span class="p">,</span>
-        <span class="n">n_classes</span><span class="p">,</span>
-        <span class="n">only_non_negative</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-        <span class="n">contains_non_zero</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-        <span class="n">diagonal_is_zero</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">cost_matrix</span><span class="p">,</span>
+    <span class="n">n_classes</span><span class="p">,</span>
+    <span class="n">only_non_negative</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">contains_non_zero</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">diagonal_is_zero</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
 <span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Check whether cost matrix has shape `(n_classes, n_classes)`.</span>
 
@@ -419,27 +419,27 @@
 
 
 <div class="viewcode-block" id="check_X_y"><a class="viewcode-back" href="../../../generated/api/skactiveml.utils.check_X_y.html#skactiveml.utils.check_X_y">[docs]</a><span class="k">def</span> <span class="nf">check_X_y</span><span class="p">(</span>
-        <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">X_cand</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">sample_weight_cand</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">accept_sparse</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-        <span class="o">*</span><span class="p">,</span>
-        <span class="n">accept_large_sparse</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-        <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;numeric&quot;</span><span class="p">,</span>
-        <span class="n">order</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-        <span class="n">force_all_finite</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-        <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-        <span class="n">allow_nd</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-        <span class="n">multi_output</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-        <span class="n">allow_nan</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">ensure_min_samples</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-        <span class="n">ensure_min_features</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-        <span class="n">y_numeric</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-        <span class="n">estimator</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">missing_label</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">,</span>
+    <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">X_cand</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">sample_weight_cand</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">accept_sparse</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">accept_large_sparse</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;numeric&quot;</span><span class="p">,</span>
+    <span class="n">order</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">force_all_finite</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">allow_nd</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">multi_output</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">allow_nan</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">ensure_min_samples</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">ensure_min_features</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">y_numeric</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">estimator</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">missing_label</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">,</span>
 <span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Input validation for standard estimators.</span>
 
@@ -603,10 +603,10 @@
         <span class="n">sample_weight</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">sample_weight</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="n">check_consistent_length</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">)</span>
         <span class="k">if</span> <span class="p">(</span>
-                <span class="n">y</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">1</span>
-                <span class="ow">and</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span>
-                <span class="ow">or</span> <span class="n">sample_weight</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">1</span>
-                <span class="ow">and</span> <span class="n">sample_weight</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span>
+            <span class="n">y</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">1</span>
+            <span class="ow">and</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span>
+            <span class="ow">or</span> <span class="n">sample_weight</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">1</span>
+            <span class="ow">and</span> <span class="n">sample_weight</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span>
         <span class="p">):</span>
             <span class="n">check_consistent_length</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
 
@@ -672,7 +672,7 @@
     <span class="n">random_state</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">random_state</span><span class="p">)</span>
     <span class="n">random_state</span> <span class="o">=</span> <span class="n">check_random_state_sklearn</span><span class="p">(</span><span class="n">random_state</span><span class="p">)</span>
 
-    <span class="n">seed</span> <span class="o">=</span> <span class="p">(</span><span class="n">random_state</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span> <span class="o">**</span> <span class="mi">31</span><span class="p">)</span> <span class="o">*</span> <span class="n">seed_multiplier</span><span class="p">)</span> <span class="o">%</span> <span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="mi">31</span><span class="p">)</span>
+    <span class="n">seed</span> <span class="o">=</span> <span class="p">(</span><span class="n">random_state</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="o">**</span><span class="mi">31</span><span class="p">)</span> <span class="o">*</span> <span class="n">seed_multiplier</span><span class="p">)</span> <span class="o">%</span> <span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">31</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span></div>
 
 
@@ -787,9 +787,8 @@
     <span class="p">]</span>
 
     <span class="k">if</span> <span class="p">(</span>
-            <span class="nb">all</span><span class="p">(</span><span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">target_type</span><span class="p">)</span> <span class="k">for</span> <span class="n">target_type</span> <span class="ow">in</span>
-                <span class="n">target_types</span><span class="p">)</span>
-            <span class="ow">and</span> <span class="n">obj</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">target_vals</span>
+        <span class="nb">all</span><span class="p">(</span><span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">target_type</span><span class="p">)</span> <span class="k">for</span> <span class="n">target_type</span> <span class="ow">in</span> <span class="n">target_types</span><span class="p">)</span>
+        <span class="ow">and</span> <span class="n">obj</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">target_vals</span>
     <span class="p">):</span>
 
         <span class="n">error_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;`</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">` has type `</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span><span class="si">}</span><span class="s2">` but must have &quot;</span>
@@ -811,7 +810,7 @@
 
 
 <div class="viewcode-block" id="check_bound"><a class="viewcode-back" href="../../../generated/api/skactiveml.utils.check_bound.html#skactiveml.utils.check_bound">[docs]</a><span class="k">def</span> <span class="nf">check_bound</span><span class="p">(</span>
-        <span class="n">bound</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">bound_must_be_given</span><span class="o">=</span><span class="kc">False</span>
+    <span class="n">bound</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">bound_must_be_given</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Validates bound and returns the bound of X if bound is None.</span>
 <span class="sd">    `bound` and `X` must not be None.</span>
@@ -871,10 +870,10 @@
 
 
 <div class="viewcode-block" id="check_budget_manager"><a class="viewcode-back" href="../../../generated/api/skactiveml.utils.check_budget_manager.html#skactiveml.utils.check_budget_manager">[docs]</a><span class="k">def</span> <span class="nf">check_budget_manager</span><span class="p">(</span>
-        <span class="n">budget</span><span class="p">,</span>
-        <span class="n">budget_manager</span><span class="p">,</span>
-        <span class="n">default_budget_manager_class</span><span class="p">,</span>
-        <span class="n">default_budget_manager_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">budget</span><span class="p">,</span>
+    <span class="n">budget_manager</span><span class="p">,</span>
+    <span class="n">default_budget_manager_class</span><span class="p">,</span>
+    <span class="n">default_budget_manager_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
 <span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Validate if budget manager is a budgetmanager class and create a</span>
 <span class="sd">    copy &#39;budget_manager_&#39;.</span>

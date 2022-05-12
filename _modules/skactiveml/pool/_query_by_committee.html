@@ -220,10 +220,10 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span>
-            <span class="n">method</span><span class="o">=</span><span class="s2">&quot;KL_divergence&quot;</span><span class="p">,</span>
-            <span class="n">missing_label</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">,</span>
-            <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">method</span><span class="o">=</span><span class="s2">&quot;KL_divergence&quot;</span><span class="p">,</span>
+        <span class="n">missing_label</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">,</span>
+        <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="n">missing_label</span><span class="o">=</span><span class="n">missing_label</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span>
@@ -231,15 +231,15 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">method</span> <span class="o">=</span> <span class="n">method</span>
 
 <div class="viewcode-block" id="QueryByCommittee.query"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.QueryByCommittee.html#skactiveml.pool.QueryByCommittee.query">[docs]</a>    <span class="k">def</span> <span class="nf">query</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span>
-            <span class="n">X</span><span class="p">,</span>
-            <span class="n">y</span><span class="p">,</span>
-            <span class="n">ensemble</span><span class="p">,</span>
-            <span class="n">fit_ensemble</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">candidates</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-            <span class="n">return_utilities</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">X</span><span class="p">,</span>
+        <span class="n">y</span><span class="p">,</span>
+        <span class="n">ensemble</span><span class="p">,</span>
+        <span class="n">fit_ensemble</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">candidates</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">return_utilities</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Determines for which candidate samples labels are to be queried.</span>
 
@@ -318,8 +318,8 @@
 
         <span class="c1"># Check if the parameter `ensemble` is valid.</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ensemble</span><span class="p">,</span> <span class="n">SkactivemlClassifier</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span>
-                <span class="nb">hasattr</span><span class="p">(</span><span class="n">ensemble</span><span class="p">,</span> <span class="s2">&quot;n_estimators&quot;</span><span class="p">)</span>
-                <span class="ow">or</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">ensemble</span><span class="p">,</span> <span class="s2">&quot;estimators&quot;</span><span class="p">)</span>
+            <span class="nb">hasattr</span><span class="p">(</span><span class="n">ensemble</span><span class="p">,</span> <span class="s2">&quot;n_estimators&quot;</span><span class="p">)</span>
+            <span class="ow">or</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">ensemble</span><span class="p">,</span> <span class="s2">&quot;estimators&quot;</span><span class="p">)</span>
         <span class="p">):</span>
             <span class="n">check_equal_missing_label</span><span class="p">(</span>
                 <span class="n">ensemble</span><span class="o">.</span><span class="n">missing_label</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">missing_label_</span>
@@ -352,9 +352,9 @@
                         <span class="n">est_arr</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">classes_</span><span class="p">,</span>
                         <span class="n">est_arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">classes_</span><span class="p">,</span>
                         <span class="n">err_msg</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;The inferred classes of the </span><span class="si">{</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="si">}</span><span class="s2">-th and &quot;</span>
-                                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">-th are not equal. Set the `classes` &quot;</span>
-                                <span class="sa">f</span><span class="s2">&quot;parameter of each ensemble member to avoid &quot;</span>
-                                <span class="sa">f</span><span class="s2">&quot;this error.&quot;</span><span class="p">,</span>
+                        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">-th are not equal. Set the `classes` &quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;parameter of each ensemble member to avoid &quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;this error.&quot;</span><span class="p">,</span>
                     <span class="p">)</span>
             <span class="n">classes</span> <span class="o">=</span> <span class="n">est_arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">classes_</span>
         <span class="k">else</span><span class="p">:</span>

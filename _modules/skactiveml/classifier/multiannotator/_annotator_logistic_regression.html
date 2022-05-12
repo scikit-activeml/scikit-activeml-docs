@@ -289,19 +289,19 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span>
-            <span class="n">tol</span><span class="o">=</span><span class="mf">1.0e-2</span><span class="p">,</span>
-            <span class="n">max_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
-            <span class="n">fit_intercept</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="n">annot_prior_full</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-            <span class="n">annot_prior_diag</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-            <span class="n">weights_prior</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-            <span class="n">solver</span><span class="o">=</span><span class="s2">&quot;Newton-CG&quot;</span><span class="p">,</span>
-            <span class="n">solver_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">classes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">cost_matrix</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">missing_label</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">,</span>
-            <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">tol</span><span class="o">=</span><span class="mf">1.0e-2</span><span class="p">,</span>
+        <span class="n">max_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+        <span class="n">fit_intercept</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">annot_prior_full</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">annot_prior_diag</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">weights_prior</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">solver</span><span class="o">=</span><span class="s2">&quot;Newton-CG&quot;</span><span class="p">,</span>
+        <span class="n">solver_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">classes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">cost_matrix</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">missing_label</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">,</span>
+        <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="n">classes</span><span class="o">=</span><span class="n">classes</span><span class="p">,</span>
@@ -491,8 +491,8 @@
 
             <span class="c1"># Stop EM, if it converges (to a local maximum).</span>
             <span class="k">if</span> <span class="p">(</span>
-                    <span class="n">current_expectation</span> <span class="o">==</span> <span class="n">new_expectation</span>
-                    <span class="ow">or</span> <span class="p">(</span><span class="n">new_expectation</span> <span class="o">-</span> <span class="n">current_expectation</span><span class="p">)</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">tol</span>
+                <span class="n">current_expectation</span> <span class="o">==</span> <span class="n">new_expectation</span>
+                <span class="ow">or</span> <span class="p">(</span><span class="n">new_expectation</span> <span class="o">-</span> <span class="n">current_expectation</span><span class="p">)</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">tol</span>
             <span class="p">):</span>
                 <span class="k">break</span>
 
@@ -570,8 +570,8 @@
                         <span class="n">D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">diagonal</span><span class="p">)</span>
                         <span class="n">H_kj</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">D</span> <span class="o">@</span> <span class="n">X</span> <span class="o">+</span> <span class="n">Gamma</span>
                         <span class="n">H</span><span class="p">[</span>
-                        <span class="n">k</span> <span class="o">*</span> <span class="n">n_features</span><span class="p">:</span> <span class="p">(</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">n_features</span><span class="p">,</span>
-                        <span class="n">j</span> <span class="o">*</span> <span class="n">n_features</span><span class="p">:</span> <span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">n_features</span><span class="p">,</span>
+                            <span class="n">k</span> <span class="o">*</span> <span class="n">n_features</span> <span class="p">:</span> <span class="p">(</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">n_features</span><span class="p">,</span>
+                            <span class="n">j</span> <span class="o">*</span> <span class="n">n_features</span> <span class="p">:</span> <span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">n_features</span><span class="p">,</span>
                         <span class="p">]</span> <span class="o">=</span> <span class="n">H_kj</span>
                 <span class="k">return</span> <span class="n">H</span> <span class="o">/</span> <span class="n">n_samples</span>
 

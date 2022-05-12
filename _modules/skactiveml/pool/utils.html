@@ -280,8 +280,7 @@
         <span class="c1"># Check and use partial fit if applicable</span>
         <span class="n">check_type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ignore_partial_fit</span><span class="p">,</span> <span class="s2">&quot;ignore_partial_fit&quot;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">use_partial_fit</span> <span class="o">=</span> <span class="p">(</span>
-                <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">clf</span><span class="p">,</span>
-                        <span class="s2">&quot;partial_fit&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">ignore_partial_fit</span>
+            <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">clf</span><span class="p">,</span> <span class="s2">&quot;partial_fit&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">ignore_partial_fit</span>
         <span class="p">)</span>
 
         <span class="n">check_type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">enforce_unique_samples</span><span class="p">,</span> <span class="s2">&quot;enforce_unique_samples&quot;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>
@@ -318,7 +317,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">clf_</span><span class="o">.</span><span class="n">metric_dict</span> <span class="o">=</span> <span class="p">{}</span>
 
 <div class="viewcode-block" id="IndexClassifierWrapper.precompute"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.utils.IndexClassifierWrapper.html#skactiveml.pool.utils.IndexClassifierWrapper.precompute">[docs]</a>    <span class="k">def</span> <span class="nf">precompute</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span> <span class="n">idx_fit</span><span class="p">,</span> <span class="n">idx_pred</span><span class="p">,</span> <span class="n">fit_params</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="n">pred_params</span><span class="o">=</span><span class="s2">&quot;all&quot;</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">idx_fit</span><span class="p">,</span> <span class="n">idx_pred</span><span class="p">,</span> <span class="n">fit_params</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="n">pred_params</span><span class="o">=</span><span class="s2">&quot;all&quot;</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Function to describe for which samples we should precompute something.</span>
@@ -469,12 +468,12 @@
         <span class="k">return</span> <span class="bp">self</span></div>
 
 <div class="viewcode-block" id="IndexClassifierWrapper.partial_fit"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.utils.IndexClassifierWrapper.html#skactiveml.pool.utils.IndexClassifierWrapper.partial_fit">[docs]</a>    <span class="k">def</span> <span class="nf">partial_fit</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span>
-            <span class="n">idx</span><span class="p">,</span>
-            <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">use_base_clf</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-            <span class="n">set_base_clf</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">idx</span><span class="p">,</span>
+        <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">use_base_clf</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">set_base_clf</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Update the fitted model using additional samples in `self.X[idx]`</span>
 <span class="sd">        and y as class labels.</span>

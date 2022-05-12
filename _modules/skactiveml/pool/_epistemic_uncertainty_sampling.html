@@ -222,8 +222,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span> <span class="n">precompute</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">missing_label</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">,</span>
-            <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">precompute</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">missing_label</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="n">missing_label</span><span class="o">=</span><span class="n">missing_label</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span>
@@ -231,15 +230,15 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">precompute</span> <span class="o">=</span> <span class="n">precompute</span>
 
 <div class="viewcode-block" id="EpistemicUncertaintySampling.query"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.EpistemicUncertaintySampling.html#skactiveml.pool.EpistemicUncertaintySampling.query">[docs]</a>    <span class="k">def</span> <span class="nf">query</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span>
-            <span class="n">X</span><span class="p">,</span>
-            <span class="n">y</span><span class="p">,</span>
-            <span class="n">clf</span><span class="p">,</span>
-            <span class="n">fit_clf</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">candidates</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-            <span class="n">return_utilities</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">X</span><span class="p">,</span>
+        <span class="n">y</span><span class="p">,</span>
+        <span class="n">clf</span><span class="p">,</span>
+        <span class="n">fit_clf</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">candidates</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">return_utilities</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Determines for which candidate samples labels are to be queried.</span>
 
@@ -334,7 +333,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">_precompute_array</span><span class="p">,</span>
             <span class="p">)</span> <span class="o">=</span> <span class="n">_epistemic_uncertainty_pwc</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_precompute_array</span><span class="p">)</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">SklearnClassifier</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span>
-                <span class="n">clf</span><span class="o">.</span><span class="n">estimator_</span><span class="p">,</span> <span class="n">LogisticRegression</span>
+            <span class="n">clf</span><span class="o">.</span><span class="n">estimator_</span><span class="p">,</span> <span class="n">LogisticRegression</span>
         <span class="p">):</span>
             <span class="n">mask_labeled</span> <span class="o">=</span> <span class="n">is_labeled</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">missing_label_</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">sample_weight</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -513,8 +512,8 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">p</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">):</span>
         <span class="k">return</span> <span class="o">-</span><span class="mf">1.0</span>
-    <span class="n">piH</span> <span class="o">=</span> <span class="p">((</span><span class="n">theta</span> <span class="o">**</span> <span class="n">p</span><span class="p">)</span> <span class="o">*</span> <span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">theta</span><span class="p">)</span> <span class="o">**</span> <span class="n">n</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span>
-            <span class="p">((</span><span class="n">p</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="n">p</span><span class="p">))</span> <span class="o">**</span> <span class="n">p</span><span class="p">)</span> <span class="o">*</span> <span class="p">((</span><span class="n">n</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="n">p</span><span class="p">))</span> <span class="o">**</span> <span class="n">n</span><span class="p">)</span>
+    <span class="n">piH</span> <span class="o">=</span> <span class="p">((</span><span class="n">theta</span><span class="o">**</span><span class="n">p</span><span class="p">)</span> <span class="o">*</span> <span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">theta</span><span class="p">)</span> <span class="o">**</span> <span class="n">n</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span>
+        <span class="p">((</span><span class="n">p</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="n">p</span><span class="p">))</span> <span class="o">**</span> <span class="n">p</span><span class="p">)</span> <span class="o">*</span> <span class="p">((</span><span class="n">n</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="n">p</span><span class="p">))</span> <span class="o">**</span> <span class="n">n</span><span class="p">)</span>
     <span class="p">)</span>
     <span class="k">return</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">piH</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">theta</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
 
@@ -539,8 +538,8 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">p</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">):</span>
         <span class="k">return</span> <span class="o">-</span><span class="mf">1.0</span>
-    <span class="n">piH</span> <span class="o">=</span> <span class="p">((</span><span class="n">theta</span> <span class="o">**</span> <span class="n">p</span><span class="p">)</span> <span class="o">*</span> <span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">theta</span><span class="p">)</span> <span class="o">**</span> <span class="n">n</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span>
-            <span class="p">((</span><span class="n">p</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="n">p</span><span class="p">))</span> <span class="o">**</span> <span class="n">p</span><span class="p">)</span> <span class="o">*</span> <span class="p">((</span><span class="n">n</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="n">p</span><span class="p">))</span> <span class="o">**</span> <span class="n">n</span><span class="p">)</span>
+    <span class="n">piH</span> <span class="o">=</span> <span class="p">((</span><span class="n">theta</span><span class="o">**</span><span class="n">p</span><span class="p">)</span> <span class="o">*</span> <span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">theta</span><span class="p">)</span> <span class="o">**</span> <span class="n">n</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span>
+        <span class="p">((</span><span class="n">p</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="n">p</span><span class="p">))</span> <span class="o">**</span> <span class="n">p</span><span class="p">)</span> <span class="o">*</span> <span class="p">((</span><span class="n">n</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="n">p</span><span class="p">))</span> <span class="o">**</span> <span class="n">n</span><span class="p">)</span>
     <span class="p">)</span>
     <span class="k">return</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">piH</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">theta</span><span class="p">)</span>
 
@@ -577,7 +576,7 @@
 <span class="sd">        Discovery Science. Springer, Cham, 2019.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">SklearnClassifier</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span>
-            <span class="n">clf</span><span class="o">.</span><span class="n">estimator</span><span class="p">,</span> <span class="n">LogisticRegression</span>
+        <span class="n">clf</span><span class="o">.</span><span class="n">estimator</span><span class="p">,</span> <span class="n">LogisticRegression</span>
     <span class="p">):</span>
         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
             <span class="s2">&quot;clf has to be a wrapped LogisticRegression &quot;</span>

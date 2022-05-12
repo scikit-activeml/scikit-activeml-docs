@@ -239,15 +239,15 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span>
-            <span class="n">classes</span><span class="p">,</span>
-            <span class="n">base_regressor</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">cost_matrix</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">embed_dim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">mds_params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">nn_params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">missing_label</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">,</span>
-            <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">classes</span><span class="p">,</span>
+        <span class="n">base_regressor</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">cost_matrix</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">embed_dim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">mds_params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">nn_params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">missing_label</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">,</span>
+        <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="n">missing_label</span><span class="o">=</span><span class="n">missing_label</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span>
@@ -262,13 +262,13 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">nn_params</span> <span class="o">=</span> <span class="n">nn_params</span>
 
 <div class="viewcode-block" id="CostEmbeddingAL.query"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.CostEmbeddingAL.html#skactiveml.pool.CostEmbeddingAL.query">[docs]</a>    <span class="k">def</span> <span class="nf">query</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span>
-            <span class="n">X</span><span class="p">,</span>
-            <span class="n">y</span><span class="p">,</span>
-            <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">candidates</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-            <span class="n">return_utilities</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">X</span><span class="p">,</span>
+        <span class="n">y</span><span class="p">,</span>
+        <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">candidates</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">return_utilities</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Query the next instance to be labeled.</span>
 
@@ -368,18 +368,18 @@
 
 
 <span class="k">def</span> <span class="nf">_alce</span><span class="p">(</span>
-        <span class="n">X_cand</span><span class="p">,</span>
-        <span class="n">X</span><span class="p">,</span>
-        <span class="n">y</span><span class="p">,</span>
-        <span class="n">base_regressor</span><span class="p">,</span>
-        <span class="n">cost_matrix</span><span class="p">,</span>
-        <span class="n">classes</span><span class="p">,</span>
-        <span class="n">embed_dim</span><span class="p">,</span>
-        <span class="n">sample_weight</span><span class="p">,</span>
-        <span class="n">missing_label</span><span class="p">,</span>
-        <span class="n">random_state</span><span class="p">,</span>
-        <span class="n">mds_params</span><span class="p">,</span>
-        <span class="n">nn_params</span><span class="p">,</span>
+    <span class="n">X_cand</span><span class="p">,</span>
+    <span class="n">X</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">,</span>
+    <span class="n">base_regressor</span><span class="p">,</span>
+    <span class="n">cost_matrix</span><span class="p">,</span>
+    <span class="n">classes</span><span class="p">,</span>
+    <span class="n">embed_dim</span><span class="p">,</span>
+    <span class="n">sample_weight</span><span class="p">,</span>
+    <span class="n">missing_label</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="p">,</span>
+    <span class="n">mds_params</span><span class="p">,</span>
+    <span class="n">nn_params</span><span class="p">,</span>
 <span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Compute the alce score for the candidate instances.</span>
 
@@ -524,15 +524,15 @@
 
 
 <span class="k">def</span> <span class="nf">_smacof_single_p</span><span class="p">(</span>
-        <span class="n">similarities</span><span class="p">,</span>
-        <span class="n">n_uq</span><span class="p">,</span>
-        <span class="n">metric</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-        <span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-        <span class="n">init</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">max_iter</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span>
-        <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-        <span class="n">eps</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span>
-        <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">similarities</span><span class="p">,</span>
+    <span class="n">n_uq</span><span class="p">,</span>
+    <span class="n">metric</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">init</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">max_iter</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">eps</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
 <span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Computes multidimensional scaling using SMACOF algorithm.</span>
@@ -585,8 +585,8 @@
     <span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">n_samples</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 
     <span class="n">Vp</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">V</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> <span class="o">/</span> <span class="n">n_samples</span><span class="p">)</span>
-            <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> <span class="o">/</span> <span class="n">n_samples</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">V</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> <span class="o">/</span> <span class="n">n_samples</span><span class="p">)</span>
+        <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> <span class="o">/</span> <span class="n">n_samples</span>
     <span class="p">)</span>
 
     <span class="n">sim_flat</span> <span class="o">=</span> <span class="n">similarities</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
@@ -624,13 +624,13 @@
             <span class="n">disparities</span><span class="p">[</span><span class="n">sim_flat</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">disparities_flat</span>
             <span class="n">disparities</span> <span class="o">=</span> <span class="n">disparities</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">))</span>
             <span class="n">disparities</span> <span class="o">*=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span>
-                <span class="p">(</span><span class="n">n_samples</span> <span class="o">*</span> <span class="p">(</span><span class="n">n_samples</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">disparities</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+                <span class="p">(</span><span class="n">n_samples</span> <span class="o">*</span> <span class="p">(</span><span class="n">n_samples</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">disparities</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
             <span class="p">)</span>
             <span class="n">disparities</span><span class="p">[</span><span class="n">similarities</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 
         <span class="c1"># Compute stress</span>
         <span class="n">_stress</span> <span class="o">=</span> <span class="p">(</span>
-                <span class="n">W</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span> <span class="o">*</span> <span class="p">((</span><span class="n">dis</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span> <span class="o">-</span> <span class="n">disparities</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="n">W</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span> <span class="o">*</span> <span class="p">((</span><span class="n">dis</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span> <span class="o">-</span> <span class="n">disparities</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
         <span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
         <span class="n">_stress</span> <span class="o">/=</span> <span class="mi">2</span>
 
@@ -642,7 +642,7 @@
 
         <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Vp</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">_B</span><span class="p">,</span> <span class="n">X</span><span class="p">))</span>
 
-        <span class="n">dis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">X</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+        <span class="n">dis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">X</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 
         <span class="k">if</span> <span class="n">verbose</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;it: </span><span class="si">%d</span><span class="s2">, stress </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">it</span><span class="p">,</span> <span class="n">_stress</span><span class="p">))</span>
@@ -657,18 +657,18 @@
 
 
 <span class="k">def</span> <span class="nf">smacof_p</span><span class="p">(</span>
-        <span class="n">similarities</span><span class="p">,</span>
-        <span class="n">n_uq</span><span class="p">,</span>
-        <span class="n">metric</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-        <span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-        <span class="n">init</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">n_init</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
-        <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-        <span class="n">max_iter</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span>
-        <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-        <span class="n">eps</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span>
-        <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">return_n_iter</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">similarities</span><span class="p">,</span>
+    <span class="n">n_uq</span><span class="p">,</span>
+    <span class="n">metric</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">init</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">n_init</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+    <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">max_iter</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">eps</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">return_n_iter</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
 <span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Computes multidimensional scaling using SMACOF (Scaling by Majorizing a</span>
@@ -859,17 +859,17 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span>
-            <span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-            <span class="n">n_uq</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-            <span class="n">metric</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="n">n_init</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
-            <span class="n">max_iter</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span>
-            <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-            <span class="n">eps</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span>
-            <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-            <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">dissimilarity</span><span class="o">=</span><span class="s2">&quot;euclidean&quot;</span><span class="p">,</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+        <span class="n">n_uq</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">metric</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">n_init</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+        <span class="n">max_iter</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">eps</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span>
+        <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">dissimilarity</span><span class="o">=</span><span class="s2">&quot;euclidean&quot;</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_components</span> <span class="o">=</span> <span class="n">n_components</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_uq</span> <span class="o">=</span> <span class="n">n_uq</span>

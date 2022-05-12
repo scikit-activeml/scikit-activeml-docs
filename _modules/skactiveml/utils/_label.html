@@ -314,9 +314,9 @@
         <span class="n">is_character_type</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">target_type</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">character</span><span class="p">)</span>
         <span class="n">is_number_type</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">target_type</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">)</span>
         <span class="k">if</span> <span class="p">(</span>
-                <span class="p">(</span><span class="n">is_character_type</span> <span class="ow">and</span> <span class="n">is_number</span><span class="p">)</span>
-                <span class="ow">or</span> <span class="p">(</span><span class="n">is_number_type</span> <span class="ow">and</span> <span class="n">is_character</span><span class="p">)</span>
-                <span class="ow">or</span> <span class="p">(</span><span class="n">is_object_type</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">is_None</span><span class="p">)</span>
+            <span class="p">(</span><span class="n">is_character_type</span> <span class="ow">and</span> <span class="n">is_number</span><span class="p">)</span>
+            <span class="ow">or</span> <span class="p">(</span><span class="n">is_number_type</span> <span class="ow">and</span> <span class="n">is_character</span><span class="p">)</span>
+            <span class="ow">or</span> <span class="p">(</span><span class="n">is_object_type</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">is_None</span><span class="p">)</span>
         <span class="p">):</span>
             <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;target object&quot;</span> <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="nb">str</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>

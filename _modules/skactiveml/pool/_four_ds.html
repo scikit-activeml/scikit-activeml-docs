@@ -218,7 +218,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span> <span class="n">lmbda</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">missing_label</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">lmbda</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">missing_label</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="n">missing_label</span><span class="o">=</span><span class="n">missing_label</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span>
@@ -226,15 +226,15 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">lmbda</span> <span class="o">=</span> <span class="n">lmbda</span>
 
 <div class="viewcode-block" id="FourDs.query"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.FourDs.html#skactiveml.pool.FourDs.query">[docs]</a>    <span class="k">def</span> <span class="nf">query</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span>
-            <span class="n">X</span><span class="p">,</span>
-            <span class="n">y</span><span class="p">,</span>
-            <span class="n">clf</span><span class="p">,</span>
-            <span class="n">fit_clf</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">candidates</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">return_utilities</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-            <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">X</span><span class="p">,</span>
+        <span class="n">y</span><span class="p">,</span>
+        <span class="n">clf</span><span class="p">,</span>
+        <span class="n">fit_clf</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">candidates</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">return_utilities</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Determines for which candidate samples labels are to be queried.</span>
 
@@ -341,13 +341,13 @@
             <span class="p">(</span><span class="n">P_cand_sorted</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mf">1.0e-5</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">P_cand_sorted</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="mf">1.0e-5</span><span class="p">)</span>
         <span class="p">)</span>
         <span class="n">distance_cand</span> <span class="o">=</span> <span class="p">(</span><span class="n">distance_cand</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">distance_cand</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.0e-5</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span>
-                <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">distance_cand</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">distance_cand</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.0e-5</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">distance_cand</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">distance_cand</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.0e-5</span>
         <span class="p">)</span>
 
         <span class="c1"># Compute densities according to Eq. 10 in [1].</span>
         <span class="n">density_cand</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">mixture_model_</span><span class="o">.</span><span class="n">score_samples</span><span class="p">(</span><span class="n">X_cand</span><span class="p">)</span>
         <span class="n">density_cand</span> <span class="o">=</span> <span class="p">(</span><span class="n">density_cand</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">density_cand</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.0e-5</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span>
-                <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">density_cand</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">density_cand</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.0e-5</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">density_cand</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">density_cand</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.0e-5</span>
         <span class="p">)</span>
 
         <span class="c1"># Compute distributions according to Eq. 11 in [1].</span>
@@ -376,9 +376,9 @@
         <span class="c1"># Compute utilities to select sample.</span>
         <span class="n">utilities_cand</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">batch_size</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_cand</span><span class="p">)),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
         <span class="n">utilities_cand</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
-                <span class="n">alpha</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">distance_cand</span><span class="p">)</span>
-                <span class="o">+</span> <span class="n">beta</span> <span class="o">*</span> <span class="n">density_cand</span>
-                <span class="o">+</span> <span class="n">rho</span> <span class="o">*</span> <span class="n">distribution_cand</span>
+            <span class="n">alpha</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">distance_cand</span><span class="p">)</span>
+            <span class="o">+</span> <span class="n">beta</span> <span class="o">*</span> <span class="n">density_cand</span>
+            <span class="o">+</span> <span class="n">rho</span> <span class="o">*</span> <span class="n">distribution_cand</span>
         <span class="p">)</span>
         <span class="n">query_indices_cand</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">rand_argmax</span><span class="p">(</span>
             <span class="n">utilities_cand</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">random_state_</span>
@@ -400,9 +400,9 @@
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">):</span>
                 <span class="c1"># Update distributions according to Eq. 11 in [1].</span>
                 <span class="n">R_sum</span> <span class="o">=</span> <span class="p">(</span>
-                        <span class="n">R_cand</span>
-                        <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">R_cand</span><span class="p">[</span><span class="n">is_selected</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-                        <span class="o">+</span> <span class="n">R_lbld_sum</span>
+                    <span class="n">R_cand</span>
+                    <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">R_cand</span><span class="p">[</span><span class="n">is_selected</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                    <span class="o">+</span> <span class="n">R_lbld_sum</span>
                 <span class="p">)</span>
                 <span class="n">R_mean</span> <span class="o">=</span> <span class="n">R_sum</span> <span class="o">/</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">R_lbld</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">query_indices_cand</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
                 <span class="n">distribution_cand</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">mixture_model_</span><span class="o">.</span><span class="n">weights_</span> <span class="o">-</span> <span class="n">R_mean</span>
@@ -416,15 +416,15 @@
                     <span class="n">density_cand</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">density_cand</span><span class="p">[</span><span class="n">is_selected</span><span class="p">])</span>
                 <span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">query_indices_cand</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
                 <span class="n">diversity_cand</span> <span class="o">=</span> <span class="p">(</span><span class="n">diversity_cand</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">diversity_cand</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span>
-                        <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">diversity_cand</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">diversity_cand</span><span class="p">)</span>
+                    <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">diversity_cand</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">diversity_cand</span><span class="p">)</span>
                 <span class="p">)</span>
 
                 <span class="c1"># Compute utilities to select sample.</span>
                 <span class="n">utilities_cand</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
-                        <span class="n">alpha</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">distance_cand</span><span class="p">)</span>
-                        <span class="o">+</span> <span class="n">beta</span> <span class="o">*</span> <span class="n">density_cand</span>
-                        <span class="o">+</span> <span class="n">lmbda</span> <span class="o">*</span> <span class="n">diversity_cand</span>
-                        <span class="o">+</span> <span class="n">rho</span> <span class="o">*</span> <span class="n">distribution_cand</span>
+                    <span class="n">alpha</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">distance_cand</span><span class="p">)</span>
+                    <span class="o">+</span> <span class="n">beta</span> <span class="o">*</span> <span class="n">density_cand</span>
+                    <span class="o">+</span> <span class="n">lmbda</span> <span class="o">*</span> <span class="n">diversity_cand</span>
+                    <span class="o">+</span> <span class="n">rho</span> <span class="o">*</span> <span class="n">distribution_cand</span>
                 <span class="p">)</span>
                 <span class="n">utilities_cand</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">is_selected</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
                 <span class="n">query_indices_cand</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">rand_argmax</span><span class="p">(</span>
