@@ -176,22 +176,22 @@
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="c1"># Author: Marek Herde &lt;marek.herde@uni-kassel.de&gt;</span>
-
-
 <span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
 <span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">sklearn.base</span> <span class="kn">import</span> <span class="n">MetaEstimatorMixin</span><span class="p">,</span> <span class="n">is_classifier</span>
-<span class="kn">from</span> <span class="nn">sklearn.utils.metaestimators</span> <span class="kn">import</span> <span class="n">if_delegate_has_method</span>
 <span class="kn">from</span> <span class="nn">sklearn.utils.validation</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">check_is_fitted</span><span class="p">,</span>
     <span class="n">check_array</span><span class="p">,</span>
     <span class="n">has_fit_parameter</span><span class="p">,</span>
 <span class="p">)</span>
+<span class="kn">from</span> <span class="nn">sklearn.utils</span> <span class="kn">import</span> <span class="n">metaestimators</span>
 
 <span class="kn">from</span> <span class="nn">..base</span> <span class="kn">import</span> <span class="n">SkactivemlClassifier</span>
 <span class="kn">from</span> <span class="nn">..utils</span> <span class="kn">import</span> <span class="n">rand_argmin</span><span class="p">,</span> <span class="n">MISSING_LABEL</span><span class="p">,</span> <span class="n">is_labeled</span>
+<span class="kn">from</span> <span class="nn">..utils._functions</span> <span class="kn">import</span> <span class="n">_available_if</span>
 
 
 <div class="viewcode-block" id="SklearnClassifier"><a class="viewcode-back" href="../../../generated/api/skactiveml.classifier.SklearnClassifier.html#skactiveml.classifier.SklearnClassifier">[docs]</a><span class="k">class</span> <span class="nc">SklearnClassifier</span><span class="p">(</span><span class="n">SkactivemlClassifier</span><span class="p">,</span> <span class="n">MetaEstimatorMixin</span><span class="p">):</span>
@@ -276,7 +276,7 @@
             <span class="o">**</span><span class="n">fit_kwargs</span><span class="p">,</span>
         <span class="p">)</span></div>
 
-<div class="viewcode-block" id="SklearnClassifier.partial_fit"><a class="viewcode-back" href="../../../generated/api/skactiveml.classifier.SklearnClassifier.html#skactiveml.classifier.SklearnClassifier.partial_fit">[docs]</a>    <span class="nd">@if_delegate_has_method</span><span class="p">(</span><span class="n">delegate</span><span class="o">=</span><span class="s2">&quot;estimator&quot;</span><span class="p">)</span>
+<div class="viewcode-block" id="SklearnClassifier.partial_fit"><a class="viewcode-back" href="../../../generated/api/skactiveml.classifier.SklearnClassifier.html#skactiveml.classifier.SklearnClassifier.partial_fit">[docs]</a>    <span class="nd">@_available_if</span><span class="p">(</span><span class="s2">&quot;partial_fit&quot;</span><span class="p">,</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">metaestimators</span><span class="p">,</span> <span class="s2">&quot;available_if&quot;</span><span class="p">))</span>
     <span class="k">def</span> <span class="nf">partial_fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Partially fitting the model using X as training data and y as class</span>
 <span class="sd">        labels.</span>
@@ -346,7 +346,7 @@
         <span class="n">y_pred</span> <span class="o">=</span> <span class="n">y_pred</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">classes_</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">y_pred</span></div>
 
-<div class="viewcode-block" id="SklearnClassifier.predict_proba"><a class="viewcode-back" href="../../../generated/api/skactiveml.classifier.SklearnClassifier.html#skactiveml.classifier.SklearnClassifier.predict_proba">[docs]</a>    <span class="nd">@if_delegate_has_method</span><span class="p">(</span><span class="n">delegate</span><span class="o">=</span><span class="s2">&quot;estimator&quot;</span><span class="p">)</span>
+<div class="viewcode-block" id="SklearnClassifier.predict_proba"><a class="viewcode-back" href="../../../generated/api/skactiveml.classifier.SklearnClassifier.html#skactiveml.classifier.SklearnClassifier.predict_proba">[docs]</a>    <span class="nd">@_available_if</span><span class="p">(</span><span class="s2">&quot;predict_proba&quot;</span><span class="p">,</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">metaestimators</span><span class="p">,</span> <span class="s2">&quot;available_if&quot;</span><span class="p">))</span>
     <span class="k">def</span> <span class="nf">predict_proba</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="o">**</span><span class="n">predict_proba_kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return probability estimates for the input data X.</span>
 

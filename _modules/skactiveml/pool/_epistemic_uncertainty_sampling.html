@@ -182,7 +182,7 @@
 <span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">minimize_scalar</span><span class="p">,</span> <span class="n">minimize</span><span class="p">,</span> <span class="n">LinearConstraint</span>
 <span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">clone</span>
 <span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
-<span class="kn">from</span> <span class="nn">sklearn.linear_model._logistic</span> <span class="kn">import</span> <span class="n">_logistic_loss</span>
+<span class="kn">from</span> <span class="nn">sklearn.utils.extmath</span> <span class="kn">import</span> <span class="n">safe_sparse_dot</span><span class="p">,</span> <span class="n">log_logistic</span>
 
 <span class="kn">from</span> <span class="nn">..base</span> <span class="kn">import</span> <span class="n">SingleAnnotatorPoolQueryStrategy</span><span class="p">,</span> <span class="n">SkactivemlClassifier</span>
 <span class="kn">from</span> <span class="nn">..classifier</span> <span class="kn">import</span> <span class="n">SklearnClassifier</span><span class="p">,</span> <span class="n">ParzenWindowClassifier</span>
@@ -793,6 +793,90 @@
         <span class="n">func</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="n">x0</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;SLSQP&quot;</span><span class="p">,</span> <span class="n">constraints</span><span class="o">=</span><span class="n">constraints</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="n">args</span>
     <span class="p">)</span>
     <span class="k">return</span> <span class="n">res</span><span class="o">.</span><span class="n">x</span>
+
+
+<span class="k">def</span> <span class="nf">_logistic_loss</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Computes the logistic loss. This function is a copy taken from</span>
+<span class="sd">    https://github.com/scikit-learn/scikit-learn/blob/1.0.X/sklearn/</span>
+<span class="sd">    linear_model/_logistic.py.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    w : ndarray of shape (n_features,) or (n_features + 1,)</span>
+<span class="sd">        Coefficient vector.</span>
+<span class="sd">    X : {array-like, sparse matrix} of shape (n_samples, n_features)</span>
+<span class="sd">        Training data.</span>
+<span class="sd">    y : ndarray of shape (n_samples,)</span>
+<span class="sd">        Array of labels.</span>
+<span class="sd">    alpha : float</span>
+<span class="sd">        Regularization parameter. alpha is equal to 1 / C.</span>
+<span class="sd">    sample_weight : array-like of shape (n_samples,) default=None</span>
+<span class="sd">        Array of weights that are assigned to individual samples.</span>
+<span class="sd">        If not provided, then each sample is given unit weight.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    out : float</span>
+<span class="sd">        Logistic loss.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    [1] Pedregosa F, Varoquaux G, Gramfort A, Michel V, Thirion B,</span>
+<span class="sd">        Grisel O, Blondel M, Prettenhofer P, Weiss R, Dubourg V, Vanderplas J.</span>
+<span class="sd">        &quot;Scikit-learn: Machine learning in Python.&quot; Journal of Machine</span>
+<span class="sd">        Learning Research. 2011.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">w</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">yz</span> <span class="o">=</span> <span class="n">_intercept_dot</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">sample_weight</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">sample_weight</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="c1"># Logistic loss is the negative of the log of the logistic function.</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">sample_weight</span> <span class="o">*</span> <span class="n">log_logistic</span><span class="p">(</span><span class="n">yz</span><span class="p">))</span>
+    <span class="n">out</span> <span class="o">+=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">out</span>
+
+
+<span class="k">def</span> <span class="nf">_intercept_dot</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Computes y * np.dot(X, w). It takes into consideration if the intercept</span>
+<span class="sd">    should be fit or not. This function is a copy taken from</span>
+<span class="sd">    https://github.com/scikit-learn/scikit-learn/blob/1.0.X/sklearn/</span>
+<span class="sd">    linear_model/_logistic.py.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    w : ndarray of shape (n_features,) or (n_features + 1,)</span>
+<span class="sd">        Coefficient vector.</span>
+<span class="sd">    X : {array-like, sparse matrix} of shape (n_samples, n_features)</span>
+<span class="sd">        Training data.</span>
+<span class="sd">    y : ndarray of shape (n_samples,)</span>
+<span class="sd">        Array of labels.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    w : ndarray of shape (n_features,)</span>
+<span class="sd">        Coefficient vector without the intercept weight (w[-1]) if the</span>
+<span class="sd">        intercept should be fit. Unchanged otherwise.</span>
+<span class="sd">    c : float</span>
+<span class="sd">        The intercept.</span>
+<span class="sd">    yz : float</span>
+<span class="sd">        y * np.dot(X, w).</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    [1] Pedregosa F, Varoquaux G, Gramfort A, Michel V, Thirion B,</span>
+<span class="sd">        Grisel O, Blondel M, Prettenhofer P, Weiss R, Dubourg V, Vanderplas J.</span>
+<span class="sd">        &quot;Scikit-learn: Machine learning in Python.&quot; Journal of Machine</span>
+<span class="sd">        Learning Research. 2011.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">if</span> <span class="n">w</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">w</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">w</span> <span class="o">=</span> <span class="n">w</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">z</span> <span class="o">=</span> <span class="n">safe_sparse_dot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span> <span class="o">+</span> <span class="n">c</span>
+    <span class="n">yz</span> <span class="o">=</span> <span class="n">y</span> <span class="o">*</span> <span class="n">z</span>
+    <span class="k">return</span> <span class="n">w</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">yz</span>
 </pre></div>
 
               </div>
