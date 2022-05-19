@@ -36,8 +36,8 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Epistemic Uncertainty Sampling" href="plot_EpistemicUncertaintySampling_Epistemic_Uncertainty_Sampling.html" />
-    <link rel="prev" title="Active Learning with Cost Embedding" href="plot_CostEmbeddingAL_Active_Learning_with_Cost_Embedding_%28ALCE%29.html" />
+    <link rel="next" title="Uncertainty Sampling with Margin" href="plot_UncertaintySampling_Uncertainty_Sampling_with_Margin.html" />
+    <link rel="prev" title="Epistemic Uncertainty Sampling" href="plot_EpistemicUncertaintySampling_Epistemic_Uncertainty_Sampling.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -162,17 +162,17 @@
   </a>
  </li>
 </ul>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Uncertainty Sampling with Entropy
-  </a>
- </li>
-</ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="plot_EpistemicUncertaintySampling_Epistemic_Uncertainty_Sampling.html">
    Epistemic Uncertainty Sampling
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Uncertainty Sampling with Entropy
   </a>
  </li>
 </ul>
@@ -565,42 +565,42 @@ input[type=range].anim-slider {
 </style>
 
 <div class="animation">
-  <img id="_anim_img12c0173b34a2428ab274e5382cc58c25">
+  <img id="_anim_img8dc694307d074ca5b95dbdb420f04f4e">
   <div class="anim-controls">
-    <input id="_anim_slider12c0173b34a2428ab274e5382cc58c25" type="range" class="anim-slider"
+    <input id="_anim_slider8dc694307d074ca5b95dbdb420f04f4e" type="range" class="anim-slider"
            name="points" min="0" max="1" step="1" value="0"
-           oninput="anim12c0173b34a2428ab274e5382cc58c25.set_frame(parseInt(this.value));">
+           oninput="anim8dc694307d074ca5b95dbdb420f04f4e.set_frame(parseInt(this.value));">
     <div class="anim-buttons">
-      <button title="Decrease speed" aria-label="Decrease speed" onclick="anim12c0173b34a2428ab274e5382cc58c25.slower()">
+      <button title="Decrease speed" aria-label="Decrease speed" onclick="anim8dc694307d074ca5b95dbdb420f04f4e.slower()">
           <i class="fa fa-minus"></i></button>
-      <button title="First frame" aria-label="First frame" onclick="anim12c0173b34a2428ab274e5382cc58c25.first_frame()">
+      <button title="First frame" aria-label="First frame" onclick="anim8dc694307d074ca5b95dbdb420f04f4e.first_frame()">
         <i class="fa fa-fast-backward"></i></button>
-      <button title="Previous frame" aria-label="Previous frame" onclick="anim12c0173b34a2428ab274e5382cc58c25.previous_frame()">
+      <button title="Previous frame" aria-label="Previous frame" onclick="anim8dc694307d074ca5b95dbdb420f04f4e.previous_frame()">
           <i class="fa fa-step-backward"></i></button>
-      <button title="Play backwards" aria-label="Play backwards" onclick="anim12c0173b34a2428ab274e5382cc58c25.reverse_animation()">
+      <button title="Play backwards" aria-label="Play backwards" onclick="anim8dc694307d074ca5b95dbdb420f04f4e.reverse_animation()">
           <i class="fa fa-play fa-flip-horizontal"></i></button>
-      <button title="Pause" aria-label="Pause" onclick="anim12c0173b34a2428ab274e5382cc58c25.pause_animation()">
+      <button title="Pause" aria-label="Pause" onclick="anim8dc694307d074ca5b95dbdb420f04f4e.pause_animation()">
           <i class="fa fa-pause"></i></button>
-      <button title="Play" aria-label="Play" onclick="anim12c0173b34a2428ab274e5382cc58c25.play_animation()">
+      <button title="Play" aria-label="Play" onclick="anim8dc694307d074ca5b95dbdb420f04f4e.play_animation()">
           <i class="fa fa-play"></i></button>
-      <button title="Next frame" aria-label="Next frame" onclick="anim12c0173b34a2428ab274e5382cc58c25.next_frame()">
+      <button title="Next frame" aria-label="Next frame" onclick="anim8dc694307d074ca5b95dbdb420f04f4e.next_frame()">
           <i class="fa fa-step-forward"></i></button>
-      <button title="Last frame" aria-label="Last frame" onclick="anim12c0173b34a2428ab274e5382cc58c25.last_frame()">
+      <button title="Last frame" aria-label="Last frame" onclick="anim8dc694307d074ca5b95dbdb420f04f4e.last_frame()">
           <i class="fa fa-fast-forward"></i></button>
-      <button title="Increase speed" aria-label="Increase speed" onclick="anim12c0173b34a2428ab274e5382cc58c25.faster()">
+      <button title="Increase speed" aria-label="Increase speed" onclick="anim8dc694307d074ca5b95dbdb420f04f4e.faster()">
           <i class="fa fa-plus"></i></button>
     </div>
-    <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_select12c0173b34a2428ab274e5382cc58c25"
+    <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_select8dc694307d074ca5b95dbdb420f04f4e"
           class="anim-state">
-      <input type="radio" name="state" value="once" id="_anim_radio1_12c0173b34a2428ab274e5382cc58c25"
+      <input type="radio" name="state" value="once" id="_anim_radio1_8dc694307d074ca5b95dbdb420f04f4e"
              >
-      <label for="_anim_radio1_12c0173b34a2428ab274e5382cc58c25">Once</label>
-      <input type="radio" name="state" value="loop" id="_anim_radio2_12c0173b34a2428ab274e5382cc58c25"
+      <label for="_anim_radio1_8dc694307d074ca5b95dbdb420f04f4e">Once</label>
+      <input type="radio" name="state" value="loop" id="_anim_radio2_8dc694307d074ca5b95dbdb420f04f4e"
              checked>
-      <label for="_anim_radio2_12c0173b34a2428ab274e5382cc58c25">Loop</label>
-      <input type="radio" name="state" value="reflect" id="_anim_radio3_12c0173b34a2428ab274e5382cc58c25"
+      <label for="_anim_radio2_8dc694307d074ca5b95dbdb420f04f4e">Loop</label>
+      <input type="radio" name="state" value="reflect" id="_anim_radio3_8dc694307d074ca5b95dbdb420f04f4e"
              >
-      <label for="_anim_radio3_12c0173b34a2428ab274e5382cc58c25">Reflect</label>
+      <label for="_anim_radio3_8dc694307d074ca5b95dbdb420f04f4e">Reflect</label>
     </form>
   </div>
 </div>
@@ -610,9 +610,9 @@ input[type=range].anim-slider {
   /* Instantiate the Animation class. */
   /* The IDs given should match those used in the template above. */
   (function() {
-    var img_id = "_anim_img12c0173b34a2428ab274e5382cc58c25";
-    var slider_id = "_anim_slider12c0173b34a2428ab274e5382cc58c25";
-    var loop_select_id = "_anim_loop_select12c0173b34a2428ab274e5382cc58c25";
+    var img_id = "_anim_img8dc694307d074ca5b95dbdb420f04f4e";
+    var slider_id = "_anim_slider8dc694307d074ca5b95dbdb420f04f4e";
+    var loop_select_id = "_anim_loop_select8dc694307d074ca5b95dbdb420f04f4e";
     var frames = new Array(25);
 
   frames[0] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
@@ -18393,7 +18393,7 @@ ETkcEz4iIiIih2PCR0RERORwTPiIiIiIHI4JHxEREZHDMeEjIiIicjgmfEREREQOx4SPiIiIyOGY\
     /* set a timeout to make sure all the above elements are created before
        the object is initialized. */
     setTimeout(function() {
-        anim12c0173b34a2428ab274e5382cc58c25 = new Animation(frames, img_id, slider_id, 1000.0,
+        anim8dc694307d074ca5b95dbdb420f04f4e = new Animation(frames, img_id, slider_id, 1000.0,
                                  loop_select_id);
     }, 0);
   })()
@@ -18407,7 +18407,7 @@ ETkcEz4iIiIih2PCR0RERORwTPiIiIiIHI4JHxEREZHDMeEjIiIicjgmfEREREQOx4SPiIiIyOGY\
 </dd>
 </dl>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  5.909 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  6.006 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-generated-sphinx-gallery-examples-pool-plot-uncertaintysampling-uncertainty-sampling-with-entropy-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../../_downloads/2926753bfe83be1130ecace5f1760e5a/plot_UncertaintySampling_Uncertainty_Sampling_with_Entropy.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_UncertaintySampling_Uncertainty_Sampling_with_Entropy.py</span></code></a></p>
@@ -18425,17 +18425,17 @@ ETkcEz4iIiIih2PCR0RERORwTPiIiIiIHI4JHxEREZHDMeEjIiIicjgmfEREREQOx4SPiIiIyOGY\
               
               <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="plot_CostEmbeddingAL_Active_Learning_with_Cost_Embedding_%28ALCE%29.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="plot_EpistemicUncertaintySampling_Epistemic_Uncertainty_Sampling.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Active Learning with Cost Embedding</p>
+            <p class="prev-next-title">Epistemic Uncertainty Sampling</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="plot_EpistemicUncertaintySampling_Epistemic_Uncertainty_Sampling.html" title="next page">
+    <a class='right-next' id="next-link" href="plot_UncertaintySampling_Uncertainty_Sampling_with_Margin.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Epistemic Uncertainty Sampling</p>
+        <p class="prev-next-title">Uncertainty Sampling with Margin</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
