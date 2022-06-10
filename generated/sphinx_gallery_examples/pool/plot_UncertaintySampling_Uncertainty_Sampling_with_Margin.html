@@ -7,12 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Uncertainty Sampling with Margin &#8212; scikit-activeml latest documentation</title>
-    
-  <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<script>
+  document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+  document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
+</script>
 
-    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+
+
   <link rel="stylesheet"
     href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
   <link rel="preload" as="font" type="font/woff2" crossorigin
@@ -25,9 +29,9 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css" />
-    
+
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695">
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
@@ -36,36 +40,43 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Uncertainty Sampling with Least-Confidence" href="plot_UncertaintySampling_Uncertainty_Sampling_with_Least-Confidence.html" />
-    <link rel="prev" title="Uncertainty Sampling with Entropy" href="plot_UncertaintySampling_Uncertainty_Sampling_with_Entropy.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+    <link rel="next" title="Querying Informative and Representative Examples" href="plot_Quire_Querying_Informative_and_Representative_Examples_%28QUIRE%29.html" />
+    <link rel="prev" title="Uncertainty Sampling with Least-Confidence" href="plot_UncertaintySampling_Uncertainty_Sampling_with_Least-Confidence.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="docsearch:language" content="None">
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+    <div class="bd-header-announcement container-fluid" id="banner">
+      
+
+    </div>
 
     
-    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+    <nav class="bd-header navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="bd-header__inner container-xl">
 
   <div id="navbar-start">
     
     
+  
 
-<a class="navbar-brand" href="../../../index.html">
-  <img src="../../../_static/scikit-activeml-logo.png" class="logo" alt="logo">
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+    <img src="../../../_static/scikit-activeml-logo.png" class="logo__image only-light" alt="Logo image">
+    <img src="../../../_static/scikit-activeml-logo.png" class="logo__image only-dark" alt="Logo image">
+  
+  
 </a>
-
-
     
   </div>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+    <span class="fas fa-bars"></span>
   </button>
 
   
@@ -119,6 +130,14 @@
     <div id="navbar-end">
       
       <div class="navbar-end-item">
+        <span id="theme-switch" class="btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
         <ul id="navbar-icon-links" class="navbar-nav" aria-label="Quick Links">
         <li class="nav-item">
           <a class="nav-link" href="https://github.com/scikit-activeml/scikit-activeml" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
@@ -137,13 +156,13 @@
     </nav>
     
 
-    <div class="container-xl">
-      <div class="row">
+    <div class="bd-container container-xl">
+      <div class="bd-container__inner row">
           
-            
-            <!-- Only show if we have sidebars configured, else just a small margin  -->
-            <div class="col-12 col-md-3 bd-sidebar">
-              <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="bd-sidebar-primary col-12 col-md-3 bd-sidebar">
+  <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
@@ -176,17 +195,17 @@
   </a>
  </li>
 </ul>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Uncertainty Sampling with Margin
-  </a>
- </li>
-</ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="plot_UncertaintySampling_Uncertainty_Sampling_with_Least-Confidence.html">
    Uncertainty Sampling with Least-Confidence
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Uncertainty Sampling with Margin
   </a>
  </li>
 </ul>
@@ -222,6 +241,13 @@
  <li class="toctree-l1">
   <a class="reference internal" href="plot_UncertaintySampling_Expected_Average_Precision.html">
    Expected Average Precision
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="plot_DiscriminativeAL_Discriminative_Active_Learning_%28DAL%29.html">
+   Discriminative Active Learning
   </a>
  </li>
 </ul>
@@ -270,40 +296,39 @@
 
   </div>
 </nav>
-              </div>
-              <div class="sidebar-end-items">
-              </div>
-            </div>
-            
-          
+  </div>
+  <div class="sidebar-end-items">
+  </div>
+</div>
+
 
           
-          <div class="d-none d-xl-block col-xl-2 bd-toc">
-            
-              
-              <div class="toc-item">
-                
+
+
+<div class="bd-sidebar-secondary d-none d-xl-block col-xl-2 bd-toc">
+  
+    
+    <div class="toc-item">
+      
 
 <nav id="bd-toc-nav">
     
 </nav>
-              </div>
-              
-              <div class="toc-item">
-                
-              </div>
-              
-            
-          </div>
-          
+    </div>
+    
+    <div class="toc-item">
+      
+    </div>
+    
+  
+</div>
+
 
           
           
-            
-          
-          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+          <div class="bd-content col-12 col-md-9 col-xl-7">
               
-              <div>
+              <article class="bd-article" role="main">
                 
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
@@ -565,42 +590,42 @@ input[type=range].anim-slider {
 </style>
 
 <div class="animation">
-  <img id="_anim_img9152cd3d9a1d469296196ae92cca99fa">
+  <img id="_anim_imgf9e0c17edb75403296456b51e5b4f0df">
   <div class="anim-controls">
-    <input id="_anim_slider9152cd3d9a1d469296196ae92cca99fa" type="range" class="anim-slider"
+    <input id="_anim_sliderf9e0c17edb75403296456b51e5b4f0df" type="range" class="anim-slider"
            name="points" min="0" max="1" step="1" value="0"
-           oninput="anim9152cd3d9a1d469296196ae92cca99fa.set_frame(parseInt(this.value));">
+           oninput="animf9e0c17edb75403296456b51e5b4f0df.set_frame(parseInt(this.value));">
     <div class="anim-buttons">
-      <button title="Decrease speed" aria-label="Decrease speed" onclick="anim9152cd3d9a1d469296196ae92cca99fa.slower()">
+      <button title="Decrease speed" aria-label="Decrease speed" onclick="animf9e0c17edb75403296456b51e5b4f0df.slower()">
           <i class="fa fa-minus"></i></button>
-      <button title="First frame" aria-label="First frame" onclick="anim9152cd3d9a1d469296196ae92cca99fa.first_frame()">
+      <button title="First frame" aria-label="First frame" onclick="animf9e0c17edb75403296456b51e5b4f0df.first_frame()">
         <i class="fa fa-fast-backward"></i></button>
-      <button title="Previous frame" aria-label="Previous frame" onclick="anim9152cd3d9a1d469296196ae92cca99fa.previous_frame()">
+      <button title="Previous frame" aria-label="Previous frame" onclick="animf9e0c17edb75403296456b51e5b4f0df.previous_frame()">
           <i class="fa fa-step-backward"></i></button>
-      <button title="Play backwards" aria-label="Play backwards" onclick="anim9152cd3d9a1d469296196ae92cca99fa.reverse_animation()">
+      <button title="Play backwards" aria-label="Play backwards" onclick="animf9e0c17edb75403296456b51e5b4f0df.reverse_animation()">
           <i class="fa fa-play fa-flip-horizontal"></i></button>
-      <button title="Pause" aria-label="Pause" onclick="anim9152cd3d9a1d469296196ae92cca99fa.pause_animation()">
+      <button title="Pause" aria-label="Pause" onclick="animf9e0c17edb75403296456b51e5b4f0df.pause_animation()">
           <i class="fa fa-pause"></i></button>
-      <button title="Play" aria-label="Play" onclick="anim9152cd3d9a1d469296196ae92cca99fa.play_animation()">
+      <button title="Play" aria-label="Play" onclick="animf9e0c17edb75403296456b51e5b4f0df.play_animation()">
           <i class="fa fa-play"></i></button>
-      <button title="Next frame" aria-label="Next frame" onclick="anim9152cd3d9a1d469296196ae92cca99fa.next_frame()">
+      <button title="Next frame" aria-label="Next frame" onclick="animf9e0c17edb75403296456b51e5b4f0df.next_frame()">
           <i class="fa fa-step-forward"></i></button>
-      <button title="Last frame" aria-label="Last frame" onclick="anim9152cd3d9a1d469296196ae92cca99fa.last_frame()">
+      <button title="Last frame" aria-label="Last frame" onclick="animf9e0c17edb75403296456b51e5b4f0df.last_frame()">
           <i class="fa fa-fast-forward"></i></button>
-      <button title="Increase speed" aria-label="Increase speed" onclick="anim9152cd3d9a1d469296196ae92cca99fa.faster()">
+      <button title="Increase speed" aria-label="Increase speed" onclick="animf9e0c17edb75403296456b51e5b4f0df.faster()">
           <i class="fa fa-plus"></i></button>
     </div>
-    <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_select9152cd3d9a1d469296196ae92cca99fa"
+    <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_selectf9e0c17edb75403296456b51e5b4f0df"
           class="anim-state">
-      <input type="radio" name="state" value="once" id="_anim_radio1_9152cd3d9a1d469296196ae92cca99fa"
+      <input type="radio" name="state" value="once" id="_anim_radio1_f9e0c17edb75403296456b51e5b4f0df"
              >
-      <label for="_anim_radio1_9152cd3d9a1d469296196ae92cca99fa">Once</label>
-      <input type="radio" name="state" value="loop" id="_anim_radio2_9152cd3d9a1d469296196ae92cca99fa"
+      <label for="_anim_radio1_f9e0c17edb75403296456b51e5b4f0df">Once</label>
+      <input type="radio" name="state" value="loop" id="_anim_radio2_f9e0c17edb75403296456b51e5b4f0df"
              checked>
-      <label for="_anim_radio2_9152cd3d9a1d469296196ae92cca99fa">Loop</label>
-      <input type="radio" name="state" value="reflect" id="_anim_radio3_9152cd3d9a1d469296196ae92cca99fa"
+      <label for="_anim_radio2_f9e0c17edb75403296456b51e5b4f0df">Loop</label>
+      <input type="radio" name="state" value="reflect" id="_anim_radio3_f9e0c17edb75403296456b51e5b4f0df"
              >
-      <label for="_anim_radio3_9152cd3d9a1d469296196ae92cca99fa">Reflect</label>
+      <label for="_anim_radio3_f9e0c17edb75403296456b51e5b4f0df">Reflect</label>
     </form>
   </div>
 </div>
@@ -610,9 +635,9 @@ input[type=range].anim-slider {
   /* Instantiate the Animation class. */
   /* The IDs given should match those used in the template above. */
   (function() {
-    var img_id = "_anim_img9152cd3d9a1d469296196ae92cca99fa";
-    var slider_id = "_anim_slider9152cd3d9a1d469296196ae92cca99fa";
-    var loop_select_id = "_anim_loop_select9152cd3d9a1d469296196ae92cca99fa";
+    var img_id = "_anim_imgf9e0c17edb75403296456b51e5b4f0df";
+    var slider_id = "_anim_sliderf9e0c17edb75403296456b51e5b4f0df";
+    var loop_select_id = "_anim_loop_selectf9e0c17edb75403296456b51e5b4f0df";
     var frames = new Array(25);
 
   frames[0] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
@@ -19008,7 +19033,7 @@ mRwDPiIiIiKTY8BHREREZHIM+IiIiIhM7v8Dd32RG335YHAAAAAASUVORK5CYII=\
     /* set a timeout to make sure all the above elements are created before
        the object is initialized. */
     setTimeout(function() {
-        anim9152cd3d9a1d469296196ae92cca99fa = new Animation(frames, img_id, slider_id, 1000.0,
+        animf9e0c17edb75403296456b51e5b4f0df = new Animation(frames, img_id, slider_id, 1000.0,
                                  loop_select_id);
     }, 0);
   })()
@@ -19022,7 +19047,7 @@ mRwDPiIiIiKTY8BHREREZHIM+IiIiIhM7v8Dd32RG335YHAAAAAASUVORK5CYII=\
 </dd>
 </dl>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  5.950 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  8.483 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-generated-sphinx-gallery-examples-pool-plot-uncertaintysampling-uncertainty-sampling-with-margin-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../../_downloads/09b5fb4f463af28c2b992fcc028f18f1/plot_UncertaintySampling_Uncertainty_Sampling_with_Margin.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_UncertaintySampling_Uncertainty_Sampling_with_Margin.py</span></code></a></p>
@@ -19035,51 +19060,55 @@ mRwDPiIiIiKTY8BHREREZHIM+IiIiIhM7v8Dd32RG335YHAAAAAASUVORK5CYII=\
 </section>
 
 
-              </div>
+              </article>
               
-              
-              <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="plot_UncertaintySampling_Uncertainty_Sampling_with_Entropy.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Uncertainty Sampling with Entropy</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="plot_UncertaintySampling_Uncertainty_Sampling_with_Least-Confidence.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Uncertainty Sampling with Least-Confidence</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
-</div>
-              
-          </main>
-          
 
+              
+              <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="plot_UncertaintySampling_Uncertainty_Sampling_with_Least-Confidence.html" title="previous page">
+      <i class="fas fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Uncertainty Sampling with Least-Confidence</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="plot_Quire_Querying_Informative_and_Representative_Examples_%28QUIRE%29.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Querying Informative and Representative Examples</p>
+  </div>
+  <i class="fas fa-angle-right"></i>
+  </a>
+</div>
+              </footer>
+              
+          </div>
+          
       </div>
     </div>
+
+  
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-<footer class="footer mt-5 mt-md-0">
-  <div class="container">
-    
-    <div class="footer-item">
-      <p class="copyright">
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695"></script>
+
+<footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
     &copy; Copyright 2020.<br>
 </p>
-    </div>
-    
-    <div class="footer-item">
-      <p class="sphinx-version">
+  </div>
+  
+  <div class="footer-item">
+    <p class="sphinx-version">
 Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
 </p>
-    </div>
-    
   </div>
+  
+</div>
 </footer>
   </body>
 </html>
