@@ -592,8 +592,11 @@
 <h1>skactiveml.utils.check_type<a class="headerlink" href="#skactiveml-utils-check-type" title="Permalink to this headline">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="skactiveml.utils.check_type">
-<span class="sig-prename descclassname"><span class="pre">skactiveml.utils.</span></span><span class="sig-name descname"><span class="pre">check_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">target_types</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/utils/_validation.html#check_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.utils.check_type" title="Permalink to this definition">#</a></dt>
-<dd><p>Check if obj is one of the given types.</p>
+<span class="sig-prename descclassname"><span class="pre">skactiveml.utils.</span></span><span class="sig-name descname"><span class="pre">check_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">target_types</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_vals</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indicator_funcs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/utils/_validation.html#check_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.utils.check_type" title="Permalink to this definition">#</a></dt>
+<dd><p>Check if obj is one of the given types. It is also possible to allow
+specific values. Further it is possible to pass indicator functions
+that can also accept obj. Thereby obj must either have a correct type
+a correct value or be accepted by an indicator function.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
@@ -601,8 +604,12 @@
 </dd>
 <dt><strong>name: str</strong></dt><dd><p>The variable name of the object.</p>
 </dd>
-<dt><strong>target_types</strong><span class="classifier">iterable</span></dt><dd><p>The possible types. If a target_val in <cite>target_types</cite> is not of type
-<cite>type</cite> <cite>obj</cite> is allowed to be equal to the target_val.</p>
+<dt><strong>target_types</strong><span class="classifier">iterable</span></dt><dd><p>The possible types.</p>
+</dd>
+<dt><strong>target_vals</strong><span class="classifier">iterable, optional (default=None)</span></dt><dd><p>Possible further values that the object is allowed to equal.</p>
+</dd>
+<dt><strong>indicator_funcs</strong><span class="classifier">iterable, optional (default=None)</span></dt><dd><p>Possible further custom indicator (boolean) functions that accept
+the object by returning <cite>True</cite> if the object is passed as a parameter.</p>
 </dd>
 </dl>
 </dd>

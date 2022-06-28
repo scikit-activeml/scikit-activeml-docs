@@ -592,7 +592,7 @@
 <h1>skactiveml.stream.StreamProbabilisticAL<a class="headerlink" href="#skactiveml-stream-streamprobabilistical" title="Permalink to this headline">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="skactiveml.stream.StreamProbabilisticAL">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">skactiveml.stream.</span></span><span class="sig-name descname"><span class="pre">StreamProbabilisticAL</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">budget_manager</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">budget</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prior</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/stream/_stream_probabilistic_al.html#StreamProbabilisticAL"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.stream.StreamProbabilisticAL" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">skactiveml.stream.</span></span><span class="sig-name descname"><span class="pre">StreamProbabilisticAL</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">budget_manager</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">budget</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prior</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/stream/_stream_probabilistic_al.html#StreamProbabilisticAL"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.stream.StreamProbabilisticAL" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="skactiveml.base.SingleAnnotatorStreamQueryStrategy.html#skactiveml.base.SingleAnnotatorStreamQueryStrategy" title="skactiveml.base.SingleAnnotatorStreamQueryStrategy"><code class="xref py py-class docutils literal notranslate"><span class="pre">skactiveml.base.SingleAnnotatorStreamQueryStrategy</span></code></a></p>
 <p>Probabilistic Active Learning in Datastreams.</p>
 <p>Probabilistic Active Learning in Datastreams (StreamProbabilisticAL) is an
@@ -621,6 +621,16 @@ default budget.
 If both are given and the budget differs from budgetmanager.budget
 a warning is thrown.</p>
 </div></blockquote>
+</dd>
+<dt><strong>metric</strong><span class="classifier">str or callable, default=None</span></dt><dd><p>The metric must a be None or a valid kernel as defined by the function
+<cite>sklearn.metrics.pairwise.pairwise_kernels</cite>. The kernel is used to
+calculate the frequency of labels near the candidates and multiplied
+with the probabilities returned by the <cite>clf</cite> to get a kernel frequency
+estimate for each class.
+If metric is set to None, the <cite>predict_freq</cite> function of the <cite>clf</cite> will
+be used instead. If this is not defined, an Exception is raised.</p>
+</dd>
+<dt><strong>metric_dict</strong><span class="classifier">dict,</span></dt><dd><p>Any further parameters are passed directly to the kernel function.</p>
 </dd>
 <dt><strong>random_state</strong><span class="classifier">int, RandomState instance, default=None</span></dt><dd><p>Controls the randomness of the query strategy.</p>
 </dd>
@@ -657,7 +667,7 @@ Notes in Computer Science, vol 9385. Springer, Cham.</p>
 <td><p>Set the parameters of this estimator.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#skactiveml.stream.StreamProbabilisticAL.update" title="skactiveml.stream.StreamProbabilisticAL.update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code></a>(candidates, queried_indices[, ...])</p></td>
-<td><p>Updates the budget manager</p></td>
+<td><p>Updates the budget manager.</p></td>
 </tr>
 </tbody>
 </table>
@@ -686,10 +696,6 @@ contained subobjects that are estimators.</p>
 <dt class="sig sig-object py" id="skactiveml.stream.StreamProbabilisticAL.query">
 <span class="sig-name descname"><span class="pre">query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">candidates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fit_clf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">utility_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_utilities</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/stream/_stream_probabilistic_al.html#StreamProbabilisticAL.query"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.stream.StreamProbabilisticAL.query" title="Permalink to this definition">#</a></dt>
 <dd><p>Ask the query strategy which instances in candidates to acquire.</p>
-<p>Please note that, when the decisions from this function may differ from
-the final sampling, simulate=True can be set, so that the query
-strategy can be updated later with update(…) with the final sampling.
-This is especially helpful, when developing wrapper query strategies.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
@@ -697,7 +703,9 @@ This is especially helpful, when developing wrapper query strategies.</p>
 <dt><strong>(n_samples, n_features)</strong></dt><dd><p>The instances which may be queried. Sparse matrices are accepted
 only if they are supported by the base query strategy.</p>
 </dd>
-<dt><strong>clf</strong><span class="classifier">SkactivemlClassifier</span></dt><dd><p>Model implementing the methods <cite>fit</cite> and <cite>predict_freq</cite>.</p>
+<dt><strong>clf</strong><span class="classifier">SkactivemlClassifier</span></dt><dd><p>Model implementing the methods <cite>fit</cite> and <cite>predict_proba</cite>. If
+<cite>self.metric</cite> is None, the <cite>clf</cite> must also implement
+<cite>predict_freq</cite>.</p>
 </dd>
 <dt><strong>X</strong><span class="classifier">array-like of shape (n_samples, n_features), optional</span></dt><dd></dd>
 <dt><strong>(default=None)</strong></dt><dd><p>Input samples used to fit the classifier.</p>
@@ -706,9 +714,9 @@ only if they are supported by the base query strategy.</p>
 </dd>
 <dt><strong>sample_weight</strong><span class="classifier">array-like of shape (n_samples,) (default=None)</span></dt><dd><p>Sample weights for X, used to fit the clf.</p>
 </dd>
-<dt><strong>fit_clf</strong><span class="classifier">bool,</span></dt><dd><p>If true, refit the classifier also requires X and y to be given.</p>
+<dt><strong>fit_clf</strong><span class="classifier">bool,</span></dt><dd><p>If True, refit the classifier also requires X and y to be given.</p>
 </dd>
-<dt><strong>utility_weight: array-like of shape (n_candidate_samples), optional</strong></dt><dd></dd>
+<dt><strong>utility_weight</strong><span class="classifier">array-like of shape (n_candidate_samples), optional</span></dt><dd></dd>
 <dt><strong>(default=None)</strong></dt><dd><p>Densities for each sample in <cite>candidates</cite>.</p>
 </dd>
 <dt><strong>return_utilities</strong><span class="classifier">bool, optional</span></dt><dd><p>If true, also return the utilities based on the query strategy.
@@ -756,7 +764,7 @@ possible to update each component of a nested object.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="skactiveml.stream.StreamProbabilisticAL.update">
 <span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">candidates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">queried_indices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">budget_manager_param_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/stream/_stream_probabilistic_al.html#StreamProbabilisticAL.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.stream.StreamProbabilisticAL.update" title="Permalink to this definition">#</a></dt>
-<dd><p>Updates the budget manager</p>
+<dd><p>Updates the budget manager.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">

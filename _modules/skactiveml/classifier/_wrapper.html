@@ -685,12 +685,15 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_add_samples</span><span class="p">(</span><span class="s2">&quot;partial_fit&quot;</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">estimator</span><span class="p">,</span> <span class="s2">&quot;partial_fit&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">ignore_estimator_partial_fit</span><span class="p">:</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">estimator</span><span class="p">,</span> <span class="s2">&quot;partial_fit&quot;</span><span class="p">)</span>
+            <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">ignore_estimator_partial_fit</span>
+        <span class="p">):</span>
             <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-                    <span class="s2">&quot;The partial_fit method in estimator is used but the &quot;</span>
-                    <span class="s2">&quot;sliding window has no effect. To avoid this set &quot;</span>
-                    <span class="s2">&quot;`ignore_estimator_partial_fit`=True&quot;</span>
-                <span class="p">)</span>
+                <span class="s2">&quot;The partial_fit method in estimator is used but the &quot;</span>
+                <span class="s2">&quot;sliding window has no effect. To avoid this set &quot;</span>
+                <span class="s2">&quot;`ignore_estimator_partial_fit`=True&quot;</span>
+            <span class="p">)</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fit</span><span class="p">(</span>
                 <span class="s2">&quot;partial_fit&quot;</span><span class="p">,</span>
                 <span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span>
@@ -774,9 +777,7 @@
 
         <span class="k">return</span> <span class="bp">self</span>
 
-    <span class="k">def</span> <span class="nf">_validate_data</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">check_X_dict</span><span class="o">=</span><span class="kc">None</span>
-    <span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_validate_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">check_X_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="c1"># super._validate_data is not called because training with partial fit</span>
         <span class="c1"># with only one single available class in y leads to an error if</span>
         <span class="c1"># self.classes is not set, even though self.classes has no function in</span>
@@ -843,7 +844,8 @@
         <span class="n">_</span> <span class="o">=</span> <span class="n">is_labeled</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">missing_label</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">missing_label</span><span class="p">)</span>
 
         <span class="n">check_equal_missing_label</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">missing_label</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">missing_label</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">missing_label</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">missing_label</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="c1"># if self.classes=None or self.estimator.classes=None then no checks</span>
         <span class="c1"># are done if general test is removed it should be checked again</span>

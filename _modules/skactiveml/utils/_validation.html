@@ -735,7 +735,7 @@
             <span class="n">indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">indices</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">indices</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">check_type</span><span class="p">(</span><span class="n">dim</span><span class="p">,</span> <span class="s2">&quot;dim&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">,</span> <span class="s2">&quot;adaptive&quot;</span><span class="p">)</span>
+    <span class="n">check_type</span><span class="p">(</span><span class="n">dim</span><span class="p">,</span> <span class="s2">&quot;dim&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">target_vals</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;adaptive&quot;</span><span class="p">])</span>
     <span class="k">if</span> <span class="n">dim</span> <span class="o">==</span> <span class="s2">&quot;adaptive&quot;</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">indices</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
             <span class="n">dim</span> <span class="o">=</span> <span class="mi">0</span>
@@ -779,8 +779,13 @@
         <span class="k">return</span> <span class="n">indices</span></div>
 
 
-<div class="viewcode-block" id="check_type"><a class="viewcode-back" href="../../../generated/api/skactiveml.utils.check_type.html#skactiveml.utils.check_type">[docs]</a><span class="k">def</span> <span class="nf">check_type</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">*</span><span class="n">target_types</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Check if obj is one of the given types.</span>
+<div class="viewcode-block" id="check_type"><a class="viewcode-back" href="../../../generated/api/skactiveml.utils.check_type.html#skactiveml.utils.check_type">[docs]</a><span class="k">def</span> <span class="nf">check_type</span><span class="p">(</span>
+    <span class="n">obj</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">*</span><span class="n">target_types</span><span class="p">,</span> <span class="n">target_vals</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">indicator_funcs</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Check if obj is one of the given types. It is also possible to allow</span>
+<span class="sd">    specific values. Further it is possible to pass indicator functions</span>
+<span class="sd">    that can also accept obj. Thereby obj must either have a correct type</span>
+<span class="sd">    a correct value or be accepted by an indicator function.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -789,41 +794,63 @@
 <span class="sd">    name: str</span>
 <span class="sd">        The variable name of the object.</span>
 <span class="sd">    target_types : iterable</span>
-<span class="sd">        The possible types. If a target_val in `target_types` is not of type</span>
-<span class="sd">        `type` `obj` is allowed to be equal to the target_val.</span>
+<span class="sd">        The possible types.</span>
+<span class="sd">    target_vals : iterable, optional (default=None)</span>
+<span class="sd">        Possible further values that the object is allowed to equal.</span>
+<span class="sd">    indicator_funcs : iterable, optional (default=None)</span>
+<span class="sd">        Possible further custom indicator (boolean) functions that accept</span>
+<span class="sd">        the object by returning `True` if the object is passed as a parameter.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">target_vals</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="n">target_val</span>
-        <span class="k">for</span> <span class="n">target_val</span> <span class="ow">in</span> <span class="n">target_types</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">target_val</span><span class="p">,</span> <span class="nb">type</span><span class="p">)</span>
-    <span class="p">]</span>
-    <span class="n">target_types</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="n">target_type</span>
-        <span class="k">for</span> <span class="n">target_type</span> <span class="ow">in</span> <span class="n">target_types</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">target_type</span><span class="p">,</span> <span class="nb">type</span><span class="p">)</span>
-    <span class="p">]</span>
 
-    <span class="k">if</span> <span class="p">(</span>
-        <span class="nb">all</span><span class="p">(</span><span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">target_type</span><span class="p">)</span> <span class="k">for</span> <span class="n">target_type</span> <span class="ow">in</span> <span class="n">target_types</span><span class="p">)</span>
-        <span class="ow">and</span> <span class="n">obj</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">target_vals</span>
-    <span class="p">):</span>
+    <span class="n">target_vals</span> <span class="o">=</span> <span class="n">target_vals</span> <span class="k">if</span> <span class="n">target_vals</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">[]</span>
+    <span class="n">indicator_funcs</span> <span class="o">=</span> <span class="n">indicator_funcs</span> <span class="k">if</span> <span class="n">indicator_funcs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">[]</span>
 
-        <span class="n">error_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;`</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">` has type `</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span><span class="si">}</span><span class="s2">` but must have &quot;</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">target_types</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">error_str</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;type `</span><span class="si">{</span><span class="n">target_types</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">`&quot;</span>
-        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">target_types</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">3</span><span class="p">:</span>
-            <span class="n">error_str</span> <span class="o">+=</span> <span class="s2">&quot;type &quot;</span>
-            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">target_types</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
-                <span class="n">error_str</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;`</span><span class="si">{</span><span class="n">target_types</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2">`,&quot;</span>
-            <span class="n">error_str</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot; or `</span><span class="si">{</span><span class="n">target_types</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">target_types</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">`&quot;</span>
+    <span class="n">wrong_type</span> <span class="o">=</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">target_types</span><span class="p">)</span>
+    <span class="n">wrong_value</span> <span class="o">=</span> <span class="n">obj</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">target_vals</span>
+    <span class="n">wrong_index</span> <span class="o">=</span> <span class="nb">all</span><span class="p">(</span><span class="ow">not</span> <span class="n">i_func</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="k">for</span> <span class="n">i_func</span> <span class="ow">in</span> <span class="n">indicator_funcs</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">wrong_type</span> <span class="ow">and</span> <span class="n">wrong_value</span> <span class="ow">and</span> <span class="n">wrong_index</span><span class="p">:</span>
+
+        <span class="n">error_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;`</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">` &quot;</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">target_types</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">target_vals</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">error_str</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot; must&quot;</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">target_vals</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">target_types</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">error_str</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot; has type `</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span><span class="si">}</span><span class="s2">`, but must&quot;</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">target_vals</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">target_types</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">error_str</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot; has value `</span><span class="si">{</span><span class="n">obj</span><span class="si">}</span><span class="s2">`, but must&quot;</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">error_str</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;one of the following types: </span><span class="si">{</span><span class="nb">set</span><span class="p">(</span><span class="n">target_types</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="n">error_str</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot; has type `</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span><span class="si">}</span><span class="s2">` and value `</span><span class="si">{</span><span class="n">obj</span><span class="si">}</span><span class="s2">`, but must&quot;</span>
 
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">target_vals</span><span class="p">))</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">target_types</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">error_str</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot; have type `</span><span class="si">{</span><span class="n">target_types</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">`&quot;</span>
+        <span class="k">elif</span> <span class="mi">1</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">target_types</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">error_str</span> <span class="o">+=</span> <span class="s2">&quot; have type&quot;</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">target_types</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="n">error_str</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot; `</span><span class="si">{</span><span class="n">target_types</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2">`,&quot;</span>
+            <span class="n">error_str</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot; or `</span><span class="si">{</span><span class="n">target_types</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">target_types</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">`&quot;</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">target_types</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
             <span class="n">error_str</span> <span class="o">+=</span> <span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot; or equal one of the following values: </span><span class="si">{</span><span class="nb">set</span><span class="p">(</span><span class="n">target_vals</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="sa">f</span><span class="s2">&quot; have one of the following types: </span><span class="si">{</span><span class="nb">set</span><span class="p">(</span><span class="n">target_types</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
             <span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">target_vals</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">target_types</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">indicator_funcs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">error_str</span> <span class="o">+=</span> <span class="s2">&quot; or&quot;</span>
+            <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">target_types</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">indicator_funcs</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">error_str</span> <span class="o">+=</span> <span class="s2">&quot;,&quot;</span>
+            <span class="n">error_str</span> <span class="o">+=</span> <span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot; equal one of the following values: </span><span class="si">{</span><span class="nb">set</span><span class="p">(</span><span class="n">target_vals</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">indicator_funcs</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">target_types</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">target_vals</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">error_str</span> <span class="o">+=</span> <span class="s2">&quot; or&quot;</span>
+            <span class="n">error_str</span> <span class="o">+=</span> <span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot; be accepted by one of the following custom boolean &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;functions: </span><span class="si">{</span><span class="nb">set</span><span class="p">(</span><span class="n">i_f</span><span class="o">.</span><span class="vm">__name__</span> <span class="k">for</span> <span class="n">i_f</span> <span class="ow">in</span> <span class="n">indicator_funcs</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+
         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">error_str</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span><span class="p">)</span></div>
 
 
