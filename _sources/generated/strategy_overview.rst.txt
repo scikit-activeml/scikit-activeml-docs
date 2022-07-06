@@ -1,10 +1,148 @@
-=================
+#################
 Strategy Overview
-=================
+#################
 
-In the following you'll find summaries of all implemented "Query Strategies", based on the categorization of different papers.
+This is an overview of all implemented active learning strategies.
 
-.. toctree::
-   :maxdepth: 1
+You can use the following checkboxes to filter the tables below.
 
-   strategy_overview/strategy_overview-Settles2012
+.. raw:: html
+
+   <input type="checkbox" class="input-tag" value="regression">
+   <label>Regression</label>
+<input type="checkbox" class="input-tag" value="classification">
+    <label>Classification</label>
+<input type="checkbox" class="input-tag" value="multi-annotator">
+    <label>Multi-Annotator</label>
+<input type="checkbox" class="input-tag" value="single-annotator">
+    <label>Single-Annotator</label>
+
+Pool
+----
+
+Expected Error Reduction
+~~~~~~~~~~~~~~~~~~~~~~~~
+.. list-table:: 
+   :header-rows: 1
+
+   * - Method
+     - Base Class
+     - Tags
+     - Reference
+   * - :doc:`Monte-Carlo EER with Log-Loss </generated/sphinx_gallery_examples/pool/plot-MonteCarloEER-Monte-Carlo_EER_with_Log-Loss>`
+     - :doc:`MonteCarloEER </generated/api/skactiveml.pool.MonteCarloEER>`
+     - pool classification single-annotator
+     - :footcite:t:`roy2001toward`
+   * - :doc:`Monte-Carlo EER with Misclassification-Loss </generated/sphinx_gallery_examples/pool/plot-MonteCarloEER-Monte-Carlo_EER_with_Misclassification-Loss>`
+     - :doc:`MonteCarloEER </generated/api/skactiveml.pool.MonteCarloEER>`
+     - pool classification single-annotator
+     - :footcite:t:`roy2001toward`
+   * - :doc:`Value of Information on Unlabeled Samples </generated/sphinx_gallery_examples/pool/plot-ValueOfInformationEER-Value_of_Information_on_Unlabeled_Samples>`
+     - :doc:`ValueOfInformationEER </generated/api/skactiveml.pool.ValueOfInformationEER>`
+     - pool classification single-annotator
+     - :footcite:t:`joshi2009multi`
+   * - :doc:`Value of Information on Labeled Samples </generated/sphinx_gallery_examples/pool/plot-ValueOfInformationEER-Value_of_Information_on_Labeled_Samples>`
+     - :doc:`ValueOfInformationEER </generated/api/skactiveml.pool.ValueOfInformationEER>`
+     - pool classification single-annotator
+     - :footcite:t:`margineantu2005active`
+   * - :doc:`Value of Information (VOI) </generated/sphinx_gallery_examples/pool/plot-ValueOfInformationEER-Value_of_Information_(VOI)>`
+     - :doc:`ValueOfInformationEER </generated/api/skactiveml.pool.ValueOfInformationEER>`
+     - pool classification single-annotator
+     - :footcite:t:`kapoor2007selective`
+
+Query-by-Committee
+~~~~~~~~~~~~~~~~~~
+.. list-table:: 
+   :header-rows: 1
+
+   * - Method
+     - Base Class
+     - Tags
+     - Reference
+   * - :doc:`Query-by-Committee with Kullback-Leibler Divergence </generated/sphinx_gallery_examples/pool/plot-QueryByCommittee-Query-by-Committee_with_Kullback-Leibler_Divergence>`
+     - :doc:`QueryByCommittee </generated/api/skactiveml.pool.QueryByCommittee>`
+     - pool classification single-annotator
+     - :footcite:t:`seung1992query`, :footcite:t:`mccallum1998employing`
+
+Random Sampling
+~~~~~~~~~~~~~~~
+.. list-table:: 
+   :header-rows: 1
+
+   * - Method
+     - Base Class
+     - Tags
+     - Reference
+   * - :doc:`Random Sampling </generated/sphinx_gallery_examples/pool/plot-RandomSampling-Random_Sampling>`
+     - :doc:`RandomSampling </generated/api/skactiveml.pool.RandomSampling>`
+     - pool classification single-annotator
+     - 
+
+Uncertainty Sampling
+~~~~~~~~~~~~~~~~~~~~
+.. list-table:: 
+   :header-rows: 1
+
+   * - Method
+     - Base Class
+     - Tags
+     - Reference
+   * - :doc:`Epistemic Uncertainty Sampling </generated/sphinx_gallery_examples/pool/plot-EpistemicUncertaintySampling-Epistemic_Uncertainty_Sampling>`
+     - :doc:`EpistemicUncertaintySampling </generated/api/skactiveml.pool.EpistemicUncertaintySampling>`
+     - pool classification single-annotator
+     - :footcite:t:`nguyen2019epistemic`
+   * - :doc:`Density-Diversity-Distribution-Distance Sampling (4DS) </generated/sphinx_gallery_examples/pool/plot-FourDs-Density-Diversity-Distribution-Distance_Sampling_(4DS)>`
+     - :doc:`FourDs </generated/api/skactiveml.pool.FourDs>`
+     - pool classification single-annotator
+     - :footcite:t:`reitmaier2013let`
+   * - :doc:`Uncertainty Sampling with Margin </generated/sphinx_gallery_examples/pool/plot-UncertaintySampling-Uncertainty_Sampling_with_Margin>`
+     - :doc:`UncertaintySampling </generated/api/skactiveml.pool.UncertaintySampling>`
+     - pool classification single-annotator
+     - :footcite:t:`settles2009active`
+   * - :doc:`Uncertainty Sampling with Least-Confidence </generated/sphinx_gallery_examples/pool/plot-UncertaintySampling-Uncertainty_Sampling_with_Least-Confidence>`
+     - :doc:`UncertaintySampling </generated/api/skactiveml.pool.UncertaintySampling>`
+     - pool classification single-annotator
+     - :footcite:t:`settles2009active`
+   * - :doc:`Uncertainty Sampling with Entropy </generated/sphinx_gallery_examples/pool/plot-UncertaintySampling-Uncertainty_Sampling_with_Entropy>`
+     - :doc:`UncertaintySampling </generated/api/skactiveml.pool.UncertaintySampling>`
+     - pool classification single-annotator
+     - :footcite:t:`settles2009active`
+   * - :doc:`Expected Average Precision </generated/sphinx_gallery_examples/pool/plot-UncertaintySampling-Expected_Average_Precision>`
+     - :doc:`UncertaintySampling </generated/api/skactiveml.pool.UncertaintySampling>`
+     - pool classification single-annotator
+     - :footcite:t:`wang2018uncertainty`
+
+Others
+~~~~~~
+.. list-table:: 
+   :header-rows: 1
+
+   * - Method
+     - Base Class
+     - Tags
+     - Reference
+   * - :doc:`Active Learning with Cost Embedding (ALCE) </generated/sphinx_gallery_examples/pool/plot-CostEmbeddingAL-Active_Learning_with_Cost_Embedding_(ALCE)>`
+     - :doc:`CostEmbeddingAL </generated/api/skactiveml.pool.CostEmbeddingAL>`
+     - pool classification single-annotator
+     - :footcite:t:`huang2016novel`
+   * - :doc:`Discriminative Active Learning (DAL) </generated/sphinx_gallery_examples/pool/plot-DiscriminativeAL-Discriminative_Active_Learning_(DAL)>`
+     - :doc:`DiscriminativeAL </generated/api/skactiveml.pool.DiscriminativeAL>`
+     - pool classification single-annotator
+     - :footcite:t:`gissin2019discriminative`
+   * - :doc:`Multi-class Probabilistic Active Learning (McPAL) </generated/sphinx_gallery_examples/pool/plot-ProbabilisticAL-Multi-class_Probabilistic_Active_Learning_(McPAL)>`
+     - :doc:`ProbabilisticAL </generated/api/skactiveml.pool.ProbabilisticAL>`
+     - pool classification single-annotator
+     - :footcite:t:`kottke2016multi`
+   * - :doc:`Query-by-Committee with Vote Entropy </generated/sphinx_gallery_examples/pool/plot-QueryByCommittee-Query-by-Committee_with_Vote_Entropy>`
+     - :doc:`QueryByCommittee </generated/api/skactiveml.pool.QueryByCommittee>`
+     - pool classification single-annotator
+     - :footcite:t:`seung1992query`, :footcite:t:`engelson1996minimizing`
+   * - :doc:`Querying Informative and Representative Examples (QUIRE) </generated/sphinx_gallery_examples/pool/plot-Quire-Querying_Informative_and_Representative_Examples_(QUIRE)>`
+     - :doc:`Quire </generated/api/skactiveml.pool.Quire>`
+     - pool classification single-annotator
+     - :footcite:t:`huang2010active`
+
+
+References
+----------
+.. footbibliography::
