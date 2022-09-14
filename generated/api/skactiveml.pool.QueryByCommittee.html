@@ -210,6 +210,16 @@
    skactiveml.base.AnnotatorModelMixin
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.base.SkactivemlRegressor.html">
+   skactiveml.base.SkactivemlRegressor
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.base.ProbabilisticRegressor.html">
+   skactiveml.base.ProbabilisticRegressor
+  </a>
+ </li>
 </ul>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
@@ -260,6 +270,36 @@
  <li class="toctree-l1">
   <a class="reference internal" href="skactiveml.pool.CostEmbeddingAL.html">
    skactiveml.pool.CostEmbeddingAL
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.ExpectedModelChangeMaximization.html">
+   skactiveml.pool.ExpectedModelChangeMaximization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.ExpectedModelOutputChange.html">
+   skactiveml.pool.ExpectedModelOutputChange
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.ExpectedModelVarianceReduction.html">
+   skactiveml.pool.ExpectedModelVarianceReduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.KLDivergenceMaximization.html">
+   skactiveml.pool.KLDivergenceMaximization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.GreedySamplingX.html">
+   skactiveml.pool.GreedySamplingX
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.GreedySamplingTarget.html">
+   skactiveml.pool.GreedySamplingTarget
   </a>
  </li>
  <li class="toctree-l1">
@@ -545,6 +585,11 @@
    skactiveml.utils.simple_batch
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.utils._check_callable.html">
+   skactiveml.utils._check_callable
+  </a>
+ </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -613,16 +658,17 @@
 <dd><p>Bases: <a class="reference internal" href="skactiveml.base.SingleAnnotatorPoolQueryStrategy.html#skactiveml.base.SingleAnnotatorPoolQueryStrategy" title="skactiveml.base.SingleAnnotatorPoolQueryStrategy"><code class="xref py py-class docutils literal notranslate"><span class="pre">skactiveml.base.SingleAnnotatorPoolQueryStrategy</span></code></a></p>
 <p>Query-by-Committee.</p>
 <p>The Query-by-Committee (QueryByCommittee) strategy uses an ensemble of
-classifiers to identify on which instances many classifiers disagree.</p>
+estimators to identify on which instances many estimators disagree.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>method</strong><span class="classifier">string, default=’KL_divergence’</span></dt><dd><p>The method to calculate the disagreement. KL_divergence or
-vote_entropy are possible.</p>
+<dt><strong>method</strong><span class="classifier">string, default=’KL_divergence’</span></dt><dd><p>The method to calculate the disagreement in the case of classification.
+KL_divergence or vote_entropy are possible. In the case of regression
+the empirical variance is used.</p>
 </dd>
 <dt><strong>missing_label</strong><span class="classifier">scalar or string or np.nan or None, default=np.nan</span></dt><dd><p>Value to represent a missing label.</p>
 </dd>
-<dt><strong>random_state: numeric or np.random.RandomState, default=None</strong></dt><dd><p>The random state to use.</p>
+<dt><strong>random_state</strong><span class="classifier">int or np.random.RandomState, default=None</span></dt><dd><p>The random state to use.</p>
 </dd>
 </dl>
 </dd>
@@ -634,6 +680,10 @@ pages 287-294, 1992.</p>
 </dd>
 <dt>[2] N. Abe and H. Mamitsuka. Query learning strategies using boosting and</dt><dd><p>bagging. In Proceedings of the International Conference on Machine
 Learning (ICML), pages 1-9. Morgan Kaufmann, 1998.</p>
+</dd>
+<dt>[3] Burbidge, Robert and Rowland, Jem J and King, Ross D. Active learning</dt><dd><p>for regression based on query by committee. International conference on
+intelligent data engineering and automated learning, pages 209–218,
+2007.</p>
 </dd>
 </dl>
 <p class="rubric">Methods</p>
@@ -686,18 +736,18 @@ contained subobjects that are estimators.</p>
 unlabeled samples.</p>
 </dd>
 <dt><strong>y</strong><span class="classifier">array-like of shape (n_samples)</span></dt><dd><p>Labels of the training data set (possibly including unlabeled ones
-indicated by self.MISSING_LABEL.</p>
+indicated by self.MISSING_LABEL.)</p>
 </dd>
-<dt><strong>ensemble</strong><span class="classifier">array-like of shape (n_estimators) or SkactivemlClassifier</span></dt><dd><p>If <cite>ensemble</cite> is a <cite>SkactivemlClassifier</cite>, it must have
-<cite>n_estimators</cite> and <cite>estimators_</cite> after fitting as attribute. Then,
-its estimators will be used as committee. If <cite>ensemble</cite> is
-array-like, each element of this list must be
-<cite>SkactivemlClassifier</cite> and will be used as committee member.</p>
+<dt><strong>ensemble</strong><span class="classifier">list or tuple of SkactivemlClassifier or list or tuple of</span></dt><dd></dd>
+<dt><strong>SkactivemlRegressor, SkactivemlClassifier or SkactivemlRegressor</strong></dt><dd><p>If <cite>ensemble</cite> is a <cite>SkactivemlClassifier</cite> or a <cite>SkactivemlRegressor</cite>
+, it must have <cite>n_estimators</cite> and <cite>estimators_</cite> after fitting as
+attribute. Then, its estimators will be used as committee. If
+<cite>ensemble</cite> is array-like, each element of this list must be
+<cite>SkactivemlClassifier</cite> or a <cite>SkactivemlRegressor</cite> and will be used
+as committee member.</p>
 </dd>
 <dt><strong>fit_ensemble</strong><span class="classifier">bool, default=True</span></dt><dd><p>Defines whether the ensemble should be fitted on <cite>X</cite>, <cite>y</cite>, and
 <cite>sample_weight</cite>.</p>
-</dd>
-<dt><strong>sample_weight: array-like of shape (n_samples), default=None</strong></dt><dd><p>Weights of training samples in <cite>X</cite>.</p>
 </dd>
 <dt><strong>sample_weight: array-like of shape (n_samples), default=None</strong></dt><dd><p>Weights of training samples in <cite>X</cite>.</p>
 </dd>
@@ -773,19 +823,13 @@ possible to update each component of a nested object.</p>
 
 <section id="examples-using-skactiveml-pool-querybycommittee">
 <span id="sphx-glr-backref-skactiveml-pool-querybycommittee"></span><h2>Examples using <code class="docutils literal notranslate"><span class="pre">skactiveml.pool.QueryByCommittee</span></code><a class="headerlink" href="#examples-using-skactiveml-pool-querybycommittee" title="Permalink to this headline">#</a></h2>
-<div class="sphx-glr-thumbcontainer" tooltip="Query-by-Committee with Vote Entropy"><figure class="align-default" id="id1">
-<img alt="Query-by-Committee with Vote Entropy" src="../../_images/sphx_glr_plot-QueryByCommittee-Query-by-Committee_with_Vote_Entropy_thumb.gif" />
-<figcaption>
-<p><span class="caption-text"><a class="reference internal" href="../sphinx_gallery_examples/pool/plot-QueryByCommittee-Query-by-Committee_with_Vote_Entropy.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-querybycommittee-query-by-committee-with-vote-entropy-py"><span class="std std-ref">Query-by-Committee with Vote Entropy</span></a></span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Query-by-Committee with Kullback-Leibler Divergence"><figure class="align-default" id="id2">
-<img alt="Query-by-Committee with Kullback-Leibler Divergence" src="../../_images/sphx_glr_plot-QueryByCommittee-Query-by-Committee_with_Kullback-Leibler_Divergence_thumb.gif" />
-<figcaption>
-<p><span class="caption-text"><a class="reference internal" href="../sphinx_gallery_examples/pool/plot-QueryByCommittee-Query-by-Committee_with_Kullback-Leibler_Divergence.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-querybycommittee-query-by-committee-with-kullback-leibler-divergence-py"><span class="std std-ref">Query-by-Committee with Kullback-Leibler Divergence</span></a></span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-</div><div class="sphx-glr-clear"></div></section>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Query-by-Committee with Vote Entropy"><img alt="Query-by-Committee with Vote Entropy" src="../../_images/sphx_glr_plot-QueryByCommittee-Query-by-Committee_with_Vote_Entropy_thumb.gif" />
+<p><a class="reference internal" href="../sphinx_gallery_examples/pool/plot-QueryByCommittee-Query-by-Committee_with_Vote_Entropy.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-querybycommittee-query-by-committee-with-vote-entropy-py"><span class="std std-ref">Query-by-Committee with Vote Entropy</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Query-by-Committee with Vote Entropy</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Query-by-Committee with Kullback-Leibler Divergence"><img alt="Query-by-Committee with Kullback-Leibler Divergence" src="../../_images/sphx_glr_plot-QueryByCommittee-Query-by-Committee_with_Kullback-Leibler_Divergence_thumb.gif" />
+<p><a class="reference internal" href="../sphinx_gallery_examples/pool/plot-QueryByCommittee-Query-by-Committee_with_Kullback-Leibler_Divergence.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-querybycommittee-query-by-committee-with-kullback-leibler-divergence-py"><span class="std std-ref">Query-by-Committee with Kullback-Leibler Divergence</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Query-by-Committee with Kullback-Leibler Divergence</div>
+</div></div></section>
 </section>
 
 

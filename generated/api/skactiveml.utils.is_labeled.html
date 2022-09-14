@@ -210,6 +210,16 @@
    skactiveml.base.AnnotatorModelMixin
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.base.SkactivemlRegressor.html">
+   skactiveml.base.SkactivemlRegressor
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.base.ProbabilisticRegressor.html">
+   skactiveml.base.ProbabilisticRegressor
+  </a>
+ </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -260,6 +270,36 @@
  <li class="toctree-l1">
   <a class="reference internal" href="skactiveml.pool.CostEmbeddingAL.html">
    skactiveml.pool.CostEmbeddingAL
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.ExpectedModelChangeMaximization.html">
+   skactiveml.pool.ExpectedModelChangeMaximization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.ExpectedModelOutputChange.html">
+   skactiveml.pool.ExpectedModelOutputChange
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.ExpectedModelVarianceReduction.html">
+   skactiveml.pool.ExpectedModelVarianceReduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.KLDivergenceMaximization.html">
+   skactiveml.pool.KLDivergenceMaximization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.GreedySamplingX.html">
+   skactiveml.pool.GreedySamplingX
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.GreedySamplingTarget.html">
+   skactiveml.pool.GreedySamplingTarget
   </a>
  </li>
  <li class="toctree-l1">
@@ -545,6 +585,11 @@
    skactiveml.utils.simple_batch
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.utils._check_callable.html">
+   skactiveml.utils._check_callable
+  </a>
+ </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -570,9 +615,24 @@
     
     <div class="toc-item">
       
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
 
 <nav id="bd-toc-nav">
-    
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#examples-using-skactiveml-utils-is-labeled">
+   Examples using
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     skactiveml.utils.is_labeled
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+
 </nav>
     </div>
     
@@ -614,7 +674,31 @@
 </dl>
 </dd></dl>
 
-<span class="target" id="sphx-glr-backref-skactiveml-utils-is-labeled"></span></section>
+<section id="examples-using-skactiveml-utils-is-labeled">
+<span id="sphx-glr-backref-skactiveml-utils-is-labeled"></span><h2>Examples using <code class="docutils literal notranslate"><span class="pre">skactiveml.utils.is_labeled</span></code><a class="headerlink" href="#examples-using-skactiveml-utils-is-labeled" title="Permalink to this headline">#</a></h2>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Greedy Sampling on the Feature Space (GSx)"><img alt="Greedy Sampling on the Feature Space (GSx)" src="../../_images/sphx_glr_plot-GreedySamplingX-Greedy_Sampling_on_the_Feature_Space_(GSx)_thumb.gif" />
+<p><a class="reference internal" href="../sphinx_gallery_examples/pool/plot-GreedySamplingX-Greedy_Sampling_on_the_Feature_Space_%28GSx%29.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-greedysamplingx-greedy-sampling-on-the-feature-space-gsx-py"><span class="std std-ref">Greedy Sampling on the Feature Space (GSx)</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Greedy Sampling on the Feature Space (GSx)</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Greedy Sampling on the Target Space (GSy)"><img alt="Greedy Sampling on the Target Space (GSy)" src="../../_images/sphx_glr_plot-GreedySamplingTarget-Greedy_Sampling_on_the_Target_Space_(GSy)_thumb.gif" />
+<p><a class="reference internal" href="../sphinx_gallery_examples/pool/plot-GreedySamplingTarget-Greedy_Sampling_on_the_Target_Space_%28GSy%29.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-greedysamplingtarget-greedy-sampling-on-the-target-space-gsy-py"><span class="std std-ref">Greedy Sampling on the Target Space (GSy)</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Greedy Sampling on the Target Space (GSy)</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Improved Greedy Sampling (GSi)"><img alt="Improved Greedy Sampling (GSi)" src="../../_images/sphx_glr_plot-GreedySamplingTarget-Improved_Greedy_Sampling_(GSi)_thumb.gif" />
+<p><a class="reference internal" href="../sphinx_gallery_examples/pool/plot-GreedySamplingTarget-Improved_Greedy_Sampling_%28GSi%29.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-greedysamplingtarget-improved-greedy-sampling-gsi-py"><span class="std std-ref">Improved Greedy Sampling (GSi)</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Improved Greedy Sampling (GSi)</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Expected Model Variance Reduction"><img alt="Expected Model Variance Reduction" src="../../_images/sphx_glr_plot-ExpectedModelVarianceReduction-Expected_Model_Variance_Reduction_thumb.gif" />
+<p><a class="reference internal" href="../sphinx_gallery_examples/pool/plot-ExpectedModelVarianceReduction-Expected_Model_Variance_Reduction.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-expectedmodelvariancereduction-expected-model-variance-reduction-py"><span class="std std-ref">Expected Model Variance Reduction</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Expected Model Variance Reduction</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Expected Model Change"><img alt="Expected Model Change" src="../../_images/sphx_glr_plot-ExpectedModelChangeMaximization-Expected_Model_Change_thumb.gif" />
+<p><a class="reference internal" href="../sphinx_gallery_examples/pool/plot-ExpectedModelChangeMaximization-Expected_Model_Change.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-expectedmodelchangemaximization-expected-model-change-py"><span class="std std-ref">Expected Model Change</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Expected Model Change</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Expected Model Output Change"><img alt="Expected Model Output Change" src="../../_images/sphx_glr_plot-ExpectedModelOutputChange-Expected_Model_Output_Change_thumb.gif" />
+<p><a class="reference internal" href="../sphinx_gallery_examples/pool/plot-ExpectedModelOutputChange-Expected_Model_Output_Change.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-expectedmodeloutputchange-expected-model-output-change-py"><span class="std std-ref">Expected Model Output Change</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Expected Model Output Change</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Regression based Kullback Leibler Divergence Maximization"><img alt="Regression based Kullback Leibler Divergence Maximization" src="../../_images/sphx_glr_plot-KLDivergenceMaximization-Regression_based_Kullback_Leibler_Divergence_Maximization_thumb.gif" />
+<p><a class="reference internal" href="../sphinx_gallery_examples/pool/plot-KLDivergenceMaximization-Regression_based_Kullback_Leibler_Divergence_Maximization.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-kldivergencemaximization-regression-based-kullback-leibler-divergence-maximization-py"><span class="std std-ref">Regression based Kullback Leibler Divergence Maximization</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Regression based Kullback Leibler Divergence Maximization</div>
+</div></div></section>
+</section>
 
 
               </article>

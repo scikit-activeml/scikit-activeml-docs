@@ -42,7 +42,7 @@
     <script src="../../../_static/filter_examples.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Uncertainty Sampling with Margin" href="plot-UncertaintySampling-Uncertainty_Sampling_with_Margin.html" />
+    <link rel="next" title="Uncertainty Sampling with Least-Confidence" href="plot-UncertaintySampling-Uncertainty_Sampling_with_Least-Confidence.html" />
     <link rel="prev" title="Epistemic Uncertainty Sampling" href="plot-EpistemicUncertaintySampling-Epistemic_Uncertainty_Sampling.html" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="docsearch:language" content="None">
@@ -169,129 +169,147 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
   <div class="bd-toc-item active">
-    <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="plot-RandomSampling-Random_Sampling.html">
-   Random Sampling
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Pool Based AL Strategies
   </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="plot-RandomSampling-Random_Sampling.html">
+     Random Sampling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="plot-CostEmbeddingAL-Active_Learning_with_Cost_Embedding_%28ALCE%29.html">
+     Active Learning with Cost Embedding
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="plot-UncertaintySampling-Uncertainty_Sampling_with_Entropy.html">
+     Uncertainty Sampling with Entropy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="plot-EpistemicUncertaintySampling-Epistemic_Uncertainty_Sampling.html">
+     Epistemic Uncertainty Sampling
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Querying Informative and Representative Examples
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="plot-UncertaintySampling-Uncertainty_Sampling_with_Least-Confidence.html">
+     Uncertainty Sampling with Least-Confidence
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="plot-UncertaintySampling-Uncertainty_Sampling_with_Margin.html">
+     Uncertainty Sampling with Margin
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="plot-UncertaintySampling-Expected_Average_Precision.html">
+     Expected Average Precision
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="plot-FourDs-Density-Diversity-Distribution-Distance_Sampling_%284DS%29.html">
+     Density-Diversity-Distribution-Distance Sampling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="plot-MonteCarloEER-Monte-Carlo_EER_with_Log-Loss.html">
+     Monte-Carlo EER with Log-Loss
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="plot-MonteCarloEER-Monte-Carlo_EER_with_Misclassification-Loss.html">
+     Monte-Carlo EER with Misclassification-Loss
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="plot-DiscriminativeAL-Discriminative_Active_Learning_%28DAL%29.html">
+     Discriminative Active Learning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="plot-ProbabilisticAL-Multi-class_Probabilistic_Active_Learning_%28McPAL%29.html">
+     Multi-class Probabilistic Active Learning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="plot-QueryByCommittee-Query-by-Committee_with_Vote_Entropy.html">
+     Query-by-Committee with Vote Entropy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="plot-QueryByCommittee-Query-by-Committee_with_Kullback-Leibler_Divergence.html">
+     Query-by-Committee with Kullback-Leibler Divergence
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="plot-ValueOfInformationEER-Value_of_Information_%28VOI%29.html">
+     Value of Information
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="plot-ValueOfInformationEER-Value_of_Information_on_Labeled_Samples.html">
+     Value of Information on Labeled Samples
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="plot-ValueOfInformationEER-Value_of_Information_on_Unlabeled_Samples.html">
+     Value of Information on Unlabeled Samples
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="plot-GreedySamplingX-Greedy_Sampling_on_the_Feature_Space_%28GSx%29.html">
+     Greedy Sampling on the Feature Space (GSx)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="plot-GreedySamplingTarget-Greedy_Sampling_on_the_Target_Space_%28GSy%29.html">
+     Greedy Sampling on the Target Space (GSy)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="plot-GreedySamplingTarget-Improved_Greedy_Sampling_%28GSi%29.html">
+     Improved Greedy Sampling (GSi)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="plot-ExpectedModelVarianceReduction-Expected_Model_Variance_Reduction.html">
+     Expected Model Variance Reduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="plot-ExpectedModelChangeMaximization-Expected_Model_Change.html">
+     Expected Model Change
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="plot-ExpectedModelOutputChange-Expected_Model_Output_Change.html">
+     Expected Model Output Change
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="plot-KLDivergenceMaximization-Regression_based_Kullback_Leibler_Divergence_Maximization.html">
+     Regression based Kullback Leibler Divergence Maximization
+    </a>
+   </li>
+  </ul>
  </li>
-</ul>
-<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="plot-CostEmbeddingAL-Active_Learning_with_Cost_Embedding_%28ALCE%29.html">
-   Active Learning with Cost Embedding
-  </a>
- </li>
-</ul>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="plot-UncertaintySampling-Uncertainty_Sampling_with_Entropy.html">
-   Uncertainty Sampling with Entropy
-  </a>
- </li>
-</ul>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="plot-EpistemicUncertaintySampling-Epistemic_Uncertainty_Sampling.html">
-   Epistemic Uncertainty Sampling
-  </a>
- </li>
-</ul>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Querying Informative and Representative Examples
-  </a>
- </li>
-</ul>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="plot-UncertaintySampling-Uncertainty_Sampling_with_Margin.html">
-   Uncertainty Sampling with Margin
-  </a>
- </li>
-</ul>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="plot-UncertaintySampling-Uncertainty_Sampling_with_Least-Confidence.html">
-   Uncertainty Sampling with Least-Confidence
-  </a>
- </li>
-</ul>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="plot-UncertaintySampling-Expected_Average_Precision.html">
-   Expected Average Precision
-  </a>
- </li>
-</ul>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="plot-FourDs-Density-Diversity-Distribution-Distance_Sampling_%284DS%29.html">
-   Density-Diversity-Distribution-Distance Sampling
-  </a>
- </li>
-</ul>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="plot-MonteCarloEER-Monte-Carlo_EER_with_Log-Loss.html">
-   Monte-Carlo EER with Log-Loss
-  </a>
- </li>
-</ul>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="plot-MonteCarloEER-Monte-Carlo_EER_with_Misclassification-Loss.html">
-   Monte-Carlo EER with Misclassification-Loss
-  </a>
- </li>
-</ul>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="plot-DiscriminativeAL-Discriminative_Active_Learning_%28DAL%29.html">
-   Discriminative Active Learning
-  </a>
- </li>
-</ul>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="plot-ProbabilisticAL-Multi-class_Probabilistic_Active_Learning_%28McPAL%29.html">
-   Multi-class Probabilistic Active Learning
-  </a>
- </li>
-</ul>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="plot-QueryByCommittee-Query-by-Committee_with_Vote_Entropy.html">
-   Query-by-Committee with Vote Entropy
-  </a>
- </li>
-</ul>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="plot-QueryByCommittee-Query-by-Committee_with_Kullback-Leibler_Divergence.html">
-   Query-by-Committee with Kullback-Leibler Divergence
-  </a>
- </li>
-</ul>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="plot-ValueOfInformationEER-Value_of_Information_%28VOI%29.html">
-   Value of Information
-  </a>
- </li>
-</ul>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="plot-ValueOfInformationEER-Value_of_Information_on_Labeled_Samples.html">
-   Value of Information on Labeled Samples
-  </a>
- </li>
-</ul>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="plot-ValueOfInformationEER-Value_of_Information_on_Unlabeled_Samples.html">
-   Value of Information on Unlabeled Samples
+  <a class="reference internal" href="../stream/index.html">
+   Stream Based AL Strategies
   </a>
  </li>
 </ul>
@@ -592,42 +610,42 @@ input[type=range].anim-slider {
 </style>
 
 <div class="animation">
-  <img id="_anim_imgb10f8f2588af42a2926c012339798915">
+  <img id="_anim_img4b19e407f2334d46a51e98c7722a2316">
   <div class="anim-controls">
-    <input id="_anim_sliderb10f8f2588af42a2926c012339798915" type="range" class="anim-slider"
+    <input id="_anim_slider4b19e407f2334d46a51e98c7722a2316" type="range" class="anim-slider"
            name="points" min="0" max="1" step="1" value="0"
-           oninput="animb10f8f2588af42a2926c012339798915.set_frame(parseInt(this.value));">
+           oninput="anim4b19e407f2334d46a51e98c7722a2316.set_frame(parseInt(this.value));">
     <div class="anim-buttons">
-      <button title="Decrease speed" aria-label="Decrease speed" onclick="animb10f8f2588af42a2926c012339798915.slower()">
+      <button title="Decrease speed" aria-label="Decrease speed" onclick="anim4b19e407f2334d46a51e98c7722a2316.slower()">
           <i class="fa fa-minus"></i></button>
-      <button title="First frame" aria-label="First frame" onclick="animb10f8f2588af42a2926c012339798915.first_frame()">
+      <button title="First frame" aria-label="First frame" onclick="anim4b19e407f2334d46a51e98c7722a2316.first_frame()">
         <i class="fa fa-fast-backward"></i></button>
-      <button title="Previous frame" aria-label="Previous frame" onclick="animb10f8f2588af42a2926c012339798915.previous_frame()">
+      <button title="Previous frame" aria-label="Previous frame" onclick="anim4b19e407f2334d46a51e98c7722a2316.previous_frame()">
           <i class="fa fa-step-backward"></i></button>
-      <button title="Play backwards" aria-label="Play backwards" onclick="animb10f8f2588af42a2926c012339798915.reverse_animation()">
+      <button title="Play backwards" aria-label="Play backwards" onclick="anim4b19e407f2334d46a51e98c7722a2316.reverse_animation()">
           <i class="fa fa-play fa-flip-horizontal"></i></button>
-      <button title="Pause" aria-label="Pause" onclick="animb10f8f2588af42a2926c012339798915.pause_animation()">
+      <button title="Pause" aria-label="Pause" onclick="anim4b19e407f2334d46a51e98c7722a2316.pause_animation()">
           <i class="fa fa-pause"></i></button>
-      <button title="Play" aria-label="Play" onclick="animb10f8f2588af42a2926c012339798915.play_animation()">
+      <button title="Play" aria-label="Play" onclick="anim4b19e407f2334d46a51e98c7722a2316.play_animation()">
           <i class="fa fa-play"></i></button>
-      <button title="Next frame" aria-label="Next frame" onclick="animb10f8f2588af42a2926c012339798915.next_frame()">
+      <button title="Next frame" aria-label="Next frame" onclick="anim4b19e407f2334d46a51e98c7722a2316.next_frame()">
           <i class="fa fa-step-forward"></i></button>
-      <button title="Last frame" aria-label="Last frame" onclick="animb10f8f2588af42a2926c012339798915.last_frame()">
+      <button title="Last frame" aria-label="Last frame" onclick="anim4b19e407f2334d46a51e98c7722a2316.last_frame()">
           <i class="fa fa-fast-forward"></i></button>
-      <button title="Increase speed" aria-label="Increase speed" onclick="animb10f8f2588af42a2926c012339798915.faster()">
+      <button title="Increase speed" aria-label="Increase speed" onclick="anim4b19e407f2334d46a51e98c7722a2316.faster()">
           <i class="fa fa-plus"></i></button>
     </div>
-    <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_selectb10f8f2588af42a2926c012339798915"
+    <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_select4b19e407f2334d46a51e98c7722a2316"
           class="anim-state">
-      <input type="radio" name="state" value="once" id="_anim_radio1_b10f8f2588af42a2926c012339798915"
+      <input type="radio" name="state" value="once" id="_anim_radio1_4b19e407f2334d46a51e98c7722a2316"
              >
-      <label for="_anim_radio1_b10f8f2588af42a2926c012339798915">Once</label>
-      <input type="radio" name="state" value="loop" id="_anim_radio2_b10f8f2588af42a2926c012339798915"
+      <label for="_anim_radio1_4b19e407f2334d46a51e98c7722a2316">Once</label>
+      <input type="radio" name="state" value="loop" id="_anim_radio2_4b19e407f2334d46a51e98c7722a2316"
              checked>
-      <label for="_anim_radio2_b10f8f2588af42a2926c012339798915">Loop</label>
-      <input type="radio" name="state" value="reflect" id="_anim_radio3_b10f8f2588af42a2926c012339798915"
+      <label for="_anim_radio2_4b19e407f2334d46a51e98c7722a2316">Loop</label>
+      <input type="radio" name="state" value="reflect" id="_anim_radio3_4b19e407f2334d46a51e98c7722a2316"
              >
-      <label for="_anim_radio3_b10f8f2588af42a2926c012339798915">Reflect</label>
+      <label for="_anim_radio3_4b19e407f2334d46a51e98c7722a2316">Reflect</label>
     </form>
   </div>
 </div>
@@ -637,13 +655,13 @@ input[type=range].anim-slider {
   /* Instantiate the Animation class. */
   /* The IDs given should match those used in the template above. */
   (function() {
-    var img_id = "_anim_imgb10f8f2588af42a2926c012339798915";
-    var slider_id = "_anim_sliderb10f8f2588af42a2926c012339798915";
-    var loop_select_id = "_anim_loop_selectb10f8f2588af42a2926c012339798915";
+    var img_id = "_anim_img4b19e407f2334d46a51e98c7722a2316";
+    var slider_id = "_anim_slider4b19e407f2334d46a51e98c7722a2316";
+    var loop_select_id = "_anim_loop_select4b19e407f2334d46a51e98c7722a2316";
     var frames = new Array(20);
 
   frames[0] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/NK7nSAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAACQXklEQVR4nOzdd5iU5bn48e/zTp/tvdJ7ExAQxYYVRew9xpqoMZrEmHJififF\
 c06O6cc0TUwMGkvU2HsFMSo2FBGQ3tned6fPvM/vj2FnWXaBXZjdKXt/rotL52Xmfe8dZmfuecp9\
 K621RgghhBBCpC0j0QEIIYQQQoiBJQmfEEIIIUSak4RPCCGEECLNScInhBBCCJHmJOETQgghhEhz\
@@ -1295,7 +1313,7 @@ AHAchQ8AAMBxFD4AAADHUfgAAAAcR+EDAABwHIUPAADAcRQ+AAAAx1H4AAAAHEfhAwAAcByFDwAA\
 wHEUPgAAAMdR+AAAABxH4QMAAHAchQ8AAMBxFD4AAADH/Q9qgbJOqf8rRAAAAABJRU5ErkJggg==\
 "
   frames[1] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/NK7nSAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAACxqklEQVR4nOzdd3hb5f338fc52t57xHZix87eA0ICZLACBMJepcwWKIWW3V/p\
 0xYopRQolBYKXRAoq1Bm2JsESIAkZO9hZzjxjrc1z/38oUiWvIe279d15QLJ0jm3ZY2PvvdShBAC\
 SZIkSZIkKWap4W6AJEmSJEmSFFwy8EmSJEmSJMU4GfgkSZIkSZJinAx8kiRJkiRJMU4GPkmSJEmS\
@@ -2097,7 +2115,7 @@ iIh0joGPiIiISOcY+IiIiIh0joGPiIiISOcY+IiIiIh0joGPiIiISOcY+IiIiIh0joGPiIiISOcY\
 +IiIiIh07n8BS7ll2VYiWaEAAAAASUVORK5CYII=\
 "
   frames[2] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/NK7nSAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAADvUklEQVR4nOydd3Qc1f23n5nt6pLVZVuS5d67aW5gMMUYCD2EkgKEkl9ISPKG\
 NEIaAVJIQiAhoSSUkGB6B2PTjbtxt2Vbkm313rfOff9Y70prtd3VNkn3OcfHM6OZO3fbzGe+VRFC\
 CCQSiUQikUgkwxY12hOQSCQSiUQikYQXKfgkEolEIpFIhjlS8EkkEolEIpEMc6Tgk0gkEolEIhnm\
@@ -3176,7 +3194,7 @@ CCGEkARHAR8hhBBCSIKjgI8QQgghJMFRwEcIIYQQkuAo4COEEEIISXAU8BFCCCGEJDgK+AghhBBC\
 Etz/D3p6yFWOaPxZAAAAAElFTkSuQmCC\
 "
   frames[3] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/NK7nSAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAD1WUlEQVR4nOydd3gc1dX/PzNbteq92pIlucm9YGMbY4rBVIdeQsCQBAiBJKT+\
 Qt43b5I3b0JIAiGBBBISIBBIoZveO+64F9mWJdmyem/b5/7+WO9Ka9Vd7WpX0v08jx+4szNzz65m\
 d75zzj3nKEIIgUQikUgkEolk3KJG2gCJRCKRSCQSSXiRgk8ikUgkEolknCMFn0QikUgkEsk4Rwo+\
@@ -4282,7 +4300,7 @@ ipPAJ4QQQgiR4iTwCSGEEEKkOAl8QgghhBApTgKfEEIIIUSKk8AnhBBCCJHiJPAJIYQQQqQ4CXxC\
 CCGEECnu/w8ikvom2nfVqwAAAABJRU5ErkJggg==\
 "
   frames[4] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/NK7nSAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAADtlElEQVR4nOydd3gc1dX/PzPb1Xtvtix3W+4YjMFgg03vLYSSAoSEAKlvyC/1\
 TSGNvCQhJCEJJZQEAqGEDq40G/duWbYl2+q9a+vc3x8rrdqq7GqLyv08jx77zs7MPbsazXz3nHPP\
 UYQQAolEIpFIJBLJhEUNtwESiUQikUgkkuAiBZ9EIpFIJBLJBEcKPolEIpFIJJIJjhR8EolEIpFI\
@@ -5353,7 +5371,7 @@ TwghhBAixUngE0IIIYRIcRL4hBBCCCFSnAQ+IYQQQogUJ4FPCCGEECLFSeATQgghhEhxEviEEEII\
 IVKcBD4hhBBCiBT3/wNbNEKhjji3CgAAAABJRU5ErkJggg==\
 "
   frames[5] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/NK7nSAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAADypklEQVR4nOydd3wb9f3/n3fa3nvEI8OJsxcJIYxAmGEVwoa2zBYoXyillA46\
 aOmiLaWlpQVKy2gZBcr+sUfYJEAC2dsZTmzHe8rWvM/vD1myZMu2JGvZ/jwfjzyiO93d5yP5dPe6\
 91SEEAKJRCKRSCQSyZhFTfQEJBKJRCKRSCSxRQo+iUQikUgkkjGOFHwSiUQikUgkYxwp+CQSiUQi\
@@ -6447,7 +6465,7 @@ CCEynAQ+IYQQQogMJ4FPCCGEECLDSeATQgghhMhwEviEEEIIITKcBD4hhBBCiAwngU8IIYQQIsP9\
 /1DuQ7jRgJTdAAAAAElFTkSuQmCC\
 "
   frames[6] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/NK7nSAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAD57ElEQVR4nOydd3gc1b2/35nZplXvVrPlbssdF8DGxlTTQ0koIbQkhBAIIfV3\
 ufemcO9NSEiBEAKEFEgghBogCaEbMGCKMdi4N7mq97p15vz+WO1qV3VX2ibpvM/jxzOzM3POrmZn\
 PvutihBCIJFIJBKJRCIZt6iJnoBEIpFIJBKJJLZIwSeRSCQSiUQyzpGCTyKRSCQSiWScIwWfRCKR\
@@ -7574,7 +7592,7 @@ pDgJfEIIIYQQKU4CnxBCCCFEipPAJ4QQQgiR4iTwCSGEEEKkuP8/RYp9rxYm0gcAAAAASUVORK5C\
 YII=\
 "
   frames[7] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/NK7nSAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAD+/0lEQVR4nOydd3wb9f3/n3fa3jt2bCdx9t4hi0BCgLD3hkKgBdoyCl2/0n47\
 6KKLlrYUKC2rjLJX2RASdjZJyF5OvOK9be37/P5QJFuekq1pf56Phx+WTnf3+Ug63b3uPRUhhEAi\
 kUgkEolEMmRRoz0BiUQikUgkEkl4kYJPIpFIJBKJZIgjBZ9EIpFIJBLJEEcKPolEIpFIJJIhjhR8\
@@ -8723,7 +8741,7 @@ JBKJJMGRgk8ikUgkEokkwZGCTyKRSCQSiSTBkYJPIpFIJBKJJMGRgk8ikUgkEokkwZGCTyKRSCQS\
 iSTBkYJPIpFIJBKJJMGRgk8ikUgkEokkwfn/VQUjyBjP970AAAAASUVORK5CYII=\
 "
   frames[8] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/NK7nSAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAD6BklEQVR4nOydd3wb5f3H33fa8pB37DjL2XuQkAAhJIQRdtl7U6AUSild0P5a\
 SqGlhdJCmYVSoIxC2XuEFSiEEQhk78RZjh3vpX3P7w9ZsmTLtiRrWX7er1deuTvdeCSfHn3uOxUh\
 hEAikUgkEolEkrGoqR6ARCKRSCQSiSSxSMEnkUgkEolEkuFIwSeRSCQSiUSS4UjBJ5FIJBKJRJLh\
@@ -9850,7 +9868,7 @@ kiQlOBn4JEmSJEmSEpwMfJIkSZIkSQlOBj5JkiRJkqQEJwOfJEmSJElSgpOBT5IkSZIkKcHJwCdJ\
 kiRJkpTg/h8nMS2MbE/OZgAAAABJRU5ErkJggg==\
 "
   frames[9] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/NK7nSAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAD+wElEQVR4nOydd3Qc1f23n5nt6t2SJatY7r2BjY2xqaaHXkLoPyAEkpCEkMCb\
 kJCEEEggEAgtCZBQQu+EjjHGGBvT3Jssy7Jk9S5tn/v+sdrVqu9K2yTd5xwdzcxOubs7O/OZb1WE\
 EAKJRCKRSCQSyahFjfYAJBKJRCKRSCThRQo+iUQikUgkklGOFHwSiUQikUgkoxwp+CQSiUQikUhG\
@@ -10998,7 +11016,7 @@ fBKJRCKRSCRJjhR8EolEIpFIJEmOFHwSiUQikUgkSY4UfBKJRCKRSCRJjhR8EolEIpFIJEmOFHwS\
 iUQikUgkSY4UfBKJRCKRSCRJzv8HSKe8KKQWAKkAAAAASUVORK5CYII=\
 "
   frames[10] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/NK7nSAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAD3cUlEQVR4nOydd3wb9f3/n3daluW9HTtxnMTZkySElUAIEHahlFV+rLZAB6uD\
 ttAWCm3hC6WUthQoLQXKaFmFslcGO5vsvRPHjveSte/z+0OWLHnKtrY/z8cjj0jn091b0unude+p\
 CCEEEolEIpFIJJKkRY21ARKJRCKRSCSSyCIFn0QikUgkEkmSIwWfRCKRSCQSSZIjBZ9EIpFIJBJJ\
@@ -12113,7 +12131,7 @@ PiGEEEKIJCeBTwghhBAiyUngE0IIIYRIchL4hBBCCCGSnAQ+IYQQQogkJ4FPCCGEECLJSeATQggh\
 hEhyEviEEEIIIZKcBD4hhBBCiCQngU8IIYQQIsn9f3JzzQ5IwimqAAAAAElFTkSuQmCC\
 "
   frames[11] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/NK7nSAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAEAAElEQVR4nOydd3wb5f3H33ea3ttJ7Gxn7wUEkpCEFcLeo8zQAuXHKLS0BVqg\
 QIGWVfaeZZQR9p5JIEBC9iR7OIkTO95L+57fH7JkyZZtSday/bxfr7yiO914LJ2e+9x3KkIIgUQi\
 kUgkEomk26LGewASiUQikUgkkugiBZ9EIpFIJBJJN0cKPolEIpFIJJJujhR8EolEIpFIJN0cKfgk\
@@ -13310,7 +13328,7 @@ QpHiKMGnUCgUCoVCkeIowadQKBQKhUKR4ijBp1AoFAqFQpHiKMGnUCgUCoVCkeIowadQKBQKhUKR\
 4ijBp1AoFAqFQpHiKMGnUCgUCoVCkeL8/9ptVQwxvjI/AAAAAElFTkSuQmCC\
 "
   frames[12] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/NK7nSAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAEAAElEQVR4nOydd3Qc1f23n5nt6t2yZMm99wbGGGzAwYDpLZSAgQQICaEk8Avw\
 JiGBAAklAULoBAgl9Go62Jhq44J770VW72Xr3PeP1a52pVVZabZIus85Pt6ZnXJ3NXvnM9+qCCEE\
 EolEIpFIJJI+ixrrAUgkEolEIpFIIosUfBKJRCKRSCR9HCn4JBKJRCKRSPo4UvBJJBKJRCKR9HGk\
@@ -14474,7 +14492,7 @@ JPAJIYQQQiQ5CXxCCCGEEElOAp8QQgghRJKTwCeEEEIIkeQk8AkhhBBCJDkJfEIIIYQQSU4CnxBC\
 CCFEkpPAJ4QQQgiR5CTwCSGEEEIkuf8PXRRtj5PWAMgAAAAASUVORK5CYII=\
 "
   frames[13] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/NK7nSAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAEAAElEQVR4nOydd3hb1f2H33u1LO8dx862sxdZEEhCEkIJCSl7rwAtUAplFFrG\
 r0ALBVpWWWWUUqCMMsLeKyHMhAyy93QSJ/HestY9vz9kyZIt25KsZfu8z5Mn0tW99xzJ0rmf+52K\
 EEIgkUgkEolEIumxqLGegEQikUgkEokkskjBJ5FIJBKJRNLDkYJPIpFIJBKJpIcjBZ9EIpFIJBJJ\
@@ -15674,7 +15692,7 @@ CASCNEcIPoFAIBAIBII0Rwg+gUAgEAgEgjRHCD6BQCAQCASCNEcIPoFAIBAIBII0Rwg+gUAgEAgE\
 gjTn/wOJFG0mdZrKTgAAAABJRU5ErkJggg==\
 "
   frames[14] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/NK7nSAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAEAAElEQVR4nOydd3hb1f2H33s1vbeT2E5sx5nOJgkrhIQZ9p6lFCgFShmlg1L6\
 aylQRge7FCgtBcooO+wNSYAAgYSRvRxnOHG8t2Wte35/yJIlW7a1JdvnfR4/lq7uOJKuzv3c71SE\
 EAKJRCKRSCQSybBFjfcAJBKJRCKRSCTRRQo+iUQikUgkkmGOFHwSiUQikUgkwxwp+CQSiUQikUiG\
@@ -16847,7 +16865,7 @@ EokkxZGCTyKRSCQSiSTFkYJPIpFIJBKJJMWRgk8ikUgkEokkxZGCTyKRSCQSiSTFkYJPIpFIJBKJ\
 JMWRgk8ikUgkEokkxZGCTyKRSCQSiSTF+f/UxeiLaiYi1wAAAABJRU5ErkJggg==\
 "
   frames[15] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/NK7nSAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAEAAElEQVR4nOyddXgc172/35nlFbMFtiQzswO24zgOOMychtrA7W3TJoVbuLeU\
 /tqUm7ZpUww00CQNN0yOndhODDEzSLZFFmsFy3N+f6wWJK1gpV3tSjrv8/jxzmhmztnd2ZnPfFER\
 QggkEolEIpFIJKMWNd4TkEgkEolEIpHEFin4JBKJRCKRSEY5UvBJJBKJRCKRjHKk4JNIJBKJRCIZ\
@@ -18190,7 +18208,7 @@ o/ABAADYHIUPAADA5ih8AAAANkfhAwAAsDkKHwAAgM1R+AAAAGzuf0zCpm9HPzdtAAAAAElFTkSu\
 QmCC\
 "
   frames[16] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/NK7nSAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAEAAElEQVR4nOydd3hb5d2/73O0ZVvedjwS2xlkD7KAAEmYYZddKC3QAZQWWvp2\
 9/e2pePthtKWQulglFHKhgJlhwRIIIOQvWMncex427ItyRrn+f0ha3lKtmTJ9nNfly8fHZ3xSDrj\
 c75TEUIIJBKJRCKRSCRjFjXZA5BIJBKJRCKRJBYp+CQSiUQikUjGOFLwSSQSiUQikYxxpOCTSCQS\
@@ -19542,7 +19560,7 @@ AADgcBQ+AAAAh6PwAQAAOByFDwAAwOEofAAAAA5H4QMAAHA4Ch8AAIDDUfgAAAAc7n+Q2Un8Y8Sz\
 KQAAAABJRU5ErkJggg==\
 "
   frames[17] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/NK7nSAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAEAAElEQVR4nOydd3hb5d2/73M0Lct7xSOxnUH2IIMRAgkzrFJ2oZTRAZSWtnS+\
 HW9b2v7eDlpa2jJaOoAySlt22SMhAcJIAtlkx3Ec2/G2bMua5/n9IWvZsi3JkiXbz31dvnwkP+ec\
 R9YZn/OdihBCIJFIJBKJRCIZt6ipnoBEIpFIJBKJJLlIwSeRSCQSiUQyzpGCTyKRSCQSiWScIwWf\
@@ -20866,7 +20884,7 @@ Ez4AgDnhAwCYEz4AgDnhAwCYEz4AgDnhAwCYEz4AgDnhAwCYEz4AgDnhAwCYEz4AgDnhAwCYEz4A\
 gDnhAwCYEz4AgDnhAwCYEz4AgDnhAwCYEz4AgLkAER0/IEHZRrIAAAAASUVORK5CYII=\
 "
   frames[18] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/NK7nSAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAEAAElEQVR4nOydd3hb5d2/73OOlvd27NhJnOHskIQkBAgjIdCwN6WUltVSSqEt\
 vLT9lfalu+XtorRQ6KAFyiiUvcpOIKxAQsiGxEmc5djx3prnPL8/ZC1btiVZsmT7ua/Ll6WjM54j\
 nfE536kIIQQSiUQikUgkklGLmuwBSCQSiUQikUgSixR8EolEIpFIJKMcKfgkEolEIpFIRjlS8Ekk\
@@ -22227,7 +22245,7 @@ AJej8AEAALgchQ8AAMDlKHwAAAAuR+EDAABwOQofAACAy1H4AAAAXI7CBwAA4HIUPgAAAJej8AEA\
 ALgchQ8AAMDlKHwAAAAuR+EDAABwOQofAACAy/0fjSvFEOs2B54AAAAASUVORK5CYII=\
 "
   frames[19] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/NK7nSAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAEAAElEQVR4nOydd3gc1dm375mt6r1ZsmXZlqvcbWxsjG0MmF4CBAgQIAkhpBHe\
 9HwJ6ckb0khCIMkLAUIJvfdmY3Av2LhbrrJk9d62zvn+WG2TVtKutE3yua9Ll2Znp5zdnfKbpypC\
 CIFEIpFIJBKJZNSixnoAEolEIpFIJJLIIgWfRCKRSCQSyShHCj6JRCKRSCSSUY4UfBKJRCKRSCSj\
@@ -23615,7 +23633,7 @@ AElFTkSuQmCC\
     /* set a timeout to make sure all the above elements are created before
        the object is initialized. */
     setTimeout(function() {
-        animb10f8f2588af42a2926c012339798915 = new Animation(frames, img_id, slider_id, 1000.0,
+        anim4b19e407f2334d46a51e98c7722a2316 = new Animation(frames, img_id, slider_id, 1000.0,
                                  loop_select_id);
     }, 0);
   })()
@@ -23629,8 +23647,8 @@ AElFTkSuQmCC\
 </dd>
 </dl>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  13.704 seconds)</p>
-<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-generated-sphinx-gallery-examples-pool-plot-quire-querying-informative-and-representative-examples-quire-py">
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  12.425 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-generated-sphinx-gallery-examples-pool-plot-quire-querying-informative-and-representative-examples-quire-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../../_downloads/e1ecd78d1ca34d12ee71107e8a7209b9/plot-Quire-Querying_Informative_and_Representative_Examples_(QUIRE).py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot-Quire-Querying_Informative_and_Representative_Examples_(QUIRE).py</span></code></a></p>
 </div>
@@ -23656,10 +23674,10 @@ AElFTkSuQmCC\
           <p class="prev-next-title">Epistemic Uncertainty Sampling</p>
       </div>
   </a>
-  <a class='right-next' id="next-link" href="plot-UncertaintySampling-Uncertainty_Sampling_with_Margin.html" title="next page">
+  <a class='right-next' id="next-link" href="plot-UncertaintySampling-Uncertainty_Sampling_with_Least-Confidence.html" title="next page">
   <div class="prev-next-info">
       <p class="prev-next-subtitle">next</p>
-      <p class="prev-next-title">Uncertainty Sampling with Margin</p>
+      <p class="prev-next-title">Uncertainty Sampling with Least-Confidence</p>
   </div>
   <i class="fas fa-angle-right"></i>
   </a>

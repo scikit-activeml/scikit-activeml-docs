@@ -210,6 +210,16 @@
    skactiveml.base.AnnotatorModelMixin
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.base.SkactivemlRegressor.html">
+   skactiveml.base.SkactivemlRegressor
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.base.ProbabilisticRegressor.html">
+   skactiveml.base.ProbabilisticRegressor
+  </a>
+ </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -260,6 +270,36 @@
  <li class="toctree-l1">
   <a class="reference internal" href="skactiveml.pool.CostEmbeddingAL.html">
    skactiveml.pool.CostEmbeddingAL
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.ExpectedModelChangeMaximization.html">
+   skactiveml.pool.ExpectedModelChangeMaximization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.ExpectedModelOutputChange.html">
+   skactiveml.pool.ExpectedModelOutputChange
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.ExpectedModelVarianceReduction.html">
+   skactiveml.pool.ExpectedModelVarianceReduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.KLDivergenceMaximization.html">
+   skactiveml.pool.KLDivergenceMaximization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.GreedySamplingX.html">
+   skactiveml.pool.GreedySamplingX
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.GreedySamplingTarget.html">
+   skactiveml.pool.GreedySamplingTarget
   </a>
  </li>
  <li class="toctree-l1">
@@ -545,6 +585,11 @@
    skactiveml.utils.simple_batch
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.utils._check_callable.html">
+   skactiveml.utils._check_callable
+  </a>
+ </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -596,7 +641,7 @@
 <dt class="sig sig-object py" id="skactiveml.utils.check_bound">
 <span class="sig-prename descclassname"><span class="pre">skactiveml.utils.</span></span><span class="sig-name descname"><span class="pre">check_bound</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bound</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ndim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bound_must_be_given</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/utils/_validation.html#check_bound"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.utils.check_bound" title="Permalink to this definition">#</a></dt>
 <dd><p>Validates bound and returns the bound of X if bound is None.
-<cite>bound</cite> and <cite>X</cite> must not be None.</p>
+<cite>bound</cite> or <cite>X</cite> must not be None.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">

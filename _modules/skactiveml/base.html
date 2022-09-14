@@ -200,7 +200,7 @@
 <span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">sklearn.base</span> <span class="kn">import</span> <span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">ClassifierMixin</span>
+<span class="kn">from</span> <span class="nn">sklearn.base</span> <span class="kn">import</span> <span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">ClassifierMixin</span><span class="p">,</span> <span class="n">RegressorMixin</span>
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
 <span class="kn">from</span> <span class="nn">sklearn.utils.multiclass</span> <span class="kn">import</span> <span class="n">check_classification_targets</span>
 <span class="kn">from</span> <span class="nn">sklearn.utils.validation</span> <span class="kn">import</span> <span class="p">(</span>
@@ -236,6 +236,8 @@
     <span class="s2">&quot;SkactivemlClassifier&quot;</span><span class="p">,</span>
     <span class="s2">&quot;ClassFrequencyEstimator&quot;</span><span class="p">,</span>
     <span class="s2">&quot;AnnotatorModelMixin&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;SkactivemlRegressor&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ProbabilisticRegressor&quot;</span><span class="p">,</span>
 <span class="p">]</span>
 
 
@@ -397,7 +399,7 @@
 <span class="sd">            unlabeled samples.</span>
 <span class="sd">        y : array-like of shape (n_samples)</span>
 <span class="sd">            Labels of the training data set (possibly including unlabeled ones</span>
-<span class="sd">            indicated by self.MISSING_LABEL.</span>
+<span class="sd">            indicated by self.MISSING_LABEL).</span>
 <span class="sd">        candidates : None or array-like of shape (n_candidates), dtype=int or</span>
 <span class="sd">            array-like of shape (n_candidates, n_features),</span>
 <span class="sd">            optional (default=None)</span>
@@ -1521,6 +1523,192 @@
         <span class="p">)</span>
 
         <span class="k">return</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span></div>
+
+
+<div class="viewcode-block" id="SkactivemlRegressor"><a class="viewcode-back" href="../../generated/api/skactiveml.base.SkactivemlRegressor.html#skactiveml.base.SkactivemlRegressor">[docs]</a><span class="k">class</span> <span class="nc">SkactivemlRegressor</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">RegressorMixin</span><span class="p">,</span> <span class="n">ABC</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;SkactivemlRegressor</span>
+
+<span class="sd">    Base class for scikit-activeml regressors.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    __________</span>
+<span class="sd">    missing_label : scalar, string, np.nan, or None, optional</span>
+<span class="sd">    (default=skactiveml.utils.MISSING_LABEL)</span>
+<span class="sd">        Value to represent a missing label.</span>
+<span class="sd">    random_state : int, RandomState or None, optional (default=None)</span>
+<span class="sd">        Determines random number for &#39;fit&#39; and &#39;predict&#39; method. Pass an int for</span>
+<span class="sd">        reproducible results across multiple method calls.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">missing_label</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">missing_label</span> <span class="o">=</span> <span class="n">missing_label</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">random_state</span> <span class="o">=</span> <span class="n">random_state</span>
+
+<div class="viewcode-block" id="SkactivemlRegressor.fit"><a class="viewcode-back" href="../../generated/api/skactiveml.base.SkactivemlRegressor.html#skactiveml.base.SkactivemlRegressor.fit">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Fit the model using X as training data and y as numerical labels.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : matrix-like, shape (n_samples, n_features)</span>
+<span class="sd">            The sample matrix X is the feature matrix representing the samples.</span>
+<span class="sd">        y : array-like, shape (n_samples) or (n_samples, n_targets)</span>
+<span class="sd">            It contains the labels of the training samples.</span>
+<span class="sd">            The number of numerical labels may be variable for the samples,</span>
+<span class="sd">            where missing labels are represented the attribute &#39;missing_label&#39;.</span>
+<span class="sd">        sample_weight : array-like, shape (n_samples)</span>
+<span class="sd">            It contains the weights of the training samples&#39; values.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self: skactiveml.base.SkactivemlRegressor,</span>
+<span class="sd">            The `skactiveml.base.SkactivemlRegressor` object fitted on the</span>
+<span class="sd">            training data.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="SkactivemlRegressor.predict"><a class="viewcode-back" href="../../generated/api/skactiveml.base.SkactivemlRegressor.html#skactiveml.base.SkactivemlRegressor.predict">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return value predictions for the test samples X.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X :  array-like, shape (n_samples, n_features)</span>
+<span class="sd">            Input samples.</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        y : numpy.ndarray, shape (n_samples)</span>
+<span class="sd">            Predicted values of the test samples &#39;X&#39;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+    <span class="k">def</span> <span class="nf">_validate_data</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">X</span><span class="p">,</span>
+        <span class="n">y</span><span class="p">,</span>
+        <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">check_X_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">check_y_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">y_ensure_1d</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">):</span>
+
+        <span class="k">if</span> <span class="n">check_X_dict</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">check_X_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;ensure_min_samples&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;ensure_min_features&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+        <span class="k">if</span> <span class="n">check_y_dict</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">check_y_dict</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;ensure_min_samples&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                <span class="s2">&quot;ensure_min_features&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                <span class="s2">&quot;ensure_2d&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                <span class="s2">&quot;force_all_finite&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                <span class="s2">&quot;dtype&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="p">}</span>
+
+        <span class="n">check_missing_label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">missing_label</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">missing_label_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">missing_label</span>
+
+        <span class="c1"># Store and check random state.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">random_state_</span> <span class="o">=</span> <span class="n">check_random_state</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state</span><span class="p">)</span>
+
+        <span class="n">X</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="o">**</span><span class="n">check_X_dict</span><span class="p">)</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="o">**</span><span class="n">check_y_dict</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">column_or_1d</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="k">if</span> <span class="n">y_ensure_1d</span> <span class="k">else</span> <span class="n">y</span>
+
+        <span class="k">if</span> <span class="n">sample_weight</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">sample_weight</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">sample_weight</span><span class="p">,</span> <span class="o">**</span><span class="n">check_y_dict</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">.</span><span class="n">shape</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;`y` has the shape </span><span class="si">{</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> and `sample_weight` has the &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;shape </span><span class="si">{</span><span class="n">sample_weight</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">. Both need to have &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;identical shapes.&quot;</span>
+                <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span></div>
+
+
+<div class="viewcode-block" id="ProbabilisticRegressor"><a class="viewcode-back" href="../../generated/api/skactiveml.base.ProbabilisticRegressor.html#skactiveml.base.ProbabilisticRegressor">[docs]</a><span class="k">class</span> <span class="nc">ProbabilisticRegressor</span><span class="p">(</span><span class="n">SkactivemlRegressor</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;ProbabilisticRegressor</span>
+
+<span class="sd">    Base class for scikit-activeml probabilistic regressors.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="ProbabilisticRegressor.predict_target_distribution"><a class="viewcode-back" href="../../generated/api/skactiveml.base.ProbabilisticRegressor.html#skactiveml.base.ProbabilisticRegressor.predict_target_distribution">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">predict_target_distribution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the predicted target distribution conditioned on the test</span>
+<span class="sd">        samples `X`.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X :  array-like, shape (n_samples, n_features)</span>
+<span class="sd">            Input samples.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dist : scipy.stats._distn_infrastructure.rv_frozen</span>
+<span class="sd">            The distribution of the targets at the test samples.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="ProbabilisticRegressor.predict"><a class="viewcode-back" href="../../generated/api/skactiveml.base.ProbabilisticRegressor.html#skactiveml.base.ProbabilisticRegressor.predict">[docs]</a>    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">return_std</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">return_entropy</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the mean, std (optional) and differential entropy (optional)</span>
+<span class="sd">        of the predicted target distribution conditioned on the test samples</span>
+<span class="sd">        `X`.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X :  array-like, shape (n_samples, n_features)</span>
+<span class="sd">            Input samples.</span>
+<span class="sd">        return_std : bool, optional (default=False)</span>
+<span class="sd">            Whether to return the standard deviation.</span>
+<span class="sd">        return_entropy : bool, optional (default=False)</span>
+<span class="sd">            Whether to return the differential entropy.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        mu : numpy.ndarray, shape (n_samples)</span>
+<span class="sd">            Predicted mean conditioned on `X`.</span>
+<span class="sd">        std : numpy.ndarray, shape (n_samples), optional</span>
+<span class="sd">            Predicted standard deviation conditioned on `X`.</span>
+<span class="sd">        entropy : numpy..ndarray, optional</span>
+<span class="sd">            Predicted differential entropy conditioned on `X`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">rv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">predict_target_distribution</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="n">rv</span><span class="o">.</span><span class="n">mean</span><span class="p">(),)</span>
+        <span class="k">if</span> <span class="n">return_std</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">+=</span> <span class="p">(</span><span class="n">rv</span><span class="o">.</span><span class="n">std</span><span class="p">(),)</span>
+        <span class="k">if</span> <span class="n">return_entropy</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">+=</span> <span class="p">(</span><span class="n">rv</span><span class="o">.</span><span class="n">entropy</span><span class="p">(),)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">result</span></div>
+
+<div class="viewcode-block" id="ProbabilisticRegressor.sample_y"><a class="viewcode-back" href="../../generated/api/skactiveml.base.ProbabilisticRegressor.html#skactiveml.base.ProbabilisticRegressor.sample_y">[docs]</a>    <span class="k">def</span> <span class="nf">sample_y</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns random samples from the predicted target distribution</span>
+<span class="sd">        conditioned on the test samples `X`.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X :  array-like, shape (n_samples_X, n_features)</span>
+<span class="sd">            Input samples, where the target values are drawn from.</span>
+<span class="sd">        n_samples: int, optional (default=1)</span>
+<span class="sd">            Number of random samples to be drawn.</span>
+<span class="sd">        random_state : int, RandomState instance or None, optional</span>
+<span class="sd">        (default=None)</span>
+<span class="sd">            Determines random number generation to randomly draw samples. Pass</span>
+<span class="sd">            an int for reproducible results across multiple method calls.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        y_samples : numpy.ndarray, shape (n_samples_X, n_samples)</span>
+<span class="sd">            Drawn random target samples.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">rv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">predict_target_distribution</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="n">rv_samples</span> <span class="o">=</span> <span class="n">rv</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span>
+            <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">n_samples</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)),</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">rv_samples</span><span class="o">.</span><span class="n">T</span></div></div>
 
 
 <div class="viewcode-block" id="AnnotatorModelMixin"><a class="viewcode-back" href="../../generated/api/skactiveml.base.AnnotatorModelMixin.html#skactiveml.base.AnnotatorModelMixin">[docs]</a><span class="k">class</span> <span class="nc">AnnotatorModelMixin</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>

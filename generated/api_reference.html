@@ -210,6 +210,16 @@
    skactiveml.base.AnnotatorModelMixin
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.base.SkactivemlRegressor.html">
+   skactiveml.base.SkactivemlRegressor
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.base.ProbabilisticRegressor.html">
+   skactiveml.base.ProbabilisticRegressor
+  </a>
+ </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -260,6 +270,36 @@
  <li class="toctree-l1">
   <a class="reference internal" href="api/skactiveml.pool.CostEmbeddingAL.html">
    skactiveml.pool.CostEmbeddingAL
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.pool.ExpectedModelChangeMaximization.html">
+   skactiveml.pool.ExpectedModelChangeMaximization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.pool.ExpectedModelOutputChange.html">
+   skactiveml.pool.ExpectedModelOutputChange
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.pool.ExpectedModelVarianceReduction.html">
+   skactiveml.pool.ExpectedModelVarianceReduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.pool.KLDivergenceMaximization.html">
+   skactiveml.pool.KLDivergenceMaximization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.pool.GreedySamplingX.html">
+   skactiveml.pool.GreedySamplingX
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.pool.GreedySamplingTarget.html">
+   skactiveml.pool.GreedySamplingTarget
   </a>
  </li>
  <li class="toctree-l1">
@@ -545,6 +585,11 @@
    skactiveml.utils.simple_batch
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.utils._check_callable.html">
+   skactiveml.utils._check_callable
+  </a>
+ </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -814,6 +859,12 @@
 <tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.base.AnnotatorModelMixin.html#skactiveml.base.AnnotatorModelMixin" title="skactiveml.base.AnnotatorModelMixin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">base.AnnotatorModelMixin</span></code></a></p></td>
 <td><p>Base class of all annotator models estimating the performances of annotators for given samples.</p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.base.SkactivemlRegressor.html#skactiveml.base.SkactivemlRegressor" title="skactiveml.base.SkactivemlRegressor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">base.SkactivemlRegressor</span></code></a></p></td>
+<td><p>Base class for scikit-activeml regressors.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.base.ProbabilisticRegressor.html#skactiveml.base.ProbabilisticRegressor" title="skactiveml.base.ProbabilisticRegressor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">base.ProbabilisticRegressor</span></code></a></p></td>
+<td><p>Base class for scikit-activeml probabilistic regressors.</p></td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -860,6 +911,24 @@ pool-based active learning.</p>
 <tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.pool.CostEmbeddingAL.html#skactiveml.pool.CostEmbeddingAL" title="skactiveml.pool.CostEmbeddingAL"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pool.CostEmbeddingAL</span></code></a></p></td>
 <td><p>Active Learning with Cost Embedding (ALCE).</p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.pool.ExpectedModelChangeMaximization.html#skactiveml.pool.ExpectedModelChangeMaximization" title="skactiveml.pool.ExpectedModelChangeMaximization"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pool.ExpectedModelChangeMaximization</span></code></a></p></td>
+<td><p>Expected Model Change.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.pool.ExpectedModelOutputChange.html#skactiveml.pool.ExpectedModelOutputChange" title="skactiveml.pool.ExpectedModelOutputChange"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pool.ExpectedModelOutputChange</span></code></a></p></td>
+<td><p>Regression based Expected Model Output Change.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.pool.ExpectedModelVarianceReduction.html#skactiveml.pool.ExpectedModelVarianceReduction" title="skactiveml.pool.ExpectedModelVarianceReduction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pool.ExpectedModelVarianceReduction</span></code></a></p></td>
+<td><p>Expected Model Variance Reduction.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.pool.KLDivergenceMaximization.html#skactiveml.pool.KLDivergenceMaximization" title="skactiveml.pool.KLDivergenceMaximization"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pool.KLDivergenceMaximization</span></code></a></p></td>
+<td><p>Regression based Kullback Leibler Divergence Maximization.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.pool.GreedySamplingX.html#skactiveml.pool.GreedySamplingX" title="skactiveml.pool.GreedySamplingX"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pool.GreedySamplingX</span></code></a></p></td>
+<td><p>Greedy Sampling on the feature space.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.pool.GreedySamplingTarget.html#skactiveml.pool.GreedySamplingTarget" title="skactiveml.pool.GreedySamplingTarget"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pool.GreedySamplingTarget</span></code></a></p></td>
+<td><p>Greedy Sampling on the target space.</p></td>
+</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.pool.DiscriminativeAL.html#skactiveml.pool.DiscriminativeAL" title="skactiveml.pool.DiscriminativeAL"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pool.DiscriminativeAL</span></code></a></p></td>
 <td><p>Discriminative Active Learning.</p></td>
 </tr>
@@ -895,6 +964,8 @@ pool-based active learning.</p>
 </section>
 <section id="module-skactiveml.pool.multiannotator">
 <span id="skactiveml-pool-multiannotator"></span><h2><a class="reference internal" href="#module-skactiveml.pool.multiannotator" title="skactiveml.pool.multiannotator"><code class="xref py py-mod docutils literal notranslate"><span class="pre">skactiveml.pool.multiannotator</span></code></a>:<a class="headerlink" href="#module-skactiveml.pool.multiannotator" title="Permalink to this headline">#</a></h2>
+<p>The <a class="reference internal" href="#module-skactiveml.pool.multiannotator" title="skactiveml.pool.multiannotator"><code class="xref py py-mod docutils literal notranslate"><span class="pre">skactiveml.pool.multiannotator</span></code></a> package implements multi annotator
+pool-based active learning for multiple annotators.</p>
 <section id="id3">
 <h3>Classes<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
 <table class="longtable table autosummary">
@@ -1144,6 +1215,9 @@ visualization.</p>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.utils.simple_batch.html#skactiveml.utils.simple_batch" title="skactiveml.utils.simple_batch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utils.simple_batch</span></code></a></p></td>
 <td><p>Generates a batch by selecting the highest values in the 'utilities'.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.utils._check_callable.html#skactiveml.utils._check_callable" title="skactiveml.utils._check_callable"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utils._check_callable</span></code></a></p></td>
+<td><p>Checks if function is a callable and if the number of free parameters is correct.</p></td>
 </tr>
 </tbody>
 </table>

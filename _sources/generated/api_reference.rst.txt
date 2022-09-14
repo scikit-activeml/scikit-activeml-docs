@@ -33,6 +33,8 @@ Classes
    base.SkactivemlClassifier
    base.ClassFrequencyEstimator
    base.AnnotatorModelMixin
+   base.SkactivemlRegressor
+   base.ProbabilisticRegressor
 
 :mod:`skactiveml.pool`:
 =======================
@@ -61,6 +63,12 @@ Classes
    pool.Quire
    pool.FourDs
    pool.CostEmbeddingAL
+   pool.ExpectedModelChangeMaximization
+   pool.ExpectedModelOutputChange
+   pool.ExpectedModelVarianceReduction
+   pool.KLDivergenceMaximization
+   pool.GreedySamplingX
+   pool.GreedySamplingTarget
    pool.DiscriminativeAL
 
 Functions
@@ -258,6 +266,7 @@ Functions
    utils.check_budget_manager
    utils.check_indices
    utils.simple_batch
+   utils._check_callable
 
 :mod:`skactiveml.exceptions`:
 =============================

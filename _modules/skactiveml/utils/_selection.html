@@ -191,12 +191,15 @@
                 
   <h1>Source code for skactiveml.utils._selection</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Utilities for selection.&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">operator</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">reduce</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">rankdata</span>
 <span class="kn">from</span> <span class="nn">sklearn.utils</span> <span class="kn">import</span> <span class="n">check_array</span>
 
-<span class="kn">from</span> <span class="nn">._validation</span> <span class="kn">import</span> <span class="n">check_random_state</span><span class="p">,</span> <span class="n">check_scalar</span>
+<span class="kn">from</span> <span class="nn">._validation</span> <span class="kn">import</span> <span class="n">check_random_state</span><span class="p">,</span> <span class="n">check_scalar</span><span class="p">,</span> <span class="n">check_type</span>
 
 
 <div class="viewcode-block" id="rand_argmin"><a class="viewcode-back" href="../../../generated/api/skactiveml.utils.rand_argmin.html#skactiveml.utils.rand_argmin">[docs]</a><span class="k">def</span> <span class="nf">rand_argmin</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">argmin_kwargs</span><span class="p">):</span>
@@ -226,7 +229,7 @@
     <span class="n">index_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span>
         <span class="n">random_state</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
         <span class="o">*</span> <span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmin</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">argmin_kwargs</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)),</span>
-        <span class="o">**</span><span class="n">argmin_kwargs</span>
+        <span class="o">**</span><span class="n">argmin_kwargs</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">index_array</span><span class="p">)</span> <span class="ow">and</span> <span class="n">a</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
         <span class="n">index_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unravel_index</span><span class="p">(</span><span class="n">index_array</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
@@ -260,7 +263,7 @@
     <span class="n">index_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span>
         <span class="n">random_state</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
         <span class="o">*</span> <span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">argmax_kwargs</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)),</span>
-        <span class="o">**</span><span class="n">argmax_kwargs</span>
+        <span class="o">**</span><span class="n">argmax_kwargs</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">index_array</span><span class="p">)</span> <span class="ow">and</span> <span class="n">a</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
         <span class="n">index_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unravel_index</span><span class="p">(</span><span class="n">index_array</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
@@ -280,7 +283,7 @@
 <span class="sd">    ----------</span>
 <span class="sd">    utilities : np.ndarray</span>
 <span class="sd">        The utilities to be used to create the batch.</span>
-<span class="sd">    random_state : numeric | np.random.RandomState (default=None)</span>
+<span class="sd">    random_state : int | np.random.RandomState (default=None)</span>
 <span class="sd">        The random state to use. If `random_state is None` random</span>
 <span class="sd">        `random_state` is used.</span>
 <span class="sd">    batch_size : int, optional (default=1)</span>
@@ -332,6 +335,85 @@
         <span class="k">return</span> <span class="n">best_indices</span><span class="p">,</span> <span class="n">batch_utilities</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">best_indices</span></div>
+
+
+<span class="k">def</span> <span class="nf">combine_ranking</span><span class="p">(</span><span class="o">*</span><span class="n">iter_ranking</span><span class="p">,</span> <span class="n">rank_method</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">rank_per_batch</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Combine different rankings hierarchically to one ranking assignment.</span>
+<span class="sd">    A ranking index i is ranked higher than index j iff ranking[i] &gt; ranking[j].</span>
+<span class="sd">    For the combined ranking it will hold that the first ranking of iter_ranking</span>
+<span class="sd">    always determines the ranking position at an index, and only when</span>
+<span class="sd">    two ranking assignments are equal the second ranking will determine</span>
+<span class="sd">    the ranking position and so forth.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    iter_ranking : iterable of array-like</span>
+<span class="sd">        The different rankings. They must share a common shape in the sense</span>
+<span class="sd">        that they have the same number of dimensions and are broadcastable by</span>
+<span class="sd">        numpy.</span>
+<span class="sd">    rank_method : string, optional (default = None)</span>
+<span class="sd">        The method by which the utilities are ranked. See `scipy.rankdata`s</span>
+<span class="sd">        argument `method` for details.</span>
+<span class="sd">    rank_per_batch : bool, optional (default = False)</span>
+<span class="sd">        Whether the first index determines the batch and is not used for ranking</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    combined_ranking : np.ndarray</span>
+<span class="sd">        The combined ranking.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">rank_method</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">rank_method</span> <span class="o">=</span> <span class="s2">&quot;dense&quot;</span>
+    <span class="n">check_type</span><span class="p">(</span><span class="n">rank_method</span><span class="p">,</span> <span class="s2">&quot;rank_method&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+    <span class="n">check_type</span><span class="p">(</span><span class="n">rank_per_batch</span><span class="p">,</span> <span class="s2">&quot;rank_per_batch&quot;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>
+
+    <span class="n">iter_ranking</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">iter_ranking</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">ranking</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">iter_ranking</span><span class="p">):</span>
+        <span class="n">iter_ranking</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span>
+            <span class="n">ranking</span><span class="p">,</span> <span class="n">allow_nd</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">force_all_finite</span><span class="o">=</span><span class="kc">False</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">idx</span> <span class="o">!=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">iter_ranking</span><span class="p">[</span><span class="n">idx</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="n">ranking</span><span class="o">.</span><span class="n">ndim</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;The number of dimensions of the `ranking` in &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;`iter_ranking` must be the same, but &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;`iter_ranking[</span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s2">].ndim == </span><span class="si">{</span><span class="n">ranking</span><span class="o">.</span><span class="n">ndim</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="sa">f</span><span class="s2">&quot; and `iter_ranking[</span><span class="si">{</span><span class="n">idx</span><span class="o">-</span><span class="mi">1</span><span class="si">}</span><span class="s2">].ndim == &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">iter_ranking</span><span class="p">[</span><span class="n">idx</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">ndim</span><span class="si">}</span><span class="s2">`.&quot;</span>
+            <span class="p">)</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">broadcast_shapes</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">shape</span> <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">iter_ranking</span><span class="p">))</span>
+
+    <span class="n">combined_ranking</span> <span class="o">=</span> <span class="n">iter_ranking</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">iter_ranking</span><span class="p">)):</span>
+        <span class="n">next_ranking</span> <span class="o">=</span> <span class="n">iter_ranking</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+        <span class="n">cr_shape</span> <span class="o">=</span> <span class="n">combined_ranking</span><span class="o">.</span><span class="n">shape</span>
+        <span class="k">if</span> <span class="n">rank_per_batch</span><span class="p">:</span>
+            <span class="n">rank_shape</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">cr_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                <span class="nb">max</span><span class="p">(</span><span class="n">reduce</span><span class="p">(</span><span class="n">operator</span><span class="o">.</span><span class="n">mul</span><span class="p">,</span> <span class="n">cr_shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">1</span><span class="p">),</span>
+            <span class="p">)</span>
+            <span class="n">rank_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;method&quot;</span><span class="p">:</span> <span class="n">rank_method</span><span class="p">,</span> <span class="s2">&quot;axis&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">rank_shape</span> <span class="o">=</span> <span class="n">reduce</span><span class="p">(</span><span class="n">operator</span><span class="o">.</span><span class="n">mul</span><span class="p">,</span> <span class="n">cr_shape</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">rank_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;method&quot;</span><span class="p">:</span> <span class="n">rank_method</span><span class="p">}</span>
+
+        <span class="n">combined_ranking</span> <span class="o">=</span> <span class="n">combined_ranking</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">rank_shape</span><span class="p">)</span>
+
+        <span class="c1"># exchange nan values to make rankdata work.</span>
+        <span class="n">nan_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">combined_ranking</span><span class="p">)</span>
+        <span class="n">combined_ranking</span><span class="p">[</span><span class="n">nan_values</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+        <span class="n">combined_ranking</span> <span class="o">=</span> <span class="n">rankdata</span><span class="p">(</span><span class="n">combined_ranking</span><span class="p">,</span> <span class="o">**</span><span class="n">rank_dict</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span>
+            <span class="nb">float</span>
+        <span class="p">)</span>
+        <span class="n">combined_ranking</span><span class="p">[</span><span class="n">nan_values</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+        <span class="n">combined_ranking</span> <span class="o">=</span> <span class="n">combined_ranking</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">cr_shape</span><span class="p">)</span>
+
+        <span class="n">combined_ranking</span> <span class="o">=</span> <span class="n">combined_ranking</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span>
+            <span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">next_ranking</span><span class="p">)</span>
+        <span class="p">)</span>  <span class="c1"># sigmoid</span>
+
+    <span class="k">return</span> <span class="n">combined_ranking</span>
 </pre></div>
 
               </article>

@@ -210,6 +210,16 @@
    skactiveml.base.AnnotatorModelMixin
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.base.SkactivemlRegressor.html">
+   skactiveml.base.SkactivemlRegressor
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.base.ProbabilisticRegressor.html">
+   skactiveml.base.ProbabilisticRegressor
+  </a>
+ </li>
 </ul>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
@@ -260,6 +270,36 @@
  <li class="toctree-l1">
   <a class="reference internal" href="skactiveml.pool.CostEmbeddingAL.html">
    skactiveml.pool.CostEmbeddingAL
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.ExpectedModelChangeMaximization.html">
+   skactiveml.pool.ExpectedModelChangeMaximization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.ExpectedModelOutputChange.html">
+   skactiveml.pool.ExpectedModelOutputChange
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.ExpectedModelVarianceReduction.html">
+   skactiveml.pool.ExpectedModelVarianceReduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.KLDivergenceMaximization.html">
+   skactiveml.pool.KLDivergenceMaximization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.GreedySamplingX.html">
+   skactiveml.pool.GreedySamplingX
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.GreedySamplingTarget.html">
+   skactiveml.pool.GreedySamplingTarget
   </a>
  </li>
  <li class="toctree-l1">
@@ -545,6 +585,11 @@
    skactiveml.utils.simple_batch
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.utils._check_callable.html">
+   skactiveml.utils._check_callable
+  </a>
+ </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -623,7 +668,7 @@ strategy.</p>
 </dd>
 <dt><strong>missing_label</strong><span class="classifier">scalar or string or np.nan or None, default=np.nan</span></dt><dd><p>Value to represent a missing label.</p>
 </dd>
-<dt><strong>random_state: numeric | np.random.RandomState, optional</strong></dt><dd><p>Random state for candidate selection.</p>
+<dt><strong>random_state</strong><span class="classifier">int | np.random.RandomState, optional</span></dt><dd><p>Random state for candidate selection.</p>
 </dd>
 </dl>
 </dd>
@@ -760,13 +805,10 @@ possible to update each component of a nested object.</p>
 
 <section id="examples-using-skactiveml-pool-probabilistical">
 <span id="sphx-glr-backref-skactiveml-pool-probabilistical"></span><h2>Examples using <code class="docutils literal notranslate"><span class="pre">skactiveml.pool.ProbabilisticAL</span></code><a class="headerlink" href="#examples-using-skactiveml-pool-probabilistical" title="Permalink to this headline">#</a></h2>
-<div class="sphx-glr-thumbcontainer" tooltip="Multi-class Probabilistic Active Learning"><figure class="align-default" id="id1">
-<img alt="Multi-class Probabilistic Active Learning" src="../../_images/sphx_glr_plot-ProbabilisticAL-Multi-class_Probabilistic_Active_Learning_(McPAL)_thumb.gif" />
-<figcaption>
-<p><span class="caption-text"><a class="reference internal" href="../sphinx_gallery_examples/pool/plot-ProbabilisticAL-Multi-class_Probabilistic_Active_Learning_%28McPAL%29.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-probabilistical-multi-class-probabilistic-active-learning-mcpal-py"><span class="std std-ref">Multi-class Probabilistic Active Learning</span></a></span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-</div><div class="sphx-glr-clear"></div></section>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Multi-class Probabilistic Active Learning"><img alt="Multi-class Probabilistic Active Learning" src="../../_images/sphx_glr_plot-ProbabilisticAL-Multi-class_Probabilistic_Active_Learning_(McPAL)_thumb.gif" />
+<p><a class="reference internal" href="../sphinx_gallery_examples/pool/plot-ProbabilisticAL-Multi-class_Probabilistic_Active_Learning_%28McPAL%29.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-probabilistical-multi-class-probabilistic-active-learning-mcpal-py"><span class="std std-ref">Multi-class Probabilistic Active Learning</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Multi-class Probabilistic Active Learning</div>
+</div></div></section>
 </section>
 
 

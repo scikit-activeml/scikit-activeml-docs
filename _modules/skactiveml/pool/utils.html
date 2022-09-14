@@ -194,12 +194,20 @@
 <span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">integrate</span>
+<span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">roots_hermitenorm</span>
 <span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">clone</span>
 <span class="kn">from</span> <span class="nn">sklearn.exceptions</span> <span class="kn">import</span> <span class="n">NotFittedError</span>
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">pairwise_kernels</span>
+<span class="kn">from</span> <span class="nn">sklearn.utils</span> <span class="kn">import</span> <span class="n">column_or_1d</span>
 <span class="kn">from</span> <span class="nn">sklearn.utils.validation</span> <span class="kn">import</span> <span class="n">check_array</span><span class="p">,</span> <span class="n">check_consistent_length</span>
 
-<span class="kn">from</span> <span class="nn">..base</span> <span class="kn">import</span> <span class="n">SkactivemlClassifier</span>
+<span class="kn">from</span> <span class="nn">..base</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">SkactivemlClassifier</span><span class="p">,</span>
+    <span class="n">ProbabilisticRegressor</span><span class="p">,</span>
+    <span class="n">SkactivemlRegressor</span><span class="p">,</span>
+<span class="p">)</span>
 <span class="kn">from</span> <span class="nn">..classifier</span> <span class="kn">import</span> <span class="n">ParzenWindowClassifier</span>
 <span class="kn">from</span> <span class="nn">..utils</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">MISSING_LABEL</span><span class="p">,</span>
@@ -209,9 +217,13 @@
     <span class="n">check_equal_missing_label</span><span class="p">,</span>
     <span class="n">check_type</span><span class="p">,</span>
     <span class="n">check_indices</span><span class="p">,</span>
+    <span class="n">check_random_state</span><span class="p">,</span>
+    <span class="n">check_scalar</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;IndexClassifierWrapper&quot;</span><span class="p">]</span>
+
+<span class="kn">from</span> <span class="nn">..utils._validation</span> <span class="kn">import</span> <span class="n">_check_callable</span>
 
 
 <div class="viewcode-block" id="IndexClassifierWrapper"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.utils.IndexClassifierWrapper.html#skactiveml.pool.utils.IndexClassifierWrapper">[docs]</a><span class="k">class</span> <span class="nc">IndexClassifierWrapper</span><span class="p">:</span>
@@ -751,6 +763,513 @@
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
                 <span class="s2">&quot;All `sample_weight` must be either None or &quot;</span> <span class="s2">&quot;given.&quot;</span>
             <span class="p">)</span></div>
+
+
+<span class="k">def</span> <span class="nf">_cross_entropy</span><span class="p">(</span>
+    <span class="n">X_eval</span><span class="p">,</span> <span class="n">true_reg</span><span class="p">,</span> <span class="n">other_reg</span><span class="p">,</span> <span class="n">integration_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Calculates the cross entropy.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    X_eval : array-like of shape (n_samples, n_features)</span>
+<span class="sd">        The samples where the cross entropy should be evaluated.</span>
+<span class="sd">    true_reg: ProbabilisticRegressor</span>
+<span class="sd">        True distribution of the cross entropy.</span>
+<span class="sd">    other_reg: ProbabilisticRegressor</span>
+<span class="sd">        Evaluated distribution of the cross entropy.</span>
+<span class="sd">    integration_dict: dict, optional default = None</span>
+<span class="sd">        Dictionary for integration arguments, i.e. `integration method` etc..</span>
+<span class="sd">        For details see method `conditional_expect`.</span>
+<span class="sd">    random_state : int | np.random.RandomState, optional</span>
+<span class="sd">        Random state for cross entropy calculation.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    cross_ent : numpy.ndarray of shape (n_samples)</span>
+<span class="sd">        The cross entropy.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">integration_dict</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">integration_dict</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="n">check_type</span><span class="p">(</span><span class="n">integration_dict</span><span class="p">,</span> <span class="s2">&quot;integration_dict&quot;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span>
+    <span class="n">check_type</span><span class="p">(</span><span class="n">true_reg</span><span class="p">,</span> <span class="s2">&quot;true_reg&quot;</span><span class="p">,</span> <span class="n">ProbabilisticRegressor</span><span class="p">)</span>
+    <span class="n">check_type</span><span class="p">(</span><span class="n">other_reg</span><span class="p">,</span> <span class="s2">&quot;other_reg&quot;</span><span class="p">,</span> <span class="n">ProbabilisticRegressor</span><span class="p">)</span>
+    <span class="n">random_state</span> <span class="o">=</span> <span class="n">check_random_state</span><span class="p">(</span><span class="n">random_state</span><span class="p">)</span>
+
+    <span class="n">dist</span> <span class="o">=</span> <span class="n">_reshape_scipy_dist</span><span class="p">(</span>
+        <span class="n">other_reg</span><span class="o">.</span><span class="n">predict_target_distribution</span><span class="p">(</span><span class="n">X_eval</span><span class="p">),</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X_eval</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="n">cross_ent</span> <span class="o">=</span> <span class="o">-</span><span class="n">expected_target_val</span><span class="p">(</span>
+        <span class="n">X_eval</span><span class="p">,</span>
+        <span class="n">dist</span><span class="o">.</span><span class="n">logpdf</span><span class="p">,</span>
+        <span class="n">reg</span><span class="o">=</span><span class="n">true_reg</span><span class="p">,</span>
+        <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">integration_dict</span><span class="p">,</span>
+        <span class="n">vector_func</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">cross_ent</span>
+
+
+<span class="k">def</span> <span class="nf">_update_reg</span><span class="p">(</span>
+    <span class="n">reg</span><span class="p">,</span>
+    <span class="n">X</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">,</span>
+    <span class="n">y_update</span><span class="p">,</span>
+    <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">idx_update</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">X_update</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">mapping</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Update the regressor by the updating samples, depending on</span>
+<span class="sd">    the mapping. Chooses `X_update` if `mapping is None` and updates</span>
+<span class="sd">    `X[mapping[idx_update]]` otherwise.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    reg : SkactivemlRegressor</span>
+<span class="sd">        The regressor to be updated.</span>
+<span class="sd">    X : array-like of shape (n_samples, n_features)</span>
+<span class="sd">        Training data set.</span>
+<span class="sd">    y : array-like of shape (n_samples)</span>
+<span class="sd">        Labels of the training data set.</span>
+<span class="sd">    y_update : array-like of shape (n_updates) or numeric</span>
+<span class="sd">        Updating labels or updating label.</span>
+<span class="sd">    sample_weight : array-like of shape (n_samples), optional (default = None)</span>
+<span class="sd">        Sample weight of the training data set. If</span>
+<span class="sd">    idx_update : array-like of shape (n_updates) or int</span>
+<span class="sd">        Index of the samples or sample to be updated.</span>
+<span class="sd">    X_update : array-like of shape (n_updates, n_features) or (n_features)</span>
+<span class="sd">        Samples to be updated or sample to be updated.</span>
+<span class="sd">    mapping : array-like of shape (n_candidates), optional (default = None)</span>
+<span class="sd">        The deciding mapping.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    reg_new : SkaktivemlRegressor</span>
+<span class="sd">        The updated regressor.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">sample_weight</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">mapping</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;If `sample_weight` is not `None` a mapping &quot;</span>
+            <span class="s2">&quot;between candidates and the training dataset must &quot;</span>
+            <span class="s2">&quot;exist.&quot;</span>
+        <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">mapping</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">idx_update</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">integer</span><span class="p">)):</span>
+            <span class="n">check_indices</span><span class="p">([</span><span class="n">idx_update</span><span class="p">],</span> <span class="n">A</span><span class="o">=</span><span class="n">mapping</span><span class="p">,</span> <span class="n">unique</span><span class="o">=</span><span class="s2">&quot;check_unique&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">check_indices</span><span class="p">(</span><span class="n">idx_update</span><span class="p">,</span> <span class="n">A</span><span class="o">=</span><span class="n">mapping</span><span class="p">,</span> <span class="n">unique</span><span class="o">=</span><span class="s2">&quot;check_unique&quot;</span><span class="p">)</span>
+        <span class="n">X_new</span><span class="p">,</span> <span class="n">y_new</span> <span class="o">=</span> <span class="n">_update_X_y</span><span class="p">(</span>
+            <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">y_update</span><span class="p">,</span> <span class="n">idx_update</span><span class="o">=</span><span class="n">mapping</span><span class="p">[</span><span class="n">idx_update</span><span class="p">]</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">X_new</span><span class="p">,</span> <span class="n">y_new</span> <span class="o">=</span> <span class="n">_update_X_y</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">y_update</span><span class="p">,</span> <span class="n">X_update</span><span class="o">=</span><span class="n">X_update</span><span class="p">)</span>
+
+    <span class="n">reg_new</span> <span class="o">=</span> <span class="n">clone</span><span class="p">(</span><span class="n">reg</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_new</span><span class="p">,</span> <span class="n">y_new</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">reg_new</span>
+
+
+<span class="k">def</span> <span class="nf">_update_X_y</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">y_update</span><span class="p">,</span> <span class="n">idx_update</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">X_update</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Update the training data by the updating samples/labels.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    X : array-like of shape (n_samples, n_features)</span>
+<span class="sd">        Training data set.</span>
+<span class="sd">    y : array-like of shape (n_samples)</span>
+<span class="sd">        Labels of the training data set.</span>
+<span class="sd">    idx_update : array-like of shape (n_updates) or int</span>
+<span class="sd">        Index of the samples or sample to be updated.</span>
+<span class="sd">    X_update : array-like of shape (n_updates, n_features) or (n_features)</span>
+<span class="sd">        Samples to be updated or sample to be updated.</span>
+<span class="sd">    y_update : array-like of shape (n_updates) or numeric</span>
+<span class="sd">        Updating labels or updating label.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    X_new : np.ndarray of shape (n_new_samples, n_features)</span>
+<span class="sd">        The new training data set.</span>
+<span class="sd">    y_new : np.ndarray of shape (n_new_samples)</span>
+<span class="sd">        The new labels.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">X</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">column_or_1d</span><span class="p">(</span><span class="n">check_array</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">force_all_finite</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+    <span class="n">check_consistent_length</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">y_update</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">)):</span>
+        <span class="n">y_update</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">y_update</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">y_update</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span>
+            <span class="n">y_update</span><span class="p">,</span>
+            <span class="n">force_all_finite</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">ensure_min_samples</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">y_update</span> <span class="o">=</span> <span class="n">column_or_1d</span><span class="p">(</span><span class="n">y_update</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">idx_update</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">idx_update</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">integer</span><span class="p">)):</span>
+            <span class="n">idx_update</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">idx_update</span><span class="p">])</span>
+        <span class="n">idx_update</span> <span class="o">=</span> <span class="n">check_indices</span><span class="p">(</span><span class="n">idx_update</span><span class="p">,</span> <span class="n">A</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">unique</span><span class="o">=</span><span class="s2">&quot;check_unique&quot;</span><span class="p">)</span>
+        <span class="n">check_consistent_length</span><span class="p">(</span><span class="n">y_update</span><span class="p">,</span> <span class="n">idx_update</span><span class="p">)</span>
+        <span class="n">X_new</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">y_new</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">y_new</span><span class="p">[</span><span class="n">idx_update</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_update</span>
+        <span class="k">return</span> <span class="n">X_new</span><span class="p">,</span> <span class="n">y_new</span>
+    <span class="k">elif</span> <span class="n">X_update</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">X_update</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">X_update</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">X_update</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">X_update</span> <span class="o">=</span> <span class="n">X_update</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">check_consistent_length</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">X_update</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+        <span class="n">check_consistent_length</span><span class="p">(</span><span class="n">y_update</span><span class="p">,</span> <span class="n">X_update</span><span class="p">)</span>
+        <span class="n">X_new</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">X_update</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">y_new</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_update</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">X_new</span><span class="p">,</span> <span class="n">y_new</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;`idx_update` or `X_update` must not be `None`&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_reshape_scipy_dist</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span> <span class="n">shape</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Reshapes the parameters &quot;loc&quot;, &quot;scale&quot;, &quot;df&quot; of a distribution, if they</span>
+<span class="sd">    exist.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    dist : scipy.stats._distn_infrastructure.rv_frozen</span>
+<span class="sd">        The distribution.</span>
+<span class="sd">    shape : tuple</span>
+<span class="sd">        The new shape.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    dist : scipy.stats._distn_infrastructure.rv_frozen</span>
+<span class="sd">        The reshaped distribution.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">check_type</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span> <span class="s2">&quot;dist&quot;</span><span class="p">,</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">_distn_infrastructure</span><span class="o">.</span><span class="n">rv_frozen</span><span class="p">)</span>
+    <span class="n">check_type</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="s2">&quot;shape&quot;</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">shape</span><span class="p">):</span>
+        <span class="n">check_type</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;shape[</span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">argument</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;loc&quot;</span><span class="p">,</span> <span class="s2">&quot;scale&quot;</span><span class="p">,</span> <span class="s2">&quot;df&quot;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">argument</span> <span class="ow">in</span> <span class="n">dist</span><span class="o">.</span><span class="n">kwds</span><span class="p">:</span>
+            <span class="c1"># check if shapes are compatible</span>
+            <span class="n">dist</span><span class="o">.</span><span class="n">kwds</span><span class="p">[</span><span class="n">argument</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="n">shape</span>
+
+    <span class="k">return</span> <span class="n">dist</span>
+
+
+<span class="k">def</span> <span class="nf">expected_target_val</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">target_func</span><span class="p">,</span> <span class="n">reg</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Calculates the conditional expectation of a function depending only on</span>
+<span class="sd">    the target value for each sample in `X`, i.e.</span>
+<span class="sd">    E[target_func(Y)|X=x], where Y | X=x ~ reg.predict_target_distribution,</span>
+<span class="sd">    for x in `X`.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    X : array-like of shape (n_samples, n_features)</span>
+<span class="sd">        The samples where the expectation should be evaluated.</span>
+<span class="sd">    target_func : callable</span>
+<span class="sd">        The function that transforms the random variable.</span>
+<span class="sd">    reg: ProbabilisticRegressor</span>
+<span class="sd">        Predicts the target distribution over which the expectation is</span>
+<span class="sd">        calculated.</span>
+
+<span class="sd">    Other Parameters</span>
+<span class="sd">    ----------------</span>
+<span class="sd">    method: string, optional, optional (default=&#39;gauss_hermite&#39;)</span>
+<span class="sd">        The method by which the expectation is computed.</span>
+<span class="sd">        -&#39;assume_linear&#39; assumes E[func(Y)|X=x_eval] ~= func(E[Y|X=x_eval]) and</span>
+<span class="sd">          thereby only takes the function value at the expected y value.</span>
+<span class="sd">        -&#39;monte_carlo&#39; Basic monte carlo integration. Taking the average</span>
+<span class="sd">          of randomly drawn samples. `n_integration_samples` specifies the</span>
+<span class="sd">          number of monte carlo samples.</span>
+<span class="sd">        -&#39;quantile&#39; Uses the quantile function to transform the integration</span>
+<span class="sd">          space into the interval from 0 to 1 and than uses the method from</span>
+<span class="sd">          &#39;quantile_method&#39; to calculate the integral. The number of integration</span>
+<span class="sd">          points is specified by `n_integration_samples`.</span>
+<span class="sd">        -&#39;gauss_hermite&#39; Uses Gauss-Hermite quadrature. This assumes Y | X</span>
+<span class="sd">          to be gaussian distributed. The number of evaluation  points is given</span>
+<span class="sd">          by `n_integration_samples`.</span>
+<span class="sd">        -&#39;dynamic_quad&#39; uses `scipy&#39;s` function `expect` on the `rv_continuous`</span>
+<span class="sd">          random variable of `reg`, which in turn uses a dynamic gaussian</span>
+<span class="sd">          quadrature routine for calculating the integral. Performance is worse</span>
+<span class="sd">          using a vector function.</span>
+<span class="sd">    quantile_method: string, optional (default=&#39;quadrature&#39;)</span>
+<span class="sd">        Specifies the integration methods used after the quantile</span>
+<span class="sd">        transformation.</span>
+<span class="sd">        -&#39;trapezoid&#39; Trapezoidal method for integration using evenly spaced</span>
+<span class="sd">          samples.</span>
+<span class="sd">        -&#39;simpson&#39; Simpson method for integration using evenly spaced samples.</span>
+<span class="sd">        -&#39;average&#39; Taking the average value for integration using evenly spaced</span>
+<span class="sd">          samples.</span>
+<span class="sd">        -&#39;romberg&#39; Romberg method for integration. If `n_integration_samples` is</span>
+<span class="sd">          not equal to `2**k + 1` for a natural number k, the number of</span>
+<span class="sd">          samples used for integration is put to the smallest such number greater</span>
+<span class="sd">          than `n_integration_samples`.</span>
+<span class="sd">        -&#39;quadrature&#39; Gaussian quadrature method for integration.</span>
+<span class="sd">    n_integration_samples: int, optional (default=10)</span>
+<span class="sd">        The number of integration samples used in &#39;quantile&#39;, &#39;monte_carlo&#39; and</span>
+<span class="sd">        &#39;gauss-hermite&#39;.</span>
+<span class="sd">    quad_dict: dict, optional (default=None)</span>
+<span class="sd">        Further arguments for using `scipy&#39;s` `expect`</span>
+<span class="sd">    random_state : int | np.random.RandomState, optional (default=None)</span>
+<span class="sd">        Random state for fixing the number generation.</span>
+<span class="sd">    target_func : bool</span>
+<span class="sd">        If `True` only the target values will be passed to `func`.</span>
+<span class="sd">    vector_func : bool or str, optional (default=False)</span>
+<span class="sd">        If `vector_func` is `True`, the integration values are passed as a whole</span>
+<span class="sd">        to the function `func`. If `vector_func` is &#39;both&#39;, the integration</span>
+<span class="sd">        values might or might not be passed as a whole. The integration values</span>
+<span class="sd">        if passed as a whole are of the form (n_samples, n_integration), where</span>
+<span class="sd">        n_integration denotes the number of integration values.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    expectation : numpy.ndarray of shape (n_samples)</span>
+<span class="sd">        The conditional expectation for each value applied.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">_check_callable</span><span class="p">(</span><span class="n">target_func</span><span class="p">,</span> <span class="s2">&quot;target_func&quot;</span><span class="p">,</span> <span class="n">n_positional_parameters</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">arg_filtered_func</span><span class="p">(</span><span class="n">idx_y</span><span class="p">,</span> <span class="n">x_y</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">target_func</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">_conditional_expect</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">arg_filtered_func</span><span class="p">,</span> <span class="n">reg</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_conditional_expect</span><span class="p">(</span>
+    <span class="n">X</span><span class="p">,</span>
+    <span class="n">func</span><span class="p">,</span>
+    <span class="n">reg</span><span class="p">,</span>
+    <span class="n">method</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">quantile_method</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">n_integration_samples</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">quad_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">vector_func</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Calculates the conditional expectation of a function depending on the</span>
+<span class="sd">    target value the corresponding feature value and an index for each sample</span>
+<span class="sd">    in `X`, i.e. E[func(Y, x, idx)|X=x], where</span>
+<span class="sd">    Y | X=x ~ reg.predict_target_distribution, for x in `X`.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    X : array-like of shape (n_samples, n_features)</span>
+<span class="sd">        The samples where the expectation should be evaluated.</span>
+<span class="sd">    func : callable</span>
+<span class="sd">        The function that transforms the random variable. The signature of the</span>
+<span class="sd">        function must be of the form `func(y, x, idx)`, where `y` is the target</span>
+<span class="sd">        value, `x` is the feature value and `idx` is such that `X[idx] = x`.</span>
+<span class="sd">    reg: ProbabilisticRegressor</span>
+<span class="sd">        Predicts the target distribution over which the expectation is</span>
+<span class="sd">        calculated.</span>
+<span class="sd">    method: string, optional, optional (default=&#39;gauss_hermite&#39;)</span>
+<span class="sd">        The method by which the expectation is computed.</span>
+<span class="sd">        -&#39;assume_linear&#39; assumes E[func(Y)|X=x_eval] ~= func(E[Y|X=x_eval]) and</span>
+<span class="sd">          thereby only takes the function value at the expected y value.</span>
+<span class="sd">        -&#39;monte_carlo&#39; Basic monte carlo integration. Taking the average</span>
+<span class="sd">          of randomly drawn samples. `n_integration_samples` specifies the</span>
+<span class="sd">          number of monte carlo samples.</span>
+<span class="sd">        -&#39;quantile&#39; Uses the quantile function to transform the integration</span>
+<span class="sd">          space into the interval from 0 to 1 and than uses the method from</span>
+<span class="sd">          &#39;quantile_method&#39; to calculate the integral. The number of integration</span>
+<span class="sd">          points is specified by `n_integration_samples`.</span>
+<span class="sd">        -&#39;gauss_hermite&#39; Uses Gauss-Hermite quadrature. This assumes Y | X</span>
+<span class="sd">          to be gaussian distributed. The number of evaluation  points is given</span>
+<span class="sd">          by `n_integration_samples`.</span>
+<span class="sd">        -&#39;dynamic_quad&#39; uses `scipy&#39;s` function `expect` on the `rv_continuous`</span>
+<span class="sd">          random variable of `reg`, which in turn uses a dynamic gaussian</span>
+<span class="sd">          quadrature routine for calculating the integral. Performance is worse</span>
+<span class="sd">          using a vector function.</span>
+<span class="sd">    quantile_method: string, optional (default=&#39;quadrature&#39;)</span>
+<span class="sd">        Specifies the integration methods used after the quantile</span>
+<span class="sd">        transformation.</span>
+<span class="sd">        -&#39;trapezoid&#39; Trapezoidal method for integration using evenly spaced</span>
+<span class="sd">          samples.</span>
+<span class="sd">        -&#39;simpson&#39; Simpson method for integration using evenly spaced samples.</span>
+<span class="sd">        -&#39;average&#39; Taking the average value for integration using evenly spaced</span>
+<span class="sd">          samples.</span>
+<span class="sd">        -&#39;romberg&#39; Romberg method for integration. If `n_integration_samples` is</span>
+<span class="sd">          not equal to `2**k + 1` for a natural number k, the number of</span>
+<span class="sd">          samples used for integration is put to the smallest such number</span>
+<span class="sd">          greater than `n_integration_samples`.</span>
+<span class="sd">        -&#39;quadrature&#39; Gaussian quadrature method for integration.</span>
+<span class="sd">    n_integration_samples: int, optional (default=10)</span>
+<span class="sd">        The number of integration samples used in &#39;quantile&#39;, &#39;monte_carlo&#39; and</span>
+<span class="sd">        &#39;gauss-hermite&#39;.</span>
+<span class="sd">    quad_dict: dict, optional (default=None)</span>
+<span class="sd">        Further arguments for using `scipy&#39;s` `expect`</span>
+<span class="sd">    random_state : int | np.random.RandomState, optional (default=None)</span>
+<span class="sd">        Random state for fixing the number generation.</span>
+<span class="sd">    vector_func : bool or str, optional (default=False)</span>
+<span class="sd">        If `vector_func` is `True`, the integration values are passes</span>
+<span class="sd">        in vectorized form to `func`. If `vector_func` is &#39;both&#39;, the</span>
+<span class="sd">        integration values might or might not be passed in vectorized form,</span>
+<span class="sd">        depending what is more efficient. The integration values</span>
+<span class="sd">        are passed in vectorized form, means that in a call like</span>
+<span class="sd">        `func(y, x, idx)` `y` is of the form (n_samples, n_integration_samples),</span>
+<span class="sd">         `x` equals `X` and `idx` is an index map of `X.</span>
+
+
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    expectation : numpy.ndarray of shape (n_samples)</span>
+<span class="sd">        The conditional expectation for each value applied.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">X</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">allow_nd</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">check_type</span><span class="p">(</span><span class="n">reg</span><span class="p">,</span> <span class="s2">&quot;reg&quot;</span><span class="p">,</span> <span class="n">ProbabilisticRegressor</span><span class="p">)</span>
+    <span class="n">check_type</span><span class="p">(</span>
+        <span class="n">method</span><span class="p">,</span>
+        <span class="s2">&quot;method&quot;</span><span class="p">,</span>
+        <span class="n">target_vals</span><span class="o">=</span><span class="p">[</span>
+            <span class="s2">&quot;monte_carlo&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;assume_linear&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;dynamic_quad&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;gauss_hermite&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;quantile&quot;</span><span class="p">,</span>
+            <span class="kc">None</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="p">)</span>
+    <span class="n">check_type</span><span class="p">(</span>
+        <span class="n">quantile_method</span><span class="p">,</span>
+        <span class="s2">&quot;quantile_method&quot;</span><span class="p">,</span>
+        <span class="n">target_vals</span><span class="o">=</span><span class="p">[</span>
+            <span class="s2">&quot;trapezoid&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;simpson&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;average&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;romberg&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;quadrature&quot;</span><span class="p">,</span>
+            <span class="kc">None</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="p">)</span>
+    <span class="n">check_scalar</span><span class="p">(</span><span class="n">n_integration_samples</span><span class="p">,</span> <span class="s2">&quot;n_monte_carlo&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="n">min_val</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">check_type</span><span class="p">(</span><span class="n">quad_dict</span><span class="p">,</span> <span class="s2">&quot;scipy_args&quot;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">target_vals</span><span class="o">=</span><span class="p">[</span><span class="kc">None</span><span class="p">])</span>
+    <span class="n">check_type</span><span class="p">(</span><span class="n">vector_func</span><span class="p">,</span> <span class="s2">&quot;vector_func&quot;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">target_vals</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;both&quot;</span><span class="p">])</span>
+    <span class="n">_check_callable</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="s2">&quot;func&quot;</span><span class="p">,</span> <span class="n">n_positional_parameters</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">method</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">method</span> <span class="o">=</span> <span class="s2">&quot;gauss_hermite&quot;</span>
+    <span class="k">if</span> <span class="n">quantile_method</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">quantile_method</span> <span class="o">=</span> <span class="s2">&quot;quadrature&quot;</span>
+    <span class="k">if</span> <span class="n">quad_dict</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">quad_dict</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;quantile&quot;</span> <span class="ow">and</span> <span class="n">quantile_method</span> <span class="o">==</span> <span class="s2">&quot;romberg&quot;</span><span class="p">:</span>
+        <span class="c1"># n_integration_samples need to be of the form 2**k + 1</span>
+        <span class="n">n_integration_samples</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="mi">2</span> <span class="o">**</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">n_integration_samples</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="p">)</span>
+    <span class="n">is_optional</span> <span class="o">=</span> <span class="n">vector_func</span> <span class="o">==</span> <span class="s2">&quot;both&quot;</span>
+    <span class="k">if</span> <span class="n">is_optional</span><span class="p">:</span>
+        <span class="n">vector_func</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="n">random_state</span> <span class="o">=</span> <span class="n">check_random_state</span><span class="p">(</span><span class="n">random_state</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">evaluate_func</span><span class="p">(</span><span class="n">inner_potential_y</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">vector_func</span><span class="p">:</span>
+            <span class="n">inner_output</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)),</span> <span class="n">X</span><span class="p">,</span> <span class="n">inner_potential_y</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">inner_output</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">inner_potential_y</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">idx_x</span><span class="p">,</span> <span class="n">inner_x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">idx_y</span><span class="p">,</span> <span class="n">y_val</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">inner_potential_y</span><span class="p">[</span><span class="n">idx_x</span><span class="p">]):</span>
+                    <span class="n">inner_output</span><span class="p">[</span><span class="n">idx_x</span><span class="p">,</span> <span class="n">idx_y</span><span class="p">]</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">idx_x</span><span class="p">,</span> <span class="n">inner_x</span><span class="p">,</span> <span class="n">y_val</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">inner_output</span>
+
+    <span class="n">expectation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">method</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;assume_linear&quot;</span><span class="p">,</span> <span class="s2">&quot;monte_carlo&quot;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;assume_linear&quot;</span><span class="p">:</span>
+            <span class="n">potential_y</span> <span class="o">=</span> <span class="n">reg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>  <span class="c1"># method equals &quot;monte_carlo&quot;</span>
+            <span class="n">potential_y</span> <span class="o">=</span> <span class="n">reg</span><span class="o">.</span><span class="n">sample_y</span><span class="p">(</span>
+                <span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span>
+                <span class="n">n_samples</span><span class="o">=</span><span class="n">n_integration_samples</span><span class="p">,</span>
+                <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="n">expectation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">evaluate_func</span><span class="p">(</span><span class="n">potential_y</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;quantile&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">quantile_method</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;trapezoid&quot;</span><span class="p">,</span> <span class="s2">&quot;simpson&quot;</span><span class="p">,</span> <span class="s2">&quot;average&quot;</span><span class="p">,</span> <span class="s2">&quot;romberg&quot;</span><span class="p">]:</span>
+            <span class="n">eval_points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_integration_samples</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span>
+                <span class="n">n_integration_samples</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="p">)</span>
+            <span class="n">cond_dist</span> <span class="o">=</span> <span class="n">_reshape_scipy_dist</span><span class="p">(</span>
+                <span class="n">reg</span><span class="o">.</span><span class="n">predict_target_distribution</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="n">potential_y</span> <span class="o">=</span> <span class="n">cond_dist</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="n">eval_points</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="n">evaluate_func</span><span class="p">(</span><span class="n">potential_y</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">quantile_method</span> <span class="o">==</span> <span class="s2">&quot;trapezoid&quot;</span><span class="p">:</span>
+                <span class="n">expectation</span> <span class="o">=</span> <span class="n">integrate</span><span class="o">.</span><span class="n">trapezoid</span><span class="p">(</span>
+                    <span class="n">output</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="mi">1</span> <span class="o">/</span> <span class="n">n_integration_samples</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
+                <span class="p">)</span>
+            <span class="k">elif</span> <span class="n">quantile_method</span> <span class="o">==</span> <span class="s2">&quot;simpson&quot;</span><span class="p">:</span>
+                <span class="n">expectation</span> <span class="o">=</span> <span class="n">integrate</span><span class="o">.</span><span class="n">simpson</span><span class="p">(</span>
+                    <span class="n">output</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="mi">1</span> <span class="o">/</span> <span class="n">n_integration_samples</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
+                <span class="p">)</span>
+            <span class="k">elif</span> <span class="n">quantile_method</span> <span class="o">==</span> <span class="s2">&quot;average&quot;</span><span class="p">:</span>
+                <span class="n">expectation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>  <span class="c1"># quantile_method equals &quot;romberg&quot;</span>
+                <span class="n">expectation</span> <span class="o">=</span> <span class="n">integrate</span><span class="o">.</span><span class="n">romb</span><span class="p">(</span>
+                    <span class="n">output</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="mi">1</span> <span class="o">/</span> <span class="n">n_integration_samples</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
+                <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>  <span class="c1"># quantile_method equals &quot;quadrature&quot;</span>
+
+            <span class="k">def</span> <span class="nf">fixed_quad_function_wrapper</span><span class="p">(</span><span class="n">inner_eval_points</span><span class="p">):</span>
+                <span class="n">inner_cond_dist</span> <span class="o">=</span> <span class="n">_reshape_scipy_dist</span><span class="p">(</span>
+                    <span class="n">reg</span><span class="o">.</span><span class="n">predict_target_distribution</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="p">)</span>
+                <span class="n">inner_potential_y</span> <span class="o">=</span> <span class="n">inner_cond_dist</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span>
+                    <span class="n">inner_eval_points</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+                <span class="p">)</span>
+
+                <span class="k">return</span> <span class="n">evaluate_func</span><span class="p">(</span><span class="n">inner_potential_y</span><span class="p">)</span>
+
+            <span class="n">expectation</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">integrate</span><span class="o">.</span><span class="n">fixed_quad</span><span class="p">(</span>
+                <span class="n">fixed_quad_function_wrapper</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n_integration_samples</span>
+            <span class="p">)</span>
+    <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;gauss_hermite&quot;</span><span class="p">:</span>
+        <span class="n">unscaled_potential_y</span><span class="p">,</span> <span class="n">weights</span> <span class="o">=</span> <span class="n">roots_hermitenorm</span><span class="p">(</span>
+            <span class="n">n_integration_samples</span>
+        <span class="p">)</span>
+        <span class="n">cond_mean</span><span class="p">,</span> <span class="n">cond_std</span> <span class="o">=</span> <span class="n">reg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">return_std</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">potential_y</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">cond_std</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">*</span> <span class="n">unscaled_potential_y</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:]</span>
+            <span class="o">+</span> <span class="n">cond_mean</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">evaluate_func</span><span class="p">(</span><span class="n">potential_y</span><span class="p">)</span>
+        <span class="n">expectation</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="mi">1</span>
+            <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">**</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">weights</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:]</span> <span class="o">*</span> <span class="n">output</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>  <span class="c1"># method equals &quot;dynamic_quad&quot;</span>
+        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+            <span class="n">cond_dist</span> <span class="o">=</span> <span class="n">reg</span><span class="o">.</span><span class="n">predict_target_distribution</span><span class="p">([</span><span class="n">x</span><span class="p">])</span>
+
+            <span class="k">def</span> <span class="nf">quad_function_wrapper</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">is_optional</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">vector_func</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)),</span> <span class="n">X</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="mi">1</span><span class="p">),</span> <span class="n">y</span><span class="p">))[</span>
+                        <span class="n">idx</span>
+                    <span class="p">]</span>
+
+            <span class="n">expectation</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">cond_dist</span><span class="o">.</span><span class="n">expect</span><span class="p">(</span>
+                <span class="n">quad_function_wrapper</span><span class="p">,</span>
+                <span class="o">**</span><span class="n">quad_dict</span><span class="p">,</span>
+            <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">expectation</span>
 </pre></div>
 
               </article>

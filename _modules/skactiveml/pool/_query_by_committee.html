@@ -196,14 +196,17 @@
 
 <span class="c1"># Author: Pascal Mergard &lt;Pascal.Mergard@student.uni-kassel.de&gt;</span>
 <span class="c1">#         Marek Herde &lt;marek.herde@uni-kassel.de&gt;</span>
-
-<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
+<span class="kn">import</span> <span class="nn">copy</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">clone</span>
 <span class="kn">from</span> <span class="nn">sklearn.utils.validation</span> <span class="kn">import</span> <span class="n">check_array</span><span class="p">,</span> <span class="n">_is_arraylike</span>
 
-<span class="kn">from</span> <span class="nn">..base</span> <span class="kn">import</span> <span class="n">SingleAnnotatorPoolQueryStrategy</span><span class="p">,</span> <span class="n">SkactivemlClassifier</span>
+<span class="kn">from</span> <span class="nn">..base</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">SingleAnnotatorPoolQueryStrategy</span><span class="p">,</span>
+    <span class="n">SkactivemlClassifier</span><span class="p">,</span>
+    <span class="n">SkactivemlRegressor</span><span class="p">,</span>
+<span class="p">)</span>
 <span class="kn">from</span> <span class="nn">..utils</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">simple_batch</span><span class="p">,</span>
     <span class="n">check_type</span><span class="p">,</span>
@@ -217,16 +220,17 @@
     <span class="sd">&quot;&quot;&quot;Query-by-Committee.</span>
 
 <span class="sd">    The Query-by-Committee (QueryByCommittee) strategy uses an ensemble of</span>
-<span class="sd">    classifiers to identify on which instances many classifiers disagree.</span>
+<span class="sd">    estimators to identify on which instances many estimators disagree.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    method : string, default=&#39;KL_divergence&#39;</span>
-<span class="sd">        The method to calculate the disagreement. KL_divergence or</span>
-<span class="sd">        vote_entropy are possible.</span>
+<span class="sd">        The method to calculate the disagreement in the case of classification.</span>
+<span class="sd">        KL_divergence or vote_entropy are possible. In the case of regression</span>
+<span class="sd">        the empirical variance is used.</span>
 <span class="sd">    missing_label : scalar or string or np.nan or None, default=np.nan</span>
 <span class="sd">        Value to represent a missing label.</span>
-<span class="sd">    random_state: numeric or np.random.RandomState, default=None</span>
+<span class="sd">    random_state : int or np.random.RandomState, default=None</span>
 <span class="sd">        The random state to use.</span>
 
 <span class="sd">    References</span>
@@ -237,6 +241,10 @@
 <span class="sd">    [2] N. Abe and H. Mamitsuka. Query learning strategies using boosting and</span>
 <span class="sd">        bagging. In Proceedings of the International Conference on Machine</span>
 <span class="sd">        Learning (ICML), pages 1-9. Morgan Kaufmann, 1998.</span>
+<span class="sd">    [3] Burbidge, Robert and Rowland, Jem J and King, Ross D. Active learning</span>
+<span class="sd">        for regression based on query by committee. International conference on</span>
+<span class="sd">        intelligent data engineering and automated learning, pages 209--218,</span>
+<span class="sd">        2007.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
@@ -270,18 +278,18 @@
 <span class="sd">            unlabeled samples.</span>
 <span class="sd">        y : array-like of shape (n_samples)</span>
 <span class="sd">            Labels of the training data set (possibly including unlabeled ones</span>
-<span class="sd">            indicated by self.MISSING_LABEL.</span>
-<span class="sd">        ensemble : array-like of shape (n_estimators) or SkactivemlClassifier</span>
-<span class="sd">            If `ensemble` is a `SkactivemlClassifier`, it must have</span>
-<span class="sd">            `n_estimators` and `estimators_` after fitting as attribute. Then,</span>
-<span class="sd">            its estimators will be used as committee. If `ensemble` is</span>
-<span class="sd">            array-like, each element of this list must be</span>
-<span class="sd">            `SkactivemlClassifier` and will be used as committee member.</span>
+<span class="sd">            indicated by self.MISSING_LABEL.)</span>
+<span class="sd">        ensemble : list or tuple of SkactivemlClassifier or list or tuple of</span>
+<span class="sd">        SkactivemlRegressor, SkactivemlClassifier or SkactivemlRegressor</span>
+<span class="sd">            If `ensemble` is a `SkactivemlClassifier` or a `SkactivemlRegressor`</span>
+<span class="sd">            , it must have `n_estimators` and `estimators_` after fitting as</span>
+<span class="sd">            attribute. Then, its estimators will be used as committee. If</span>
+<span class="sd">            `ensemble` is array-like, each element of this list must be</span>
+<span class="sd">            `SkactivemlClassifier` or a `SkactivemlRegressor` and will be used</span>
+<span class="sd">            as committee member.</span>
 <span class="sd">        fit_ensemble : bool, default=True</span>
 <span class="sd">            Defines whether the ensemble should be fitted on `X`, `y`, and</span>
 <span class="sd">            `sample_weight`.</span>
-<span class="sd">        sample_weight: array-like of shape (n_samples), default=None</span>
-<span class="sd">            Weights of training samples in `X`.</span>
 <span class="sd">        sample_weight: array-like of shape (n_samples), default=None</span>
 <span class="sd">            Weights of training samples in `X`.</span>
 <span class="sd">        candidates : None or array-like of shape (n_candidates), dtype=int or</span>
@@ -329,68 +337,38 @@
         <span class="c1"># Validate classifier type.</span>
         <span class="n">check_type</span><span class="p">(</span><span class="n">fit_ensemble</span><span class="p">,</span> <span class="s2">&quot;fit_ensemble&quot;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>
 
-        <span class="c1"># Check attributed `method`.</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">method</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;KL_divergence&quot;</span><span class="p">,</span> <span class="s2">&quot;vote_entropy&quot;</span><span class="p">]:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;The given method </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">method</span><span class="si">}</span><span class="s2"> is not valid. &quot;</span>
-                <span class="sa">f</span><span class="s2">&quot;Supported methods are &#39;KL_divergence&#39; and &#39;vote_entropy&#39;&quot;</span>
+        <span class="n">ensemble</span><span class="p">,</span> <span class="n">est_arr</span><span class="p">,</span> <span class="n">classes</span> <span class="o">=</span> <span class="n">_check_ensemble</span><span class="p">(</span>
+            <span class="n">ensemble</span><span class="o">=</span><span class="n">ensemble</span><span class="p">,</span>
+            <span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span>
+            <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span>
+            <span class="n">sample_weight</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">,</span>
+            <span class="n">fit_ensemble</span><span class="o">=</span><span class="n">fit_ensemble</span><span class="p">,</span>
+            <span class="n">missing_label</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">missing_label_</span><span class="p">,</span>
+            <span class="n">estimator_types</span><span class="o">=</span><span class="p">[</span><span class="n">SkactivemlClassifier</span><span class="p">,</span> <span class="n">SkactivemlRegressor</span><span class="p">],</span>
+        <span class="p">)</span>
+        <span class="c1"># classes is None if the ensemble is a regressor</span>
+        <span class="k">if</span> <span class="n">classes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">check_type</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">method</span><span class="p">,</span>
+                <span class="s2">&quot;method&quot;</span><span class="p">,</span>
+                <span class="n">target_vals</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;KL_divergence&quot;</span><span class="p">,</span> <span class="s2">&quot;vote_entropy&quot;</span><span class="p">],</span>
             <span class="p">)</span>
 
-        <span class="c1"># Check if the parameter `ensemble` is valid.</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ensemble</span><span class="p">,</span> <span class="n">SkactivemlClassifier</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span>
-            <span class="nb">hasattr</span><span class="p">(</span><span class="n">ensemble</span><span class="p">,</span> <span class="s2">&quot;n_estimators&quot;</span><span class="p">)</span>
-            <span class="ow">or</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">ensemble</span><span class="p">,</span> <span class="s2">&quot;estimators&quot;</span><span class="p">)</span>
-        <span class="p">):</span>
-            <span class="n">check_equal_missing_label</span><span class="p">(</span>
-                <span class="n">ensemble</span><span class="o">.</span><span class="n">missing_label</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">missing_label_</span>
-            <span class="p">)</span>
-            <span class="c1"># Fit the ensemble.</span>
-            <span class="k">if</span> <span class="n">fit_ensemble</span><span class="p">:</span>
-                <span class="n">ensemble</span> <span class="o">=</span> <span class="n">clone</span><span class="p">(</span><span class="n">ensemble</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">)</span>
-            <span class="n">classes</span> <span class="o">=</span> <span class="n">ensemble</span><span class="o">.</span><span class="n">classes_</span>
-            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">ensemble</span><span class="p">,</span> <span class="s2">&quot;estimators_&quot;</span><span class="p">):</span>
-                <span class="n">est_arr</span> <span class="o">=</span> <span class="n">ensemble</span><span class="o">.</span><span class="n">estimators_</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">ensemble</span><span class="p">,</span> <span class="s2">&quot;estimators&quot;</span><span class="p">):</span>
-                    <span class="n">n_estimators</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">ensemble</span><span class="o">.</span><span class="n">estimators</span><span class="p">)</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">n_estimators</span> <span class="o">=</span> <span class="n">ensemble</span><span class="o">.</span><span class="n">n_estimators</span>
-                <span class="n">est_arr</span> <span class="o">=</span> <span class="p">[</span><span class="n">ensemble</span><span class="p">]</span> <span class="o">*</span> <span class="n">n_estimators</span>
-        <span class="k">elif</span> <span class="n">_is_arraylike</span><span class="p">(</span><span class="n">ensemble</span><span class="p">):</span>
-            <span class="n">est_arr</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">ensemble</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">est_arr</span><span class="p">)):</span>
-                <span class="n">check_type</span><span class="p">(</span><span class="n">est_arr</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="sa">f</span><span class="s2">&quot;ensemble[</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">,</span> <span class="n">SkactivemlClassifier</span><span class="p">)</span>
-                <span class="n">check_equal_missing_label</span><span class="p">(</span>
-                    <span class="n">est_arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">missing_label</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">missing_label_</span>
+            <span class="c1"># Compute utilities.</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;KL_divergence&quot;</span><span class="p">:</span>
+                <span class="n">probas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+                    <span class="p">[</span><span class="n">est</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_cand</span><span class="p">)</span> <span class="k">for</span> <span class="n">est</span> <span class="ow">in</span> <span class="n">est_arr</span><span class="p">]</span>
                 <span class="p">)</span>
-                <span class="c1"># Fit the ensemble.</span>
-                <span class="k">if</span> <span class="n">fit_ensemble</span><span class="p">:</span>
-                    <span class="n">est_arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">est_arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">)</span>
+                <span class="n">utilities_cand</span> <span class="o">=</span> <span class="n">average_kl_divergence</span><span class="p">(</span><span class="n">probas</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>  <span class="c1"># self.method == &quot;vote_entropy&quot;:</span>
+                <span class="n">votes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">est</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_cand</span><span class="p">)</span> <span class="k">for</span> <span class="n">est</span> <span class="ow">in</span> <span class="n">est_arr</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+                <span class="n">utilities_cand</span> <span class="o">=</span> <span class="n">vote_entropy</span><span class="p">(</span><span class="n">votes</span><span class="p">,</span> <span class="n">classes</span><span class="p">)</span>
 
-                <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-                    <span class="n">np</span><span class="o">.</span><span class="n">testing</span><span class="o">.</span><span class="n">assert_array_equal</span><span class="p">(</span>
-                        <span class="n">est_arr</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">classes_</span><span class="p">,</span>
-                        <span class="n">est_arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">classes_</span><span class="p">,</span>
-                        <span class="n">err_msg</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;The inferred classes of the </span><span class="si">{</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="si">}</span><span class="s2">-th and &quot;</span>
-                        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">-th are not equal. Set the `classes` &quot;</span>
-                        <span class="sa">f</span><span class="s2">&quot;parameter of each ensemble member to avoid &quot;</span>
-                        <span class="sa">f</span><span class="s2">&quot;this error.&quot;</span><span class="p">,</span>
-                    <span class="p">)</span>
-            <span class="n">classes</span> <span class="o">=</span> <span class="n">est_arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">classes_</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;`ensemble` must either be a `</span><span class="si">{</span><span class="n">SkactivemlClassifier</span><span class="si">}</span><span class="s2"> &quot;</span>
-                <span class="sa">f</span><span class="s2">&quot;with the attribute `n_ensembles` and `estimators_` after &quot;</span>
-                <span class="sa">f</span><span class="s2">&quot;fitting or a list of </span><span class="si">{</span><span class="n">SkactivemlClassifier</span><span class="si">}</span><span class="s2"> objects.&quot;</span>
+            <span class="n">results</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+                <span class="p">[</span><span class="n">learner</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_cand</span><span class="p">)</span> <span class="k">for</span> <span class="n">learner</span> <span class="ow">in</span> <span class="n">est_arr</span><span class="p">]</span>
             <span class="p">)</span>
-
-        <span class="c1"># Compute utilities.</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;KL_divergence&quot;</span><span class="p">:</span>
-            <span class="n">probas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">est</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_cand</span><span class="p">)</span> <span class="k">for</span> <span class="n">est</span> <span class="ow">in</span> <span class="n">est_arr</span><span class="p">])</span>
-            <span class="n">utilities_cand</span> <span class="o">=</span> <span class="n">average_kl_divergence</span><span class="p">(</span><span class="n">probas</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;vote_entropy&quot;</span><span class="p">:</span>
-            <span class="n">votes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">est</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_cand</span><span class="p">)</span> <span class="k">for</span> <span class="n">est</span> <span class="ow">in</span> <span class="n">est_arr</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
-            <span class="n">utilities_cand</span> <span class="o">=</span> <span class="n">vote_entropy</span><span class="p">(</span><span class="n">votes</span><span class="p">,</span> <span class="n">classes</span><span class="p">)</span>
+            <span class="n">utilities_cand</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">mapping</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">utilities</span> <span class="o">=</span> <span class="n">utilities_cand</span>
@@ -432,6 +410,7 @@
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
             <span class="sa">f</span><span class="s2">&quot;Expected 3D array, got </span><span class="si">{</span><span class="n">probas</span><span class="o">.</span><span class="n">ndim</span><span class="si">}</span><span class="s2">D array instead.&quot;</span>
         <span class="p">)</span>
+    <span class="n">n_estimators</span> <span class="o">=</span> <span class="n">probas</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
     <span class="c1"># Calculate the average KL divergence.</span>
     <span class="n">probas_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">probas</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -439,7 +418,7 @@
         <span class="n">scores</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span>
             <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">probas</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">probas</span> <span class="o">/</span> <span class="n">probas_mean</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span>
         <span class="p">)</span>
-    <span class="n">scores</span> <span class="o">=</span> <span class="n">scores</span> <span class="o">/</span> <span class="n">probas</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">scores</span> <span class="o">=</span> <span class="n">scores</span> <span class="o">/</span> <span class="n">n_estimators</span>
 
     <span class="k">return</span> <span class="n">scores</span></div>
 
@@ -468,6 +447,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Check `votes` array.</span>
     <span class="n">votes</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">votes</span><span class="p">)</span>
+    <span class="n">n_estimators</span> <span class="o">=</span> <span class="n">votes</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 
     <span class="c1"># Count the votes.</span>
     <span class="n">vote_count</span> <span class="o">=</span> <span class="n">compute_vote_vectors</span><span class="p">(</span>
@@ -475,10 +455,81 @@
     <span class="p">)</span>
 
     <span class="c1"># Compute vote entropy.</span>
-    <span class="n">v</span> <span class="o">=</span> <span class="n">vote_count</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">votes</span><span class="p">)</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">vote_count</span> <span class="o">/</span> <span class="n">n_estimators</span>
+
     <span class="k">with</span> <span class="n">np</span><span class="o">.</span><span class="n">errstate</span><span class="p">(</span><span class="n">divide</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">invalid</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">):</span>
-        <span class="n">scores</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">v</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">v</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">votes</span><span class="p">))</span>
+        <span class="n">scores</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="o">-</span><span class="n">v</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">v</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">scores</span></div>
+
+
+<span class="k">def</span> <span class="nf">_check_ensemble</span><span class="p">(</span>
+    <span class="n">ensemble</span><span class="p">,</span>
+    <span class="n">estimator_types</span><span class="p">,</span>
+    <span class="n">X</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">,</span>
+    <span class="n">sample_weight</span><span class="p">,</span>
+    <span class="n">fit_ensemble</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">missing_label</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="c1"># Check if the parameter `ensemble` is valid.</span>
+    <span class="k">for</span> <span class="n">estimator_type</span> <span class="ow">in</span> <span class="n">estimator_types</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ensemble</span><span class="p">,</span> <span class="n">estimator_type</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span>
+            <span class="nb">hasattr</span><span class="p">(</span><span class="n">ensemble</span><span class="p">,</span> <span class="s2">&quot;n_estimators&quot;</span><span class="p">)</span>
+            <span class="ow">or</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">ensemble</span><span class="p">,</span> <span class="s2">&quot;estimators&quot;</span><span class="p">)</span>
+        <span class="p">):</span>
+            <span class="n">check_equal_missing_label</span><span class="p">(</span><span class="n">ensemble</span><span class="o">.</span><span class="n">missing_label</span><span class="p">,</span> <span class="n">missing_label</span><span class="p">)</span>
+            <span class="c1"># Fit the ensemble.</span>
+            <span class="k">if</span> <span class="n">fit_ensemble</span><span class="p">:</span>
+                <span class="n">ensemble</span> <span class="o">=</span> <span class="n">clone</span><span class="p">(</span><span class="n">ensemble</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">ensemble</span><span class="p">,</span> <span class="s2">&quot;estimators_&quot;</span><span class="p">):</span>
+                <span class="n">est_arr</span> <span class="o">=</span> <span class="n">ensemble</span><span class="o">.</span><span class="n">estimators_</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">ensemble</span><span class="p">,</span> <span class="s2">&quot;estimators&quot;</span><span class="p">):</span>
+                    <span class="n">n_estimators</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">ensemble</span><span class="o">.</span><span class="n">estimators</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">n_estimators</span> <span class="o">=</span> <span class="n">ensemble</span><span class="o">.</span><span class="n">n_estimators</span>
+                <span class="n">est_arr</span> <span class="o">=</span> <span class="p">[</span><span class="n">ensemble</span><span class="p">]</span> <span class="o">*</span> <span class="n">n_estimators</span>
+
+            <span class="k">if</span> <span class="n">estimator_type</span> <span class="o">==</span> <span class="n">SkactivemlClassifier</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">ensemble</span><span class="p">,</span> <span class="n">est_arr</span><span class="p">,</span> <span class="n">ensemble</span><span class="o">.</span><span class="n">classes_</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">ensemble</span><span class="p">,</span> <span class="n">est_arr</span><span class="p">,</span> <span class="kc">None</span>
+
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ensemble</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">))</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span>
+            <span class="n">ensemble</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">estimator_type</span>
+        <span class="p">):</span>
+            <span class="n">est_arr</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">ensemble</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">est_arr</span><span class="p">)):</span>
+                <span class="n">check_type</span><span class="p">(</span>
+                    <span class="n">est_arr</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="sa">f</span><span class="s2">&quot;ensemble[</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">,</span> <span class="n">estimator_type</span>
+                <span class="p">)</span>  <span class="c1"># better error message</span>
+                <span class="n">check_equal_missing_label</span><span class="p">(</span>
+                    <span class="n">est_arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">missing_label</span><span class="p">,</span> <span class="n">missing_label</span>
+                <span class="p">)</span>
+                <span class="c1"># Fit the ensemble.</span>
+                <span class="k">if</span> <span class="n">fit_ensemble</span><span class="p">:</span>
+                    <span class="n">est_arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">est_arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">estimator_type</span> <span class="o">==</span> <span class="n">SkactivemlClassifier</span><span class="p">:</span>
+                    <span class="n">np</span><span class="o">.</span><span class="n">testing</span><span class="o">.</span><span class="n">assert_array_equal</span><span class="p">(</span>
+                        <span class="n">est_arr</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">classes_</span><span class="p">,</span>
+                        <span class="n">est_arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">classes_</span><span class="p">,</span>
+                        <span class="n">err_msg</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;The inferred classes of the </span><span class="si">{</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="si">}</span><span class="s2">-th and &quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">-th are not equal. Set the `classes` &quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;parameter of each ensemble member to avoid &quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;this error.&quot;</span><span class="p">,</span>
+                    <span class="p">)</span>
+            <span class="k">if</span> <span class="n">estimator_type</span> <span class="o">==</span> <span class="n">SkactivemlClassifier</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">ensemble</span><span class="p">,</span> <span class="n">est_arr</span><span class="p">,</span> <span class="n">est_arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">classes_</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">ensemble</span><span class="p">,</span> <span class="n">est_arr</span><span class="p">,</span> <span class="kc">None</span>
+
+    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;`ensemble` must either be a `</span><span class="si">{</span><span class="n">estimator_types</span><span class="si">}</span><span class="s2"> &quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;with the attribute `n_ensembles` and `estimators_` after &quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;fitting or a list of </span><span class="si">{</span><span class="n">estimator_types</span><span class="si">}</span><span class="s2"> objects.&quot;</span>
+    <span class="p">)</span>
 </pre></div>
 
               </article>
