@@ -4,7 +4,7 @@ Regression based Kullback Leibler Divergence Maximization
 """
 
 # %%
-# elreedy2019novel
+# 
 
 import numpy as np
 from matplotlib import pyplot as plt, animation
@@ -110,7 +110,7 @@ ani = animation.ArtistAnimation(fig, artists, interval=1000, blit=True)
 # %%
 # .. rubric:: References:
 # 
-# The implementation of this strategy is based on :footcite:t:`cohn1996active`.
+# The implementation of this strategy is based on :footcite:t:`elreedy2019novel`.
 #
 # .. footbibliography::
 

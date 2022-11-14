@@ -314,42 +314,42 @@ Improved Greedy Sampling (GSi)
      </style>
 
      <div class="animation">
-       <img id="_anim_imgb903130347894c33b95b0acf05df252c">
+       <img id="_anim_img5e4f6ea4f9fd4920b3b3e986c215227c">
        <div class="anim-controls">
-         <input id="_anim_sliderb903130347894c33b95b0acf05df252c" type="range" class="anim-slider"
+         <input id="_anim_slider5e4f6ea4f9fd4920b3b3e986c215227c" type="range" class="anim-slider"
                 name="points" min="0" max="1" step="1" value="0"
-                oninput="animb903130347894c33b95b0acf05df252c.set_frame(parseInt(this.value));">
+                oninput="anim5e4f6ea4f9fd4920b3b3e986c215227c.set_frame(parseInt(this.value));">
          <div class="anim-buttons">
-           <button title="Decrease speed" aria-label="Decrease speed" onclick="animb903130347894c33b95b0acf05df252c.slower()">
+           <button title="Decrease speed" aria-label="Decrease speed" onclick="anim5e4f6ea4f9fd4920b3b3e986c215227c.slower()">
                <i class="fa fa-minus"></i></button>
-           <button title="First frame" aria-label="First frame" onclick="animb903130347894c33b95b0acf05df252c.first_frame()">
+           <button title="First frame" aria-label="First frame" onclick="anim5e4f6ea4f9fd4920b3b3e986c215227c.first_frame()">
              <i class="fa fa-fast-backward"></i></button>
-           <button title="Previous frame" aria-label="Previous frame" onclick="animb903130347894c33b95b0acf05df252c.previous_frame()">
+           <button title="Previous frame" aria-label="Previous frame" onclick="anim5e4f6ea4f9fd4920b3b3e986c215227c.previous_frame()">
                <i class="fa fa-step-backward"></i></button>
-           <button title="Play backwards" aria-label="Play backwards" onclick="animb903130347894c33b95b0acf05df252c.reverse_animation()">
+           <button title="Play backwards" aria-label="Play backwards" onclick="anim5e4f6ea4f9fd4920b3b3e986c215227c.reverse_animation()">
                <i class="fa fa-play fa-flip-horizontal"></i></button>
-           <button title="Pause" aria-label="Pause" onclick="animb903130347894c33b95b0acf05df252c.pause_animation()">
+           <button title="Pause" aria-label="Pause" onclick="anim5e4f6ea4f9fd4920b3b3e986c215227c.pause_animation()">
                <i class="fa fa-pause"></i></button>
-           <button title="Play" aria-label="Play" onclick="animb903130347894c33b95b0acf05df252c.play_animation()">
+           <button title="Play" aria-label="Play" onclick="anim5e4f6ea4f9fd4920b3b3e986c215227c.play_animation()">
                <i class="fa fa-play"></i></button>
-           <button title="Next frame" aria-label="Next frame" onclick="animb903130347894c33b95b0acf05df252c.next_frame()">
+           <button title="Next frame" aria-label="Next frame" onclick="anim5e4f6ea4f9fd4920b3b3e986c215227c.next_frame()">
                <i class="fa fa-step-forward"></i></button>
-           <button title="Last frame" aria-label="Last frame" onclick="animb903130347894c33b95b0acf05df252c.last_frame()">
+           <button title="Last frame" aria-label="Last frame" onclick="anim5e4f6ea4f9fd4920b3b3e986c215227c.last_frame()">
                <i class="fa fa-fast-forward"></i></button>
-           <button title="Increase speed" aria-label="Increase speed" onclick="animb903130347894c33b95b0acf05df252c.faster()">
+           <button title="Increase speed" aria-label="Increase speed" onclick="anim5e4f6ea4f9fd4920b3b3e986c215227c.faster()">
                <i class="fa fa-plus"></i></button>
          </div>
-         <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_selectb903130347894c33b95b0acf05df252c"
+         <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_select5e4f6ea4f9fd4920b3b3e986c215227c"
                class="anim-state">
-           <input type="radio" name="state" value="once" id="_anim_radio1_b903130347894c33b95b0acf05df252c"
+           <input type="radio" name="state" value="once" id="_anim_radio1_5e4f6ea4f9fd4920b3b3e986c215227c"
                   >
-           <label for="_anim_radio1_b903130347894c33b95b0acf05df252c">Once</label>
-           <input type="radio" name="state" value="loop" id="_anim_radio2_b903130347894c33b95b0acf05df252c"
+           <label for="_anim_radio1_5e4f6ea4f9fd4920b3b3e986c215227c">Once</label>
+           <input type="radio" name="state" value="loop" id="_anim_radio2_5e4f6ea4f9fd4920b3b3e986c215227c"
                   checked>
-           <label for="_anim_radio2_b903130347894c33b95b0acf05df252c">Loop</label>
-           <input type="radio" name="state" value="reflect" id="_anim_radio3_b903130347894c33b95b0acf05df252c"
+           <label for="_anim_radio2_5e4f6ea4f9fd4920b3b3e986c215227c">Loop</label>
+           <input type="radio" name="state" value="reflect" id="_anim_radio3_5e4f6ea4f9fd4920b3b3e986c215227c"
                   >
-           <label for="_anim_radio3_b903130347894c33b95b0acf05df252c">Reflect</label>
+           <label for="_anim_radio3_5e4f6ea4f9fd4920b3b3e986c215227c">Reflect</label>
          </form>
        </div>
      </div>
@@ -359,13 +359,13 @@ Improved Greedy Sampling (GSi)
        /* Instantiate the Animation class. */
        /* The IDs given should match those used in the template above. */
        (function() {
-         var img_id = "_anim_imgb903130347894c33b95b0acf05df252c";
-         var slider_id = "_anim_sliderb903130347894c33b95b0acf05df252c";
-         var loop_select_id = "_anim_loop_selectb903130347894c33b95b0acf05df252c";
+         var img_id = "_anim_img5e4f6ea4f9fd4920b3b3e986c215227c";
+         var slider_id = "_anim_slider5e4f6ea4f9fd4920b3b3e986c215227c";
+         var loop_select_id = "_anim_loop_select5e4f6ea4f9fd4920b3b3e986c215227c";
          var frames = new Array(20);
     
        frames[0] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/NK7nSAAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjYuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8o6BhiAAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAABr+0lEQVR4nO3dd3hUVfoH8O+dmUxJmfQKgdBBWqih1xBARHGVIq4URVkFBFl/\
      CuwKIiqoCAiiCCrYKe6qqBQhiog0aVIEpIQa0oBk0svM+f3BzsiQNql35s738zzz7ObOuXfem7nx\
      vpx7znskIYQAERERESmWSu4AiIiIiKhmMeEjIiIiUjgmfEREREQKx4SPiIiISOGY8BEREREpHBM+\
@@ -854,7 +854,7 @@ Improved Greedy Sampling (GSi)
      4ZjwERERESnc/wMUTMkYOeZzJwAAAABJRU5ErkJggg==\
      "
        frames[1] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/NK7nSAAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjYuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8o6BhiAAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAAB5gklEQVR4nO3dd3hTZf8G8PskaUZH0r1LW1aBslfZLVApU0CRoSLyOnCAAi7w\
      pwxF6kReFeGFV0F5ZThxMGTIFARZskdLmaUtLbTpTNvk/P7ARkJXOtOc3J/rylV6cs7J9/Sk5O5z\
      zvM8giiKIoiIiIhIsmS2LoCIiIiI6hYDHxEREZHEMfARERERSRwDHxEREZHEMfARERERSRwDHxER\
@@ -1404,7 +1404,7 @@ Improved Greedy Sampling (GSi)
      9SpxE1sAAAAASUVORK5CYII=\
      "
        frames[2] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/NK7nSAAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjYuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8o6BhiAAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAACJnElEQVR4nOzdd3hTZf8G8PskaUZH0j0ppey9KpQ9C2XI8BUFRBkq8voKirhA\
      BcSFAwEHgvBTcKA4GSqyKkNlL9mrtIxO2tLdJm1yfn/UxIbueZL0/lxXLujJc06+p2nJzXOe5zmC\
      KIoiiIiIiMhhyaQugIiIiIjqFgMfERERkYNj4CMiIiJycAx8RERERA6OgY+IiIjIwTHwERERETk4\
@@ -2026,7 +2026,7 @@ Improved Greedy Sampling (GSi)
      wTHwERER/f9GwSgY5gAALPwAvmpJio8AAAAASUVORK5CYII=\
      "
        frames[3] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/NK7nSAAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjYuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8o6BhiAAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAACDcklEQVR4nO3dd3hT1R8G8PcmadJ0pC3di7bsTZllz0KZiooCogxlCIggKj9w\
      gCjKEHEyFGU4GOIAFESG7D1l75ZVuoA2nWmbnN8ftZHQlZa2adL38zx5oDfn3vu9SUNezr3nXEkI\
      IUBERERENktm6QKIiIiIqGwx8BERERHZOAY+IiIiIhvHwEdERERk4xj4iIiIiGwcAx8RERGRjWPg\
@@ -2620,7 +2620,7 @@ Improved Greedy Sampling (GSi)
      joGPiIiIyMYx8BERERHZOAY+IiIiIhvHwEdERERk4/4PL8kuUBr6CO8AAAAASUVORK5CYII=\
      "
        frames[4] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/NK7nSAAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjYuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8o6BhiAAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAACNt0lEQVR4nOzdd1hTZxsG8PskISGMsLcIKO4BFpVq3aWitrZ2ObrULr+qrdZO\
      u6ytrd3bamurdrraapd11lW3uHAvEJCtsiGQ5Hx/pEkJM0Agg/t3XbmUkzOeQ0J4eMfzCqIoiiAi\
      IiIihyWxdgBERERE1LyY8BERERE5OCZ8RERERA6OCR8RERGRg2PCR0REROTgmPAREREROTgmfERE\
@@ -3261,7 +3261,7 @@ Improved Greedy Sampling (GSi)
      QmCC\
      "
        frames[5] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/NK7nSAAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjYuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8o6BhiAAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAACRYUlEQVR4nOzdd3xT9foH8M/JbDrS3XRCS4GyN5QpoIUCAuIARK8MRfmpuLhe\
      Fb2CuLh6vYp6uaAo4kZRFJQNUpZsKHu3QKEbuneS8/sjJjSdaZs0o5/365UX9OSM5zRp++Q7nq8g\
      iqIIIiIiInJZEnsHQERERES2xYSPiIiIyMUx4SMiIiJycUz4iIiIiFwcEz4iIiIiF8eEj4iIiMjF\
@@ -3918,7 +3918,7 @@ Improved Greedy Sampling (GSi)
      HIEPAADAcf8C1ILWDjtEV1UAAAAASUVORK5CYII=\
      "
        frames[6] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/NK7nSAAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjYuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8o6BhiAAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAACO5klEQVR4nOzdd3hTZfsH8O9J2qTpSPduaUspm7Ipe1m2DJUh8spQFBUV5FUU\
      /SHiwvUqDhRFGU4QRUUFZMiQPcsehRboHtC9k5zfHzGB0JWOzH4/15VLc3LGfZqU3H3G/QiiKIog\
      IiIiIrslsXQARERERGRaTPiIiIiI7BwTPiIiIiI7x4SPiIiIyM4x4SMiIiKyc0z4iIiIiOwcEz4i\
@@ -4564,7 +4564,7 @@ Improved Greedy Sampling (GSi)
      A99QbO8mdeilAAAAAElFTkSuQmCC\
      "
        frames[7] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/NK7nSAAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjYuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8o6BhiAAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAACa/klEQVR4nOzdd3iT5foH8O+bpE3Ske7d0paWvSlTQUAQRMUJ4jgi/NyKohz1\
      iOcobo4eBw4UxYEb90YUkSV7lb266F50r7RN3t8f8X3pSNu0ze73c125tMk77rSlvfs8z30/giiK\
      IoiIiIjIbSkcHQARERER2RYTPiIiIiI3x4SPiIiIyM0x4SMiIiJyc0z4iIiIiNwcEz4iIiIiN8eE\
@@ -5264,7 +5264,7 @@ Improved Greedy Sampling (GSi)
      Ip1jw0dERESkc2z4iIiIiHTuf8VY87C9ATgcAAAAAElFTkSuQmCC\
      "
        frames[8] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/NK7nSAAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjYuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8o6BhiAAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAACfJElEQVR4nOzdd3hTZfsH8O/JaEabdDfdg1IKlFFmBdlWEARfHIA4UF4niovX\
      hf4EceF6eVFEUVRw40JAZSPI3pSyCqUDunebzqRJzu+PeA4daZu02b0/19VLe3LGnVLo3ed57vth\
      WJZlQQghhBBC3JbA0QEQQgghhBDbooSPEEIIIcTNUcJHCCGEEOLmKOEjhBBCCHFzlPARQgghhLg5\
@@ -5983,7 +5983,7 @@ Improved Greedy Sampling (GSi)
      qnfpLBfLAAAAAElFTkSuQmCC\
      "
        frames[9] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/NK7nSAAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjYuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8o6BhiAAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAACeM0lEQVR4nOzdd3iT5foH8O+bpBkd6d67pawyZYmCICJTEBfugQcHiouj/sQj\
      cnAc1ONWFEUB9bj3QhRQBNl7z9K9W9qmu03y/v6I70tH2qZtRpt+P9eVS5u8405b2rvP89z3I4ii\
      KIKIiIiI3JbC1QEQERERkWMx4SMiIiJyc0z4iIiIiNwcEz4iIiIiN8eEj4iIiMjNMeEjIiIicnNM\
@@ -6698,7 +6698,7 @@ Improved Greedy Sampling (GSi)
      RK5CYII=\
      "
        frames[10] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/NK7nSAAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjYuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8o6BhiAAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAACZGklEQVR4nOzdd3hT5d8G8PskaZN0pHsPSguUMgsFKkhlCCJLceJEUXCiIj8X\
      DhAXbnGAKA7UFwVFRVREhrL33qsUWrp3OtKVnPePeEJ30zajTe/PdfXSnpxz8qSD3H3G9xFEURRB\
      RERERA5LZu8GEBEREZF1MfAREREROTgGPiIiIiIHx8BHRERE5OAY+IiIiIgcHAMfERERkYNj4CMi\
@@ -7390,7 +7390,7 @@ Improved Greedy Sampling (GSi)
      AAAASUVORK5CYII=\
      "
        frames[11] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/NK7nSAAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjYuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8o6BhiAAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAACj4klEQVR4nOzdd3xT9foH8M/JTtom3emkhbJXyyx7iSxFce/BdeAe/O71ilfB\
      wRW3OBAUB+pVQREBFVFAQTYyyh6lA7p3m440aZLz+yN+D02btkma0abP+/XqSzk55+SbtpAnz/f7\
      PF+O53kehBBCCCHEb4l8PQBCCCGEEOJZFPARQgghhPg5CvgIIYQQQvwcBXyEEEIIIX6OAj5CCCGE\
@@ -8130,7 +8130,7 @@ Improved Greedy Sampling (GSi)
      RERERBrHho+IiIhI4/4PBWgW/Wm021IAAAAASUVORK5CYII=\
      "
        frames[12] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/NK7nSAAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjYuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8o6BhiAAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAACzpklEQVR4nOzdeXxTZfY/8M/N0ixN031voVB2kEUUBGUREATFXXEZUcaFcVd+\
      M8wwXwUXRsYdHVGUUVFHR1zRUQQVRUA2Wcq+Fkr3fUnapFnv74/w3CZtkma5Sdr0vF+vvpTkJn3S\
      FnJ6nuecw/E8z4MQQgghhEQtSaQXQAghhBBCQosCPkIIIYSQKEcBHyGEEEJIlKOAjxBCCCEkylHA\
@@ -8941,7 +8941,7 @@ Improved Greedy Sampling (GSi)
      ROD+H60IufT6iOk1AAAAAElFTkSuQmCC\
      "
        frames[13] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/NK7nSAAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjYuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8o6BhiAAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAAC2RElEQVR4nOzdeXhU5fUH8O+dfSaZyb4nEPZVQEAQBEFFERRr3Ze60LrUVqul\
      1Ur7U1xoUWsVa1GUVnDHXVGRVVlklU0QWUIgIWRfZ5LMPnN/fwzvzUwyy509mZzP8+RR7ty5804y\
      yZw57/uew/E8z4MQQgghhCQsSbwHQAghhBBCoosCPkIIIYSQBEcBHyGEEEJIgqOAjxBCCCEkwVHA\
@@ -9764,7 +9764,7 @@ Improved Greedy Sampling (GSi)
      AABJRU5ErkJggg==\
      "
        frames[14] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/NK7nSAAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjYuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8o6BhiAAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAACyYElEQVR4nOzdd5hTZfYH8O9NT2aS6X0Ght6LghQRAUURFHt3F8VesLGuu+z+\
      FNuuq2tdF3UFAbuuioorUkQRQXqRIggMDDPD9F7Sk/v7I7x3kkzKTZ9kzud55lFubm7ezGQmJ+d9\
      33M4nud5EEIIIYSQhCWJ9QAIIYQQQkhkUcBHCCGEEJLgKOAjhBBCCElwFPARQgghhCQ4CvgIIYQQ\
@@ -10569,7 +10569,7 @@ Improved Greedy Sampling (GSi)
      HCV8hBBCCCEiRwkfIYQQQojI/R/RzgcOJda7JgAAAABJRU5ErkJggg==\
      "
        frames[15] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/NK7nSAAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjYuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8o6BhiAAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAACyI0lEQVR4nOzdd5iU1fUH8O87fWZ3ZnvfZZdepQorKAJKERRjN5pEJWrU2IlR\
      SX6KLWKMGk3ERqKgsUWDioogoPTeXEDqFli29zp93t8fw313ZnZ62Wnn8zz7wM68886dnd2ZM+fe\
      cy7H8zwPQgghhBASs0ThHgAhhBBCCAktCvgIIYQQQmIcBXyEEEIIITGOAj5CCCGEkBhHAR8hhBBC\
@@ -11373,7 +11373,7 @@ Improved Greedy Sampling (GSi)
      j4iIiMjOMeEjIiIisnP/A1gjE1f6ntw7AAAAAElFTkSuQmCC\
      "
        frames[16] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/NK7nSAAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjYuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8o6BhiAAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAACnkklEQVR4nOzdd3xT5f4H8M9J0ma0TfduaMveewiCDJEleHFfx1X5udcVueoV\
      71Xc63oV9aJeuSrujQqKKKIs2XsLtFBK995N2+T8/gjPoWnTNmnTJk0/79erL21yzsmTNiXffJ/n\
      +30kWZZlEBEREZHPUnl6AERERETUvhjwEREREfk4BnxEREREPo4BHxEREZGPY8BHRERE5OMY8BER\
@@ -12130,7 +12130,7 @@ Improved Greedy Sampling (GSi)
      AABJRU5ErkJggg==\
      "
        frames[17] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/NK7nSAAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjYuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8o6BhiAAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAACjMklEQVR4nOzdd3xT9foH8M9J0ma0TfduaaHsvSvItoCgKG69DkTFccUrctUr\
      +lPcXL0O1IuiOFCvA1FUVIaAIFP23tAC3XuPtE3O749wDkmbpOlMmn7er1df2uSck2/alDx5vt/n\
      +QqiKIogIiIiIo+lcPUAiIiIiKh1MeAjIiIi8nAM+IiIiIg8HAM+IiIiIg/HgI+IiIjIwzHgIyIi\
@@ -12867,7 +12867,7 @@ Improved Greedy Sampling (GSi)
      x4aPiIiISOH+DyN1VUhzRRjjAAAAAElFTkSuQmCC\
      "
        frames[18] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/NK7nSAAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjYuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8o6BhiAAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAACh+UlEQVR4nOzdd3xT9foH8M/JTpqme7e0Ze9VoCIbEQQFca/fVbluxatyXbjQ\
      K4pbvFcERRH1OrgqKCqigCJ7Fcouo6zSvWe6kvP7I5xD06ZtOpOmn/fr1Zf25OTkm7Q0T57v93m+\
      giiKIoiIiIjIYylcPQAiIiIialsM+IiIiIg8HAM+IiIiIg/HgI+IiIjIwzHgIyIiIvJwDPiIiIiI\
@@ -13599,7 +13599,7 @@ Improved Greedy Sampling (GSi)
      YII=\
      "
        frames[19] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-     bGliIHZlcnNpb24zLjUuMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/NK7nSAAAACXBIWXMAAA9h\
+     bGliIHZlcnNpb24zLjYuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8o6BhiAAAACXBIWXMAAA9h\
      AAAPYQGoP6dpAACihklEQVR4nOzdd3hUZfbA8e+UZEqSSe8JhN57iSgIKoKg2Nay6iqy6tqw8Vtd\
      WQuirqjrulhQVhSxrq6ubRVBRVA6SBGQDgECIb33ZOb+/hjuJUMmyaROMjmf58kDuXPnzpm0OXPe\
      9z2vTlEUBSGEEEII4bP03g5ACCGEEEK0Lkn4hBBCCCF8nCR8QgghhBA+ThI+IYQQQggfJwmfEEII\
@@ -14337,7 +14337,7 @@ Improved Greedy Sampling (GSi)
          /* set a timeout to make sure all the above elements are created before
             the object is initialized. */
          setTimeout(function() {
-             animb903130347894c33b95b0acf05df252c = new Animation(frames, img_id, slider_id, 1000.0,
+             anim5e4f6ea4f9fd4920b3b3e986c215227c = new Animation(frames, img_id, slider_id, 1000.0,
                                       loop_select_id);
          }, 0);
        })()
@@ -14359,7 +14359,7 @@ The implementation of this strategy is based on :footcite:t:`wu2019active`.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  4.601 seconds)
+   **Total running time of the script:** ( 0 minutes  6.076 seconds)
 
 
 .. _sphx_glr_download_generated_sphinx_gallery_examples_pool_plot-GreedySamplingTarget-Improved_Greedy_Sampling_(GSi).py:
