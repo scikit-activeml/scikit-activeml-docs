@@ -266,6 +266,7 @@
         <span class="n">clf</span><span class="p">,</span>
         <span class="n">fit_clf</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">utility_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">candidates</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
         <span class="n">return_utilities</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
@@ -287,6 +288,12 @@
 <span class="sd">            `sample_weight`.</span>
 <span class="sd">        sample_weight: array-like of shape (n_samples), optional (default=None)</span>
 <span class="sd">            Weights of training samples in `X`.</span>
+<span class="sd">        utility_weight: array-like, optional (default=None)</span>
+<span class="sd">            Weight for each candidate (multiplied with utilities). Usually,</span>
+<span class="sd">            this is to be the density of a candidate. The length of</span>
+<span class="sd">            `utility_weight` is usually n_samples, except for the case when</span>
+<span class="sd">            candidates contains samples (ndim &gt;= 2). Then the length is</span>
+<span class="sd">            `n_candidates`.</span>
 <span class="sd">        candidates : None or array-like of shape (n_candidates), dtype=int or</span>
 <span class="sd">            array-like of shape (n_candidates, n_features),</span>
 <span class="sd">            optional (default=None)</span>
@@ -337,6 +344,26 @@
         <span class="c1"># Validate classifier type.</span>
         <span class="n">check_type</span><span class="p">(</span><span class="n">fit_clf</span><span class="p">,</span> <span class="s2">&quot;fit_clf&quot;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>
 
+        <span class="c1"># Check `utility_weight`.</span>
+        <span class="k">if</span> <span class="n">utility_weight</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">mapping</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">utility_weight</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X_cand</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">utility_weight</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
+        <span class="n">utility_weight</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">utility_weight</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">mapping</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_cand</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">utility_weight</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;&#39;utility_weight&#39; must have length &#39;n_candidates&#39; but &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">X_cand</span><span class="p">)</span><span class="si">}</span><span class="s2"> != </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">utility_weight</span><span class="p">)</span><span class="si">}</span><span class="s2">.&quot;</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="n">mapping</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">utility_weight</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;&#39;utility_weight&#39; must have length &#39;n_samples&#39; but &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">utility_weight</span><span class="p">)</span><span class="si">}</span><span class="s2"> != </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="si">}</span><span class="s2">.&quot;</span>
+            <span class="p">)</span>
+
+
         <span class="c1"># Validate method.</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">method</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
@@ -380,6 +407,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">utilities</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
             <span class="n">utilities</span><span class="p">[</span><span class="n">mapping</span><span class="p">]</span> <span class="o">=</span> <span class="n">utilities_cand</span>
+        <span class="n">utilities</span> <span class="o">*=</span> <span class="n">utility_weight</span>
 
         <span class="k">return</span> <span class="n">simple_batch</span><span class="p">(</span>
             <span class="n">utilities</span><span class="p">,</span>

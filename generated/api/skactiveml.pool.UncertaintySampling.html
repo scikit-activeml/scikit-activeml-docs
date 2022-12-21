@@ -730,7 +730,7 @@ contained subobjects that are estimators.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="skactiveml.pool.UncertaintySampling.query">
-<span class="sig-name descname"><span class="pre">query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fit_clf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">candidates</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_utilities</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/pool/_uncertainty_sampling.html#UncertaintySampling.query"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.pool.UncertaintySampling.query" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fit_clf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">utility_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">candidates</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_utilities</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/pool/_uncertainty_sampling.html#UncertaintySampling.query"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.pool.UncertaintySampling.query" title="Permalink to this definition">#</a></dt>
 <dd><p>Determines for which candidate samples labels are to be queried.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -747,6 +747,12 @@ indicated by self.MISSING_LABEL.</p>
 <cite>sample_weight</cite>.</p>
 </dd>
 <dt><strong>sample_weight: array-like of shape (n_samples), optional (default=None)</strong></dt><dd><p>Weights of training samples in <cite>X</cite>.</p>
+</dd>
+<dt><strong>utility_weight: array-like, optional (default=None)</strong></dt><dd><p>Weight for each candidate (multiplied with utilities). Usually,
+this is to be the density of a candidate. The length of
+<cite>utility_weight</cite> is usually n_samples, except for the case when
+candidates contains samples (ndim &gt;= 2). Then the length is
+<cite>n_candidates</cite>.</p>
 </dd>
 <dt><strong>candidates</strong><span class="classifier">None or array-like of shape (n_candidates), dtype=int or</span></dt><dd><p>array-like of shape (n_candidates, n_features),
 optional (default=None)
@@ -829,6 +835,12 @@ possible to update each component of a nested object.</p>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Expected Average Precision"><img alt="Expected Average Precision" src="../../_images/sphx_glr_plot-UncertaintySampling-Expected_Average_Precision_thumb.gif" />
 <p><a class="reference internal" href="../sphinx_gallery_examples/pool/plot-UncertaintySampling-Expected_Average_Precision.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-uncertaintysampling-expected-average-precision-py"><span class="std std-ref">Expected Average Precision</span></a></p>
   <div class="sphx-glr-thumbnail-title">Expected Average Precision</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Density-weighted Uncertainty Sampling"><img alt="Density-weighted Uncertainty Sampling" src="../../_images/sphx_glr_plot-UncertaintySampling-Density-weighted_Uncertainty_Sampling_thumb.gif" />
+<p><a class="reference internal" href="../sphinx_gallery_examples/pool/plot-UncertaintySampling-Density-weighted_Uncertainty_Sampling.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-uncertaintysampling-density-weighted-uncertainty-sampling-py"><span class="std std-ref">Density-weighted Uncertainty Sampling</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Density-weighted Uncertainty Sampling</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Dual strategy for Active Learning"><img alt="Dual strategy for Active Learning" src="../../_images/sphx_glr_plot-UncertaintySampling-Dual_strategy_for_Active_Learning_thumb.gif" />
+<p><a class="reference internal" href="../sphinx_gallery_examples/pool/plot-UncertaintySampling-Dual_strategy_for_Active_Learning.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-uncertaintysampling-dual-strategy-for-active-learning-py"><span class="std std-ref">Dual strategy for Active Learning</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Dual strategy for Active Learning</div>
 </div></div></section>
 </section>
 

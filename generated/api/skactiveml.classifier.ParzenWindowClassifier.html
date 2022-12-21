@@ -683,7 +683,10 @@ prior number of samples per class.</p>
 <dt><strong>n_neighbors</strong><span class="classifier">int or None, default=None</span></dt><dd><p>Number of nearest neighbours. Default is None, which means all
 available samples are considered.</p>
 </dd>
-<dt><strong>metric_dict</strong><span class="classifier">dict,</span></dt><dd><p>Any further parameters are passed directly to the kernel function.</p>
+<dt><strong>metric_dict</strong><span class="classifier">dict,</span></dt><dd><p>Any further parameters are passed directly to the kernel function.
+For the the kernel ‘rbf’ we allow the use of mean kernel [2] and use
+it when gamma is set to ‘mean’ (i.e., {‘gamma’: ‘mean’}). While N is
+defined as the labeled data the variance is calculated over all X.</p>
 </dd>
 </dl>
 </dd>
@@ -691,9 +694,13 @@ available samples are considered.</p>
 <p class="rubric">References</p>
 <dl class="citation">
 <dt class="label" id="r16a94a24337f-1"><span class="brackets">1</span></dt>
-<dd><p><a href="#id2"><span class="problematic" id="id3">`O. Chapelle, &quot;Active Learning for Parzen Window Classifier&quot;,
+<dd><p>O. Chapelle, “Active Learning for Parzen Window Classifier”,
 Proceedings of the Tenth International Workshop Artificial Intelligence
-and Statistics, 2005.`_</span></a></p>
+and Statistics, 2005.
+[2] Chaudhuri, A., Kakde, D., Sadek, C., Gonzalez, L., &amp; Kong, S.,
+“The Mean and Median Criteria for Kernel Bandwidth Selection for Support
+Vector Data Description” IEEE International Conference on Data
+Mining Workshops (ICDMW), 2017.</p>
 </dd>
 </dl>
 <dl class="field-list simple">

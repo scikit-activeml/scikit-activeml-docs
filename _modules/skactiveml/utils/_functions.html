@@ -195,7 +195,9 @@
 <span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">attrgetter</span>
 
 
-<div class="viewcode-block" id="call_func"><a class="viewcode-back" href="../../../generated/api/skactiveml.utils.call_func.html#skactiveml.utils.call_func">[docs]</a><span class="k">def</span> <span class="nf">call_func</span><span class="p">(</span><span class="n">f_callable</span><span class="p">,</span> <span class="n">only_mandatory</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="call_func"><a class="viewcode-back" href="../../../generated/api/skactiveml.utils.call_func.html#skactiveml.utils.call_func">[docs]</a><span class="k">def</span> <span class="nf">call_func</span><span class="p">(</span>
+    <span class="n">f_callable</span><span class="p">,</span> <span class="n">only_mandatory</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ignore_var_keyword</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Calls a function with the given parameters given in kwargs if they</span>
 <span class="sd">    exist as parameters in f_callable.</span>
 
@@ -205,6 +207,10 @@
 <span class="sd">        The function or object that is to be called</span>
 <span class="sd">    only_mandatory : boolean</span>
 <span class="sd">        If True only mandatory parameters are set.</span>
+<span class="sd">    ignore_var_keyword : boolean</span>
+<span class="sd">        If False all kwargs are passed when f_callable uses a parameter that is</span>
+<span class="sd">        of kind Parameter.VAR_KEYWORD, i.e., **kwargs. For further reference</span>
+<span class="sd">        see inspect package.</span>
 <span class="sd">    kwargs : kwargs</span>
 <span class="sd">        All parameters that could be used for calling f_callable.</span>
 
@@ -216,10 +222,16 @@
     <span class="n">param_keys</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">only_mandatory</span><span class="p">:</span>
         <span class="n">param_keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
-            <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">k</span><span class="p">:</span> <span class="n">params</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">default</span> <span class="o">==</span> <span class="n">inspect</span><span class="o">.</span><span class="n">_empty</span><span class="p">,</span> <span class="n">param_keys</span><span class="p">)</span>
+            <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">k</span><span class="p">:</span> <span class="n">params</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">default</span> <span class="o">==</span> <span class="n">params</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">empty</span><span class="p">,</span> <span class="n">param_keys</span><span class="p">)</span>
         <span class="p">)</span>
 
-    <span class="nb">vars</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="n">param_keys</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
+    <span class="n">has_var_keyword</span> <span class="o">=</span> <span class="nb">any</span><span class="p">(</span>
+        <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">kind</span> <span class="o">==</span> <span class="n">p</span><span class="o">.</span><span class="n">VAR_KEYWORD</span><span class="p">,</span> <span class="n">params</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="n">has_var_keyword</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">ignore_var_keyword</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">only_mandatory</span><span class="p">:</span>
+        <span class="nb">vars</span> <span class="o">=</span> <span class="n">kwargs</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">vars</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="n">param_keys</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
 
     <span class="k">return</span> <span class="n">f_callable</span><span class="p">(</span><span class="o">**</span><span class="nb">vars</span><span class="p">)</span></div>
 

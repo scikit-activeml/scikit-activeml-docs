@@ -529,30 +529,30 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">torch</span>
-<span class="kn">import</span> <span class="nn">warnings</span>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span>import matplotlib.pyplot as plt
+import numpy as np
+import torch
+import warnings
 
-<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
-<span class="kn">from</span> <span class="nn">skactiveml.classifier</span> <span class="kn">import</span> <span class="n">SklearnClassifier</span>
-<span class="kn">from</span> <span class="nn">skactiveml.pool</span> <span class="kn">import</span> <span class="n">UncertaintySampling</span><span class="p">,</span> <span class="n">QueryByCommittee</span><span class="p">,</span> <span class="n">RandomSampling</span>
-<span class="kn">from</span> <span class="nn">skactiveml.utils</span> <span class="kn">import</span> <span class="n">call_func</span>
-<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_digits</span>
-<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">VotingClassifier</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
-<span class="kn">from</span> <span class="nn">skorch</span> <span class="kn">import</span> <span class="n">NeuralNetClassifier</span>
-<span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">nn</span>
+from copy import deepcopy
+from skactiveml.classifier import SklearnClassifier
+from skactiveml.pool import UncertaintySampling, QueryByCommittee, RandomSampling
+from skactiveml.utils import call_func
+from sklearn.datasets import load_digits
+from sklearn.ensemble import VotingClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from skorch import NeuralNetClassifier
+from torch import nn
 
-<span class="n">MISSING_LABEL</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-<span class="n">RANDOM_STATE</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">FONTSIZE</span> <span class="o">=</span> <span class="mi">20</span>
+MISSING_LABEL = -1
+RANDOM_STATE = 0
+FONTSIZE = 20
 
-<span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="n">RANDOM_STATE</span><span class="p">)</span>
-<span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="n">RANDOM_STATE</span><span class="p">)</span>
+torch.manual_seed(RANDOM_STATE)
+torch.cuda.manual_seed(RANDOM_STATE)
 
-<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+warnings.filterwarnings(&quot;ignore&quot;)
 </pre></div>
 </div>
 </div>
@@ -563,33 +563,33 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load digit data set.</span>
-<span class="n">X</span><span class="p">,</span> <span class="n">y_true</span> <span class="o">=</span> <span class="n">load_digits</span><span class="p">(</span><span class="n">return_X_y</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span># Load digit data set.
+X, y_true = load_digits(return_X_y=True)
 
-<span class="c1"># Visualize first 10 images.</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
-    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Digit: </span><span class="si">{</span><span class="n">y_true</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">FONTSIZE</span><span class="p">)</span>
-    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">)))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+# Visualize first 10 images.
+fig, axes = plt.subplots(figsize=(15, 5), nrows=1, ncols=10)
+for i in range(10):
+    axes[i].set_title(f&#39;Digit: {y_true[i]}&#39;, fontsize=FONTSIZE)
+    axes[i].imshow(X[i].reshape((8, 8)))
+plt.show()
 
-<span class="c1"># Standardize data.</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+# Standardize data.
+X = StandardScaler().fit_transform(X)
 
-<span class="c1"># Reshape samples to n_samples x n_channels x width x height to fit skorch</span>
-<span class="c1"># requirements.</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+# Reshape samples to n_samples x n_channels x width x height to fit skorch
+# requirements.
+X = X.reshape((len(X), 1, 8, 8))
 
-<span class="c1"># Set data types according to skorch requirements.</span>
-<span class="n">X</span><span class="p">,</span> <span class="n">y_true</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span> <span class="n">y_true</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
+# Set data types according to skorch requirements.
+X, y_true = X.astype(np.float32), y_true.astype(np.int64)
 
-<span class="c1"># Identify list of possible classes.</span>
-<span class="n">classes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y_true</span><span class="p">)</span>
+# Identify list of possible classes.
+classes = np.unique(y_true)
 
-<span class="c1"># Make a 66-34 train-test split.</span>
-<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
-    <span class="n">X</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="mf">0.66</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span>
-<span class="p">)</span>
+# Make a 66-34 train-test split.
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y_true, train_size=0.66, random_state=RANDOM_STATE
+)
 </pre></div>
 </div>
 </div>
@@ -608,49 +608,49 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define base module.</span>
-<span class="k">class</span> <span class="nc">ClassifierModule</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">ClassifierModule</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">conv_layer</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
-            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
-            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
-            <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="n">kernel_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-        <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dense_layer</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">288</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">classes</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">outpout</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Softmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span># Define base module.
+class ClassifierModule(nn.Module):
+    def __init__(self):
+        super(ClassifierModule, self).__init__()
+        self.conv_layer = nn.Sequential(
+            nn.Conv2d(1, 32, kernel_size=3, stride=1, padding=0),
+            nn.ReLU(),
+            nn.MaxPool2d(kernel_size=2, stride=2)
+        )
+        self.dense_layer = nn.Linear(288, len(classes))
+        self.outpout = nn.Softmax(dim=-1)
 
-    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-        <span class="n">X</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv_layer</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-        <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">X</span><span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dense_layer</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-        <span class="n">X</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">outpout</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">X</span>
+    def forward(self, X):
+        X = self.conv_layer(X)
+        X = X.reshape(X.size(0), -1)
+        X= self.dense_layer(X)
+        X = self.outpout(X)
+        return X
 
-<span class="c1"># Create list of three base CNNs.</span>
-<span class="n">learning_rates</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.e-3</span><span class="p">,</span> <span class="mf">1.e-2</span><span class="p">,</span> <span class="mf">1.e-1</span><span class="p">]</span>
-<span class="n">estimators</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">learning_rate</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">learning_rates</span><span class="p">):</span>
-    <span class="n">net</span> <span class="o">=</span> <span class="n">NeuralNetClassifier</span><span class="p">(</span>
-        <span class="n">ClassifierModule</span><span class="p">,</span>
-        <span class="n">max_epochs</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
-        <span class="n">lr</span><span class="o">=</span><span class="n">learning_rate</span><span class="p">,</span>
-        <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-        <span class="n">train_split</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-    <span class="p">)</span>
-    <span class="n">net</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
-    <span class="n">estimators</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="sa">f</span><span class="s1">&#39;clf </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
-                       <span class="n">SklearnClassifier</span><span class="p">(</span>
-                           <span class="n">estimator</span><span class="o">=</span><span class="n">net</span><span class="p">,</span> <span class="n">missing_label</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">,</span>
-                           <span class="n">random_state</span><span class="o">=</span><span class="n">i</span><span class="p">,</span> <span class="n">classes</span><span class="o">=</span><span class="n">classes</span><span class="p">)</span>
-                       <span class="p">)</span>
-                      <span class="p">)</span>
+# Create list of three base CNNs.
+learning_rates = [1.e-3, 1.e-2, 1.e-1]
+estimators = []
+for i, learning_rate in enumerate(learning_rates):
+    net = NeuralNetClassifier(
+        ClassifierModule,
+        max_epochs=100,
+        lr=learning_rate,
+        verbose=0,
+        train_split=False,
+    )
+    net.initialize()
+    estimators.append((f&#39;clf {i}&#39;,
+                       SklearnClassifier(
+                           estimator=net, missing_label=MISSING_LABEL,
+                           random_state=i, classes=classes)
+                       )
+                      )
 
-<span class="c1"># Creat voting ensemble out of given ensemble list.</span>
-<span class="n">ensemble_init</span> <span class="o">=</span> <span class="n">SklearnClassifier</span><span class="p">(</span>
-    <span class="n">estimator</span><span class="o">=</span><span class="n">VotingClassifier</span><span class="p">(</span><span class="n">estimators</span><span class="o">=</span><span class="n">estimators</span><span class="p">,</span> <span class="n">voting</span><span class="o">=</span><span class="s1">&#39;soft&#39;</span><span class="p">),</span>
-    <span class="n">missing_label</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">,</span> <span class="n">classes</span><span class="o">=</span><span class="n">classes</span>
-<span class="p">)</span>
+# Creat voting ensemble out of given ensemble list.
+ensemble_init = SklearnClassifier(
+    estimator=VotingClassifier(estimators=estimators, voting=&#39;soft&#39;),
+    missing_label=MISSING_LABEL, random_state=RANDOM_STATE, classes=classes
+)
 </pre></div>
 </div>
 </div>
@@ -662,45 +662,45 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define setup.</span>
-<span class="n">n_cycles</span> <span class="o">=</span> <span class="mi">25</span>
-<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">20</span>
-<span class="n">qs_dict</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;random sampling&#39;</span><span class="p">:</span> <span class="n">RandomSampling</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">,</span> <span class="n">missing_label</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">),</span>
-    <span class="s1">&#39;uncertainty sampling&#39;</span><span class="p">:</span> <span class="n">UncertaintySampling</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">,</span> <span class="n">missing_label</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">),</span>
-    <span class="s1">&#39;query-by-committee&#39;</span><span class="p">:</span> <span class="n">QueryByCommittee</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">,</span> <span class="n">missing_label</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">),</span>
-<span class="p">}</span>
-<span class="n">acc_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_cycles</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">qs_dict</span><span class="p">}</span>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span># Define setup.
+n_cycles = 25
+batch_size = 20
+qs_dict = {
+    &#39;random sampling&#39;: RandomSampling(random_state=RANDOM_STATE, missing_label=MISSING_LABEL),
+    &#39;uncertainty sampling&#39;: UncertaintySampling(random_state=RANDOM_STATE, missing_label=MISSING_LABEL),
+    &#39;query-by-committee&#39;: QueryByCommittee(random_state=RANDOM_STATE, missing_label=MISSING_LABEL),
+}
+acc_dict = {key: np.zeros(n_cycles + 1) for key in qs_dict}
 
-<span class="c1"># Perform active learning with each query strategy.</span>
-<span class="k">for</span> <span class="n">qs_name</span><span class="p">,</span> <span class="n">qs</span> <span class="ow">in</span> <span class="n">qs_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-    <span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="n">RANDOM_STATE</span><span class="p">)</span>
-    <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="n">RANDOM_STATE</span><span class="p">)</span>
+# Perform active learning with each query strategy.
+for qs_name, qs in qs_dict.items():
+    torch.manual_seed(RANDOM_STATE)
+    torch.cuda.manual_seed(RANDOM_STATE)
 
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Execute active learning using </span><span class="si">{</span><span class="n">qs_name</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
+    print(f&#39;Execute active learning using {qs_name}.&#39;)
 
-    <span class="c1"># Copy initial ensemble model.</span>
-    <span class="n">ensemble</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">ensemble_init</span><span class="p">)</span>
+    # Copy initial ensemble model.
+    ensemble = deepcopy(ensemble_init)
 
-    <span class="c1"># Create array of missing labels as initial labels.</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full_like</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
+    # Create array of missing labels as initial labels.
+    y = np.full_like(y_train, fill_value=MISSING_LABEL, dtype=np.int64)
 
-    <span class="c1"># Execute active learning cycle.</span>
-    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_cycles</span><span class="p">):</span>
-        <span class="c1"># Fit and evaluate ensemble.</span>
-        <span class="n">acc</span> <span class="o">=</span> <span class="n">ensemble</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
-        <span class="n">acc_dict</span><span class="p">[</span><span class="n">qs_name</span><span class="p">][</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">acc</span>
+    # Execute active learning cycle.
+    for c in range(n_cycles):
+        # Fit and evaluate ensemble.
+        acc = ensemble.fit(X_train, y).score(X_test, y_test)
+        acc_dict[qs_name][c] = acc
 
-        <span class="c1"># Select and update training data.</span>
-        <span class="n">query_idx</span> <span class="o">=</span> <span class="n">call_func</span><span class="p">(</span>
-             <span class="n">qs</span><span class="o">.</span><span class="n">query</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">clf</span><span class="o">=</span><span class="n">ensemble</span><span class="p">,</span> <span class="n">fit_clf</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ensemble</span><span class="o">=</span><span class="n">ensemble</span><span class="p">,</span>
-             <span class="n">fit_ensemble</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span>
-        <span class="p">)</span>
-        <span class="n">y</span><span class="p">[</span><span class="n">query_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_train</span><span class="p">[</span><span class="n">query_idx</span><span class="p">]</span>
+        # Select and update training data.
+        query_idx = call_func(
+             qs.query, X=X_train, y=y, clf=ensemble, fit_clf=False, ensemble=ensemble,
+             fit_ensemble=False, batch_size=batch_size
+        )
+        y[query_idx] = y_train[query_idx]
 
-    <span class="c1"># Fit and evaluate ensemble.</span>
-    <span class="n">ensemble</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-    <span class="n">acc_dict</span><span class="p">[</span><span class="n">qs_name</span><span class="p">][</span><span class="n">n_cycles</span><span class="p">]</span> <span class="o">=</span> <span class="n">ensemble</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+    # Fit and evaluate ensemble.
+    ensemble.fit(X_train, y)
+    acc_dict[qs_name][n_cycles] = ensemble.score(X_test, y_test)
 </pre></div>
 </div>
 </div>
@@ -722,16 +722,16 @@ Execute active learning using query-by-committee.
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="n">cycles</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_cycles</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
-<span class="k">for</span> <span class="n">qs_name</span><span class="p">,</span> <span class="n">acc</span> <span class="ow">in</span> <span class="n">acc_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cycles</span><span class="p">,</span> <span class="n">acc</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">qs_name</span><span class="si">}</span><span class="s1">: AULC=</span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">acc</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">cycles</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">FONTSIZE</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="n">FONTSIZE</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;# cycle&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">FONTSIZE</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;test accuracy&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">FONTSIZE</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="s1">&#39;x-large&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span>cycles = np.arange(n_cycles + 1, dtype=int)
+plt.figure(figsize=(16, 9))
+for qs_name, acc in acc_dict.items():
+    plt.plot(cycles, acc, label=f&#39;{qs_name}: AULC={round(acc.mean(), 2)}&#39;)
+plt.xticks(cycles, fontsize=FONTSIZE)
+plt.yticks(fontsize=FONTSIZE)
+plt.xlabel(&#39;# cycle&#39;, fontsize=FONTSIZE)
+plt.ylabel(&#39;test accuracy&#39;, fontsize=FONTSIZE)
+plt.legend(loc=&#39;lower right&#39;, fontsize=&#39;x-large&#39;)
+plt.show()
 </pre></div>
 </div>
 </div>

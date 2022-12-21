@@ -197,8 +197,9 @@
 <span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">clone</span>
 <span class="kn">from</span> <span class="nn">sklearn.utils.validation</span> <span class="kn">import</span> <span class="n">check_array</span>
 
-<span class="kn">from</span> <span class="nn">..base</span> <span class="kn">import</span> <span class="n">ClassFrequencyEstimator</span>
+<span class="kn">from</span> <span class="nn">..base</span> <span class="kn">import</span> <span class="n">SkactivemlClassifier</span>
 <span class="kn">from</span> <span class="nn">..base</span> <span class="kn">import</span> <span class="n">SingleAnnotatorPoolQueryStrategy</span>
+<span class="kn">from</span> <span class="nn">..classifier</span> <span class="kn">import</span> <span class="n">ParzenWindowClassifier</span>
 <span class="kn">from</span> <span class="nn">..utils</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">MISSING_LABEL</span><span class="p">,</span>
     <span class="n">check_scalar</span><span class="p">,</span>
@@ -222,7 +223,19 @@
 <span class="sd">        Maximum number of hypothetically acquired labels.</span>
 <span class="sd">    missing_label : scalar or string or np.nan or None, default=np.nan</span>
 <span class="sd">        Value to represent a missing label.</span>
-<span class="sd">    random_state : int | np.random.RandomState, optional</span>
+<span class="sd">    metric : str or callable, default=None</span>
+<span class="sd">        The metric must be None or a valid kernel as defined by the function</span>
+<span class="sd">        `sklearn.metrics.pairwise.pairwise_kernels`. The kernel is used to</span>
+<span class="sd">        calculate the frequency of labels near the candidates and multiplied</span>
+<span class="sd">        with the probabilities returned by `clf` to get a kernel frequency</span>
+<span class="sd">        estimate for each class.</span>
+<span class="sd">        If metric is set to None, the `predict_freq` function of the `clf` will</span>
+<span class="sd">        be used instead. If this is not defined, a TypeError is raised.</span>
+<span class="sd">    metric_dict : dict, default=None</span>
+<span class="sd">        Any further parameters that should be passed directly to the kernel</span>
+<span class="sd">        function. If metric_dict is None and metric is &#39;rbf&#39; metric_dict is set</span>
+<span class="sd">        to {&#39;gamma&#39;: &#39;mean&#39;}.</span>
+<span class="sd">    random_state: numeric | np.random.RandomState, optional</span>
 <span class="sd">        Random state for candidate selection.</span>
 
 <span class="sd">    References</span>
@@ -234,11 +247,19 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">prior</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">m_max</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">missing_label</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">prior</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">m_max</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">missing_label</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">,</span>
+        <span class="n">metric</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">metric_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="n">missing_label</span><span class="o">=</span><span class="n">missing_label</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span>
         <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metric</span> <span class="o">=</span> <span class="n">metric</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metric_dict</span> <span class="o">=</span> <span class="n">metric_dict</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">prior</span> <span class="o">=</span> <span class="n">prior</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">m_max</span> <span class="o">=</span> <span class="n">m_max</span>
 
@@ -312,7 +333,7 @@
         <span class="n">X_cand</span><span class="p">,</span> <span class="n">mapping</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transform_candidates</span><span class="p">(</span><span class="n">candidates</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
         <span class="c1"># Check the classifier&#39;s type.</span>
-        <span class="n">check_type</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="s2">&quot;clf&quot;</span><span class="p">,</span> <span class="n">ClassFrequencyEstimator</span><span class="p">)</span>
+        <span class="n">check_type</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="s2">&quot;clf&quot;</span><span class="p">,</span> <span class="n">SkactivemlClassifier</span><span class="p">)</span>
         <span class="n">check_equal_missing_label</span><span class="p">(</span><span class="n">clf</span><span class="o">.</span><span class="n">missing_label</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">missing_label_</span><span class="p">)</span>
         <span class="n">check_type</span><span class="p">(</span><span class="n">fit_clf</span><span class="p">,</span> <span class="s2">&quot;fit_clf&quot;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>
 
@@ -335,10 +356,32 @@
                 <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="si">}</span><span class="s2"> != </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">utility_weight</span><span class="p">)</span><span class="si">}</span><span class="s2">.&quot;</span>
             <span class="p">)</span>
 
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="s2">&quot;predict_freq&quot;</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                <span class="s2">&quot;clf has no predict_freq and metric was set to None&quot;</span>
+            <span class="p">)</span>
+
         <span class="c1"># Fit the classifier and predict frequencies.</span>
         <span class="k">if</span> <span class="n">fit_clf</span><span class="p">:</span>
             <span class="n">clf</span> <span class="o">=</span> <span class="n">clone</span><span class="p">(</span><span class="n">clf</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">)</span>
-        <span class="n">k_vec</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict_freq</span><span class="p">(</span><span class="n">X_cand</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">metric_dict</span> <span class="ow">is</span> <span class="kc">None</span>
+                <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric</span> <span class="o">==</span> <span class="s2">&quot;rbf&quot;</span>
+            <span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">metric_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;gamma&quot;</span><span class="p">:</span> <span class="s2">&quot;mean&quot;</span><span class="p">}</span>
+            <span class="n">pwc</span> <span class="o">=</span> <span class="n">ParzenWindowClassifier</span><span class="p">(</span>
+                <span class="n">metric</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">metric</span><span class="p">,</span>
+                <span class="n">metric_dict</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">metric_dict</span><span class="p">,</span>
+                <span class="n">missing_label</span><span class="o">=</span><span class="n">clf</span><span class="o">.</span><span class="n">missing_label</span><span class="p">,</span>
+                <span class="n">classes</span><span class="o">=</span><span class="n">clf</span><span class="o">.</span><span class="n">classes</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">pwc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">)</span>
+            <span class="n">n</span> <span class="o">=</span> <span class="n">pwc</span><span class="o">.</span><span class="n">predict_freq</span><span class="p">(</span><span class="n">X_cand</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">pred_proba</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_cand</span><span class="p">)</span>
+            <span class="n">k_vec</span> <span class="o">=</span> <span class="n">n</span> <span class="o">*</span> <span class="n">pred_proba</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">k_vec</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict_freq</span><span class="p">(</span><span class="n">X_cand</span><span class="p">)</span>
 
         <span class="c1"># Calculate utilities and return the output.</span>
         <span class="n">utilities_cand</span> <span class="o">=</span> <span class="n">cost_reduction</span><span class="p">(</span>

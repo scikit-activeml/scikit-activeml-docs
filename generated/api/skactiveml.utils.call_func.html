@@ -639,7 +639,7 @@
 <h1>skactiveml.utils.call_func<a class="headerlink" href="#skactiveml-utils-call-func" title="Permalink to this headline">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="skactiveml.utils.call_func">
-<span class="sig-prename descclassname"><span class="pre">skactiveml.utils.</span></span><span class="sig-name descname"><span class="pre">call_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f_callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_mandatory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/utils/_functions.html#call_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.utils.call_func" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">skactiveml.utils.</span></span><span class="sig-name descname"><span class="pre">call_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f_callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_mandatory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_var_keyword</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/utils/_functions.html#call_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.utils.call_func" title="Permalink to this definition">#</a></dt>
 <dd><p>Calls a function with the given parameters given in kwargs if they
 exist as parameters in f_callable.</p>
 <dl class="field-list simple">
@@ -648,6 +648,10 @@ exist as parameters in f_callable.</p>
 <dt><strong>f_callable</strong><span class="classifier">callable</span></dt><dd><p>The function or object that is to be called</p>
 </dd>
 <dt><strong>only_mandatory</strong><span class="classifier">boolean</span></dt><dd><p>If True only mandatory parameters are set.</p>
+</dd>
+<dt><strong>ignore_var_keyword</strong><span class="classifier">boolean</span></dt><dd><p>If False all kwargs are passed when f_callable uses a parameter that is
+of kind Parameter.VAR_KEYWORD, i.e., <a href="#id1"><span class="problematic" id="id2">**</span></a>kwargs. For further reference
+see inspect package.</p>
 </dd>
 <dt><strong>kwargs</strong><span class="classifier">kwargs</span></dt><dd><p>All parameters that could be used for calling f_callable.</p>
 </dd>

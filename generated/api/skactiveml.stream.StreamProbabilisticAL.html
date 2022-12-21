@@ -677,7 +677,9 @@ estimate for each class.
 If metric is set to None, the <cite>predict_freq</cite> function of the <cite>clf</cite> will
 be used instead. If this is not defined, an Exception is raised.</p>
 </dd>
-<dt><strong>metric_dict</strong><span class="classifier">dict,</span></dt><dd><p>Any further parameters are passed directly to the kernel function.</p>
+<dt><strong>metric_dict</strong><span class="classifier">dict, default=None</span></dt><dd><p>Any further parameters are passed directly to the kernel function.
+If metric_dict is None and metric is ‘rbf’ metric_dict is set to
+{‘gamma’: ‘mean’}.</p>
 </dd>
 <dt><strong>random_state</strong><span class="classifier">int, RandomState instance, default=None</span></dt><dd><p>Controls the randomness of the query strategy.</p>
 </dd>

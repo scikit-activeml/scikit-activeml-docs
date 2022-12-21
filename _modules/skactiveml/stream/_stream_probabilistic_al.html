@@ -247,8 +247,10 @@
 <span class="sd">        estimate for each class.</span>
 <span class="sd">        If metric is set to None, the `predict_freq` function of the `clf` will</span>
 <span class="sd">        be used instead. If this is not defined, an Exception is raised.</span>
-<span class="sd">    metric_dict : dict,</span>
+<span class="sd">    metric_dict : dict, default=None</span>
 <span class="sd">        Any further parameters are passed directly to the kernel function.</span>
+<span class="sd">        If metric_dict is None and metric is &#39;rbf&#39; metric_dict is set to</span>
+<span class="sd">        {&#39;gamma&#39;: &#39;mean&#39;}.</span>
 <span class="sd">    random_state : int, RandomState instance, default=None</span>
 <span class="sd">        Controls the randomness of the query strategy.</span>
 <span class="sd">    prior : float</span>
@@ -351,6 +353,11 @@
             <span class="n">return_utilities</span><span class="o">=</span><span class="n">return_utilities</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">metric_dict</span> <span class="ow">is</span> <span class="kc">None</span>
+                <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric</span> <span class="o">==</span> <span class="s2">&quot;rbf&quot;</span>
+            <span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">metric_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;gamma&quot;</span><span class="p">:</span> <span class="s2">&quot;mean&quot;</span><span class="p">}</span>
             <span class="n">pwc</span> <span class="o">=</span> <span class="n">ParzenWindowClassifier</span><span class="p">(</span>
                 <span class="n">metric</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">metric</span><span class="p">,</span>
                 <span class="n">metric_dict</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">metric_dict</span><span class="p">,</span>

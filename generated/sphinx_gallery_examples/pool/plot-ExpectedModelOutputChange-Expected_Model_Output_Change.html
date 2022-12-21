@@ -271,18 +271,23 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="plot-UncertaintySampling-Density-weighted_Uncertainty_Sampling.html">
+     Density-weighted Uncertainty Sampling
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="plot-GreedySamplingX-Greedy_Sampling_on_the_Feature_Space_%28GSx%29.html">
      Greedy Sampling on the Feature Space (GSx)
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="plot-GreedySamplingTarget-Greedy_Sampling_on_the_Target_Space_%28GSy%29.html">
-     Greedy Sampling on the Target Space (GSy)
+    <a class="reference internal" href="plot-GreedySamplingTarget-Improved_Greedy_Sampling_%28GSi%29.html">
+     Improved Greedy Sampling (GSi)
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="plot-GreedySamplingTarget-Improved_Greedy_Sampling_%28GSi%29.html">
-     Improved Greedy Sampling (GSi)
+    <a class="reference internal" href="plot-GreedySamplingTarget-Greedy_Sampling_on_the_Target_Space_%28GSy%29.html">
+     Greedy Sampling on the Target Space (GSy)
     </a>
    </li>
    <li class="toctree-l2">
@@ -303,6 +308,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="plot-KLDivergenceMaximization-Regression_based_Kullback_Leibler_Divergence_Maximization.html">
      Regression based Kullback Leibler Divergence Maximization
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="plot-UncertaintySampling-Dual_strategy_for_Active_Learning.html">
+     Dual strategy for Active Learning
     </a>
    </li>
   </ul>
@@ -644,42 +654,42 @@ input[type=range].anim-slider {
 </style>
 
 <div class="animation">
-  <img id="_anim_img459ce76008ad4e72be20dfcfa7597e18">
+  <img id="_anim_img61bd02df26a245e3b8cb11f8c5524457">
   <div class="anim-controls">
-    <input id="_anim_slider459ce76008ad4e72be20dfcfa7597e18" type="range" class="anim-slider"
+    <input id="_anim_slider61bd02df26a245e3b8cb11f8c5524457" type="range" class="anim-slider"
            name="points" min="0" max="1" step="1" value="0"
-           oninput="anim459ce76008ad4e72be20dfcfa7597e18.set_frame(parseInt(this.value));">
+           oninput="anim61bd02df26a245e3b8cb11f8c5524457.set_frame(parseInt(this.value));">
     <div class="anim-buttons">
-      <button title="Decrease speed" aria-label="Decrease speed" onclick="anim459ce76008ad4e72be20dfcfa7597e18.slower()">
+      <button title="Decrease speed" aria-label="Decrease speed" onclick="anim61bd02df26a245e3b8cb11f8c5524457.slower()">
           <i class="fa fa-minus"></i></button>
-      <button title="First frame" aria-label="First frame" onclick="anim459ce76008ad4e72be20dfcfa7597e18.first_frame()">
+      <button title="First frame" aria-label="First frame" onclick="anim61bd02df26a245e3b8cb11f8c5524457.first_frame()">
         <i class="fa fa-fast-backward"></i></button>
-      <button title="Previous frame" aria-label="Previous frame" onclick="anim459ce76008ad4e72be20dfcfa7597e18.previous_frame()">
+      <button title="Previous frame" aria-label="Previous frame" onclick="anim61bd02df26a245e3b8cb11f8c5524457.previous_frame()">
           <i class="fa fa-step-backward"></i></button>
-      <button title="Play backwards" aria-label="Play backwards" onclick="anim459ce76008ad4e72be20dfcfa7597e18.reverse_animation()">
+      <button title="Play backwards" aria-label="Play backwards" onclick="anim61bd02df26a245e3b8cb11f8c5524457.reverse_animation()">
           <i class="fa fa-play fa-flip-horizontal"></i></button>
-      <button title="Pause" aria-label="Pause" onclick="anim459ce76008ad4e72be20dfcfa7597e18.pause_animation()">
+      <button title="Pause" aria-label="Pause" onclick="anim61bd02df26a245e3b8cb11f8c5524457.pause_animation()">
           <i class="fa fa-pause"></i></button>
-      <button title="Play" aria-label="Play" onclick="anim459ce76008ad4e72be20dfcfa7597e18.play_animation()">
+      <button title="Play" aria-label="Play" onclick="anim61bd02df26a245e3b8cb11f8c5524457.play_animation()">
           <i class="fa fa-play"></i></button>
-      <button title="Next frame" aria-label="Next frame" onclick="anim459ce76008ad4e72be20dfcfa7597e18.next_frame()">
+      <button title="Next frame" aria-label="Next frame" onclick="anim61bd02df26a245e3b8cb11f8c5524457.next_frame()">
           <i class="fa fa-step-forward"></i></button>
-      <button title="Last frame" aria-label="Last frame" onclick="anim459ce76008ad4e72be20dfcfa7597e18.last_frame()">
+      <button title="Last frame" aria-label="Last frame" onclick="anim61bd02df26a245e3b8cb11f8c5524457.last_frame()">
           <i class="fa fa-fast-forward"></i></button>
-      <button title="Increase speed" aria-label="Increase speed" onclick="anim459ce76008ad4e72be20dfcfa7597e18.faster()">
+      <button title="Increase speed" aria-label="Increase speed" onclick="anim61bd02df26a245e3b8cb11f8c5524457.faster()">
           <i class="fa fa-plus"></i></button>
     </div>
-    <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_select459ce76008ad4e72be20dfcfa7597e18"
+    <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_select61bd02df26a245e3b8cb11f8c5524457"
           class="anim-state">
-      <input type="radio" name="state" value="once" id="_anim_radio1_459ce76008ad4e72be20dfcfa7597e18"
+      <input type="radio" name="state" value="once" id="_anim_radio1_61bd02df26a245e3b8cb11f8c5524457"
              >
-      <label for="_anim_radio1_459ce76008ad4e72be20dfcfa7597e18">Once</label>
-      <input type="radio" name="state" value="loop" id="_anim_radio2_459ce76008ad4e72be20dfcfa7597e18"
+      <label for="_anim_radio1_61bd02df26a245e3b8cb11f8c5524457">Once</label>
+      <input type="radio" name="state" value="loop" id="_anim_radio2_61bd02df26a245e3b8cb11f8c5524457"
              checked>
-      <label for="_anim_radio2_459ce76008ad4e72be20dfcfa7597e18">Loop</label>
-      <input type="radio" name="state" value="reflect" id="_anim_radio3_459ce76008ad4e72be20dfcfa7597e18"
+      <label for="_anim_radio2_61bd02df26a245e3b8cb11f8c5524457">Loop</label>
+      <input type="radio" name="state" value="reflect" id="_anim_radio3_61bd02df26a245e3b8cb11f8c5524457"
              >
-      <label for="_anim_radio3_459ce76008ad4e72be20dfcfa7597e18">Reflect</label>
+      <label for="_anim_radio3_61bd02df26a245e3b8cb11f8c5524457">Reflect</label>
     </form>
   </div>
 </div>
@@ -689,9 +699,9 @@ input[type=range].anim-slider {
   /* Instantiate the Animation class. */
   /* The IDs given should match those used in the template above. */
   (function() {
-    var img_id = "_anim_img459ce76008ad4e72be20dfcfa7597e18";
-    var slider_id = "_anim_slider459ce76008ad4e72be20dfcfa7597e18";
-    var loop_select_id = "_anim_loop_select459ce76008ad4e72be20dfcfa7597e18";
+    var img_id = "_anim_img61bd02df26a245e3b8cb11f8c5524457";
+    var slider_id = "_anim_slider61bd02df26a245e3b8cb11f8c5524457";
+    var loop_select_id = "_anim_loop_select61bd02df26a245e3b8cb11f8c5524457";
     var frames = new Array(20);
 
   frames[0] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
@@ -12622,7 +12632,7 @@ c8IHADAnfAAAcwEy28K1JFEvOQAAAABJRU5ErkJggg==\
     /* set a timeout to make sure all the above elements are created before
        the object is initialized. */
     setTimeout(function() {
-        anim459ce76008ad4e72be20dfcfa7597e18 = new Animation(frames, img_id, slider_id, 1000.0,
+        anim61bd02df26a245e3b8cb11f8c5524457 = new Animation(frames, img_id, slider_id, 1000.0,
                                  loop_select_id);
     }, 0);
   })()
@@ -12636,7 +12646,7 @@ c8IHADAnfAAAcwEy28K1JFEvOQAAAABJRU5ErkJggg==\
 </dd>
 </dl>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  46.684 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  53.354 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-generated-sphinx-gallery-examples-pool-plot-expectedmodeloutputchange-expected-model-output-change-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../../_downloads/7367150f0a3feb103570c7ec0af13557/plot-ExpectedModelOutputChange-Expected_Model_Output_Change.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot-ExpectedModelOutputChange-Expected_Model_Output_Change.py</span></code></a></p>

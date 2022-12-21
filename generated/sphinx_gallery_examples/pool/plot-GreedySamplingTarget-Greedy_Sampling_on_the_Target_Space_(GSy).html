@@ -42,8 +42,8 @@
     <script src="../../../_static/filter_examples.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Improved Greedy Sampling (GSi)" href="plot-GreedySamplingTarget-Improved_Greedy_Sampling_%28GSi%29.html" />
-    <link rel="prev" title="Greedy Sampling on the Feature Space (GSx)" href="plot-GreedySamplingX-Greedy_Sampling_on_the_Feature_Space_%28GSx%29.html" />
+    <link rel="next" title="Expected Model Variance Reduction" href="plot-ExpectedModelVarianceReduction-Expected_Model_Variance_Reduction.html" />
+    <link rel="prev" title="Improved Greedy Sampling (GSi)" href="plot-GreedySamplingTarget-Improved_Greedy_Sampling_%28GSi%29.html" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="docsearch:language" content="None">
   </head>
@@ -271,18 +271,23 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="plot-GreedySamplingX-Greedy_Sampling_on_the_Feature_Space_%28GSx%29.html">
-     Greedy Sampling on the Feature Space (GSx)
+    <a class="reference internal" href="plot-UncertaintySampling-Density-weighted_Uncertainty_Sampling.html">
+     Density-weighted Uncertainty Sampling
     </a>
    </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Greedy Sampling on the Target Space (GSy)
+   <li class="toctree-l2">
+    <a class="reference internal" href="plot-GreedySamplingX-Greedy_Sampling_on_the_Feature_Space_%28GSx%29.html">
+     Greedy Sampling on the Feature Space (GSx)
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="plot-GreedySamplingTarget-Improved_Greedy_Sampling_%28GSi%29.html">
      Improved Greedy Sampling (GSi)
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Greedy Sampling on the Target Space (GSy)
     </a>
    </li>
    <li class="toctree-l2">
@@ -303,6 +308,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="plot-KLDivergenceMaximization-Regression_based_Kullback_Leibler_Divergence_Maximization.html">
      Regression based Kullback Leibler Divergence Maximization
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="plot-UncertaintySampling-Dual_strategy_for_Active_Learning.html">
+     Dual strategy for Active Learning
     </a>
    </li>
   </ul>
@@ -638,42 +648,42 @@ input[type=range].anim-slider {
 </style>
 
 <div class="animation">
-  <img id="_anim_imge855b8fa7adc45f8bc384c9985cabedd">
+  <img id="_anim_img30ca5480cad54f1399695cc27f131e8b">
   <div class="anim-controls">
-    <input id="_anim_slidere855b8fa7adc45f8bc384c9985cabedd" type="range" class="anim-slider"
+    <input id="_anim_slider30ca5480cad54f1399695cc27f131e8b" type="range" class="anim-slider"
            name="points" min="0" max="1" step="1" value="0"
-           oninput="anime855b8fa7adc45f8bc384c9985cabedd.set_frame(parseInt(this.value));">
+           oninput="anim30ca5480cad54f1399695cc27f131e8b.set_frame(parseInt(this.value));">
     <div class="anim-buttons">
-      <button title="Decrease speed" aria-label="Decrease speed" onclick="anime855b8fa7adc45f8bc384c9985cabedd.slower()">
+      <button title="Decrease speed" aria-label="Decrease speed" onclick="anim30ca5480cad54f1399695cc27f131e8b.slower()">
           <i class="fa fa-minus"></i></button>
-      <button title="First frame" aria-label="First frame" onclick="anime855b8fa7adc45f8bc384c9985cabedd.first_frame()">
+      <button title="First frame" aria-label="First frame" onclick="anim30ca5480cad54f1399695cc27f131e8b.first_frame()">
         <i class="fa fa-fast-backward"></i></button>
-      <button title="Previous frame" aria-label="Previous frame" onclick="anime855b8fa7adc45f8bc384c9985cabedd.previous_frame()">
+      <button title="Previous frame" aria-label="Previous frame" onclick="anim30ca5480cad54f1399695cc27f131e8b.previous_frame()">
           <i class="fa fa-step-backward"></i></button>
-      <button title="Play backwards" aria-label="Play backwards" onclick="anime855b8fa7adc45f8bc384c9985cabedd.reverse_animation()">
+      <button title="Play backwards" aria-label="Play backwards" onclick="anim30ca5480cad54f1399695cc27f131e8b.reverse_animation()">
           <i class="fa fa-play fa-flip-horizontal"></i></button>
-      <button title="Pause" aria-label="Pause" onclick="anime855b8fa7adc45f8bc384c9985cabedd.pause_animation()">
+      <button title="Pause" aria-label="Pause" onclick="anim30ca5480cad54f1399695cc27f131e8b.pause_animation()">
           <i class="fa fa-pause"></i></button>
-      <button title="Play" aria-label="Play" onclick="anime855b8fa7adc45f8bc384c9985cabedd.play_animation()">
+      <button title="Play" aria-label="Play" onclick="anim30ca5480cad54f1399695cc27f131e8b.play_animation()">
           <i class="fa fa-play"></i></button>
-      <button title="Next frame" aria-label="Next frame" onclick="anime855b8fa7adc45f8bc384c9985cabedd.next_frame()">
+      <button title="Next frame" aria-label="Next frame" onclick="anim30ca5480cad54f1399695cc27f131e8b.next_frame()">
           <i class="fa fa-step-forward"></i></button>
-      <button title="Last frame" aria-label="Last frame" onclick="anime855b8fa7adc45f8bc384c9985cabedd.last_frame()">
+      <button title="Last frame" aria-label="Last frame" onclick="anim30ca5480cad54f1399695cc27f131e8b.last_frame()">
           <i class="fa fa-fast-forward"></i></button>
-      <button title="Increase speed" aria-label="Increase speed" onclick="anime855b8fa7adc45f8bc384c9985cabedd.faster()">
+      <button title="Increase speed" aria-label="Increase speed" onclick="anim30ca5480cad54f1399695cc27f131e8b.faster()">
           <i class="fa fa-plus"></i></button>
     </div>
-    <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_selecte855b8fa7adc45f8bc384c9985cabedd"
+    <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_select30ca5480cad54f1399695cc27f131e8b"
           class="anim-state">
-      <input type="radio" name="state" value="once" id="_anim_radio1_e855b8fa7adc45f8bc384c9985cabedd"
+      <input type="radio" name="state" value="once" id="_anim_radio1_30ca5480cad54f1399695cc27f131e8b"
              >
-      <label for="_anim_radio1_e855b8fa7adc45f8bc384c9985cabedd">Once</label>
-      <input type="radio" name="state" value="loop" id="_anim_radio2_e855b8fa7adc45f8bc384c9985cabedd"
+      <label for="_anim_radio1_30ca5480cad54f1399695cc27f131e8b">Once</label>
+      <input type="radio" name="state" value="loop" id="_anim_radio2_30ca5480cad54f1399695cc27f131e8b"
              checked>
-      <label for="_anim_radio2_e855b8fa7adc45f8bc384c9985cabedd">Loop</label>
-      <input type="radio" name="state" value="reflect" id="_anim_radio3_e855b8fa7adc45f8bc384c9985cabedd"
+      <label for="_anim_radio2_30ca5480cad54f1399695cc27f131e8b">Loop</label>
+      <input type="radio" name="state" value="reflect" id="_anim_radio3_30ca5480cad54f1399695cc27f131e8b"
              >
-      <label for="_anim_radio3_e855b8fa7adc45f8bc384c9985cabedd">Reflect</label>
+      <label for="_anim_radio3_30ca5480cad54f1399695cc27f131e8b">Reflect</label>
     </form>
   </div>
 </div>
@@ -683,9 +693,9 @@ input[type=range].anim-slider {
   /* Instantiate the Animation class. */
   /* The IDs given should match those used in the template above. */
   (function() {
-    var img_id = "_anim_imge855b8fa7adc45f8bc384c9985cabedd";
-    var slider_id = "_anim_slidere855b8fa7adc45f8bc384c9985cabedd";
-    var loop_select_id = "_anim_loop_selecte855b8fa7adc45f8bc384c9985cabedd";
+    var img_id = "_anim_img30ca5480cad54f1399695cc27f131e8b";
+    var slider_id = "_anim_slider30ca5480cad54f1399695cc27f131e8b";
+    var loop_select_id = "_anim_loop_select30ca5480cad54f1399695cc27f131e8b";
     var frames = new Array(20);
 
   frames[0] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAHeCAYAAAAB0dYuAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
@@ -14691,7 +14701,7 @@ FnxERERECvc/y7ZcRStMITIAAAAASUVORK5CYII=\
     /* set a timeout to make sure all the above elements are created before
        the object is initialized. */
     setTimeout(function() {
-        anime855b8fa7adc45f8bc384c9985cabedd = new Animation(frames, img_id, slider_id, 1000.0,
+        anim30ca5480cad54f1399695cc27f131e8b = new Animation(frames, img_id, slider_id, 1000.0,
                                  loop_select_id);
     }, 0);
   })()
@@ -14705,7 +14715,7 @@ FnxERERECvc/y7ZcRStMITIAAAAASUVORK5CYII=\
 </dd>
 </dl>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  5.651 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  6.319 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-generated-sphinx-gallery-examples-pool-plot-greedysamplingtarget-greedy-sampling-on-the-target-space-gsy-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../../_downloads/774c995331cb1deb3a16e37826ce3862/plot-GreedySamplingTarget-Greedy_Sampling_on_the_Target_Space_(GSy).py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot-GreedySamplingTarget-Greedy_Sampling_on_the_Target_Space_(GSy).py</span></code></a></p>
@@ -14725,17 +14735,17 @@ FnxERERECvc/y7ZcRStMITIAAAAASUVORK5CYII=\
               <footer class="bd-footer-article">
                   <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-  <a class='left-prev' id="prev-link" href="plot-GreedySamplingX-Greedy_Sampling_on_the_Feature_Space_%28GSx%29.html" title="previous page">
+  <a class='left-prev' id="prev-link" href="plot-GreedySamplingTarget-Improved_Greedy_Sampling_%28GSi%29.html" title="previous page">
       <i class="fas fa-angle-left"></i>
       <div class="prev-next-info">
           <p class="prev-next-subtitle">previous</p>
-          <p class="prev-next-title">Greedy Sampling on the Feature Space (GSx)</p>
+          <p class="prev-next-title">Improved Greedy Sampling (GSi)</p>
       </div>
   </a>
-  <a class='right-next' id="next-link" href="plot-GreedySamplingTarget-Improved_Greedy_Sampling_%28GSi%29.html" title="next page">
+  <a class='right-next' id="next-link" href="plot-ExpectedModelVarianceReduction-Expected_Model_Variance_Reduction.html" title="next page">
   <div class="prev-next-info">
       <p class="prev-next-subtitle">next</p>
-      <p class="prev-next-title">Improved Greedy Sampling (GSi)</p>
+      <p class="prev-next-title">Expected Model Variance Reduction</p>
   </div>
   <i class="fas fa-angle-right"></i>
   </a>

@@ -654,7 +654,7 @@
 <h1>skactiveml.pool.ProbabilisticAL<a class="headerlink" href="#skactiveml-pool-probabilistical" title="Permalink to this headline">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="skactiveml.pool.ProbabilisticAL">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">skactiveml.pool.</span></span><span class="sig-name descname"><span class="pre">ProbabilisticAL</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prior</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">missing_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">nan</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/pool/_probabilistic_al.html#ProbabilisticAL"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.pool.ProbabilisticAL" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">skactiveml.pool.</span></span><span class="sig-name descname"><span class="pre">ProbabilisticAL</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prior</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">missing_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">nan</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/pool/_probabilistic_al.html#ProbabilisticAL"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.pool.ProbabilisticAL" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="skactiveml.base.SingleAnnotatorPoolQueryStrategy.html#skactiveml.base.SingleAnnotatorPoolQueryStrategy" title="skactiveml.base.SingleAnnotatorPoolQueryStrategy"><code class="xref py py-class docutils literal notranslate"><span class="pre">skactiveml.base.SingleAnnotatorPoolQueryStrategy</span></code></a></p>
 <p>(Multi-class) Probabilistic Active Learning</p>
 <p>This class implements multi-class probabilistic active learning (McPAL) [1]
@@ -668,7 +668,19 @@ strategy.</p>
 </dd>
 <dt><strong>missing_label</strong><span class="classifier">scalar or string or np.nan or None, default=np.nan</span></dt><dd><p>Value to represent a missing label.</p>
 </dd>
-<dt><strong>random_state</strong><span class="classifier">int | np.random.RandomState, optional</span></dt><dd><p>Random state for candidate selection.</p>
+<dt><strong>metric</strong><span class="classifier">str or callable, default=None</span></dt><dd><p>The metric must be None or a valid kernel as defined by the function
+<cite>sklearn.metrics.pairwise.pairwise_kernels</cite>. The kernel is used to
+calculate the frequency of labels near the candidates and multiplied
+with the probabilities returned by <cite>clf</cite> to get a kernel frequency
+estimate for each class.
+If metric is set to None, the <cite>predict_freq</cite> function of the <cite>clf</cite> will
+be used instead. If this is not defined, a TypeError is raised.</p>
+</dd>
+<dt><strong>metric_dict</strong><span class="classifier">dict, default=None</span></dt><dd><p>Any further parameters that should be passed directly to the kernel
+function. If metric_dict is None and metric is ‘rbf’ metric_dict is set
+to {‘gamma’: ‘mean’}.</p>
+</dd>
+<dt><strong>random_state: numeric | np.random.RandomState, optional</strong></dt><dd><p>Random state for candidate selection.</p>
 </dd>
 </dl>
 </dd>

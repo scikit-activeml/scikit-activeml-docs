@@ -191,7 +191,7 @@
                 
   <h1>Source code for skactiveml.utils._label_encoder</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">sklearn.base</span> <span class="kn">import</span> <span class="n">TransformerMixin</span><span class="p">,</span> <span class="n">BaseEstimator</span>
+<span class="kn">from</span> <span class="nn">sklearn.base</span> <span class="kn">import</span> <span class="n">BaseEstimator</span>
 <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
 <span class="kn">from</span> <span class="nn">sklearn.utils</span> <span class="kn">import</span> <span class="n">check_array</span>
 <span class="kn">from</span> <span class="nn">sklearn.utils.validation</span> <span class="kn">import</span> <span class="n">check_is_fitted</span>
@@ -200,7 +200,7 @@
 <span class="kn">from</span> <span class="nn">._validation</span> <span class="kn">import</span> <span class="n">check_classifier_params</span>
 
 
-<div class="viewcode-block" id="ExtLabelEncoder"><a class="viewcode-back" href="../../../generated/api/skactiveml.utils.ExtLabelEncoder.html#skactiveml.utils.ExtLabelEncoder">[docs]</a><span class="k">class</span> <span class="nc">ExtLabelEncoder</span><span class="p">(</span><span class="n">TransformerMixin</span><span class="p">,</span> <span class="n">BaseEstimator</span><span class="p">):</span>
+<div class="viewcode-block" id="ExtLabelEncoder"><a class="viewcode-back" href="../../../generated/api/skactiveml.utils.ExtLabelEncoder.html#skactiveml.utils.ExtLabelEncoder">[docs]</a><span class="k">class</span> <span class="nc">ExtLabelEncoder</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Encode class labels with value between 0 and classes-1 and uses -1 for</span>
 <span class="sd">    unlabeled samples.</span>
 <span class="sd">    This transformer should be used to encode class labels, *i.e.* `y`, and</span>

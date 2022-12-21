@@ -197,12 +197,13 @@
 <span class="c1"># Author: Marek Herde &lt;marek.herde@uni-kassel.de&gt;</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
 <span class="kn">from</span> <span class="nn">sklearn.metrics.pairwise</span> <span class="kn">import</span> <span class="n">pairwise_kernels</span><span class="p">,</span> <span class="n">KERNEL_PARAMS</span>
 <span class="kn">from</span> <span class="nn">sklearn.utils</span> <span class="kn">import</span> <span class="n">check_array</span>
 <span class="kn">from</span> <span class="nn">sklearn.utils.validation</span> <span class="kn">import</span> <span class="n">check_is_fitted</span><span class="p">,</span> <span class="n">check_scalar</span>
 
 <span class="kn">from</span> <span class="nn">..base</span> <span class="kn">import</span> <span class="n">ClassFrequencyEstimator</span>
-<span class="kn">from</span> <span class="nn">..utils</span> <span class="kn">import</span> <span class="n">MISSING_LABEL</span><span class="p">,</span> <span class="n">compute_vote_vectors</span>
+<span class="kn">from</span> <span class="nn">..utils</span> <span class="kn">import</span> <span class="n">MISSING_LABEL</span><span class="p">,</span> <span class="n">compute_vote_vectors</span><span class="p">,</span> <span class="n">is_labeled</span>
 
 
 <div class="viewcode-block" id="ParzenWindowClassifier"><a class="viewcode-back" href="../../../generated/api/skactiveml.classifier.ParzenWindowClassifier.html#skactiveml.classifier.ParzenWindowClassifier">[docs]</a><span class="k">class</span> <span class="nc">ParzenWindowClassifier</span><span class="p">(</span><span class="n">ClassFrequencyEstimator</span><span class="p">):</span>
@@ -237,6 +238,9 @@
 <span class="sd">        available samples are considered.</span>
 <span class="sd">    metric_dict : dict,</span>
 <span class="sd">        Any further parameters are passed directly to the kernel function.</span>
+<span class="sd">        For the the kernel &#39;rbf&#39; we allow the use of mean kernel [2] and use</span>
+<span class="sd">        it when gamma is set to &#39;mean&#39; (i.e., {&#39;gamma&#39;: &#39;mean&#39;}). While N is</span>
+<span class="sd">        defined as the labeled data the variance is calculated over all X.</span>
 
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
@@ -258,9 +262,13 @@
 
 <span class="sd">    References</span>
 <span class="sd">    ----------</span>
-<span class="sd">    .. [1] `O. Chapelle, &quot;Active Learning for Parzen Window Classifier&quot;,</span>
+<span class="sd">    .. [1] O. Chapelle, &quot;Active Learning for Parzen Window Classifier&quot;,</span>
 <span class="sd">       Proceedings of the Tenth International Workshop Artificial Intelligence</span>
-<span class="sd">       and Statistics, 2005.`_</span>
+<span class="sd">       and Statistics, 2005.</span>
+<span class="sd">       [2] Chaudhuri, A., Kakde, D., Sadek, C., Gonzalez, L., &amp; Kong, S.,</span>
+<span class="sd">       &quot;The Mean and Median Criteria for Kernel Bandwidth Selection for Support</span>
+<span class="sd">       Vector Data Description&quot; IEEE International Conference on Data</span>
+<span class="sd">       Mining Workshops (ICDMW), 2017.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">METRICS</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">KERNEL_PARAMS</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;precomputed&quot;</span><span class="p">]</span>
@@ -331,6 +339,20 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">metric_dict_</span> <span class="o">=</span> <span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">metric_dict</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric_dict</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">{}</span>
         <span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="s2">&quot;gamma&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric_dict_</span>
+            <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric_dict</span><span class="p">[</span><span class="s2">&quot;gamma&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;mean&quot;</span>
+            <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric</span> <span class="o">==</span> <span class="s2">&quot;rbf&quot;</span>
+        <span class="p">):</span>
+            <span class="n">is_lbld</span> <span class="o">=</span> <span class="n">is_labeled</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">missing_label</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">is_lbld</span><span class="p">)])</span>
+            <span class="n">variance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">n_features</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">metric_dict_</span><span class="p">[</span>
+                <span class="s2">&quot;gamma&quot;</span>
+            <span class="p">]</span> <span class="o">=</span> <span class="n">ParzenWindowClassifier</span><span class="o">.</span><span class="n">_calculate_mean_gamma</span><span class="p">(</span>
+                <span class="n">N</span><span class="p">,</span> <span class="n">variance</span><span class="p">,</span> <span class="n">n_features</span>
+            <span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">metric_dict_</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;&#39;metric_dict&#39; must be a Python dictionary.&quot;</span><span class="p">)</span>
 
@@ -399,7 +421,22 @@
             <span class="n">F</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">classes_</span><span class="p">)))</span>
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">0</span><span class="p">)):</span>
                 <span class="n">F</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">K</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">indices</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">V_</span><span class="p">[</span><span class="n">indices</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="p">:]</span>
-        <span class="k">return</span> <span class="n">F</span></div></div>
+        <span class="k">return</span> <span class="n">F</span></div>
+
+    <span class="k">def</span> <span class="nf">_calculate_mean_gamma</span><span class="p">(</span>
+        <span class="n">N</span><span class="p">,</span> <span class="n">variance</span><span class="p">,</span> <span class="n">n_features</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1e-6</span><span class="p">)</span>
+    <span class="p">):</span>
+        <span class="n">denominator</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">N</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">variance</span><span class="p">)</span>
+        <span class="n">numerator</span> <span class="o">=</span> <span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">((</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">delta</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">denominator</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">gamma</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">n_features</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="s2">&quot;The variance of the provided data is 0. Bandwidth of &quot;</span>
+                <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;1/n_features=</span><span class="si">{</span><span class="n">gamma</span><span class="si">}</span><span class="s2"> is used instead.&quot;</span>
+                <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">gamma</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">numerator</span> <span class="o">/</span> <span class="n">denominator</span>
+        <span class="k">return</span> <span class="n">gamma</span></div>
 </pre></div>
 
               </article>

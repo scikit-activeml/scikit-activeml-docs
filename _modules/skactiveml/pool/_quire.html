@@ -190,7 +190,9 @@
               <article class="bd-article" role="main">
                 
   <h1>Source code for skactiveml.pool._quire</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span></span><span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">sklearn.metrics.pairwise</span> <span class="kn">import</span> <span class="n">pairwise_kernels</span><span class="p">,</span> <span class="n">KERNEL_PARAMS</span>
 
 <span class="kn">from</span> <span class="nn">skactiveml.base</span> <span class="kn">import</span> <span class="n">SingleAnnotatorPoolQueryStrategy</span>
@@ -385,7 +387,7 @@
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">mapping</span><span class="p">):</span>
             <span class="n">mask_u</span> <span class="o">=</span> <span class="n">mask_a</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
             <span class="n">mask_u</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
-            <span class="n">L_uu_inv</span> <span class="o">=</span> <span class="n">_del_i_inv</span><span class="p">(</span><span class="n">L_aa_inv</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+            <span class="n">L_uu_inv</span> <span class="o">=</span> <span class="n">_del_i_inv</span><span class="p">(</span><span class="n">L_aa_inv</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s1">&#39;L_aa_inv&#39;</span><span class="p">)</span>
 
             <span class="n">utilities_cand</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="n">L</span><span class="p">[</span><span class="n">s</span><span class="p">,</span> <span class="n">s</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span>
                 <span class="p">[</span>
@@ -423,10 +425,14 @@
     <span class="k">return</span> <span class="n">y_ovr</span><span class="o">.</span><span class="n">T</span>
 
 
-<span class="k">def</span> <span class="nf">_del_i_inv</span><span class="p">(</span><span class="n">A_inv</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
-    <span class="n">np</span><span class="o">.</span><span class="n">testing</span><span class="o">.</span><span class="n">assert_allclose</span><span class="p">(</span>
-        <span class="n">A_inv</span><span class="p">,</span> <span class="n">A_inv</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">err_msg</span><span class="o">=</span><span class="s2">&quot;A_inv is not symmetric.&quot;</span>
-    <span class="p">)</span>
+<span class="k">def</span> <span class="nf">_del_i_inv</span><span class="p">(</span><span class="n">A_inv</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">A_inv</span><span class="p">,</span> <span class="n">A_inv</span><span class="o">.</span><span class="n">T</span><span class="p">):</span>
+        <span class="n">err</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">A_inv</span> <span class="o">-</span> <span class="n">A_inv</span><span class="o">.</span><span class="n">T</span><span class="p">))</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The approximation of the inverse of matrix `</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">` &#39;</span>
+                      <span class="sa">f</span><span class="s1">&#39;may be inaccurate because the matrix is not symmetric &#39;</span>
+                      <span class="sa">f</span><span class="s1">&#39;with an absolut error of </span><span class="se">\n</span><span class="si">{</span><span class="n">err</span><span class="si">}</span><span class="s1">.</span><span class="se">\n</span><span class="s1"> To avoid this &#39;</span>
+                      <span class="sa">f</span><span class="s1">&#39;warning you can increase `lmbda`.&#39;</span><span class="p">)</span>
+
     <span class="n">a</span> <span class="o">=</span> <span class="n">A_inv</span><span class="p">[</span><span class="n">s</span><span class="p">,</span> <span class="n">s</span><span class="p">]</span>
     <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">A_inv</span><span class="p">[:,</span> <span class="p">[</span><span class="n">s</span><span class="p">]],</span> <span class="n">s</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">A_inv</span><span class="p">,</span> <span class="p">[</span><span class="n">s</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="p">[</span><span class="n">s</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
