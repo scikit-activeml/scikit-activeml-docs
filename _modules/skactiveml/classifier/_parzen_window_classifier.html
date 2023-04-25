@@ -207,7 +207,7 @@
 
 
 <div class="viewcode-block" id="ParzenWindowClassifier"><a class="viewcode-back" href="../../../generated/api/skactiveml.classifier.ParzenWindowClassifier.html#skactiveml.classifier.ParzenWindowClassifier">[docs]</a><span class="k">class</span> <span class="nc">ParzenWindowClassifier</span><span class="p">(</span><span class="n">ClassFrequencyEstimator</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;ParzenWindowClassifier</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;ParzenWindowClassifier</span>
 
 <span class="sd">    The Parzen window classifier (PWC) is a simple and</span>
 <span class="sd">    probabilistic classifier. This classifier is based on a non-parametric</span>
@@ -296,7 +296,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">metric_dict</span> <span class="o">=</span> <span class="n">metric_dict</span>
 
 <div class="viewcode-block" id="ParzenWindowClassifier.fit"><a class="viewcode-back" href="../../../generated/api/skactiveml.classifier.ParzenWindowClassifier.html#skactiveml.classifier.ParzenWindowClassifier.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Fit the model using X as training data and y as class labels.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Fit the model using X as training data and y as class labels.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -318,7 +318,7 @@
         <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_data</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">)</span>
 
         <span class="c1"># Check whether metric is available.</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ParzenWindowClassifier</span><span class="o">.</span><span class="n">METRICS</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">callable</span><span class="p">(</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ParzenWindowClassifier</span><span class="o">.</span><span class="n">METRICS</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">callable</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">metric</span>
         <span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
@@ -375,7 +375,7 @@
         <span class="k">return</span> <span class="bp">self</span></div>
 
 <div class="viewcode-block" id="ParzenWindowClassifier.predict_freq"><a class="viewcode-back" href="../../../generated/api/skactiveml.classifier.ParzenWindowClassifier.html#skactiveml.classifier.ParzenWindowClassifier.predict_freq">[docs]</a>    <span class="k">def</span> <span class="nf">predict_freq</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Return class frequency estimates for the input samples &#39;X&#39;.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return class frequency estimates for the input samples &#39;X&#39;.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -427,13 +427,13 @@
         <span class="n">N</span><span class="p">,</span> <span class="n">variance</span><span class="p">,</span> <span class="n">n_features</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1e-6</span><span class="p">)</span>
     <span class="p">):</span>
         <span class="n">denominator</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">N</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">variance</span><span class="p">)</span>
-        <span class="n">numerator</span> <span class="o">=</span> <span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">((</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">delta</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">numerator</span> <span class="o">=</span> <span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">((</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">delta</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">denominator</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">gamma</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">n_features</span>
+            <span class="n">gamma</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">n_features</span>
             <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
                 <span class="s2">&quot;The variance of the provided data is 0. Bandwidth of &quot;</span>
                 <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;1/n_features=</span><span class="si">{</span><span class="n">gamma</span><span class="si">}</span><span class="s2"> is used instead.&quot;</span>
-                <span class="p">)</span>
+            <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">gamma</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">numerator</span> <span class="o">/</span> <span class="n">denominator</span>
         <span class="k">return</span> <span class="n">gamma</span></div>

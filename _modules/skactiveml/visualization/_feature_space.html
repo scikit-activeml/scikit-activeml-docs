@@ -193,7 +193,7 @@
 <span></span><span class="kn">import</span> <span class="nn">warnings</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">lines</span><span class="p">,</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 <span class="kn">from</span> <span class="nn">matplotlib.axes</span> <span class="kn">import</span> <span class="n">Axes</span>
 <span class="kn">from</span> <span class="nn">sklearn.base</span> <span class="kn">import</span> <span class="n">ClassifierMixin</span>
 <span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsRegressor</span>
@@ -227,7 +227,7 @@
 
 
 <div class="viewcode-block" id="plot_utilities"><a class="viewcode-back" href="../../../generated/api/skactiveml.visualization.plot_utilities.html#skactiveml.visualization.plot_utilities">[docs]</a><span class="k">def</span> <span class="nf">plot_utilities</span><span class="p">(</span><span class="n">qs</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">candidates</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Plot the utility for the given single-annotator query strategy.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot the utility for the given single-annotator query strategy.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -287,7 +287,7 @@
 
 
 <div class="viewcode-block" id="plot_annotator_utilities"><a class="viewcode-back" href="../../../generated/api/skactiveml.visualization.plot_annotator_utilities.html#skactiveml.visualization.plot_annotator_utilities">[docs]</a><span class="k">def</span> <span class="nf">plot_annotator_utilities</span><span class="p">(</span><span class="n">qs</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">candidates</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Plot the utility for the given query strategy.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot the utility for the given query strategy.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -361,7 +361,7 @@
     <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;coolwarm&quot;</span><span class="p">,</span>
     <span class="n">confidence_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
 <span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Plot the decision boundary of the given classifier.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot the decision boundary of the given classifier.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -479,10 +479,10 @@
     <span class="n">replace_nan</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
     <span class="n">feature_bound</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">res</span><span class="o">=</span><span class="mi">101</span><span class="p">,</span>
+    <span class="n">res</span><span class="o">=</span><span class="mi">21</span><span class="p">,</span>
     <span class="n">contour_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
 <span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Plot the utility for the given query strategy.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot the utility for the given query strategy.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -537,8 +537,170 @@
     <span class="k">return</span> <span class="n">ax</span></div>
 
 
+<div class="viewcode-block" id="plot_stream_training_data"><a class="viewcode-back" href="../../../generated/api/skactiveml.visualization.plot_stream_training_data.html#skactiveml.visualization.plot_stream_training_data">[docs]</a><span class="k">def</span> <span class="nf">plot_stream_training_data</span><span class="p">(</span>
+    <span class="n">ax</span><span class="p">,</span>
+    <span class="n">X</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">,</span>
+    <span class="n">queried_indices</span><span class="p">,</span>
+    <span class="n">classes</span><span class="p">,</span>
+    <span class="n">feature_bound</span><span class="p">,</span>
+    <span class="n">unlabeled_color</span><span class="o">=</span><span class="s2">&quot;grey&quot;</span><span class="p">,</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;coolwarm&quot;</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+    <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">plot_cand_highlight</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot the utility for the given query strategy.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ax : matplotlib.axes.Axes</span>
+<span class="sd">        The axis on which the utility is plotted. Only if y.ndim = 1 (single</span>
+<span class="sd">        annotator).</span>
+<span class="sd">    X : array-like of shape (n_samples, 1)</span>
+<span class="sd">        Training data set, usually complete, i.e. including the labeled and</span>
+<span class="sd">        unlabeled samples.</span>
+<span class="sd">    y : array-like of shape (n_samples, )</span>
+<span class="sd">        Labels of the training data set (possibly including unlabeled ones</span>
+<span class="sd">        indicated by self.MISSING_LABEL).</span>
+<span class="sd">    queried_indices : array-like of shape (n_samples,)</span>
+<span class="sd">        Indicates which instances from candidates have been queried.</span>
+<span class="sd">    classes : array-like of shape (n_classes)</span>
+<span class="sd">        Holds the label for each class.</span>
+<span class="sd">    feature_bound : array-like of shape [[xmin, ymin], [xmax, ymax]]</span>
+<span class="sd">        Determines the area in which the boundary is plotted. If candidates is</span>
+<span class="sd">        not given, bound must not be None. Otherwise, the bound is determined</span>
+<span class="sd">        based on the data.</span>
+<span class="sd">    unlabeled_color: str | matplotlib.colors.Colormap, optional</span>
+<span class="sd">    (default=&#39;grey&#39;)</span>
+<span class="sd">        The color for the unlabled samples.</span>
+<span class="sd">    cmap: str | matplotlib.colors.Colormap, optional (default=&#39;coolwarm_r&#39;)</span>
+<span class="sd">        The colormap for the confidence levels.</span>
+<span class="sd">    alpha: scalar</span>
+<span class="sd">        Set the alpha value used for blending - not supported on all backends.</span>
+<span class="sd">    linewidth: float</span>
+<span class="sd">        Set the line width in points.</span>
+<span class="sd">    plot_cand_highlight: bool</span>
+<span class="sd">        The indicator to higlight the current candidate.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">     axes : array-like of shape (n_annotators_to_plot,)</span>
+<span class="sd">         The axes on which the utilities were plotted.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">column_or_1d</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">check_array</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">force_all_finite</span><span class="o">=</span><span class="s2">&quot;allow-nan&quot;</span><span class="p">)</span>
+    <span class="n">check_consistent_length</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">check_array</span><span class="p">(</span><span class="n">queried_indices</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">check_array</span><span class="p">(</span><span class="n">classes</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">check_type</span><span class="p">(</span><span class="n">unlabeled_color</span><span class="p">,</span> <span class="s2">&quot;unlabeled_color&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+    <span class="n">check_type</span><span class="p">(</span><span class="n">plot_cand_highlight</span><span class="p">,</span> <span class="s2">&quot;plot_cand_highlight&quot;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>
+    <span class="n">check_type</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s2">&quot;ax&quot;</span><span class="p">,</span> <span class="n">Axes</span><span class="p">)</span>
+
+    <span class="n">data_lines</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">cmap</span> <span class="o">=</span> <span class="n">_get_cmap</span><span class="p">(</span><span class="n">cmap</span><span class="p">)</span>
+    <span class="n">norm</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="n">classes</span><span class="p">),</span> <span class="n">vmax</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="n">classes</span><span class="p">))</span>
+
+    <span class="n">highlight_color</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cmap</span><span class="p">(</span><span class="n">norm</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span> <span class="k">if</span> <span class="n">queried_indices</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">else</span> <span class="n">unlabeled_color</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">plot_cand_highlight</span><span class="p">:</span>
+        <span class="n">data_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">lines</span><span class="o">.</span><span class="n">Line2D</span><span class="p">(</span>
+                <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">feature_bound</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]],</span>
+                <span class="p">[</span><span class="n">X</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]],</span>
+                <span class="n">c</span><span class="o">=</span><span class="n">highlight_color</span><span class="p">,</span>
+                <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span>
+                <span class="n">linewidth</span><span class="o">=</span><span class="n">linewidth</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">t</span><span class="p">,</span> <span class="p">(</span><span class="n">x_t</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">y_t</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">queried_indices</span><span class="p">,</span> <span class="n">y</span><span class="p">)):</span>
+        <span class="n">line_color</span> <span class="o">=</span> <span class="n">cmap</span><span class="p">(</span><span class="n">norm</span><span class="p">(</span><span class="n">y_t</span><span class="p">))</span> <span class="k">if</span> <span class="n">a</span> <span class="k">else</span> <span class="n">unlabeled_color</span>
+        <span class="n">zorder</span> <span class="o">=</span> <span class="mi">3</span> <span class="k">if</span> <span class="n">a</span> <span class="k">else</span> <span class="mi">2</span>
+        <span class="n">alpha_tmp</span> <span class="o">=</span> <span class="n">alpha</span> <span class="o">*</span> <span class="mi">2</span> <span class="k">if</span> <span class="n">a</span> <span class="k">else</span> <span class="n">alpha</span>
+        <span class="n">data_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">lines</span><span class="o">.</span><span class="n">Line2D</span><span class="p">(</span>
+                <span class="p">[</span><span class="n">t</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span>
+                <span class="p">[</span><span class="n">x_t</span><span class="p">,</span> <span class="n">x_t</span><span class="p">],</span>
+                <span class="n">zorder</span><span class="o">=</span><span class="n">zorder</span><span class="p">,</span>
+                <span class="n">color</span><span class="o">=</span><span class="n">line_color</span><span class="p">,</span>
+                <span class="n">alpha</span><span class="o">=</span><span class="n">alpha_tmp</span><span class="p">,</span>
+                <span class="n">linewidth</span><span class="o">=</span><span class="n">linewidth</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+    <span class="k">for</span> <span class="n">d_line</span> <span class="ow">in</span> <span class="n">data_lines</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">add_line</span><span class="p">(</span><span class="n">d_line</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">data_lines</span></div>
+
+
+<div class="viewcode-block" id="plot_stream_decision_boundary"><a class="viewcode-back" href="../../../generated/api/skactiveml.visualization.plot_stream_decision_boundary.html#skactiveml.visualization.plot_stream_decision_boundary">[docs]</a><span class="k">def</span> <span class="nf">plot_stream_decision_boundary</span><span class="p">(</span>
+    <span class="n">ax</span><span class="p">,</span>
+    <span class="n">t_x</span><span class="p">,</span>
+    <span class="n">plot_step</span><span class="p">,</span>
+    <span class="n">clf</span><span class="p">,</span>
+    <span class="n">X</span><span class="p">,</span>
+    <span class="n">pred_list</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span>
+    <span class="n">res</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot the decision boundary of the given classifier.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ax: matplotlib.axes.Axes or List</span>
+<span class="sd">        The axis on which the decision boundary is plotted. If ax is a List,</span>
+<span class="sd">        each entry has to be an `matplotlib.axes.Axes`.</span>
+<span class="sd">    t_x: int</span>
+<span class="sd">        The position of the newest instance for the x axies.</span>
+<span class="sd">    plot_step: int</span>
+<span class="sd">        The interval in which the clf should predict new samples.</span>
+<span class="sd">    clf: Sklearn classifier</span>
+<span class="sd">        The fitted classifier whose decision boundary is plotted.</span>
+<span class="sd">    X : array-like of shape (n_samples, 1)</span>
+<span class="sd">        Training data set, usually complete, i.e. including the labeled and</span>
+<span class="sd">        unlabeled samples.</span>
+<span class="sd">    pred_list: array-like of shape (n_samples, )</span>
+<span class="sd">        The list containing classifier prediction for the last steps.</span>
+<span class="sd">    color: str | matplotlib.colors.Colormap, optional (default=&#39;k&#39;)</span>
+<span class="sd">        The color for the decision boundary.</span>
+<span class="sd">    res : int, optional (default=25)</span>
+<span class="sd">        The resolution of the plot.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ax: matplotlib.axes.Axes or List</span>
+<span class="sd">        The axis on which the boundary was plotted or the list of axis if ax</span>
+<span class="sd">        was a list.</span>
+<span class="sd">    pred_list: array-like of shape (n_samples, )</span>
+<span class="sd">        The list containing classifier prediction for the last steps.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">column_or_1d</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">check_array</span><span class="p">(</span><span class="n">pred_list</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ensure_min_samples</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">check_scalar</span><span class="p">(</span><span class="n">t_x</span><span class="p">,</span> <span class="s2">&quot;t_x&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="n">min_val</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">check_scalar</span><span class="p">(</span><span class="n">plot_step</span><span class="p">,</span> <span class="s2">&quot;plot_step&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="n">min_val</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">check_type</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s2">&quot;ax&quot;</span><span class="p">,</span> <span class="n">Axes</span><span class="p">)</span>
+    <span class="n">check_type</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="s2">&quot;clf&quot;</span><span class="p">,</span> <span class="n">ClassifierMixin</span><span class="p">)</span>
+    <span class="n">x_vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">res</span><span class="p">)</span>
+    <span class="n">t_vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">t_x</span> <span class="o">//</span> <span class="n">plot_step</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">plot_step</span>
+    <span class="n">t_mesh</span><span class="p">,</span> <span class="n">x_mesh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">t_vec</span><span class="p">,</span> <span class="n">x_vec</span><span class="p">)</span>
+    <span class="n">predictions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_vec</span><span class="o">.</span><span class="n">reshape</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))])</span>
+    <span class="n">pred_list</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">pred_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">pred_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span>
+            <span class="n">t_mesh</span><span class="p">,</span>
+            <span class="n">x_mesh</span><span class="p">,</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">pred_list</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span><span class="o">.</span><span class="n">T</span><span class="p">,</span>
+            <span class="n">levels</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">],</span>
+            <span class="n">colors</span><span class="o">=</span><span class="n">color</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">ax</span><span class="p">,</span> <span class="n">pred_list</span></div>
+
+
 <span class="k">def</span> <span class="nf">_general_plot_utilities</span><span class="p">(</span><span class="n">qs</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">candidates</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Plot the utility for the given query strategy.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot the utility for the given query strategy.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -553,8 +715,8 @@
 <span class="sd">    candidates : None or array-like of shape (n_candidates,), dtype=int or</span>
 <span class="sd">        array-like of shape (n_candidates, n_features),</span>
 <span class="sd">        optional (default=None)</span>
-<span class="sd">        If `candidates` is None, the unlabeled samples from (X,y) are</span>
-<span class="sd">        considered as candidates.</span>
+<span class="sd">        If `candidates` is None, a mesh with the specified resolution is</span>
+<span class="sd">        generated and considered as candidates.</span>
 <span class="sd">        If `candidates` is of shape (n_candidates,) and of type int,</span>
 <span class="sd">        candidates is considered as the indices of the samples in (X,y).</span>
 <span class="sd">        If `candidates` is of shape (n_candidates, n_features), the</span>

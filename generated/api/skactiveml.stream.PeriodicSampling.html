@@ -307,6 +307,11 @@
    skactiveml.pool.DiscriminativeAL
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.BatchBALD.html">
+   skactiveml.pool.BatchBALD
+  </a>
+ </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -332,6 +337,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="skactiveml.pool.vote_entropy.html">
    skactiveml.pool.vote_entropy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.batch_bald.html">
+   skactiveml.pool.batch_bald
   </a>
  </li>
 </ul>
@@ -395,6 +405,78 @@
    skactiveml.stream.RandomVariableUncertainty
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.StreamDensityBasedAL.html">
+   skactiveml.stream.StreamDensityBasedAL
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.CognitiveDualQueryStrategy.html">
+   skactiveml.stream.CognitiveDualQueryStrategy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.CognitiveDualQueryStrategyRan.html">
+   skactiveml.stream.CognitiveDualQueryStrategyRan
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.CognitiveDualQueryStrategyRanVarUn.html">
+   skactiveml.stream.CognitiveDualQueryStrategyRanVarUn
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.CognitiveDualQueryStrategyVarUn.html">
+   skactiveml.stream.CognitiveDualQueryStrategyVarUn
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.CognitiveDualQueryStrategyFixUn.html">
+   skactiveml.stream.CognitiveDualQueryStrategyFixUn
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.budgetmanager.EstimatedBudgetZliobaite.html">
+   skactiveml.stream.budgetmanager.EstimatedBudgetZliobaite
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.budgetmanager.FixedUncertaintyBudgetManager.html">
+   skactiveml.stream.budgetmanager.FixedUncertaintyBudgetManager
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.budgetmanager.VariableUncertaintyBudgetManager.html">
+   skactiveml.stream.budgetmanager.VariableUncertaintyBudgetManager
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.budgetmanager.SplitBudgetManager.html">
+   skactiveml.stream.budgetmanager.SplitBudgetManager
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.budgetmanager.BalancedIncrementalQuantileFilter.html">
+   skactiveml.stream.budgetmanager.BalancedIncrementalQuantileFilter
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.budgetmanager.RandomVariableUncertaintyBudgetManager.html">
+   skactiveml.stream.budgetmanager.RandomVariableUncertaintyBudgetManager
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.budgetmanager.DensityBasedSplitBudgetManager.html">
+   skactiveml.stream.budgetmanager.DensityBasedSplitBudgetManager
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.budgetmanager.RandomBudgetManager.html">
+   skactiveml.stream.budgetmanager.RandomBudgetManager
+  </a>
+ </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -449,6 +531,16 @@
  <li class="toctree-l1">
   <a class="reference internal" href="skactiveml.visualization.plot_annotator_utilities.html">
    skactiveml.visualization.plot_annotator_utilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.visualization.plot_stream_training_data.html">
+   skactiveml.visualization.plot_stream_training_data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.visualization.plot_stream_decision_boundary.html">
+   skactiveml.visualization.plot_stream_decision_boundary
   </a>
  </li>
  <li class="toctree-l1">
@@ -615,9 +707,24 @@
     
     <div class="toc-item">
       
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
 
 <nav id="bd-toc-nav">
-    
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#examples-using-skactiveml-stream-periodicsampling">
+   Examples using
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     skactiveml.stream.PeriodicSampling
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+
 </nav>
     </div>
     
@@ -652,10 +759,10 @@ as a baseline strategy.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>budget</strong><span class="classifier">float, default=None</span></dt><dd><p>The budget which models the budgeting constraint used in
+<dt><strong>budget</strong><span class="classifier">float, optional (default=None)</span></dt><dd><p>The budget which models the budgeting constraint used in
 the stream-based active learning setting.</p>
 </dd>
-<dt><strong>random_state</strong><span class="classifier">int, RandomState instance, default=None</span></dt><dd><p>Controls the randomness of the estimator.</p>
+<dt><strong>random_state</strong><span class="classifier">int, RandomState instance, optional (default=None)</span></dt><dd><p>Controls the randomness of the estimator.</p>
 </dd>
 </dl>
 </dd>
@@ -720,7 +827,7 @@ especially helpful, when developing wrapper query strategies.</p>
 <dt><strong>(n_samples, n_features)</strong></dt><dd><p>The instances which may be queried. Sparse matrices are accepted
 only if they are supported by the base query strategy.</p>
 </dd>
-<dt><strong>return_utilities</strong><span class="classifier">bool, optional</span></dt><dd><p>If true, also return the utilities based on the query strategy.
+<dt><strong>return_utilities</strong><span class="classifier">bool, optional (default=False)</span></dt><dd><p>If true, also return the utilities based on the query strategy.
 The default is False.</p>
 </dd>
 </dl>
@@ -776,8 +883,6 @@ only if they are supported by the base query strategy.</p>
 </dd>
 <dt><strong>queried_indices</strong><span class="classifier">array-like of shape (n_samples,)</span></dt><dd><p>Indicates which instances from candidates have been queried.</p>
 </dd>
-<dt><strong>budget_manager_param_dict</strong><span class="classifier">kwargs</span></dt><dd><p>Optional kwargs for budgetmanager.</p>
-</dd>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -791,7 +896,13 @@ only if they are supported by the base query strategy.</p>
 
 </dd></dl>
 
-<span class="target" id="sphx-glr-backref-skactiveml-stream-periodicsampling"></span></section>
+<section id="examples-using-skactiveml-stream-periodicsampling">
+<span id="sphx-glr-backref-skactiveml-stream-periodicsampling"></span><h2>Examples using <code class="docutils literal notranslate"><span class="pre">skactiveml.stream.PeriodicSampling</span></code><a class="headerlink" href="#examples-using-skactiveml-stream-periodicsampling" title="Permalink to this headline">#</a></h2>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Sampling with PeriodicSampling"><img alt="" src="../../_images/sphx_glr_plot-PeriodicSampling-PeriodicSampling_Sampling_thumb.gif" />
+<p><a class="reference internal" href="../sphinx_gallery_examples/stream/plot-PeriodicSampling-PeriodicSampling_Sampling.html#sphx-glr-generated-sphinx-gallery-examples-stream-plot-periodicsampling-periodicsampling-sampling-py"><span class="std std-ref">Sampling with PeriodicSampling</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Sampling with PeriodicSampling</div>
+</div></div></section>
+</section>
 
 
               </article>

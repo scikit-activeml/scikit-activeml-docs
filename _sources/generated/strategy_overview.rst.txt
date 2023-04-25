@@ -85,9 +85,17 @@ Query-by-Committee
      - Base Class
      - Tags
      - Reference
+   * - :doc:`Bayesian Active Learning by Disagreement (BALD) </generated/sphinx_gallery_examples/pool/plot-BatchBALD-Bayesian_Active_Learning_by_Disagreement_(BALD)>`
+     - :doc:`BatchBALD </generated/api/skactiveml.pool.BatchBALD>`
+     - pool classification single-annotator
+     - :footcite:t:`houlsby2011bayesian`
+   * - :doc:`Batch Bayesian Active Learning by Disagreement </generated/sphinx_gallery_examples/pool/plot-BatchBALD-Batch_Bayesian_Active_Learning_by_Disagreement>`
+     - :doc:`BatchBALD </generated/api/skactiveml.pool.BatchBALD>`
+     - pool classification single-annotator
+     - :footcite:t:`houlsby2011bayesian`, :footcite:t:`kirsch2019batchbald`
    * - :doc:`Query-by-Committee with Kullback-Leibler Divergence </generated/sphinx_gallery_examples/pool/plot-QueryByCommittee-Query-by-Committee_with_Kullback-Leibler_Divergence>`
      - :doc:`QueryByCommittee </generated/api/skactiveml.pool.QueryByCommittee>`
-     - pool classification single-annotator
+     - pool classification regression single-annotator
      - :footcite:t:`seung1992query`, :footcite:t:`mccallum1998employing`
 
 Random Sampling
@@ -118,6 +126,10 @@ Uncertainty Sampling
      - pool classification single-annotator
      - :footcite:t:`nguyen2019epistemic`
    * - :doc:`Density-Diversity-Distribution-Distance Sampling (4DS) </generated/sphinx_gallery_examples/pool/plot-FourDs-Density-Diversity-Distribution-Distance_Sampling_(4DS)>`
+     - :doc:`FourDs </generated/api/skactiveml.pool.FourDs>`
+     - pool classification single-annotator
+     - :footcite:t:`reitmaier2013let`
+   * - :doc:`Batch Density-Diversity-Distribution-Distance Sampling (Batch4DS) </generated/sphinx_gallery_examples/pool/plot-FourDs-Batch_Density-Diversity-Distribution-Distance_Sampling_(Batch4DS)>`
      - :doc:`FourDs </generated/api/skactiveml.pool.FourDs>`
      - pool classification single-annotator
      - :footcite:t:`reitmaier2013let`
@@ -187,6 +199,98 @@ Others
      - :doc:`Quire </generated/api/skactiveml.pool.Quire>`
      - pool classification single-annotator
      - :footcite:t:`huang2010active`
+
+
+Stream
+------
+
+Density Sampling
+~~~~~~~~~~~~~~~~
+.. list-table:: 
+   :header-rows: 1
+
+   * - Method
+     - Base Class
+     - Tags
+     - Reference
+   * - :doc:`CognitiveDualQueryStrategyFixUn Uncertainty Sampling </generated/sphinx_gallery_examples/stream/plot-CognitiveDualQueryStrategyFixUn-CognitiveDualQueryStrategyFixUn_Uncertainty_Sampling>`
+     - :doc:`CognitiveDualQueryStrategyFixUn </generated/api/skactiveml.stream.CognitiveDualQueryStrategyFixUn>`
+     - stream classification single-annotator
+     - :footcite:t:`liu2023active`
+   * - :doc:`CognitiveDualQueryStrategyRan Uncertainty Sampling </generated/sphinx_gallery_examples/stream/plot-CognitiveDualQueryStrategyRan-CognitiveDualQueryStrategyRan_Uncertainty_Sampling>`
+     - :doc:`CognitiveDualQueryStrategyRan </generated/api/skactiveml.stream.CognitiveDualQueryStrategyRan>`
+     - stream classification single-annotator
+     - :footcite:t:`liu2023active`
+   * - :doc:`CognitiveDualQueryStrategyRanVarUn Uncertainty Sampling </generated/sphinx_gallery_examples/stream/plot-CognitiveDualQueryStrategyRanVarUn-CognitiveDualQueryStrategyRanVarUn_Uncertainty_Sampling>`
+     - :doc:`CognitiveDualQueryStrategyRanVarUn </generated/api/skactiveml.stream.CognitiveDualQueryStrategyRanVarUn>`
+     - stream classification single-annotator
+     - :footcite:t:`liu2023active`
+   * - :doc:`CognitiveDualQueryStrategyVarUn Uncertainty Sampling </generated/sphinx_gallery_examples/stream/plot-CognitiveDualQueryStrategyVarUn-CognitiveDualQueryStrategyVarUn_Uncertainty_Sampling>`
+     - :doc:`CognitiveDualQueryStrategyVarUn </generated/api/skactiveml.stream.CognitiveDualQueryStrategyVarUn>`
+     - stream classification single-annotator
+     - :footcite:t:`liu2023active`
+   * - :doc:`StreamDensityBasedAL Sampling </generated/sphinx_gallery_examples/stream/plot-StreamDensityBasedAL-StreamDensityBasedAL_Sampling>`
+     - :doc:`StreamDensityBasedAL </generated/api/skactiveml.stream.StreamDensityBasedAL>`
+     - stream classification single-annotator
+     - :footcite:t:`ienco2014density`
+
+Probalistic Sampling
+~~~~~~~~~~~~~~~~~~~~
+.. list-table:: 
+   :header-rows: 1
+
+   * - Method
+     - Base Class
+     - Tags
+     - Reference
+   * - :doc:`StreamProbabilisticAL Sampling </generated/sphinx_gallery_examples/stream/plot-StreamProbabilisticAL-StreamProbabilisticAL_Sampling>`
+     - :doc:`StreamProbabilisticAL </generated/api/skactiveml.stream.StreamProbabilisticAL>`
+     - stream classification single-annotator
+     - :footcite:t:`kottke2015probalistic`
+
+Random Sampling
+~~~~~~~~~~~~~~~
+.. list-table:: 
+   :header-rows: 1
+
+   * - Method
+     - Base Class
+     - Tags
+     - Reference
+   * - :doc:`PeriodicSampling Sampling </generated/sphinx_gallery_examples/stream/plot-PeriodicSampling-PeriodicSampling_Sampling>`
+     - :doc:`PeriodicSampling </generated/api/skactiveml.stream.PeriodicSampling>`
+     - stream classification single-annotator
+     - 
+   * - :doc:`StreamRandomSampling Sampling </generated/sphinx_gallery_examples/stream/plot-StreamRandomSampling-StreamRandomSampling_Sampling>`
+     - :doc:`StreamRandomSampling </generated/api/skactiveml.stream.StreamRandomSampling>`
+     - stream classification single-annotator
+     - 
+
+Uncertainty Sampling
+~~~~~~~~~~~~~~~~~~~~
+.. list-table:: 
+   :header-rows: 1
+
+   * - Method
+     - Base Class
+     - Tags
+     - Reference
+   * - :doc:`FixedUncertainty Uncertainty Sampling </generated/sphinx_gallery_examples/stream/plot-FixedUncertainty-FixedUncertainty_Uncertainty_Sampling>`
+     - :doc:`FixedUncertainty </generated/api/skactiveml.stream.FixedUncertainty>`
+     - stream classification single-annotator
+     - :footcite:t:`zliobaite2014active`
+   * - :doc:`RandomVariableUncertainty Uncertainty Sampling </generated/sphinx_gallery_examples/stream/plot-RandomVariableUncertainty-RandomVariableUncertainty_Uncertainty_Sampling>`
+     - :doc:`RandomVariableUncertainty </generated/api/skactiveml.stream.RandomVariableUncertainty>`
+     - stream classification single-annotator
+     - :footcite:t:`zliobaite2014active`
+   * - :doc:`Split Uncertainty Sampling </generated/sphinx_gallery_examples/stream/plot-Split-Split_Uncertainty_Sampling>`
+     - :doc:`Split </generated/api/skactiveml.stream.Split>`
+     - stream classification single-annotator
+     - :footcite:t:`zliobaite2014active`
+   * - :doc:`VariableUncertainty Uncertainty Sampling </generated/sphinx_gallery_examples/stream/plot-VariableUncertainty-VariableUncertainty_Uncertainty_Sampling>`
+     - :doc:`VariableUncertainty </generated/api/skactiveml.stream.VariableUncertainty>`
+     - stream classification single-annotator
+     - :footcite:t:`zliobaite2014active`
 
 
 References

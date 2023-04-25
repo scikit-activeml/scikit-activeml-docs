@@ -207,7 +207,7 @@
 
 
 <div class="viewcode-block" id="Quire"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.Quire.html#skactiveml.pool.Quire">[docs]</a><span class="k">class</span> <span class="nc">Quire</span><span class="p">(</span><span class="n">SingleAnnotatorPoolQueryStrategy</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Quire</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Quire</span>
 
 <span class="sd">    Implementation of the AL strategy &quot;QUerying Informative and Representative</span>
 <span class="sd">    Examples&quot; (QUIRE for short) [1].</span>
@@ -263,7 +263,7 @@
         <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
         <span class="n">return_utilities</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Determines for which candidate samples labels are to be queried.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Determines for which candidate samples labels are to be queried.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -341,7 +341,7 @@
         <span class="c1">#     X = np.concatenate((X[mask_l], X_cand), axis=0)</span>
 
         <span class="c1"># Check whether metric is available.</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">Quire</span><span class="o">.</span><span class="n">METRICS</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">callable</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">metric</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">Quire</span><span class="o">.</span><span class="n">METRICS</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">callable</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">metric</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
                 <span class="s2">&quot;The parameter &#39;metric&#39; must be callable or &quot;</span>
                 <span class="s2">&quot;in </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">KERNEL_PARAMS</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
@@ -387,7 +387,7 @@
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">mapping</span><span class="p">):</span>
             <span class="n">mask_u</span> <span class="o">=</span> <span class="n">mask_a</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
             <span class="n">mask_u</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
-            <span class="n">L_uu_inv</span> <span class="o">=</span> <span class="n">_del_i_inv</span><span class="p">(</span><span class="n">L_aa_inv</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s1">&#39;L_aa_inv&#39;</span><span class="p">)</span>
+            <span class="n">L_uu_inv</span> <span class="o">=</span> <span class="n">_del_i_inv</span><span class="p">(</span><span class="n">L_aa_inv</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&quot;L_aa_inv&quot;</span><span class="p">)</span>
 
             <span class="n">utilities_cand</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="n">L</span><span class="p">[</span><span class="n">s</span><span class="p">,</span> <span class="n">s</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span>
                 <span class="p">[</span>
@@ -425,13 +425,15 @@
     <span class="k">return</span> <span class="n">y_ovr</span><span class="o">.</span><span class="n">T</span>
 
 
-<span class="k">def</span> <span class="nf">_del_i_inv</span><span class="p">(</span><span class="n">A_inv</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">_del_i_inv</span><span class="p">(</span><span class="n">A_inv</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;A&quot;</span><span class="p">):</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">A_inv</span><span class="p">,</span> <span class="n">A_inv</span><span class="o">.</span><span class="n">T</span><span class="p">):</span>
-        <span class="n">err</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">A_inv</span> <span class="o">-</span> <span class="n">A_inv</span><span class="o">.</span><span class="n">T</span><span class="p">))</span>
-        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The approximation of the inverse of matrix `</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">` &#39;</span>
-                      <span class="sa">f</span><span class="s1">&#39;may be inaccurate because the matrix is not symmetric &#39;</span>
-                      <span class="sa">f</span><span class="s1">&#39;with an absolut error of </span><span class="se">\n</span><span class="si">{</span><span class="n">err</span><span class="si">}</span><span class="s1">.</span><span class="se">\n</span><span class="s1"> To avoid this &#39;</span>
-                      <span class="sa">f</span><span class="s1">&#39;warning you can increase `lmbda`.&#39;</span><span class="p">)</span>
+        <span class="n">err</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">A_inv</span> <span class="o">-</span> <span class="n">A_inv</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;The approximation of the inverse of matrix `</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">` &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;may be inaccurate because the matrix is not symmetric &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;with an absolut error of </span><span class="se">\n</span><span class="si">{</span><span class="n">err</span><span class="si">}</span><span class="s2">.</span><span class="se">\n</span><span class="s2"> To avoid this &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;warning you can increase `lmbda`.&quot;</span>
+        <span class="p">)</span>
 
     <span class="n">a</span> <span class="o">=</span> <span class="n">A_inv</span><span class="p">[</span><span class="n">s</span><span class="p">,</span> <span class="n">s</span><span class="p">]</span>
     <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">A_inv</span><span class="p">[:,</span> <span class="p">[</span><span class="n">s</span><span class="p">]],</span> <span class="n">s</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>

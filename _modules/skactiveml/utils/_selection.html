@@ -203,7 +203,7 @@
 
 
 <div class="viewcode-block" id="rand_argmin"><a class="viewcode-back" href="../../../generated/api/skactiveml.utils.rand_argmin.html#skactiveml.utils.rand_argmin">[docs]</a><span class="k">def</span> <span class="nf">rand_argmin</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">argmin_kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Returns index of minimum value. In case of ties, a randomly selected</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns index of minimum value. In case of ties, a randomly selected</span>
 <span class="sd">    index of the minimum elements is returned.</span>
 
 <span class="sd">    Parameters</span>
@@ -238,7 +238,7 @@
 
 
 <div class="viewcode-block" id="rand_argmax"><a class="viewcode-back" href="../../../generated/api/skactiveml.utils.rand_argmax.html#skactiveml.utils.rand_argmax">[docs]</a><span class="k">def</span> <span class="nf">rand_argmax</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">argmax_kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Returns index of maximum value. In case of ties, a randomly selected</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns index of maximum value. In case of ties, a randomly selected</span>
 <span class="sd">    index of the maximum elements is returned.</span>
 
 <span class="sd">    Parameters</span>
@@ -274,7 +274,7 @@
 <div class="viewcode-block" id="simple_batch"><a class="viewcode-back" href="../../../generated/api/skactiveml.utils.simple_batch.html#skactiveml.utils.simple_batch">[docs]</a><span class="k">def</span> <span class="nf">simple_batch</span><span class="p">(</span>
     <span class="n">utilities</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">return_utilities</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Generates a batch by selecting the highest values in the &#39;utilities&#39;.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generates a batch by selecting the highest values in the &#39;utilities&#39;.</span>
 <span class="sd">    If utilities is an ND-array, the returned utilities will be an</span>
 <span class="sd">    (N+1)D-array, with the shape batch_size x utilities.shape, filled the given</span>
 <span class="sd">    utilities but set the n-th highest values in the n-th row to np.nan.</span>
@@ -338,7 +338,7 @@
 
 
 <span class="k">def</span> <span class="nf">combine_ranking</span><span class="p">(</span><span class="o">*</span><span class="n">iter_ranking</span><span class="p">,</span> <span class="n">rank_method</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">rank_per_batch</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Combine different rankings hierarchically to one ranking assignment.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Combine different rankings hierarchically to one ranking assignment.</span>
 <span class="sd">    A ranking index i is ranked higher than index j iff ranking[i] &gt; ranking[j].</span>
 <span class="sd">    For the combined ranking it will hold that the first ranking of iter_ranking</span>
 <span class="sd">    always determines the ranking position at an index, and only when</span>
@@ -379,7 +379,7 @@
                 <span class="sa">f</span><span class="s2">&quot;`iter_ranking` must be the same, but &quot;</span>
                 <span class="sa">f</span><span class="s2">&quot;`iter_ranking[</span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s2">].ndim == </span><span class="si">{</span><span class="n">ranking</span><span class="o">.</span><span class="n">ndim</span><span class="si">}</span><span class="s2">&quot;</span>
                 <span class="sa">f</span><span class="s2">&quot; and `iter_ranking[</span><span class="si">{</span><span class="n">idx</span><span class="o">-</span><span class="mi">1</span><span class="si">}</span><span class="s2">].ndim == &quot;</span>
-                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">iter_ranking</span><span class="p">[</span><span class="n">idx</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">ndim</span><span class="si">}</span><span class="s2">`.&quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">iter_ranking</span><span class="p">[</span><span class="n">idx</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">ndim</span><span class="si">}</span><span class="s2">`.&quot;</span>
             <span class="p">)</span>
     <span class="n">np</span><span class="o">.</span><span class="n">broadcast_shapes</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">shape</span> <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">iter_ranking</span><span class="p">))</span>
 

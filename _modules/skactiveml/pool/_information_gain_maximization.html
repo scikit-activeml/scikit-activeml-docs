@@ -213,7 +213,7 @@
 
 
 <div class="viewcode-block" id="KLDivergenceMaximization"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.KLDivergenceMaximization.html#skactiveml.pool.KLDivergenceMaximization">[docs]</a><span class="k">class</span> <span class="nc">KLDivergenceMaximization</span><span class="p">(</span><span class="n">SingleAnnotatorPoolQueryStrategy</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Regression based Kullback Leibler Divergence Maximization.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Regression based Kullback Leibler Divergence Maximization.</span>
 
 <span class="sd">    This class implements a query strategy, which selects those samples</span>
 <span class="sd">    that maximize the expected kullback leibler divergence, where it is assumed</span>
@@ -268,7 +268,7 @@
         <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
         <span class="n">return_utilities</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Determines for which candidate samples labels are to be queried.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Determines for which candidate samples labels are to be queried.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -378,7 +378,7 @@
     <span class="k">def</span> <span class="nf">_kullback_leibler_divergence</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">X_eval</span><span class="p">,</span> <span class="n">X_cand</span><span class="p">,</span> <span class="n">mapping</span><span class="p">,</span> <span class="n">reg</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Calculates the expected kullback leibler divergence over the</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculates the expected kullback leibler divergence over the</span>
 <span class="sd">        evaluation set if each candidate sample where to be labeled.</span>
 
 <span class="sd">        Parameters</span>

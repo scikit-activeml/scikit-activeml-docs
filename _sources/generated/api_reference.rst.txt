@@ -70,6 +70,7 @@ Classes
    pool.GreedySamplingX
    pool.GreedySamplingTarget
    pool.DiscriminativeAL
+   pool.BatchBALD
 
 Functions
 ---------
@@ -84,6 +85,7 @@ Functions
    pool.expected_average_precision
    pool.average_kl_divergence
    pool.vote_entropy
+   pool.batch_bald
 
 :mod:`skactiveml.pool.multiannotator`:
 ======================================
@@ -149,6 +151,38 @@ Classes
    stream.Split
    stream.StreamProbabilisticAL
    stream.RandomVariableUncertainty
+   stream.StreamDensityBasedAL
+   stream.CognitiveDualQueryStrategy
+   stream.CognitiveDualQueryStrategyRan
+   stream.CognitiveDualQueryStrategyRanVarUn
+   stream.CognitiveDualQueryStrategyVarUn
+   stream.CognitiveDualQueryStrategyFixUn
+
+:mod:`skactiveml.stream.budgetmanager`:
+=======================================
+
+.. automodule:: skactiveml.stream.budgetmanager
+    :no-members:
+    :no-inherited-members:
+
+.. currentmodule:: skactiveml
+
+Classes
+-------
+
+.. autosummary::
+   :nosignatures:
+   :toctree: api
+   :template: class.rst
+
+   stream.budgetmanager.EstimatedBudgetZliobaite
+   stream.budgetmanager.FixedUncertaintyBudgetManager
+   stream.budgetmanager.VariableUncertaintyBudgetManager
+   stream.budgetmanager.SplitBudgetManager
+   stream.budgetmanager.BalancedIncrementalQuantileFilter
+   stream.budgetmanager.RandomVariableUncertaintyBudgetManager
+   stream.budgetmanager.DensityBasedSplitBudgetManager
+   stream.budgetmanager.RandomBudgetManager
 
 :mod:`skactiveml.classifier`:
 =============================
@@ -213,6 +247,8 @@ Functions
    visualization.plot_decision_boundary
    visualization.plot_contour_for_samples
    visualization.plot_annotator_utilities
+   visualization.plot_stream_training_data
+   visualization.plot_stream_decision_boundary
    visualization.mesh
 
 :mod:`skactiveml.utils`:

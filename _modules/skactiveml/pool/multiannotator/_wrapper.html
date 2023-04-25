@@ -211,7 +211,7 @@
 
 
 <div class="viewcode-block" id="SingleAnnotatorWrapper"><a class="viewcode-back" href="../../../../generated/api/skactiveml.pool.multiannotator.SingleAnnotatorWrapper.html#skactiveml.pool.multiannotator.SingleAnnotatorWrapper">[docs]</a><span class="k">class</span> <span class="nc">SingleAnnotatorWrapper</span><span class="p">(</span><span class="n">MultiAnnotatorPoolQueryStrategy</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;SingleAnnotatorWrapper</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;SingleAnnotatorWrapper</span>
 
 <span class="sd">    Implementation of a wrapper class for pool-based active</span>
 <span class="sd">    learning query strategies with a single annotator such that it transforms</span>
@@ -262,7 +262,7 @@
         <span class="n">A_perf</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">return_utilities</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Determines which candidate sample is to be annotated by which</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Determines which candidate sample is to be annotated by which</span>
 <span class="sd">        annotator. The samples are first and primarily ranked by the given</span>
 <span class="sd">        strategy as if one unspecified annotator where to annotate the sample.</span>
 <span class="sd">        Then for each sample the sample-annotator pairs are ranked based either</span>
@@ -409,7 +409,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">y_aggregate</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_aggregate</span>
 
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">callable</span><span class="p">(</span><span class="n">y_aggregate</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">callable</span><span class="p">(</span><span class="n">y_aggregate</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
                 <span class="sa">f</span><span class="s2">&quot;`self.y_aggregate` must be callable. &quot;</span>
                 <span class="sa">f</span><span class="s2">&quot;`self.y_aggregate` is of type </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">y_aggregate</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>

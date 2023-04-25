@@ -307,6 +307,11 @@
    skactiveml.pool.DiscriminativeAL
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.BatchBALD.html">
+   skactiveml.pool.BatchBALD
+  </a>
+ </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -332,6 +337,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="skactiveml.pool.vote_entropy.html">
    skactiveml.pool.vote_entropy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.batch_bald.html">
+   skactiveml.pool.batch_bald
   </a>
  </li>
 </ul>
@@ -395,6 +405,78 @@
    skactiveml.stream.RandomVariableUncertainty
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.StreamDensityBasedAL.html">
+   skactiveml.stream.StreamDensityBasedAL
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.CognitiveDualQueryStrategy.html">
+   skactiveml.stream.CognitiveDualQueryStrategy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.CognitiveDualQueryStrategyRan.html">
+   skactiveml.stream.CognitiveDualQueryStrategyRan
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.CognitiveDualQueryStrategyRanVarUn.html">
+   skactiveml.stream.CognitiveDualQueryStrategyRanVarUn
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.CognitiveDualQueryStrategyVarUn.html">
+   skactiveml.stream.CognitiveDualQueryStrategyVarUn
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.CognitiveDualQueryStrategyFixUn.html">
+   skactiveml.stream.CognitiveDualQueryStrategyFixUn
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.budgetmanager.EstimatedBudgetZliobaite.html">
+   skactiveml.stream.budgetmanager.EstimatedBudgetZliobaite
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.budgetmanager.FixedUncertaintyBudgetManager.html">
+   skactiveml.stream.budgetmanager.FixedUncertaintyBudgetManager
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.budgetmanager.VariableUncertaintyBudgetManager.html">
+   skactiveml.stream.budgetmanager.VariableUncertaintyBudgetManager
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.budgetmanager.SplitBudgetManager.html">
+   skactiveml.stream.budgetmanager.SplitBudgetManager
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.budgetmanager.BalancedIncrementalQuantileFilter.html">
+   skactiveml.stream.budgetmanager.BalancedIncrementalQuantileFilter
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.budgetmanager.RandomVariableUncertaintyBudgetManager.html">
+   skactiveml.stream.budgetmanager.RandomVariableUncertaintyBudgetManager
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.budgetmanager.DensityBasedSplitBudgetManager.html">
+   skactiveml.stream.budgetmanager.DensityBasedSplitBudgetManager
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.budgetmanager.RandomBudgetManager.html">
+   skactiveml.stream.budgetmanager.RandomBudgetManager
+  </a>
+ </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -449,6 +531,16 @@
  <li class="toctree-l1">
   <a class="reference internal" href="skactiveml.visualization.plot_annotator_utilities.html">
    skactiveml.visualization.plot_annotator_utilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.visualization.plot_stream_training_data.html">
+   skactiveml.visualization.plot_stream_training_data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.visualization.plot_stream_decision_boundary.html">
+   skactiveml.visualization.plot_stream_decision_boundary
   </a>
  </li>
  <li class="toctree-l1">
@@ -615,9 +707,24 @@
     
     <div class="toc-item">
       
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
 
 <nav id="bd-toc-nav">
-    
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#examples-using-skactiveml-stream-streamprobabilistical">
+   Examples using
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     skactiveml.stream.StreamProbabilisticAL
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+
 </nav>
     </div>
     
@@ -641,7 +748,6 @@
 <dt class="sig sig-object py" id="skactiveml.stream.StreamProbabilisticAL">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">skactiveml.stream.</span></span><span class="sig-name descname"><span class="pre">StreamProbabilisticAL</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">budget_manager</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">budget</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prior</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/stream/_stream_probabilistic_al.html#StreamProbabilisticAL"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.stream.StreamProbabilisticAL" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="skactiveml.base.SingleAnnotatorStreamQueryStrategy.html#skactiveml.base.SingleAnnotatorStreamQueryStrategy" title="skactiveml.base.SingleAnnotatorStreamQueryStrategy"><code class="xref py py-class docutils literal notranslate"><span class="pre">skactiveml.base.SingleAnnotatorStreamQueryStrategy</span></code></a></p>
-<p>Probabilistic Active Learning in Datastreams.</p>
 <p>Probabilistic Active Learning in Datastreams (StreamProbabilisticAL) is an
 extension to Multi-Class Probabilistic Active Learning (McPAL)
 (see pool.ProbabilisticAL). It assesses McPAL spatial to assess the spatial
@@ -652,12 +758,12 @@ default budget manager, is used to evaluate the temporal utility
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
-<dt><strong>budget</strong><span class="classifier">float, default=None</span></dt><dd><p>The budget which models the budgeting constraint used in
+<dt><strong>budget</strong><span class="classifier">float, optional (default=None)</span></dt><dd><p>The budget which models the budgeting constraint used in
 the stream-based active learning setting.</p>
 </dd>
-<dt><strong>budget_manager</strong><span class="classifier">BudgetManager, default=None</span></dt><dd><p>The BudgetManager which models the budgeting constraint used in
+<dt><strong>budget_manager</strong><span class="classifier">BudgetManager, optional (default=None)</span></dt><dd><p>The BudgetManager which models the budgeting constraint used in
 the stream-based active learning setting. if set to None,
-FixedUncertaintyBudgetManager will be used by default. The budget
+BalancedIncrementalQuantileFilter will be used by default. The budget
 manager will be initialized based on the following conditions:</p>
 <blockquote>
 <div><p>If only a budget is given the default budget manager is initialized
@@ -669,7 +775,7 @@ If both are given and the budget differs from budgetmanager.budget
 a warning is thrown.</p>
 </div></blockquote>
 </dd>
-<dt><strong>metric</strong><span class="classifier">str or callable, default=None</span></dt><dd><p>The metric must a be None or a valid kernel as defined by the function
+<dt><strong>metric</strong><span class="classifier">str or callable, optional (default=None)</span></dt><dd><p>The metric must a be None or a valid kernel as defined by the function
 <cite>sklearn.metrics.pairwise.pairwise_kernels</cite>. The kernel is used to
 calculate the frequency of labels near the candidates and multiplied
 with the probabilities returned by the <cite>clf</cite> to get a kernel frequency
@@ -677,16 +783,16 @@ estimate for each class.
 If metric is set to None, the <cite>predict_freq</cite> function of the <cite>clf</cite> will
 be used instead. If this is not defined, an Exception is raised.</p>
 </dd>
-<dt><strong>metric_dict</strong><span class="classifier">dict, default=None</span></dt><dd><p>Any further parameters are passed directly to the kernel function.
+<dt><strong>metric_dict</strong><span class="classifier">dict, optional (default=None)</span></dt><dd><p>Any further parameters are passed directly to the kernel function.
 If metric_dict is None and metric is ‘rbf’ metric_dict is set to
 {‘gamma’: ‘mean’}.</p>
 </dd>
-<dt><strong>random_state</strong><span class="classifier">int, RandomState instance, default=None</span></dt><dd><p>Controls the randomness of the query strategy.</p>
+<dt><strong>random_state</strong><span class="classifier">int, RandomState instance, optional (default=None)</span></dt><dd><p>Controls the randomness of the query strategy.</p>
 </dd>
-<dt><strong>prior</strong><span class="classifier">float</span></dt><dd><p>The prior value that is passed onto ProbabilisticAL
+<dt><strong>prior</strong><span class="classifier">float, optional (default=1.0e-3)</span></dt><dd><p>The prior value that is passed onto ProbabilisticAL
 (see pool.ProbabilisticAL).</p>
 </dd>
-<dt><strong>m_max</strong><span class="classifier">float</span></dt><dd><p>The m_max value that is passed onto ProbabilisticAL
+<dt><strong>m_max</strong><span class="classifier">float, optional (default=2)</span></dt><dd><p>The m_max value that is passed onto ProbabilisticAL
 (see pool.ProbabilisticAL).</p>
 </dd>
 </dl>
@@ -694,9 +800,7 @@ If metric_dict is None and metric is ‘rbf’ metric_dict is set to
 </dl>
 <p class="rubric">References</p>
 <dl class="simple">
-<dt>[1] Kottke D., Krempl G., Spiliopoulou M. (2015) Probabilistic Active</dt><dd><p>Learning in Datastreams. In: Fromont E., De Bie T., van Leeuwen M.
-(eds) Advances in Intelligent Data Analysis XIV. IDA 2015. Lecture
-Notes in Computer Science, vol 9385. Springer, Cham.</p>
+<dt>[1] Kottke, M. (2015). Probabilistic Active Learning in Datastreams. In</dt><dd><p>Advances in Intelligent Data Analysis XIV (pp. 145–157). Springer.</p>
 </dd>
 </dl>
 <p class="rubric">Methods</p>
@@ -761,14 +865,15 @@ only if they are supported by the base query strategy.</p>
 </dd>
 <dt><strong>y</strong><span class="classifier">array-like of shape (n_samples), optional (default=None)</span></dt><dd><p>Labels of the input samples ‘X’. There may be missing labels.</p>
 </dd>
-<dt><strong>sample_weight</strong><span class="classifier">array-like of shape (n_samples,) (default=None)</span></dt><dd><p>Sample weights for X, used to fit the clf.</p>
+<dt><strong>sample_weight</strong><span class="classifier">array-like of shape (n_samples,), optional</span></dt><dd></dd>
+<dt><strong>(default=None)</strong></dt><dd><p>Sample weights for X, used to fit the clf.</p>
 </dd>
-<dt><strong>fit_clf</strong><span class="classifier">bool,</span></dt><dd><p>If True, refit the classifier also requires X and y to be given.</p>
+<dt><strong>fit_clf</strong><span class="classifier">bool,optional (default=False)</span></dt><dd><p>If True, refit the classifier also requires X and y to be given.</p>
 </dd>
 <dt><strong>utility_weight</strong><span class="classifier">array-like of shape (n_candidate_samples), optional</span></dt><dd></dd>
 <dt><strong>(default=None)</strong></dt><dd><p>Densities for each sample in <cite>candidates</cite>.</p>
 </dd>
-<dt><strong>return_utilities</strong><span class="classifier">bool, optional</span></dt><dd><p>If true, also return the utilities based on the query strategy.
+<dt><strong>return_utilities</strong><span class="classifier">bool, optional (default=False)</span></dt><dd><p>If true, also return the utilities based on the query strategy.
 The default is False.</p>
 </dd>
 </dl>
@@ -823,7 +928,7 @@ only if they are supported by the base query strategy.</p>
 </dd>
 <dt><strong>queried_indices</strong><span class="classifier">array-like of shape (n_samples,)</span></dt><dd><p>Indicates which instances from candidates have been queried.</p>
 </dd>
-<dt><strong>budget_manager_param_dict</strong><span class="classifier">kwargs, optional</span></dt><dd><p>Optional kwargs for budgetmanager.</p>
+<dt><strong>budget_manager_param_dict</strong><span class="classifier">kwargs, optional (default=None)</span></dt><dd><p>Optional kwargs for budgetmanager.</p>
 </dd>
 </dl>
 </dd>
@@ -838,7 +943,13 @@ only if they are supported by the base query strategy.</p>
 
 </dd></dl>
 
-<span class="target" id="sphx-glr-backref-skactiveml-stream-streamprobabilistical"></span></section>
+<section id="examples-using-skactiveml-stream-streamprobabilistical">
+<span id="sphx-glr-backref-skactiveml-stream-streamprobabilistical"></span><h2>Examples using <code class="docutils literal notranslate"><span class="pre">skactiveml.stream.StreamProbabilisticAL</span></code><a class="headerlink" href="#examples-using-skactiveml-stream-streamprobabilistical" title="Permalink to this headline">#</a></h2>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Sampling with StreamProbabilisticAL"><img alt="" src="../../_images/sphx_glr_plot-StreamProbabilisticAL-StreamProbabilisticAL_Sampling_thumb.gif" />
+<p><a class="reference internal" href="../sphinx_gallery_examples/stream/plot-StreamProbabilisticAL-StreamProbabilisticAL_Sampling.html#sphx-glr-generated-sphinx-gallery-examples-stream-plot-streamprobabilistical-streamprobabilistical-sampling-py"><span class="std std-ref">Sampling with StreamProbabilisticAL</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Sampling with StreamProbabilisticAL</div>
+</div></div></section>
+</section>
 
 
               </article>

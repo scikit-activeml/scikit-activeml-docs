@@ -217,7 +217,7 @@
 
 
 <div class="viewcode-block" id="EpistemicUncertaintySampling"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.EpistemicUncertaintySampling.html#skactiveml.pool.EpistemicUncertaintySampling">[docs]</a><span class="k">class</span> <span class="nc">EpistemicUncertaintySampling</span><span class="p">(</span><span class="n">SingleAnnotatorPoolQueryStrategy</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Epistemic Uncertainty Sampling.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Epistemic Uncertainty Sampling.</span>
 
 <span class="sd">    Epistemic uncertainty sampling query strategy for two class problems.</span>
 <span class="sd">    Based on [1]. This strategy is only implemented for skactiveml parzen</span>
@@ -260,7 +260,7 @@
         <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
         <span class="n">return_utilities</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Determines for which candidate samples labels are to be queried.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Determines for which candidate samples labels are to be queried.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -391,7 +391,7 @@
 
 <span class="c1"># Epistemic uncertainty scores for pwc.</span>
 <span class="k">def</span> <span class="nf">_epistemic_uncertainty_pwc</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span> <span class="n">precompute_array</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Computes the epistemic uncertainty score for a parzen window classifier</span>
 <span class="sd">    [1]. Only for two class problems.</span>
 
@@ -488,7 +488,7 @@
 
 
 <span class="k">def</span> <span class="nf">_interpolate</span><span class="p">(</span><span class="n">precompute_array</span><span class="p">,</span> <span class="n">freq</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Linearly interpolation.</span>
 <span class="sd">    For further informations see scipy.interpolate.griddata.</span>
 
@@ -513,7 +513,7 @@
 
 
 <span class="k">def</span> <span class="nf">_pwc_ml_1</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Calulates the maximum likelihood for class 1 of epistemic for pwc.</span>
 
 <span class="sd">    Parameters</span>
@@ -539,7 +539,7 @@
 
 
 <span class="k">def</span> <span class="nf">_pwc_ml_0</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Calulates the maximum likelihood for class 0 of epistemic for pwc.</span>
 
 <span class="sd">    Parameters</span>
@@ -566,7 +566,7 @@
 
 <span class="c1"># Epistemic uncertainty scores for logistic regression.</span>
 <span class="k">def</span> <span class="nf">_epistemic_uncertainty_logreg</span><span class="p">(</span><span class="n">X_cand</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">clf</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Calculates the epistemic uncertainty score for logistic regression [1].</span>
 <span class="sd">    Only for two class problems.</span>
 
@@ -703,7 +703,7 @@
 
 
 <span class="k">def</span> <span class="nf">_pi_h</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">L_ml</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Computes np.exp(-_loglike_logreg())/L_ml, the normalized likelihood.</span>
 
 <span class="sd">    Parameters</span>
@@ -746,7 +746,7 @@
 
 
 <span class="k">def</span> <span class="nf">_loglike_logreg</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Computes the logistic loss.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the logistic loss.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -779,7 +779,7 @@
 
 
 <span class="k">def</span> <span class="nf">_theta</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">()):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This function calculates the parameter vector as it is shown in equation 22</span>
 <span class="sd">     in [1].</span>
 <span class="sd">    Parameters</span>
@@ -816,7 +816,7 @@
 
 
 <span class="k">def</span> <span class="nf">_logistic_loss</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Computes the logistic loss. This function is a copy taken from</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the logistic loss. This function is a copy taken from</span>
 <span class="sd">    https://github.com/scikit-learn/scikit-learn/blob/1.0.X/sklearn/</span>
 <span class="sd">    linear_model/_logistic.py.</span>
 
@@ -858,7 +858,7 @@
 
 
 <span class="k">def</span> <span class="nf">_intercept_dot</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Computes y * np.dot(X, w). It takes into consideration if the intercept</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes y * np.dot(X, w). It takes into consideration if the intercept</span>
 <span class="sd">    should be fit or not. This function is a copy taken from</span>
 <span class="sd">    https://github.com/scikit-learn/scikit-learn/blob/1.0.X/sklearn/</span>
 <span class="sd">    linear_model/_logistic.py.</span>

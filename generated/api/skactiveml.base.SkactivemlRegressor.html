@@ -309,6 +309,11 @@
    skactiveml.pool.DiscriminativeAL
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.BatchBALD.html">
+   skactiveml.pool.BatchBALD
+  </a>
+ </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -334,6 +339,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="skactiveml.pool.vote_entropy.html">
    skactiveml.pool.vote_entropy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.batch_bald.html">
+   skactiveml.pool.batch_bald
   </a>
  </li>
 </ul>
@@ -397,6 +407,78 @@
    skactiveml.stream.RandomVariableUncertainty
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.StreamDensityBasedAL.html">
+   skactiveml.stream.StreamDensityBasedAL
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.CognitiveDualQueryStrategy.html">
+   skactiveml.stream.CognitiveDualQueryStrategy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.CognitiveDualQueryStrategyRan.html">
+   skactiveml.stream.CognitiveDualQueryStrategyRan
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.CognitiveDualQueryStrategyRanVarUn.html">
+   skactiveml.stream.CognitiveDualQueryStrategyRanVarUn
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.CognitiveDualQueryStrategyVarUn.html">
+   skactiveml.stream.CognitiveDualQueryStrategyVarUn
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.CognitiveDualQueryStrategyFixUn.html">
+   skactiveml.stream.CognitiveDualQueryStrategyFixUn
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.budgetmanager.EstimatedBudgetZliobaite.html">
+   skactiveml.stream.budgetmanager.EstimatedBudgetZliobaite
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.budgetmanager.FixedUncertaintyBudgetManager.html">
+   skactiveml.stream.budgetmanager.FixedUncertaintyBudgetManager
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.budgetmanager.VariableUncertaintyBudgetManager.html">
+   skactiveml.stream.budgetmanager.VariableUncertaintyBudgetManager
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.budgetmanager.SplitBudgetManager.html">
+   skactiveml.stream.budgetmanager.SplitBudgetManager
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.budgetmanager.BalancedIncrementalQuantileFilter.html">
+   skactiveml.stream.budgetmanager.BalancedIncrementalQuantileFilter
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.budgetmanager.RandomVariableUncertaintyBudgetManager.html">
+   skactiveml.stream.budgetmanager.RandomVariableUncertaintyBudgetManager
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.budgetmanager.DensityBasedSplitBudgetManager.html">
+   skactiveml.stream.budgetmanager.DensityBasedSplitBudgetManager
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.budgetmanager.RandomBudgetManager.html">
+   skactiveml.stream.budgetmanager.RandomBudgetManager
+  </a>
+ </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -451,6 +533,16 @@
  <li class="toctree-l1">
   <a class="reference internal" href="skactiveml.visualization.plot_annotator_utilities.html">
    skactiveml.visualization.plot_annotator_utilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.visualization.plot_stream_training_data.html">
+   skactiveml.visualization.plot_stream_training_data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.visualization.plot_stream_decision_boundary.html">
+   skactiveml.visualization.plot_stream_decision_boundary
   </a>
  </li>
  <li class="toctree-l1">
@@ -787,7 +879,7 @@ is the number of samples used in the fitting for the estimator.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>score</strong><span class="classifier">float</span></dt><dd><p><span class="math notranslate nohighlight">\(R^2\)</span> of <code class="docutils literal notranslate"><span class="pre">self.predict(X)</span></code> wrt. <cite>y</cite>.</p>
+<dt><strong>score</strong><span class="classifier">float</span></dt><dd><p><span class="math notranslate nohighlight">\(R^2\)</span> of <code class="docutils literal notranslate"><span class="pre">self.predict(X)</span></code> w.r.t. <cite>y</cite>.</p>
 </dd>
 </dl>
 </dd>
@@ -829,25 +921,25 @@ possible to update each component of a nested object.</p>
 
 <section id="examples-using-skactiveml-base-skactivemlregressor">
 <span id="sphx-glr-backref-skactiveml-base-skactivemlregressor"></span><h2>Examples using <code class="docutils literal notranslate"><span class="pre">skactiveml.base.SkactivemlRegressor</span></code><a class="headerlink" href="#examples-using-skactiveml-base-skactivemlregressor" title="Permalink to this headline">#</a></h2>
-<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Greedy Sampling on the Feature Space (GSx)"><img alt="Greedy Sampling on the Feature Space (GSx)" src="../../_images/sphx_glr_plot-GreedySamplingX-Greedy_Sampling_on_the_Feature_Space_(GSx)_thumb.gif" />
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Greedy Sampling on the Feature Space (GSx)"><img alt="" src="../../_images/sphx_glr_plot-GreedySamplingX-Greedy_Sampling_on_the_Feature_Space_(GSx)_thumb.gif" />
 <p><a class="reference internal" href="../sphinx_gallery_examples/pool/plot-GreedySamplingX-Greedy_Sampling_on_the_Feature_Space_%28GSx%29.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-greedysamplingx-greedy-sampling-on-the-feature-space-gsx-py"><span class="std std-ref">Greedy Sampling on the Feature Space (GSx)</span></a></p>
   <div class="sphx-glr-thumbnail-title">Greedy Sampling on the Feature Space (GSx)</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Improved Greedy Sampling (GSi)"><img alt="Improved Greedy Sampling (GSi)" src="../../_images/sphx_glr_plot-GreedySamplingTarget-Improved_Greedy_Sampling_(GSi)_thumb.gif" />
-<p><a class="reference internal" href="../sphinx_gallery_examples/pool/plot-GreedySamplingTarget-Improved_Greedy_Sampling_%28GSi%29.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-greedysamplingtarget-improved-greedy-sampling-gsi-py"><span class="std std-ref">Improved Greedy Sampling (GSi)</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Improved Greedy Sampling (GSi)</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Greedy Sampling on the Target Space (GSy)"><img alt="Greedy Sampling on the Target Space (GSy)" src="../../_images/sphx_glr_plot-GreedySamplingTarget-Greedy_Sampling_on_the_Target_Space_(GSy)_thumb.gif" />
+</div><div class="sphx-glr-thumbcontainer" tooltip="Greedy Sampling on the Target Space (GSy)"><img alt="" src="../../_images/sphx_glr_plot-GreedySamplingTarget-Greedy_Sampling_on_the_Target_Space_(GSy)_thumb.gif" />
 <p><a class="reference internal" href="../sphinx_gallery_examples/pool/plot-GreedySamplingTarget-Greedy_Sampling_on_the_Target_Space_%28GSy%29.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-greedysamplingtarget-greedy-sampling-on-the-target-space-gsy-py"><span class="std std-ref">Greedy Sampling on the Target Space (GSy)</span></a></p>
   <div class="sphx-glr-thumbnail-title">Greedy Sampling on the Target Space (GSy)</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Expected Model Variance Reduction"><img alt="Expected Model Variance Reduction" src="../../_images/sphx_glr_plot-ExpectedModelVarianceReduction-Expected_Model_Variance_Reduction_thumb.gif" />
+</div><div class="sphx-glr-thumbcontainer" tooltip="Improved Greedy Sampling (GSi)"><img alt="" src="../../_images/sphx_glr_plot-GreedySamplingTarget-Improved_Greedy_Sampling_(GSi)_thumb.gif" />
+<p><a class="reference internal" href="../sphinx_gallery_examples/pool/plot-GreedySamplingTarget-Improved_Greedy_Sampling_%28GSi%29.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-greedysamplingtarget-improved-greedy-sampling-gsi-py"><span class="std std-ref">Improved Greedy Sampling (GSi)</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Improved Greedy Sampling (GSi)</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Expected Model Variance Reduction"><img alt="" src="../../_images/sphx_glr_plot-ExpectedModelVarianceReduction-Expected_Model_Variance_Reduction_thumb.gif" />
 <p><a class="reference internal" href="../sphinx_gallery_examples/pool/plot-ExpectedModelVarianceReduction-Expected_Model_Variance_Reduction.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-expectedmodelvariancereduction-expected-model-variance-reduction-py"><span class="std std-ref">Expected Model Variance Reduction</span></a></p>
   <div class="sphx-glr-thumbnail-title">Expected Model Variance Reduction</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Expected Model Change"><img alt="Expected Model Change" src="../../_images/sphx_glr_plot-ExpectedModelChangeMaximization-Expected_Model_Change_thumb.gif" />
+</div><div class="sphx-glr-thumbcontainer" tooltip="Expected Model Change"><img alt="" src="../../_images/sphx_glr_plot-ExpectedModelChangeMaximization-Expected_Model_Change_thumb.gif" />
 <p><a class="reference internal" href="../sphinx_gallery_examples/pool/plot-ExpectedModelChangeMaximization-Expected_Model_Change.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-expectedmodelchangemaximization-expected-model-change-py"><span class="std std-ref">Expected Model Change</span></a></p>
   <div class="sphx-glr-thumbnail-title">Expected Model Change</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Expected Model Output Change"><img alt="Expected Model Output Change" src="../../_images/sphx_glr_plot-ExpectedModelOutputChange-Expected_Model_Output_Change_thumb.gif" />
+</div><div class="sphx-glr-thumbcontainer" tooltip="Expected Model Output Change"><img alt="" src="../../_images/sphx_glr_plot-ExpectedModelOutputChange-Expected_Model_Output_Change_thumb.gif" />
 <p><a class="reference internal" href="../sphinx_gallery_examples/pool/plot-ExpectedModelOutputChange-Expected_Model_Output_Change.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-expectedmodeloutputchange-expected-model-output-change-py"><span class="std std-ref">Expected Model Output Change</span></a></p>
   <div class="sphx-glr-thumbnail-title">Expected Model Output Change</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Regression based Kullback Leibler Divergence Maximization"><img alt="Regression based Kullback Leibler Divergence Maximization" src="../../_images/sphx_glr_plot-KLDivergenceMaximization-Regression_based_Kullback_Leibler_Divergence_Maximization_thumb.gif" />
+</div><div class="sphx-glr-thumbcontainer" tooltip="Regression based Kullback Leibler Divergence Maximization"><img alt="" src="../../_images/sphx_glr_plot-KLDivergenceMaximization-Regression_based_Kullback_Leibler_Divergence_Maximization_thumb.gif" />
 <p><a class="reference internal" href="../sphinx_gallery_examples/pool/plot-KLDivergenceMaximization-Regression_based_Kullback_Leibler_Divergence_Maximization.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-kldivergencemaximization-regression-based-kullback-leibler-divergence-maximization-py"><span class="std std-ref">Regression based Kullback Leibler Divergence Maximization</span></a></p>
   <div class="sphx-glr-thumbnail-title">Regression based Kullback Leibler Divergence Maximization</div>
 </div></div></section>

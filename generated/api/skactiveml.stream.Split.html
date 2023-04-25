@@ -307,6 +307,11 @@
    skactiveml.pool.DiscriminativeAL
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.BatchBALD.html">
+   skactiveml.pool.BatchBALD
+  </a>
+ </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -332,6 +337,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="skactiveml.pool.vote_entropy.html">
    skactiveml.pool.vote_entropy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.batch_bald.html">
+   skactiveml.pool.batch_bald
   </a>
  </li>
 </ul>
@@ -395,6 +405,78 @@
    skactiveml.stream.RandomVariableUncertainty
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.StreamDensityBasedAL.html">
+   skactiveml.stream.StreamDensityBasedAL
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.CognitiveDualQueryStrategy.html">
+   skactiveml.stream.CognitiveDualQueryStrategy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.CognitiveDualQueryStrategyRan.html">
+   skactiveml.stream.CognitiveDualQueryStrategyRan
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.CognitiveDualQueryStrategyRanVarUn.html">
+   skactiveml.stream.CognitiveDualQueryStrategyRanVarUn
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.CognitiveDualQueryStrategyVarUn.html">
+   skactiveml.stream.CognitiveDualQueryStrategyVarUn
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.CognitiveDualQueryStrategyFixUn.html">
+   skactiveml.stream.CognitiveDualQueryStrategyFixUn
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.budgetmanager.EstimatedBudgetZliobaite.html">
+   skactiveml.stream.budgetmanager.EstimatedBudgetZliobaite
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.budgetmanager.FixedUncertaintyBudgetManager.html">
+   skactiveml.stream.budgetmanager.FixedUncertaintyBudgetManager
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.budgetmanager.VariableUncertaintyBudgetManager.html">
+   skactiveml.stream.budgetmanager.VariableUncertaintyBudgetManager
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.budgetmanager.SplitBudgetManager.html">
+   skactiveml.stream.budgetmanager.SplitBudgetManager
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.budgetmanager.BalancedIncrementalQuantileFilter.html">
+   skactiveml.stream.budgetmanager.BalancedIncrementalQuantileFilter
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.budgetmanager.RandomVariableUncertaintyBudgetManager.html">
+   skactiveml.stream.budgetmanager.RandomVariableUncertaintyBudgetManager
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.budgetmanager.DensityBasedSplitBudgetManager.html">
+   skactiveml.stream.budgetmanager.DensityBasedSplitBudgetManager
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.budgetmanager.RandomBudgetManager.html">
+   skactiveml.stream.budgetmanager.RandomBudgetManager
+  </a>
+ </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -449,6 +531,16 @@
  <li class="toctree-l1">
   <a class="reference internal" href="skactiveml.visualization.plot_annotator_utilities.html">
    skactiveml.visualization.plot_annotator_utilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.visualization.plot_stream_training_data.html">
+   skactiveml.visualization.plot_stream_training_data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.visualization.plot_stream_decision_boundary.html">
+   skactiveml.visualization.plot_stream_decision_boundary
   </a>
  </li>
  <li class="toctree-l1">
@@ -615,9 +707,24 @@
     
     <div class="toc-item">
       
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
 
 <nav id="bd-toc-nav">
-    
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#examples-using-skactiveml-stream-split">
+   Examples using
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     skactiveml.stream.Split
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+
 </nav>
     </div>
     
@@ -646,12 +753,12 @@ in 100*(1-v)% of cases according to VariableUncertainty.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
-<dt><strong>budget</strong><span class="classifier">float, default=None</span></dt><dd><p>The budget which models the budgeting constraint used in
+<dt><strong>budget</strong><span class="classifier">float, optional (default=None)</span></dt><dd><p>The budget which models the budgeting constraint used in
 the stream-based active learning setting.</p>
 </dd>
-<dt><strong>budgetmanager</strong><span class="classifier">BudgetManager, default=None</span></dt><dd><p>The BudgetManager which models the budgeting constraint used in
+<dt><strong>budgetmanager</strong><span class="classifier">BudgetManager, optional (default=None)</span></dt><dd><p>The BudgetManager which models the budgeting constraint used in
 the stream-based active learning setting. if set to None,
-FixedUncertaintyBudgetManager will be used by default. The budget
+SplitBudgetManager will be used by default. The budget
 manager will
 be initialized based on the following conditions:</p>
 <blockquote>
@@ -664,15 +771,15 @@ If both are given and the budget differs from budgetmanager.budget
 a warning is thrown.</p>
 </div></blockquote>
 </dd>
-<dt><strong>random_state</strong><span class="classifier">int, RandomState instance, default=None</span></dt><dd><p>Controls the randomness of the estimator.</p>
+<dt><strong>random_state</strong><span class="classifier">int, RandomState instance, optional (default=None)</span></dt><dd><p>Controls the randomness of the estimator.</p>
 </dd>
 </dl>
 </dd>
 </dl>
 <p class="rubric">References</p>
 <dl class="simple">
-<dt>[1] Zliobaite, Indre &amp; Bifet, Albert &amp; Pfahringer, Bernhard &amp; Holmes,</dt><dd><p>Geoffrey. (2014). Active Learning With Drifting Streaming Data. Neural
-Networks and Learning Systems, IEEE Transactions on. 25. 27-39.</p>
+<dt>[1] Žliobaitė, I., Bifet, A., Pfahringer, B., &amp; Holmes, G. (2014). Active</dt><dd><p>Learning With Drifting Streaming Data. IEEE Transactions on Neural
+Networks and Learning Systems, 25(1), 27-39.</p>
 </dd>
 </dl>
 <p class="rubric">Methods</p>
@@ -721,10 +828,6 @@ contained subobjects that are estimators.</p>
 <dt class="sig sig-object py" id="skactiveml.stream.Split.query">
 <span class="sig-name descname"><span class="pre">query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">candidates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fit_clf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_utilities</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#skactiveml.stream.Split.query" title="Permalink to this definition">#</a></dt>
 <dd><p>Ask the query strategy which instances in candidates to acquire.</p>
-<p>Please note that, when the decisions from this function may differ from
-the final sampling, simulate=True can be set, so that the query
-strategy can be updated later with update(…) with the final sampling.
-This is especially helpful when developing wrapper query strategies.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
@@ -734,15 +837,17 @@ only if they are supported by the base query strategy.</p>
 </dd>
 <dt><strong>clf</strong><span class="classifier">SkactivemlClassifier</span></dt><dd><p>Model implementing the methods <cite>fit</cite> and <cite>predict_freq</cite>.</p>
 </dd>
-<dt><strong>X</strong><span class="classifier">array-like of shape (n_samples, n_features), optional</span></dt><dd><p>Input samples used to fit the classifier.</p>
+<dt><strong>X</strong><span class="classifier">array-like of shape (n_samples, n_features), optional</span></dt><dd></dd>
+<dt><strong>(default=None)</strong></dt><dd><p>Input samples used to fit the classifier.</p>
 </dd>
-<dt><strong>y</strong><span class="classifier">array-like of shape (n_samples), optional</span></dt><dd><p>Labels of the input samples ‘X’. There may be missing labels.</p>
+<dt><strong>y</strong><span class="classifier">array-like of shape (n_samples), optional (default=None)</span></dt><dd><p>Labels of the input samples ‘X’. There may be missing labels.</p>
 </dd>
-<dt><strong>sample_weight</strong><span class="classifier">array-like of shape (n_samples,), optional</span></dt><dd><p>Sample weights for X, used to fit the clf.</p>
+<dt><strong>sample_weight</strong><span class="classifier">array-like of shape (n_samples,), optional</span></dt><dd></dd>
+<dt><strong>(default=None)</strong></dt><dd><p>Sample weights for X, used to fit the clf.</p>
 </dd>
-<dt><strong>fit_clf</strong><span class="classifier">bool,</span></dt><dd><p>If true, refit the classifier also requires X and y to be given.</p>
+<dt><strong>fit_clf</strong><span class="classifier">bool, optional (default=False)</span></dt><dd><p>If true, refit the classifier also requires X and y to be given.</p>
 </dd>
-<dt><strong>return_utilities</strong><span class="classifier">bool, optional</span></dt><dd><p>If true, also return the utilities based on the query strategy.
+<dt><strong>return_utilities</strong><span class="classifier">bool, optional (default=False)</span></dt><dd><p>If true, also return the utilities based on the query strategy.
 The default is False.</p>
 </dd>
 </dl>
@@ -798,7 +903,7 @@ only if they are supported by the base query strategy.</p>
 </dd>
 <dt><strong>queried_indices</strong><span class="classifier">array-like of shape (n_samples,)</span></dt><dd><p>Indicates which instances from candidates have been queried.</p>
 </dd>
-<dt><strong>budget_manager_param_dict</strong><span class="classifier">kwargs</span></dt><dd><p>Optional kwargs for budget manager.</p>
+<dt><strong>budget_manager_param_dict</strong><span class="classifier">kwargs, optional (default=None)</span></dt><dd><p>Optional kwargs for budget manager.</p>
 </dd>
 </dl>
 </dd>
@@ -813,7 +918,13 @@ only if they are supported by the base query strategy.</p>
 
 </dd></dl>
 
-<span class="target" id="sphx-glr-backref-skactiveml-stream-split"></span></section>
+<section id="examples-using-skactiveml-stream-split">
+<span id="sphx-glr-backref-skactiveml-stream-split"></span><h2>Examples using <code class="docutils literal notranslate"><span class="pre">skactiveml.stream.Split</span></code><a class="headerlink" href="#examples-using-skactiveml-stream-split" title="Permalink to this headline">#</a></h2>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Uncertainty Sampling with Split"><img alt="" src="../../_images/sphx_glr_plot-Split-Split_Uncertainty_Sampling_thumb.gif" />
+<p><a class="reference internal" href="../sphinx_gallery_examples/stream/plot-Split-Split_Uncertainty_Sampling.html#sphx-glr-generated-sphinx-gallery-examples-stream-plot-split-split-uncertainty-sampling-py"><span class="std std-ref">Uncertainty Sampling with Split</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Uncertainty Sampling with Split</div>
+</div></div></section>
+</section>
 
 
               </article>

@@ -307,6 +307,11 @@
    skactiveml.pool.DiscriminativeAL
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.BatchBALD.html">
+   skactiveml.pool.BatchBALD
+  </a>
+ </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -332,6 +337,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="skactiveml.pool.vote_entropy.html">
    skactiveml.pool.vote_entropy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.batch_bald.html">
+   skactiveml.pool.batch_bald
   </a>
  </li>
 </ul>
@@ -395,6 +405,78 @@
    skactiveml.stream.RandomVariableUncertainty
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.StreamDensityBasedAL.html">
+   skactiveml.stream.StreamDensityBasedAL
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.CognitiveDualQueryStrategy.html">
+   skactiveml.stream.CognitiveDualQueryStrategy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.CognitiveDualQueryStrategyRan.html">
+   skactiveml.stream.CognitiveDualQueryStrategyRan
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.CognitiveDualQueryStrategyRanVarUn.html">
+   skactiveml.stream.CognitiveDualQueryStrategyRanVarUn
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.CognitiveDualQueryStrategyVarUn.html">
+   skactiveml.stream.CognitiveDualQueryStrategyVarUn
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.CognitiveDualQueryStrategyFixUn.html">
+   skactiveml.stream.CognitiveDualQueryStrategyFixUn
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.budgetmanager.EstimatedBudgetZliobaite.html">
+   skactiveml.stream.budgetmanager.EstimatedBudgetZliobaite
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.budgetmanager.FixedUncertaintyBudgetManager.html">
+   skactiveml.stream.budgetmanager.FixedUncertaintyBudgetManager
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.budgetmanager.VariableUncertaintyBudgetManager.html">
+   skactiveml.stream.budgetmanager.VariableUncertaintyBudgetManager
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.budgetmanager.SplitBudgetManager.html">
+   skactiveml.stream.budgetmanager.SplitBudgetManager
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.budgetmanager.BalancedIncrementalQuantileFilter.html">
+   skactiveml.stream.budgetmanager.BalancedIncrementalQuantileFilter
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.budgetmanager.RandomVariableUncertaintyBudgetManager.html">
+   skactiveml.stream.budgetmanager.RandomVariableUncertaintyBudgetManager
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.budgetmanager.DensityBasedSplitBudgetManager.html">
+   skactiveml.stream.budgetmanager.DensityBasedSplitBudgetManager
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.budgetmanager.RandomBudgetManager.html">
+   skactiveml.stream.budgetmanager.RandomBudgetManager
+  </a>
+ </li>
 </ul>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
@@ -449,6 +531,16 @@
  <li class="toctree-l1">
   <a class="reference internal" href="skactiveml.visualization.plot_annotator_utilities.html">
    skactiveml.visualization.plot_annotator_utilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.visualization.plot_stream_training_data.html">
+   skactiveml.visualization.plot_stream_training_data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.visualization.plot_stream_decision_boundary.html">
+   skactiveml.visualization.plot_stream_decision_boundary
   </a>
  </li>
  <li class="toctree-l1">
@@ -901,16 +993,22 @@ possible to update each component of a nested object.</p>
 
 <section id="examples-using-skactiveml-classifier-sklearnclassifier">
 <span id="sphx-glr-backref-skactiveml-classifier-sklearnclassifier"></span><h2>Examples using <code class="docutils literal notranslate"><span class="pre">skactiveml.classifier.SklearnClassifier</span></code><a class="headerlink" href="#examples-using-skactiveml-classifier-sklearnclassifier" title="Permalink to this headline">#</a></h2>
-<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Query-by-Committee with Vote Entropy"><img alt="Query-by-Committee with Vote Entropy" src="../../_images/sphx_glr_plot-QueryByCommittee-Query-by-Committee_with_Vote_Entropy_thumb.gif" />
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Query-by-Committee with Vote Entropy"><img alt="" src="../../_images/sphx_glr_plot-QueryByCommittee-Query-by-Committee_with_Vote_Entropy_thumb.gif" />
 <p><a class="reference internal" href="../sphinx_gallery_examples/pool/plot-QueryByCommittee-Query-by-Committee_with_Vote_Entropy.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-querybycommittee-query-by-committee-with-vote-entropy-py"><span class="std std-ref">Query-by-Committee with Vote Entropy</span></a></p>
   <div class="sphx-glr-thumbnail-title">Query-by-Committee with Vote Entropy</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Query-by-Committee with Kullback-Leibler Divergence"><img alt="Query-by-Committee with Kullback-Leibler Divergence" src="../../_images/sphx_glr_plot-QueryByCommittee-Query-by-Committee_with_Kullback-Leibler_Divergence_thumb.gif" />
+</div><div class="sphx-glr-thumbcontainer" tooltip="Query-by-Committee with Kullback-Leibler Divergence"><img alt="" src="../../_images/sphx_glr_plot-QueryByCommittee-Query-by-Committee_with_Kullback-Leibler_Divergence_thumb.gif" />
 <p><a class="reference internal" href="../sphinx_gallery_examples/pool/plot-QueryByCommittee-Query-by-Committee_with_Kullback-Leibler_Divergence.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-querybycommittee-query-by-committee-with-kullback-leibler-divergence-py"><span class="std std-ref">Query-by-Committee with Kullback-Leibler Divergence</span></a></p>
   <div class="sphx-glr-thumbnail-title">Query-by-Committee with Kullback-Leibler Divergence</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Density-weighted Uncertainty Sampling"><img alt="Density-weighted Uncertainty Sampling" src="../../_images/sphx_glr_plot-UncertaintySampling-Density-weighted_Uncertainty_Sampling_thumb.gif" />
+</div><div class="sphx-glr-thumbcontainer" tooltip="Batch Bayesian Active Learning by Disagreement (BatchBALD)"><img alt="" src="../../_images/sphx_glr_plot-BatchBALD-Batch_Bayesian_Active_Learning_by_Disagreement_thumb.gif" />
+<p><a class="reference internal" href="../sphinx_gallery_examples/pool/plot-BatchBALD-Batch_Bayesian_Active_Learning_by_Disagreement.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-batchbald-batch-bayesian-active-learning-by-disagreement-py"><span class="std std-ref">Batch Bayesian Active Learning by Disagreement (BatchBALD)</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Batch Bayesian Active Learning by Disagreement (BatchBALD)</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Bayesian Active Learning by Disagreement"><img alt="" src="../../_images/sphx_glr_plot-BatchBALD-Bayesian_Active_Learning_by_Disagreement_(BALD)_thumb.gif" />
+<p><a class="reference internal" href="../sphinx_gallery_examples/pool/plot-BatchBALD-Bayesian_Active_Learning_by_Disagreement_%28BALD%29.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-batchbald-bayesian-active-learning-by-disagreement-bald-py"><span class="std std-ref">Bayesian Active Learning by Disagreement</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Bayesian Active Learning by Disagreement</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Density-weighted Uncertainty Sampling"><img alt="" src="../../_images/sphx_glr_plot-UncertaintySampling-Density-weighted_Uncertainty_Sampling_thumb.gif" />
 <p><a class="reference internal" href="../sphinx_gallery_examples/pool/plot-UncertaintySampling-Density-weighted_Uncertainty_Sampling.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-uncertaintysampling-density-weighted-uncertainty-sampling-py"><span class="std std-ref">Density-weighted Uncertainty Sampling</span></a></p>
   <div class="sphx-glr-thumbnail-title">Density-weighted Uncertainty Sampling</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Dual strategy for Active Learning"><img alt="Dual strategy for Active Learning" src="../../_images/sphx_glr_plot-UncertaintySampling-Dual_strategy_for_Active_Learning_thumb.gif" />
+</div><div class="sphx-glr-thumbcontainer" tooltip="Dual strategy for Active Learning"><img alt="" src="../../_images/sphx_glr_plot-UncertaintySampling-Dual_strategy_for_Active_Learning_thumb.gif" />
 <p><a class="reference internal" href="../sphinx_gallery_examples/pool/plot-UncertaintySampling-Dual_strategy_for_Active_Learning.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-uncertaintysampling-dual-strategy-for-active-learning-py"><span class="std std-ref">Dual strategy for Active Learning</span></a></p>
   <div class="sphx-glr-thumbnail-title">Dual strategy for Active Learning</div>
 </div></div></section>

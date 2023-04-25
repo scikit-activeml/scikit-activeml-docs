@@ -213,20 +213,20 @@
 
 
 <span class="k">class</span> <span class="nc">UncertaintyZliobaite</span><span class="p">(</span><span class="n">SingleAnnotatorStreamQueryStrategy</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;The UncertaintyZliobaite (Utility calculation in [1]) query strategy</span>
-<span class="sd">    samples instances based on the classifiers uncertainty assessed based on</span>
-<span class="sd">    the classifier&#39;s predictions. The instance is queried when the probability</span>
-<span class="sd">    of the most likely class exceeds a threshold calculated based on the budget</span>
-<span class="sd">    and the number of classes. It is used as the base class for uncertainty</span>
-<span class="sd">    strategies provided by Zliobaite in [1].</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;UncertaintyZliobaite</span>
+
+<span class="sd">    The UncertaintyZliobaite class provides the base for query strategies</span>
+<span class="sd">    proposed by Žliobaitė et al. in [1]. The strategies evaluate the</span>
+<span class="sd">    classifier&#39;s uncertainty based on its predictions and instances&#39; labels are</span>
+<span class="sd">    queried when the uncertainty exceeds a specific threshold. Žliobaitė et al.</span>
+<span class="sd">    propose various techniques to calculate such a threshold.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    budget : float, default=None</span>
+<span class="sd">    budget : float, optional (default=None)</span>
 <span class="sd">        The budget which models the budgeting constraint used in</span>
 <span class="sd">        the stream-based active learning setting.</span>
-
-<span class="sd">    budget_manager : BudgetManager, default=None</span>
+<span class="sd">    budget_manager : BudgetManager, optional (default=None)</span>
 <span class="sd">        The BudgetManager which models the budgeting constraint used in</span>
 <span class="sd">        the stream-based active learning setting. if set to None,</span>
 <span class="sd">        FixedUncertaintyBudgetManager will be used by default. The</span>
@@ -238,15 +238,14 @@
 <span class="sd">            default budget.</span>
 <span class="sd">            If both are given and the budget differs from budgetmanager.budget</span>
 <span class="sd">            a warning is thrown.</span>
-
-<span class="sd">    random_state : int, RandomState instance, default=None</span>
+<span class="sd">    random_state : int, RandomState instance, optional (default=None)</span>
 <span class="sd">        Controls the randomness of the estimator.</span>
 
 <span class="sd">    References</span>
 <span class="sd">    ----------</span>
-<span class="sd">    [1] Zliobaite, Indre &amp; Bifet, Albert &amp; Pfahringer, Bernhard &amp; Holmes,</span>
-<span class="sd">        Geoffrey. (2014). Active Learning With Drifting Streaming Data. Neural</span>
-<span class="sd">        Networks and Learning Systems, IEEE Transactions on. 25. 27-39.</span>
+<span class="sd">    [1] Žliobaitė, I., Bifet, A., Pfahringer, B., &amp; Holmes, G. (2014). Active</span>
+<span class="sd">        Learning With Drifting Streaming Data. IEEE Transactions on Neural</span>
+<span class="sd">        Networks and Learning Systems, 25(1), 27-39.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -269,12 +268,7 @@
         <span class="n">fit_clf</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">return_utilities</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Ask the query strategy which instances in candidates to acquire.</span>
-
-<span class="sd">        Please note that, when the decisions from this function may differ from</span>
-<span class="sd">        the final sampling, simulate=True can be set, so that the query</span>
-<span class="sd">        strategy can be updated later with update(...) with the final sampling.</span>
-<span class="sd">        This is especially helpful when developing wrapper query strategies.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Ask the query strategy which instances in candidates to acquire.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -285,14 +279,16 @@
 <span class="sd">        clf : SkactivemlClassifier</span>
 <span class="sd">            Model implementing the methods `fit` and `predict_freq`.</span>
 <span class="sd">        X : array-like of shape (n_samples, n_features), optional</span>
+<span class="sd">        (default=None)</span>
 <span class="sd">            Input samples used to fit the classifier.</span>
-<span class="sd">        y : array-like of shape (n_samples), optional</span>
+<span class="sd">        y : array-like of shape (n_samples), optional (default=None)</span>
 <span class="sd">            Labels of the input samples &#39;X&#39;. There may be missing labels.</span>
 <span class="sd">        sample_weight : array-like of shape (n_samples,), optional</span>
+<span class="sd">        (default=None)</span>
 <span class="sd">            Sample weights for X, used to fit the clf.</span>
-<span class="sd">        fit_clf : bool,</span>
+<span class="sd">        fit_clf : bool, optional (default=False)</span>
 <span class="sd">            If true, refit the classifier also requires X and y to be given.</span>
-<span class="sd">        return_utilities : bool, optional</span>
+<span class="sd">        return_utilities : bool, optional (default=False)</span>
 <span class="sd">            If true, also return the utilities based on the query strategy.</span>
 <span class="sd">            The default is False.</span>
 
@@ -325,7 +321,8 @@
         <span class="p">)</span>
 
         <span class="n">predict_proba</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">candidates</span><span class="p">)</span>
-        <span class="n">utilities</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">predict_proba</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">confidence</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">predict_proba</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">utilities</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">confidence</span>
 
         <span class="n">queried_indices</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">budget_manager_</span><span class="o">.</span><span class="n">query_by_utility</span><span class="p">(</span><span class="n">utilities</span><span class="p">)</span>
 
@@ -337,7 +334,7 @@
     <span class="k">def</span> <span class="nf">update</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">candidates</span><span class="p">,</span> <span class="n">queried_indices</span><span class="p">,</span> <span class="n">budget_manager_param_dict</span><span class="o">=</span><span class="kc">None</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Updates the budget manager and the count for seen and queried</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Updates the budget manager and the count for seen and queried</span>
 <span class="sd">        instances</span>
 
 <span class="sd">        Parameters</span>
@@ -350,7 +347,7 @@
 <span class="sd">        queried_indices : array-like of shape (n_samples,)</span>
 <span class="sd">            Indicates which instances from candidates have been queried.</span>
 
-<span class="sd">        budget_manager_param_dict : kwargs</span>
+<span class="sd">        budget_manager_param_dict : kwargs, optional (default=None)</span>
 <span class="sd">            Optional kwargs for budget manager.</span>
 
 <span class="sd">        Returns</span>
@@ -398,7 +395,7 @@
         <span class="n">reset</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="o">**</span><span class="n">check_candidates_params</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Validate input data and set or check the `n_features_in_` attribute.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Validate input data and set or check the `n_features_in_` attribute.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -411,13 +408,13 @@
 <span class="sd">            Input samples used to fit the classifier.</span>
 <span class="sd">        y : array-like of shape (n_samples)</span>
 <span class="sd">            Labels of the input samples &#39;X&#39;. There may be missing labels.</span>
-<span class="sd">        sample_weight : array-like of shape (n_samples,) (default=None)</span>
+<span class="sd">        sample_weight : array-like of shape (n_samples,)</span>
 <span class="sd">            Sample weights for X, used to fit the clf.</span>
 <span class="sd">        return_utilities : bool,</span>
 <span class="sd">            If true, also return the utilities based on the query strategy.</span>
 <span class="sd">        fit_clf : bool,</span>
 <span class="sd">            If true, refit the classifier also requires X and y to be given.</span>
-<span class="sd">        reset : bool, default=True</span>
+<span class="sd">        reset : bool, optional (default=True)</span>
 <span class="sd">            Whether to reset the `n_features_in_` attribute.</span>
 <span class="sd">            If False, the input will be checked for consistency with data</span>
 <span class="sd">            provided when reset was last True.</span>
@@ -472,7 +469,7 @@
         <span class="k">return</span> <span class="n">candidates</span><span class="p">,</span> <span class="n">clf</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">,</span> <span class="n">fit_clf</span><span class="p">,</span> <span class="n">return_utilities</span>
 
     <span class="k">def</span> <span class="nf">_validate_clf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clf</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">,</span> <span class="n">fit_clf</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Validate if clf is a valid SkactivemlClassifier. If clf is</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Validate if clf is a valid SkactivemlClassifier. If clf is</span>
 <span class="sd">        untrained, clf is trained using X, y and sample_weight.</span>
 
 <span class="sd">        Parameters</span>
@@ -483,7 +480,7 @@
 <span class="sd">            Input samples used to fit the classifier.</span>
 <span class="sd">        y : array-like of shape (n_samples)</span>
 <span class="sd">            Labels of the input samples &#39;X&#39;. There may be missing labels.</span>
-<span class="sd">        sample_weight : array-like of shape (n_samples,) (default=None)</span>
+<span class="sd">        sample_weight : array-like of shape (n_samples,)</span>
 <span class="sd">            Sample weights for X, used to fit the clf.</span>
 <span class="sd">        fit_clf : bool,</span>
 <span class="sd">            If true, refit the classifier also requires X and y to be given.</span>
@@ -500,7 +497,7 @@
         <span class="k">return</span> <span class="n">clf</span>
 
     <span class="k">def</span> <span class="nf">_validate_X_y_sample_weight</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Validate if X, y and sample_weight are numeric and of equal length.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Validate if X, y and sample_weight are numeric and of equal length.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -510,7 +507,7 @@
 <span class="sd">        y : array-like of shape (n_samples)</span>
 <span class="sd">            Labels of the input samples &#39;X&#39;. There may be missing labels.</span>
 
-<span class="sd">        sample_weight : array-like of shape (n_samples,) (default=None)</span>
+<span class="sd">        sample_weight : array-like of shape (n_samples,)</span>
 <span class="sd">            Sample weights for X, used to fit the clf.</span>
 
 <span class="sd">        Returns</span>
@@ -532,7 +529,9 @@
 
 
 <div class="viewcode-block" id="FixedUncertainty"><a class="viewcode-back" href="../../../generated/api/skactiveml.stream.FixedUncertainty.html#skactiveml.stream.FixedUncertainty">[docs]</a><span class="k">class</span> <span class="nc">FixedUncertainty</span><span class="p">(</span><span class="n">UncertaintyZliobaite</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;The FixedUncertainty (Fixed-Uncertainty in [1]) query strategy samples</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;FixedUncertainty</span>
+
+<span class="sd">    The FixedUncertainty (Fixed-Uncertainty in [1]) query strategy samples</span>
 <span class="sd">    instances based on the classifiers uncertainty assessed based on the</span>
 <span class="sd">    classifier&#39;s predictions. The instance is queried when the probability of</span>
 <span class="sd">    the most likely class exceeds a threshold calculated based on the budget</span>
@@ -540,11 +539,10 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    budget : float, default=None</span>
+<span class="sd">    budget : float, optional (default=None)</span>
 <span class="sd">        The budget which models the budgeting constraint used in</span>
 <span class="sd">        the stream-based active learning setting.</span>
-
-<span class="sd">    budgetmanager : BudgetManager, default=None</span>
+<span class="sd">    budgetmanager : BudgetManager, optional (default=None)</span>
 <span class="sd">        The BudgetManager which models the budgeting constraint used in</span>
 <span class="sd">        the stream-based active learning setting. if set to None,</span>
 <span class="sd">        FixedUncertaintyBudgetManager will be used by default. The budget</span>
@@ -556,20 +554,19 @@
 <span class="sd">            default budget.</span>
 <span class="sd">            If both are given and the budget differs from budget manager.budget</span>
 <span class="sd">            a warning is thrown.</span>
-
-<span class="sd">    random_state : int, RandomState instance, default=None</span>
+<span class="sd">    random_state : int, RandomState instance, optional (default=None)</span>
 <span class="sd">        Controls the randomness of the estimator.</span>
 
 <span class="sd">    References</span>
 <span class="sd">    ----------</span>
-<span class="sd">    [1] Zliobaite, Indre &amp; Bifet, Albert &amp; Pfahringer, Bernhard &amp; Holmes,</span>
-<span class="sd">        Geoffrey. (2014). Active Learning With Drifting Streaming Data. Neural</span>
-<span class="sd">        Networks and Learning Systems, IEEE Transactions on. 25. 27-39.</span>
+<span class="sd">    [1] Žliobaitė, I., Bifet, A., Pfahringer, B., &amp; Holmes, G. (2014). Active</span>
+<span class="sd">        Learning With Drifting Streaming Data. IEEE Transactions on Neural</span>
+<span class="sd">        Networks and Learning Systems, 25(1), 27-39.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">_get_default_budget_manager</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Provide the budget manager that will be used as default.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Provide the budget manager that will be used as default.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -580,7 +577,9 @@
 
 
 <div class="viewcode-block" id="VariableUncertainty"><a class="viewcode-back" href="../../../generated/api/skactiveml.stream.VariableUncertainty.html#skactiveml.stream.VariableUncertainty">[docs]</a><span class="k">class</span> <span class="nc">VariableUncertainty</span><span class="p">(</span><span class="n">UncertaintyZliobaite</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;The VariableUncertainty (Var-Uncertainty in [1]) query strategy samples</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;VariableUncertainty</span>
+
+<span class="sd">    The VariableUncertainty (Var-Uncertainty in [1]) query strategy samples</span>
 <span class="sd">    instances based on the classifiers uncertainty assessed based on the</span>
 <span class="sd">    classifier&#39;s predictions. The instance is queried when the probability of</span>
 <span class="sd">    the most likely class exceeds a time-dependent threshold calculated based</span>
@@ -589,14 +588,13 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    budget : float, default=None</span>
+<span class="sd">    budget : float, optional (default=None)</span>
 <span class="sd">        The budget which models the budgeting constraint used in</span>
 <span class="sd">        the stream-based active learning setting.</span>
-
-<span class="sd">    budgetmanager : BudgetManager, default=None</span>
+<span class="sd">    budgetmanager : BudgetManager, optional (default=None)</span>
 <span class="sd">        The BudgetManager which models the budgeting constraint used in</span>
 <span class="sd">        the stream-based active learning setting. if set to None,</span>
-<span class="sd">        FixedUncertaintyBudgetManager will be used by default. The budget</span>
+<span class="sd">        VariableUncertaintyBudgetManager will be used by default. The budget</span>
 <span class="sd">        manager will be initialized based on the following conditions:</span>
 <span class="sd">            If only a budget is given the default budgetmanager is initialized</span>
 <span class="sd">            with the given budget.</span>
@@ -605,20 +603,18 @@
 <span class="sd">            default budget.</span>
 <span class="sd">            If both are given and the budget differs from budgetmanager.budget</span>
 <span class="sd">            a warning is thrown.</span>
-
-<span class="sd">    random_state : int, RandomState instance, default=None</span>
+<span class="sd">    random_state : int, RandomState instance, optional (default=None)</span>
 <span class="sd">        Controls the randomness of the estimator.</span>
 
 <span class="sd">    References</span>
 <span class="sd">    ----------</span>
-<span class="sd">    [1] Zliobaite, Indre &amp; Bifet, Albert &amp; Pfahringer, Bernhard &amp; Holmes,</span>
-<span class="sd">        Geoffrey. (2014). Active Learning With Drifting Streaming Data. Neural</span>
-<span class="sd">        Networks and Learning Systems, IEEE Transactions on. 25. 27-39.</span>
-
+<span class="sd">    [1] Žliobaitė, I., Bifet, A., Pfahringer, B., &amp; Holmes, G. (2014). Active</span>
+<span class="sd">        Learning With Drifting Streaming Data. IEEE Transactions on Neural</span>
+<span class="sd">        Networks and Learning Systems, 25(1), 27-39.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">_get_default_budget_manager</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Provide the budget manager that will be used as default.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Provide the budget manager that will be used as default.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -629,7 +625,9 @@
 
 
 <div class="viewcode-block" id="RandomVariableUncertainty"><a class="viewcode-back" href="../../../generated/api/skactiveml.stream.RandomVariableUncertainty.html#skactiveml.stream.RandomVariableUncertainty">[docs]</a><span class="k">class</span> <span class="nc">RandomVariableUncertainty</span><span class="p">(</span><span class="n">UncertaintyZliobaite</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;The RandomVariableUncertainty (Ran-Var-Uncertainty in [1]) query</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;RandomVariableUncertainty</span>
+
+<span class="sd">    The RandomVariableUncertainty (Ran-Var-Uncertainty in [1]) query</span>
 <span class="sd">    strategy samples instances based on the classifier&#39;s uncertainty assessed</span>
 <span class="sd">    based on the classifier&#39;s predictions. The instance is queried when the</span>
 <span class="sd">    probability of the most likely class exceeds a time-dependent threshold</span>
@@ -639,15 +637,14 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    budget : float, default=None</span>
+<span class="sd">    budget : float, optional (default=None)</span>
 <span class="sd">        The budget which models the budgeting constraint used in</span>
 <span class="sd">        the stream-based active learning setting.</span>
-
-<span class="sd">    budgetmanager : BudgetManager, default=None</span>
+<span class="sd">    budgetmanager : BudgetManager, optional (default=None)</span>
 <span class="sd">        The BudgetManager which models the budgeting constraint used in</span>
 <span class="sd">        the stream-based active learning setting. if set to None,</span>
-<span class="sd">        FixedUncertaintyBudgetManager will be used by default. The budget</span>
-<span class="sd">        manager will be initialized based on the following conditions:</span>
+<span class="sd">        RandomVariableUncertaintyBudgetManager will be used by default. The</span>
+<span class="sd">        budget manager will be initialized based on the following conditions:</span>
 <span class="sd">            If only a budget is given the default budgetmanager is initialized</span>
 <span class="sd">            with the given budget.</span>
 <span class="sd">            If only a budgetmanager is given use the budgetmanager.</span>
@@ -655,20 +652,18 @@
 <span class="sd">            default budget.</span>
 <span class="sd">            If both are given and the budget differs from budgetmanager.budget</span>
 <span class="sd">            a warning is thrown.</span>
-
-<span class="sd">    random_state : int, RandomState instance, default=None</span>
+<span class="sd">    random_state : int, RandomState instance, optional (default=None)</span>
 <span class="sd">        Controls the randomness of the estimator.</span>
 
 <span class="sd">    References</span>
 <span class="sd">    ----------</span>
-<span class="sd">    [1] Zliobaite, Indre &amp; Bifet, Albert &amp; Pfahringer, Bernhard &amp; Holmes,</span>
-<span class="sd">        Geoffrey. (2014). Active Learning With Drifting Streaming Data. Neural</span>
-<span class="sd">        Networks and Learning Systems, IEEE Transactions on. 25. 27-39.</span>
-
+<span class="sd">    [1] Žliobaitė, I., Bifet, A., Pfahringer, B., &amp; Holmes, G. (2014). Active</span>
+<span class="sd">        Learning With Drifting Streaming Data. IEEE Transactions on Neural</span>
+<span class="sd">        Networks and Learning Systems, 25(1), 27-39.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">_get_default_budget_manager</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Provide the budget manager that will be used as default.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Provide the budget manager that will be used as default.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -679,19 +674,20 @@
 
 
 <div class="viewcode-block" id="Split"><a class="viewcode-back" href="../../../generated/api/skactiveml.stream.Split.html#skactiveml.stream.Split">[docs]</a><span class="k">class</span> <span class="nc">Split</span><span class="p">(</span><span class="n">UncertaintyZliobaite</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;The Split [1] query strategy samples in 100*v% of instances randomly and</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Split</span>
+
+<span class="sd">    The Split [1] query strategy samples in 100*v% of instances randomly and</span>
 <span class="sd">    in 100*(1-v)% of cases according to VariableUncertainty.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    budget : float, default=None</span>
+<span class="sd">    budget : float, optional (default=None)</span>
 <span class="sd">        The budget which models the budgeting constraint used in</span>
 <span class="sd">        the stream-based active learning setting.</span>
-
-<span class="sd">    budgetmanager : BudgetManager, default=None</span>
+<span class="sd">    budgetmanager : BudgetManager, optional (default=None)</span>
 <span class="sd">        The BudgetManager which models the budgeting constraint used in</span>
 <span class="sd">        the stream-based active learning setting. if set to None,</span>
-<span class="sd">        FixedUncertaintyBudgetManager will be used by default. The budget</span>
+<span class="sd">        SplitBudgetManager will be used by default. The budget</span>
 <span class="sd">        manager will</span>
 <span class="sd">        be initialized based on the following conditions:</span>
 <span class="sd">            If only a budget is given the default budget manager is initialized</span>
@@ -701,16 +697,14 @@
 <span class="sd">            default budget.</span>
 <span class="sd">            If both are given and the budget differs from budgetmanager.budget</span>
 <span class="sd">            a warning is thrown.</span>
-
-<span class="sd">    random_state : int, RandomState instance, default=None</span>
+<span class="sd">    random_state : int, RandomState instance, optional (default=None)</span>
 <span class="sd">        Controls the randomness of the estimator.</span>
 
 <span class="sd">    References</span>
 <span class="sd">    ----------</span>
-<span class="sd">    [1] Zliobaite, Indre &amp; Bifet, Albert &amp; Pfahringer, Bernhard &amp; Holmes,</span>
-<span class="sd">        Geoffrey. (2014). Active Learning With Drifting Streaming Data. Neural</span>
-<span class="sd">        Networks and Learning Systems, IEEE Transactions on. 25. 27-39.</span>
-
+<span class="sd">    [1] Žliobaitė, I., Bifet, A., Pfahringer, B., &amp; Holmes, G. (2014). Active</span>
+<span class="sd">        Learning With Drifting Streaming Data. IEEE Transactions on Neural</span>
+<span class="sd">        Networks and Learning Systems, 25(1), 27-39.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">_get_default_budget_manager</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>

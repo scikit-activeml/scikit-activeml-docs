@@ -29,6 +29,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css" />
 
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695">
@@ -265,283 +266,28 @@
               
               <article class="bd-article" role="main">
                 
-  
-<style>
-/* CSS for nbsphinx extension */
-
-/* remove conflicting styling from Sphinx themes */
-div.nbinput.container div.prompt *,
-div.nboutput.container div.prompt *,
-div.nbinput.container div.input_area pre,
-div.nboutput.container div.output_area pre,
-div.nbinput.container div.input_area .highlight,
-div.nboutput.container div.output_area .highlight {
-    border: none;
-    padding: 0;
-    margin: 0;
-    box-shadow: none;
-}
-
-div.nbinput.container > div[class*=highlight],
-div.nboutput.container > div[class*=highlight] {
-    margin: 0;
-}
-
-div.nbinput.container div.prompt *,
-div.nboutput.container div.prompt * {
-    background: none;
-}
-
-div.nboutput.container div.output_area .highlight,
-div.nboutput.container div.output_area pre {
-    background: unset;
-}
-
-div.nboutput.container div.output_area div.highlight {
-    color: unset;  /* override Pygments text color */
-}
-
-/* avoid gaps between output lines */
-div.nboutput.container div[class*=highlight] pre {
-    line-height: normal;
-}
-
-/* input/output containers */
-div.nbinput.container,
-div.nboutput.container {
-    display: -webkit-flex;
-    display: flex;
-    align-items: flex-start;
-    margin: 0;
-    width: 100%;
-}
-@media (max-width: 540px) {
-    div.nbinput.container,
-    div.nboutput.container {
-        flex-direction: column;
-    }
-}
-
-/* input container */
-div.nbinput.container {
-    padding-top: 5px;
-}
-
-/* last container */
-div.nblast.container {
-    padding-bottom: 5px;
-}
-
-/* input prompt */
-div.nbinput.container div.prompt pre {
-    color: #307FC1;
-}
-
-/* output prompt */
-div.nboutput.container div.prompt pre {
-    color: #BF5B3D;
-}
-
-/* all prompts */
-div.nbinput.container div.prompt,
-div.nboutput.container div.prompt {
-    width: 4.5ex;
-    padding-top: 5px;
-    position: relative;
-    user-select: none;
-}
-
-div.nbinput.container div.prompt > div,
-div.nboutput.container div.prompt > div {
-    position: absolute;
-    right: 0;
-    margin-right: 0.3ex;
-}
-
-@media (max-width: 540px) {
-    div.nbinput.container div.prompt,
-    div.nboutput.container div.prompt {
-        width: unset;
-        text-align: left;
-        padding: 0.4em;
-    }
-    div.nboutput.container div.prompt.empty {
-        padding: 0;
-    }
-
-    div.nbinput.container div.prompt > div,
-    div.nboutput.container div.prompt > div {
-        position: unset;
-    }
-}
-
-/* disable scrollbars and line breaks on prompts */
-div.nbinput.container div.prompt pre,
-div.nboutput.container div.prompt pre {
-    overflow: hidden;
-    white-space: pre;
-}
-
-/* input/output area */
-div.nbinput.container div.input_area,
-div.nboutput.container div.output_area {
-    -webkit-flex: 1;
-    flex: 1;
-    overflow: auto;
-}
-@media (max-width: 540px) {
-    div.nbinput.container div.input_area,
-    div.nboutput.container div.output_area {
-        width: 100%;
-    }
-}
-
-/* input area */
-div.nbinput.container div.input_area {
-    border: 1px solid #e0e0e0;
-    border-radius: 2px;
-    /*background: #f5f5f5;*/
-}
-
-/* override MathJax center alignment in output cells */
-div.nboutput.container div[class*=MathJax] {
-    text-align: left !important;
-}
-
-/* override sphinx.ext.imgmath center alignment in output cells */
-div.nboutput.container div.math p {
-    text-align: left;
-}
-
-/* standard error */
-div.nboutput.container div.output_area.stderr {
-    background: #fdd;
-}
-
-/* ANSI colors */
-.ansi-black-fg { color: #3E424D; }
-.ansi-black-bg { background-color: #3E424D; }
-.ansi-black-intense-fg { color: #282C36; }
-.ansi-black-intense-bg { background-color: #282C36; }
-.ansi-red-fg { color: #E75C58; }
-.ansi-red-bg { background-color: #E75C58; }
-.ansi-red-intense-fg { color: #B22B31; }
-.ansi-red-intense-bg { background-color: #B22B31; }
-.ansi-green-fg { color: #00A250; }
-.ansi-green-bg { background-color: #00A250; }
-.ansi-green-intense-fg { color: #007427; }
-.ansi-green-intense-bg { background-color: #007427; }
-.ansi-yellow-fg { color: #DDB62B; }
-.ansi-yellow-bg { background-color: #DDB62B; }
-.ansi-yellow-intense-fg { color: #B27D12; }
-.ansi-yellow-intense-bg { background-color: #B27D12; }
-.ansi-blue-fg { color: #208FFB; }
-.ansi-blue-bg { background-color: #208FFB; }
-.ansi-blue-intense-fg { color: #0065CA; }
-.ansi-blue-intense-bg { background-color: #0065CA; }
-.ansi-magenta-fg { color: #D160C4; }
-.ansi-magenta-bg { background-color: #D160C4; }
-.ansi-magenta-intense-fg { color: #A03196; }
-.ansi-magenta-intense-bg { background-color: #A03196; }
-.ansi-cyan-fg { color: #60C6C8; }
-.ansi-cyan-bg { background-color: #60C6C8; }
-.ansi-cyan-intense-fg { color: #258F8F; }
-.ansi-cyan-intense-bg { background-color: #258F8F; }
-.ansi-white-fg { color: #C5C1B4; }
-.ansi-white-bg { background-color: #C5C1B4; }
-.ansi-white-intense-fg { color: #A1A6B2; }
-.ansi-white-intense-bg { background-color: #A1A6B2; }
-
-.ansi-default-inverse-fg { color: #FFFFFF; }
-.ansi-default-inverse-bg { background-color: #000000; }
-
-.ansi-bold { font-weight: bold; }
-.ansi-underline { text-decoration: underline; }
-
-
-div.nbinput.container div.input_area div[class*=highlight] > pre,
-div.nboutput.container div.output_area div[class*=highlight] > pre,
-div.nboutput.container div.output_area div[class*=highlight].math,
-div.nboutput.container div.output_area.rendered_html,
-div.nboutput.container div.output_area > div.output_javascript,
-div.nboutput.container div.output_area:not(.rendered_html) > img{
-    padding: 5px;
-    margin: 0;
-}
-
-/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
-div.nbinput.container div.input_area > div[class^='highlight'],
-div.nboutput.container div.output_area > div[class^='highlight']{
-    overflow-y: hidden;
-}
-
-/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
-.prompt .copybtn {
-    display: none;
-}
-
-/* Some additional styling taken form the Jupyter notebook CSS */
-.jp-RenderedHTMLCommon table,
-div.rendered_html table {
-  border: none;
-  border-collapse: collapse;
-  border-spacing: 0;
-  color: black;
-  font-size: 12px;
-  table-layout: fixed;
-}
-.jp-RenderedHTMLCommon thead,
-div.rendered_html thead {
-  border-bottom: 1px solid black;
-  vertical-align: bottom;
-}
-.jp-RenderedHTMLCommon tr,
-.jp-RenderedHTMLCommon th,
-.jp-RenderedHTMLCommon td,
-div.rendered_html tr,
-div.rendered_html th,
-div.rendered_html td {
-  text-align: right;
-  vertical-align: middle;
-  padding: 0.5em 0.5em;
-  line-height: normal;
-  white-space: normal;
-  max-width: none;
-  border: none;
-}
-.jp-RenderedHTMLCommon th,
-div.rendered_html th {
-  font-weight: bold;
-}
-.jp-RenderedHTMLCommon tbody tr:nth-child(odd),
-div.rendered_html tbody tr:nth-child(odd) {
-  background: #f5f5f5;
-}
-.jp-RenderedHTMLCommon tbody tr:hover,
-div.rendered_html tbody tr:hover {
-  background: rgba(66, 165, 245, 0.2);
-}
-</style>
-<section id="Pool-based-Active-Learning---Getting-Started">
+  <section id="Pool-based-Active-Learning---Getting-Started">
 <h1>Pool-based Active Learning - Getting Started<a class="headerlink" href="#Pool-based-Active-Learning---Getting-Started" title="Permalink to this headline">#</a></h1>
 <p>The main purpose of this tutorial is to ease the implementation of our library <code class="docutils literal notranslate"><span class="pre">scikit-activeml</span></code> to new users. <code class="docutils literal notranslate"><span class="pre">scikit-activeml</span></code> is a library that executes the most important query strategies. It is built upon the well-known machine learning frame-work <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>, which makes it user-friendly. For better understanding, we show an exemplary active learning cycle here. Let’s start by importing the relevant packages from both <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> and <code class="docutils literal notranslate"><span class="pre">scikit-activeml</span></code>.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy as np
-import matplotlib.pyplot as plt
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mlp</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-from sklearn.linear_model import LogisticRegression
-from sklearn.datasets import make_classification
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_classification</span>
 
-from skactiveml.classifier import SklearnClassifier
-from skactiveml.pool import UncertaintySampling
-from skactiveml.utils import unlabeled_indices, labeled_indices, MISSING_LABEL
-from skactiveml.visualization import plot_decision_boundary, plot_utilities
+<span class="kn">from</span> <span class="nn">skactiveml.classifier</span> <span class="kn">import</span> <span class="n">SklearnClassifier</span>
+<span class="kn">from</span> <span class="nn">skactiveml.pool</span> <span class="kn">import</span> <span class="n">UncertaintySampling</span>
+<span class="kn">from</span> <span class="nn">skactiveml.utils</span> <span class="kn">import</span> <span class="n">unlabeled_indices</span><span class="p">,</span> <span class="n">labeled_indices</span><span class="p">,</span> <span class="n">MISSING_LABEL</span>
+<span class="kn">from</span> <span class="nn">skactiveml.visualization</span> <span class="kn">import</span> <span class="n">plot_decision_boundary</span><span class="p">,</span> <span class="n">plot_utilities</span>
 
-import warnings
-warnings.filterwarnings(&quot;ignore&quot;)
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">mlp</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.facecolor&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;white&quot;</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -552,12 +298,12 @@ warnings.filterwarnings(&quot;ignore&quot;)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>X, y_true = make_classification(n_features=2, n_redundant=0, random_state=0)
-bound = [[min(X[:, 0]), min(X[:, 1])], [max(X[:, 0]), max(X[:, 1])]]
-plt.scatter(X[:, 0], X[:, 1], c=y_true, cmap=&#39;jet&#39;)
-plt.xlabel(&#39;Feature 1&#39;)
-plt.ylabel(&#39;Feature 2&#39;)
-plt.title(&#39;Data set&#39;);
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">,</span> <span class="n">y_true</span> <span class="o">=</span> <span class="n">make_classification</span><span class="p">(</span><span class="n">n_features</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_redundant</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">bound</span> <span class="o">=</span> <span class="p">[[</span><span class="nb">min</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]),</span> <span class="nb">min</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])],</span> <span class="p">[</span><span class="nb">max</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]),</span> <span class="nb">max</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])]]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y_true</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;jet&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Feature 1&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Feature 2&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Data set&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -576,8 +322,8 @@ plt.title(&#39;Data set&#39;);
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>y = np.full(shape=y_true.shape, fill_value=MISSING_LABEL)
-print(y)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">y_true</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -594,24 +340,25 @@ print(y)
  nan nan nan nan nan nan nan nan nan nan]
 </pre></div></div>
 </div>
-<p>There are many easy-to-use classification algorithms in <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>. In this example, we use the logistic regression classifier. Details of other classifiers can be accessed from here: <a class="reference external" href="https://scikit-activeml.readthedocs.io/en/latest/api/classifier.html">https://scikit-activeml.readthedocs.io/en/latest/api/classifier.html</a>. As <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> classifiers cannot cope with missing labels, we need to wrap these with the <code class="docutils literal notranslate"><span class="pre">SklearnClassifier</span></code>.</p>
+<p>There are many easy-to-use classification algorithms in <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>. In this example, we use the logistic regression classifier. Details of other classifiers can be accessed from <a class="reference external" href="https://scikit-activeml.github.io/scikit-activeml-docs/generated/api_reference.html#module-skactiveml.classifier">here</a>. As <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> classifiers cannot cope with missing labels, we need to wrap these with the <code class="docutils literal notranslate"><span class="pre">SklearnClassifier</span></code>.There are many easy-to-use classification algorithms in <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>.
+In this example, we use the logistic regression classifier. Details of other classifiers can be accessed from <a class="reference external" href="https://scikit-activeml.github.io/scikit-activeml-docs/generated/api_reference.html#module-skactiveml.classifier">here</a>. As <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> classifiers cannot cope with missing labels, we need to wrap these with the <code class="docutils literal notranslate"><span class="pre">SklearnClassifier</span></code>.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>clf = SklearnClassifier(LogisticRegression(), classes=np.unique(y_true))
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clf</span> <span class="o">=</span> <span class="n">SklearnClassifier</span><span class="p">(</span><span class="n">LogisticRegression</span><span class="p">(),</span> <span class="n">classes</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y_true</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 </section>
 <section id="Query-Strategy">
 <h2>Query Strategy<a class="headerlink" href="#Query-Strategy" title="Permalink to this headline">#</a></h2>
-<p>The query strategies are the central part of our library. In this example, we use uncertainty sampling with entropy to determine the most uncertain data points. All implemented strategies can be accessed from here: <a class="reference external" href="https://scikit-activeml.readthedocs.io/en/latest/api/pool.html">https://scikit-activeml.readthedocs.io/en/latest/api/pool.html</a>.</p>
+<p>The query strategies are the central part of our library. In this example, we use uncertainty sampling with entropy to determine the most uncertain data points. All implemented strategies can be accessed from <a class="reference external" href="https://scikit-activeml.github.io/scikit-activeml-docs/generated/api_reference.html#module-skactiveml.pool">here</a>.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>qs = UncertaintySampling(method=&#39;entropy&#39;, random_state=42)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qs</span> <span class="o">=</span> <span class="n">UncertaintySampling</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;entropy&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -619,31 +366,31 @@ print(y)
 <section id="Active-Learning-Cycle">
 <h2>Active Learning Cycle<a class="headerlink" href="#Active-Learning-Cycle" title="Permalink to this headline">#</a></h2>
 <p>In this example, we perform 20 iterations of the active learning cycle (<code class="docutils literal notranslate"><span class="pre">n_cycles=20</span></code>). In each iteration, we select one unlabeled sample to be labeled (<code class="docutils literal notranslate"><span class="pre">batch_size=1</span></code>). The sample is selected by an index (<code class="docutils literal notranslate"><span class="pre">query_idx</span></code>).</p>
-<p>The label is acquired by assigning the label from <code class="docutils literal notranslate"><span class="pre">y_true</span></code> to <code class="docutils literal notranslate"><span class="pre">y</span></code>. Then we retrain our classifier. We continue until we reach the 20 labeled data points. Below, we see the implementation of an active learning cycle. The first figure shows the decision boundary after acquiring the label of two data points. The second figure shows the decision boundary with 10 acquired labels, which shows significant improvement compared to the first figure. The last figure shows the decision boundary after
+<p>The label is acquired by assigning the label from <code class="docutils literal notranslate"><span class="pre">y_true</span></code> to <code class="docutils literal notranslate"><span class="pre">y</span></code>. Then, we retrain our classifier. We continue until we reach the 20 labeled data points. Below, we see the implementation of an active learning cycle. The first figure shows the decision boundary after acquiring the label of two data points. The second figure shows the decision boundary with 10 acquired labels, which shows significant improvement compared to the first figure. The last figure shows the decision boundary after
 acquiring labels for 20 data points. Finally, we use the accuracy score as a performance measure, which shows the accuracy of our classifier in the specified iterations.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>n_cycles = 20
-y = np.full(shape=y_true.shape, fill_value=MISSING_LABEL)
-clf.fit(X, y)
-for c in range(n_cycles):
-    query_idx = qs.query(X=X, y=y, clf=clf, batch_size=1)
-    y[query_idx] = y_true[query_idx]
-    clf.fit(X, y)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_cycles</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">y_true</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">)</span>
+<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_cycles</span><span class="p">):</span>
+    <span class="n">query_idx</span> <span class="o">=</span> <span class="n">qs</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">clf</span><span class="o">=</span><span class="n">clf</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">y</span><span class="p">[</span><span class="n">query_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_true</span><span class="p">[</span><span class="n">query_idx</span><span class="p">]</span>
+    <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
-    # plotting
-    unlbld_idx = unlabeled_indices(y)
-    lbld_idx = labeled_indices(y)
-    if len(lbld_idx) in [2, 10, 20]:
-        print(f&#39;After {len(lbld_idx)} iterations:&#39;)
-        print(f&#39;The accuracy score is {clf.score(X,y_true)}.&#39;)
-        plot_utilities(qs, X=X, y=y, clf=clf, feature_bound=bound)
-        plot_decision_boundary(clf, feature_bound=bound)
-        plt.scatter(X[unlbld_idx,0], X[unlbld_idx,1], c=&#39;gray&#39;)
-        plt.scatter(X[:,0], X[:,1], c=y, cmap=&#39;jet&#39;)
-        plt.show()
+    <span class="c1"># plotting</span>
+    <span class="n">unlbld_idx</span> <span class="o">=</span> <span class="n">unlabeled_indices</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">lbld_idx</span> <span class="o">=</span> <span class="n">labeled_indices</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">lbld_idx</span><span class="p">)</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">]:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;After </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">lbld_idx</span><span class="p">)</span><span class="si">}</span><span class="s1"> iterations:&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The accuracy score is </span><span class="si">{</span><span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y_true</span><span class="p">)</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
+        <span class="n">plot_utilities</span><span class="p">(</span><span class="n">qs</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">clf</span><span class="o">=</span><span class="n">clf</span><span class="p">,</span> <span class="n">feature_bound</span><span class="o">=</span><span class="n">bound</span><span class="p">)</span>
+        <span class="n">plot_decision_boundary</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">feature_bound</span><span class="o">=</span><span class="n">bound</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">unlbld_idx</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="n">unlbld_idx</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;jet&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>

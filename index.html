@@ -197,6 +197,11 @@
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#user-installation">
+   User Installation
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#examples">
    Examples
   </a>
@@ -211,7 +216,17 @@
      Stream-based Active Learning
     </a>
    </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#query-strategy-overview">
+     Query Strategy Overview
+    </a>
+   </li>
   </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#citing">
+   Citing
+  </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#indices-and-tables">
@@ -241,7 +256,7 @@
 <h1>Welcome to scikit-activeml’s documentation!<a class="headerlink" href="#welcome-to-scikit-activeml-s-documentation" title="Permalink to this headline">#</a></h1>
 <div class="toctree-wrapper compound">
 </div>
-<p><a class="reference external" href="https://scikit-activeml.github.io/scikit-activeml-docs/"><img alt="Doc" src="https://img.shields.io/badge/docs-latest-green" /></a> <a class="reference external" href="https://app.codecov.io/gh/scikit-activeml/scikit-activeml"><img alt="Codecov" src="https://codecov.io/gh/scikit-activeml/scikit-activeml/branch/master/graph/badge.svg" /></a> <a class="reference external" href="https://img.shields.io/badge/python-3.8%20%7C%203.9%20%7C%203.10-blue"><img alt="PythonVersion" src="https://img.shields.io/badge/python-3.8%20%7C%203.9%20%7C%203.10-blue" /></a> <a class="reference external" href="https://badge.fury.io/py/scikit-activeml"><img alt="PyPi" src="https://badge.fury.io/py/scikit-activeml.svg" /></a> <a class="reference external" href="https://www.preprints.org/manuscript/202103.0194/v1"><img alt="Paper" src="https://img.shields.io/badge/paper-10.20944/preprints202103.0194.v1-blue" /></a></p>
+<p><a class="reference external" href="https://scikit-activeml.github.io/scikit-activeml-docs/"><img alt="Doc" src="https://img.shields.io/badge/docs-latest-green" /></a> <a class="reference external" href="https://app.codecov.io/gh/scikit-activeml/scikit-activeml"><img alt="Codecov" src="https://codecov.io/gh/scikit-activeml/scikit-activeml/branch/master/graph/badge.svg" /></a> <a class="reference external" href="https://img.shields.io/badge/python-3.8%20%7C%203.9%20%7C%203.10-blue"><img alt="PythonVersion" src="https://img.shields.io/badge/python-3.8%20%7C%203.9%20%7C%203.10-blue" /></a> <a class="reference external" href="https://badge.fury.io/py/scikit-activeml"><img alt="PyPi" src="https://badge.fury.io/py/scikit-activeml.svg" /></a> <a class="reference external" href="https://www.preprints.org/manuscript/202103.0194/v1"><img alt="Paper" src="https://img.shields.io/badge/paper-10.20944/preprints202103.0194.v1-blue" /></a> <a class="reference external" href="https://github.com/psf/black"><img alt="Black" src="https://img.shields.io/badge/code%20style-black-000000.svg" /></a></p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -260,47 +275,52 @@ on top of <a class="reference external" href="https://scikit-learn.org/stable/">
 <a class="reference external" href="https://www.uni-kassel.de/eecs/en/sections/intelligent-embedded-systems/home">Intelligent Embedded Systems Group</a>
 at the University of Kassel and is distributed under the <a class="reference external" href="https://github.com/scikit-activeml/scikit-activeml/blob/master/LICENSE.txt">3-Clause BSD licence</a>.</p>
 </section>
+<section id="user-installation">
+<h1>User Installation<a class="headerlink" href="#user-installation" title="Permalink to this headline">#</a></h1>
+<p>The easiest way of installing scikit-activeml is using <code class="docutils literal notranslate"><span class="pre">pip</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">U</span> <span class="n">scikit</span><span class="o">-</span><span class="n">activeml</span>
+</pre></div>
+</div>
+</section>
 <section id="examples">
 <h1>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">#</a></h1>
-<p>In the following, there are two simple examples illustrating the straightforwardness
-of implementing active learning cycles with our Python package <code class="docutils literal notranslate"><span class="pre">skactiveml</span></code>.
-For more in-depth examples, we refer to our
-<a class="reference external" href="https://scikit-activeml.github.io/scikit-activeml-docs/">tutorial section</a> offering
-a broad overview of different use-cases:</p>
+<p>We provide a broad overview of different use-cases in our <a class="reference external" href="https://scikit-activeml.github.io/scikit-activeml-docs/tutorials.html">tutorial section</a> offering</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://github.com/scikit-activeml/scikit-activeml/blob/master/tutorials/00_pool_getting_started.ipynb">pool-based active learning – getting started</a>,</p></li>
-<li><p><a class="reference external" href="https://github.com/scikit-activeml/scikit-activeml/blob/master/tutorials/01_deep_pool_al_with_skorch.ipynb">deep pool-based active learning – scikit-activeml with skorch</a>,</p></li>
-<li><p><a class="reference external" href="https://github.com/scikit-activeml/scikit-activeml/blob/master/tutorials/10_multiple_annotators_getting_started.ipynb">multi-annotator pool-based active learning – getting started</a>,</p></li>
-<li><p><a class="reference external" href="https://github.com/scikit-activeml/scikit-activeml/blob/master/tutorials/20_stream_getting_started.ipynb">stream-based active learning – getting started</a>,</p></li>
-<li><p>and <a class="reference external" href="https://github.com/scikit-activeml/scikit-activeml/blob/master/tutorials/21_stream_batch_with_pool_al.ipynb">batch stream-based active learning with pool-based query strategies</a>.</p></li>
+<li><p><a class="reference external" href="https://scikit-activeml.github.io/scikit-activeml-docs/generated/tutorials/00_pool_getting_started.html">Pool-based Active Learning – Getting Started</a>,</p></li>
+<li><p><a class="reference external" href="https://scikit-activeml.github.io/scikit-activeml-docs/generated/tutorials/01_deep_pool_al_with_skorch.html">Deep Pool-based Active Learning – scikit-activeml with Skorch</a>,</p></li>
+<li><p><a class="reference external" href="https://scikit-activeml.github.io/scikit-activeml-docs/generated/tutorials/02_pool_regression_getting_started.html">Pool-based Active Learning for Regression - Getting Started</a>,</p></li>
+<li><p><a class="reference external" href="https://scikit-activeml.github.io/scikit-activeml-docs/generated/tutorials/10_multiple_annotators_getting_started.ipynb">Multi-annotator Pool-based Active Learning – Getting Started</a>,</p></li>
+<li><p><a class="reference external" href="https://scikit-activeml.github.io/scikit-activeml-docs/generated/tutorials/20_stream_getting_started.ipynb">Stream-based Active Learning – Getting Started</a>,</p></li>
+<li><p>and <a class="reference external" href="https://scikit-activeml.github.io/scikit-activeml-docs/generated/tutorials/21_stream_batch_with_pool_al.ipynb">Batch Stream-based Active Learning with Pool Query Strategies</a>.</p></li>
 </ul>
+<p>Two simple examples illustrating the straightforwardness of implementing active learning cycles with our Python package <code class="docutils literal notranslate"><span class="pre">skactiveml</span></code> are given in the following.</p>
 <section id="pool-based-active-learning">
 <h2>Pool-based Active Learning<a class="headerlink" href="#pool-based-active-learning" title="Permalink to this headline">#</a></h2>
-<p>The following code implements an active learning cycle with 20 iterations using a Gaussian process
+<p>The following code snippet implements an active learning cycle with 20 iterations using a Gaussian process
 classifier and uncertainty sampling. To use other classifiers, you can simply wrap classifiers from
 <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> or use classifiers provided by <code class="docutils literal notranslate"><span class="pre">skactiveml</span></code>. Note that the main difficulty using
 active learning with <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> is the ability to handle unlabeled data, which we denote as a specific value
 (<code class="docutils literal notranslate"><span class="pre">MISSING_LABEL</span></code>) in the label vector <code class="docutils literal notranslate"><span class="pre">y</span></code>. More query strategies can be found in the documentation.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">sklearn.gaussian_process</span> <span class="kn">import</span> <span class="n">GaussianProcessClassifier</span>
 <span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_blobs</span>
 <span class="kn">from</span> <span class="nn">skactiveml.pool</span> <span class="kn">import</span> <span class="n">UncertaintySampling</span>
 <span class="kn">from</span> <span class="nn">skactiveml.utils</span> <span class="kn">import</span> <span class="n">unlabeled_indices</span><span class="p">,</span> <span class="n">MISSING_LABEL</span>
 <span class="kn">from</span> <span class="nn">skactiveml.classifier</span> <span class="kn">import</span> <span class="n">SklearnClassifier</span>
-<span class="kn">from</span> <span class="nn">skactiveml.visualization</span> <span class="kn">import</span> <span class="n">plot_decision_boundary</span><span class="p">,</span> <span class="n">plot_utilities</span>
 
 <span class="c1"># Generate data set.</span>
 <span class="n">X</span><span class="p">,</span> <span class="n">y_true</span> <span class="o">=</span> <span class="n">make_blobs</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">centers</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">y_true</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">)</span>
 
-<span class="c1"># GaussianProcessClassifier needs initial training data otherwise a warning will</span>
-<span class="c1"># be raised by SklearnClassifier. Therefore, the first 10 instances are used as</span>
-<span class="c1"># training data.</span>
+<span class="c1"># Use the first 10 instances as initial training data.</span>
 <span class="n">y</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_true</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
 
 <span class="c1"># Create classifier and query strategy.</span>
-<span class="n">clf</span> <span class="o">=</span> <span class="n">SklearnClassifier</span><span class="p">(</span><span class="n">GaussianProcessClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span><span class="n">classes</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y_true</span><span class="p">),</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">SklearnClassifier</span><span class="p">(</span>
+    <span class="n">GaussianProcessClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+    <span class="n">classes</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y_true</span><span class="p">),</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
 <span class="n">qs</span> <span class="o">=</span> <span class="n">UncertaintySampling</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;entropy&#39;</span><span class="p">)</span>
 
 <span class="c1"># Execute active learning cycle.</span>
@@ -311,33 +331,20 @@ active learning with <code class="docutils literal notranslate"><span class="pre
 
 <span class="c1"># Fit final classifier.</span>
 <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-
-<span class="c1"># Visualize resulting classifier and current utilities.</span>
-<span class="n">bound</span> <span class="o">=</span> <span class="p">[[</span><span class="nb">min</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]),</span> <span class="nb">min</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])],</span> <span class="p">[</span><span class="nb">max</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]),</span> <span class="nb">max</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])]]</span>
-<span class="n">unlbld_idx</span> <span class="o">=</span> <span class="n">unlabeled_indices</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Accuracy score: </span><span class="si">{</span><span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y_true</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
-<span class="n">plot_utilities</span><span class="p">(</span><span class="n">qs</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">clf</span><span class="o">=</span><span class="n">clf</span><span class="p">,</span> <span class="n">feature_bound</span><span class="o">=</span><span class="n">bound</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
-<span class="n">plot_decision_boundary</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">feature_bound</span><span class="o">=</span><span class="n">bound</span><span class="p">,</span> <span class="n">confidence</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">unlbld_idx</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="n">unlbld_idx</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;jet&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>As output of this code snippet, we obtain the actively trained Gaussian process classifier
-including a visualization of its decision boundary and the sample utilities computed with
-uncertainty sampling.</p>
+<p>As a result, we obtain an actively trained Gaussian process classifier.
+A corresponding visualization of its decision boundary (black line) and the
+sample utilities (greenish contours) is given below.</p>
 <a class="reference internal image-reference" href="https://raw.githubusercontent.com/scikit-activeml/scikit-activeml/master/docs/logos/pal-example-output.png"><img alt="https://raw.githubusercontent.com/scikit-activeml/scikit-activeml/master/docs/logos/pal-example-output.png" src="https://raw.githubusercontent.com/scikit-activeml/scikit-activeml/master/docs/logos/pal-example-output.png" style="width: 400px;" /></a>
 </section>
 <section id="stream-based-active-learning">
 <h2>Stream-based Active Learning<a class="headerlink" href="#stream-based-active-learning" title="Permalink to this headline">#</a></h2>
-<p>The following code implements an active learning cycle with 200 data points and
+<p>The following code snippet implements an active learning cycle with 200 data points and
 the default budget of 10% using a pwc classifier and split uncertainty sampling.
 Like in the pool-based example you can wrap other classifiers from <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>,
 <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> compatible classifiers or like the example classifiers provided by <code class="docutils literal notranslate"><span class="pre">skactiveml</span></code>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">gaussian_filter1d</span>
 <span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_blobs</span>
 <span class="kn">from</span> <span class="nn">skactiveml.classifier</span> <span class="kn">import</span> <span class="n">ParzenWindowClassifier</span>
 <span class="kn">from</span> <span class="nn">skactiveml.stream</span> <span class="kn">import</span> <span class="n">Split</span>
@@ -367,21 +374,36 @@ Like in the pool-based example you can wrap other classifiers from <code class="
     <span class="n">qs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">candidates</span><span class="o">=</span><span class="n">X_cand</span><span class="p">,</span> <span class="n">queried_indices</span><span class="o">=</span><span class="n">sampled_indices</span><span class="p">)</span>
     <span class="n">X_train</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x_t</span><span class="p">)</span>
     <span class="n">y_train</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y_cand</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sampled_indices</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">MISSING_LABEL</span><span class="p">)</span>
-
-<span class="c1"># Plot the classifier&#39;s learning accuracy.</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Learning curve&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;number of learning cycles&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;accuracy&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gaussian_filter1d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">correct_classifications</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">),</span> <span class="mi">4</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>As output of this code snippet, we obtain the actively trained pwc classifier incuding
-a visualization of its accuracy over the 200 samples.</p>
+<p>As a result, we obtain an actively trained Parzen window classifier.
+A corresponding visualization of its accuracy curve accross the active learning
+cycle is given below.</p>
 <a class="reference internal image-reference" href="https://raw.githubusercontent.com/scikit-activeml/scikit-activeml/master/docs/logos/stream-example-output.png"><img alt="https://raw.githubusercontent.com/scikit-activeml/scikit-activeml/master/docs/logos/stream-example-output.png" src="https://raw.githubusercontent.com/scikit-activeml/scikit-activeml/master/docs/logos/stream-example-output.png" style="width: 400px;" /></a>
+</section>
+<section id="query-strategy-overview">
+<h2>Query Strategy Overview<a class="headerlink" href="#query-strategy-overview" title="Permalink to this headline">#</a></h2>
+<p>For better orientation, we provide an <a class="reference external" href="https://scikit-activeml.github.io/scikit-activeml-docs/generated/strategy_overview.html">overview</a>
+(incl. paper references and <a class="reference external" href="https://scikit-activeml.github.io/scikit-activeml-docs/generated/sphinx_gallery_examples/index.html">visualizations</a>)
+of the query strategies implemented by <code class="docutils literal notranslate"><span class="pre">skactiveml</span></code>.</p>
+<p><a class="reference internal" href="https://github.com/scikit-activeml/scikit-activeml/blob/271-update-documentation/docs/logos/strategy-overview.gif"><img alt="Overview" src="https://github.com/scikit-activeml/scikit-activeml/blob/271-update-documentation/docs/logos/strategy-overview.gif" style="width: 400px;" /></a> <a class="reference internal" href="https://github.com/scikit-activeml/scikit-activeml/blob/271-update-documentation/docs/logos/example-overview.gif"><img alt="Visualization" src="https://github.com/scikit-activeml/scikit-activeml/blob/271-update-documentation/docs/logos/example-overview.gif" style="width: 400px;" /></a></p>
 <p>You can find more examples under <a class="reference internal" href="generated/sphinx_gallery_examples/index.html"><span class="doc">Examples</span></a>.</p>
 </section>
+</section>
+<section id="citing">
+<h1>Citing<a class="headerlink" href="#citing" title="Permalink to this headline">#</a></h1>
+<p>If you use <code class="docutils literal notranslate"><span class="pre">skactiveml</span></code> in one of your research projects and find it helpful,
+please cite the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@article</span><span class="p">{</span><span class="n">skactiveml2021</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="p">{</span><span class="n">scikit</span><span class="o">-</span><span class="n">activeml</span><span class="p">:</span> <span class="p">{</span><span class="n">A</span><span class="p">}</span> <span class="p">{</span><span class="n">L</span><span class="p">}</span><span class="n">ibrary</span> <span class="ow">and</span> <span class="p">{</span><span class="n">T</span><span class="p">}</span><span class="n">oolbox</span> <span class="k">for</span> <span class="p">{</span><span class="n">A</span><span class="p">}</span><span class="n">ctive</span> <span class="p">{</span><span class="n">L</span><span class="p">}</span><span class="n">earning</span> <span class="p">{</span><span class="n">A</span><span class="p">}</span><span class="n">lgorithms</span><span class="p">},</span>
+    <span class="n">author</span><span class="o">=</span><span class="p">{</span><span class="n">Daniel</span> <span class="n">Kottke</span> <span class="ow">and</span> <span class="n">Marek</span> <span class="n">Herde</span> <span class="ow">and</span> <span class="n">Tuan</span> <span class="n">Pham</span> <span class="n">Minh</span> <span class="ow">and</span> <span class="n">Alexander</span> <span class="n">Benz</span> <span class="ow">and</span> <span class="n">Pascal</span> <span class="n">Mergard</span> <span class="ow">and</span> <span class="n">Atal</span> <span class="n">Roghman</span> <span class="ow">and</span> <span class="n">Christoph</span> <span class="n">Sandrock</span> <span class="ow">and</span> <span class="n">Bernhard</span> <span class="n">Sick</span><span class="p">},</span>
+    <span class="n">journal</span><span class="o">=</span><span class="p">{</span><span class="n">Preprints</span><span class="p">},</span>
+    <span class="n">doi</span><span class="o">=</span><span class="p">{</span><span class="mf">10.20944</span><span class="o">/</span><span class="n">preprints202103</span><span class="mf">.0194</span><span class="o">.</span><span class="n">v1</span><span class="p">},</span>
+    <span class="n">year</span><span class="o">=</span><span class="p">{</span><span class="mi">2021</span><span class="p">},</span>
+    <span class="n">url</span><span class="o">=</span><span class="p">{</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">scikit</span><span class="o">-</span><span class="n">activeml</span><span class="o">/</span><span class="n">scikit</span><span class="o">-</span><span class="n">activeml</span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </section>
 <section id="indices-and-tables">
 <h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">#</a></h1>

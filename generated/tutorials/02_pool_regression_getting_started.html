@@ -29,6 +29,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css" />
 
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695">
@@ -220,9 +221,24 @@
     
     <div class="toc-item">
       
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
 
 <nav id="bd-toc-nav">
-    
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#Data-Set-Generation">
+   Data Set Generation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#Active-Regression">
+   Active Regression
+  </a>
+ </li>
+</ul>
+
 </nav>
     </div>
     
@@ -240,331 +256,79 @@
               
               <article class="bd-article" role="main">
                 
-  
-<style>
-/* CSS for nbsphinx extension */
-
-/* remove conflicting styling from Sphinx themes */
-div.nbinput.container div.prompt *,
-div.nboutput.container div.prompt *,
-div.nbinput.container div.input_area pre,
-div.nboutput.container div.output_area pre,
-div.nbinput.container div.input_area .highlight,
-div.nboutput.container div.output_area .highlight {
-    border: none;
-    padding: 0;
-    margin: 0;
-    box-shadow: none;
-}
-
-div.nbinput.container > div[class*=highlight],
-div.nboutput.container > div[class*=highlight] {
-    margin: 0;
-}
-
-div.nbinput.container div.prompt *,
-div.nboutput.container div.prompt * {
-    background: none;
-}
-
-div.nboutput.container div.output_area .highlight,
-div.nboutput.container div.output_area pre {
-    background: unset;
-}
-
-div.nboutput.container div.output_area div.highlight {
-    color: unset;  /* override Pygments text color */
-}
-
-/* avoid gaps between output lines */
-div.nboutput.container div[class*=highlight] pre {
-    line-height: normal;
-}
-
-/* input/output containers */
-div.nbinput.container,
-div.nboutput.container {
-    display: -webkit-flex;
-    display: flex;
-    align-items: flex-start;
-    margin: 0;
-    width: 100%;
-}
-@media (max-width: 540px) {
-    div.nbinput.container,
-    div.nboutput.container {
-        flex-direction: column;
-    }
-}
-
-/* input container */
-div.nbinput.container {
-    padding-top: 5px;
-}
-
-/* last container */
-div.nblast.container {
-    padding-bottom: 5px;
-}
-
-/* input prompt */
-div.nbinput.container div.prompt pre {
-    color: #307FC1;
-}
-
-/* output prompt */
-div.nboutput.container div.prompt pre {
-    color: #BF5B3D;
-}
-
-/* all prompts */
-div.nbinput.container div.prompt,
-div.nboutput.container div.prompt {
-    width: 4.5ex;
-    padding-top: 5px;
-    position: relative;
-    user-select: none;
-}
-
-div.nbinput.container div.prompt > div,
-div.nboutput.container div.prompt > div {
-    position: absolute;
-    right: 0;
-    margin-right: 0.3ex;
-}
-
-@media (max-width: 540px) {
-    div.nbinput.container div.prompt,
-    div.nboutput.container div.prompt {
-        width: unset;
-        text-align: left;
-        padding: 0.4em;
-    }
-    div.nboutput.container div.prompt.empty {
-        padding: 0;
-    }
-
-    div.nbinput.container div.prompt > div,
-    div.nboutput.container div.prompt > div {
-        position: unset;
-    }
-}
-
-/* disable scrollbars and line breaks on prompts */
-div.nbinput.container div.prompt pre,
-div.nboutput.container div.prompt pre {
-    overflow: hidden;
-    white-space: pre;
-}
-
-/* input/output area */
-div.nbinput.container div.input_area,
-div.nboutput.container div.output_area {
-    -webkit-flex: 1;
-    flex: 1;
-    overflow: auto;
-}
-@media (max-width: 540px) {
-    div.nbinput.container div.input_area,
-    div.nboutput.container div.output_area {
-        width: 100%;
-    }
-}
-
-/* input area */
-div.nbinput.container div.input_area {
-    border: 1px solid #e0e0e0;
-    border-radius: 2px;
-    /*background: #f5f5f5;*/
-}
-
-/* override MathJax center alignment in output cells */
-div.nboutput.container div[class*=MathJax] {
-    text-align: left !important;
-}
-
-/* override sphinx.ext.imgmath center alignment in output cells */
-div.nboutput.container div.math p {
-    text-align: left;
-}
-
-/* standard error */
-div.nboutput.container div.output_area.stderr {
-    background: #fdd;
-}
-
-/* ANSI colors */
-.ansi-black-fg { color: #3E424D; }
-.ansi-black-bg { background-color: #3E424D; }
-.ansi-black-intense-fg { color: #282C36; }
-.ansi-black-intense-bg { background-color: #282C36; }
-.ansi-red-fg { color: #E75C58; }
-.ansi-red-bg { background-color: #E75C58; }
-.ansi-red-intense-fg { color: #B22B31; }
-.ansi-red-intense-bg { background-color: #B22B31; }
-.ansi-green-fg { color: #00A250; }
-.ansi-green-bg { background-color: #00A250; }
-.ansi-green-intense-fg { color: #007427; }
-.ansi-green-intense-bg { background-color: #007427; }
-.ansi-yellow-fg { color: #DDB62B; }
-.ansi-yellow-bg { background-color: #DDB62B; }
-.ansi-yellow-intense-fg { color: #B27D12; }
-.ansi-yellow-intense-bg { background-color: #B27D12; }
-.ansi-blue-fg { color: #208FFB; }
-.ansi-blue-bg { background-color: #208FFB; }
-.ansi-blue-intense-fg { color: #0065CA; }
-.ansi-blue-intense-bg { background-color: #0065CA; }
-.ansi-magenta-fg { color: #D160C4; }
-.ansi-magenta-bg { background-color: #D160C4; }
-.ansi-magenta-intense-fg { color: #A03196; }
-.ansi-magenta-intense-bg { background-color: #A03196; }
-.ansi-cyan-fg { color: #60C6C8; }
-.ansi-cyan-bg { background-color: #60C6C8; }
-.ansi-cyan-intense-fg { color: #258F8F; }
-.ansi-cyan-intense-bg { background-color: #258F8F; }
-.ansi-white-fg { color: #C5C1B4; }
-.ansi-white-bg { background-color: #C5C1B4; }
-.ansi-white-intense-fg { color: #A1A6B2; }
-.ansi-white-intense-bg { background-color: #A1A6B2; }
-
-.ansi-default-inverse-fg { color: #FFFFFF; }
-.ansi-default-inverse-bg { background-color: #000000; }
-
-.ansi-bold { font-weight: bold; }
-.ansi-underline { text-decoration: underline; }
-
-
-div.nbinput.container div.input_area div[class*=highlight] > pre,
-div.nboutput.container div.output_area div[class*=highlight] > pre,
-div.nboutput.container div.output_area div[class*=highlight].math,
-div.nboutput.container div.output_area.rendered_html,
-div.nboutput.container div.output_area > div.output_javascript,
-div.nboutput.container div.output_area:not(.rendered_html) > img{
-    padding: 5px;
-    margin: 0;
-}
-
-/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
-div.nbinput.container div.input_area > div[class^='highlight'],
-div.nboutput.container div.output_area > div[class^='highlight']{
-    overflow-y: hidden;
-}
-
-/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
-.prompt .copybtn {
-    display: none;
-}
-
-/* Some additional styling taken form the Jupyter notebook CSS */
-.jp-RenderedHTMLCommon table,
-div.rendered_html table {
-  border: none;
-  border-collapse: collapse;
-  border-spacing: 0;
-  color: black;
-  font-size: 12px;
-  table-layout: fixed;
-}
-.jp-RenderedHTMLCommon thead,
-div.rendered_html thead {
-  border-bottom: 1px solid black;
-  vertical-align: bottom;
-}
-.jp-RenderedHTMLCommon tr,
-.jp-RenderedHTMLCommon th,
-.jp-RenderedHTMLCommon td,
-div.rendered_html tr,
-div.rendered_html th,
-div.rendered_html td {
-  text-align: right;
-  vertical-align: middle;
-  padding: 0.5em 0.5em;
-  line-height: normal;
-  white-space: normal;
-  max-width: none;
-  border: none;
-}
-.jp-RenderedHTMLCommon th,
-div.rendered_html th {
-  font-weight: bold;
-}
-.jp-RenderedHTMLCommon tbody tr:nth-child(odd),
-div.rendered_html tbody tr:nth-child(odd) {
-  background: #f5f5f5;
-}
-.jp-RenderedHTMLCommon tbody tr:hover,
-div.rendered_html tbody tr:hover {
-  background: rgba(66, 165, 245, 0.2);
-}
-</style>
-<section id="Pool-based-Active-Learning-for-Regression---Getting-Started">
+  <section id="Pool-based-Active-Learning-for-Regression---Getting-Started">
 <h1>Pool-based Active Learning for Regression - Getting Started<a class="headerlink" href="#Pool-based-Active-Learning-for-Regression---Getting-Started" title="Permalink to this headline">#</a></h1>
-<p>This notebook gives on overview over some query strategies for active learning in regression.</p>
+<p>This notebook gives an overview of some query strategies for active learning in regression.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span>import warnings
-warnings.filterwarnings(&#39;ignore&#39;)
-import numpy as np
-import matplotlib.pyplot as plt
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mlp</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-from skactiveml.pool import GreedySamplingX, GreedySamplingTarget, QueryByCommittee, \
-    KLDivergenceMaximization
-from sklearn.ensemble import BaggingRegressor
-from skactiveml.regressor import NICKernelRegressor, SklearnRegressor
-from skactiveml.utils import call_func, is_labeled
-from scipy.stats import norm, uniform
+<span class="kn">from</span> <span class="nn">skactiveml.pool</span> <span class="kn">import</span> <span class="n">GreedySamplingX</span><span class="p">,</span> <span class="n">GreedySamplingTarget</span><span class="p">,</span> <span class="n">QueryByCommittee</span><span class="p">,</span> \
+    <span class="n">KLDivergenceMaximization</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">BaggingRegressor</span>
+<span class="kn">from</span> <span class="nn">skactiveml.regressor</span> <span class="kn">import</span> <span class="n">NICKernelRegressor</span><span class="p">,</span> <span class="n">SklearnRegressor</span>
+<span class="kn">from</span> <span class="nn">skactiveml.utils</span> <span class="kn">import</span> <span class="n">call_func</span><span class="p">,</span> <span class="n">is_labeled</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span><span class="p">,</span> <span class="n">uniform</span>
+
+<span class="n">mlp</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.facecolor&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;white&quot;</span>
 </pre></div>
 </div>
 </div>
-<p>First, we generate a dataset. This notebook provides one of four datasets.</p>
+<section id="Data-Set-Generation">
+<h2>Data Set Generation<a class="headerlink" href="#Data-Set-Generation" title="Permalink to this headline">#</a></h2>
+<p>First, we generate a dataset. This notebook provides four one-dimensional datasets.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span>random_state = 0
-n_iterations = 8
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">n_iterations</span> <span class="o">=</span> <span class="mi">8</span>
 
-def uniform_rvs(*pos_args, **key_word_args):
-    return uniform.rvs(*pos_args, **key_word_args, random_state=random_state)
+<span class="k">def</span> <span class="nf">uniform_rvs</span><span class="p">(</span><span class="o">*</span><span class="n">pos_args</span><span class="p">,</span> <span class="o">**</span><span class="n">key_word_args</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">uniform</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="o">*</span><span class="n">pos_args</span><span class="p">,</span> <span class="o">**</span><span class="n">key_word_args</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span>
 
-def norm_rvs(*pos_args, **key_word_args):
-    return norm.rvs(*pos_args, **key_word_args, random_state=random_state)
+<span class="k">def</span> <span class="nf">norm_rvs</span><span class="p">(</span><span class="o">*</span><span class="n">pos_args</span><span class="p">,</span> <span class="o">**</span><span class="n">key_word_args</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">norm</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="o">*</span><span class="n">pos_args</span><span class="p">,</span> <span class="o">**</span><span class="n">key_word_args</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span>
 
-settings = {
-    &#39;basic&#39;: (
-        lambda X_: (X_**3 + 2*X_**2 + X_ - 1).flatten(),
-        np.sort(np.concatenate((uniform_rvs(0, 1, 60),uniform_rvs(1, 0.5, 30), uniform_rvs(1.5, 0.5, 10)))),
-        np.concatenate((norm_rvs(0, 1.5, 60), norm_rvs(0, 0.5, 40)))
-    ),
-    &#39;complex_func&#39;: (
-        lambda X_: (6/7*X_**6 - 10*X_**3 + 20*X_).flatten(),
-        np.sort(uniform_rvs(0, 2, 100)),
-        norm_rvs(0, 0.5, 100)
-    ),
-    &#39;high_noise&#39;: (
-        lambda X_: X_.flatten(),
-        np.sort(np.concatenate(tuple(uniform_rvs(s, 0.5, n) for s, n in [(0, 10), (0.5, 40), (1.0, 40), (1.5, 10)]))),
-        np.concatenate(tuple(norm_rvs(0, std, n) for std, n in [(0.5, 10), (2.5, 80), (0.5, 10)]))
-    ),
-    &#39;high_density_diff&#39;: (
-        lambda X_: (X_**2).flatten(),
-        np.sort(np.concatenate((uniform_rvs(0, 1, 10), uniform_rvs(1, 0.25, 80), uniform_rvs(1.25, 0.75, 10)))),
-        norm_rvs(0, 0.25, 100)
-    )
-}
+<span class="n">settings</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;basic&#39;</span><span class="p">:</span> <span class="p">(</span>
+        <span class="k">lambda</span> <span class="n">X_</span><span class="p">:</span> <span class="p">(</span><span class="n">X_</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">X_</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">X_</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">uniform_rvs</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">60</span><span class="p">),</span><span class="n">uniform_rvs</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span> <span class="n">uniform_rvs</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)))),</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">norm_rvs</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">60</span><span class="p">),</span> <span class="n">norm_rvs</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">40</span><span class="p">)))</span>
+    <span class="p">),</span>
+    <span class="s1">&#39;complex_func&#39;</span><span class="p">:</span> <span class="p">(</span>
+        <span class="k">lambda</span> <span class="n">X_</span><span class="p">:</span> <span class="p">(</span><span class="mi">6</span><span class="o">/</span><span class="mi">7</span><span class="o">*</span><span class="n">X_</span><span class="o">**</span><span class="mi">6</span> <span class="o">-</span> <span class="mi">10</span><span class="o">*</span><span class="n">X_</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">20</span><span class="o">*</span><span class="n">X_</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">uniform_rvs</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">100</span><span class="p">)),</span>
+        <span class="n">norm_rvs</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="p">),</span>
+    <span class="s1">&#39;high_noise&#39;</span><span class="p">:</span> <span class="p">(</span>
+        <span class="k">lambda</span> <span class="n">X_</span><span class="p">:</span> <span class="n">X_</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">uniform_rvs</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">40</span><span class="p">),</span> <span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mi">40</span><span class="p">),</span> <span class="p">(</span><span class="mf">1.5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)]))),</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">norm_rvs</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">std</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">std</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="p">[(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="mf">2.5</span><span class="p">,</span> <span class="mi">80</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)]))</span>
+    <span class="p">),</span>
+    <span class="s1">&#39;high_density_diff&#39;</span><span class="p">:</span> <span class="p">(</span>
+        <span class="k">lambda</span> <span class="n">X_</span><span class="p">:</span> <span class="p">(</span><span class="n">X_</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">uniform_rvs</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">uniform_rvs</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mi">80</span><span class="p">),</span> <span class="n">uniform_rvs</span><span class="p">(</span><span class="mf">1.25</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mi">10</span><span class="p">)))),</span>
+        <span class="n">norm_rvs</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="p">)</span>
+<span class="p">}</span>
 
-for variant in [&#39;basic&#39;, &#39;complex_func&#39;, &#39;high_noise&#39;, &#39;high_density_diff&#39;]:
-    true_function, X, noise = settings[variant]
-    X = X.reshape(-1, 1)
-    y_true = true_function(X) + noise
-    X_test = np.linspace(0, 2, num=200).reshape(-1, 1)
+<span class="k">for</span> <span class="n">variant</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;basic&#39;</span><span class="p">,</span> <span class="s1">&#39;complex_func&#39;</span><span class="p">,</span> <span class="s1">&#39;high_noise&#39;</span><span class="p">,</span> <span class="s1">&#39;high_density_diff&#39;</span><span class="p">]:</span>
+    <span class="n">true_function</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">noise</span> <span class="o">=</span> <span class="n">settings</span><span class="p">[</span><span class="n">variant</span><span class="p">]</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">y_true</span> <span class="o">=</span> <span class="n">true_function</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">+</span> <span class="n">noise</span>
+    <span class="n">X_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
-    plt.title(variant)
-    plt.scatter(X, y_true)
-    plt.plot(X, true_function(X))
-    plt.show()
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">variant</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y_true</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">true_function</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -596,81 +360,85 @@ for variant in [&#39;basic&#39;, &#39;complex_func&#39;, &#39;high_noise&#39;, &
 <img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_3_3.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_3_3.png" />
 </div>
 </div>
-<p>Now we want to look at how the different query strategies determine which sample to query. We do so by looking at the utility assigned by each query strategy for querying a samples. The assigned utility is displayed by the lightgreen line matching the axis to the right. The unlabeled samples are lightblue, the already labeled samples are orange, and the samples selected to be queried next is red. The model prediction, build by the orange samples, are displayed in black.</p>
-<p>In this section a small evaluation of the query behavior of the above presented query strategies is given based on the <code class="docutils literal notranslate"><span class="pre">basic</span></code> data set.</p>
-<p>GreedySamplingX queries labels quiet uniformly over the feature space creating utility spikes evenly between the labeled samples across the feature space.</p>
-<p>GreedySamplingTarget has a strong tendency to query labels where the target values are steep if the function is monotone, since there the target values differ the most from the prediction.</p>
-<p>QueryByCommittee only queries, where some target data is available, slowly gaining diversity. This happens because all the learners share the same prior and thus do not differ, where no target data exist.</p>
-<p>KLDivergenceMaximization seems to rely on the steepness of the target data the density and the variance, which seems to create a quiet uniform querying density.</p>
+</section>
+<section id="Active-Regression">
+<h2>Active Regression<a class="headerlink" href="#Active-Regression" title="Permalink to this headline">#</a></h2>
+<p>Now, we want to look at how the different query strategies determine, which samples to query. We do so by looking at the utility assigned by each query strategy for querying a samples. The assigned utility is displayed by the lightgreen line matching the axis to the right. The unlabeled samples are lightblue, the already labeled samples are orange, and the sample selected to be queried next is red. The model predictions, built by the orange samples, are displayed in black. We provide a small
+evaluation of the query behavior for the four dataset in the cell below. As a result, we make the following observations: - <code class="docutils literal notranslate"><span class="pre">GreedySamplingX</span></code> queries labels quiet uniformly over the feature space creating utility spikes evenly between the labeled samples across the feature space. - <code class="docutils literal notranslate"><span class="pre">GreedySamplingTarget</span></code> has a strong tendency to query labels where the target values are steep if the function is monotone, since there the target values differ the most from the prediction. - <code class="docutils literal notranslate"><span class="pre">QueryByCommittee</span></code>
+only queries, where some target data is available, slowly gaining diversity. This happens because all the learners share the same prior and thus do not differ, where no target data exist. - <code class="docutils literal notranslate"><span class="pre">KLDivergenceMaximization</span></code> seems to rely on the steepness of the target data the density and the variance, which seems to create a quiet uniform querying density.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span>for variant in [&#39;basic&#39;, &#39;complex_func&#39;, &#39;high_noise&#39;, &#39;high_density_diff&#39;]:
-    print(variant)
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">variant</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;basic&#39;</span><span class="p">,</span> <span class="s1">&#39;complex_func&#39;</span><span class="p">,</span> <span class="s1">&#39;high_noise&#39;</span><span class="p">,</span> <span class="s1">&#39;high_density_diff&#39;</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">variant</span><span class="p">)</span>
 
-    true_function, X, noise = settings[variant] # select another data set here
-    X = X.reshape(-1, 1)
-    y_true = true_function(X) + noise
-    X_test = np.linspace(0, 2, num=200).reshape(-1, 1)
+    <span class="n">true_function</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">noise</span> <span class="o">=</span> <span class="n">settings</span><span class="p">[</span><span class="n">variant</span><span class="p">]</span> <span class="c1"># select another data set here</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">y_true</span> <span class="o">=</span> <span class="n">true_function</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">+</span> <span class="n">noise</span>
+    <span class="n">X_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
-    qs_s = [
-        GreedySamplingX(random_state=random_state),
-        GreedySamplingTarget(random_state=random_state),
-        QueryByCommittee(random_state=random_state),
-        KLDivergenceMaximization(
-            random_state=random_state,
-            integration_dict_target_val={
-                &quot;method&quot;: &quot;gauss_hermite&quot;,
-                &quot;n_integration_samples&quot;: 5,
-            },
-        ),
-    ]
+    <span class="n">qs_s</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">GreedySamplingX</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">),</span>
+        <span class="n">GreedySamplingTarget</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">),</span>
+        <span class="n">QueryByCommittee</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">),</span>
+        <span class="n">KLDivergenceMaximization</span><span class="p">(</span>
+            <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">,</span>
+            <span class="n">integration_dict_target_val</span><span class="o">=</span><span class="p">{</span>
+                <span class="s2">&quot;method&quot;</span><span class="p">:</span> <span class="s2">&quot;assume_linear&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;n_integration_samples&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+            <span class="p">},</span>
+            <span class="n">integration_dict_cross_entropy</span><span class="o">=</span><span class="p">{</span>
+                <span class="s2">&quot;method&quot;</span><span class="p">:</span> <span class="s2">&quot;assume_linear&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;n_integration_samples&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">),</span>
+    <span class="p">]</span>
 
-    y = np.full_like(y_true, np.nan)
-    y_s = [y.copy() for _ in range(len(qs_s))]
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full_like</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+    <span class="n">y_s</span> <span class="o">=</span> <span class="p">[</span><span class="n">y</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">qs_s</span><span class="p">))]</span>
 
-    reg = NICKernelRegressor(metric_dict={&#39;gamma&#39;: 15.0})
+    <span class="n">reg</span> <span class="o">=</span> <span class="n">NICKernelRegressor</span><span class="p">(</span><span class="n">metric_dict</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;gamma&#39;</span><span class="p">:</span> <span class="mf">15.0</span><span class="p">})</span>
 
-    for i in range(n_iterations):
-        fig, axes = plt.subplots(1, len(qs_s), figsize=(20, 5))
-        axes = [axes, ] if len(qs_s)==1 else axes
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_iterations</span><span class="p">):</span>
+        <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">qs_s</span><span class="p">),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+        <span class="n">axes</span> <span class="o">=</span> <span class="p">[</span><span class="n">axes</span><span class="p">,</span> <span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">qs_s</span><span class="p">)</span><span class="o">==</span><span class="mi">1</span> <span class="k">else</span> <span class="n">axes</span>
 
-        for qs, ax, y in zip(qs_s, axes, y_s):
-            reg.fit(X, y)
-            indices, utils = call_func(qs.query,
-                X=X,
-                y=y,
-                reg=reg,
-                ensemble=SklearnRegressor(BaggingRegressor(reg, n_estimators=4)),
-                fit_reg=True,
-                return_utilities=True,
-            )
-            _, utilities_test = call_func(qs.query,
-                X=X,
-                y=y,
-                reg=reg,
-                ensemble=SklearnRegressor(BaggingRegressor(reg, n_estimators=4)),
-                candidates=X_test,
-                fit_reg=True,
-                return_utilities=True,
-            )
-            old_is_lbld = is_labeled(y)
-            y[indices] = y_true[indices]
-            is_lbld = is_labeled(y)
-            ax_t = ax.twinx()
-            ax_t.plot(X_test, utilities_test.flatten(), c=&#39;green&#39;)
+        <span class="k">for</span> <span class="n">qs</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">qs_s</span><span class="p">,</span> <span class="n">axes</span><span class="p">,</span> <span class="n">y_s</span><span class="p">):</span>
+            <span class="n">reg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+            <span class="n">indices</span><span class="p">,</span> <span class="n">utils</span> <span class="o">=</span> <span class="n">call_func</span><span class="p">(</span><span class="n">qs</span><span class="o">.</span><span class="n">query</span><span class="p">,</span>
+                <span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span>
+                <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span>
+                <span class="n">reg</span><span class="o">=</span><span class="n">reg</span><span class="p">,</span>
+                <span class="n">ensemble</span><span class="o">=</span><span class="n">SklearnRegressor</span><span class="p">(</span><span class="n">BaggingRegressor</span><span class="p">(</span><span class="n">reg</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">4</span><span class="p">)),</span>
+                <span class="n">fit_reg</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">return_utilities</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">_</span><span class="p">,</span> <span class="n">utilities_test</span> <span class="o">=</span> <span class="n">call_func</span><span class="p">(</span><span class="n">qs</span><span class="o">.</span><span class="n">query</span><span class="p">,</span>
+                <span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span>
+                <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span>
+                <span class="n">reg</span><span class="o">=</span><span class="n">reg</span><span class="p">,</span>
+                <span class="n">ensemble</span><span class="o">=</span><span class="n">SklearnRegressor</span><span class="p">(</span><span class="n">BaggingRegressor</span><span class="p">(</span><span class="n">reg</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">4</span><span class="p">)),</span>
+                <span class="n">candidates</span><span class="o">=</span><span class="n">X_test</span><span class="p">,</span>
+                <span class="n">fit_reg</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">return_utilities</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">old_is_lbld</span> <span class="o">=</span> <span class="n">is_labeled</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+            <span class="n">y</span><span class="p">[</span><span class="n">indices</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_true</span><span class="p">[</span><span class="n">indices</span><span class="p">]</span>
+            <span class="n">is_lbld</span> <span class="o">=</span> <span class="n">is_labeled</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+            <span class="n">ax_t</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
+            <span class="n">ax_t</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">utilities_test</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
 
-            ax.scatter(X[~is_lbld], y_true[~is_lbld], c=&#39;lightblue&#39;)
-            ax.scatter(X[old_is_lbld], y[old_is_lbld], c=&#39;orange&#39;)
-            ax.scatter(X[indices], y[indices], c=&#39;red&#39;)
+            <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="o">~</span><span class="n">is_lbld</span><span class="p">],</span> <span class="n">y_true</span><span class="p">[</span><span class="o">~</span><span class="n">is_lbld</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;lightblue&#39;</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">old_is_lbld</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">old_is_lbld</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">indices</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">indices</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
 
-            y_pred, y_std = reg.predict(X_test, return_std=True)
-            ax.plot(X_test, y_pred, c=&#39;black&#39;)
-            if i == 0:
-                ax.set_title(qs.__class__.__name__, fontdict={&#39;fontsize&#39;: 15})
+            <span class="n">y_pred</span><span class="p">,</span> <span class="n">y_std</span> <span class="o">=</span> <span class="n">reg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">return_std</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">qs</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">fontdict</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;fontsize&#39;</span><span class="p">:</span> <span class="mi">15</span><span class="p">})</span>
 
-        plt.show()
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -686,56 +454,56 @@ basic
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_6_1.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_6_1.png" />
+<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_5_1.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_5_1.png" />
 </div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_6_2.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_6_2.png" />
+<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_5_2.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_5_2.png" />
 </div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_6_3.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_6_3.png" />
+<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_5_3.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_5_3.png" />
 </div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_6_4.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_6_4.png" />
+<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_5_4.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_5_4.png" />
 </div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_6_5.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_6_5.png" />
+<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_5_5.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_5_5.png" />
 </div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_6_6.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_6_6.png" />
+<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_5_6.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_5_6.png" />
 </div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_6_7.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_6_7.png" />
+<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_5_7.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_5_7.png" />
 </div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_6_8.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_6_8.png" />
+<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_5_8.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_5_8.png" />
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -750,56 +518,56 @@ complex_func
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_6_10.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_6_10.png" />
+<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_5_10.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_5_10.png" />
 </div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_6_11.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_6_11.png" />
+<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_5_11.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_5_11.png" />
 </div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_6_12.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_6_12.png" />
+<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_5_12.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_5_12.png" />
 </div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_6_13.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_6_13.png" />
+<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_5_13.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_5_13.png" />
 </div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_6_14.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_6_14.png" />
+<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_5_14.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_5_14.png" />
 </div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_6_15.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_6_15.png" />
+<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_5_15.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_5_15.png" />
 </div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_6_16.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_6_16.png" />
+<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_5_16.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_5_16.png" />
 </div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_6_17.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_6_17.png" />
+<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_5_17.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_5_17.png" />
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -814,56 +582,56 @@ high_noise
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_6_19.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_6_19.png" />
+<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_5_19.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_5_19.png" />
 </div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_6_20.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_6_20.png" />
+<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_5_20.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_5_20.png" />
 </div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_6_21.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_6_21.png" />
+<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_5_21.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_5_21.png" />
 </div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_6_22.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_6_22.png" />
+<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_5_22.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_5_22.png" />
 </div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_6_23.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_6_23.png" />
+<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_5_23.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_5_23.png" />
 </div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_6_24.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_6_24.png" />
+<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_5_24.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_5_24.png" />
 </div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_6_25.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_6_25.png" />
+<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_5_25.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_5_25.png" />
 </div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_6_26.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_6_26.png" />
+<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_5_26.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_5_26.png" />
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -878,58 +646,59 @@ high_density_diff
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_6_28.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_6_28.png" />
+<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_5_28.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_5_28.png" />
 </div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_6_29.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_6_29.png" />
+<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_5_29.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_5_29.png" />
 </div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_6_30.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_6_30.png" />
+<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_5_30.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_5_30.png" />
 </div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_6_31.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_6_31.png" />
+<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_5_31.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_5_31.png" />
 </div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_6_32.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_6_32.png" />
+<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_5_32.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_5_32.png" />
 </div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_6_33.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_6_33.png" />
+<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_5_33.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_5_33.png" />
 </div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_6_34.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_6_34.png" />
+<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_5_34.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_5_34.png" />
 </div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_6_35.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_6_35.png" />
+<img alt="../../_images/generated_tutorials_02_pool_regression_getting_started_5_35.png" src="../../_images/generated_tutorials_02_pool_regression_getting_started_5_35.png" />
 </div>
 </div>
+</section>
 </section>
 
 

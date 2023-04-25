@@ -225,7 +225,7 @@
 
 
 <div class="viewcode-block" id="SklearnClassifier"><a class="viewcode-back" href="../../../generated/api/skactiveml.classifier.SklearnClassifier.html#skactiveml.classifier.SklearnClassifier">[docs]</a><span class="k">class</span> <span class="nc">SklearnClassifier</span><span class="p">(</span><span class="n">SkactivemlClassifier</span><span class="p">,</span> <span class="n">MetaEstimatorMixin</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;SklearnClassifier</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;SklearnClassifier</span>
 
 <span class="sd">    Implementation of a wrapper class for scikit-learn classifiers such that</span>
 <span class="sd">    missing labels can be handled. Therefor, samples with missing labels are</span>
@@ -276,7 +276,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">estimator</span> <span class="o">=</span> <span class="n">estimator</span>
 
 <div class="viewcode-block" id="SklearnClassifier.fit"><a class="viewcode-back" href="../../../generated/api/skactiveml.classifier.SklearnClassifier.html#skactiveml.classifier.SklearnClassifier.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Fit the model using X as training data and y as class labels.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Fit the model using X as training data and y as class labels.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -308,7 +308,7 @@
 
 <div class="viewcode-block" id="SklearnClassifier.partial_fit"><a class="viewcode-back" href="../../../generated/api/skactiveml.classifier.SklearnClassifier.html#skactiveml.classifier.SklearnClassifier.partial_fit">[docs]</a>    <span class="nd">@_available_if</span><span class="p">(</span><span class="s2">&quot;partial_fit&quot;</span><span class="p">,</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">metaestimators</span><span class="p">,</span> <span class="s2">&quot;available_if&quot;</span><span class="p">))</span>
     <span class="k">def</span> <span class="nf">partial_fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Partially fitting the model using X as training data and y as class</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Partially fitting the model using X as training data and y as class</span>
 <span class="sd">        labels.</span>
 
 <span class="sd">        Parameters</span>
@@ -340,7 +340,7 @@
         <span class="p">)</span></div>
 
 <div class="viewcode-block" id="SklearnClassifier.predict"><a class="viewcode-back" href="../../../generated/api/skactiveml.classifier.SklearnClassifier.html#skactiveml.classifier.SklearnClassifier.predict">[docs]</a>    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="o">**</span><span class="n">predict_kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Return class label predictions for the input data X.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return class label predictions for the input data X.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -378,7 +378,7 @@
 
 <div class="viewcode-block" id="SklearnClassifier.predict_proba"><a class="viewcode-back" href="../../../generated/api/skactiveml.classifier.SklearnClassifier.html#skactiveml.classifier.SklearnClassifier.predict_proba">[docs]</a>    <span class="nd">@_available_if</span><span class="p">(</span><span class="s2">&quot;predict_proba&quot;</span><span class="p">,</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">metaestimators</span><span class="p">,</span> <span class="s2">&quot;available_if&quot;</span><span class="p">))</span>
     <span class="k">def</span> <span class="nf">predict_proba</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="o">**</span><span class="n">predict_proba_kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Return probability estimates for the input data X.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return probability estimates for the input data X.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -519,6 +519,9 @@
             <span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span>
 
+    <span class="k">def</span> <span class="nf">__sklearn_is_fitted__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;is_fitted_&quot;</span><span class="p">)</span>
+
     <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
         <span class="k">if</span> <span class="s2">&quot;estimator_&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">:</span>
             <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">estimator_</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
@@ -527,7 +530,7 @@
 
 
 <div class="viewcode-block" id="SlidingWindowClassifier"><a class="viewcode-back" href="../../../generated/api/skactiveml.classifier.SlidingWindowClassifier.html#skactiveml.classifier.SlidingWindowClassifier">[docs]</a><span class="k">class</span> <span class="nc">SlidingWindowClassifier</span><span class="p">(</span><span class="n">SkactivemlClassifier</span><span class="p">,</span> <span class="n">MetaEstimatorMixin</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;SlidingWindowClassifier</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;SlidingWindowClassifier</span>
 
 <span class="sd">    Implementation of a wrapper class for SkactivemlClassifier such that the</span>
 <span class="sd">    number of training samples can be limited to the latest `window_size`</span>
@@ -585,7 +588,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">ignore_estimator_partial_fit</span> <span class="o">=</span> <span class="n">ignore_estimator_partial_fit</span>
 
 <div class="viewcode-block" id="SlidingWindowClassifier.fit"><a class="viewcode-back" href="../../../generated/api/skactiveml.classifier.SlidingWindowClassifier.html#skactiveml.classifier.SlidingWindowClassifier.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Fit the model using X as training data and y as class labels.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Fit the model using X as training data and y as class labels.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -641,7 +644,7 @@
         <span class="p">)</span></div>
 
 <div class="viewcode-block" id="SlidingWindowClassifier.partial_fit"><a class="viewcode-back" href="../../../generated/api/skactiveml.classifier.SlidingWindowClassifier.html#skactiveml.classifier.SlidingWindowClassifier.partial_fit">[docs]</a>    <span class="k">def</span> <span class="nf">partial_fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Partially fitting the model using X as training data and y as class</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Partially fitting the model using X as training data and y as class</span>
 <span class="sd">        labels. If &#39;base_estimator&#39; has no partial_fit function use fit with</span>
 <span class="sd">        the sliding window for X, y and sample_weight.</span>
 
@@ -869,7 +872,7 @@
         <span class="k">return</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span>
 
 <div class="viewcode-block" id="SlidingWindowClassifier.predict"><a class="viewcode-back" href="../../../generated/api/skactiveml.classifier.SlidingWindowClassifier.html#skactiveml.classifier.SlidingWindowClassifier.predict">[docs]</a>    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Return class label predictions for the input data X.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return class label predictions for the input data X.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -890,7 +893,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">estimator_</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="SlidingWindowClassifier.predict_proba"><a class="viewcode-back" href="../../../generated/api/skactiveml.classifier.SlidingWindowClassifier.html#skactiveml.classifier.SlidingWindowClassifier.predict_proba">[docs]</a>    <span class="k">def</span> <span class="nf">predict_proba</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Return probability estimates for the input data X.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return probability estimates for the input data X.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -914,7 +917,7 @@
 
 <div class="viewcode-block" id="SlidingWindowClassifier.predict_freq"><a class="viewcode-back" href="../../../generated/api/skactiveml.classifier.SlidingWindowClassifier.html#skactiveml.classifier.SlidingWindowClassifier.predict_freq">[docs]</a>    <span class="nd">@_available_if</span><span class="p">(</span><span class="s2">&quot;predict_freq&quot;</span><span class="p">,</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">metaestimators</span><span class="p">,</span> <span class="s2">&quot;available_if&quot;</span><span class="p">))</span>
     <span class="k">def</span> <span class="nf">predict_freq</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Return class frequency estimates for the test samples `X`.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return class frequency estimates for the test samples `X`.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>

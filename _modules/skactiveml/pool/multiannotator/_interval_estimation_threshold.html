@@ -212,7 +212,7 @@
 
 
 <div class="viewcode-block" id="IntervalEstimationAnnotModel"><a class="viewcode-back" href="../../../../generated/api/skactiveml.pool.multiannotator.IntervalEstimationAnnotModel.html#skactiveml.pool.multiannotator.IntervalEstimationAnnotModel">[docs]</a><span class="k">class</span> <span class="nc">IntervalEstimationAnnotModel</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">AnnotatorModelMixin</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;IntervalEstimationAnnotModel</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;IntervalEstimationAnnotModel</span>
 
 <span class="sd">    This annotator model relies on &#39;Interval Estimation Learning&#39; (IELearning)</span>
 <span class="sd">    for estimating the annotation performances, i.e., labeling accuracies,</span>
@@ -270,7 +270,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">random_state</span> <span class="o">=</span> <span class="n">random_state</span>
 
 <div class="viewcode-block" id="IntervalEstimationAnnotModel.fit"><a class="viewcode-back" href="../../../../generated/api/skactiveml.pool.multiannotator.IntervalEstimationAnnotModel.html#skactiveml.pool.multiannotator.IntervalEstimationAnnotModel.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Fit annotator model for given samples.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Fit annotator model for given samples.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -339,7 +339,7 @@
         <span class="k">return</span> <span class="bp">self</span></div>
 
 <div class="viewcode-block" id="IntervalEstimationAnnotModel.predict_annotator_perf"><a class="viewcode-back" href="../../../../generated/api/skactiveml.pool.multiannotator.IntervalEstimationAnnotModel.html#skactiveml.pool.multiannotator.IntervalEstimationAnnotModel.predict_annotator_perf">[docs]</a>    <span class="k">def</span> <span class="nf">predict_annotator_perf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Calculates the probability that an annotator provides the true label</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculates the probability that an annotator provides the true label</span>
 <span class="sd">        for a given sample.</span>
 
 <span class="sd">        Parameters</span>
@@ -365,7 +365,7 @@
 
 
 <div class="viewcode-block" id="IntervalEstimationThreshold"><a class="viewcode-back" href="../../../../generated/api/skactiveml.pool.multiannotator.IntervalEstimationThreshold.html#skactiveml.pool.multiannotator.IntervalEstimationThreshold">[docs]</a><span class="k">class</span> <span class="nc">IntervalEstimationThreshold</span><span class="p">(</span><span class="n">MultiAnnotatorPoolQueryStrategy</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;IntervalEstimationThreshold</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;IntervalEstimationThreshold</span>
 
 <span class="sd">    The strategy &#39;Interval Estimation Threshold&#39; (IEThresh) [1] is useful for</span>
 <span class="sd">    addressing the exploration vs. exploitation trade-off when dealing with</span>
@@ -426,7 +426,7 @@
         <span class="n">batch_size</span><span class="o">=</span><span class="s2">&quot;adaptive&quot;</span><span class="p">,</span>
         <span class="n">return_utilities</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Determines which candidate sample is to be annotated by which</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Determines which candidate sample is to be annotated by which</span>
 <span class="sd">        annotator.</span>
 
 <span class="sd">        Parameters</span>

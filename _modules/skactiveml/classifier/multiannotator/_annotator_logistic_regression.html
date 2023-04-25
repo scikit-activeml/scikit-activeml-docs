@@ -216,7 +216,7 @@
 
 
 <div class="viewcode-block" id="AnnotatorLogisticRegression"><a class="viewcode-back" href="../../../../generated/api/skactiveml.classifier.multiannotator.AnnotatorLogisticRegression.html#skactiveml.classifier.multiannotator.AnnotatorLogisticRegression">[docs]</a><span class="k">class</span> <span class="nc">AnnotatorLogisticRegression</span><span class="p">(</span><span class="n">SkactivemlClassifier</span><span class="p">,</span> <span class="n">AnnotatorModelMixin</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;AnnotatorLogisticRegression</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;AnnotatorLogisticRegression</span>
 
 <span class="sd">    Logistic Regression based on Raykar [1] is a classification algorithm that</span>
 <span class="sd">    learns from multiple annotators. Besides, building a model for the</span>
@@ -339,7 +339,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">solver_dict</span> <span class="o">=</span> <span class="n">solver_dict</span>
 
 <div class="viewcode-block" id="AnnotatorLogisticRegression.fit"><a class="viewcode-back" href="../../../../generated/api/skactiveml.classifier.multiannotator.AnnotatorLogisticRegression.html#skactiveml.classifier.multiannotator.AnnotatorLogisticRegression.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Fit the model using X as training data and y as class labels.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Fit the model using X as training data and y as class labels.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -523,7 +523,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_Alpha</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_calc_Alpha</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">Mu</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">)</span>
 
             <span class="k">def</span> <span class="nf">error</span><span class="p">(</span><span class="n">w</span><span class="p">):</span>
-                <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">                </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">                Evaluate cross-entropy error of weights for scipy.minimize.</span>
 
 <span class="sd">                Parameters</span>
@@ -548,7 +548,7 @@
                 <span class="k">return</span> <span class="o">-</span><span class="n">log</span> <span class="o">/</span> <span class="n">n_samples</span>
 
             <span class="k">def</span> <span class="nf">grad</span><span class="p">(</span><span class="n">w</span><span class="p">):</span>
-                <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">                </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">                Compute gradient of error function for scipy.minimize.</span>
 
 <span class="sd">                Parameters</span>
@@ -567,7 +567,7 @@
                 <span class="k">return</span> <span class="n">G</span> <span class="o">/</span> <span class="n">n_samples</span>
 
             <span class="k">def</span> <span class="nf">hessian</span><span class="p">(</span><span class="n">w</span><span class="p">):</span>
-                <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">                </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">                Compute Hessian matrix of error function for scipy.minimize.</span>
 
 <span class="sd">                Parameters</span>
@@ -616,7 +616,7 @@
         <span class="k">return</span> <span class="bp">self</span></div>
 
 <div class="viewcode-block" id="AnnotatorLogisticRegression.predict_proba"><a class="viewcode-back" href="../../../../generated/api/skactiveml.classifier.multiannotator.AnnotatorLogisticRegression.html#skactiveml.classifier.multiannotator.AnnotatorLogisticRegression.predict_proba">[docs]</a>    <span class="k">def</span> <span class="nf">predict_proba</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Return probability estimates for the test data `X`.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return probability estimates for the test data `X`.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -647,7 +647,7 @@
         <span class="k">return</span> <span class="n">P</span></div>
 
 <div class="viewcode-block" id="AnnotatorLogisticRegression.predict_annotator_perf"><a class="viewcode-back" href="../../../../generated/api/skactiveml.classifier.multiannotator.AnnotatorLogisticRegression.html#skactiveml.classifier.multiannotator.AnnotatorLogisticRegression.predict_annotator_perf">[docs]</a>    <span class="k">def</span> <span class="nf">predict_annotator_perf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Calculates the probability that an annotator provides the true label</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculates the probability that an annotator provides the true label</span>
 <span class="sd">        for a given sample. The true label is hereby provided by the</span>
 <span class="sd">        classification model. The label provided by an annotator l is based</span>
 <span class="sd">        on his/her confusion matrix (i.e., attribute `Alpha_[l]`).</span>
@@ -681,7 +681,7 @@
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">_calc_V</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">Alpha</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Calculates a value used for updating Mu and the expectation.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculates a value used for updating Mu and the expectation.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -713,7 +713,7 @@
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">_calc_Alpha</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">Mu</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Calculates the class-dependent performance estimates of the</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculates the class-dependent performance estimates of the</span>
 <span class="sd">        annotators.</span>
 
 <span class="sd">        Parameters</span>
@@ -759,7 +759,7 @@
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">_calc_Mu</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">P</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Calculates the new estimate for Mu, using Bayes&#39; theorem.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculates the new estimate for Mu, using Bayes&#39; theorem.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -786,7 +786,7 @@
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">_calc_expectation</span><span class="p">(</span><span class="n">Mu</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">Gamma</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">Alpha</span><span class="p">,</span> <span class="n">W</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Calculates the conditional expectation in the E-step of the</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculates the conditional expectation in the E-step of the</span>
 <span class="sd">        EM-Algorithm, given the observations and the current estimates of the</span>
 <span class="sd">        classifier.</span>
 

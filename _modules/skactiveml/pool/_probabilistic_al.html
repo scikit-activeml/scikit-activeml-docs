@@ -210,7 +210,7 @@
 
 
 <div class="viewcode-block" id="ProbabilisticAL"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.ProbabilisticAL.html#skactiveml.pool.ProbabilisticAL">[docs]</a><span class="k">class</span> <span class="nc">ProbabilisticAL</span><span class="p">(</span><span class="n">SingleAnnotatorPoolQueryStrategy</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;(Multi-class) Probabilistic Active Learning</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;(Multi-class) Probabilistic Active Learning</span>
 
 <span class="sd">    This class implements multi-class probabilistic active learning (McPAL) [1]</span>
 <span class="sd">    strategy.</span>
@@ -275,7 +275,7 @@
         <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
         <span class="n">return_utilities</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Query the next instance to be labeled.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Query the next instance to be labeled.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -365,10 +365,7 @@
         <span class="k">if</span> <span class="n">fit_clf</span><span class="p">:</span>
             <span class="n">clf</span> <span class="o">=</span> <span class="n">clone</span><span class="p">(</span><span class="n">clf</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">if</span> <span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">metric_dict</span> <span class="ow">is</span> <span class="kc">None</span>
-                <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric</span> <span class="o">==</span> <span class="s2">&quot;rbf&quot;</span>
-            <span class="p">):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric_dict</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric</span> <span class="o">==</span> <span class="s2">&quot;rbf&quot;</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">metric_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;gamma&quot;</span><span class="p">:</span> <span class="s2">&quot;mean&quot;</span><span class="p">}</span>
             <span class="n">pwc</span> <span class="o">=</span> <span class="n">ParzenWindowClassifier</span><span class="p">(</span>
                 <span class="n">metric</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">metric</span><span class="p">,</span>
@@ -404,7 +401,7 @@
 
 
 <div class="viewcode-block" id="cost_reduction"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.cost_reduction.html#skactiveml.pool.cost_reduction">[docs]</a><span class="k">def</span> <span class="nf">cost_reduction</span><span class="p">(</span><span class="n">k_vec_list</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">m_max</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">prior</span><span class="o">=</span><span class="mf">1.0e-3</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Calculate the expected cost reduction.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate the expected cost reduction.</span>
 
 <span class="sd">    Calculate the expected cost reduction for given maximum number of</span>
 <span class="sd">    hypothetically acquired labels, observed labels and cost matrix.</span>
@@ -494,7 +491,7 @@
 
 
 <span class="k">def</span> <span class="nf">_gen_l_vec_list</span><span class="p">(</span><span class="n">m_approx</span><span class="p">,</span> <span class="n">n_classes</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Creates all possible class labeling vectors for given number of</span>
 <span class="sd">    hypothetically acquired labels and given number of classes.</span>
 
@@ -531,7 +528,7 @@
 
 
 <span class="k">def</span> <span class="nf">_euler_beta</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Represents Euler beta function:</span>
 <span class="sd">    B(a(i)) = Gamma(a(i,1))*...*Gamma(a_n)/Gamma(a(i,1)+...+a(i,n))</span>
 
@@ -549,7 +546,7 @@
 
 
 <span class="k">def</span> <span class="nf">_multinomial</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Computes Multinomial coefficient:</span>
 <span class="sd">    Mult(a(i)) = (a(i,1)+...+a(i,n))!/(a(i,1)!...a(i,n)!)</span>
 

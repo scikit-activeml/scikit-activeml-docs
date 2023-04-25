@@ -307,6 +307,11 @@
    skactiveml.pool.DiscriminativeAL
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.BatchBALD.html">
+   skactiveml.pool.BatchBALD
+  </a>
+ </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -332,6 +337,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="skactiveml.pool.vote_entropy.html">
    skactiveml.pool.vote_entropy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.batch_bald.html">
+   skactiveml.pool.batch_bald
   </a>
  </li>
 </ul>
@@ -395,6 +405,78 @@
    skactiveml.stream.RandomVariableUncertainty
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.StreamDensityBasedAL.html">
+   skactiveml.stream.StreamDensityBasedAL
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.CognitiveDualQueryStrategy.html">
+   skactiveml.stream.CognitiveDualQueryStrategy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.CognitiveDualQueryStrategyRan.html">
+   skactiveml.stream.CognitiveDualQueryStrategyRan
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.CognitiveDualQueryStrategyRanVarUn.html">
+   skactiveml.stream.CognitiveDualQueryStrategyRanVarUn
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.CognitiveDualQueryStrategyVarUn.html">
+   skactiveml.stream.CognitiveDualQueryStrategyVarUn
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.CognitiveDualQueryStrategyFixUn.html">
+   skactiveml.stream.CognitiveDualQueryStrategyFixUn
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.budgetmanager.EstimatedBudgetZliobaite.html">
+   skactiveml.stream.budgetmanager.EstimatedBudgetZliobaite
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.budgetmanager.FixedUncertaintyBudgetManager.html">
+   skactiveml.stream.budgetmanager.FixedUncertaintyBudgetManager
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.budgetmanager.VariableUncertaintyBudgetManager.html">
+   skactiveml.stream.budgetmanager.VariableUncertaintyBudgetManager
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.budgetmanager.SplitBudgetManager.html">
+   skactiveml.stream.budgetmanager.SplitBudgetManager
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.budgetmanager.BalancedIncrementalQuantileFilter.html">
+   skactiveml.stream.budgetmanager.BalancedIncrementalQuantileFilter
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.budgetmanager.RandomVariableUncertaintyBudgetManager.html">
+   skactiveml.stream.budgetmanager.RandomVariableUncertaintyBudgetManager
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.budgetmanager.DensityBasedSplitBudgetManager.html">
+   skactiveml.stream.budgetmanager.DensityBasedSplitBudgetManager
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.budgetmanager.RandomBudgetManager.html">
+   skactiveml.stream.budgetmanager.RandomBudgetManager
+  </a>
+ </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -449,6 +531,16 @@
  <li class="toctree-l1">
   <a class="reference internal" href="skactiveml.visualization.plot_annotator_utilities.html">
    skactiveml.visualization.plot_annotator_utilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.visualization.plot_stream_training_data.html">
+   skactiveml.visualization.plot_stream_training_data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.visualization.plot_stream_decision_boundary.html">
+   skactiveml.visualization.plot_stream_decision_boundary
   </a>
  </li>
  <li class="toctree-l1">
@@ -654,7 +746,7 @@
 <h1>skactiveml.visualization.plot_contour_for_samples<a class="headerlink" href="#skactiveml-visualization-plot-contour-for-samples" title="Permalink to this headline">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="skactiveml.visualization.plot_contour_for_samples">
-<span class="sig-prename descclassname"><span class="pre">skactiveml.visualization.</span></span><span class="sig-name descname"><span class="pre">plot_contour_for_samples</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replace_nan</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_bound</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">res</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">101</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contour_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/visualization/_feature_space.html#plot_contour_for_samples"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.visualization.plot_contour_for_samples" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">skactiveml.visualization.</span></span><span class="sig-name descname"><span class="pre">plot_contour_for_samples</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replace_nan</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_bound</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">res</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">21</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contour_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/visualization/_feature_space.html#plot_contour_for_samples"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.visualization.plot_contour_for_samples" title="Permalink to this definition">#</a></dt>
 <dd><p>Plot the utility for the given query strategy.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -690,7 +782,13 @@ based on the data.</p>
 
 <section id="examples-using-skactiveml-visualization-plot-contour-for-samples">
 <span id="sphx-glr-backref-skactiveml-visualization-plot-contour-for-samples"></span><h2>Examples using <code class="docutils literal notranslate"><span class="pre">skactiveml.visualization.plot_contour_for_samples</span></code><a class="headerlink" href="#examples-using-skactiveml-visualization-plot-contour-for-samples" title="Permalink to this headline">#</a></h2>
-<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Dual strategy for Active Learning"><img alt="Dual strategy for Active Learning" src="../../_images/sphx_glr_plot-UncertaintySampling-Dual_strategy_for_Active_Learning_thumb.gif" />
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Batch Density-Diversity-Distribution-Distance Sampling"><img alt="" src="../../_images/sphx_glr_plot-FourDs-Batch_Density-Diversity-Distribution-Distance_Sampling_(Batch4DS)_thumb.gif" />
+<p><a class="reference internal" href="../sphinx_gallery_examples/pool/plot-FourDs-Batch_Density-Diversity-Distribution-Distance_Sampling_%28Batch4DS%29.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-fourds-batch-density-diversity-distribution-distance-sampling-batch4ds-py"><span class="std std-ref">Batch Density-Diversity-Distribution-Distance Sampling</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Batch Density-Diversity-Distribution-Distance Sampling</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Batch Bayesian Active Learning by Disagreement (BatchBALD)"><img alt="" src="../../_images/sphx_glr_plot-BatchBALD-Batch_Bayesian_Active_Learning_by_Disagreement_thumb.gif" />
+<p><a class="reference internal" href="../sphinx_gallery_examples/pool/plot-BatchBALD-Batch_Bayesian_Active_Learning_by_Disagreement.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-batchbald-batch-bayesian-active-learning-by-disagreement-py"><span class="std std-ref">Batch Bayesian Active Learning by Disagreement (BatchBALD)</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Batch Bayesian Active Learning by Disagreement (BatchBALD)</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Dual strategy for Active Learning"><img alt="" src="../../_images/sphx_glr_plot-UncertaintySampling-Dual_strategy_for_Active_Learning_thumb.gif" />
 <p><a class="reference internal" href="../sphinx_gallery_examples/pool/plot-UncertaintySampling-Dual_strategy_for_Active_Learning.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-uncertaintysampling-dual-strategy-for-active-learning-py"><span class="std std-ref">Dual strategy for Active Learning</span></a></p>
   <div class="sphx-glr-thumbnail-title">Dual strategy for Active Learning</div>
 </div></div></section>

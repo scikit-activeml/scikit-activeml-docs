@@ -78,6 +78,9 @@ for c in range(n_cycles):
 ani = animation.ArtistAnimation(fig, artists, interval=1000, blit=True)
 
 # %%
+# .. image:: ../../examples/pool/classification_legend.png
+
+# %%
 # .. rubric:: References:
 # 
 # The implementation of this strategy is based on :footcite:t:`donmez2007dual` and :footcite:t:`nguyen2004active`.

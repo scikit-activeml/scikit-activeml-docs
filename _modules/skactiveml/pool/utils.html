@@ -227,7 +227,7 @@
 
 
 <div class="viewcode-block" id="IndexClassifierWrapper"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.utils.IndexClassifierWrapper.html#skactiveml.pool.utils.IndexClassifierWrapper">[docs]</a><span class="k">class</span> <span class="nc">IndexClassifierWrapper</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Classifier to simplify retraining classifiers in an active learning</span>
 <span class="sd">    scenario. The idea is to pass all instances at once and use their indices</span>
 <span class="sd">    to access them. Thereby, optimization is possible e.g. by pre-computing</span>
@@ -244,7 +244,7 @@
 <span class="sd">        unlabeled samples.</span>
 <span class="sd">    y : array-like of shape (n_samples)</span>
 <span class="sd">        Labels of the training data set (possibly including unlabeled ones</span>
-<span class="sd">        indicated by self.missing_label.</span>
+<span class="sd">        indicated by self.missing_label).</span>
 <span class="sd">    sample_weight : array-like of shape (n_samples), optional (default=None)</span>
 <span class="sd">        Weights of training samples in `X`.</span>
 <span class="sd">    set_base_clf : bool, default=False</span>
@@ -289,6 +289,13 @@
         <span class="n">check_type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">clf</span><span class="p">,</span> <span class="s2">&quot;clf&quot;</span><span class="p">,</span> <span class="n">SkactivemlClassifier</span><span class="p">)</span>
 
         <span class="c1"># Check X, y, sample_weight: will be done by base clf</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">allow_nd</span><span class="o">=</span><span class="s2">&quot;True&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>
+            <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">force_all_finite</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="p">)</span>
         <span class="n">check_consistent_length</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sample_weight</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -334,6 +341,12 @@
         <span class="c1"># Check missing label</span>
         <span class="n">check_missing_label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">missing_label</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">missing_label_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">missing_label</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">missing_label</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">dtype</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;`missing_label` has type </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">missing_label</span><span class="p">)</span><span class="si">}</span><span class="s2">, &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;which is not compatible with </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">dtype</span><span class="si">}</span><span class="s2"> as the &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;type of `y`.&quot;</span>
+            <span class="p">)</span>
         <span class="n">check_equal_missing_label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">clf</span><span class="o">.</span><span class="n">missing_label</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">missing_label_</span><span class="p">)</span>
 
         <span class="c1"># prepare ParzenWindowClassifier</span>
@@ -351,7 +364,7 @@
 <div class="viewcode-block" id="IndexClassifierWrapper.precompute"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.utils.IndexClassifierWrapper.html#skactiveml.pool.utils.IndexClassifierWrapper.precompute">[docs]</a>    <span class="k">def</span> <span class="nf">precompute</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">idx_fit</span><span class="p">,</span> <span class="n">idx_pred</span><span class="p">,</span> <span class="n">fit_params</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="n">pred_params</span><span class="o">=</span><span class="s2">&quot;all&quot;</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Function to describe for which samples we should precompute something.</span>
 <span class="sd">        Will be internally handled differently for different classifiers. The</span>
 <span class="sd">        function consists of pairs of `idx_fit` and `idx_predict` to describe</span>
@@ -372,10 +385,14 @@
 <span class="sd">            will be used later. Can be of value &#39;all&#39;, &#39;labeled&#39;, or</span>
 <span class="sd">            &#39;unlabeled&#39;.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">idx_fit</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">idx_fit</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+        <span class="n">idx_fit</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span>
+            <span class="n">idx_fit</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">input_name</span><span class="o">=</span><span class="s2">&quot;`idx_fit`&quot;</span>
+        <span class="p">)</span>
         <span class="n">idx_fit</span> <span class="o">=</span> <span class="n">check_indices</span><span class="p">(</span><span class="n">idx_fit</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
-        <span class="n">idx_pred</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">idx_pred</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+        <span class="n">idx_pred</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span>
+            <span class="n">idx_pred</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">input_name</span><span class="o">=</span><span class="s2">&quot;`idx_pred`&quot;</span>
+        <span class="p">)</span>
         <span class="n">idx_pred</span> <span class="o">=</span> <span class="n">check_indices</span><span class="p">(</span><span class="n">idx_pred</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
         <span class="c1"># precompute ParzenWindowClassifier</span>
@@ -423,7 +440,7 @@
                 <span class="p">)</span></div>
 
 <div class="viewcode-block" id="IndexClassifierWrapper.fit"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.utils.IndexClassifierWrapper.html#skactiveml.pool.utils.IndexClassifierWrapper.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">set_base_clf</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Fit the model using `self.X[idx]` as training data and `self.y[idx]`</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Fit the model using `self.X[idx]` as training data and `self.y[idx]`</span>
 <span class="sd">        as class labels.</span>
 
 <span class="sd">        Parameters</span>
@@ -449,7 +466,7 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># check idx</span>
-        <span class="n">idx</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+        <span class="n">idx</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">input_name</span><span class="o">=</span><span class="s2">&quot;`idx`&quot;</span><span class="p">)</span>
         <span class="n">idx</span> <span class="o">=</span> <span class="n">check_indices</span><span class="p">(</span>
             <span class="n">idx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">unique</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">enforce_unique_samples</span>
         <span class="p">)</span>
@@ -466,8 +483,9 @@
             <span class="n">y</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span>
                 <span class="n">y</span><span class="p">,</span>
                 <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                <span class="n">force_all_finite</span><span class="o">=</span><span class="s2">&quot;allow-nan&quot;</span><span class="p">,</span>
+                <span class="n">force_all_finite</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                 <span class="n">dtype</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span>
+                <span class="n">input_name</span><span class="o">=</span><span class="s2">&quot;`y`&quot;</span><span class="p">,</span>
             <span class="p">)</span>
             <span class="n">check_consistent_length</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
@@ -478,7 +496,9 @@
             <span class="p">)</span>
             <span class="c1"># TODO deepcopy</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">sample_weight</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">sample_weight</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="n">sample_weight</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span>
+                <span class="n">sample_weight</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">input_name</span><span class="o">=</span><span class="s2">&quot;`sample_weight`&quot;</span>
+            <span class="p">)</span>
             <span class="n">check_consistent_length</span><span class="p">(</span><span class="n">sample_weight</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
         <span class="c1"># check if a clf_ exists</span>
@@ -512,7 +532,7 @@
         <span class="n">use_base_clf</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">set_base_clf</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Update the fitted model using additional samples in `self.X[idx]`</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Update the fitted model using additional samples in `self.X[idx]`</span>
 <span class="sd">        and y as class labels.</span>
 
 <span class="sd">        Parameters</span>
@@ -541,7 +561,9 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># check idx</span>
-        <span class="n">add_idx</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+        <span class="n">add_idx</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span>
+            <span class="n">idx</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">input_name</span><span class="o">=</span><span class="s2">&quot;`add_idx`&quot;</span>
+        <span class="p">)</span>
         <span class="n">add_idx</span> <span class="o">=</span> <span class="n">check_indices</span><span class="p">(</span>
             <span class="n">add_idx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">unique</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">enforce_unique_samples</span>
         <span class="p">)</span>
@@ -577,8 +599,9 @@
             <span class="n">add_y</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span>
                 <span class="n">y</span><span class="p">,</span>
                 <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                <span class="n">force_all_finite</span><span class="o">=</span><span class="s2">&quot;allow-nan&quot;</span><span class="p">,</span>
+                <span class="n">force_all_finite</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                 <span class="n">dtype</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span>
+                <span class="n">input_name</span><span class="o">=</span><span class="s2">&quot;`y`&quot;</span><span class="p">,</span>
             <span class="p">)</span>
             <span class="n">check_consistent_length</span><span class="p">(</span><span class="n">add_idx</span><span class="p">,</span> <span class="n">add_y</span><span class="p">)</span>
 
@@ -588,7 +611,9 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">_get_sw</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sample_weight</span><span class="p">,</span> <span class="n">idx</span><span class="o">=</span><span class="n">add_idx</span><span class="p">)</span>
             <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">add_sample_weight</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">sample_weight</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="n">add_sample_weight</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span>
+                <span class="n">sample_weight</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">input_name</span><span class="o">=</span><span class="s2">&quot;`sample_weight`&quot;</span>
+            <span class="p">)</span>
             <span class="n">check_consistent_length</span><span class="p">(</span><span class="n">add_idx</span><span class="p">,</span> <span class="n">add_sample_weight</span><span class="p">)</span>
 
         <span class="c1"># handle case when partial fit of clf is used</span>
@@ -636,7 +661,7 @@
         <span class="k">return</span> <span class="bp">self</span></div>
 
 <div class="viewcode-block" id="IndexClassifierWrapper.predict"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.utils.IndexClassifierWrapper.html#skactiveml.pool.utils.IndexClassifierWrapper.predict">[docs]</a>    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Return class label predictions for the input data `X[idx]`.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return class label predictions for the input data `X[idx]`.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -669,7 +694,7 @@
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">clf_</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span></div>
 
 <div class="viewcode-block" id="IndexClassifierWrapper.predict_proba"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.utils.IndexClassifierWrapper.html#skactiveml.pool.utils.IndexClassifierWrapper.predict_proba">[docs]</a>    <span class="k">def</span> <span class="nf">predict_proba</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Return probability estimates for the input data `X[idx]`.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return probability estimates for the input data `X[idx]`.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -703,7 +728,7 @@
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">clf_</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span></div>
 
 <div class="viewcode-block" id="IndexClassifierWrapper.predict_freq"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.utils.IndexClassifierWrapper.html#skactiveml.pool.utils.IndexClassifierWrapper.predict_freq">[docs]</a>    <span class="k">def</span> <span class="nf">predict_freq</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Return class frequency estimates for the input samples &#39;X[idx]&#39;.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return class frequency estimates for the input samples &#39;X[idx]&#39;.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -737,7 +762,7 @@
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">clf_</span><span class="o">.</span><span class="n">predict_freq</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span></div>
 
 <div class="viewcode-block" id="IndexClassifierWrapper.is_fitted"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.utils.IndexClassifierWrapper.html#skactiveml.pool.utils.IndexClassifierWrapper.is_fitted">[docs]</a>    <span class="k">def</span> <span class="nf">is_fitted</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_clf</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Returns if the classifier (resp. the base classifier) is fitted.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns if the classifier (resp. the base classifier) is fitted.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -788,7 +813,7 @@
 <span class="k">def</span> <span class="nf">_cross_entropy</span><span class="p">(</span>
     <span class="n">X_eval</span><span class="p">,</span> <span class="n">true_reg</span><span class="p">,</span> <span class="n">other_reg</span><span class="p">,</span> <span class="n">integration_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span>
 <span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Calculates the cross entropy.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculates the cross entropy.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -844,7 +869,7 @@
     <span class="n">X_update</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">mapping</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
 <span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Update the regressor by the updating samples, depending on</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Update the regressor by the updating samples, depending on</span>
 <span class="sd">    the mapping. Chooses `X_update` if `mapping is None` and updates</span>
 <span class="sd">    `X[mapping[idx_update]]` otherwise.</span>
 
@@ -896,7 +921,7 @@
 
 
 <span class="k">def</span> <span class="nf">_update_X_y</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">y_update</span><span class="p">,</span> <span class="n">idx_update</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">X_update</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Update the training data by the updating samples/labels.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Update the training data by the updating samples/labels.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -919,8 +944,12 @@
 <span class="sd">        The new labels.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">X</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">column_or_1d</span><span class="p">(</span><span class="n">check_array</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">force_all_finite</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">input_name</span><span class="o">=</span><span class="s2">&quot;`X`&quot;</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">column_or_1d</span><span class="p">(</span>
+        <span class="n">check_array</span><span class="p">(</span>
+            <span class="n">y</span><span class="p">,</span> <span class="n">force_all_finite</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">input_name</span><span class="o">=</span><span class="s2">&quot;`y`&quot;</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
     <span class="n">check_consistent_length</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">y_update</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">)):</span>
@@ -931,6 +960,7 @@
             <span class="n">force_all_finite</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
             <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
             <span class="n">ensure_min_samples</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">input_name</span><span class="o">=</span><span class="s2">&quot;`y`&quot;</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="n">y_update</span> <span class="o">=</span> <span class="n">column_or_1d</span><span class="p">(</span><span class="n">y_update</span><span class="p">)</span>
 
@@ -944,7 +974,9 @@
         <span class="n">y_new</span><span class="p">[</span><span class="n">idx_update</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_update</span>
         <span class="k">return</span> <span class="n">X_new</span><span class="p">,</span> <span class="n">y_new</span>
     <span class="k">elif</span> <span class="n">X_update</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">X_update</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">X_update</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">X_update</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span>
+            <span class="n">X_update</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">input_name</span><span class="o">=</span><span class="s2">&quot;`X_update`&quot;</span>
+        <span class="p">)</span>
         <span class="k">if</span> <span class="n">X_update</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
             <span class="n">X_update</span> <span class="o">=</span> <span class="n">X_update</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
         <span class="n">check_consistent_length</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">X_update</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
@@ -957,7 +989,7 @@
 
 
 <span class="k">def</span> <span class="nf">_reshape_scipy_dist</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span> <span class="n">shape</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Reshapes the parameters &quot;loc&quot;, &quot;scale&quot;, &quot;df&quot; of a distribution, if they</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Reshapes the parameters &quot;loc&quot;, &quot;scale&quot;, &quot;df&quot; of a distribution, if they</span>
 <span class="sd">    exist.</span>
 
 <span class="sd">    Parameters</span>
@@ -986,7 +1018,7 @@
 
 
 <span class="k">def</span> <span class="nf">expected_target_val</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">target_func</span><span class="p">,</span> <span class="n">reg</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Calculates the conditional expectation of a function depending only on</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculates the conditional expectation of a function depending only on</span>
 <span class="sd">    the target value for each sample in `X`, i.e.</span>
 <span class="sd">    E[target_func(Y)|X=x], where Y | X=x ~ reg.predict_target_distribution,</span>
 <span class="sd">    for x in `X`.</span>
@@ -1075,7 +1107,7 @@
     <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">vector_func</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
 <span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Calculates the conditional expectation of a function depending on the</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculates the conditional expectation of a function depending on the</span>
 <span class="sd">    target value the corresponding feature value and an index for each sample</span>
 <span class="sd">    in `X`, i.e. E[func(Y, x, idx)|X=x], where</span>
 <span class="sd">    Y | X=x ~ reg.predict_target_distribution, for x in `X`.</span>
@@ -1146,7 +1178,7 @@
 <span class="sd">        The conditional expectation for each value applied.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">X</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">allow_nd</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">allow_nd</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">input_name</span><span class="o">=</span><span class="s2">&quot;`X`&quot;</span><span class="p">)</span>
 
     <span class="n">check_type</span><span class="p">(</span><span class="n">reg</span><span class="p">,</span> <span class="s2">&quot;reg&quot;</span><span class="p">,</span> <span class="n">ProbabilisticRegressor</span><span class="p">)</span>
     <span class="n">check_type</span><span class="p">(</span>

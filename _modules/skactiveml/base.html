@@ -242,7 +242,7 @@
 
 
 <div class="viewcode-block" id="QueryStrategy"><a class="viewcode-back" href="../../generated/api/skactiveml.base.QueryStrategy.html#skactiveml.base.QueryStrategy">[docs]</a><span class="k">class</span> <span class="nc">QueryStrategy</span><span class="p">(</span><span class="n">ABC</span><span class="p">,</span> <span class="n">BaseEstimator</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Base class for all query strategies in scikit-activeml.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Base class for all query strategies in scikit-activeml.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -255,14 +255,14 @@
 
 <div class="viewcode-block" id="QueryStrategy.query"><a class="viewcode-back" href="../../generated/api/skactiveml.base.QueryStrategy.html#skactiveml.base.QueryStrategy.query">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Determines the query for active learning based on input arguments.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div></div>
 
 
 <span class="k">class</span> <span class="nc">PoolQueryStrategy</span><span class="p">(</span><span class="n">QueryStrategy</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Base class for all pool-based active learning query strategies in</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Base class for all pool-based active learning query strategies in</span>
 <span class="sd">    scikit-activeml.</span>
 
 <span class="sd">    Parameters</span>
@@ -288,7 +288,7 @@
         <span class="n">reset</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">check_X_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Validate input data, all attributes and set or check the</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Validate input data, all attributes and set or check the</span>
 <span class="sd">        `n_features_in_` attribute.</span>
 
 <span class="sd">        Parameters</span>
@@ -377,7 +377,7 @@
 
 
 <div class="viewcode-block" id="SingleAnnotatorPoolQueryStrategy"><a class="viewcode-back" href="../../generated/api/skactiveml.base.SingleAnnotatorPoolQueryStrategy.html#skactiveml.base.SingleAnnotatorPoolQueryStrategy">[docs]</a><span class="k">class</span> <span class="nc">SingleAnnotatorPoolQueryStrategy</span><span class="p">(</span><span class="n">PoolQueryStrategy</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Base class for all pool-based active learning query strategies with a</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Base class for all pool-based active learning query strategies with a</span>
 <span class="sd">    single annotator in scikit-activeml.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -392,7 +392,7 @@
         <span class="n">return_utilities</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Determines for which candidate samples labels are to be queried.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Determines for which candidate samples labels are to be queried.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -450,7 +450,7 @@
         <span class="n">reset</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">check_X_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Validate input data, all attributes and set or check the</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Validate input data, all attributes and set or check the</span>
 <span class="sd">        `n_features_in_` attribute.</span>
 
 <span class="sd">        Parameters</span>
@@ -532,7 +532,7 @@
         <span class="n">enforce_mapping</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">allow_only_unlabeled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Transforms the `candidates` parameter into a sample array and the</span>
 <span class="sd">        corresponding index array `mapping` such that</span>
 <span class="sd">        `candidates = X[mapping]`.</span>
@@ -591,7 +591,7 @@
 
 
 <div class="viewcode-block" id="MultiAnnotatorPoolQueryStrategy"><a class="viewcode-back" href="../../generated/api/skactiveml.base.MultiAnnotatorPoolQueryStrategy.html#skactiveml.base.MultiAnnotatorPoolQueryStrategy">[docs]</a><span class="k">class</span> <span class="nc">MultiAnnotatorPoolQueryStrategy</span><span class="p">(</span><span class="n">PoolQueryStrategy</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Base class for all pool-based active learning query strategies with</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Base class for all pool-based active learning query strategies with</span>
 <span class="sd">    multiple annotators in scikit-activeml.</span>
 
 <span class="sd">    Parameters</span>
@@ -615,7 +615,7 @@
         <span class="n">return_utilities</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Determines which candidate sample is to be annotated by which</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Determines which candidate sample is to be annotated by which</span>
 <span class="sd">        annotator.</span>
 
 <span class="sd">        Parameters</span>
@@ -694,7 +694,7 @@
         <span class="n">reset</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">check_X_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Validate input data, all attributes and set or check the</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Validate input data, all attributes and set or check the</span>
 <span class="sd">        `n_features_in_` attribute.</span>
 
 <span class="sd">        Parameters</span>
@@ -829,7 +829,7 @@
     <span class="k">def</span> <span class="nf">_transform_cand_annot</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">candidates</span><span class="p">,</span> <span class="n">annotators</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">enforce_mapping</span><span class="o">=</span><span class="kc">False</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Transforms the `candidates` parameter into a sample array and the</span>
 <span class="sd">        corresponding index array `mapping` such that</span>
 <span class="sd">        `candidates = X[mapping]`, and transforms `annotators` into a boolean</span>
@@ -933,7 +933,7 @@
 
 
 <div class="viewcode-block" id="BudgetManager"><a class="viewcode-back" href="../../generated/api/skactiveml.base.BudgetManager.html#skactiveml.base.BudgetManager">[docs]</a><span class="k">class</span> <span class="nc">BudgetManager</span><span class="p">(</span><span class="n">ABC</span><span class="p">,</span> <span class="n">BaseEstimator</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Base class for all budget managers for stream-based active learning</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Base class for all budget managers for stream-based active learning</span>
 <span class="sd">    in scikit-activeml to model budgeting constraints.</span>
 
 <span class="sd">    Parameters</span>
@@ -949,7 +949,7 @@
 
 <div class="viewcode-block" id="BudgetManager.query_by_utility"><a class="viewcode-back" href="../../generated/api/skactiveml.base.BudgetManager.html#skactiveml.base.BudgetManager.query_by_utility">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">query_by_utility</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">utilities</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Ask the budget manager which utilities are sufficient to query the</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Ask the budget manager which utilities are sufficient to query the</span>
 <span class="sd">        corresponding instance.</span>
 
 <span class="sd">        Parameters</span>
@@ -969,7 +969,7 @@
 
 <div class="viewcode-block" id="BudgetManager.update"><a class="viewcode-back" href="../../generated/api/skactiveml.base.BudgetManager.html#skactiveml.base.BudgetManager.update">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">candidates</span><span class="p">,</span> <span class="n">queried_indices</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Updates the BudgetManager.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Updates the BudgetManager.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -988,7 +988,7 @@
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
     <span class="k">def</span> <span class="nf">_validate_budget</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;check the assigned budget and set the default value 0.1 if budget is</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;check the assigned budget and set the default value 0.1 if budget is</span>
 <span class="sd">        set to None.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">budget</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -1005,7 +1005,7 @@
         <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_validate_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">utilities</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Validate input data.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Validate input data.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -1029,8 +1029,8 @@
 
 
 <div class="viewcode-block" id="SingleAnnotatorStreamQueryStrategy"><a class="viewcode-back" href="../../generated/api/skactiveml.base.SingleAnnotatorStreamQueryStrategy.html#skactiveml.base.SingleAnnotatorStreamQueryStrategy">[docs]</a><span class="k">class</span> <span class="nc">SingleAnnotatorStreamQueryStrategy</span><span class="p">(</span><span class="n">QueryStrategy</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Base class for all stream-based active learning query strategies in</span>
-<span class="sd">       scikit-activeml.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Base class for all stream-based active learning query strategies in</span>
+<span class="sd">    scikit-activeml.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -1047,16 +1047,14 @@
 
 <div class="viewcode-block" id="SingleAnnotatorStreamQueryStrategy.query"><a class="viewcode-back" href="../../generated/api/skactiveml.base.SingleAnnotatorStreamQueryStrategy.html#skactiveml.base.SingleAnnotatorStreamQueryStrategy.query">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">candidates</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">return_utilities</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Ask the query strategy which instances in candidates to acquire.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Ask the query strategy which instances in candidates to acquire.</span>
 
 <span class="sd">        The query startegy determines the most useful instances in candidates,</span>
 <span class="sd">        which can be acquired within the budgeting constraint specified by the</span>
 <span class="sd">        budgetmanager.</span>
-<span class="sd">        Please note that, when the decisions from this function</span>
-<span class="sd">        may differ from the final sampling, simulate=True can set, so that the</span>
-<span class="sd">        query strategy can be updated later with update(...) with the final</span>
-<span class="sd">        sampling. This is especially helpful, when developing wrapper query</span>
-<span class="sd">        strategies.</span>
+<span class="sd">        Please note that, this method does not alter the internal state of the</span>
+<span class="sd">        query strategy. To adapt the query strategy to the selected candidates,</span>
+<span class="sd">        use update(...) with the selected candidates.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -1090,7 +1088,7 @@
         <span class="n">budget_manager_param_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Update the query strategy with the decisions taken.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Update the query strategy with the decisions taken.</span>
 
 <span class="sd">        This function should be used in conjunction with the query function,</span>
 <span class="sd">        when the instances queried from query(...) may differ from the</span>
@@ -1118,7 +1116,7 @@
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
     <span class="k">def</span> <span class="nf">_validate_random_state</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Creates a copy &#39;random_state_&#39; if random_state is an instance of</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Creates a copy &#39;random_state_&#39; if random_state is an instance of</span>
 <span class="sd">        np.random_state. If not create a new random state. See also</span>
 <span class="sd">        :func:`~sklearn.utils.check_random_state`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1148,7 +1146,7 @@
         <span class="n">reset</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="o">**</span><span class="n">check_candidates_params</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Validate input data and set or check the `n_features_in_` attribute.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Validate input data and set or check the `n_features_in_` attribute.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -1190,7 +1188,7 @@
 
 
 <div class="viewcode-block" id="SkactivemlClassifier"><a class="viewcode-back" href="../../generated/api/skactiveml.base.SkactivemlClassifier.html#skactiveml.base.SkactivemlClassifier">[docs]</a><span class="k">class</span> <span class="nc">SkactivemlClassifier</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">ClassifierMixin</span><span class="p">,</span> <span class="n">ABC</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;SkactivemlClassifier</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;SkactivemlClassifier</span>
 
 <span class="sd">    Base class for scikit-activeml classifiers such that missing labels,</span>
 <span class="sd">    user-defined classes, and cost-sensitive classification (i.e., cost matrix)</span>
@@ -1234,7 +1232,7 @@
 
 <div class="viewcode-block" id="SkactivemlClassifier.fit"><a class="viewcode-back" href="../../generated/api/skactiveml.base.SkactivemlClassifier.html#skactiveml.base.SkactivemlClassifier.fit">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Fit the model using X as training data and y as class labels.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Fit the model using X as training data and y as class labels.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -1257,7 +1255,7 @@
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
 <div class="viewcode-block" id="SkactivemlClassifier.predict_proba"><a class="viewcode-back" href="../../generated/api/skactiveml.base.SkactivemlClassifier.html#skactiveml.base.SkactivemlClassifier.predict_proba">[docs]</a>    <span class="k">def</span> <span class="nf">predict_proba</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Return probability estimates for the test data X.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return probability estimates for the test data X.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -1273,7 +1271,7 @@
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
 <div class="viewcode-block" id="SkactivemlClassifier.predict"><a class="viewcode-back" href="../../generated/api/skactiveml.base.SkactivemlClassifier.html#skactiveml.base.SkactivemlClassifier.predict">[docs]</a>    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Return class label predictions for the test samples `X`.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return class label predictions for the test samples `X`.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -1294,7 +1292,7 @@
         <span class="k">return</span> <span class="n">y_pred</span></div>
 
 <div class="viewcode-block" id="SkactivemlClassifier.score"><a class="viewcode-back" href="../../generated/api/skactiveml.base.SkactivemlClassifier.html#skactiveml.base.SkactivemlClassifier.score">[docs]</a>    <span class="k">def</span> <span class="nf">score</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Return the mean accuracy on the given test data and labels.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the mean accuracy on the given test data and labels.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -1407,7 +1405,7 @@
 
 
 <div class="viewcode-block" id="ClassFrequencyEstimator"><a class="viewcode-back" href="../../generated/api/skactiveml.base.ClassFrequencyEstimator.html#skactiveml.base.ClassFrequencyEstimator">[docs]</a><span class="k">class</span> <span class="nc">ClassFrequencyEstimator</span><span class="p">(</span><span class="n">SkactivemlClassifier</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;ClassFrequencyEstimator</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;ClassFrequencyEstimator</span>
 
 <span class="sd">    Extends scikit-activeml classifiers to estimators that are able to estimate</span>
 <span class="sd">    class frequencies for given samples (by calling &#39;predict_freq&#39;).</span>
@@ -1464,7 +1462,7 @@
 
 <div class="viewcode-block" id="ClassFrequencyEstimator.predict_freq"><a class="viewcode-back" href="../../generated/api/skactiveml.base.ClassFrequencyEstimator.html#skactiveml.base.ClassFrequencyEstimator.predict_freq">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">predict_freq</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Return class frequency estimates for the test samples `X`.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return class frequency estimates for the test samples `X`.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -1480,7 +1478,7 @@
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
 <div class="viewcode-block" id="ClassFrequencyEstimator.predict_proba"><a class="viewcode-back" href="../../generated/api/skactiveml.base.ClassFrequencyEstimator.html#skactiveml.base.ClassFrequencyEstimator.predict_proba">[docs]</a>    <span class="k">def</span> <span class="nf">predict_proba</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Return probability estimates for the test data `X`.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return probability estimates for the test data `X`.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -1528,7 +1526,7 @@
 
 
 <div class="viewcode-block" id="SkactivemlRegressor"><a class="viewcode-back" href="../../generated/api/skactiveml.base.SkactivemlRegressor.html#skactiveml.base.SkactivemlRegressor">[docs]</a><span class="k">class</span> <span class="nc">SkactivemlRegressor</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">RegressorMixin</span><span class="p">,</span> <span class="n">ABC</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;SkactivemlRegressor</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;SkactivemlRegressor</span>
 
 <span class="sd">    Base class for scikit-activeml regressors.</span>
 
@@ -1548,7 +1546,7 @@
 
 <div class="viewcode-block" id="SkactivemlRegressor.fit"><a class="viewcode-back" href="../../generated/api/skactiveml.base.SkactivemlRegressor.html#skactiveml.base.SkactivemlRegressor.fit">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Fit the model using X as training data and y as numerical labels.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Fit the model using X as training data and y as numerical labels.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -1571,7 +1569,7 @@
 
 <div class="viewcode-block" id="SkactivemlRegressor.predict"><a class="viewcode-back" href="../../generated/api/skactiveml.base.SkactivemlRegressor.html#skactiveml.base.SkactivemlRegressor.predict">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Return value predictions for the test samples X.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return value predictions for the test samples X.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -1629,7 +1627,7 @@
 
 
 <div class="viewcode-block" id="ProbabilisticRegressor"><a class="viewcode-back" href="../../generated/api/skactiveml.base.ProbabilisticRegressor.html#skactiveml.base.ProbabilisticRegressor">[docs]</a><span class="k">class</span> <span class="nc">ProbabilisticRegressor</span><span class="p">(</span><span class="n">SkactivemlRegressor</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;ProbabilisticRegressor</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;ProbabilisticRegressor</span>
 
 <span class="sd">    Base class for scikit-activeml probabilistic regressors.</span>
 
@@ -1637,7 +1635,7 @@
 
 <div class="viewcode-block" id="ProbabilisticRegressor.predict_target_distribution"><a class="viewcode-back" href="../../generated/api/skactiveml.base.ProbabilisticRegressor.html#skactiveml.base.ProbabilisticRegressor.predict_target_distribution">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">predict_target_distribution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Returns the predicted target distribution conditioned on the test</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the predicted target distribution conditioned on the test</span>
 <span class="sd">        samples `X`.</span>
 
 <span class="sd">        Parameters</span>
@@ -1654,7 +1652,7 @@
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
 <div class="viewcode-block" id="ProbabilisticRegressor.predict"><a class="viewcode-back" href="../../generated/api/skactiveml.base.ProbabilisticRegressor.html#skactiveml.base.ProbabilisticRegressor.predict">[docs]</a>    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">return_std</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">return_entropy</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Returns the mean, std (optional) and differential entropy (optional)</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the mean, std (optional) and differential entropy (optional)</span>
 <span class="sd">        of the predicted target distribution conditioned on the test samples</span>
 <span class="sd">        `X`.</span>
 
@@ -1687,7 +1685,7 @@
         <span class="k">return</span> <span class="n">result</span></div>
 
 <div class="viewcode-block" id="ProbabilisticRegressor.sample_y"><a class="viewcode-back" href="../../generated/api/skactiveml.base.ProbabilisticRegressor.html#skactiveml.base.ProbabilisticRegressor.sample_y">[docs]</a>    <span class="k">def</span> <span class="nf">sample_y</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Returns random samples from the predicted target distribution</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns random samples from the predicted target distribution</span>
 <span class="sd">        conditioned on the test samples `X`.</span>
 
 <span class="sd">        Parameters</span>
@@ -1714,7 +1712,7 @@
 
 
 <div class="viewcode-block" id="AnnotatorModelMixin"><a class="viewcode-back" href="../../generated/api/skactiveml.base.AnnotatorModelMixin.html#skactiveml.base.AnnotatorModelMixin">[docs]</a><span class="k">class</span> <span class="nc">AnnotatorModelMixin</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;AnnotatorModelMixin</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;AnnotatorModelMixin</span>
 
 <span class="sd">    Base class of all annotator models estimating the performances of</span>
 <span class="sd">    annotators for given samples.</span>
@@ -1722,7 +1720,7 @@
 
 <div class="viewcode-block" id="AnnotatorModelMixin.predict_annotator_perf"><a class="viewcode-back" href="../../generated/api/skactiveml.base.AnnotatorModelMixin.html#skactiveml.base.AnnotatorModelMixin.predict_annotator_perf">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">predict_annotator_perf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Calculates the performance of an annotator to provide the true label</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculates the performance of an annotator to provide the true label</span>
 <span class="sd">        for a given sample.</span>
 
 <span class="sd">        Parameters</span>

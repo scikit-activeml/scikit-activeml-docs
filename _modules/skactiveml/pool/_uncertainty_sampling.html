@@ -213,7 +213,7 @@
 
 
 <div class="viewcode-block" id="UncertaintySampling"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.UncertaintySampling.html#skactiveml.pool.UncertaintySampling">[docs]</a><span class="k">class</span> <span class="nc">UncertaintySampling</span><span class="p">(</span><span class="n">SingleAnnotatorPoolQueryStrategy</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Uncertainty Sampling.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Uncertainty Sampling.</span>
 
 <span class="sd">    This class implement various uncertainty based query strategies, i.e., the</span>
 <span class="sd">    standard uncertainty measures [1], cost-sensitive ones [2], and one</span>
@@ -271,7 +271,7 @@
         <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
         <span class="n">return_utilities</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Determines for which candidate samples labels are to be queried.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Determines for which candidate samples labels are to be queried.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -363,7 +363,6 @@
                 <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">utility_weight</span><span class="p">)</span><span class="si">}</span><span class="s2"> != </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="si">}</span><span class="s2">.&quot;</span>
             <span class="p">)</span>
 
-
         <span class="c1"># Validate method.</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">method</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
@@ -418,7 +417,7 @@
 
 
 <div class="viewcode-block" id="uncertainty_scores"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.uncertainty_scores.html#skactiveml.pool.uncertainty_scores">[docs]</a><span class="k">def</span> <span class="nf">uncertainty_scores</span><span class="p">(</span><span class="n">probas</span><span class="p">,</span> <span class="n">cost_matrix</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;least_confident&quot;</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Computes uncertainty scores. Three methods are available: least</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes uncertainty scores. Three methods are available: least</span>
 <span class="sd">    confident (&#39;least_confident&#39;), margin sampling (&#39;margin_sampling&#39;),</span>
 <span class="sd">    and entropy based uncertainty (&#39;entropy&#39;) [1]. For the least confident and</span>
 <span class="sd">    margin sampling methods cost-sensitive variants are implemented in case of</span>
@@ -499,7 +498,7 @@
 
 
 <div class="viewcode-block" id="expected_average_precision"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.expected_average_precision.html#skactiveml.pool.expected_average_precision">[docs]</a><span class="k">def</span> <span class="nf">expected_average_precision</span><span class="p">(</span><span class="n">classes</span><span class="p">,</span> <span class="n">probas</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Calculate the expected average precision.</span>
 
 <span class="sd">    Parameters</span>

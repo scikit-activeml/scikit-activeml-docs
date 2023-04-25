@@ -197,7 +197,7 @@
 
 
 <div class="viewcode-block" id="StreamRandomSampling"><a class="viewcode-back" href="../../../generated/api/skactiveml.stream.StreamRandomSampling.html#skactiveml.stream.StreamRandomSampling">[docs]</a><span class="k">class</span> <span class="nc">StreamRandomSampling</span><span class="p">(</span><span class="n">SingleAnnotatorStreamQueryStrategy</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Random Sampling for Datastreams.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Random Sampling for Datastreams.</span>
 
 <span class="sd">    The RandomSampling samples instances completely randomly. The</span>
 <span class="sd">    probability to sample an instance is dependent on the budget specified in</span>
@@ -209,16 +209,16 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    budget : float, default=None</span>
+<span class="sd">    budget : float, optional (default=None)</span>
 <span class="sd">        The budget which models the budgeting constraint used in</span>
 <span class="sd">        the stream-based active learning setting.</span>
 
-<span class="sd">    allow_exceeding_budget : bool, default=True</span>
+<span class="sd">    allow_exceeding_budget : bool, optional (default=True)</span>
 <span class="sd">        If True, the query strategy is allowed to exceed it&#39;s budget as long as</span>
 <span class="sd">        the average number of queries will be within the budget. If False,</span>
 <span class="sd">        queries are not allowed if the budget is exhausted.</span>
 
-<span class="sd">    random_state : int, RandomState instance, default=None</span>
+<span class="sd">    random_state : int, RandomState instance, optional (default=None)</span>
 <span class="sd">        Controls the randomness of the estimator.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -229,7 +229,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">allow_exceeding_budget</span> <span class="o">=</span> <span class="n">allow_exceeding_budget</span>
 
 <div class="viewcode-block" id="StreamRandomSampling.query"><a class="viewcode-back" href="../../../generated/api/skactiveml.stream.StreamRandomSampling.html#skactiveml.stream.StreamRandomSampling.query">[docs]</a>    <span class="k">def</span> <span class="nf">query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">candidates</span><span class="p">,</span> <span class="n">return_utilities</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Ask the query strategy which instances in candidates to acquire.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Ask the query strategy which instances in candidates to acquire.</span>
 
 <span class="sd">        Please note that, when the decisions from this function may differ from</span>
 <span class="sd">        the final sampling, simulate=True can set, so that the query strategy</span>
@@ -243,7 +243,7 @@
 <span class="sd">            The instances which may be queried. Sparse matrices are accepted</span>
 <span class="sd">            only if they are supported by the base query strategy.</span>
 
-<span class="sd">        return_utilities : bool, optional</span>
+<span class="sd">        return_utilities : bool, optional (default=False)</span>
 <span class="sd">            If true, also return the utilities based on the query strategy.</span>
 <span class="sd">            The default is False.</span>
 
@@ -298,7 +298,7 @@
             <span class="k">return</span> <span class="n">queried_indices</span></div>
 
 <div class="viewcode-block" id="StreamRandomSampling.update"><a class="viewcode-back" href="../../../generated/api/skactiveml.stream.StreamRandomSampling.html#skactiveml.stream.StreamRandomSampling.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">candidates</span><span class="p">,</span> <span class="n">queried_indices</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Updates the budget manager and the count for seen and queried</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Updates the budget manager and the count for seen and queried</span>
 <span class="sd">        instances</span>
 
 <span class="sd">        Parameters</span>
@@ -310,9 +310,6 @@
 
 <span class="sd">        queried_indices : array-like of shape (n_samples,)</span>
 <span class="sd">            Indicates which instances from candidates have been queried.</span>
-
-<span class="sd">        budget_manager_param_dict : kwargs</span>
-<span class="sd">            Optional kwargs for budgetmanager.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -338,7 +335,7 @@
         <span class="n">reset</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="o">**</span><span class="n">check_candidates_params</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Validate input data and set or check the `n_features_in_` attribute.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Validate input data and set or check the `n_features_in_` attribute.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -347,7 +344,7 @@
 <span class="sd">            only if they are supported by the base query strategy.</span>
 <span class="sd">        return_utilities : bool,</span>
 <span class="sd">            If true, also return the utilities based on the query strategy.</span>
-<span class="sd">        reset : bool, default=True</span>
+<span class="sd">        reset : bool, optional (default=True)</span>
 <span class="sd">            Whether to reset the `n_features_in_` attribute.</span>
 <span class="sd">            If False, the input will be checked for consistency with data</span>
 <span class="sd">            provided when reset was last True.</span>
@@ -384,7 +381,7 @@
 
 
 <div class="viewcode-block" id="PeriodicSampling"><a class="viewcode-back" href="../../../generated/api/skactiveml.stream.PeriodicSampling.html#skactiveml.stream.PeriodicSampling">[docs]</a><span class="k">class</span> <span class="nc">PeriodicSampling</span><span class="p">(</span><span class="n">SingleAnnotatorStreamQueryStrategy</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;The PeriodicSampling samples instances periodically. The length of that</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The PeriodicSampling samples instances periodically. The length of that</span>
 <span class="sd">    period is determined by the budget specified in the budgetmanager. For</span>
 <span class="sd">    instance, a budget of 25% would result in the PeriodicSampling sampling</span>
 <span class="sd">    every fourth instance. The main idea behind this query strategy is to</span>
@@ -395,11 +392,11 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    budget : float, default=None</span>
+<span class="sd">    budget : float, optional (default=None)</span>
 <span class="sd">        The budget which models the budgeting constraint used in</span>
 <span class="sd">        the stream-based active learning setting.</span>
 
-<span class="sd">    random_state : int, RandomState instance, default=None</span>
+<span class="sd">    random_state : int, RandomState instance, optional (default=None)</span>
 <span class="sd">        Controls the randomness of the estimator.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -407,7 +404,7 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">budget</span><span class="o">=</span><span class="n">budget</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span>
 
 <div class="viewcode-block" id="PeriodicSampling.query"><a class="viewcode-back" href="../../../generated/api/skactiveml.stream.PeriodicSampling.html#skactiveml.stream.PeriodicSampling.query">[docs]</a>    <span class="k">def</span> <span class="nf">query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">candidates</span><span class="p">,</span> <span class="n">return_utilities</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Ask the query strategy which instances in candidates to acquire.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Ask the query strategy which instances in candidates to acquire.</span>
 
 <span class="sd">        This query strategy only evaluates the time each instance arrives at.</span>
 <span class="sd">        The utilities returned, when return_utilities is set to True, are</span>
@@ -424,7 +421,7 @@
 <span class="sd">            The instances which may be queried. Sparse matrices are accepted</span>
 <span class="sd">            only if they are supported by the base query strategy.</span>
 
-<span class="sd">        return_utilities : bool, optional</span>
+<span class="sd">        return_utilities : bool, optional (default=False)</span>
 <span class="sd">            If true, also return the utilities based on the query strategy.</span>
 <span class="sd">            The default is False.</span>
 
@@ -471,7 +468,7 @@
             <span class="k">return</span> <span class="n">queried_indices</span></div>
 
 <div class="viewcode-block" id="PeriodicSampling.update"><a class="viewcode-back" href="../../../generated/api/skactiveml.stream.PeriodicSampling.html#skactiveml.stream.PeriodicSampling.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">candidates</span><span class="p">,</span> <span class="n">queried_indices</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Updates the budget manager and the count for seen and queried</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Updates the budget manager and the count for seen and queried</span>
 <span class="sd">        instances</span>
 
 <span class="sd">        Parameters</span>
@@ -483,9 +480,6 @@
 
 <span class="sd">        queried_indices : array-like of shape (n_samples,)</span>
 <span class="sd">            Indicates which instances from candidates have been queried.</span>
-
-<span class="sd">        budget_manager_param_dict : kwargs</span>
-<span class="sd">            Optional kwargs for budgetmanager.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -507,7 +501,7 @@
         <span class="n">reset</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="o">**</span><span class="n">check_candidates_params</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Validate input data and set or check the `n_features_in_` attribute.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Validate input data and set or check the `n_features_in_` attribute.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -516,7 +510,7 @@
 <span class="sd">            only if they are supported by the base query strategy.</span>
 <span class="sd">        return_utilities : bool,</span>
 <span class="sd">            If true, also return the utilities based on the query strategy.</span>
-<span class="sd">        reset : bool, default=True</span>
+<span class="sd">        reset : bool, optional (default=True)</span>
 <span class="sd">            Whether to reset the `n_features_in_` attribute.</span>
 <span class="sd">            If False, the input will be checked for consistency with data</span>
 <span class="sd">            provided when reset was last True.</span>
