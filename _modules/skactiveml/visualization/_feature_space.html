@@ -377,7 +377,7 @@
 <span class="sd">        The resolution of the plot.</span>
 <span class="sd">    boundary_dict: dict, optional (default=None)</span>
 <span class="sd">        Additional parameters for the boundary contour.</span>
-<span class="sd">    confidence: scalar | None, optional (default=0.5)</span>
+<span class="sd">    confidence: scalar | None, optional (default=0.75)</span>
 <span class="sd">        The confidence interval plotted with dashed lines. It is not plotted if</span>
 <span class="sd">        confidence is None. Must be in the open interval (0.5, 1). The value</span>
 <span class="sd">        stands for the ratio best class / second best class.</span>
@@ -500,7 +500,8 @@
 <span class="sd">        not given, bound must not be None. Otherwise, the bound is determined</span>
 <span class="sd">        based on the data.</span>
 <span class="sd">    ax : matplotlib.axes.Axes, optional (default=None)</span>
-<span class="sd">        The axis on which the utility is plotted.</span>
+<span class="sd">        The axis on which the utility is plotted.  If no axis is given, the</span>
+<span class="sd">        current axis (`plt.gca()`) will be used instead.</span>
 <span class="sd">    res : int, optional (default=21)</span>
 <span class="sd">        The resolution of the plot.</span>
 <span class="sd">    contour_dict : dict, optional (default=None)</span>
