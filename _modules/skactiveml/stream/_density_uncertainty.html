@@ -192,7 +192,7 @@
   <h1>Source code for skactiveml.stream._density_uncertainty</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
 
-<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">copy</span>
+<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">copy</span><span class="p">,</span> <span class="n">deepcopy</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">sklearn.utils</span> <span class="kn">import</span> <span class="n">check_array</span><span class="p">,</span> <span class="n">check_consistent_length</span><span class="p">,</span> <span class="n">check_scalar</span>
@@ -399,6 +399,8 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># check if a budget_manager is set</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;budget_manager_&quot;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_validate_random_state</span><span class="p">()</span>
+            <span class="n">random_seed</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state_</span><span class="p">)</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">31</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
             <span class="n">check_type</span><span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">budget_manager</span><span class="p">,</span>
                 <span class="s2">&quot;budget_manager_&quot;</span><span class="p">,</span>
@@ -409,7 +411,9 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">budget</span><span class="p">,</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">budget_manager</span><span class="p">,</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_get_default_budget_manager</span><span class="p">(),</span>
+                <span class="p">{</span><span class="s2">&quot;random_state&quot;</span><span class="p">:</span> <span class="n">random_seed</span><span class="p">},</span>
             <span class="p">)</span>
+
 
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;window_&quot;</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">window_</span> <span class="o">=</span> <span class="n">deque</span><span class="p">(</span><span class="n">maxlen</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">window_size</span><span class="p">)</span>
@@ -548,6 +552,7 @@
 
         <span class="c1"># check if a budget_manager is set</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;budget_manager_&quot;</span><span class="p">):</span>
+            <span class="n">random_seed</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state_</span><span class="p">)</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">31</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
             <span class="n">check_type</span><span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">budget_manager</span><span class="p">,</span>
                 <span class="s2">&quot;budget_manager_&quot;</span><span class="p">,</span>
@@ -558,6 +563,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">budget</span><span class="p">,</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">budget_manager</span><span class="p">,</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_get_default_budget_manager</span><span class="p">(),</span>
+                <span class="p">{</span><span class="s2">&quot;random_state&quot;</span><span class="p">:</span> <span class="n">random_seed</span><span class="p">},</span>
             <span class="p">)</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dist_func</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -881,6 +887,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_validate_force_full_budget</span><span class="p">()</span>
         <span class="c1"># check if a budget_manager is set</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;budget_manager_&quot;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_validate_random_state</span><span class="p">()</span>
+            <span class="n">random_seed</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state_</span><span class="p">)</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">31</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
             <span class="n">check_type</span><span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">budget_manager</span><span class="p">,</span>
                 <span class="s2">&quot;budget_manager_&quot;</span><span class="p">,</span>
@@ -891,6 +899,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">budget</span><span class="p">,</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">budget_manager</span><span class="p">,</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_get_default_budget_manager</span><span class="p">(),</span>
+                <span class="p">{</span><span class="s2">&quot;random_state&quot;</span><span class="p">:</span> <span class="n">random_seed</span><span class="p">},</span>
             <span class="p">)</span>
         <span class="c1"># _init_members</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dist_func</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -1077,6 +1086,7 @@
 
         <span class="c1"># check if a budget_manager is set</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;budget_manager_&quot;</span><span class="p">):</span>
+            <span class="n">random_seed</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state_</span><span class="p">)</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">31</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
             <span class="n">check_type</span><span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">budget_manager</span><span class="p">,</span>
                 <span class="s2">&quot;budget_manager_&quot;</span><span class="p">,</span>
@@ -1087,6 +1097,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">budget</span><span class="p">,</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">budget_manager</span><span class="p">,</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_get_default_budget_manager</span><span class="p">(),</span>
+                <span class="p">{</span><span class="s2">&quot;random_state&quot;</span><span class="p">:</span> <span class="n">random_seed</span><span class="p">},</span>
             <span class="p">)</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dist_func</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
