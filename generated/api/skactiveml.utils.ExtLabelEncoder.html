@@ -766,16 +766,19 @@ not the input <cite>X</cite>.</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#skactiveml.utils.ExtLabelEncoder.fit_transform" title="skactiveml.utils.ExtLabelEncoder.fit_transform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit_transform</span></code></a>(y)</p></td>
 <td><p>Fit label encoder and return encoded labels.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.utils.ExtLabelEncoder.get_params" title="skactiveml.utils.ExtLabelEncoder.get_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code></a>([deep])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.utils.ExtLabelEncoder.get_metadata_routing" title="skactiveml.utils.ExtLabelEncoder.get_metadata_routing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_metadata_routing</span></code></a>()</p></td>
+<td><p>Get metadata routing of this object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#skactiveml.utils.ExtLabelEncoder.get_params" title="skactiveml.utils.ExtLabelEncoder.get_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code></a>([deep])</p></td>
 <td><p>Get parameters for this estimator.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#skactiveml.utils.ExtLabelEncoder.inverse_transform" title="skactiveml.utils.ExtLabelEncoder.inverse_transform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">inverse_transform</span></code></a>(y)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.utils.ExtLabelEncoder.inverse_transform" title="skactiveml.utils.ExtLabelEncoder.inverse_transform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">inverse_transform</span></code></a>(y)</p></td>
 <td><p>Transform labels back to original encoding.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.utils.ExtLabelEncoder.set_params" title="skactiveml.utils.ExtLabelEncoder.set_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code></a>(**params)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#skactiveml.utils.ExtLabelEncoder.set_params" title="skactiveml.utils.ExtLabelEncoder.set_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code></a>(**params)</p></td>
 <td><p>Set the parameters of this estimator.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#skactiveml.utils.ExtLabelEncoder.transform" title="skactiveml.utils.ExtLabelEncoder.transform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transform</span></code></a>(y)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.utils.ExtLabelEncoder.transform" title="skactiveml.utils.ExtLabelEncoder.transform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transform</span></code></a>(y)</p></td>
 <td><p>Transform labels to normalized encoding.</p></td>
 </tr>
 </tbody>
@@ -813,6 +816,23 @@ not the input <cite>X</cite>.</p>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt>y: array-like, shape (n_samples) or (n_samples, n_outputs)</dt><dd><p>Class labels.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="skactiveml.utils.ExtLabelEncoder.get_metadata_routing">
+<span class="sig-name descname"><span class="pre">get_metadata_routing</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#skactiveml.utils.ExtLabelEncoder.get_metadata_routing" title="Permalink to this definition">#</a></dt>
+<dd><p>Get metadata routing of this object.</p>
+<p>Please check <span class="xref std std-ref">User Guide</span> on how the routing
+mechanism works.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>routing</strong><span class="classifier">MetadataRequest</span></dt><dd><p>A <code class="xref py py-class docutils literal notranslate"><span class="pre">MetadataRequest</span></code> encapsulating
+routing information.</p>
 </dd>
 </dl>
 </dd>

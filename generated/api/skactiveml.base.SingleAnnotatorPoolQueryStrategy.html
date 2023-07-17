@@ -757,17 +757,37 @@ single annotator in scikit-activeml.</p>
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.base.SingleAnnotatorPoolQueryStrategy.get_params" title="skactiveml.base.SingleAnnotatorPoolQueryStrategy.get_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code></a>([deep])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.base.SingleAnnotatorPoolQueryStrategy.get_metadata_routing" title="skactiveml.base.SingleAnnotatorPoolQueryStrategy.get_metadata_routing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_metadata_routing</span></code></a>()</p></td>
+<td><p>Get metadata routing of this object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#skactiveml.base.SingleAnnotatorPoolQueryStrategy.get_params" title="skactiveml.base.SingleAnnotatorPoolQueryStrategy.get_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code></a>([deep])</p></td>
 <td><p>Get parameters for this estimator.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#skactiveml.base.SingleAnnotatorPoolQueryStrategy.query" title="skactiveml.base.SingleAnnotatorPoolQueryStrategy.query"><code class="xref py py-obj docutils literal notranslate"><span class="pre">query</span></code></a>(X, y, *args[, candidates, batch_size, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.base.SingleAnnotatorPoolQueryStrategy.query" title="skactiveml.base.SingleAnnotatorPoolQueryStrategy.query"><code class="xref py py-obj docutils literal notranslate"><span class="pre">query</span></code></a>(X, y, *args[, candidates, batch_size, ...])</p></td>
 <td><p>Determines for which candidate samples labels are to be queried.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.base.SingleAnnotatorPoolQueryStrategy.set_params" title="skactiveml.base.SingleAnnotatorPoolQueryStrategy.set_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code></a>(**params)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#skactiveml.base.SingleAnnotatorPoolQueryStrategy.set_params" title="skactiveml.base.SingleAnnotatorPoolQueryStrategy.set_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code></a>(**params)</p></td>
 <td><p>Set the parameters of this estimator.</p></td>
 </tr>
 </tbody>
 </table>
+<dl class="py method">
+<dt class="sig sig-object py" id="skactiveml.base.SingleAnnotatorPoolQueryStrategy.get_metadata_routing">
+<span class="sig-name descname"><span class="pre">get_metadata_routing</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#skactiveml.base.SingleAnnotatorPoolQueryStrategy.get_metadata_routing" title="Permalink to this definition">#</a></dt>
+<dd><p>Get metadata routing of this object.</p>
+<p>Please check <span class="xref std std-ref">User Guide</span> on how the routing
+mechanism works.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>routing</strong><span class="classifier">MetadataRequest</span></dt><dd><p>A <code class="xref py py-class docutils literal notranslate"><span class="pre">MetadataRequest</span></code> encapsulating
+routing information.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="skactiveml.base.SingleAnnotatorPoolQueryStrategy.get_params">
 <span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#skactiveml.base.SingleAnnotatorPoolQueryStrategy.get_params" title="Permalink to this definition">#</a></dt>
@@ -901,12 +921,12 @@ possible to update each component of a nested object.</p>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Monte-Carlo EER with Log-Loss"><img alt="" src="../../_images/sphx_glr_plot-MonteCarloEER-Monte-Carlo_EER_with_Log-Loss_thumb.gif" />
 <p><a class="reference internal" href="../sphinx_gallery_examples/pool/plot-MonteCarloEER-Monte-Carlo_EER_with_Log-Loss.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-montecarloeer-monte-carlo-eer-with-log-loss-py"><span class="std std-ref">Monte-Carlo EER with Log-Loss</span></a></p>
   <div class="sphx-glr-thumbnail-title">Monte-Carlo EER with Log-Loss</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Monte-Carlo EER with Misclassification-Loss"><img alt="" src="../../_images/sphx_glr_plot-MonteCarloEER-Monte-Carlo_EER_with_Misclassification-Loss_thumb.gif" />
-<p><a class="reference internal" href="../sphinx_gallery_examples/pool/plot-MonteCarloEER-Monte-Carlo_EER_with_Misclassification-Loss.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-montecarloeer-monte-carlo-eer-with-misclassification-loss-py"><span class="std std-ref">Monte-Carlo EER with Misclassification-Loss</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Monte-Carlo EER with Misclassification-Loss</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Batch Density-Diversity-Distribution-Distance Sampling"><img alt="" src="../../_images/sphx_glr_plot-FourDs-Batch_Density-Diversity-Distribution-Distance_Sampling_(Batch4DS)_thumb.gif" />
 <p><a class="reference internal" href="../sphinx_gallery_examples/pool/plot-FourDs-Batch_Density-Diversity-Distribution-Distance_Sampling_%28Batch4DS%29.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-fourds-batch-density-diversity-distribution-distance-sampling-batch4ds-py"><span class="std std-ref">Batch Density-Diversity-Distribution-Distance Sampling</span></a></p>
   <div class="sphx-glr-thumbnail-title">Batch Density-Diversity-Distribution-Distance Sampling</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Monte-Carlo EER with Misclassification-Loss"><img alt="" src="../../_images/sphx_glr_plot-MonteCarloEER-Monte-Carlo_EER_with_Misclassification-Loss_thumb.gif" />
+<p><a class="reference internal" href="../sphinx_gallery_examples/pool/plot-MonteCarloEER-Monte-Carlo_EER_with_Misclassification-Loss.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-montecarloeer-monte-carlo-eer-with-misclassification-loss-py"><span class="std std-ref">Monte-Carlo EER with Misclassification-Loss</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Monte-Carlo EER with Misclassification-Loss</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Discriminative Active Learning"><img alt="" src="../../_images/sphx_glr_plot-DiscriminativeAL-Discriminative_Active_Learning_(DAL)_thumb.gif" />
 <p><a class="reference internal" href="../sphinx_gallery_examples/pool/plot-DiscriminativeAL-Discriminative_Active_Learning_%28DAL%29.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-discriminativeal-discriminative-active-learning-dal-py"><span class="std std-ref">Discriminative Active Learning</span></a></p>
   <div class="sphx-glr-thumbnail-title">Discriminative Active Learning</div>
@@ -940,12 +960,12 @@ possible to update each component of a nested object.</p>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Greedy Sampling on the Feature Space (GSx)"><img alt="" src="../../_images/sphx_glr_plot-GreedySamplingX-Greedy_Sampling_on_the_Feature_Space_(GSx)_thumb.gif" />
 <p><a class="reference internal" href="../sphinx_gallery_examples/pool/plot-GreedySamplingX-Greedy_Sampling_on_the_Feature_Space_%28GSx%29.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-greedysamplingx-greedy-sampling-on-the-feature-space-gsx-py"><span class="std std-ref">Greedy Sampling on the Feature Space (GSx)</span></a></p>
   <div class="sphx-glr-thumbnail-title">Greedy Sampling on the Feature Space (GSx)</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Improved Greedy Sampling (GSi)"><img alt="" src="../../_images/sphx_glr_plot-GreedySamplingTarget-Improved_Greedy_Sampling_(GSi)_thumb.gif" />
-<p><a class="reference internal" href="../sphinx_gallery_examples/pool/plot-GreedySamplingTarget-Improved_Greedy_Sampling_%28GSi%29.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-greedysamplingtarget-improved-greedy-sampling-gsi-py"><span class="std std-ref">Improved Greedy Sampling (GSi)</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Improved Greedy Sampling (GSi)</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Greedy Sampling on the Target Space (GSy)"><img alt="" src="../../_images/sphx_glr_plot-GreedySamplingTarget-Greedy_Sampling_on_the_Target_Space_(GSy)_thumb.gif" />
 <p><a class="reference internal" href="../sphinx_gallery_examples/pool/plot-GreedySamplingTarget-Greedy_Sampling_on_the_Target_Space_%28GSy%29.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-greedysamplingtarget-greedy-sampling-on-the-target-space-gsy-py"><span class="std std-ref">Greedy Sampling on the Target Space (GSy)</span></a></p>
   <div class="sphx-glr-thumbnail-title">Greedy Sampling on the Target Space (GSy)</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Improved Greedy Sampling (GSi)"><img alt="" src="../../_images/sphx_glr_plot-GreedySamplingTarget-Improved_Greedy_Sampling_(GSi)_thumb.gif" />
+<p><a class="reference internal" href="../sphinx_gallery_examples/pool/plot-GreedySamplingTarget-Improved_Greedy_Sampling_%28GSi%29.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-greedysamplingtarget-improved-greedy-sampling-gsi-py"><span class="std std-ref">Improved Greedy Sampling (GSi)</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Improved Greedy Sampling (GSi)</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Expected Model Variance Reduction"><img alt="" src="../../_images/sphx_glr_plot-ExpectedModelVarianceReduction-Expected_Model_Variance_Reduction_thumb.gif" />
 <p><a class="reference internal" href="../sphinx_gallery_examples/pool/plot-ExpectedModelVarianceReduction-Expected_Model_Variance_Reduction.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-expectedmodelvariancereduction-expected-model-variance-reduction-py"><span class="std std-ref">Expected Model Variance Reduction</span></a></p>
   <div class="sphx-glr-thumbnail-title">Expected Model Variance Reduction</div>

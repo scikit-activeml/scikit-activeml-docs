@@ -490,7 +490,6 @@
         <span class="n">reset</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">check_X_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
-
         <span class="c1"># Validate input parameters.</span>
         <span class="p">(</span>
             <span class="n">X</span><span class="p">,</span>
@@ -564,7 +563,6 @@
         <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_validate_cost_matrix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_classes</span><span class="p">):</span>
-
         <span class="n">cost_matrix</span> <span class="o">=</span> <span class="p">(</span>
             <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n_classes</span><span class="p">)</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cost_matrix</span> <span class="ow">is</span> <span class="kc">None</span>
@@ -582,7 +580,6 @@
         <span class="n">X_eval</span><span class="p">,</span>
         <span class="n">sample_weight_eval</span><span class="p">,</span>
     <span class="p">):</span>
-
         <span class="c1"># Check if candidates are samples if sample_weight_candidates is set</span>
         <span class="k">if</span> <span class="p">(</span>
             <span class="n">candidates</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">candidates</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span>
@@ -1087,7 +1084,6 @@
     <span class="k">def</span> <span class="nf">_precompute_and_fit_clf</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">id_clf</span><span class="p">,</span> <span class="n">X_full</span><span class="p">,</span> <span class="n">y_full</span><span class="p">,</span> <span class="n">idx_train</span><span class="p">,</span> <span class="n">idx_cand</span><span class="p">,</span> <span class="n">idx_eval</span><span class="p">,</span> <span class="n">fit_clf</span>
     <span class="p">):</span>
-
         <span class="c1"># TODO: replace the following line by more efficient code</span>
         <span class="n">id_clf</span><span class="o">.</span><span class="n">precompute</span><span class="p">(</span>
             <span class="n">idx_train</span><span class="p">,</span> <span class="n">idx_train</span><span class="p">,</span> <span class="n">fit_params</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="n">pred_params</span><span class="o">=</span><span class="s2">&quot;all&quot;</span>

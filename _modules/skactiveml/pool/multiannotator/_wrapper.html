@@ -568,7 +568,6 @@
         <span class="n">return_utilities</span><span class="p">,</span>
         <span class="n">pref_n_annotators</span><span class="p">,</span>
     <span class="p">):</span>
-
         <span class="n">random_state</span> <span class="o">=</span> <span class="n">check_random_state</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state</span><span class="p">)</span>
 
         <span class="n">n_annotators</span> <span class="o">=</span> <span class="n">A_cand</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
@@ -616,7 +615,6 @@
     <span class="k">def</span> <span class="nf">_get_order_preserving_s_query</span><span class="p">(</span>
         <span class="n">A</span><span class="p">,</span> <span class="n">candidate_utilities</span><span class="p">,</span> <span class="n">annotator_utilities</span>
     <span class="p">):</span>
-
         <span class="n">nan_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">candidate_utilities</span><span class="p">))</span>
 
         <span class="n">candidate_utilities</span><span class="p">[</span><span class="n">nan_indices</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">nan_indices</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span>
@@ -640,7 +638,6 @@
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">_n_to_assign_annotators</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">s_indices</span><span class="p">,</span> <span class="n">pref_n_annotators</span><span class="p">):</span>
-
         <span class="n">n_max_annotators</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
         <span class="n">n_max_chosen_annotators</span> <span class="o">=</span> <span class="n">n_max_annotators</span><span class="p">[</span><span class="n">s_indices</span><span class="p">]</span>
         <span class="n">annot_per_sample</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span>

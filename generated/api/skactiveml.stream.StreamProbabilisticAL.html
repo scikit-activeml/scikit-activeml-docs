@@ -810,20 +810,40 @@ If metric_dict is None and metric is ‘rbf’ metric_dict is set to
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.stream.StreamProbabilisticAL.get_params" title="skactiveml.stream.StreamProbabilisticAL.get_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code></a>([deep])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.stream.StreamProbabilisticAL.get_metadata_routing" title="skactiveml.stream.StreamProbabilisticAL.get_metadata_routing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_metadata_routing</span></code></a>()</p></td>
+<td><p>Get metadata routing of this object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#skactiveml.stream.StreamProbabilisticAL.get_params" title="skactiveml.stream.StreamProbabilisticAL.get_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code></a>([deep])</p></td>
 <td><p>Get parameters for this estimator.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#skactiveml.stream.StreamProbabilisticAL.query" title="skactiveml.stream.StreamProbabilisticAL.query"><code class="xref py py-obj docutils literal notranslate"><span class="pre">query</span></code></a>(candidates, clf[, X, y, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.stream.StreamProbabilisticAL.query" title="skactiveml.stream.StreamProbabilisticAL.query"><code class="xref py py-obj docutils literal notranslate"><span class="pre">query</span></code></a>(candidates, clf[, X, y, ...])</p></td>
 <td><p>Ask the query strategy which instances in candidates to acquire.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.stream.StreamProbabilisticAL.set_params" title="skactiveml.stream.StreamProbabilisticAL.set_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code></a>(**params)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#skactiveml.stream.StreamProbabilisticAL.set_params" title="skactiveml.stream.StreamProbabilisticAL.set_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code></a>(**params)</p></td>
 <td><p>Set the parameters of this estimator.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#skactiveml.stream.StreamProbabilisticAL.update" title="skactiveml.stream.StreamProbabilisticAL.update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code></a>(candidates, queried_indices[, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.stream.StreamProbabilisticAL.update" title="skactiveml.stream.StreamProbabilisticAL.update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code></a>(candidates, queried_indices[, ...])</p></td>
 <td><p>Updates the budget manager.</p></td>
 </tr>
 </tbody>
 </table>
+<dl class="py method">
+<dt class="sig sig-object py" id="skactiveml.stream.StreamProbabilisticAL.get_metadata_routing">
+<span class="sig-name descname"><span class="pre">get_metadata_routing</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#skactiveml.stream.StreamProbabilisticAL.get_metadata_routing" title="Permalink to this definition">#</a></dt>
+<dd><p>Get metadata routing of this object.</p>
+<p>Please check <span class="xref std std-ref">User Guide</span> on how the routing
+mechanism works.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>routing</strong><span class="classifier">MetadataRequest</span></dt><dd><p>A <code class="xref py py-class docutils literal notranslate"><span class="pre">MetadataRequest</span></code> encapsulating
+routing information.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="skactiveml.stream.StreamProbabilisticAL.get_params">
 <span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#skactiveml.stream.StreamProbabilisticAL.get_params" title="Permalink to this definition">#</a></dt>

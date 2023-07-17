@@ -400,7 +400,7 @@
         <span class="c1"># check if a budget_manager is set</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;budget_manager_&quot;</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_validate_random_state</span><span class="p">()</span>
-            <span class="n">random_seed</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state_</span><span class="p">)</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">31</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">random_seed</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state_</span><span class="p">)</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">31</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
             <span class="n">check_type</span><span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">budget_manager</span><span class="p">,</span>
                 <span class="s2">&quot;budget_manager_&quot;</span><span class="p">,</span>
@@ -413,7 +413,6 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">_get_default_budget_manager</span><span class="p">(),</span>
                 <span class="p">{</span><span class="s2">&quot;random_state&quot;</span><span class="p">:</span> <span class="n">random_seed</span><span class="p">},</span>
             <span class="p">)</span>
-
 
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;window_&quot;</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">window_</span> <span class="o">=</span> <span class="n">deque</span><span class="p">(</span><span class="n">maxlen</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">window_size</span><span class="p">)</span>
@@ -552,7 +551,7 @@
 
         <span class="c1"># check if a budget_manager is set</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;budget_manager_&quot;</span><span class="p">):</span>
-            <span class="n">random_seed</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state_</span><span class="p">)</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">31</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">random_seed</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state_</span><span class="p">)</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">31</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
             <span class="n">check_type</span><span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">budget_manager</span><span class="p">,</span>
                 <span class="s2">&quot;budget_manager_&quot;</span><span class="p">,</span>
@@ -888,7 +887,7 @@
         <span class="c1"># check if a budget_manager is set</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;budget_manager_&quot;</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_validate_random_state</span><span class="p">()</span>
-            <span class="n">random_seed</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state_</span><span class="p">)</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">31</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">random_seed</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state_</span><span class="p">)</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">31</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
             <span class="n">check_type</span><span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">budget_manager</span><span class="p">,</span>
                 <span class="s2">&quot;budget_manager_&quot;</span><span class="p">,</span>
@@ -1086,7 +1085,7 @@
 
         <span class="c1"># check if a budget_manager is set</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;budget_manager_&quot;</span><span class="p">):</span>
-            <span class="n">random_seed</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state_</span><span class="p">)</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">31</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">random_seed</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state_</span><span class="p">)</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">31</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
             <span class="n">check_type</span><span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">budget_manager</span><span class="p">,</span>
                 <span class="s2">&quot;budget_manager_&quot;</span><span class="p">,</span>
