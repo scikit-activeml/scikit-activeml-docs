@@ -1,0 +1,550 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Pool-based Active Learning - Simple Evaluation Study &#8212; scikit-activeml latest documentation</title>
+<script>
+  document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+  document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
+</script>
+
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+
+
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css" />
+
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../../_static/filter_examples.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Multi-annotator Pool-based Active Learning - Getting Started" href="10_multiple_annotators_getting_started.html" />
+    <link rel="prev" title="Sample Annotating" href="03_pool_oracle_annotations.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="docsearch:language" content="None">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+    <div class="bd-header-announcement container-fluid" id="banner">
+      
+
+    </div>
+
+    
+    <nav class="bd-header navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="bd-header__inner container-xl">
+
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+    <img src="../../_static/scikit-activeml-logo.png" class="logo__image only-light" alt="Logo image">
+    <img src="../../_static/scikit-activeml-logo.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="fas fa-bars"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../index.html">
+  Home
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../../tutorials.html">
+  Tutorials
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../strategy_overview.html">
+  Strategy Overview
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../api_reference.html">
+  API Reference
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../sphinx_gallery_examples/index.html">
+  Examples
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../developers_guide.html">
+  Developer Guide
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <span id="theme-switch" class="btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Quick Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/scikit-activeml/scikit-activeml" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://pypi.org/project/scikit-activeml" rel="noopener" target="_blank" title="PyPI"><span><i class="fas fa-box"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="bd-container container-xl">
+      <div class="bd-container__inner row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="bd-sidebar-primary col-12 col-md-3 bd-sidebar">
+  <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="00_pool_getting_started.html">
+   Pool-based Active Learning - Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_deep_pool_al_with_skorch.html">
+   Deep Pool-based Active Learning: Scikit-activeml with Skorch
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_pool_regression_getting_started.html">
+   Pool-based Active Learning for Regression - Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_pool_oracle_annotations.html">
+   Sample Annotating
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Pool-based Active Learning - Simple Evaluation Study
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10_multiple_annotators_getting_started.html">
+   Multi-annotator Pool-based Active Learning - Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="20_stream_getting_started.html">
+   Stream-based Active Learning - Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="21_stream_batch_with_pool_al.html">
+   Batch Stream Active Learning With Pool Query Strategies
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="22_river_classifier.html">
+   Stream-based Active Learning With River
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+  </div>
+  <div class="sidebar-end-items">
+  </div>
+</div>
+
+
+          
+
+
+<div class="bd-sidebar-secondary d-none d-xl-block col-xl-2 bd-toc">
+  
+    
+    <div class="toc-item">
+      
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#Random-Seed-Management">
+   Random Seed Management
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#Data-Set-Generation">
+   Data Set Generation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#Classification-Models-and-Query-Strategies">
+   Classification Models and Query Strategies
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#Experiment-Parameters">
+   Experiment Parameters
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#Experiment-Loop">
+   Experiment Loop
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#Result-Plotting">
+   Result Plotting
+  </a>
+ </li>
+</ul>
+
+</nav>
+    </div>
+    
+    <div class="toc-item">
+      
+    </div>
+    
+  
+</div>
+
+
+          
+          
+          <div class="bd-content col-12 col-md-9 col-xl-7">
+              
+              <article class="bd-article" role="main">
+                
+  <section id="Pool-based-Active-Learning---Simple-Evaluation-Study">
+<h1>Pool-based Active Learning - Simple Evaluation Study<a class="headerlink" href="#Pool-based-Active-Learning---Simple-Evaluation-Study" title="Permalink to this headline">#</a></h1>
+<p>The main purpose of this tutorial is to show how a simple comparison study can be realized using <code class="docutils literal notranslate"><span class="pre">scikit-activeml</span></code>. For this experiment, we use a repeated K-fold Cross-validation to evaluate the query strategies using two different classifiers. Our main focus is cleanly separating the repetitions, proper handling of random states and separation of test and training data.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mlp</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.gaussian_process</span> <span class="kn">import</span> <span class="n">GaussianProcessClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_blobs</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">StratifiedKFold</span><span class="p">,</span> <span class="n">KFold</span>
+
+<span class="kn">from</span> <span class="nn">skactiveml.classifier</span> <span class="kn">import</span> <span class="n">SklearnClassifier</span><span class="p">,</span> <span class="n">ParzenWindowClassifier</span>
+<span class="kn">from</span> <span class="nn">skactiveml.pool</span> <span class="kn">import</span> <span class="n">UncertaintySampling</span><span class="p">,</span> <span class="n">ProbabilisticAL</span><span class="p">,</span> <span class="n">RandomSampling</span>
+<span class="kn">from</span> <span class="nn">skactiveml.utils</span> <span class="kn">import</span> <span class="n">call_func</span><span class="p">,</span> <span class="n">MISSING_LABEL</span>
+
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">mlp</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.facecolor&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;white&quot;</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<section id="Random-Seed-Management">
+<h2>Random Seed Management<a class="headerlink" href="#Random-Seed-Management" title="Permalink to this headline">#</a></h2>
+<p>To guarantee that the experiment is reproducible, we have to set the random states for all components that might use one. To simplify this, we make all random seeds dependent of a single fixed random state and use helper functions to generate new seeds and random states. Keep in mind that the <code class="docutils literal notranslate"><span class="pre">master_random_state</span></code> should only be used to create new random states or random seeds.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">master_random_state</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">gen_seed</span><span class="p">(</span><span class="n">random_state</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">random_state</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">**</span><span class="mi">31</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">gen_random_state</span><span class="p">(</span><span class="n">random_state</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="n">gen_seed</span><span class="p">(</span><span class="n">random_state</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Data-Set-Generation">
+<h2>Data Set Generation<a class="headerlink" href="#Data-Set-Generation" title="Permalink to this headline">#</a></h2>
+<p>We generate a data set of 100 data points with two clusters from the <code class="docutils literal notranslate"><span class="pre">make_blobs</span></code> method of <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>. This method also returns the true labels of each data point. In practice, however, we do not know these labels unless we ask an oracle. The labels are stored in <code class="docutils literal notranslate"><span class="pre">y_true</span></code>, which acts as an oracle.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_features</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">n_classes</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">n_centers_per_class</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">classes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_classes</span><span class="p">)</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">centers</span> <span class="o">=</span> <span class="n">make_blobs</span><span class="p">(</span>
+    <span class="n">n_features</span><span class="o">=</span><span class="n">n_features</span><span class="p">,</span> <span class="n">centers</span><span class="o">=</span><span class="n">n_classes</span><span class="o">*</span><span class="n">n_centers_per_class</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="n">gen_seed</span><span class="p">(</span><span class="n">master_random_state</span><span class="p">))</span>
+<span class="n">y_true</span> <span class="o">=</span> <span class="n">centers</span> <span class="o">%</span> <span class="n">n_classes</span>
+<span class="n">bound</span> <span class="o">=</span> <span class="p">[[</span><span class="nb">min</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]),</span> <span class="nb">min</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])],</span> <span class="p">[</span><span class="nb">max</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]),</span> <span class="nb">max</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])]]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y_true</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;jet&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Feature 1&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Feature 2&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Data set&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/generated_tutorials_04_pool_simple_evaluation_study_6_0.png" src="../../_images/generated_tutorials_04_pool_simple_evaluation_study_6_0.png" />
+</div>
+</div>
+</section>
+<section id="Classification-Models-and-Query-Strategies">
+<h2>Classification Models and Query Strategies<a class="headerlink" href="#Classification-Models-and-Query-Strategies" title="Permalink to this headline">#</a></h2>
+<p>We handle the creation of classifiers and query strategies using factory functions to simplify the separation of classifiers and query strategies across repetitions and folds.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">classifier_factory_functions</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;ParzenWindowClassifier&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">classes</span><span class="p">,</span> <span class="n">random_state</span><span class="p">:</span> <span class="n">ParzenWindowClassifier</span><span class="p">(</span>
+        <span class="n">classes</span><span class="o">=</span><span class="n">classes</span><span class="p">,</span>
+        <span class="n">random_state</span><span class="o">=</span><span class="n">gen_seed</span><span class="p">(</span><span class="n">random_state</span><span class="p">),</span>
+        <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;rbf&#39;</span><span class="p">,</span>
+        <span class="n">metric_dict</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;gamma&#39;</span><span class="p">:</span><span class="s1">&#39;mean&#39;</span><span class="p">}</span>
+    <span class="p">),</span>
+    <span class="s1">&#39;GaussianProcessClassifier&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">classes</span><span class="p">,</span> <span class="n">random_state</span><span class="p">:</span> <span class="n">SklearnClassifier</span><span class="p">(</span>
+        <span class="n">GaussianProcessClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">gen_seed</span><span class="p">(</span><span class="n">random_state</span><span class="p">)),</span>
+        <span class="n">classes</span><span class="o">=</span><span class="n">classes</span><span class="p">,</span>
+        <span class="n">random_state</span><span class="o">=</span><span class="n">gen_seed</span><span class="p">(</span><span class="n">random_state</span><span class="p">)</span>
+    <span class="p">)</span>
+<span class="p">}</span>
+
+<span class="n">query_strategy_factory_functions</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;RandomSampling&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">random_state</span><span class="p">:</span> <span class="n">RandomSampling</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">gen_seed</span><span class="p">(</span><span class="n">random_state</span><span class="p">)),</span>
+    <span class="s1">&#39;UncertaintySampling&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">random_state</span><span class="p">:</span> <span class="n">UncertaintySampling</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">gen_seed</span><span class="p">(</span><span class="n">random_state</span><span class="p">)),</span>
+    <span class="s1">&#39;ProbabilisticAL&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">random_state</span><span class="p">:</span> <span class="n">ProbabilisticAL</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">gen_seed</span><span class="p">(</span><span class="n">random_state</span><span class="p">),</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;rbf&#39;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">create_classifier</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">classes</span><span class="p">,</span> <span class="n">random_state</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">classifier_factory_functions</span><span class="p">[</span><span class="n">name</span><span class="p">](</span><span class="n">classes</span><span class="p">,</span> <span class="n">random_state</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">create_query_strategy</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">random_state</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">query_strategy_factory_functions</span><span class="p">[</span><span class="n">name</span><span class="p">](</span><span class="n">random_state</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Experiment-Parameters">
+<h2>Experiment Parameters<a class="headerlink" href="#Experiment-Parameters" title="Permalink to this headline">#</a></h2>
+<p>For this experiment, we need to define how the strategies should be compared against one another. As we want to use a repeated K-Fold Cross-validation, we need to define the number of repetitions (<code class="docutils literal notranslate"><span class="pre">n_reps</span></code>), the number of folds (<code class="docutils literal notranslate"><span class="pre">n_folds</span></code>) and the number of queries within each fold. Furthermore, we have the option of using stratified Cross-validation.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_reps</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">n_folds</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">n_cycles</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">use_stratified</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">classifier_names</span> <span class="o">=</span> <span class="n">classifier_factory_functions</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="n">query_strategy_names</span> <span class="o">=</span> <span class="n">query_strategy_factory_functions</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Experiment-Loop">
+<h2>Experiment Loop<a class="headerlink" href="#Experiment-Loop" title="Permalink to this headline">#</a></h2>
+<p>The actual experiment loops over all query strategy and classifier combinations. The average accuracy over the test set is recorded for each cycle and stored in the <code class="docutils literal notranslate"><span class="pre">results</span></code> dictionary.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">kfold_class</span> <span class="o">=</span> <span class="n">StratifiedKFold</span> <span class="k">if</span> <span class="n">use_stratified</span> <span class="k">else</span> <span class="n">KFold</span>
+
+<span class="k">for</span> <span class="n">clf_name</span> <span class="ow">in</span> <span class="n">classifier_names</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">qs_name</span> <span class="ow">in</span> <span class="n">query_strategy_names</span><span class="p">:</span>
+        <span class="n">accuracies</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="n">n_reps</span><span class="p">,</span> <span class="n">n_folds</span><span class="p">,</span> <span class="n">n_cycles</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i_rep</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_reps</span><span class="p">):</span>
+            <span class="n">kf</span> <span class="o">=</span> <span class="n">kfold_class</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="n">n_folds</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">gen_seed</span><span class="p">(</span><span class="n">master_random_state</span><span class="p">))</span>
+            <span class="k">for</span> <span class="n">i_fold</span><span class="p">,</span> <span class="p">(</span><span class="n">train_idx</span><span class="p">,</span> <span class="n">test_idx</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">kf</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y_true</span><span class="p">)):</span>
+                <span class="n">X_test</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">test_idx</span><span class="p">]</span>
+                <span class="n">y_test</span> <span class="o">=</span> <span class="n">y_true</span><span class="p">[</span><span class="n">test_idx</span><span class="p">]</span>
+
+                <span class="n">X_train</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">train_idx</span><span class="p">]</span>
+                <span class="n">y_train_true</span> <span class="o">=</span> <span class="n">y_true</span><span class="p">[</span><span class="n">train_idx</span><span class="p">]</span>
+                <span class="n">y_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">y_train_true</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">)</span>
+
+                <span class="n">clf</span> <span class="o">=</span> <span class="n">create_classifier</span><span class="p">(</span><span class="n">clf_name</span><span class="p">,</span> <span class="n">classes</span><span class="p">,</span> <span class="n">gen_random_state</span><span class="p">(</span><span class="n">master_random_state</span><span class="p">))</span>
+                <span class="n">qs</span> <span class="o">=</span> <span class="n">create_query_strategy</span><span class="p">(</span><span class="n">qs_name</span><span class="p">,</span> <span class="n">gen_random_state</span><span class="p">(</span><span class="n">master_random_state</span><span class="p">))</span>
+
+                <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_cycles</span><span class="p">):</span>
+                    <span class="n">query_idx</span> <span class="o">=</span> <span class="n">call_func</span><span class="p">(</span><span class="n">qs</span><span class="o">.</span><span class="n">query</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_train</span><span class="p">,</span> <span class="n">clf</span><span class="o">=</span><span class="n">clf</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                    <span class="n">y_train</span><span class="p">[</span><span class="n">query_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_train_true</span><span class="p">[</span><span class="n">query_idx</span><span class="p">]</span>
+                    <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+                    <span class="n">accuracies</span><span class="p">[</span><span class="n">i_rep</span><span class="p">,</span> <span class="n">i_fold</span><span class="p">,</span> <span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+        <span class="n">results</span><span class="p">[(</span><span class="n">clf_name</span><span class="p">,</span> <span class="n">qs_name</span><span class="p">)]</span> <span class="o">=</span> <span class="n">accuracies</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Result-Plotting">
+<h2>Result Plotting<a class="headerlink" href="#Result-Plotting" title="Permalink to this headline">#</a></h2>
+<p>We use learning curves to compare the strategies. For that, we plot the average accuracy (averaged over all repetitions and folds) relative to the number of queries. The error bars show the standard deviation for each curve. Furthermore, the legend shows the area under the learning curve, i.e., mean accuracy over all cycles.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">clf_name</span> <span class="ow">in</span> <span class="n">classifier_names</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">qs_name</span> <span class="ow">in</span> <span class="n">query_strategy_names</span><span class="p">:</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="p">(</span><span class="n">clf_name</span><span class="p">,</span> <span class="n">qs_name</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+        <span class="n">reshaped_result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_cycles</span><span class="p">))</span>
+        <span class="n">errorbar_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">reshaped_result</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">errorbar_std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">reshaped_result</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_cycles</span><span class="p">),</span> <span class="n">errorbar_mean</span><span class="p">,</span> <span class="n">errorbar_std</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">errorbar_mean</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">) </span><span class="si">{</span><span class="n">qs_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">clf_name</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;cycle&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;accuracy&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/generated_tutorials_04_pool_simple_evaluation_study_16_0.png" src="../../_images/generated_tutorials_04_pool_simple_evaluation_study_16_0.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/generated_tutorials_04_pool_simple_evaluation_study_16_1.png" src="../../_images/generated_tutorials_04_pool_simple_evaluation_study_16_1.png" />
+</div>
+</div>
+</section>
+</section>
+
+
+              </article>
+              
+
+              
+              <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="03_pool_oracle_annotations.html" title="previous page">
+      <i class="fas fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Sample Annotating</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="10_multiple_annotators_getting_started.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Multi-annotator Pool-based Active Learning - Getting Started</p>
+  </div>
+  <i class="fas fa-angle-right"></i>
+  </a>
+</div>
+              </footer>
+              
+          </div>
+          
+      </div>
+    </div>
+
+  
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695"></script>
+
+<footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy; Copyright 2020.<br>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
+</p>
+  </div>
+  
+</div>
+</footer>
+  </body>
+</html>

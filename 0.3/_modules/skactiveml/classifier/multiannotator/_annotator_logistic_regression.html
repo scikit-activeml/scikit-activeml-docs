@@ -1,0 +1,852 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>skactiveml.classifier.multiannotator._annotator_logistic_regression &#8212; scikit-activeml 0.3.1 documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sg_gallery-rendered-html.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../../../../_static/filter_examples.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../../../index.html">
+  <img src="../../../../_static/scikit-activeml-logo.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../index.html">
+  Home
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../tutorials.html">
+  Tutorials
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../generated/strategy_overview.html">
+  Strategy Overview
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../generated/api_reference.html">
+  API Reference
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../generated/sphinx_gallery_examples/index.html">
+  Examples
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../developers_guide.html">
+  Developer Guide
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Quick Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/scikit-activeml/scikit-activeml" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://pypi.org/project/scikit-activeml" rel="noopener" target="_blank" title="PyPI"><span><i class="fas fa-box"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+              </div>
+              <div class="sidebar-end-items">
+              </div>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <h1>Source code for skactiveml.classifier.multiannotator._annotator_logistic_regression</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Logistic Regression for Multiple Annotators</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># Author: Marek Herde &lt;marek.herde@uni-kassel.de&gt;</span>
+<span class="c1">#         Timo Sturm &lt;timo.sturm@student.uni-kassel.de&gt;</span>
+
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">minimize</span>
+<span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">softmax</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">dirichlet</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">multivariate_normal</span> <span class="k">as</span> <span class="n">multi_normal</span>
+<span class="kn">from</span> <span class="nn">sklearn.utils.validation</span> <span class="kn">import</span> <span class="n">check_array</span><span class="p">,</span> <span class="n">check_is_fitted</span><span class="p">,</span> <span class="n">column_or_1d</span>
+
+<span class="kn">from</span> <span class="nn">...base</span> <span class="kn">import</span> <span class="n">SkactivemlClassifier</span><span class="p">,</span> <span class="n">AnnotatorModelMixin</span>
+<span class="kn">from</span> <span class="nn">...utils</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">MISSING_LABEL</span><span class="p">,</span>
+    <span class="n">compute_vote_vectors</span><span class="p">,</span>
+    <span class="n">rand_argmax</span><span class="p">,</span>
+    <span class="n">ext_confusion_matrix</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<div class="viewcode-block" id="AnnotatorLogisticRegression"><a class="viewcode-back" href="../../../../generated/api/skactiveml.classifier.multiannotator.AnnotatorLogisticRegression.html#skactiveml.classifier.multiannotator.AnnotatorLogisticRegression">[docs]</a><span class="k">class</span> <span class="nc">AnnotatorLogisticRegression</span><span class="p">(</span><span class="n">SkactivemlClassifier</span><span class="p">,</span> <span class="n">AnnotatorModelMixin</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;AnnotatorLogisticRegression</span>
+
+<span class="sd">    Logistic Regression based on Raykar [1] is a classification algorithm that</span>
+<span class="sd">    learns from multiple annotators. Besides, building a model for the</span>
+<span class="sd">    classification task, the algorithm estimates the performance of the</span>
+<span class="sd">    annotators. The performance of an annotator is assumed to only depend on</span>
+<span class="sd">    the true label of a sample and not on the sample itself. Each annotator is</span>
+<span class="sd">    assigned a confusion matrix, where each row is normalized. This contains</span>
+<span class="sd">    the bias of the annotators decisions. These estimated biases are then</span>
+<span class="sd">    used to refine the classifier itself.</span>
+
+<span class="sd">    The classifier also supports a bayesian view on the problem, for this a</span>
+<span class="sd">    prior distribution over an annotator&#39;s confusion matrix is assumed. It also</span>
+<span class="sd">    assumes a prior distribution over the classifiers weight vectors</span>
+<span class="sd">    corresponding to a regularization.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    tol : float, default=1.e-2</span>
+<span class="sd">        Threshold for stopping the EM-Algorithm, if the change of the</span>
+<span class="sd">        expectation value between two steps is smaller than tol, the fit</span>
+<span class="sd">        algorithm stops.</span>
+<span class="sd">    max_iter : int, default=100</span>
+<span class="sd">        The maximum number of iterations of the EM-algorithm to be performed.</span>
+<span class="sd">    fit_intercept : bool, default=True</span>
+<span class="sd">        Specifies if a constant (a.k.a. bias or intercept) should be</span>
+<span class="sd">        added to input samples.</span>
+<span class="sd">    annot_prior_full : int or float or array-like, default=1</span>
+<span class="sd">        This parameter determines A as the Dirichlet prior for each annotator l</span>
+<span class="sd">        (i.e., A[l] = annot_prior_full * np.ones(n_classes, n_classes) for</span>
+<span class="sd">        numeric or A[l] = annot_prior_full[l] * np.ones(n_classes, n_classes)</span>
+<span class="sd">        for array-like parameter). A[l,i,j] is the estimated number of times.</span>
+<span class="sd">        annotator l has provided label j for an instance of true label i.</span>
+<span class="sd">    annot_prior_diag : int or float or array-like, default=0</span>
+<span class="sd">        This parameter adds a value to the diagonal of A[l] being the Dirichlet</span>
+<span class="sd">        prior for annotator l (i.e., A[l] += annot_prior_diag *</span>
+<span class="sd">        np.eye(n_classes) for numeric or A[l] += annot_prior_diag[l] *</span>
+<span class="sd">        np.ones(n_classes) for array-like parameter). A[l,i,j] is the estimated</span>
+<span class="sd">        number of times annotator l has provided label j for an instance of</span>
+<span class="sd">        true label i.</span>
+<span class="sd">    weights_prior : int or float, default=1</span>
+<span class="sd">        Determines Gamma as the inverse covariance matrix of the</span>
+<span class="sd">        prior distribution for every weight vector</span>
+<span class="sd">        (i.e., Gamma=weights_prior * np.eye(n_features)).</span>
+<span class="sd">        As default, the identity matrix is used for each weight vector.</span>
+<span class="sd">    solver : str or callable, default=&#39;Newton-CG&#39;</span>
+<span class="sd">        Type of solver.  Should be &#39;Nelder-Mead&#39;, &#39;Powell&#39;, &#39;CG&#39;,</span>
+<span class="sd">        &#39;BFGS&#39;, &#39;Newton-CG&#39;, &#39;L-BFGS-B&#39;, &#39;TNC&#39;, &#39;COBYLA&#39;, &#39;SLSQP&#39;,</span>
+<span class="sd">        &#39;trust-constr&#39;, &#39;dogleg&#39;, &#39;trust-ncg&#39;, &#39;trust-exact&#39;, &#39;trust-krylov&#39;,</span>
+<span class="sd">        or custom - a callable object. See scipy.optimize.minimize for more</span>
+<span class="sd">        information.</span>
+<span class="sd">    solver_dict : dictionary, default=None</span>
+<span class="sd">        Additional solver options passed to scipy.optimize.minimize. If None,</span>
+<span class="sd">        {&#39;maxiter&#39;: 5} is passed.</span>
+<span class="sd">    classes : array-like of shape (n_classes), default=None</span>
+<span class="sd">        Holds the label for each class. If none, the classes are determined</span>
+<span class="sd">        during the fit.</span>
+<span class="sd">    missing_label : scalar or string or np.nan or None, default=np.nan</span>
+<span class="sd">        Value to represent a missing label.</span>
+<span class="sd">    cost_matrix : array-like of shape (n_classes, n_classes)</span>
+<span class="sd">        Cost matrix with cost_matrix[i,j] indicating cost of predicting class</span>
+<span class="sd">        classes[j]  for a sample of class classes[i]. Can be only set, if</span>
+<span class="sd">        classes is not none.</span>
+<span class="sd">    random_state : int or RandomState instance or None, optional (default=None)</span>
+<span class="sd">        Determines random number for &#39;predict&#39; method. Pass an int for</span>
+<span class="sd">        reproducible results across multiple method calls.</span>
+
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    n_annotators_ : int</span>
+<span class="sd">        Number of annotators.</span>
+<span class="sd">    W_ : numpy.ndarray of shape (n_features, n_classes)</span>
+<span class="sd">        The weight vectors of the logistic regression model.</span>
+<span class="sd">    Alpha_ : numpy.ndarray of shape (n_annotators, n_classes, n_classes)</span>
+<span class="sd">        This is a confusion matrix for each annotator, where each</span>
+<span class="sd">        row is normalized. `Alpha_[l,k,c]` describes the probability</span>
+<span class="sd">        that annotator l provides the class label c for a sample belonging</span>
+<span class="sd">        to class k.</span>
+<span class="sd">    classes_ : array-like of shape (n_classes)</span>
+<span class="sd">        Holds the label for each class after fitting.</span>
+<span class="sd">    cost_matrix_ : array-like of shape (classes, classes)</span>
+<span class="sd">        Cost matrix with C[i,j] indicating cost of predicting class classes_[j]</span>
+<span class="sd">        for a sample of class classes_[i].</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    .. [1] `Raykar, V. C., Yu, S., Zhao, L. H., Valadez, G. H., Florin, C.,</span>
+<span class="sd">       Bogoni, L., &amp; Moy, L. (2010). Learning from crowds. Journal of Machine</span>
+<span class="sd">       Learning Research, 11(4).`_</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">tol</span><span class="o">=</span><span class="mf">1.0e-2</span><span class="p">,</span>
+        <span class="n">max_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+        <span class="n">fit_intercept</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">annot_prior_full</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">annot_prior_diag</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">weights_prior</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">solver</span><span class="o">=</span><span class="s2">&quot;Newton-CG&quot;</span><span class="p">,</span>
+        <span class="n">solver_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">classes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">cost_matrix</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">missing_label</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">,</span>
+        <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">classes</span><span class="o">=</span><span class="n">classes</span><span class="p">,</span>
+            <span class="n">missing_label</span><span class="o">=</span><span class="n">missing_label</span><span class="p">,</span>
+            <span class="n">cost_matrix</span><span class="o">=</span><span class="n">cost_matrix</span><span class="p">,</span>
+            <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tol</span> <span class="o">=</span> <span class="n">tol</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_iter</span> <span class="o">=</span> <span class="n">max_iter</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fit_intercept</span> <span class="o">=</span> <span class="n">fit_intercept</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">annot_prior_full</span> <span class="o">=</span> <span class="n">annot_prior_full</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">annot_prior_diag</span> <span class="o">=</span> <span class="n">annot_prior_diag</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">weights_prior</span> <span class="o">=</span> <span class="n">weights_prior</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">solver</span> <span class="o">=</span> <span class="n">solver</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">solver_dict</span> <span class="o">=</span> <span class="n">solver_dict</span>
+
+<div class="viewcode-block" id="AnnotatorLogisticRegression.fit"><a class="viewcode-back" href="../../../../generated/api/skactiveml.classifier.multiannotator.AnnotatorLogisticRegression.html#skactiveml.classifier.multiannotator.AnnotatorLogisticRegression.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Fit the model using X as training data and y as class labels.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : matrix-like, shape (n_samples, n_features)</span>
+<span class="sd">            The sample matrix X is the feature matrix representing the samples.</span>
+<span class="sd">        y : array-like, shape (n_samples) or (n_samples, n_outputs)</span>
+<span class="sd">            It contains the class labels of the training samples.</span>
+<span class="sd">            The number of class labels may be variable for the samples, where</span>
+<span class="sd">            missing labels are represented the attribute &#39;missing_label&#39;.</span>
+<span class="sd">        sample_weight : array-like, shape (n_samples) or (n_samples, n_outputs)</span>
+<span class="sd">            It contains the weights of the training samples&#39; class labels.</span>
+<span class="sd">            It must have the same shape as y.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self: AnnotatorLogisticRegression,</span>
+<span class="sd">            The AnnotatorLogisticRegression is fitted on the training data.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Check input data.</span>
+        <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_data</span><span class="p">(</span>
+            <span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">,</span> <span class="n">y_ensure_1d</span><span class="o">=</span><span class="kc">False</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_n_features</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">reset</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="c1"># Ensure value of &#39;tol&#39; to be positive.</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tol</span><span class="p">,</span> <span class="nb">float</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                <span class="s2">&quot;`tol` must be an instance of float, not </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tol</span><span class="p">)</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">tol</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;`tol`= </span><span class="si">{}</span><span class="s2">, must be &gt; 0.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tol</span><span class="p">))</span>
+
+        <span class="c1"># Ensure value of &#39;max_iter&#39; to be positive.</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_iter</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                <span class="s2">&quot;`max_iter` must be an instance of int, not </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_iter</span><span class="p">)</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_iter</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;`max_iter`= </span><span class="si">{}</span><span class="s2">, must be an integer &gt;= 1.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tol</span><span class="p">)</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fit_intercept</span><span class="p">,</span> <span class="nb">bool</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                <span class="s2">&quot;&#39;fit_intercept&#39; must be of type &#39;bool&#39;, got </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fit_intercept</span><span class="p">)</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+
+        <span class="n">solver_dict</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="p">{</span><span class="s2">&quot;maxiter&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">}</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">solver_dict</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">solver_dict</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Check weights prior.</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">weights_prior</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                <span class="s2">&quot;&#39;weights_prior&#39; must be of a positive &#39;int&#39; or &quot;</span>
+                <span class="s2">&quot;&#39;float&#39;, got </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">weights_prior</span><span class="p">))</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">weights_prior</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;&#39;weights_prior&#39; must be of a positive &#39;int&#39; or &quot;</span>
+                <span class="s2">&quot;&#39;float&#39;, got </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">weights_prior</span><span class="p">)</span>
+            <span class="p">)</span>
+
+        <span class="c1"># Check for empty training data.</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_features_in_</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;`y` must be an array-like of shape &quot;</span>
+                <span class="s2">&quot;`(n_samples, n_annotators)`.&quot;</span>
+            <span class="p">)</span>
+
+        <span class="c1"># Insert bias, if &#39;fit_intercept&#39; is set to &#39;True&#39;.</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fit_intercept</span><span class="p">:</span>
+            <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># Ensure sample weights to form a 2d array.</span>
+        <span class="k">if</span> <span class="n">sample_weight</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">sample_weight</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+        <span class="c1"># Set auxiliary variables.</span>
+        <span class="n">n_samples</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">n_features</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">n_classes</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_annotators_</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">I</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n_classes</span><span class="p">)</span>
+
+        <span class="c1"># Convert Gamma to matrix, if it is a number:</span>
+        <span class="n">Gamma</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">weights_prior</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n_features</span><span class="p">)</span>
+        <span class="n">all_zeroes</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">Gamma</span><span class="p">)</span>
+        <span class="n">Gamma_tmp</span> <span class="o">=</span> <span class="n">Gamma</span> <span class="k">if</span> <span class="n">all_zeroes</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">Gamma</span><span class="p">)</span>
+
+        <span class="c1"># Check input &#39;annot_prior_full&#39; and &#39;annot_prior_diag&#39;.</span>
+        <span class="n">annot_prior</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">prior</span> <span class="ow">in</span> <span class="p">[</span>
+            <span class="p">(</span><span class="s2">&quot;annot_prior_full&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">annot_prior_full</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;annot_prior_diag&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">annot_prior_diag</span><span class="p">),</span>
+        <span class="p">]:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">prior</span><span class="p">,</span> <span class="nb">int</span> <span class="ow">or</span> <span class="nb">float</span><span class="p">):</span>
+                <span class="n">prior_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_annotators_</span><span class="p">)</span> <span class="o">*</span> <span class="n">prior</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">prior_array</span> <span class="o">=</span> <span class="n">column_or_1d</span><span class="p">(</span><span class="n">prior</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;annot_prior_full&quot;</span><span class="p">:</span>
+                <span class="n">is_invalid_prior</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">prior_array</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">is_invalid_prior</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">prior_array</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">prior_array</span><span class="p">)</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_annotators_</span> <span class="ow">or</span> <span class="n">is_invalid_prior</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">&quot;&#39;</span><span class="si">{}</span><span class="s2">&#39; must be either &#39;int&#39;, &#39;float&#39; or &quot;</span>
+                    <span class="s2">&quot;array-like with positive values and shape &quot;</span>
+                    <span class="s2">&quot;(n_annotators), got </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">prior</span><span class="p">)</span>
+                <span class="p">)</span>
+            <span class="n">annot_prior</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">prior_array</span><span class="p">)</span>
+
+        <span class="c1"># Set up prior matrix for each annotator.</span>
+        <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">n_annotators_</span><span class="p">,</span> <span class="n">n_classes</span><span class="p">,</span> <span class="n">n_classes</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_annotators_</span><span class="p">):</span>
+            <span class="n">A</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">*=</span> <span class="n">annot_prior</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">a</span><span class="p">]</span>
+            <span class="n">A</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n_classes</span><span class="p">)</span> <span class="o">*</span> <span class="n">annot_prior</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">a</span><span class="p">]</span>
+
+        <span class="c1"># Init Mu (i.e., estimates of true labels) with (weighted) majority</span>
+        <span class="c1"># voting.</span>
+        <span class="n">Mu</span> <span class="o">=</span> <span class="n">compute_vote_vectors</span><span class="p">(</span>
+            <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span>
+            <span class="n">classes</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_classes</span><span class="p">),</span>
+            <span class="n">missing_label</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+            <span class="n">w</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">Mu_sum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">Mu</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">is_zero</span> <span class="o">=</span> <span class="n">Mu_sum</span> <span class="o">==</span> <span class="mi">0</span>
+        <span class="n">Mu</span><span class="p">[</span><span class="o">~</span><span class="n">is_zero</span><span class="p">]</span> <span class="o">/=</span> <span class="n">Mu_sum</span><span class="p">[</span><span class="o">~</span><span class="n">is_zero</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+        <span class="n">Mu</span><span class="p">[</span><span class="n">is_zero</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">n_classes</span>
+
+        <span class="c1"># Set initial weights.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">W_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_features</span><span class="p">,</span> <span class="n">n_classes</span><span class="p">))</span>
+
+        <span class="c1"># Use majority vote to initialize alpha, alpha_j is the confusion</span>
+        <span class="c1"># matrix of annotator j.</span>
+        <span class="n">y_majority</span> <span class="o">=</span> <span class="n">rand_argmax</span><span class="p">(</span><span class="n">Mu</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Alpha_</span> <span class="o">=</span> <span class="n">ext_confusion_matrix</span><span class="p">(</span>
+            <span class="n">y_true</span><span class="o">=</span><span class="n">y_majority</span><span class="p">,</span>
+            <span class="n">y_pred</span><span class="o">=</span><span class="n">y</span><span class="p">,</span>
+            <span class="n">normalize</span><span class="o">=</span><span class="s2">&quot;true&quot;</span><span class="p">,</span>
+            <span class="n">missing_label</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+            <span class="n">classes</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_classes</span><span class="p">),</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Initialize first expectation to infinity such that</span>
+        <span class="c1"># |current - new| &lt; tol is False.</span>
+        <span class="n">current_expectation</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+
+        <span class="c1"># Execute expectation maximization (EM) algorithm.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_iter_</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_iter_</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_iter</span><span class="p">:</span>
+            <span class="c1"># E-step:</span>
+            <span class="n">P</span> <span class="o">=</span> <span class="n">softmax</span><span class="p">(</span><span class="n">X</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">W_</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">V</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_calc_V</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Alpha_</span><span class="p">)</span>
+            <span class="n">Mu</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_calc_Mu</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">P</span><span class="p">)</span>
+            <span class="n">new_expectation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_calc_expectation</span><span class="p">(</span>
+                <span class="n">Mu</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">Gamma</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Alpha_</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">W_</span>
+            <span class="p">)</span>
+
+            <span class="c1"># Stop EM, if it converges (to a local maximum).</span>
+            <span class="k">if</span> <span class="p">(</span>
+                <span class="n">current_expectation</span> <span class="o">==</span> <span class="n">new_expectation</span>
+                <span class="ow">or</span> <span class="p">(</span><span class="n">new_expectation</span> <span class="o">-</span> <span class="n">current_expectation</span><span class="p">)</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">tol</span>
+            <span class="p">):</span>
+                <span class="k">break</span>
+
+            <span class="c1"># Update expectation value.</span>
+            <span class="n">current_expectation</span> <span class="o">=</span> <span class="n">new_expectation</span>
+
+            <span class="c1"># M-Step:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_Alpha</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_calc_Alpha</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">Mu</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">)</span>
+
+            <span class="k">def</span> <span class="nf">error</span><span class="p">(</span><span class="n">w</span><span class="p">):</span>
+                <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">                Evaluate cross-entropy error of weights for scipy.minimize.</span>
+
+<span class="sd">                Parameters</span>
+<span class="sd">                ----------</span>
+<span class="sd">                w : ndarray, shape (n_features * n_classes)</span>
+<span class="sd">                    Weights for which cross-entropy error is to be computed.</span>
+
+<span class="sd">                Returns</span>
+<span class="sd">                -------</span>
+<span class="sd">                G : flaot</span>
+<span class="sd">                    Computed cross-entropy error.</span>
+<span class="sd">                &quot;&quot;&quot;</span>
+                <span class="n">W</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_features</span><span class="p">,</span> <span class="n">n_classes</span><span class="p">)</span>
+                <span class="n">P_W</span> <span class="o">=</span> <span class="n">softmax</span><span class="p">(</span><span class="n">X</span> <span class="o">@</span> <span class="n">W</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">prior_W</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="k">for</span> <span class="n">c_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_classes</span><span class="p">):</span>
+                    <span class="n">prior_W</span> <span class="o">+=</span> <span class="n">multi_normal</span><span class="o">.</span><span class="n">logpdf</span><span class="p">(</span>
+                        <span class="n">x</span><span class="o">=</span><span class="n">W</span><span class="p">[:,</span> <span class="n">c_idx</span><span class="p">],</span> <span class="n">cov</span><span class="o">=</span><span class="n">Gamma_tmp</span><span class="p">,</span> <span class="n">allow_singular</span><span class="o">=</span><span class="kc">True</span>
+                    <span class="p">)</span>
+                <span class="n">log</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">Mu</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">P_W</span> <span class="o">*</span> <span class="n">V</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">eps</span><span class="p">))</span>
+                <span class="n">log</span> <span class="o">+=</span> <span class="n">prior_W</span>
+                <span class="k">return</span> <span class="o">-</span><span class="n">log</span> <span class="o">/</span> <span class="n">n_samples</span>
+
+            <span class="k">def</span> <span class="nf">grad</span><span class="p">(</span><span class="n">w</span><span class="p">):</span>
+                <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">                Compute gradient of error function for scipy.minimize.</span>
+
+<span class="sd">                Parameters</span>
+<span class="sd">                ----------</span>
+<span class="sd">                w : ndarray, shape (n_features * n_classes)</span>
+<span class="sd">                    Weights whose gradient is to be computed.</span>
+
+<span class="sd">                Returns</span>
+<span class="sd">                -------</span>
+<span class="sd">                G : narray, shape (n_features * n_classes)</span>
+<span class="sd">                    Computed gradient of weights.</span>
+<span class="sd">                &quot;&quot;&quot;</span>
+                <span class="n">W</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_features</span><span class="p">,</span> <span class="n">n_classes</span><span class="p">)</span>
+                <span class="n">P_W</span> <span class="o">=</span> <span class="n">softmax</span><span class="p">(</span><span class="n">X</span> <span class="o">@</span> <span class="n">W</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">G</span> <span class="o">=</span> <span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="p">(</span><span class="n">P_W</span> <span class="o">-</span> <span class="n">Mu</span><span class="p">)</span> <span class="o">+</span> <span class="n">Gamma</span> <span class="o">@</span> <span class="n">W</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+                <span class="k">return</span> <span class="n">G</span> <span class="o">/</span> <span class="n">n_samples</span>
+
+            <span class="k">def</span> <span class="nf">hessian</span><span class="p">(</span><span class="n">w</span><span class="p">):</span>
+                <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">                Compute Hessian matrix of error function for scipy.minimize.</span>
+
+<span class="sd">                Parameters</span>
+<span class="sd">                ----------</span>
+<span class="sd">                w : numpy.ndarray, shape (n_features * n_classes)</span>
+<span class="sd">                    Weights whose Hessian matrix is to be computed.</span>
+
+<span class="sd">                Returns</span>
+<span class="sd">                -------</span>
+<span class="sd">                H : numpy.narray, shape (n_features * n_classes,</span>
+<span class="sd">                n_features * n_classes)</span>
+<span class="sd">                    Computed Hessian matrix of weights.</span>
+<span class="sd">                &quot;&quot;&quot;</span>
+                <span class="n">W</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_features</span><span class="p">,</span> <span class="n">n_classes</span><span class="p">)</span>
+                <span class="n">H</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">n_classes</span> <span class="o">*</span> <span class="n">n_features</span><span class="p">,</span> <span class="n">n_classes</span> <span class="o">*</span> <span class="n">n_features</span><span class="p">))</span>
+                <span class="n">P_W</span> <span class="o">=</span> <span class="n">softmax</span><span class="p">(</span><span class="n">X</span> <span class="o">@</span> <span class="n">W</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_classes</span><span class="p">):</span>
+                    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_classes</span><span class="p">):</span>
+                        <span class="n">diagonal</span> <span class="o">=</span> <span class="n">P_W</span><span class="p">[:,</span> <span class="n">j</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">I</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">-</span> <span class="n">P_W</span><span class="p">[:,</span> <span class="n">k</span><span class="p">])</span>
+                        <span class="n">D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">diagonal</span><span class="p">)</span>
+                        <span class="n">H_kj</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">D</span> <span class="o">@</span> <span class="n">X</span> <span class="o">+</span> <span class="n">Gamma</span>
+                        <span class="n">H</span><span class="p">[</span>
+                            <span class="n">k</span> <span class="o">*</span> <span class="n">n_features</span> <span class="p">:</span> <span class="p">(</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">n_features</span><span class="p">,</span>
+                            <span class="n">j</span> <span class="o">*</span> <span class="n">n_features</span> <span class="p">:</span> <span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">n_features</span><span class="p">,</span>
+                        <span class="p">]</span> <span class="o">=</span> <span class="n">H_kj</span>
+                <span class="k">return</span> <span class="n">H</span> <span class="o">/</span> <span class="n">n_samples</span>
+
+            <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
+                <span class="n">warning_msg</span> <span class="o">=</span> <span class="s2">&quot;.*Method .* does not use Hessian information.*&quot;</span>
+                <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="n">warning_msg</span><span class="p">)</span>
+                <span class="n">warning_msg</span> <span class="o">=</span> <span class="s2">&quot;.*Method .* does not use gradient information.*&quot;</span>
+                <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="n">warning_msg</span><span class="p">)</span>
+                <span class="n">res</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span>
+                    <span class="n">error</span><span class="p">,</span>
+                    <span class="n">x0</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">W_</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span>
+                    <span class="n">method</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">solver</span><span class="p">,</span>
+                    <span class="n">tol</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">tol</span><span class="p">,</span>
+                    <span class="n">jac</span><span class="o">=</span><span class="n">grad</span><span class="p">,</span>
+                    <span class="n">hess</span><span class="o">=</span><span class="n">hessian</span><span class="p">,</span>
+                    <span class="n">options</span><span class="o">=</span><span class="n">solver_dict</span><span class="p">,</span>
+                <span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">W_</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">n_features</span><span class="p">,</span> <span class="n">n_classes</span><span class="p">))</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">n_iter_</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="AnnotatorLogisticRegression.predict_proba"><a class="viewcode-back" href="../../../../generated/api/skactiveml.classifier.multiannotator.AnnotatorLogisticRegression.html#skactiveml.classifier.multiannotator.AnnotatorLogisticRegression.predict_proba">[docs]</a>    <span class="k">def</span> <span class="nf">predict_proba</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return probability estimates for the test data `X`.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : array-like of shape (n_samples, n_features)</span>
+<span class="sd">            Test samples.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        P : numpy.ndarray of shape (n_samples, classes)</span>
+<span class="sd">            The class probabilities of the test samples. Classes are ordered</span>
+<span class="sd">            according to `classes_`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Check test samples.</span>
+        <span class="n">check_is_fitted</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_n_features</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">reset</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="c1"># Prediction without training data.</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_features_in_</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">classes_</span><span class="p">)))</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span>
+
+        <span class="c1"># Check whether a bias feature is missing.</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fit_intercept</span><span class="p">:</span>
+            <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># Compute and normalize probabilities.</span>
+        <span class="n">P</span> <span class="o">=</span> <span class="n">softmax</span><span class="p">(</span><span class="n">X</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">W_</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">P</span></div>
+
+<div class="viewcode-block" id="AnnotatorLogisticRegression.predict_annotator_perf"><a class="viewcode-back" href="../../../../generated/api/skactiveml.classifier.multiannotator.AnnotatorLogisticRegression.html#skactiveml.classifier.multiannotator.AnnotatorLogisticRegression.predict_annotator_perf">[docs]</a>    <span class="k">def</span> <span class="nf">predict_annotator_perf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Calculates the probability that an annotator provides the true label</span>
+<span class="sd">        for a given sample. The true label is hereby provided by the</span>
+<span class="sd">        classification model. The label provided by an annotator l is based</span>
+<span class="sd">        on his/her confusion matrix (i.e., attribute `Alpha_[l]`).</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : array-like of shape (n_samples, n_features)</span>
+<span class="sd">            Test samples.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        P_annot : numpy.ndarray of shape (n_samples, classes)</span>
+<span class="sd">            `P_annot[i,l]` is the probability, that annotator l provides the</span>
+<span class="sd">            correct class label for sample `X[i]`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Prediction without training data.</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_features_in_</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span>
+
+        <span class="c1"># Compute class probabilities.</span>
+        <span class="n">P</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+        <span class="c1"># Get correctness probabilities for each annotator per class.</span>
+        <span class="n">diag_Alpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">diagonal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_Alpha</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_Alpha</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Compute correctness probabilities for each annotator per sample.</span>
+        <span class="n">P_annot</span> <span class="o">=</span> <span class="n">P</span> <span class="o">@</span> <span class="n">diag_Alpha</span><span class="o">.</span><span class="n">T</span>
+        <span class="k">return</span> <span class="n">P_annot</span></div>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_calc_V</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">Alpha</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Calculates a value used for updating Mu and the expectation.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        y: numpy.ndarray of shape (n_samples, n_annotators)</span>
+<span class="sd">            The class labels provided by the annotators for all samples.</span>
+<span class="sd">        Alpha: numpy.ndarray of shape (n_annotators, n_classes, n_classes)</span>
+<span class="sd">            annot_prior vector (n_annotators, n_classes, n_classes) containing</span>
+<span class="sd">            the new estimates for Alpha. This is effectively a confusion matrix</span>
+<span class="sd">            for each annotator, where each row is normalized.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        out: numpy.ndarray</span>
+<span class="sd">            Vector of shape (n_samples, n_classes).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">n_samples</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">n_classes</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+            <span class="n">Alpha</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+        <span class="p">)</span>
+        <span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">n_classes</span><span class="p">))</span>
+
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_classes</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_classes</span><span class="p">):</span>
+                <span class="n">y_is_k</span> <span class="o">=</span> <span class="n">y</span> <span class="o">==</span> <span class="n">k</span>
+                <span class="n">V</span><span class="p">[:,</span> <span class="n">c</span><span class="p">]</span> <span class="o">*=</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">Alpha</span><span class="p">[:,</span> <span class="n">c</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span> <span class="o">**</span> <span class="n">y_is_k</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">V</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_calc_Alpha</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">Mu</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Calculates the class-dependent performance estimates of the</span>
+<span class="sd">        annotators.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        y : numpy.ndarray of shape (n_samples, n_annotators)</span>
+<span class="sd">            The class labels provided by the annotators for all samples.</span>
+<span class="sd">        Mu : numpy.ndarray of shape (n_samples, n_classes)</span>
+<span class="sd">            Mu[i,k] contains the probability of a sample X[i] to be of class</span>
+<span class="sd">            classes_[k] estimated according to the EM-algorithm.</span>
+<span class="sd">        A : numpy.ndarray of shape (n_annotators, n_classes, n_classes)</span>
+<span class="sd">            A[l,i,j] is the estimated number of times.</span>
+<span class="sd">            annotator l has provided label j for an instance of true label i.</span>
+<span class="sd">        sample_weight : numpy.ndarray of shape (n_samples, n_annotators)</span>
+<span class="sd">            It contains the weights of the training samples&#39; class labels.</span>
+<span class="sd">            It must have the same shape as y.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        ----------</span>
+<span class="sd">        new_Alpha : numpy.ndarray of shape</span>
+<span class="sd">        (n_annotators, n_classes, n_classes)</span>
+<span class="sd">            This is a confusion matrix for each annotator, where each</span>
+<span class="sd">            row is normalized. `new_Alpha[l,k,c]` describes the probability</span>
+<span class="sd">            that annotator l provides the class label c for a sample belonging</span>
+<span class="sd">            to class k.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">n_annotators</span><span class="p">,</span> <span class="n">n_classes</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">Mu</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">new_Alpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_annotators</span><span class="p">,</span> <span class="n">n_classes</span><span class="p">,</span> <span class="n">n_classes</span><span class="p">))</span>
+
+        <span class="n">not_nan_y</span> <span class="o">=</span> <span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_annotators</span><span class="p">):</span>
+            <span class="c1"># Only take those rows from Y, where Y is not NaN:</span>
+            <span class="n">y_j</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n_classes</span><span class="p">)[</span><span class="n">y</span><span class="p">[</span><span class="n">not_nan_y</span><span class="p">[:,</span> <span class="n">j</span><span class="p">],</span> <span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)]</span>
+            <span class="n">w_j</span> <span class="o">=</span> <span class="n">sample_weight</span><span class="p">[</span><span class="n">not_nan_y</span><span class="p">[:,</span> <span class="n">j</span><span class="p">],</span> <span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">new_Alpha</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">Mu</span><span class="p">[</span><span class="n">not_nan_y</span><span class="p">[:,</span> <span class="n">j</span><span class="p">]]</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="p">(</span><span class="n">w_j</span> <span class="o">*</span> <span class="n">y_j</span><span class="p">))</span> <span class="o">+</span> <span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span>
+
+        <span class="c1"># Lazy normalization: (The real normalization factor</span>
+        <span class="c1"># (sum_i=1^N mu_i,c + sum_k=0^K-1 A_j,c,k - K) is omitted here)</span>
+        <span class="k">with</span> <span class="n">np</span><span class="o">.</span><span class="n">errstate</span><span class="p">(</span><span class="nb">all</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">):</span>
+            <span class="n">new_Alpha</span> <span class="o">=</span> <span class="n">new_Alpha</span> <span class="o">/</span> <span class="n">new_Alpha</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">new_Alpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan_to_num</span><span class="p">(</span><span class="n">new_Alpha</span><span class="p">,</span> <span class="n">nan</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">n_classes</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">new_Alpha</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_calc_Mu</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">P</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Calculates the new estimate for Mu, using Bayes&#39; theorem.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        V : numpy.ndarray, shape (n_samples, n_classes)</span>
+<span class="sd">            Describes an intermediate result.</span>
+<span class="sd">        P : numpy.ndarray, shape (n_samples, n_classes)</span>
+<span class="sd">            P[i,k] contains the probabilities of sample X[i] belonging to class</span>
+<span class="sd">            classes_[k], as estimated by the classifier</span>
+<span class="sd">            (i.e., sigmoid(W.T, X[i])).</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        new_Mu : numpy.ndarray</span>
+<span class="sd">            new_Mu[i,k] contains the probability of a sample X[i] to be of</span>
+<span class="sd">            class classes_[k] estimated according to the EM-algorithm.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">new_Mu</span> <span class="o">=</span> <span class="n">P</span> <span class="o">*</span> <span class="n">V</span>
+        <span class="n">new_Mu_sum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">new_Mu</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">is_zero</span> <span class="o">=</span> <span class="n">new_Mu_sum</span> <span class="o">==</span> <span class="mi">0</span>
+
+        <span class="n">new_Mu</span><span class="p">[</span><span class="o">~</span><span class="n">is_zero</span><span class="p">]</span> <span class="o">/=</span> <span class="n">new_Mu_sum</span><span class="p">[</span><span class="o">~</span><span class="n">is_zero</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+        <span class="n">new_Mu</span><span class="p">[</span><span class="n">is_zero</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">P</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">new_Mu</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_calc_expectation</span><span class="p">(</span><span class="n">Mu</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">Gamma</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">Alpha</span><span class="p">,</span> <span class="n">W</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Calculates the conditional expectation in the E-step of the</span>
+<span class="sd">        EM-Algorithm, given the observations and the current estimates of the</span>
+<span class="sd">        classifier.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        Mu : numpy.ndarray, shape (n_samples, n_classes)</span>
+<span class="sd">            Mu[i,k] contains the probability of a sample X[i] to be of class</span>
+<span class="sd">            classes_[k] estimated according to the EM-algorithm.</span>
+<span class="sd">        V : numpy.ndarray, shape (n_samples, n_classes)</span>
+<span class="sd">            Describes an intermediate result.</span>
+<span class="sd">        P : numpy.ndarray, shape (n_samples, n_classes)</span>
+<span class="sd">            P[i,k] contains the probabilities of sample X[i] belonging to class</span>
+<span class="sd">            classes_[k], as estimated by the classifier</span>
+<span class="sd">            (i.e., sigmoid(W.T, X[i])).</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        expectation : float</span>
+<span class="sd">            The conditional expectation.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Evaluate prior of weight vectors.</span>
+        <span class="n">all_zeroes</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">Gamma</span><span class="p">)</span>
+        <span class="n">Gamma</span> <span class="o">=</span> <span class="n">Gamma</span> <span class="k">if</span> <span class="n">all_zeroes</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">Gamma</span><span class="p">)</span>
+        <span class="n">prior_W</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">multi_normal</span><span class="o">.</span><span class="n">logpdf</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">W</span><span class="p">[:,</span> <span class="n">k</span><span class="p">],</span> <span class="n">cov</span><span class="o">=</span><span class="n">Gamma</span><span class="p">,</span> <span class="n">allow_singular</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">W</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Evaluate prior of alpha matrices.</span>
+        <span class="n">prior_Alpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="p">[</span>
+                    <span class="n">dirichlet</span><span class="o">.</span><span class="n">logpdf</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">Alpha</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="p">:],</span> <span class="n">alpha</span><span class="o">=</span><span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="p">:])</span>
+                    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Alpha</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+                <span class="p">]</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Alpha</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Evaluate log-likelihood for data.</span>
+        <span class="n">log_likelihood</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">Mu</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">P</span> <span class="o">*</span> <span class="n">V</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">eps</span><span class="p">))</span>
+        <span class="n">expectation</span> <span class="o">=</span> <span class="n">log_likelihood</span> <span class="o">+</span> <span class="n">prior_W</span> <span class="o">+</span> <span class="n">prior_Alpha</span>
+        <span class="k">return</span> <span class="n">expectation</span></div>
+</pre></div>
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2020.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

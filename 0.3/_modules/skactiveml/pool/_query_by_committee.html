@@ -1,0 +1,552 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>skactiveml.pool._query_by_committee &#8212; scikit-activeml 0.3.1 documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../../../_static/filter_examples.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../../index.html">
+  <img src="../../../_static/scikit-activeml-logo.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../index.html">
+  Home
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../tutorials.html">
+  Tutorials
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../generated/strategy_overview.html">
+  Strategy Overview
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../generated/api_reference.html">
+  API Reference
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../generated/sphinx_gallery_examples/index.html">
+  Examples
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../developers_guide.html">
+  Developer Guide
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Quick Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/scikit-activeml/scikit-activeml" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://pypi.org/project/scikit-activeml" rel="noopener" target="_blank" title="PyPI"><span><i class="fas fa-box"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+              </div>
+              <div class="sidebar-end-items">
+              </div>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <h1>Source code for skactiveml.pool._query_by_committee</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Query-by-committee strategies.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># Author: Pascal Mergard &lt;Pascal.Mergard@student.uni-kassel.de&gt;</span>
+<span class="c1">#         Marek Herde &lt;marek.herde@uni-kassel.de&gt;</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">clone</span>
+<span class="kn">from</span> <span class="nn">sklearn.utils.validation</span> <span class="kn">import</span> <span class="n">check_array</span>
+
+<span class="kn">from</span> <span class="nn">..base</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">SingleAnnotatorPoolQueryStrategy</span><span class="p">,</span>
+    <span class="n">SkactivemlClassifier</span><span class="p">,</span>
+    <span class="n">SkactivemlRegressor</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">..utils</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">simple_batch</span><span class="p">,</span>
+    <span class="n">check_type</span><span class="p">,</span>
+    <span class="n">compute_vote_vectors</span><span class="p">,</span>
+    <span class="n">MISSING_LABEL</span><span class="p">,</span>
+    <span class="n">check_equal_missing_label</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<div class="viewcode-block" id="QueryByCommittee"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.QueryByCommittee.html#skactiveml.pool.QueryByCommittee">[docs]</a><span class="k">class</span> <span class="nc">QueryByCommittee</span><span class="p">(</span><span class="n">SingleAnnotatorPoolQueryStrategy</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Query-by-Committee.</span>
+
+<span class="sd">    The Query-by-Committee (QueryByCommittee) strategy uses an ensemble of</span>
+<span class="sd">    estimators to identify on which instances many estimators disagree.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    method : string, default=&#39;KL_divergence&#39;</span>
+<span class="sd">        The method to calculate the disagreement in the case of classification.</span>
+<span class="sd">        KL_divergence or vote_entropy are possible. In the case of regression</span>
+<span class="sd">        the empirical variance is used.</span>
+<span class="sd">    missing_label : scalar or string or np.nan or None, default=np.nan</span>
+<span class="sd">        Value to represent a missing label.</span>
+<span class="sd">    random_state : int or np.random.RandomState, default=None</span>
+<span class="sd">        The random state to use.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    [1] H.S. Seung, M. Opper, and H. Sompolinsky. Query by committee.</span>
+<span class="sd">        In Proceedings of the ACM Workshop on Computational Learning Theory,</span>
+<span class="sd">        pages 287-294, 1992.</span>
+<span class="sd">    [2] N. Abe and H. Mamitsuka. Query learning strategies using boosting and</span>
+<span class="sd">        bagging. In Proceedings of the International Conference on Machine</span>
+<span class="sd">        Learning (ICML), pages 1-9. Morgan Kaufmann, 1998.</span>
+<span class="sd">    [3] Burbidge, Robert and Rowland, Jem J and King, Ross D. Active learning</span>
+<span class="sd">        for regression based on query by committee. International conference on</span>
+<span class="sd">        intelligent data engineering and automated learning, pages 209--218,</span>
+<span class="sd">        2007.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">method</span><span class="o">=</span><span class="s2">&quot;KL_divergence&quot;</span><span class="p">,</span>
+        <span class="n">missing_label</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">,</span>
+        <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">missing_label</span><span class="o">=</span><span class="n">missing_label</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">method</span> <span class="o">=</span> <span class="n">method</span>
+
+<div class="viewcode-block" id="QueryByCommittee.query"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.QueryByCommittee.html#skactiveml.pool.QueryByCommittee.query">[docs]</a>    <span class="k">def</span> <span class="nf">query</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">X</span><span class="p">,</span>
+        <span class="n">y</span><span class="p">,</span>
+        <span class="n">ensemble</span><span class="p">,</span>
+        <span class="n">fit_ensemble</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">candidates</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">return_utilities</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Determines for which candidate samples labels are to be queried.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : array-like of shape (n_samples, n_features)</span>
+<span class="sd">            Training data set, usually complete, i.e. including the labeled and</span>
+<span class="sd">            unlabeled samples.</span>
+<span class="sd">        y : array-like of shape (n_samples)</span>
+<span class="sd">            Labels of the training data set (possibly including unlabeled ones</span>
+<span class="sd">            indicated by self.MISSING_LABEL.)</span>
+<span class="sd">        ensemble : list or tuple of SkactivemlClassifier or list or tuple of</span>
+<span class="sd">        SkactivemlRegressor, SkactivemlClassifier or SkactivemlRegressor</span>
+<span class="sd">            If `ensemble` is a `SkactivemlClassifier` or a `SkactivemlRegressor`</span>
+<span class="sd">            , it must have `n_estimators` and `estimators_` after fitting as</span>
+<span class="sd">            attribute. Then, its estimators will be used as committee. If</span>
+<span class="sd">            `ensemble` is array-like, each element of this list must be</span>
+<span class="sd">            `SkactivemlClassifier` or a `SkactivemlRegressor` and will be used</span>
+<span class="sd">            as committee member.</span>
+<span class="sd">        fit_ensemble : bool, default=True</span>
+<span class="sd">            Defines whether the ensemble should be fitted on `X`, `y`, and</span>
+<span class="sd">            `sample_weight`.</span>
+<span class="sd">        sample_weight: array-like of shape (n_samples), default=None</span>
+<span class="sd">            Weights of training samples in `X`.</span>
+<span class="sd">        candidates : None or array-like of shape (n_candidates), dtype=int or</span>
+<span class="sd">                array-like of shape (n_candidates, n_features), default=None</span>
+<span class="sd">            If candidates is None, the unlabeled samples from (X,y) are</span>
+<span class="sd">            considered as candidates.</span>
+<span class="sd">            If candidates is of shape (n_candidates) and of type int,</span>
+<span class="sd">            candidates is considered as the indices of the samples in (X,y).</span>
+<span class="sd">            If candidates is of shape (n_candidates, n_features), the</span>
+<span class="sd">            candidates are directly given in candidates (not necessarily</span>
+<span class="sd">            contained in X). This is not supported by all query strategies.</span>
+<span class="sd">        batch_size : int, default=1</span>
+<span class="sd">            The number of samples to be selected in one AL cycle.</span>
+<span class="sd">        return_utilities : bool, default=False</span>
+<span class="sd">            If true, also return the utilities based on the query strategy.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        query_indices : numpy.ndarray of shape (batch_size)</span>
+<span class="sd">            The query_indices indicate for which candidate sample a label is</span>
+<span class="sd">            to queried, e.g., `query_indices[0]` indicates the first selected</span>
+<span class="sd">            sample.</span>
+<span class="sd">            If candidates is None or of shape (n_candidates), the indexing</span>
+<span class="sd">            refers to samples in X.</span>
+<span class="sd">            If candidates is of shape (n_candidates, n_features), the indexing</span>
+<span class="sd">            refers to samples in candidates.</span>
+<span class="sd">        utilities : numpy.ndarray of shape (batch_size, n_samples) or</span>
+<span class="sd">                numpy.ndarray of shape (batch_size, n_candidates)</span>
+<span class="sd">            The utilities of samples after each selected sample of the batch,</span>
+<span class="sd">            e.g., `utilities[0]` indicates the utilities used for selecting</span>
+<span class="sd">            the first sample (with index `query_indices[0]`) of the batch.</span>
+<span class="sd">            Utilities for labeled samples will be set to np.nan.</span>
+<span class="sd">            If candidates is None or of shape (n_candidates), the indexing</span>
+<span class="sd">            refers to samples in X.</span>
+<span class="sd">            If candidates is of shape (n_candidates, n_features), the indexing</span>
+<span class="sd">            refers to samples in candidates.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Validate input parameters.</span>
+        <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">candidates</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">return_utilities</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_data</span><span class="p">(</span>
+            <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">candidates</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">return_utilities</span><span class="p">,</span> <span class="n">reset</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)</span>
+
+        <span class="n">X_cand</span><span class="p">,</span> <span class="n">mapping</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transform_candidates</span><span class="p">(</span><span class="n">candidates</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+        <span class="c1"># Validate classifier type.</span>
+        <span class="n">check_type</span><span class="p">(</span><span class="n">fit_ensemble</span><span class="p">,</span> <span class="s2">&quot;fit_ensemble&quot;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>
+
+        <span class="n">ensemble</span><span class="p">,</span> <span class="n">est_arr</span><span class="p">,</span> <span class="n">classes</span> <span class="o">=</span> <span class="n">_check_ensemble</span><span class="p">(</span>
+            <span class="n">ensemble</span><span class="o">=</span><span class="n">ensemble</span><span class="p">,</span>
+            <span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span>
+            <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span>
+            <span class="n">sample_weight</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">,</span>
+            <span class="n">fit_ensemble</span><span class="o">=</span><span class="n">fit_ensemble</span><span class="p">,</span>
+            <span class="n">missing_label</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">missing_label_</span><span class="p">,</span>
+            <span class="n">estimator_types</span><span class="o">=</span><span class="p">[</span><span class="n">SkactivemlClassifier</span><span class="p">,</span> <span class="n">SkactivemlRegressor</span><span class="p">],</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Validate &#39;method&#39;</span>
+        <span class="n">check_type</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">method</span><span class="p">,</span>
+            <span class="s2">&quot;method&quot;</span><span class="p">,</span>
+            <span class="n">target_vals</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;KL_divergence&quot;</span><span class="p">,</span> <span class="s2">&quot;vote_entropy&quot;</span><span class="p">],</span>
+        <span class="p">)</span>
+
+        <span class="c1"># classes is None if the ensemble is a regressor</span>
+        <span class="k">if</span> <span class="n">classes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># Compute utilities.</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;KL_divergence&quot;</span><span class="p">:</span>
+                <span class="n">probas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+                    <span class="p">[</span><span class="n">est</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_cand</span><span class="p">)</span> <span class="k">for</span> <span class="n">est</span> <span class="ow">in</span> <span class="n">est_arr</span><span class="p">]</span>
+                <span class="p">)</span>
+                <span class="n">utilities_cand</span> <span class="o">=</span> <span class="n">average_kl_divergence</span><span class="p">(</span><span class="n">probas</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>  <span class="c1"># self.method == &quot;vote_entropy&quot;:</span>
+                <span class="n">votes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">est</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_cand</span><span class="p">)</span> <span class="k">for</span> <span class="n">est</span> <span class="ow">in</span> <span class="n">est_arr</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+                <span class="n">utilities_cand</span> <span class="o">=</span> <span class="n">vote_entropy</span><span class="p">(</span><span class="n">votes</span><span class="p">,</span> <span class="n">classes</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">results</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+                <span class="p">[</span><span class="n">learner</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_cand</span><span class="p">)</span> <span class="k">for</span> <span class="n">learner</span> <span class="ow">in</span> <span class="n">est_arr</span><span class="p">]</span>
+            <span class="p">)</span>
+            <span class="n">utilities_cand</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">mapping</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">utilities</span> <span class="o">=</span> <span class="n">utilities_cand</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">utilities</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+            <span class="n">utilities</span><span class="p">[</span><span class="n">mapping</span><span class="p">]</span> <span class="o">=</span> <span class="n">utilities_cand</span>
+
+        <span class="k">return</span> <span class="n">simple_batch</span><span class="p">(</span>
+            <span class="n">utilities</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">random_state_</span><span class="p">,</span>
+            <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
+            <span class="n">return_utilities</span><span class="o">=</span><span class="n">return_utilities</span><span class="p">,</span>
+        <span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="average_kl_divergence"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.average_kl_divergence.html#skactiveml.pool.average_kl_divergence">[docs]</a><span class="k">def</span> <span class="nf">average_kl_divergence</span><span class="p">(</span><span class="n">probas</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Calculates the average Kullback-Leibler (KL) divergence for measuring</span>
+<span class="sd">    the level of disagreement in QueryByCommittee.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    probas : array-like, shape (n_estimators, n_samples, n_classes)</span>
+<span class="sd">        The probability estimates of all estimators, samples, and classes.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    scores: np.ndarray, shape (n_samples)</span>
+<span class="sd">        The Kullback-Leibler (KL) divergences.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    [1] A. McCallum and K. Nigam. Employing EM in pool-based active learning</span>
+<span class="sd">        for text classification. In Proceedings of the International Conference</span>
+<span class="sd">        on Machine Learning (ICML), pages 359-367. Morgan Kaufmann, 1998.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Check probabilities.</span>
+    <span class="n">probas</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">probas</span><span class="p">,</span> <span class="n">allow_nd</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">probas</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Expected 3D array, got </span><span class="si">{</span><span class="n">probas</span><span class="o">.</span><span class="n">ndim</span><span class="si">}</span><span class="s2">D array instead.&quot;</span>
+        <span class="p">)</span>
+    <span class="n">n_estimators</span> <span class="o">=</span> <span class="n">probas</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1"># Calculate the average KL divergence.</span>
+    <span class="n">probas_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">probas</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">np</span><span class="o">.</span><span class="n">errstate</span><span class="p">(</span><span class="n">divide</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">invalid</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">):</span>
+        <span class="n">scores</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">probas</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">probas</span> <span class="o">/</span> <span class="n">probas_mean</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span>
+        <span class="p">)</span>
+    <span class="n">scores</span> <span class="o">=</span> <span class="n">scores</span> <span class="o">/</span> <span class="n">n_estimators</span>
+
+    <span class="k">return</span> <span class="n">scores</span></div>
+
+
+<div class="viewcode-block" id="vote_entropy"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.vote_entropy.html#skactiveml.pool.vote_entropy">[docs]</a><span class="k">def</span> <span class="nf">vote_entropy</span><span class="p">(</span><span class="n">votes</span><span class="p">,</span> <span class="n">classes</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Calculates the vote entropy for measuring the level of disagreement in</span>
+<span class="sd">    QueryByCommittee.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    votes : array-like, shape (n_samples, n_estimators)</span>
+<span class="sd">        The class predicted by the estimators for each sample.</span>
+<span class="sd">    classes : array-like, shape (n_classes)</span>
+<span class="sd">        A list of all possible classes.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    vote_entropy : np.ndarray, shape (n_samples)</span>
+<span class="sd">        The vote entropy of each row in `votes`.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    [1] Engelson, Sean P., and Ido Dagan.</span>
+<span class="sd">        Minimizing manual annotation cost in supervised training from corpora.</span>
+<span class="sd">        arXiv preprint cmp-lg/9606030 (1996).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Check `votes` array.</span>
+    <span class="n">votes</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">votes</span><span class="p">)</span>
+    <span class="n">n_estimators</span> <span class="o">=</span> <span class="n">votes</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="c1"># Count the votes.</span>
+    <span class="n">vote_count</span> <span class="o">=</span> <span class="n">compute_vote_vectors</span><span class="p">(</span>
+        <span class="n">y</span><span class="o">=</span><span class="n">votes</span><span class="p">,</span> <span class="n">classes</span><span class="o">=</span><span class="n">classes</span><span class="p">,</span> <span class="n">missing_label</span><span class="o">=</span><span class="kc">None</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Compute vote entropy.</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">vote_count</span> <span class="o">/</span> <span class="n">n_estimators</span>
+
+    <span class="k">with</span> <span class="n">np</span><span class="o">.</span><span class="n">errstate</span><span class="p">(</span><span class="n">divide</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">invalid</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">):</span>
+        <span class="n">scores</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="o">-</span><span class="n">v</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">v</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">scores</span></div>
+
+
+<span class="k">def</span> <span class="nf">_check_ensemble</span><span class="p">(</span>
+    <span class="n">ensemble</span><span class="p">,</span>
+    <span class="n">estimator_types</span><span class="p">,</span>
+    <span class="n">X</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">,</span>
+    <span class="n">sample_weight</span><span class="p">,</span>
+    <span class="n">fit_ensemble</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">missing_label</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="c1"># Check if the parameter `ensemble` is valid.</span>
+    <span class="k">for</span> <span class="n">estimator_type</span> <span class="ow">in</span> <span class="n">estimator_types</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ensemble</span><span class="p">,</span> <span class="n">estimator_type</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span>
+            <span class="nb">hasattr</span><span class="p">(</span><span class="n">ensemble</span><span class="p">,</span> <span class="s2">&quot;n_estimators&quot;</span><span class="p">)</span>
+            <span class="ow">or</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">ensemble</span><span class="p">,</span> <span class="s2">&quot;estimators&quot;</span><span class="p">)</span>
+        <span class="p">):</span>
+            <span class="n">check_equal_missing_label</span><span class="p">(</span><span class="n">ensemble</span><span class="o">.</span><span class="n">missing_label</span><span class="p">,</span> <span class="n">missing_label</span><span class="p">)</span>
+            <span class="c1"># Fit the ensemble.</span>
+            <span class="k">if</span> <span class="n">fit_ensemble</span><span class="p">:</span>
+                <span class="n">ensemble</span> <span class="o">=</span> <span class="n">clone</span><span class="p">(</span><span class="n">ensemble</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">ensemble</span><span class="p">,</span> <span class="s2">&quot;estimators_&quot;</span><span class="p">):</span>
+                <span class="n">est_arr</span> <span class="o">=</span> <span class="n">ensemble</span><span class="o">.</span><span class="n">estimators_</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">ensemble</span><span class="p">,</span> <span class="s2">&quot;estimators&quot;</span><span class="p">):</span>
+                    <span class="n">n_estimators</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">ensemble</span><span class="o">.</span><span class="n">estimators</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">n_estimators</span> <span class="o">=</span> <span class="n">ensemble</span><span class="o">.</span><span class="n">n_estimators</span>
+                <span class="n">est_arr</span> <span class="o">=</span> <span class="p">[</span><span class="n">ensemble</span><span class="p">]</span> <span class="o">*</span> <span class="n">n_estimators</span>
+
+            <span class="k">if</span> <span class="n">estimator_type</span> <span class="o">==</span> <span class="n">SkactivemlClassifier</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">ensemble</span><span class="p">,</span> <span class="n">est_arr</span><span class="p">,</span> <span class="n">ensemble</span><span class="o">.</span><span class="n">classes_</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">ensemble</span><span class="p">,</span> <span class="n">est_arr</span><span class="p">,</span> <span class="kc">None</span>
+
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ensemble</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">))</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span>
+            <span class="n">ensemble</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">estimator_type</span>
+        <span class="p">):</span>
+            <span class="n">est_arr</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">ensemble</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">est_arr</span><span class="p">)):</span>
+                <span class="n">check_type</span><span class="p">(</span>
+                    <span class="n">est_arr</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="sa">f</span><span class="s2">&quot;ensemble[</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">,</span> <span class="n">estimator_type</span>
+                <span class="p">)</span>  <span class="c1"># better error message</span>
+                <span class="n">check_equal_missing_label</span><span class="p">(</span>
+                    <span class="n">est_arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">missing_label</span><span class="p">,</span> <span class="n">missing_label</span>
+                <span class="p">)</span>
+                <span class="c1"># Fit the ensemble.</span>
+                <span class="k">if</span> <span class="n">fit_ensemble</span><span class="p">:</span>
+                    <span class="n">est_arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">est_arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">estimator_type</span> <span class="o">==</span> <span class="n">SkactivemlClassifier</span><span class="p">:</span>
+                    <span class="n">np</span><span class="o">.</span><span class="n">testing</span><span class="o">.</span><span class="n">assert_array_equal</span><span class="p">(</span>
+                        <span class="n">est_arr</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">classes_</span><span class="p">,</span>
+                        <span class="n">est_arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">classes_</span><span class="p">,</span>
+                        <span class="n">err_msg</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;The inferred classes of the </span><span class="si">{</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="si">}</span><span class="s2">-th and &quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">-th are not equal. Set the `classes` &quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;parameter of each ensemble member to avoid &quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;this error.&quot;</span><span class="p">,</span>
+                    <span class="p">)</span>
+            <span class="k">if</span> <span class="n">estimator_type</span> <span class="o">==</span> <span class="n">SkactivemlClassifier</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">ensemble</span><span class="p">,</span> <span class="n">est_arr</span><span class="p">,</span> <span class="n">est_arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">classes_</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">ensemble</span><span class="p">,</span> <span class="n">est_arr</span><span class="p">,</span> <span class="kc">None</span>
+
+    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;`ensemble` must either be a `</span><span class="si">{</span><span class="n">estimator_types</span><span class="si">}</span><span class="s2"> &quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;with the attribute `n_ensembles` and `estimators_` after &quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;fitting or a list of </span><span class="si">{</span><span class="n">estimator_types</span><span class="si">}</span><span class="s2"> objects.&quot;</span>
+    <span class="p">)</span>
+</pre></div>
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2020.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

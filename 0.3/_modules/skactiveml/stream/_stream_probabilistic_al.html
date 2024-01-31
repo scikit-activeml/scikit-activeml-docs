@@ -1,0 +1,646 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>skactiveml.stream._stream_probabilistic_al &#8212; scikit-activeml 0.3.1 documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../../../_static/filter_examples.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../../index.html">
+  <img src="../../../_static/scikit-activeml-logo.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../index.html">
+  Home
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../tutorials.html">
+  Tutorials
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../generated/strategy_overview.html">
+  Strategy Overview
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../generated/api_reference.html">
+  API Reference
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../generated/sphinx_gallery_examples/index.html">
+  Examples
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../developers_guide.html">
+  Developer Guide
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Quick Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/scikit-activeml/scikit-activeml" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://pypi.org/project/scikit-activeml" rel="noopener" target="_blank" title="PyPI"><span><i class="fas fa-box"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+              </div>
+              <div class="sidebar-end-items">
+              </div>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <h1>Source code for skactiveml.stream._stream_probabilistic_al</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">clone</span>
+<span class="kn">from</span> <span class="nn">sklearn.utils</span> <span class="kn">import</span> <span class="n">check_array</span><span class="p">,</span> <span class="n">check_consistent_length</span>
+
+<span class="kn">from</span> <span class="nn">..classifier</span> <span class="kn">import</span> <span class="n">ParzenWindowClassifier</span>
+<span class="kn">from</span> <span class="nn">.budgetmanager</span> <span class="kn">import</span> <span class="n">BalancedIncrementalQuantileFilter</span>
+<span class="kn">from</span> <span class="nn">..base</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">SingleAnnotatorStreamQueryStrategy</span><span class="p">,</span>
+    <span class="n">SkactivemlClassifier</span><span class="p">,</span>
+    <span class="n">BudgetManager</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">..pool</span> <span class="kn">import</span> <span class="n">cost_reduction</span>
+<span class="kn">from</span> <span class="nn">..utils</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">check_type</span><span class="p">,</span>
+    <span class="n">check_random_state</span><span class="p">,</span>
+    <span class="n">check_scalar</span><span class="p">,</span>
+    <span class="n">call_func</span><span class="p">,</span>
+    <span class="n">check_budget_manager</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<div class="viewcode-block" id="StreamProbabilisticAL"><a class="viewcode-back" href="../../../generated/api/skactiveml.stream.StreamProbabilisticAL.html#skactiveml.stream.StreamProbabilisticAL">[docs]</a><span class="k">class</span> <span class="nc">StreamProbabilisticAL</span><span class="p">(</span><span class="n">SingleAnnotatorStreamQueryStrategy</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Probabilistic Active Learning in Datastreams.</span>
+
+<span class="sd">    Probabilistic Active Learning in Datastreams (StreamProbabilisticAL) is an</span>
+<span class="sd">    extension to Multi-Class Probabilistic Active Learning (McPAL)</span>
+<span class="sd">    (see pool.ProbabilisticAL). It assesses McPAL spatial to assess the spatial</span>
+<span class="sd">    utility. The Balanced Incremental Quantile Filter</span>
+<span class="sd">    (BalancedIncrementalQuantileFilter), that is implemented within the</span>
+<span class="sd">    default budget manager, is used to evaluate the temporal utility</span>
+<span class="sd">    (see stream.budgetmanager.BalancedIncrementalQuantileFilter).</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    budget : float, default=None</span>
+<span class="sd">        The budget which models the budgeting constraint used in</span>
+<span class="sd">        the stream-based active learning setting.</span>
+<span class="sd">    budget_manager : BudgetManager, default=None</span>
+<span class="sd">        The BudgetManager which models the budgeting constraint used in</span>
+<span class="sd">        the stream-based active learning setting. if set to None,</span>
+<span class="sd">        FixedUncertaintyBudgetManager will be used by default. The budget</span>
+<span class="sd">        manager will be initialized based on the following conditions:</span>
+<span class="sd">            If only a budget is given the default budget manager is initialized</span>
+<span class="sd">            with the given budget.</span>
+<span class="sd">            If only a budget manager is given use the budget manager.</span>
+<span class="sd">            If both are not given the default budget manager with the</span>
+<span class="sd">            default budget.</span>
+<span class="sd">            If both are given and the budget differs from budgetmanager.budget</span>
+<span class="sd">            a warning is thrown.</span>
+<span class="sd">    metric : str or callable, default=None</span>
+<span class="sd">        The metric must a be None or a valid kernel as defined by the function</span>
+<span class="sd">        `sklearn.metrics.pairwise.pairwise_kernels`. The kernel is used to</span>
+<span class="sd">        calculate the frequency of labels near the candidates and multiplied</span>
+<span class="sd">        with the probabilities returned by the `clf` to get a kernel frequency</span>
+<span class="sd">        estimate for each class.</span>
+<span class="sd">        If metric is set to None, the `predict_freq` function of the `clf` will</span>
+<span class="sd">        be used instead. If this is not defined, an Exception is raised.</span>
+<span class="sd">    metric_dict : dict,</span>
+<span class="sd">        Any further parameters are passed directly to the kernel function.</span>
+<span class="sd">    random_state : int, RandomState instance, default=None</span>
+<span class="sd">        Controls the randomness of the query strategy.</span>
+<span class="sd">    prior : float</span>
+<span class="sd">        The prior value that is passed onto ProbabilisticAL</span>
+<span class="sd">        (see pool.ProbabilisticAL).</span>
+<span class="sd">    m_max : float</span>
+<span class="sd">        The m_max value that is passed onto ProbabilisticAL</span>
+<span class="sd">        (see pool.ProbabilisticAL).</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    [1] Kottke D., Krempl G., Spiliopoulou M. (2015) Probabilistic Active</span>
+<span class="sd">        Learning in Datastreams. In: Fromont E., De Bie T., van Leeuwen M.</span>
+<span class="sd">        (eds) Advances in Intelligent Data Analysis XIV. IDA 2015. Lecture</span>
+<span class="sd">        Notes in Computer Science, vol 9385. Springer, Cham.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">budget_manager</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">budget</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">metric</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">metric_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">prior</span><span class="o">=</span><span class="mf">1.0e-3</span><span class="p">,</span>
+        <span class="n">m_max</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">budget</span><span class="o">=</span><span class="n">budget</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">budget_manager</span> <span class="o">=</span> <span class="n">budget_manager</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">prior</span> <span class="o">=</span> <span class="n">prior</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">m_max</span> <span class="o">=</span> <span class="n">m_max</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metric</span> <span class="o">=</span> <span class="n">metric</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metric_dict</span> <span class="o">=</span> <span class="n">metric_dict</span>
+
+<div class="viewcode-block" id="StreamProbabilisticAL.query"><a class="viewcode-back" href="../../../generated/api/skactiveml.stream.StreamProbabilisticAL.html#skactiveml.stream.StreamProbabilisticAL.query">[docs]</a>    <span class="k">def</span> <span class="nf">query</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">candidates</span><span class="p">,</span>
+        <span class="n">clf</span><span class="p">,</span>
+        <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">fit_clf</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">utility_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">return_utilities</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Ask the query strategy which instances in candidates to acquire.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        candidates : {array-like, sparse matrix} of shape</span>
+<span class="sd">        (n_samples, n_features)</span>
+<span class="sd">            The instances which may be queried. Sparse matrices are accepted</span>
+<span class="sd">            only if they are supported by the base query strategy.</span>
+<span class="sd">        clf : SkactivemlClassifier</span>
+<span class="sd">            Model implementing the methods `fit` and `predict_proba`. If</span>
+<span class="sd">            `self.metric` is None, the `clf` must also implement</span>
+<span class="sd">            `predict_freq`.</span>
+<span class="sd">        X : array-like of shape (n_samples, n_features), optional</span>
+<span class="sd">        (default=None)</span>
+<span class="sd">            Input samples used to fit the classifier.</span>
+<span class="sd">        y : array-like of shape (n_samples), optional (default=None)</span>
+<span class="sd">            Labels of the input samples &#39;X&#39;. There may be missing labels.</span>
+<span class="sd">        sample_weight : array-like of shape (n_samples,) (default=None)</span>
+<span class="sd">            Sample weights for X, used to fit the clf.</span>
+<span class="sd">        fit_clf : bool,</span>
+<span class="sd">            If True, refit the classifier also requires X and y to be given.</span>
+<span class="sd">        utility_weight : array-like of shape (n_candidate_samples), optional</span>
+<span class="sd">        (default=None)</span>
+<span class="sd">            Densities for each sample in `candidates`.</span>
+<span class="sd">        return_utilities : bool, optional</span>
+<span class="sd">            If true, also return the utilities based on the query strategy.</span>
+<span class="sd">            The default is False.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        queried_indices : ndarray of shape (n_queried_instances,)</span>
+<span class="sd">            The indices of instances in candidates which should be queried,</span>
+<span class="sd">            with 0 &lt;= n_queried_instances &lt;= n_samples.</span>
+<span class="sd">        utilities: ndarray of shape (n_samples,), optional</span>
+<span class="sd">            The utilities based on the query strategy. Only provided if</span>
+<span class="sd">            return_utilities is True.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="p">(</span>
+            <span class="n">candidates</span><span class="p">,</span>
+            <span class="n">clf</span><span class="p">,</span>
+            <span class="n">X</span><span class="p">,</span>
+            <span class="n">y</span><span class="p">,</span>
+            <span class="n">sample_weight</span><span class="p">,</span>
+            <span class="n">fit_clf</span><span class="p">,</span>
+            <span class="n">utility_weight</span><span class="p">,</span>
+            <span class="n">return_utilities</span><span class="p">,</span>
+        <span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_data</span><span class="p">(</span>
+            <span class="n">candidates</span><span class="o">=</span><span class="n">candidates</span><span class="p">,</span>
+            <span class="n">clf</span><span class="o">=</span><span class="n">clf</span><span class="p">,</span>
+            <span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span>
+            <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span>
+            <span class="n">sample_weight</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">,</span>
+            <span class="n">fit_clf</span><span class="o">=</span><span class="n">fit_clf</span><span class="p">,</span>
+            <span class="n">utility_weight</span><span class="o">=</span><span class="n">utility_weight</span><span class="p">,</span>
+            <span class="n">return_utilities</span><span class="o">=</span><span class="n">return_utilities</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">pwc</span> <span class="o">=</span> <span class="n">ParzenWindowClassifier</span><span class="p">(</span>
+                <span class="n">metric</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">metric</span><span class="p">,</span>
+                <span class="n">metric_dict</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">metric_dict</span><span class="p">,</span>
+                <span class="n">missing_label</span><span class="o">=</span><span class="n">clf</span><span class="o">.</span><span class="n">missing_label</span><span class="p">,</span>
+                <span class="n">classes</span><span class="o">=</span><span class="n">clf</span><span class="o">.</span><span class="n">classes</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">pwc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">)</span>
+            <span class="n">n</span> <span class="o">=</span> <span class="n">pwc</span><span class="o">.</span><span class="n">predict_freq</span><span class="p">(</span><span class="n">candidates</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">pred_proba</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">candidates</span><span class="p">)</span>
+            <span class="n">k_vec</span> <span class="o">=</span> <span class="n">n</span> <span class="o">*</span> <span class="n">pred_proba</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">k_vec</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict_freq</span><span class="p">(</span><span class="n">candidates</span><span class="p">)</span>
+
+        <span class="n">utilities</span> <span class="o">=</span> <span class="n">cost_reduction</span><span class="p">(</span><span class="n">k_vec</span><span class="p">,</span> <span class="n">prior</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">prior</span><span class="p">,</span> <span class="n">m_max</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">m_max</span><span class="p">)</span>
+
+        <span class="n">utilities</span> <span class="o">*=</span> <span class="n">utility_weight</span>
+
+        <span class="n">queried_indices</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">budget_manager_</span><span class="o">.</span><span class="n">query_by_utility</span><span class="p">(</span><span class="n">utilities</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">return_utilities</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">queried_indices</span><span class="p">,</span> <span class="n">utilities</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">queried_indices</span></div>
+
+<div class="viewcode-block" id="StreamProbabilisticAL.update"><a class="viewcode-back" href="../../../generated/api/skactiveml.stream.StreamProbabilisticAL.html#skactiveml.stream.StreamProbabilisticAL.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">candidates</span><span class="p">,</span> <span class="n">queried_indices</span><span class="p">,</span> <span class="n">budget_manager_param_dict</span><span class="o">=</span><span class="kc">None</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Updates the budget manager.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        candidates : {array-like, sparse matrix} of shape</span>
+<span class="sd">        (n_samples, n_features)</span>
+<span class="sd">            The instances which could be queried. Sparse matrices are accepted</span>
+<span class="sd">            only if they are supported by the base query strategy.</span>
+<span class="sd">        queried_indices : array-like of shape (n_samples,)</span>
+<span class="sd">            Indicates which instances from candidates have been queried.</span>
+<span class="sd">        budget_manager_param_dict : kwargs, optional</span>
+<span class="sd">            Optional kwargs for budgetmanager.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self : StreamProbabilisticAL</span>
+<span class="sd">            PALS returns itself, after it is updated.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># check if a budgetmanager is set</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;budget_manager_&quot;</span><span class="p">):</span>
+            <span class="n">check_type</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">budget_manager</span><span class="p">,</span>
+                <span class="s2">&quot;budget_manager_&quot;</span><span class="p">,</span>
+                <span class="n">BudgetManager</span><span class="p">,</span>
+                <span class="nb">type</span><span class="p">(</span><span class="kc">None</span><span class="p">),</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">budget_manager_</span> <span class="o">=</span> <span class="n">check_budget_manager</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">budget</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">budget_manager</span><span class="p">,</span>
+                <span class="n">BalancedIncrementalQuantileFilter</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="n">budget_manager_param_dict</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="p">{}</span>
+            <span class="k">if</span> <span class="n">budget_manager_param_dict</span> <span class="ow">is</span> <span class="kc">None</span>
+            <span class="k">else</span> <span class="n">budget_manager_param_dict</span>
+        <span class="p">)</span>
+        <span class="n">call_func</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">budget_manager_</span><span class="o">.</span><span class="n">update</span><span class="p">,</span>
+            <span class="n">candidates</span><span class="o">=</span><span class="n">candidates</span><span class="p">,</span>
+            <span class="n">queried_indices</span><span class="o">=</span><span class="n">queried_indices</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">budget_manager_param_dict</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+    <span class="k">def</span> <span class="nf">_validate_data</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">candidates</span><span class="p">,</span>
+        <span class="n">clf</span><span class="p">,</span>
+        <span class="n">X</span><span class="p">,</span>
+        <span class="n">y</span><span class="p">,</span>
+        <span class="n">sample_weight</span><span class="p">,</span>
+        <span class="n">fit_clf</span><span class="p">,</span>
+        <span class="n">utility_weight</span><span class="p">,</span>
+        <span class="n">return_utilities</span><span class="p">,</span>
+        <span class="n">reset</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">check_candidates_params</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Validate input data and set or check the `n_features_in_` attribute.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        candidates: array-like, shape (n_candidates, n_features)</span>
+<span class="sd">            Candidate samples.</span>
+<span class="sd">        clf : SkactivemlClassifier</span>
+<span class="sd">            Model implementing the methods `fit` and `predict_proba`. If</span>
+<span class="sd">            `self.metric` is None, the `clf` must also implement</span>
+<span class="sd">            `predict_freq`.</span>
+<span class="sd">        X : array-like of shape (n_samples, n_features)</span>
+<span class="sd">            Input samples used to fit the classifier.</span>
+<span class="sd">        y : array-like of shape (n_samples)</span>
+<span class="sd">            Labels of the input samples &#39;X&#39;. There may be missing labels.</span>
+<span class="sd">        sample_weight : array-like of shape (n_samples,) (default=None)</span>
+<span class="sd">            Sample weights for X, used to fit the clf.</span>
+<span class="sd">        fit_clf : bool,</span>
+<span class="sd">            If true, refit the classifier also requires X and y to be given.</span>
+<span class="sd">        utility_weight: array-like of shape (n_candidate_samples), optional</span>
+<span class="sd">        (default=None)</span>
+<span class="sd">            Densities for each sample in `candidates`.</span>
+<span class="sd">        return_utilities : bool,</span>
+<span class="sd">            If true, also return the utilities based on the query strategy.</span>
+<span class="sd">        reset : bool, default=True</span>
+<span class="sd">            Whether to reset the `n_features_in_` attribute.</span>
+<span class="sd">            If False, the input will be checked for consistency with data</span>
+<span class="sd">            provided when reset was last True.</span>
+<span class="sd">        **check_candidates_params : kwargs</span>
+<span class="sd">            Parameters passed to :func:`sklearn.utils.check_array`.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        candidates: np.ndarray, shape (n_candidates, n_features)</span>
+<span class="sd">            Checked candidate samples</span>
+<span class="sd">        clf : SkactivemlClassifier</span>
+<span class="sd">            Checked model implementing the methods `fit` and `predict_freq`.</span>
+<span class="sd">        X: np.ndarray, shape (n_samples, n_features)</span>
+<span class="sd">            Checked training samples</span>
+<span class="sd">        y: np.ndarray, shape (n_candidates)</span>
+<span class="sd">            Checked training labels</span>
+<span class="sd">        sampling_weight: np.ndarray, shape (n_candidates)</span>
+<span class="sd">            Checked training sample weight</span>
+<span class="sd">        fit_clf : bool,</span>
+<span class="sd">            Checked boolean value of `fit_clf`</span>
+<span class="sd">        utility_weight: array-like of shape (n_candidate_samples), optional</span>
+<span class="sd">        (default=None)</span>
+<span class="sd">            Checked densities for each sample in `candidates`.</span>
+<span class="sd">        candidates: np.ndarray, shape (n_candidates, n_features)</span>
+<span class="sd">            Checked candidate samples</span>
+<span class="sd">        return_utilities : bool,</span>
+<span class="sd">            Checked boolean value of `return_utilities`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">candidates</span><span class="p">,</span> <span class="n">return_utilities</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_validate_data</span><span class="p">(</span>
+            <span class="n">candidates</span><span class="p">,</span>
+            <span class="n">return_utilities</span><span class="p">,</span>
+            <span class="n">reset</span><span class="o">=</span><span class="n">reset</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">check_candidates_params</span>
+        <span class="p">)</span>
+        <span class="c1"># check if a budgetmanager is set</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;budget_manager_&quot;</span><span class="p">):</span>
+            <span class="n">check_type</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">budget_manager</span><span class="p">,</span>
+                <span class="s2">&quot;budget_manager_&quot;</span><span class="p">,</span>
+                <span class="n">BudgetManager</span><span class="p">,</span>
+                <span class="nb">type</span><span class="p">(</span><span class="kc">None</span><span class="p">),</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">budget_manager_</span> <span class="o">=</span> <span class="n">check_budget_manager</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">budget</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">budget_manager</span><span class="p">,</span>
+                <span class="n">BalancedIncrementalQuantileFilter</span><span class="p">,</span>
+            <span class="p">)</span>
+
+        <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_X_y_sample_weight</span><span class="p">(</span>
+            <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span>
+        <span class="p">)</span>
+        <span class="n">clf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_clf</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">,</span> <span class="n">fit_clf</span><span class="p">)</span>
+        <span class="n">utility_weight</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_utility_weight</span><span class="p">(</span>
+            <span class="n">utility_weight</span><span class="p">,</span> <span class="n">candidates</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="s2">&quot;predict_freq&quot;</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                <span class="s2">&quot;clf has no predict_freq and metric was set to None&quot;</span>
+            <span class="p">)</span>
+
+        <span class="n">check_scalar</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">prior</span><span class="p">,</span> <span class="s2">&quot;prior&quot;</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="n">min_val</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">min_inclusive</span><span class="o">=</span><span class="kc">False</span>
+        <span class="p">)</span>
+        <span class="n">check_scalar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">m_max</span><span class="p">,</span> <span class="s2">&quot;m_max&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="n">min_val</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">min_inclusive</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_validate_random_state</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="n">candidates</span><span class="p">,</span>
+            <span class="n">clf</span><span class="p">,</span>
+            <span class="n">X</span><span class="p">,</span>
+            <span class="n">y</span><span class="p">,</span>
+            <span class="n">sample_weight</span><span class="p">,</span>
+            <span class="n">fit_clf</span><span class="p">,</span>
+            <span class="n">utility_weight</span><span class="p">,</span>
+            <span class="n">return_utilities</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_validate_X_y_sample_weight</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Validate if X, y and sample_weight are numeric and of equal length.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : array-like of shape (n_samples, n_features)</span>
+<span class="sd">            Input samples used to fit the classifier.</span>
+<span class="sd">        y : array-like of shape (n_samples)</span>
+<span class="sd">            Labels of the input samples &#39;X&#39;. There may be missing labels.</span>
+<span class="sd">        sample_weight : array-like of shape (n_samples,) (default=None)</span>
+<span class="sd">            Sample weights for X, used to fit the clf.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        X : array-like of shape (n_samples, n_features)</span>
+<span class="sd">            Checked Input samples.</span>
+<span class="sd">        y : array-like of shape (n_samples)</span>
+<span class="sd">            Checked Labels of the input samples &#39;X&#39;. Converts y to a numpy</span>
+<span class="sd">            array</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">sample_weight</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">sample_weight</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">sample_weight</span><span class="p">)</span>
+            <span class="n">check_consistent_length</span><span class="p">(</span><span class="n">sample_weight</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">X</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">y</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">X</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+            <span class="n">check_consistent_length</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span>
+
+    <span class="k">def</span> <span class="nf">_validate_clf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clf</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">,</span> <span class="n">fit_clf</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Validate if clf is a valid SkactivemlClassifier. If clf is</span>
+<span class="sd">        untrained, clf is trained using X, y and sample_weight.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        clf : SkactivemlClassifier</span>
+<span class="sd">            Model implementing the methods `fit` and `predict_freq`.</span>
+<span class="sd">        X : array-like of shape (n_samples, n_features)</span>
+<span class="sd">            Input samples used to fit the classifier.</span>
+<span class="sd">        y : array-like of shape (n_samples)</span>
+<span class="sd">            Labels of the input samples &#39;X&#39;. There may be missing labels.</span>
+<span class="sd">        sample_weight : array-like of shape (n_samples,) (default=None)</span>
+<span class="sd">            Sample weights for X, used to fit the clf.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        clf : SkactivemlClassifier</span>
+<span class="sd">            Checked model implementing the methods `fit` and `predict_freq`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Check if the classifier and its arguments are valid.</span>
+        <span class="n">check_type</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="s2">&quot;clf&quot;</span><span class="p">,</span> <span class="n">SkactivemlClassifier</span><span class="p">)</span>
+        <span class="n">check_type</span><span class="p">(</span><span class="n">fit_clf</span><span class="p">,</span> <span class="s2">&quot;fit_clf&quot;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">fit_clf</span><span class="p">:</span>
+            <span class="n">clf</span> <span class="o">=</span> <span class="n">clone</span><span class="p">(</span><span class="n">clf</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">clf</span>
+
+    <span class="k">def</span> <span class="nf">_validate_utility_weight</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">utility_weight</span><span class="p">,</span> <span class="n">candidates</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Validate if utility_weight is numeric and of equal length as</span>
+<span class="sd">        candidates.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        candidates: np.ndarray, shape (n_candidates, n_features)</span>
+<span class="sd">            Checked candidate samples</span>
+<span class="sd">        utility_weight: array-like of shape (n_candidate_samples), optional</span>
+<span class="sd">        (default=None)</span>
+<span class="sd">            Densities for each sample in `candidates`.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        utility_weight : array-like of shape (n_candidate_samples), optional</span>
+<span class="sd">        (default=None)</span>
+<span class="sd">            Checked densities for each sample in `candidates`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">utility_weight</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">utility_weight</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">candidates</span><span class="p">))</span>
+        <span class="n">utility_weight</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">utility_weight</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">check_consistent_length</span><span class="p">(</span><span class="n">utility_weight</span><span class="p">,</span> <span class="n">candidates</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">utility_weight</span>
+
+    <span class="k">def</span> <span class="nf">_validate_random_state</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Creates a copy &#39;random_state_&#39; if random_state is an instance of</span>
+<span class="sd">        np.random_state. If not create a new random state. See also</span>
+<span class="sd">        :func:`~sklearn.utils.check_random_state`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;random_state_&quot;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">random_state_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">random_state</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">random_state_</span> <span class="o">=</span> <span class="n">check_random_state</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state_</span><span class="p">)</span></div>
+</pre></div>
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2020.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

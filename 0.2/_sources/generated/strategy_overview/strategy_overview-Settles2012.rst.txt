@@ -1,0 +1,110 @@
+Strategy Overview By Settles
+==============================
+
+This is an overview of all implemented AL strategies. The strategies are categorized according to :footcite:t:`Settles2012`.
+
+Pool Strategies
+---------------
+
+Expected Error Reduction
+~~~~~~~~~~~~~~~~~~~~~~~~
+.. list-table:: 
+   :header-rows: 1
+
+   * - Method
+     - Base Class
+     - Reference
+   * - :doc:`Monte-Carlo EER with Log-Loss </generated/sphinx_gallery_examples/pool/plot_MonteCarloEER_Monte-Carlo_EER_with_Log-Loss>`
+     - :doc:`MonteCarloEER </generated/api/skactiveml.pool.MonteCarloEER>`
+     - :footcite:t:`roy2001toward`
+   * - :doc:`Monte-Carlo EER with Misclassification-Loss </generated/sphinx_gallery_examples/pool/plot_MonteCarloEER_Monte-Carlo_EER_with_Misclassification-Loss>`
+     - :doc:`MonteCarloEER </generated/api/skactiveml.pool.MonteCarloEER>`
+     - :footcite:t:`roy2001toward`
+   * - :doc:`Value of Information on Unlabeled Samples </generated/sphinx_gallery_examples/pool/plot_ValueOfInformationEER_Value_of_Information_on_Unlabeled_Samples>`
+     - :doc:`ValueOfInformationEER </generated/api/skactiveml.pool.ValueOfInformationEER>`
+     - :footcite:t:`joshi2009multi`
+   * - :doc:`Value of Information on Labeled Samples </generated/sphinx_gallery_examples/pool/plot_ValueOfInformationEER_Value_of_Information_on_Labeled_Samples>`
+     - :doc:`ValueOfInformationEER </generated/api/skactiveml.pool.ValueOfInformationEER>`
+     - :footcite:t:`margineantu2005active`
+   * - :doc:`Value of Information (VOI) </generated/sphinx_gallery_examples/pool/plot_ValueOfInformationEER_Value_of_Information_(VOI)>`
+     - :doc:`ValueOfInformationEER </generated/api/skactiveml.pool.ValueOfInformationEER>`
+     - :footcite:t:`kapoor2007selective`
+
+Query-by-Committee
+~~~~~~~~~~~~~~~~~~
+.. list-table:: 
+   :header-rows: 1
+
+   * - Method
+     - Base Class
+     - Reference
+   * - :doc:`Query-by-Committee with Kullback-Leibler Divergence </generated/sphinx_gallery_examples/pool/plot_QueryByCommittee_Query-by-Committee_with_Kullback-Leibler_Divergence>`
+     - :doc:`QueryByCommittee </generated/api/skactiveml.pool.QueryByCommittee>`
+     - :footcite:t:`seung1992query`, :footcite:t:`mccallum1998employing`
+   * - :doc:`Query-by-Committee with Vote Entropy </generated/sphinx_gallery_examples/pool/plot_QueryByCommittee_Query-by-Committee_with_Vote_Entropy>`
+     - :doc:`QueryByCommittee </generated/api/skactiveml.pool.QueryByCommittee>`
+     - :footcite:t:`seung1992query`, :footcite:t:`engelson1996minimizing`
+
+Random Sampling
+~~~~~~~~~~~~~~~
+.. list-table:: 
+   :header-rows: 1
+
+   * - Method
+     - Base Class
+     - Reference
+   * - :doc:`Random Sampling </generated/sphinx_gallery_examples/pool/plot_RandomSampling_Random_Sampling>`
+     - :doc:`RandomSampling </generated/api/skactiveml.pool.RandomSampling>`
+     - 
+
+Uncertainty Sampling
+~~~~~~~~~~~~~~~~~~~~
+.. list-table:: 
+   :header-rows: 1
+
+   * - Method
+     - Base Class
+     - Reference
+   * - :doc:`Epistemic Uncertainty Sampling </generated/sphinx_gallery_examples/pool/plot_EpistemicUncertaintySampling_Epistemic_Uncertainty_Sampling>`
+     - :doc:`EpistemicUncertaintySampling </generated/api/skactiveml.pool.EpistemicUncertaintySampling>`
+     - :footcite:t:`nguyen2019epistemic`
+   * - :doc:`Density-Diversity-Distribution-Distance Sampling (4DS) </generated/sphinx_gallery_examples/pool/plot_FourDs_Density-Diversity-Distribution-Distance_Sampling_(4DS)>`
+     - :doc:`FourDs </generated/api/skactiveml.pool.FourDs>`
+     - :footcite:t:`reitmaier2013let`
+   * - :doc:`Uncertainty Sampling with Margin </generated/sphinx_gallery_examples/pool/plot_UncertaintySampling_Uncertainty_Sampling_with_Margin>`
+     - :doc:`UncertaintySampling </generated/api/skactiveml.pool.UncertaintySampling>`
+     - :footcite:t:`settles2009active`
+   * - :doc:`Uncertainty Sampling with Least-Confidence </generated/sphinx_gallery_examples/pool/plot_UncertaintySampling_Uncertainty_Sampling_with_Least-Confidence>`
+     - :doc:`UncertaintySampling </generated/api/skactiveml.pool.UncertaintySampling>`
+     - :footcite:t:`settles2009active`
+   * - :doc:`Uncertainty Sampling with Entropy </generated/sphinx_gallery_examples/pool/plot_UncertaintySampling_Uncertainty_Sampling_with_Entropy>`
+     - :doc:`UncertaintySampling </generated/api/skactiveml.pool.UncertaintySampling>`
+     - :footcite:t:`settles2009active`
+   * - :doc:`Expected Average Precision </generated/sphinx_gallery_examples/pool/plot_UncertaintySampling_Expected_Average_Precision>`
+     - :doc:`UncertaintySampling </generated/api/skactiveml.pool.UncertaintySampling>`
+     - :footcite:t:`wang2018uncertainty`
+
+Others
+~~~~~~
+.. list-table:: 
+   :header-rows: 1
+
+   * - Method
+     - Base Class
+     - Reference
+   * - :doc:`Active Learning with Cost Embedding (ALCE) </generated/sphinx_gallery_examples/pool/plot_CostEmbeddingAL_Active_Learning_with_Cost_Embedding_(ALCE)>`
+     - :doc:`CostEmbeddingAL </generated/api/skactiveml.pool.CostEmbeddingAL>`
+     - :footcite:t:`huang2016novel`
+   * - :doc:`Discriminative Active Learning (DAL) </generated/sphinx_gallery_examples/pool/plot_DiscriminativeAL_Discriminative_Active_Learning_(DAL)>`
+     - :doc:`DiscriminativeAL </generated/api/skactiveml.pool.DiscriminativeAL>`
+     - :footcite:t:`gissin2019discriminative`
+   * - :doc:`Multi-class Probabilistic Active Learning (McPAL) </generated/sphinx_gallery_examples/pool/plot_ProbabilisticAL_Multi-class_Probabilistic_Active_Learning_(McPAL)>`
+     - :doc:`ProbabilisticAL </generated/api/skactiveml.pool.ProbabilisticAL>`
+     - :footcite:t:`kottke2016multi`
+   * - :doc:`Querying Informative and Representative Examples (QUIRE) </generated/sphinx_gallery_examples/pool/plot_Quire_Querying_Informative_and_Representative_Examples_(QUIRE)>`
+     - :doc:`Quire </generated/api/skactiveml.pool.Quire>`
+     - :footcite:t:`huang2010active`
+
+References
+----------
+.. footbibliography::
