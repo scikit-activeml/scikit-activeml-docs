@@ -1,6 +1,6 @@
 name: skactiveml
     
-on:
+on: 
   push:
     branches:
       - main
@@ -16,19 +16,19 @@ jobs:
         python-version: [3.9]
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
       - name: Clone Repository
         run: |
-          git clone -b master --single-branch https://github.com/scikit-activeml/scikit-activeml.git
+          git clone --single-branch https://github.com/scikit-activeml/scikit-activeml.git
       - name: Install dependencies
         run: |
           sudo apt-get install pandoc
           python -m pip install --upgrade pip
-          pip install -r scikit-activeml/requirements.txt
+          pip install -r scikit-activeml/requirements.txt -r scikit-activeml/requirements_max.txt 
           pip install -r scikit-activeml/requirements_extra.txt
       - name: Create documentation with sphinx
         env:
@@ -43,3 +43,5 @@ jobs:
         with:
           branch: gh-pages
           folder: scikit-activeml/docs/_build
+          target-folder: latest
+
