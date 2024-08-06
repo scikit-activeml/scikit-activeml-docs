@@ -1,11 +1,6 @@
-name: skactiveml
-
 on:
-  push:
-    branches:
-      - main
   repository_dispatch:
-    types: [build_docs]
+    types: [release]
 
 jobs:
   build:
@@ -23,13 +18,21 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Clone Repository
         run: |
-          git clone -b master --single-branch https://github.com/scikit-activeml/scikit-activeml.git
+          git clone --single-branch https://github.com/scikit-activeml/scikit-activeml.git
       - name: Install dependencies
         run: |
           sudo apt-get install pandoc
           python -m pip install --upgrade pip
           pip install -r scikit-activeml/requirements.txt -r scikit-activeml/requirements_max.txt
           pip install -r scikit-activeml/requirements_extra.txt
+      - name: Insert Version number and save current version
+        run: |
+          cd scikit-activeml
+          RELEASE_VERSION=$(git ls-remote --tags --sort=-'v:refname' https://github.com/scikit-activeml/scikit-activeml.git | head -n 1 | cut --delimiter='/' --fields=3)
+          echo $RELEASE_VERSION
+          sed -i -E "s/__version__ = .*/__version__ = \"$RELEASE_VERSION\"/" skactiveml/__init__.py
+          cat skactiveml/__init__.py
+          cd ..
       - name: Create documentation with sphinx
         env:
           N_SAMPLES: 100
@@ -38,12 +41,22 @@ jobs:
           FULLEXAMPLES: 1
         run: |
           sphinx-build -b html scikit-activeml/docs scikit-activeml/docs/_build
+      - name: Get shortened version name
+        run: |
+          RELEASE_VERSION_SHORT=$(echo $RELEASE_VERSION | sed -nr 's/([0-9]+\.[0-9]).[0-9]/\1/p')
       - name: Deploy documentation to Github Pages
         uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
           branch: gh-pages
           folder: scikit-activeml/docs/_build
           target-folder: latest
+          single-commit: true
+      - name: Deploy release documentation to Github Pages
+        uses: JamesIves/github-pages-deploy-action@4.1.5
+        with:
+          branch: gh-pages
+          folder: scikit-activeml/docs/_build
+          target-folder: $RELEASE_VERSION_SHORT
           single-commit: true
 
 concurrency:
