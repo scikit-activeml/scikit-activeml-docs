@@ -1,6 +1,6 @@
 name: skactiveml
-    
-on: 
+
+on:
   push:
     branches:
       - main
@@ -23,12 +23,12 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Clone Repository
         run: |
-          git clone --single-branch https://github.com/scikit-activeml/scikit-activeml.git
+          git clone -b master --single-branch https://github.com/scikit-activeml/scikit-activeml.git
       - name: Install dependencies
         run: |
           sudo apt-get install pandoc
           python -m pip install --upgrade pip
-          pip install -r scikit-activeml/requirements.txt -r scikit-activeml/requirements_max.txt 
+          pip install -r scikit-activeml/requirements.txt -r scikit-activeml/requirements_max.txt
           pip install -r scikit-activeml/requirements_extra.txt
       - name: Create documentation with sphinx
         env:
@@ -44,4 +44,12 @@ jobs:
           branch: gh-pages
           folder: scikit-activeml/docs/_build
           target-folder: latest
+          single-commit: true
 
+concurrency:
+  # github.workflow: name of the workflow
+  # github.event.pull_request.number || github.ref: pull request number or branch name if not a pull request
+  group: ${{ github.workflow }}-${{github.ref}}
+
+  # Cancel in-progress runs when a new workflow with the same group name is triggered
+  cancel-in-progress: true

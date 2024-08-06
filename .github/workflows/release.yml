@@ -23,7 +23,7 @@ jobs:
         run: |
           sudo apt-get install pandoc
           python -m pip install --upgrade pip
-          pip install -r scikit-activeml/requirements.txt -r scikit-activeml/requirements_max.txt 
+          pip install -r scikit-activeml/requirements.txt -r scikit-activeml/requirements_max.txt
           pip install -r scikit-activeml/requirements_extra.txt
       - name: Insert Version number and save current version
         run: |
@@ -41,31 +41,28 @@ jobs:
           FULLEXAMPLES: 1
         run: |
           sphinx-build -b html scikit-activeml/docs scikit-activeml/docs/_build
+      - name: Get shortened version name
+        run: |
+          RELEASE_VERSION_SHORT=$(echo $RELEASE_VERSION | sed -nr 's/([0-9]+\.[0-9]).[0-9]/\1/p')
       - name: Deploy documentation to Github Pages
         uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
           branch: gh-pages
           folder: scikit-activeml/docs/_build
           target-folder: latest
-      - uses: actions/checkout@v4
+          single-commit: true
+      - name: Deploy release documentation to Github Pages
+        uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
-          ref: gh-pages
-      - name: Move version folder and push changes
-        run: |
-          RELEASE_VERSION=$(git ls-remote --tags --sort=-'v:refname' https://github.com/scikit-activeml/scikit-activeml.git | head -n 1 | cut --delimiter='/' --fields=3)
-          python .github/workflows/update_docs.py --version $RELEASE_VERSION
-          git config --global user.name AlexanderBenz
-          git config --global user.email AlexanderBenz@users.noreply.github.com
-
-          git add -A
-          git commit -m "Move versions"
-          git push
-      
+          branch: gh-pages
+          folder: scikit-activeml/docs/_build
+          target-folder: $RELEASE_VERSION_SHORT
+          single-commit: true
 
 concurrency:
   # github.workflow: name of the workflow
   # github.event.pull_request.number || github.ref: pull request number or branch name if not a pull request
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  group: ${{ github.workflow }}-${{github.ref}}
 
   # Cancel in-progress runs when a new workflow with the same group name is triggered
   cancel-in-progress: true
