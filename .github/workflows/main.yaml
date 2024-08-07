@@ -37,12 +37,12 @@ jobs:
           RES: 21
           FULLEXAMPLES: 1
         run: |
-          sphinx-build -b html scikit-activeml/docs scikit-activeml/docs/_build
+          sphinx-build -M html scikit-activeml/docs scikit-activeml/docs/_build
       - name: Deploy documentation to Github Pages
         uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
           branch: gh-pages
-          folder: scikit-activeml/docs/_build
+          folder: scikit-activeml/docs/_build/html
           target-folder: latest
           single-commit: true
 
