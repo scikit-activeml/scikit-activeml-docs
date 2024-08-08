@@ -41,11 +41,14 @@ jobs:
           FULLEXAMPLES: 1
         run: |
           sphinx-build -M html scikit-activeml/docs scikit-activeml/docs/_build
-      # - name: Get shortened version name
-      #   run: |
-      #     RELEASE_VERSION_SHORT=$(echo $RELEASE_VERSION | sed -nr 's/([0-9]+\.[0-9]).[0-9]/\1/p')
-      #     echo "RELEASE_VERSION_SHORT=${RELEASE_VERSION_SHORT}" >> "$GITHUB_OUTPUT"
-      #   id: short_version
+      - name: Get shortened version name
+        run: |
+          RELEASE_VERSION=$(git ls-remote --tags --sort=-'v:refname' https://github.com/scikit-activeml/scikit-activeml.git | head -n 1 | cut --delimiter='/' --fields=3)
+          RELEASE_VERSION_SHORT=$(echo $RELEASE_VERSION | sed -nr 's/([0-9]+\.[0-9]).[0-9]/\1/p')
+          echo "RELEASE_VERSION_SHORT=${RELEASE_VERSION_SHORT}" >> "$GITHUB_OUTPUT"
+          echo "RELEASE_VERSION=${RELEASE_VERSION}"
+          echo "RELEASE_VERSION_SHORT=${RELEASE_VERSION_SHORT}"
+        id: short_version
       - name: Deploy documentation to Github Pages
         uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
@@ -53,13 +56,13 @@ jobs:
           folder: scikit-activeml/docs/_build/html
           target-folder: latest
           single-commit: true
-      # - name: Deploy release documentation to Github Pages
-      #   uses: JamesIves/github-pages-deploy-action@4.1.5
-      #   with:
-      #     branch: gh-pages
-      #     folder: scikit-activeml/docs/_build/html
-      #     target-folder: ${{steps.short_version.outputs.RELEASE_VERSION_SHORT}}
-      #     single-commit: true
+      - name: Deploy release documentation to Github Pages
+        uses: JamesIves/github-pages-deploy-action@4.1.5
+        with:
+          branch: gh-pages
+          folder: scikit-activeml/docs/_build/html
+          target-folder: ${{steps.short_version.outputs.RELEASE_VERSION_SHORT}}
+          single-commit: true
 
 concurrency:
   # github.workflow: name of the workflow
