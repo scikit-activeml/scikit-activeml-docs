@@ -62,12 +62,13 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: site
+          path: site
       - name: Get shortened version name
         run: |
           RELEASE_VERSION_SHORT=$(cat site/version)
+          rm site/version
           echo "RELEASE_VERSION_SHORT=${RELEASE_VERSION_SHORT}" >> "$GITHUB_OUTPUT"
           echo "RELEASE_VERSION_SHORT=${RELEASE_VERSION_SHORT}"
-          rm site/version
         id: short_version
       - name: Deploy documentation to Github Pages
         uses: JamesIves/github-pages-deploy-action@4.1.5
