@@ -27,6 +27,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r scikit-activeml/requirements.txt -r scikit-activeml/requirements_max.txt
           pip install -r scikit-activeml/requirements_extra.txt
+      - name: Insert development as version number
+        run: |
+          cd scikit-activeml
+          sed -i -E "s/__version__ = .*/__version__ = \"development\"/" skactiveml/__init__.py
+          cat skactiveml/__init__.py
+          cd ..
       - name: Create documentation with sphinx
         env:
           N_SAMPLES: 100
