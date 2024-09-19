@@ -1,0 +1,2644 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Contributing Guide &#8212; scikit-activeml 0.5.2 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-rendered-html.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'contributing';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://scikit-activeml.github.io/scikit-activeml-docs/latest/_static/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.5.2';
+        </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="_static/filter_examples.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Probabilistic Active Learning in Datastreams" href="generated/sphinx_gallery_examples/stream/plot-StreamProbabilisticAL-Probabilistic_Active_Learning_in_Datastreams.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="_static/scikit-activeml-logo.png" class="logo__image only-light" alt="Logo image">
+    <img src="_static/scikit-activeml-logo.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+    <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        0.5.2  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="index.html">
+                        Home
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="tutorials.html">
+                        Tutorials
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="generated/strategy_overview.html">
+                        Strategy Overview
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="generated/api_reference.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="generated/sphinx_gallery_examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Contributing Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-external" href="https://github.com/scikit-activeml/scikit-activeml/releases">
+                        Changelog
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
+      
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/scikit-activeml/scikit-activeml" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/scikit-activeml" title="PyPI" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fas fa-box"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="index.html">
+                        Home
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="tutorials.html">
+                        Tutorials
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="generated/strategy_overview.html">
+                        Strategy Overview
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="generated/api_reference.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="generated/sphinx_gallery_examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Contributing Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-external" href="https://github.com/scikit-activeml/scikit-activeml/releases">
+                        Changelog
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/scikit-activeml/scikit-activeml" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/scikit-activeml" title="PyPI" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fas fa-box"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+  
+  <div id="rtd-footer-container"></div>
+
+      </div>
+      <main id="main-content" class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <section id="contributing-guide">
+<h1>Contributing Guide<a class="headerlink" href="#contributing-guide" title="Permalink to this heading">#</a></h1>
+<p><strong>scikit-activeml</strong> is a library that implements the most important
+query strategies of active learning. It is built upon the well-known
+machine learning framework
+<a class="reference external" href="https://scikit-learn.org/stable/">scikit-learn</a>.</p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<p>Our philosophy is to extend the <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> eco-system with the most relevant
+query strategies for active learning and to implement tools for working with
+partially unlabeled data. An overview of our repository’s structure is given in
+the image below. Each node represents a class or interface. The arrows
+illustrate the inheritance hierarchy among them. The functionality of a dashed
+node is not yet available in our library.</p>
+<a class="reference internal image-reference" href="https://raw.githubusercontent.com/scikit-activeml/scikit-activeml/master/docs/logos/scikit-activeml-structure.png"><img alt="https://raw.githubusercontent.com/scikit-activeml/scikit-activeml/master/docs/logos/scikit-activeml-structure.png" src="https://raw.githubusercontent.com/scikit-activeml/scikit-activeml/master/docs/logos/scikit-activeml-structure.png" style="width: 1000px;" /></a>
+<p>In our package <code class="docutils literal notranslate"><span class="pre">skactiveml</span></code>, there three major components, i.e.,
+<code class="docutils literal notranslate"><span class="pre">SkactivemlClassifier</span></code>, <code class="docutils literal notranslate"><span class="pre">SkactivemlRegressor</span></code>, and the <code class="docutils literal notranslate"><span class="pre">QueryStrategy</span></code>.
+The classifier and regressor modules are necessary to deal with partially
+unlabeled data and to implement active-learning specific estimators. This way,
+an active learning cycle can be easily implemented to start with zero initial
+labels. Regarding the active learning query strategies, we currently differ
+between the pool-based (a large pool of unlabeled samples is available) and
+stream-based (unlabeled samples arrive sequentially, i.e., as a stream)
+paradigm. On top of both paradigms, we also distinguish the single- and
+multi-annotator setting. In the latter setting, multiple error-prone annotators
+are queried to provide labels. As a result, an active learning query strategy
+not only decides which samples but also which annotators should be queried.</p>
+<section id="thank-you-contributors">
+<h3>Thank you, contributors!<a class="headerlink" href="#thank-you-contributors" title="Permalink to this heading">#</a></h3>
+<p>A big thank you to all contributors who provide the <strong>scikit-activeml</strong>
+project with new enhancements and bug fixes.</p>
+</section>
+<section id="getting-help">
+<h3>Getting Help<a class="headerlink" href="#getting-help" title="Permalink to this heading">#</a></h3>
+<p>If you have any questions, please reach out to other developers via the
+following channels:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/scikit-activeml/scikit-activeml/issues">Github
+Issues</a></p></li>
+</ul>
+</section>
+<section id="roadmap">
+<h3>Roadmap<a class="headerlink" href="#roadmap" title="Permalink to this heading">#</a></h3>
+<p>Our roadmap is summarized in the issue <a class="reference external" href="https://github.com/scikit-activeml/scikit-activeml/issues/145">Upcoming
+Features</a>.</p>
+</section>
+</section>
+<section id="get-started">
+<h2>Get Started<a class="headerlink" href="#get-started" title="Permalink to this heading">#</a></h2>
+<p>Before you can contribute to this project, you might execute the
+following steps.</p>
+<section id="setup-development-environment">
+<h3>Setup Development Environment<a class="headerlink" href="#setup-development-environment" title="Permalink to this heading">#</a></h3>
+<p>There are several ways to create a local Python environment, such as
+<a class="reference external" href="https://www.google.com/search?client=safari&amp;rls=en&amp;q=virtualenv&amp;ie=UTF-8&amp;oe=UTF-8">virtualenv</a>,
+<a class="reference external" href="https://pipenv.pypa.io/enz/latest/">pipenv</a>,
+<a class="reference external" href="https://docs.conda.io/en/latest/miniconda.html">miniconda</a>, etc. One
+possible workflow is to install <code class="docutils literal notranslate"><span class="pre">miniconda</span></code> and use it to create a
+Python environment.</p>
+<section id="example-with-miniconda">
+<h4>Example With miniconda<a class="headerlink" href="#example-with-miniconda" title="Permalink to this heading">#</a></h4>
+<p>Create a new Python environment named <strong>scikit-activeml</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>scikit-activeml
+</pre></div>
+</div>
+<p>To be sure that the correct environment is active:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>activate<span class="w"> </span>scikit-activeml
+</pre></div>
+</div>
+<p>Then install <code class="docutils literal notranslate"><span class="pre">pip</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>install<span class="w"> </span>pip
+</pre></div>
+</div>
+</section>
+</section>
+<section id="install-dependencies">
+<h3>Install Dependencies<a class="headerlink" href="#install-dependencies" title="Permalink to this heading">#</a></h3>
+<p>Now we can install some required project dependencies, which are defined
+in the <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> and <code class="docutils literal notranslate"><span class="pre">requirements_extra.txt</span></code> (for development)
+files.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make sure your scikit-activeml python environment is active!</span>
+<span class="nb">cd</span><span class="w"> </span>&lt;project-root&gt;
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements_extra.txt
+</pre></div>
+</div>
+<p>After the pip installation was successful, we have to install <code class="docutils literal notranslate"><span class="pre">pandoc</span></code>
+and <code class="docutils literal notranslate"><span class="pre">ghostscript</span></code> if it is not already installed.</p>
+<section id="example-with-macos-homebrew">
+<h4>Example with MacOS (Homebrew)<a class="headerlink" href="#example-with-macos-homebrew" title="Permalink to this heading">#</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>brew<span class="w"> </span>install<span class="w"> </span>pandoc<span class="w"> </span>ghostscript
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="contributing-code">
+<h2>Contributing Code<a class="headerlink" href="#contributing-code" title="Permalink to this heading">#</a></h2>
+<section id="general-coding-conventions">
+<h3>General Coding Conventions<a class="headerlink" href="#general-coding-conventions" title="Permalink to this heading">#</a></h3>
+<p>As this library conforms to the convention of
+<a class="reference external" href="https://scikit-learn.org/stable/developers/develop.html#coding-guidelines">scikit-learn</a>,
+the code should conform to <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">PEP
+8</a> Style Guide for Python
+Code. For linting, the use of
+<a class="reference external" href="https://flake8.pycqa.org/en/latest/">flake8</a> is recommended. The Python
+package <a class="reference external" href="https://black.readthedocs.io/en/stable/">black</a> provides a simple
+solution for this formatting. Concretely, you can install it and format
+the code via the following commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>black
+black<span class="w"> </span>--line-length<span class="w"> </span><span class="m">79</span><span class="w"> </span>example_file.py
+</pre></div>
+</div>
+</section>
+<section id="example-for-c3-code-contribution-cycle-and-pull-requests">
+<h3>Example for C3 (Code Contribution Cycle) and Pull Requests<a class="headerlink" href="#example-for-c3-code-contribution-cycle-and-pull-requests" title="Permalink to this heading">#</a></h3>
+<p>1. Fork the repository using the Github <a class="reference external" href="https://github.com/scikit-activeml/scikit-activeml/fork">Fork</a>
+button.</p>
+<ol class="arabic simple" start="2">
+<li><p>Then, clone your fork to your local machine:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/&lt;your-username&gt;/scikit-activeml.git
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Create a new branch for your changes from the <code class="docutils literal notranslate"><span class="pre">development</span></code> branch:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>&lt;branch-name&gt;
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>After you have finished implementing the feature, make sure that all
+the tests pass. The tests can be run as</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pytest
+</pre></div>
+</div>
+<p>Make sure, you covered all lines by tests.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pytest<span class="w"> </span>--cov<span class="o">=</span>./skactiveml
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>Commit and push the changes.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>add<span class="w"> </span>&lt;modified-files&gt;
+$<span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;&lt;commit-message&gt;&quot;</span>
+$<span class="w"> </span>git<span class="w"> </span>push
+</pre></div>
+</div>
+<ol class="arabic simple" start="6">
+<li><p>Create a pull request.</p></li>
+</ol>
+</section>
+</section>
+<section id="query-strategies">
+<h2>Query Strategies<a class="headerlink" href="#query-strategies" title="Permalink to this heading">#</a></h2>
+<p>All query strategies inherit from <code class="docutils literal notranslate"><span class="pre">skactiveml.base.QueryStrategy</span></code> as abstract
+superclass implemented in <code class="docutils literal notranslate"><span class="pre">skactiveml/base.py</span></code>. This superclass inherits from
+<code class="docutils literal notranslate"><span class="pre">sklearn.base.Estimator</span></code>. The <code class="docutils literal notranslate"><span class="pre">__init__</span></code> method requires by default a
+<code class="docutils literal notranslate"><span class="pre">random_state</span></code> parameter and the abstract method <code class="docutils literal notranslate"><span class="pre">query</span></code> is to enforce the
+implementation of the sample selection logic.</p>
+<section id="single-annotator-pool-based-query-strategies">
+<h3>Single-annotator Pool-based Query Strategies<a class="headerlink" href="#single-annotator-pool-based-query-strategies" title="Permalink to this heading">#</a></h3>
+<section id="general">
+<span id="general-1"></span><h4>General<a class="headerlink" href="#general" title="Permalink to this heading">#</a></h4>
+<p>Single-annotator pool-based query strategies are stored in a file
+<code class="docutils literal notranslate"><span class="pre">skactiveml/pool/*.py</span></code> and inherit from
+<code class="docutils literal notranslate"><span class="pre">skactiveml.base.SingleAnnotatorPoolQueryStrategy</span></code>.</p>
+<p>The class must implement the following methods:</p>
+<table class="table">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 84%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Method</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">init</span></code></p></td>
+<td><p>Method for initialization.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">query</span></code></p></td>
+<td><p>Select the samples whose labels are to be queried.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="init-method">
+<span id="init-1"></span><h4><code class="docutils literal notranslate"><span class="pre">__init__</span></code> method<a class="headerlink" href="#init-method" title="Permalink to this heading">#</a></h4>
+<p>For typical class parameters, we use standard names:</p>
+<table class="table">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td colspan="2"><dl>
+<dt><code class="docutils literal notranslate"><span class="pre">random_state</span></code>                  | Number or np.random.RandomState</dt><dd><div class="line-block">
+<div class="line">like sklearn.</div>
+</div>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-odd"><td colspan="2"><dl>
+<dt><code class="docutils literal notranslate"><span class="pre">prior</span></code>, optional               | Prior probabilities for the</dt><dd><div class="line-block">
+<div class="line">distribution of probabilistic</div>
+<div class="line">strategies.</div>
+</div>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">method</span></code>, optional</p></td>
+<td><p>String for classes that implement
+multiple methods.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">cost_matrix</span></code>, optional</p></td>
+<td><p>Cost matrix defining the cost of
+interchanging classes.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="query-method">
+<span id="query-1"></span><h4><code class="docutils literal notranslate"><span class="pre">query</span></code> method<a class="headerlink" href="#query-method" title="Permalink to this heading">#</a></h4>
+<p>Required Parameters:</p>
+<table class="table">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">X</span></code></p></td>
+<td><p>Training data set, usually
+complete, i.e. including the
+labeled and unlabeled samples.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">y</span></code></p></td>
+<td><p>Labels of the training data set
+(possibly including unlabeled
+ones indicated by MISSING_LABEL.)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">candidates</span></code>, optional</p></td>
+<td><p>If candidates is None, the
+unlabeled samples from (X, y) are
+considered as candidates. If
+candidates is of shape
+(n_candidates) and of type int,
+candidates is considered as the
+indices of the samples in (X,y).
+If candidates is of shape
+(n_candidates, n_features), the
+candidates are directly given in
+candidates (not necessarily
+contained in X). This is not
+supported by all query
+strategies.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">batch_size</span></code>, optional</p></td>
+<td><p>Number of samples to be selected
+in one AL cycle.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">return_utilities</span></code>, optional</p></td>
+<td><p>If true, additionally return the
+utilities of the query strategy.`</p></td>
+</tr>
+</tbody>
+</table>
+<p>Returns:</p>
+<table class="table">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">query_indices</span></code></p></td>
+<td><p>The <code class="docutils literal notranslate"><span class="pre">query_indices</span></code> indicate
+for which candidate sample a
+label is to be queried, e.g.,
+<code class="docutils literal notranslate"><span class="pre">query_indices[0]</span></code> indicates
+the first selected sample. If
+candidates is None or of shape
+(n_candidates), the indexing
+refers to samples in <code class="docutils literal notranslate"><span class="pre">X</span></code>. If
+candidates is of shape
+(n_candidates, n_features), the
+indexing refers to samples in
+candidates.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">utilities</span></code>, optional</p></td>
+<td><p>The utilities of samples after
+each selected sample of the
+batch, e.g., <code class="docutils literal notranslate"><span class="pre">utilities[0]</span></code>
+indicates the utilities used for
+selecting the first sample (with
+index <code class="docutils literal notranslate"><span class="pre">query_indices[0]</span></code>) of
+the batch. Utilities for labeled
+samples will be set to np.nan. If
+candidates is None or of shape
+(n_candidates), the indexing
+refers to samples in <code class="docutils literal notranslate"><span class="pre">X</span></code>. If
+candidates is of shape
+(n_candidates, n_features), the
+indexing refers to samples in
+candidates.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="general-advice">
+<span id="general-advice-1"></span><h5>General advice<a class="headerlink" href="#general-advice" title="Permalink to this heading">#</a></h5>
+<p>Use <code class="docutils literal notranslate"><span class="pre">self._validate_data</span></code> method (implemented in the superclass).
+Check the input <code class="docutils literal notranslate"><span class="pre">X</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> only once. Fit the classifier or regressors if
+it is not yet fitted (may use <code class="docutils literal notranslate"><span class="pre">fit_if_not_fitted</span></code> from <code class="docutils literal notranslate"><span class="pre">utils</span></code>). Calculate
+utilities via an extra function that should be public. Use <code class="docutils literal notranslate"><span class="pre">simple_batch</span></code>
+function from <code class="docutils literal notranslate"><span class="pre">utils</span></code> for determining <cite>query_indices</cite> and setting <code class="docutils literal notranslate"><span class="pre">utilities</span></code>
+in naive batch query strategies.</p>
+</section>
+</section>
+<section id="testing">
+<span id="testing-1"></span><h4>Testing<a class="headerlink" href="#testing" title="Permalink to this heading">#</a></h4>
+<p>The test classes <code class="docutils literal notranslate"><span class="pre">skactiveml.pool.test.TestQueryStrategy</span></code> of single-annotator
+pool-based query strategies need to inherit from the test template
+<code class="docutils literal notranslate"><span class="pre">skactiveml.tests.template_query_strategy.TemplateSingleAnnotatorPoolQueryStrategy</span></code>.
+As a result, many required functionalities will be automatically tested.
+As a requirement, one needs to specify the parameters of <code class="docutils literal notranslate"><span class="pre">qs_class</span></code>,
+<code class="docutils literal notranslate"><span class="pre">init_default_params</span></code> of the <code class="docutils literal notranslate"><span class="pre">__init__</span></code> accordingly. Depending on whether
+the query strategy can handle regression/classification or both settings, one
+needs to additionally define the parameters
+<code class="docutils literal notranslate"><span class="pre">query_default_params_reg/query_default_params_clf</span></code>.
+Once, the parameters are set, the developer needs to adjust the test until
+all errors are resolved. In particular, the method <code class="docutils literal notranslate"><span class="pre">test_query</span></code> must
+be implemented. We refer to the test template for more detailed information.</p>
+</section>
+</section>
+<section id="single-annotator-stream-based-query-strategies">
+<h3>Single-annotator Stream-based Query Strategies<a class="headerlink" href="#single-annotator-stream-based-query-strategies" title="Permalink to this heading">#</a></h3>
+<section id="general-2">
+<span id="id1"></span><h4>General<a class="headerlink" href="#general-2" title="Permalink to this heading">#</a></h4>
+<p>All query strategies are stored in a file <code class="docutils literal notranslate"><span class="pre">skactivml/stream/*.py</span></code>.
+Every query strategy inherits from
+<code class="docutils literal notranslate"><span class="pre">SingleAnnotatorStreamQueryStrategy</span></code>. Every query strategy has
+either an internal budget handling or an outsourced <code class="docutils literal notranslate"><span class="pre">budget_manager</span></code>.</p>
+<p>For typical class parameters we use standard names:</p>
+<table class="table">
+<colgroup>
+<col style="width: 42%" />
+<col style="width: 58%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">random_state</span></code></p></td>
+<td><p>Integer that acts as random seed
+or <code class="docutils literal notranslate"><span class="pre">np.random.RandomState</span></code> like
+sklearn</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">budget</span></code></p></td>
+<td><p>The share of labels that thestrategy is
+allowed to query</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">budget_manager</span></code>, optional</p></td>
+<td><p>Enforces the budget constraint</p></td>
+</tr>
+</tbody>
+</table>
+<p>The class must implement the following methods:</p>
+<table class="table">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 84%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Function</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">init</span></code></p></td>
+<td><p>Function for initialization</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">query</span></code></p></td>
+<td><p>Identify the instances whose labels to select without adapting
+the internal state</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">update</span></code></p></td>
+<td><p>Adapting the budget monitoring according to the queried labels</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="query-method-2">
+<span id="id2"></span><h4><code class="docutils literal notranslate"><span class="pre">query</span></code> method<a class="headerlink" href="#query-method-2" title="Permalink to this heading">#</a></h4>
+<p>Required Parameters:</p>
+<table class="table">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 67%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">candidates</span></code></p></td>
+<td><p>Set of candidate instances,
+inherited from
+<code class="docutils literal notranslate"><span class="pre">SingleAnnotatorStreamBasedQueryStrategy</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">clf</span></code>, optional</p></td>
+<td><p>The classifier used by the
+strategy</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">X</span></code>, optional</p></td>
+<td><p>Set of labeled and unlabeled
+instances</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">y</span></code>, optional</p></td>
+<td><p>Labels of <code class="docutils literal notranslate"><span class="pre">X</span></code> (it may be set to
+<code class="docutils literal notranslate"><span class="pre">MISSING_LABEL</span></code> if <code class="docutils literal notranslate"><span class="pre">y</span></code> is
+unknown)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sample_weight</span></code>, optional</p></td>
+<td><p>Weights for each instance in
+<code class="docutils literal notranslate"><span class="pre">X</span></code> or <code class="docutils literal notranslate"><span class="pre">None</span></code> if all are
+equally weighted</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fit_clf</span></code>, optional</p></td>
+<td><p>uses <code class="docutils literal notranslate"><span class="pre">X</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> to fit the classifier</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">return_utilities</span></code></p></td>
+<td><p>Whether to return the candidates’ utilities,
+inherited from <code class="docutils literal notranslate"><span class="pre">SingleAnnotatorStreamBasedQueryStrategy</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Returns:</p>
+<table class="table">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">queried_indices</span></code></p></td>
+<td><p>Indices of the best instances
+from <code class="docutils literal notranslate"><span class="pre">X_Cand</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">utilities</span></code></p></td>
+<td><p>Utilities of all candidate
+instances, only if
+<code class="docutils literal notranslate"><span class="pre">return_utilities</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<section id="general-advice-2">
+<span id="id3"></span><h5>General advice<a class="headerlink" href="#general-advice-2" title="Permalink to this heading">#</a></h5>
+<p>The <code class="docutils literal notranslate"><span class="pre">query</span></code> method must not change the internal state of the <code class="docutils literal notranslate"><span class="pre">query</span></code>
+strategy (<code class="docutils literal notranslate"><span class="pre">budget</span></code>, <code class="docutils literal notranslate"><span class="pre">budget_manager</span></code> and <code class="docutils literal notranslate"><span class="pre">random_state</span></code> included) to allow
+for assessing multiple instances with the same state. Update the internal state
+in the <code class="docutils literal notranslate"><span class="pre">update()</span></code> method. If the class implements a classifier (<code class="docutils literal notranslate"><span class="pre">clf</span></code>) the
+optional attributes need to be implement. Use <code class="docutils literal notranslate"><span class="pre">self._validate_data</span></code> method
+(is implemented in superclass). Check the input <code class="docutils literal notranslate"><span class="pre">X</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> only once. Fit
+classifier if <code class="docutils literal notranslate"><span class="pre">fit_clf</span></code> is set to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+</section>
+</section>
+<section id="update-method">
+<span id="update-1"></span><h4><code class="docutils literal notranslate"><span class="pre">update</span></code> method<a class="headerlink" href="#update-method" title="Permalink to this heading">#</a></h4>
+<p>Required Parameters:</p>
+<table class="table">
+<colgroup>
+<col style="width: 40%" />
+<col style="width: 60%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">candidates</span></code></p></td>
+<td><p>Set of candidate instances,
+inherited from
+<code class="docutils literal notranslate"><span class="pre">SingleAnnotatorStreamBasedQueryStrategy</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">queried_indices</span></code></p></td>
+<td><p>Typically the return value of
+<code class="docutils literal notranslate"><span class="pre">query</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">budget_manager_param_dict</span></code></p></td>
+<td><p>Provides additional parameters to
+the <code class="docutils literal notranslate"><span class="pre">update</span></code> method of the
+<code class="docutils literal notranslate"><span class="pre">budget_manager</span></code> (only include
+if a <code class="docutils literal notranslate"><span class="pre">budget_manager</span></code> is used)</p></td>
+</tr>
+</tbody>
+</table>
+<section id="general-advice-3">
+<span id="id4"></span><h5>General advice<a class="headerlink" href="#general-advice-3" title="Permalink to this heading">#</a></h5>
+<p>Use <code class="docutils literal notranslate"><span class="pre">self._validate_data</span></code> in case the strategy is used without using
+the <code class="docutils literal notranslate"><span class="pre">query</span></code> method (if parameters need to be initialized before the
+update). If a <code class="docutils literal notranslate"><span class="pre">budget_manager</span></code> is used forward the update call to the
+<code class="docutils literal notranslate"><span class="pre">budget_manager.update</span></code> method.</p>
+</section>
+</section>
+<section id="testing-2">
+<span id="id5"></span><h4>Testing<a class="headerlink" href="#testing-2" title="Permalink to this heading">#</a></h4>
+<p>All stream query strategies are tested by a general unittest
+(<code class="docutils literal notranslate"><span class="pre">stream/tests/test_stream.py</span></code>) -For every class
+<code class="docutils literal notranslate"><span class="pre">ExampleQueryStrategy</span></code> that inherits from
+<code class="docutils literal notranslate"><span class="pre">SingleAnnotatorStreamQueryStrategy</span></code> (stored in <code class="docutils literal notranslate"><span class="pre">_example.py</span></code>), it
+is automatically tested if there exists a file <code class="docutils literal notranslate"><span class="pre">test/test_example.py</span></code>.
+It is necessary that both filenames are the same. Moreover, the test
+class must be called <code class="docutils literal notranslate"><span class="pre">TestExampleQueryStrategy</span></code> and inherit from
+<code class="docutils literal notranslate"><span class="pre">unittest.TestCase</span></code>. Every parameter in <code class="docutils literal notranslate"><span class="pre">init()</span></code> will be tested if
+it is written the same as a class variable. Every parameter arg in
+<code class="docutils literal notranslate"><span class="pre">init()</span></code> will be evaluated if there exists a method in the testclass
+<code class="docutils literal notranslate"><span class="pre">TestExampleQueryStrategy</span></code> that is called <code class="docutils literal notranslate"><span class="pre">test_init_param_arg()</span></code>.
+Every parameter arg in <code class="docutils literal notranslate"><span class="pre">query()</span></code> will be evaluated if there exists a
+method in the testclass <code class="docutils literal notranslate"><span class="pre">TestExampleQueryStrategy</span></code> that is called
+<code class="docutils literal notranslate"><span class="pre">test_query_param_arg()</span></code>. It is tested if the internal state of <code class="docutils literal notranslate"><span class="pre">query()</span></code>
+is unchanged after multiple calls without using <code class="docutils literal notranslate"><span class="pre">update()</span></code>.</p>
+</section>
+<section id="general-advice-for-the-budget-manager">
+<span id="general-advice-4"></span><h4>General advice for the <code class="docutils literal notranslate"><span class="pre">budget_manager</span></code><a class="headerlink" href="#general-advice-for-the-budget-manager" title="Permalink to this heading">#</a></h4>
+<p>All budget managers are stored in
+<code class="docutils literal notranslate"><span class="pre">skactivml/stream/budget_manager/*.py</span></code>. The class must implement the
+following methods:</p>
+<table class="table">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">__init__</span></code></p></td>
+<td><p>Function for initialization</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">query_by_utilities</span></code></p></td>
+<td><p>Identify which instances to query
+based on the assessed utility</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">update</span></code></p></td>
+<td><p>Adapting the budget monitoring
+according to the queried labels</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="update-2">
+<span id="id6"></span><h4><code class="docutils literal notranslate"><span class="pre">update</span></code> method<a class="headerlink" href="#update-2" title="Permalink to this heading">#</a></h4>
+<p>The update method of the budget manager has the same functionality as
+the query strategy update.</p>
+<p>Required Parameters:</p>
+<table class="table">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">budget</span></code></p></td>
+<td><p>% of labels that the strategy is
+allowed to query</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">random_state</span></code></p></td>
+<td><p>Integer that acts as random seed
+or <code class="docutils literal notranslate"><span class="pre">np.random.RandomState</span></code> like
+sklearn</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="query-by-utilities-method">
+<span id="query-by-utilities-1"></span><h4><code class="docutils literal notranslate"><span class="pre">query_by_utilities</span></code> method<a class="headerlink" href="#query-by-utilities-method" title="Permalink to this heading">#</a></h4>
+<p>Required Parameters:</p>
+<table class="table">
+<colgroup>
+<col style="width: 49%" />
+<col style="width: 51%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">utilities</span></code></p></td>
+<td><p>The <code class="docutils literal notranslate"><span class="pre">utilities</span></code> of <code class="docutils literal notranslate"><span class="pre">candidates</span></code>
+calculated by the query strategy,
+inherited from <code class="docutils literal notranslate"><span class="pre">BudgetManager</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="general-advice-for-working-with-a-budget-manager">
+<span id="general-advice-5"></span><h4>General advice for working with a <code class="docutils literal notranslate"><span class="pre">budget_manager</span></code>:<a class="headerlink" href="#general-advice-for-working-with-a-budget-manager" title="Permalink to this heading">#</a></h4>
+<p>If a <code class="docutils literal notranslate"><span class="pre">budget_manager</span></code> is used, the <code class="docutils literal notranslate"><span class="pre">_validate_data</span></code> of the query
+strategy needs to be adapted accordingly:</p>
+<ul class="simple">
+<li><p>If only a <code class="docutils literal notranslate"><span class="pre">budget</span></code> is given use the default <code class="docutils literal notranslate"><span class="pre">budget_manager</span></code> with
+the given budget</p></li>
+<li><p>If only a <code class="docutils literal notranslate"><span class="pre">budget_manager</span></code> is given use the <code class="docutils literal notranslate"><span class="pre">budget_manager</span></code></p></li>
+<li><p>If both are not given use the default <code class="docutils literal notranslate"><span class="pre">budget_manager</span></code> with the
+default budget</p></li>
+<li><p>If both are given and the budget differs from
+<code class="docutils literal notranslate"><span class="pre">budget_manager.budget</span></code> throw an error</p></li>
+</ul>
+<p>All budget managers are tested by a general unittest
+(<code class="docutils literal notranslate"><span class="pre">stream/budget_manager/tests/test_budget_manager.py</span></code>). For every
+class <code class="docutils literal notranslate"><span class="pre">ExampleBudgetManager</span></code> that inherits from <code class="docutils literal notranslate"><span class="pre">BudgetManager</span></code>
+(stored in <code class="docutils literal notranslate"><span class="pre">_example.py</span></code>), it is automatically tested if there exists
+a file <code class="docutils literal notranslate"><span class="pre">test/test_example.py</span></code>. It is necessary that both filenames are
+the same.</p>
+</section>
+<section id="id7">
+<span id="id8"></span><h4>Testing<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h4>
+<p>Moreover, the test class must be called <code class="docutils literal notranslate"><span class="pre">TestExampleBudgetManager</span></code> and
+inheriting from <code class="docutils literal notranslate"><span class="pre">unittest.TestCase</span></code>. Every parameter in <code class="docutils literal notranslate"><span class="pre">__init__()</span></code>
+will be tested if it is written the same as a class variable. Every
+parameter <code class="docutils literal notranslate"><span class="pre">arg</span></code> in <code class="docutils literal notranslate"><span class="pre">__init__()</span></code> will be evaluated if there exists a
+method in the testclass <code class="docutils literal notranslate"><span class="pre">TestExampleQueryStrategy</span></code> that is called
+<code class="docutils literal notranslate"><span class="pre">test_init_param_arg()</span></code>. Every parameter <code class="docutils literal notranslate"><span class="pre">arg</span></code> in
+<code class="docutils literal notranslate"><span class="pre">query_by_utility()</span></code> will be evaluated if there exists a method in the
+testclass <code class="docutils literal notranslate"><span class="pre">TestExampleQueryStrategy</span></code> that is called
+<code class="docutils literal notranslate"><span class="pre">test_query_by_utility</span></code> <code class="docutils literal notranslate"><span class="pre">_param_arg()</span></code>. It is tested if the internal state
+of <code class="docutils literal notranslate"><span class="pre">query()</span></code> is unchanged after multiple calls without using <code class="docutils literal notranslate"><span class="pre">update()</span></code>.</p>
+</section>
+</section>
+<section id="multi-annotator-pool-based-query-strategies">
+<h3>Multi-Annotator Pool-based Query Strategies<a class="headerlink" href="#multi-annotator-pool-based-query-strategies" title="Permalink to this heading">#</a></h3>
+<p>All query strategies are stored in a file
+<code class="docutils literal notranslate"><span class="pre">skactiveml/pool/multi/*.py</span></code> and inherit
+<code class="docutils literal notranslate"><span class="pre">skactiveml.base.MultiAnnotatorPoolQueryStrategy</span></code>.</p>
+<p>The class must implement the following methods:</p>
+<table class="table">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 84%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Method</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">init</span></code></p></td>
+<td><p>Method for initialization.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">query</span></code></p></td>
+<td><p>Select the annotator-sample pairs to decide which sample’s
+class label is to be queried from which annotator.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="query-method-3">
+<span id="id9"></span><h4><code class="docutils literal notranslate"><span class="pre">query</span></code> method<a class="headerlink" href="#query-method-3" title="Permalink to this heading">#</a></h4>
+<p>Required Parameters:</p>
+<table class="table">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">X</span></code></p></td>
+<td><p>Training data set, usually
+complete, i.e. including the
+labeled and unlabeled samples.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">y</span></code></p></td>
+<td><p>Labels of the training data set
+for each annotator (possibly
+including unlabeled ones
+indicated by self.MISSING_LABEL),
+meaning that <code class="docutils literal notranslate"><span class="pre">y[i,</span> <span class="pre">j]</span></code> contains
+the label annotated by annotator
+<code class="docutils literal notranslate"><span class="pre">i</span></code> for sample <code class="docutils literal notranslate"><span class="pre">j</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">candidates</span></code>, optional</p></td>
+<td><p>If <code class="docutils literal notranslate"><span class="pre">candidates</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>,
+the samples from <code class="docutils literal notranslate"><span class="pre">(X,</span> <span class="pre">y)</span></code>, for
+which an annotator exists such
+that the annotator sample pair is
+unlabeled are considered as
+sample candidates.
+If <code class="docutils literal notranslate"><span class="pre">candidates</span></code> is of shape
+<code class="docutils literal notranslate"><span class="pre">(n_candidates,)</span></code> and of type
+int, <code class="docutils literal notranslate"><span class="pre">candidates</span></code> is considered
+as the indices of the sample
+candidates in <code class="docutils literal notranslate"><span class="pre">(X,</span> <span class="pre">y)</span></code>. If
+<code class="docutils literal notranslate"><span class="pre">candidates</span></code> is of shape
+<code class="docutils literal notranslate"><span class="pre">(n_candidates,</span> <span class="pre">n_features)</span></code>,
+the sample candidates are
+directly given in <code class="docutils literal notranslate"><span class="pre">candidates</span></code>
+(not necessarily contained in
+<code class="docutils literal notranslate"><span class="pre">X</span></code>). This is not supported by
+all query strategies.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">annotators</span></code>, optional</p></td>
+<td><p>If <code class="docutils literal notranslate"><span class="pre">annotators</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>,
+all annotators are considered as
+available annotators. If
+<code class="docutils literal notranslate"><span class="pre">annotators</span></code> is of shape
+(n_avl_annotators), and of type
+int, <code class="docutils literal notranslate"><span class="pre">annotators</span></code> is considered
+as the indices of the available
+annotators. If candidate samples
+and available annotators are
+specified: The annotator-sample
+pairs, for which the sample is a
+candidate sample and the
+annotator is an available
+annotator are considered as
+candidate annotator-sample-pairs.
+If <code class="docutils literal notranslate"><span class="pre">annotators</span></code> is a boolean
+array of shape (n_candidates,
+n_avl_annotators) the
+annotator-sample pairs, for which
+the sample is a candidate sample
+and the boolean matrix has entry
+<code class="docutils literal notranslate"><span class="pre">True</span></code> are considered as
+candidate annotator-sample pairs.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">batch_size</span></code>, optional</p></td>
+<td><p>The number of annotator-sample
+pairs to be selected in one AL
+cycle.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">return_utilities</span></code>, optional</p></td>
+<td><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, also return the
+utilities based on the query
+strategy.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Returns:</p>
+<table class="table">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">query_indices</span></code></p></td>
+<td><p>The <code class="docutils literal notranslate"><span class="pre">query_indices</span></code> indicate
+for which candidate sample a
+label is to be queried, e.g.,
+<code class="docutils literal notranslate"><span class="pre">query_indices[0]</span></code> indicates
+the first selected sample. If
+candidates is None or of shape
+(n_candidates), the indexing
+refers to samples in <code class="docutils literal notranslate"><span class="pre">X</span></code>. If
+candidates is of shape
+(n_candidates, n_features), the
+indexing refers to samples in
+candidates.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">utilities</span></code></p></td>
+<td><p>The utilities of samples after
+each selected sample of the
+batch, e.g., <code class="docutils literal notranslate"><span class="pre">utilities[0]</span></code>
+indicates the utilities used for
+selecting the first sample (with
+index <code class="docutils literal notranslate"><span class="pre">query_indices[0]</span></code>) of
+the batch. Utilities for labeled
+samples will be set to np.nan. If
+candidates is None or of shape
+(n_candidates), the indexing
+refers to samples in <code class="docutils literal notranslate"><span class="pre">X</span></code>. If
+candidates is of shape
+(n_candidates, n_features), the
+indexing refers to samples in
+candidates.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="general-advice-6">
+<span id="id10"></span><h5>General advice<a class="headerlink" href="#general-advice-6" title="Permalink to this heading">#</a></h5>
+<p>Use <code class="docutils literal notranslate"><span class="pre">self._validate_data</span> <span class="pre">method</span></code> (is implemented in superclass).
+Check the input <code class="docutils literal notranslate"><span class="pre">X</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> only once. Fit classifier if it is not
+yet fitted (may use <code class="docutils literal notranslate"><span class="pre">fit_if_not_fitted</span></code> form <code class="docutils literal notranslate"><span class="pre">utils</span></code>). If the
+strategy combines a single annotator query strategy with a performance
+estimate:</p>
+<ul class="simple">
+<li><p>define an aggregation function,</p></li>
+<li><p>evaluate the performance for each sample-annotator pair,</p></li>
+<li><p>use the <code class="docutils literal notranslate"><span class="pre">SingleAnnotatorWrapper</span></code>.</p></li>
+</ul>
+<p>If the strategy is a <code class="docutils literal notranslate"><span class="pre">greedy</span></code> method regarding the utilities:</p>
+<ul class="simple">
+<li><p>calculate utilities (in an extra function),</p></li>
+<li><p>use <code class="docutils literal notranslate"><span class="pre">skactiveml.utils.simple_batch</span></code> function for returning values.</p></li>
+</ul>
+</section>
+</section>
+<section id="testing-3">
+<span id="id11"></span><h4>Testing<a class="headerlink" href="#testing-3" title="Permalink to this heading">#</a></h4>
+<p>The test classes <code class="docutils literal notranslate"><span class="pre">skactiveml.pool.multiannotator.test.TestQueryStrategy</span></code> of
+multi-annotator pool-based query strategies need inherit form
+<code class="docutils literal notranslate"><span class="pre">unittest.TestCase</span></code>. In this class, each parameter <code class="docutils literal notranslate"><span class="pre">a</span></code> of the
+<code class="docutils literal notranslate"><span class="pre">__init__</span></code> method needs to be tested via a method <code class="docutils literal notranslate"><span class="pre">test_init_param_a</span></code>.
+This applies also for a parameter <code class="docutils literal notranslate"><span class="pre">a</span></code> of the <code class="docutils literal notranslate"><span class="pre">query</span></code> method, which is
+tested via a method <code class="docutils literal notranslate"><span class="pre">test_query_param_a</span></code>. The main logic of the query
+strategy is test via the method <code class="docutils literal notranslate"><span class="pre">test_query</span></code>.</p>
+</section>
+</section>
+</section>
+<section id="classifiers">
+<h2>Classifiers<a class="headerlink" href="#classifiers" title="Permalink to this heading">#</a></h2>
+<p>Standard classifier implementations are part of the subpackage
+<code class="docutils literal notranslate"><span class="pre">skactiveml.classifier</span></code> and classifiers learning from multiple
+annotators are implemented in its subpackage
+<code class="docutils literal notranslate"><span class="pre">skactiveml.classifier.multiannotator</span></code>. Every class of a classifier inherits
+from <code class="docutils literal notranslate"><span class="pre">skactiveml.base.SkactivemlClassifier</span></code>.</p>
+<p>The class must implement the following methods:</p>
+<table class="table">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Method</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">init</span></code></p></td>
+<td><p>Method for initialization.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fit</span></code></p></td>
+<td><p>Method to fit the classifier for given training data.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">predict_proba</span></code></p></td>
+<td><p>Method predicting class-membership probabilities for
+samples.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">predict</span></code></p></td>
+<td><p>Method predicting class labels for samples. The super
+already provides an implementation using
+<code class="docutils literal notranslate"><span class="pre">predict_proba</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="init-2">
+<span id="id12"></span><h3><code class="docutils literal notranslate"><span class="pre">init</span></code> method<a class="headerlink" href="#init-2" title="Permalink to this heading">#</a></h3>
+<p>Required Parameters:</p>
+<table class="table">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">classes</span></code>, optional</p></td>
+<td><p>Holds the label for each class.
+If <code class="docutils literal notranslate"><span class="pre">None</span></code>, the classes are
+determined during the fit.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">missing_label</span></code>, optional</p></td>
+<td><p>Value to represent a missing
+label.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">cost_matrix</span></code>, optional</p></td>
+<td><p>Cost matrix with
+<code class="docutils literal notranslate"><span class="pre">cost_matrix[i,j]</span></code> indicating
+cost of predicting class
+<code class="docutils literal notranslate"><span class="pre">classes[j]</span></code> for a sample of
+class <code class="docutils literal notranslate"><span class="pre">classes[i]</span></code>. Can be only
+set, if classes is not <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">random_state</span></code>, optional</p></td>
+<td><p>Ensures reproducibility
+(cf. scikit-learn).</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="fit-method">
+<span id="fit-1"></span><h3><code class="docutils literal notranslate"><span class="pre">fit</span></code> method<a class="headerlink" href="#fit-method" title="Permalink to this heading">#</a></h3>
+<p>Required Parameters:</p>
+<table class="table">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">X</span></code></p></td>
+<td><p>Is a matrix of feature values
+representing the samples.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">y</span></code></p></td>
+<td><p>Contains the class labels of the
+training samples. Missing labels
+are represented through the
+attribute <code class="docutils literal notranslate"><span class="pre">missing_label</span></code>.
+Usually, <code class="docutils literal notranslate"><span class="pre">y</span></code> is a column array
+except for multi-annotator
+classifiers which expect a matrix
+with columns containing the class
+labels provided by a specific
+annotator.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sample_weight</span></code>, optional</p></td>
+<td><p>Contains the weights of the
+training samples’ class labels.
+It must have the same shape as
+<code class="docutils literal notranslate"><span class="pre">y</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Returns:</p>
+<table class="table">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">self</span></code></p></td>
+<td><p>The fitted classifier object.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="general-advice-7">
+<span id="id13"></span><h4>General advice<a class="headerlink" href="#general-advice-7" title="Permalink to this heading">#</a></h4>
+<p>Use <code class="docutils literal notranslate"><span class="pre">self._validate_data</span></code> method (is implemented in superclass) to
+check standard parameters of <code class="docutils literal notranslate"><span class="pre">__init__</span></code> and <code class="docutils literal notranslate"><span class="pre">fit</span></code> method. If the
+<code class="docutils literal notranslate"><span class="pre">classes</span></code> parameter was provided, the classifier can be fitted with
+training sample of which each was assigned a <code class="docutils literal notranslate"><span class="pre">missing_label</span></code>.
+In this case, the classifier should  make random predictions, i.e.,
+outputting uniform class-membership probabilities when calling
+<code class="docutils literal notranslate"><span class="pre">predict_proba</span></code>. Ensure that the classifier can handle <code class="docutils literal notranslate"><span class="pre">missing</span> <span class="pre">labels</span></code>
+also in other cases.</p>
+</section>
+</section>
+<section id="predict-proba-method">
+<span id="predict-proba-1"></span><h3><code class="docutils literal notranslate"><span class="pre">predict_proba</span></code> method<a class="headerlink" href="#predict-proba-method" title="Permalink to this heading">#</a></h3>
+<p>Required Parameters:</p>
+<table class="table">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">X</span></code></p></td>
+<td><p>Is a matrix of feature values
+representing the samples, for
+which the classifier will make
+predictions.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Returns:</p>
+<table class="table">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">P</span></code></p></td>
+<td><p>The estimated class-membership
+probabilities per sample.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="general-advice-8">
+<span id="id14"></span><h4>General advice<a class="headerlink" href="#general-advice-8" title="Permalink to this heading">#</a></h4>
+<p>Check parameter <code class="docutils literal notranslate"><span class="pre">X</span></code> regarding its shape, i.e., use superclass method
+<code class="docutils literal notranslate"><span class="pre">self._check_n_features</span></code> to ensure a correct number of features. Check
+that the classifier has been fitted. If the classifier is a
+<code class="docutils literal notranslate"><span class="pre">skactiveml.base.ClassFrequencyEstimator</span></code>, this method is already
+implemented in the superclass.</p>
+</section>
+</section>
+<section id="predict-method">
+<span id="predict-1"></span><h3><code class="docutils literal notranslate"><span class="pre">predict</span></code> method<a class="headerlink" href="#predict-method" title="Permalink to this heading">#</a></h3>
+<p>Required Parameters:</p>
+<table class="table">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">X</span></code></p></td>
+<td><p>Is a matrix of feature values
+representing the samples, for
+which the classifier will make
+predictions.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Returns:</p>
+<table class="table">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">y_pred</span></code></p></td>
+<td><p>The estimated class label
+of each per sample.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="general-advice-9">
+<span id="id15"></span><h4>General advice<a class="headerlink" href="#general-advice-9" title="Permalink to this heading">#</a></h4>
+<p>Usually, this method is already implemented by the superclass through
+calling the <code class="docutils literal notranslate"><span class="pre">predict_proba</span></code> method. If the superclass method is
+overwritten, ensure that it can handle imbalanced costs and missing
+labels.</p>
+</section>
+</section>
+<section id="score-method">
+<span id="score-1"></span><h3><code class="docutils literal notranslate"><span class="pre">score</span></code> method<a class="headerlink" href="#score-method" title="Permalink to this heading">#</a></h3>
+<p>Required Parameters:</p>
+<table class="table">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">X</span></code></p></td>
+<td><p>Is a matrix of feature values
+representing the samples, for
+which the classifier will make
+predictions.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">y</span></code></p></td>
+<td><p>Contains the true label of each
+sample.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sample_weight</span></code>, optional</p></td>
+<td><p>Defines the importance of each
+sample when computing the
+accuracy of the classifier.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Returns:</p>
+<table class="table">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">score</span></code></p></td>
+<td><p>Mean accuracy of
+<code class="docutils literal notranslate"><span class="pre">self.predict(X)</span></code> regarding
+<code class="docutils literal notranslate"><span class="pre">y</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="general-advice-10">
+<span id="id16"></span><h4>General advice<a class="headerlink" href="#general-advice-10" title="Permalink to this heading">#</a></h4>
+<p>Usually, this method is already implemented by the superclass. If the
+superclass method is overwritten, ensure that it checks the parameters
+and that the classifier has been fitted.</p>
+</section>
+</section>
+<section id="testing-4">
+<span id="id17"></span><h3>Testing<a class="headerlink" href="#testing-4" title="Permalink to this heading">#</a></h3>
+<p>All classifiers are tested by a general unittest
+(<code class="docutils literal notranslate"><span class="pre">skactiveml/classifier/tests/test_classifier.py</span></code>). For every class
+<code class="docutils literal notranslate"><span class="pre">ExampleClassifier</span></code> that inherits from
+<code class="docutils literal notranslate"><span class="pre">skactiveml.base.SkactivemlClassifier</span></code> (stored in
+<code class="docutils literal notranslate"><span class="pre">_example_classifier.py</span></code>), it is automatically tested if there exists
+a file <code class="docutils literal notranslate"><span class="pre">tests/test_example_classifier.py</span></code>. It is necessary that both
+filenames are the same. Moreover, the test class must be called
+<code class="docutils literal notranslate"><span class="pre">TestExampleClassifier</span></code> and inherit from <code class="docutils literal notranslate"><span class="pre">unittest.TestCase</span></code>. For
+each parameter of an implemented method, there must be a test method
+called <code class="docutils literal notranslate"><span class="pre">test_methodname_parametername</span></code> in the Python file
+<code class="docutils literal notranslate"><span class="pre">tests/test_example_classifier.py</span></code>. It is to check whether invalid parameters
+are handled correctly. For each implemented method, there must be a test
+method called <code class="docutils literal notranslate"><span class="pre">test_methodname</span></code> in the Python file
+<code class="docutils literal notranslate"><span class="pre">tests/test_example_classifier.py</span></code>. It is to check whether the method works
+as intended.</p>
+</section>
+</section>
+<section id="regressors">
+<h2>Regressors<a class="headerlink" href="#regressors" title="Permalink to this heading">#</a></h2>
+<p>Standard regressors implementations are part of the subpackage
+<code class="docutils literal notranslate"><span class="pre">skactiveml.regressor</span></code>. Every class of a regressor inherits
+from <code class="docutils literal notranslate"><span class="pre">skactiveml.base.SkactivemlRegressor</span></code>.</p>
+<p>The class must implement the following methods:</p>
+<table class="table">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Method</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">init</span></code></p></td>
+<td><p>Method for initialization.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fit</span></code></p></td>
+<td><p>Method to fit the regressor for given training data.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">predict</span></code></p></td>
+<td><p>Method predicting the target values (labels) for
+samples.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="init-3">
+<span id="id18"></span><h3><code class="docutils literal notranslate"><span class="pre">init</span></code> method<a class="headerlink" href="#init-3" title="Permalink to this heading">#</a></h3>
+<p>Required Parameters:</p>
+<table class="table">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">random_state</span></code>, optional</p></td>
+<td><p>Ensures reproducibility
+(cf. scikit-learn).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">missing_label</span></code>, optional</p></td>
+<td><p>Value to represent a missing
+label.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="fit-2">
+<span id="id19"></span><h3><code class="docutils literal notranslate"><span class="pre">fit</span></code> method<a class="headerlink" href="#fit-2" title="Permalink to this heading">#</a></h3>
+<p>Required Parameters:</p>
+<table class="table">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">X</span></code></p></td>
+<td><p>Is a matrix of feature values
+representing the samples.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">y</span></code></p></td>
+<td><p>Contains the target values of the
+training samples. Missing labels
+are represented through the
+attribute <code class="docutils literal notranslate"><span class="pre">missing_label</span></code>.
+Usually, <code class="docutils literal notranslate"><span class="pre">y</span></code> is a column array
+except for multi-target
+regressors which expect a matrix
+with columns containing the
+different target types.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sample_weight</span></code>, optional</p></td>
+<td><p>Contains the weights of the
+training samples’ targets.
+It must have the same shape as
+<code class="docutils literal notranslate"><span class="pre">y</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Returns:</p>
+<table class="table">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">self</span></code></p></td>
+<td><p>The fitted regressor object.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="general-advice-11">
+<span id="id20"></span><h4>General advice<a class="headerlink" href="#general-advice-11" title="Permalink to this heading">#</a></h4>
+<p>Use <code class="docutils literal notranslate"><span class="pre">self._validate_data</span></code> method (is implemented in superclass) to
+check standard parameters of <code class="docutils literal notranslate"><span class="pre">__init__</span></code> and <code class="docutils literal notranslate"><span class="pre">fit</span></code> method. If the regressor
+was fitted on training sample of which each was assigned a <code class="docutils literal notranslate"><span class="pre">missing_label</span></code>,
+the regressor should predict a default value of zero when calling <code class="docutils literal notranslate"><span class="pre">predict</span></code>.
+Ensure that the regressor can handle <code class="docutils literal notranslate"><span class="pre">missing</span> <span class="pre">labels</span></code> also in other cases.</p>
+</section>
+</section>
+<section id="predict-2">
+<span id="id21"></span><h3><code class="docutils literal notranslate"><span class="pre">predict</span></code> method<a class="headerlink" href="#predict-2" title="Permalink to this heading">#</a></h3>
+<p>Required Parameters:</p>
+<table class="table">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">X</span></code></p></td>
+<td><p>Is a matrix of feature values
+representing the samples, for
+which the regressor will make
+predictions.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Returns:</p>
+<table class="table">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">y_pred</span></code></p></td>
+<td><p>The estimated targets per sample.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="general-advice-12">
+<span id="id22"></span><h4>General advice<a class="headerlink" href="#general-advice-12" title="Permalink to this heading">#</a></h4>
+<p>Check parameter <code class="docutils literal notranslate"><span class="pre">X</span></code> regarding its shape, i.e., use superclass method
+<code class="docutils literal notranslate"><span class="pre">self._check_n_features</span></code> to ensure a correct number of features. Check
+that the regressor has been fitted. If the classifier is a
+<code class="docutils literal notranslate"><span class="pre">skactiveml.base.ProbabilisticRegressor</span></code>, this method is already
+implemented in the superclass.</p>
+</section>
+</section>
+<section id="score-2">
+<span id="id23"></span><h3><code class="docutils literal notranslate"><span class="pre">score</span></code> method<a class="headerlink" href="#score-2" title="Permalink to this heading">#</a></h3>
+<p>Required Parameters:</p>
+<table class="table">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">X</span></code></p></td>
+<td><p>Is a matrix of feature values
+representing the samples, for
+which the regressor will make
+predictions.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">y</span></code></p></td>
+<td><p>Contains the true target of each
+sample.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sample_weight</span></code>, optional</p></td>
+<td><p>Defines the importance of each
+sample when computing the
+R2 score of the regressor.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Returns:</p>
+<table class="table">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">score</span></code></p></td>
+<td><dl class="simple">
+<dt>R2 score of <code class="docutils literal notranslate"><span class="pre">self.predict(X)</span></code></dt><dd><p>regarding <code class="docutils literal notranslate"><span class="pre">y</span></code>.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<section id="general-advice-13">
+<span id="id24"></span><h4>General advice<a class="headerlink" href="#general-advice-13" title="Permalink to this heading">#</a></h4>
+<p>Usually, this method is already implemented by the superclass. If the
+superclass method is overwritten, ensure that it checks the parameters
+and that the regressor has been fitted.</p>
+</section>
+</section>
+<section id="testing-5">
+<span id="id25"></span><h3>Testing<a class="headerlink" href="#testing-5" title="Permalink to this heading">#</a></h3>
+<p>For every class <code class="docutils literal notranslate"><span class="pre">ExampleRegressor</span></code> that inherits from
+<code class="docutils literal notranslate"><span class="pre">skactiveml.base.SkactivemlRegressor</span></code> (stored in
+<code class="docutils literal notranslate"><span class="pre">_example_regressor.py</span></code>), there need to be a file
+<code class="docutils literal notranslate"><span class="pre">tests/test_example_classifier.py</span></code>. It is necessary that both
+filenames are the same. Moreover, the test class must be called
+<code class="docutils literal notranslate"><span class="pre">TestExampleRegressor</span></code> and inherit from <code class="docutils literal notranslate"><span class="pre">unittest.TestCase</span></code>. For
+each parameter of an implemented method, there must be a test method
+called <code class="docutils literal notranslate"><span class="pre">test_methodname_parametername</span></code> in the Python file
+<code class="docutils literal notranslate"><span class="pre">tests/test_example_regressor.py</span></code>. It is to check whether invalid parameters
+are handled correctly. For each implemented method, there must be a test
+method called <code class="docutils literal notranslate"><span class="pre">test_methodname</span></code> in the Python file
+<code class="docutils literal notranslate"><span class="pre">tests/test_example_regressor.py</span></code>. It is to check whether the method works
+as intended.</p>
+</section>
+</section>
+<section id="annotators-models">
+<h2>Annotators Models<a class="headerlink" href="#annotators-models" title="Permalink to this heading">#</a></h2>
+<p>Annotator models are marked by implementing the interface
+<code class="docutils literal notranslate"><span class="pre">skactiveml.base.AnnotatorModelMixin</span></code>. These models can estimate the
+performances of annotators for given samples. The class of an annotator model
+must implement the <code class="docutils literal notranslate"><span class="pre">predict_annotator_perf</span></code> method estimating the
+performances per sample of each annotator as proxies of the provided
+annotations’ qualities.</p>
+<section id="predict-annotator-perf-method">
+<span id="predict-annotator-perf-1"></span><h3><code class="docutils literal notranslate"><span class="pre">predict_annotator_perf</span></code> method<a class="headerlink" href="#predict-annotator-perf-method" title="Permalink to this heading">#</a></h3>
+<p>Required Parameters:</p>
+<table class="table">
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 81%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">X</span></code></p></td>
+<td><p>Is a matrix of feature values representing the samples.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Returns:</p>
+<table class="table">
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 81%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">P_annot</span></code></p></td>
+<td><p>The estimated performances per sample-annotator pair.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="general-advice-14">
+<span id="id26"></span><h4>General advice<a class="headerlink" href="#general-advice-14" title="Permalink to this heading">#</a></h4>
+<p>Check parameter <code class="docutils literal notranslate"><span class="pre">X</span></code> regarding its shape and check that the annotator
+model has been fitted. If no samples or class labels were provided
+during the previous call of the <code class="docutils literal notranslate"><span class="pre">fit</span></code> method, the maximum value of
+annotator performance should be outputted for each sample-annotator
+pair.</p>
+</section>
+</section>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
+<p>Two of our main goals are to make active learning more understandable and
+improve our framework’s usability.
+Therefore, we require the implementation of an example for each query strategy.
+To do so, one needs to create a file name
+<code class="docutils literal notranslate"><span class="pre">scikit-activeml/docs/examples/query_strategy.json</span></code>. Currently, we support
+examples for single-annotator pool-based query strategies and single-annotator
+stream-based query strategies.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">.json</span></code> file supports the following entries:</p>
+<table class="table">
+<colgroup>
+<col style="width: 24%" />
+<col style="width: 76%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Entry</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">class</span></code></p></td>
+<td><p>Query strategy’s class name.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">package</span></code></p></td>
+<td><p>Name of the sub-package, e.g., pool.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">method</span></code></p></td>
+<td><p>Query strategy’s official name.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">category</span></code></p></td>
+<td><p>The methodological category of this query strategy,
+i.e., Expected Error Reduction, Model Change,
+Query-by-Committee,  Random Sampling,
+Uncertainty Sampling, or Others.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">template</span></code></p></td>
+<td><p>Defines the general setup/setting of the example.
+Supported templates are <code class="docutils literal notranslate"><span class="pre">examples/template_pool.py</span></code>,</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">examples/template_pool_regression.py</span></code>,</p>
+</div></blockquote>
+<p><code class="docutils literal notranslate"><span class="pre">examples/template_stream.py</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">examples/template_pool_batch.py</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">tags</span></code></p></td>
+<td><p>Defines search categories. Supported tags are <code class="docutils literal notranslate"><span class="pre">pool</span></code>,
+<code class="docutils literal notranslate"><span class="pre">stream</span></code>, <code class="docutils literal notranslate"><span class="pre">single-annotator</span></code>, <code class="docutils literal notranslate"><span class="pre">multi-annotator</span></code>,
+<code class="docutils literal notranslate"><span class="pre">classification</span></code>, and <code class="docutils literal notranslate"><span class="pre">regression</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">title</span></code></p></td>
+<td><p>Title of the example, usually named after the query
+strategy.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">text_0</span></code></p></td>
+<td><p>Placeholder for additional explanations.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">refs</span></code></p></td>
+<td><p>References (BibTeX key) to the paper(s) of the query
+strategy.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sequence</span></code></p></td>
+<td><p>Order in which content is displayed, usually [“title”,
+“text_0”, “plot”, “refs”].</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">import_misc</span></code></p></td>
+<td><p>Python code for imports, e.g.,
+“from skactiveml.pool import RandomSampling”.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">n_samples</span></code></p></td>
+<td><p>Number of samples of the example data set.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">init_qs</span></code></p></td>
+<td><p>Python code to initialize the query strategy object,
+e.g., “RandomSampling()”.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">query_params</span></code></p></td>
+<td><p>Python code of parameters passed to the query method of
+the query strategy, e.g., “X=X, y=y”.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">preproc</span></code></p></td>
+<td><p>Python code for preprocessing before executing the AL
+cycle, e.g., “X = (X-X.min())/(X.max()-X.min())”.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">n_cycles</span></code></p></td>
+<td><p>Number of AL cycles.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">init_clf</span></code></p></td>
+<td><p>Python code to initialize the classifier object, e.g.,
+“ParzenWindowClassifier(classes=[0, 1])”. Only supported
+for <code class="docutils literal notranslate"><span class="pre">examples/template_pool.py</span></code>,
+<code class="docutils literal notranslate"><span class="pre">examples/template_pool_batch.py</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">examples/template_stream.py</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">init_reg</span></code></p></td>
+<td><p>Python code to initialize the regressor object, e.g.,
+“NICKernelRegressor()”. Only supported for
+<code class="docutils literal notranslate"><span class="pre">examples/template_pool_regression.py</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="testing-and-code-coverage">
+<h2>Testing and code coverage<a class="headerlink" href="#testing-and-code-coverage" title="Permalink to this heading">#</a></h2>
+<p>Please ensure test coverage is close to 100%. The current code coverage
+can be viewed
+<a class="reference external" href="https://app.codecov.io/gh/scikit-activeml/scikit-activeml">here</a>.</p>
+</section>
+<section id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this heading">#</a></h2>
+<section id="guidelines-for-writing-documentation">
+<h3>Guidelines for writing documentation<a class="headerlink" href="#guidelines-for-writing-documentation" title="Permalink to this heading">#</a></h3>
+<p>In <code class="docutils literal notranslate"><span class="pre">scikit-activeml</span></code>, the
+<a class="reference external" href="https://scikit-learn.org/stable/developers/contributing.html#guidelines-for-writing-documentation">guidelines</a>
+for writing the documentation are adopted from
+<a class="reference external" href="https://scikit-learn.org/stable/">scikit-learn</a>.</p>
+</section>
+<section id="building-the-documentation">
+<h3>Building the documentation<a class="headerlink" href="#building-the-documentation" title="Permalink to this heading">#</a></h3>
+<p>To ensure the documentation of your work is well formatted, build the sphinx
+documentation by executing the following line.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sphinx-build<span class="w"> </span>-b<span class="w"> </span>html<span class="w"> </span>docs<span class="w"> </span>docs/_build
+</pre></div>
+</div>
+</section>
+</section>
+<section id="issue-tracking">
+<h2>Issue Tracking<a class="headerlink" href="#issue-tracking" title="Permalink to this heading">#</a></h2>
+<p>We use <a class="reference external" href="https://github.com/scikit-activeml/scikit-activeml/issues">Github
+Issues</a> as
+our issue tracker. If you think you have found a bug in <code class="docutils literal notranslate"><span class="pre">scikit-activeml</span></code>,
+you can report it to the issue tracker. Documentation bugs can also be reported
+there.</p>
+<section id="checking-if-a-bug-already-exists">
+<h3>Checking If A Bug Already Exists<a class="headerlink" href="#checking-if-a-bug-already-exists" title="Permalink to this heading">#</a></h3>
+<p>The first step before filing an issue report is to see whether the
+problem has already been reported. Checking if the problem is an
+existing issue will:</p>
+<ol class="arabic simple">
+<li><p>Help you see if the problem has already been resolved or has been
+fixed for the next release</p></li>
+<li><p>Save time for you and the developers</p></li>
+<li><p>Help you learn what needs to be done to fix it</p></li>
+<li><p>Determine if additional information, such as how to replicate the
+issue, is needed</p></li>
+</ol>
+<p>To see if the issue already exists, search the issue database (<code class="docutils literal notranslate"><span class="pre">bug</span></code>
+label) using the search box on the top of the issue tracker page.</p>
+</section>
+<section id="reporting-an-issue">
+<h3>Reporting an issue<a class="headerlink" href="#reporting-an-issue" title="Permalink to this heading">#</a></h3>
+<p>Use the following labels to report an issue:</p>
+<table class="table">
+<colgroup>
+<col style="width: 32%" />
+<col style="width: 68%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Label</p></th>
+<th class="head"><p>Usecase</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">bug</span></code></p></td>
+<td><p>Something isn’t working</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">enhancement</span></code></p></td>
+<td><p>New feature</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">documentation</span></code></p></td>
+<td><p>Improvement or additions to document</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">question</span></code></p></td>
+<td><p>General questions</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+
+
+            </article>
+            
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="generated/sphinx_gallery_examples/stream/plot-StreamProbabilisticAL-Probabilistic_Active_Learning_in_Datastreams.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Probabilistic Active Learning in Datastreams</p>
+      </div>
+  </a>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview">
+   Overview
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#thank-you-contributors">
+     Thank you, contributors!
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#getting-help">
+     Getting Help
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#roadmap">
+     Roadmap
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#get-started">
+   Get Started
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#setup-development-environment">
+     Setup Development Environment
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example-with-miniconda">
+       Example With miniconda
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#install-dependencies">
+     Install Dependencies
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example-with-macos-homebrew">
+       Example with MacOS (Homebrew)
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#contributing-code">
+   Contributing Code
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#general-coding-conventions">
+     General Coding Conventions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-for-c3-code-contribution-cycle-and-pull-requests">
+     Example for C3 (Code Contribution Cycle) and Pull Requests
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#query-strategies">
+   Query Strategies
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#single-annotator-pool-based-query-strategies">
+     Single-annotator Pool-based Query Strategies
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#general">
+       General
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#init-method">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         __init__
+        </span>
+       </code>
+       method
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#query-method">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         query
+        </span>
+       </code>
+       method
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#general-advice">
+         General advice
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#testing">
+       Testing
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#single-annotator-stream-based-query-strategies">
+     Single-annotator Stream-based Query Strategies
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#general-2">
+       General
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#query-method-2">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         query
+        </span>
+       </code>
+       method
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#general-advice-2">
+         General advice
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#update-method">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         update
+        </span>
+       </code>
+       method
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#general-advice-3">
+         General advice
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#testing-2">
+       Testing
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#general-advice-for-the-budget-manager">
+       General advice for the
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         budget_manager
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#update-2">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         update
+        </span>
+       </code>
+       method
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#query-by-utilities-method">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         query_by_utilities
+        </span>
+       </code>
+       method
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#general-advice-for-working-with-a-budget-manager">
+       General advice for working with a
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         budget_manager
+        </span>
+       </code>
+       :
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id7">
+       Testing
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multi-annotator-pool-based-query-strategies">
+     Multi-Annotator Pool-based Query Strategies
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#query-method-3">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         query
+        </span>
+       </code>
+       method
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#general-advice-6">
+         General advice
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#testing-3">
+       Testing
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#classifiers">
+   Classifiers
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#init-2">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       init
+      </span>
+     </code>
+     method
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fit-method">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       fit
+      </span>
+     </code>
+     method
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#general-advice-7">
+       General advice
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#predict-proba-method">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       predict_proba
+      </span>
+     </code>
+     method
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#general-advice-8">
+       General advice
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#predict-method">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       predict
+      </span>
+     </code>
+     method
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#general-advice-9">
+       General advice
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#score-method">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       score
+      </span>
+     </code>
+     method
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#general-advice-10">
+       General advice
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#testing-4">
+     Testing
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#regressors">
+   Regressors
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#init-3">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       init
+      </span>
+     </code>
+     method
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fit-2">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       fit
+      </span>
+     </code>
+     method
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#general-advice-11">
+       General advice
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#predict-2">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       predict
+      </span>
+     </code>
+     method
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#general-advice-12">
+       General advice
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#score-2">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       score
+      </span>
+     </code>
+     method
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#general-advice-13">
+       General advice
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#testing-5">
+     Testing
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#annotators-models">
+   Annotators Models
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#predict-annotator-perf-method">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       predict_annotator_perf
+      </span>
+     </code>
+     method
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#general-advice-14">
+       General advice
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#examples">
+   Examples
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#testing-and-code-coverage">
+   Testing and code coverage
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#documentation">
+   Documentation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#guidelines-for-writing-documentation">
+     Guidelines for writing documentation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#building-the-documentation">
+     Building the documentation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#issue-tracking">
+   Issue Tracking
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#checking-if-a-bug-already-exists">
+     Checking If A Bug Already Exists
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reporting-an-issue">
+     Reporting an issue
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+<div class="toc-item">
+  
+<div id="searchbox"></div>
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+<div class="toc-item">
+  
+<div class="tocsection sourcelink">
+    <a href="_sources/contributing.rst.txt">
+        <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+</div>
+
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright 2020.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="theme-version">
+    Built with the
+    <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">
+        PyData Sphinx Theme
+    </a>
+    0.12.0.
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,927 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>skactiveml.pool._regression_tree_based_al &#8212; scikit-activeml 0.5.2 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/sphinx_highlight.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/skactiveml/pool/_regression_tree_based_al';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://scikit-activeml.github.io/scikit-activeml-docs/latest/_static/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.5.2';
+        </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../../../_static/filter_examples.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../../../_static/scikit-activeml-logo.png" class="logo__image only-light" alt="Logo image">
+    <img src="../../../_static/scikit-activeml-logo.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+    <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        0.5.2  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../index.html">
+                        Home
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../tutorials.html">
+                        Tutorials
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../generated/strategy_overview.html">
+                        Strategy Overview
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../generated/api_reference.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../generated/sphinx_gallery_examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../contributing.html">
+                        Contributing Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-external" href="https://github.com/scikit-activeml/scikit-activeml/releases">
+                        Changelog
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
+      
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/scikit-activeml/scikit-activeml" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/scikit-activeml" title="PyPI" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fas fa-box"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../index.html">
+                        Home
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../tutorials.html">
+                        Tutorials
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../generated/strategy_overview.html">
+                        Strategy Overview
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../generated/api_reference.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../generated/sphinx_gallery_examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../contributing.html">
+                        Contributing Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-external" href="https://github.com/scikit-activeml/scikit-activeml/releases">
+                        Changelog
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/scikit-activeml/scikit-activeml" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/scikit-activeml" title="PyPI" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fas fa-box"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+  
+  <div id="rtd-footer-container"></div>
+
+      </div>
+      <main id="main-content" class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <h1>Source code for skactiveml.pool._regression_tree_based_al</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">clone</span>
+<span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">pairwise_distances_argmin_min</span><span class="p">,</span>
+    <span class="n">pairwise_distances_argmin</span><span class="p">,</span>
+    <span class="n">pairwise_distances</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeRegressor</span>
+
+<span class="kn">from</span> <span class="nn">skactiveml.base</span> <span class="kn">import</span> <span class="n">SingleAnnotatorPoolQueryStrategy</span>
+<span class="kn">from</span> <span class="nn">skactiveml.regressor</span> <span class="kn">import</span> <span class="n">SklearnRegressor</span>
+<span class="kn">from</span> <span class="nn">skactiveml.utils</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">MISSING_LABEL</span><span class="p">,</span>
+    <span class="n">check_type</span><span class="p">,</span>
+    <span class="n">check_equal_missing_label</span><span class="p">,</span>
+    <span class="n">is_labeled</span><span class="p">,</span>
+    <span class="n">simple_batch</span><span class="p">,</span>
+    <span class="n">rand_argmax</span><span class="p">,</span>
+    <span class="n">check_scalar</span><span class="p">,</span>
+    <span class="n">labeled_indices</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<div class="viewcode-block" id="RegressionTreeBasedAL"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.RegressionTreeBasedAL.html#skactiveml.pool.RegressionTreeBasedAL">[docs]</a><span class="k">class</span> <span class="nc">RegressionTreeBasedAL</span><span class="p">(</span><span class="n">SingleAnnotatorPoolQueryStrategy</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Regression Tree-based Active Learning</span>
+
+<span class="sd">    This strategy is based on a regression tree and selects the number `n_k` of</span>
+<span class="sd">    samples to be selected from each leaf `k` given a certain `batch size`. It</span>
+<span class="sd">    than uses one of the three methods &#39;random&#39;, &#39;diversity&#39;, or</span>
+<span class="sd">    &#39;representativity&#39; to select `n_k` samples from each leaf `k`.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    method : str, default=&#39;random&#39;</span>
+<span class="sd">        Possible values are &#39;random&#39;, &#39;diversity&#39;, and &#39;representativity&#39;.</span>
+<span class="sd">    missing_label : scalar or string or np.nan or None,</span>
+<span class="sd">      default=skactiveml.utils.MISSING_LABEL</span>
+<span class="sd">        Value to represent a missing label.</span>
+<span class="sd">    random_state : int or np.random.RandomState, default=None</span>
+<span class="sd">        Random state for candidate selection. Ensure that</span>
+<span class="sd">    max_iter_representativity : int, default=5</span>
+<span class="sd">        Maximum number of optimisation iterations.</span>
+<span class="sd">        Only used if `method=&#39;representativity&#39;`.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    [1] Jose, Ashna, João Paulo Almeida de Mendonça, Emilie Devijver,</span>
+<span class="sd">        Noël Jakse, Valérie Monbet, and Roberta Poloni. &quot;Regression tree-based</span>
+<span class="sd">        active learning.&quot; Data Mining and Knowledge Discovery (2023): 420-460.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">method</span><span class="o">=</span><span class="s2">&quot;random&quot;</span><span class="p">,</span>
+        <span class="n">missing_label</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">,</span>
+        <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">max_iter_representativity</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">,</span> <span class="n">missing_label</span><span class="o">=</span><span class="n">missing_label</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">method</span> <span class="o">=</span> <span class="n">method</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_iter_representativity</span> <span class="o">=</span> <span class="n">max_iter_representativity</span>
+
+<div class="viewcode-block" id="RegressionTreeBasedAL.query"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.RegressionTreeBasedAL.html#skactiveml.pool.RegressionTreeBasedAL.query">[docs]</a>    <span class="k">def</span> <span class="nf">query</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">X</span><span class="p">,</span>
+        <span class="n">y</span><span class="p">,</span>
+        <span class="n">reg</span><span class="p">,</span>
+        <span class="n">fit_reg</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">candidates</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">return_utilities</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Determines for which candidate samples labels are to be queried.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : array-like of shape (n_samples, n_features)</span>
+<span class="sd">            Training data set, usually complete, i.e. including the labeled and</span>
+<span class="sd">            unlabeled samples.</span>
+<span class="sd">        y : array-like of shape (n_samples)</span>
+<span class="sd">            Labels of the training data set (possibly including unlabeled ones</span>
+<span class="sd">            indicated by self.MISSING_LABEL).</span>
+<span class="sd">        reg : SkactivemlRegressor</span>
+<span class="sd">            The regressor must be `sklearn.tree.DecisionTreeRegressor` to</span>
+<span class="sd">            predict the data. Ensure that the number of samples in the leaf is</span>
+<span class="sd">            greater than 1. For example, by setting `min_samples_leaf &gt;= 2` or</span>
+<span class="sd">            by restricting the tree&#39;s depth.</span>
+<span class="sd">        fit_reg : bool, optional (default=True)</span>
+<span class="sd">            Defines whether the regressor should be fitted on `X`, `y`, and</span>
+<span class="sd">            `sample_weight`.</span>
+<span class="sd">        sample_weight : array-like of shape (n_samples), default=None</span>
+<span class="sd">            Weights of training samples in `X`.</span>
+<span class="sd">        candidates : None or array-like of shape (n_candidates), dtype=int or</span>
+<span class="sd">            array-like of shape (n_candidates, n_features),</span>
+<span class="sd">            optional (default=None)</span>
+<span class="sd">            If candidates is None, the unlabeled samples from (X,y) are</span>
+<span class="sd">            considered as candidates.</span>
+<span class="sd">            If candidates is of shape (n_candidates) and of type int,</span>
+<span class="sd">            candidates is considered as the indices of the samples in (X,y).</span>
+<span class="sd">            If candidates is of shape (n_candidates, n_features), the</span>
+<span class="sd">            candidates are directly given in candidates (not necessarily</span>
+<span class="sd">            contained in X).</span>
+<span class="sd">        batch_size : int, optional (default=1)</span>
+<span class="sd">            The number of samples to be selected in one AL cycle. Originally,</span>
+<span class="sd">            this query strategy is developed for `batch_sizes &gt; 1`.</span>
+<span class="sd">        return_utilities : bool, optional (default=False)</span>
+<span class="sd">            If true, also return the utilities based on the query strategy.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        query_indices : numpy.ndarray of shape (batch_size)</span>
+<span class="sd">            The query_indices indicate for which candidate sample a label is</span>
+<span class="sd">            to queried, e.g., `query_indices[0]` indicates the first selected</span>
+<span class="sd">            sample.</span>
+<span class="sd">            If candidates is None or of shape (n_candidates), the indexing</span>
+<span class="sd">            refers to samples in X.</span>
+<span class="sd">            If candidates is of shape (n_candidates, n_features), the indexing</span>
+<span class="sd">            refers to samples in candidates.</span>
+<span class="sd">        utilities : numpy.ndarray of shape (batch_size, n_samples) or</span>
+<span class="sd">            numpy.ndarray of shape (batch_size, n_candidates)</span>
+<span class="sd">            The utilities of samples after each selected sample of the batch,</span>
+<span class="sd">            e.g., `utilities[0]` indicates the utilities used for selecting</span>
+<span class="sd">            the first sample (with index `query_indices[0]`) of the batch.</span>
+<span class="sd">            Utilities for labeled samples will be set to np.nan.</span>
+<span class="sd">            If candidates is None or of shape (n_candidates), the indexing</span>
+<span class="sd">            refers to samples in X.</span>
+<span class="sd">            If candidates is of shape (n_candidates, n_features), the indexing</span>
+<span class="sd">            refers to samples in candidates.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Validate input parameters.</span>
+        <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">candidates</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">return_utilities</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_data</span><span class="p">(</span>
+            <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">candidates</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">return_utilities</span><span class="p">,</span> <span class="n">reset</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">batch_size</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="s2">&quot;This query strategy was originally developed for &quot;</span>
+                <span class="s2">&quot;`batch_sizes &gt; 1`.&quot;</span>
+            <span class="p">)</span>
+        <span class="n">X_cand</span><span class="p">,</span> <span class="n">mapping</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transform_candidates</span><span class="p">(</span><span class="n">candidates</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+        <span class="n">labeled_idxs</span> <span class="o">=</span> <span class="n">labeled_indices</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">missing_label_</span><span class="p">)</span>
+
+        <span class="c1"># Validate regressor type.</span>
+        <span class="n">check_type</span><span class="p">(</span><span class="n">reg</span><span class="p">,</span> <span class="s2">&quot;reg&quot;</span><span class="p">,</span> <span class="n">SklearnRegressor</span><span class="p">)</span>
+        <span class="n">check_type</span><span class="p">(</span><span class="n">reg</span><span class="o">.</span><span class="n">estimator</span><span class="p">,</span> <span class="s2">&quot;reg.estimator&quot;</span><span class="p">,</span> <span class="n">DecisionTreeRegressor</span><span class="p">)</span>
+        <span class="n">check_equal_missing_label</span><span class="p">(</span><span class="n">reg</span><span class="o">.</span><span class="n">missing_label</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">missing_label_</span><span class="p">)</span>
+
+        <span class="c1"># Validate boolean flag</span>
+        <span class="n">check_type</span><span class="p">(</span><span class="n">fit_reg</span><span class="p">,</span> <span class="s2">&quot;fit_reg&quot;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>
+
+        <span class="c1"># Validate method type.</span>
+        <span class="n">check_type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">method</span><span class="p">,</span> <span class="s2">&quot;method&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+
+        <span class="c1"># Validate max_iter_representativity type.</span>
+        <span class="n">check_scalar</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">max_iter_representativity</span><span class="p">,</span>
+            <span class="s2">&quot;max_iter_representativity&quot;</span><span class="p">,</span>
+            <span class="nb">int</span><span class="p">,</span>
+            <span class="n">min_val</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Fallback to random sampling if no sample is labeled.</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">labeled_idxs</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;No sample is labeled. Fallback to random sampling.&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">mapping</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">utilities</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X_cand</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">utilities</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+                <span class="n">utilities</span><span class="p">[</span><span class="n">mapping</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mapping</span><span class="p">))</span>
+
+            <span class="k">return</span> <span class="n">simple_batch</span><span class="p">(</span>
+                <span class="n">utilities</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">random_state_</span><span class="p">,</span>
+                <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
+                <span class="n">return_utilities</span><span class="o">=</span><span class="n">return_utilities</span><span class="p">,</span>
+                <span class="n">method</span><span class="o">=</span><span class="s2">&quot;proportional&quot;</span><span class="p">,</span>
+            <span class="p">)</span>
+
+        <span class="c1"># Fit the regressor.</span>
+        <span class="k">if</span> <span class="n">fit_reg</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">sample_weight</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">reg</span> <span class="o">=</span> <span class="n">clone</span><span class="p">(</span><span class="n">reg</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">reg</span> <span class="o">=</span> <span class="n">clone</span><span class="p">(</span><span class="n">reg</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">)</span>
+
+        <span class="c1"># Calculate the number of samples to be selected from each leaf k.</span>
+        <span class="n">n_k</span> <span class="o">=</span> <span class="n">_calc_acquisitions_per_leaf</span><span class="p">(</span>
+            <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">reg</span><span class="p">,</span> <span class="n">missing_label</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">missing_label_</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Discretize number of leaf acquisitions.</span>
+        <span class="n">n_k_discrete</span> <span class="o">=</span> <span class="n">_discretize_acquisitions_per_leaf</span><span class="p">(</span>
+            <span class="n">n_k</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">random_state_</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Calculate the number of candidates per leaf.</span>
+        <span class="n">leaf_indices_cand</span> <span class="o">=</span> <span class="n">reg</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">X_cand</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;random&quot;</span><span class="p">:</span>
+            <span class="n">batch_utilities_cand</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="n">batch_size</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_cand</span><span class="p">)),</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span>
+            <span class="n">query_indices</span> <span class="o">=</span> <span class="p">[]</span>
+
+            <span class="k">for</span> <span class="n">leaf_idx</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">leaf_indices_cand</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_k_discrete</span><span class="p">[</span><span class="n">leaf_idx</span><span class="p">]):</span>
+                    <span class="n">batch_utilities_cand</span><span class="p">[</span>
+                        <span class="nb">len</span><span class="p">(</span><span class="n">query_indices</span><span class="p">),</span> <span class="n">leaf_indices_cand</span> <span class="o">==</span> <span class="n">leaf_idx</span>
+                    <span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+                    <span class="n">batch_utilities_cand</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">query_indices</span><span class="p">),</span> <span class="n">query_indices</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+                    <span class="p">)</span>
+                    <span class="n">query_indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                        <span class="n">rand_argmax</span><span class="p">(</span>
+                            <span class="n">batch_utilities_cand</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">query_indices</span><span class="p">)],</span>
+                            <span class="n">random_state</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state_</span><span class="p">,</span>
+                        <span class="p">)</span>
+                    <span class="p">)</span>
+
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;diversity&quot;</span><span class="p">:</span>
+            <span class="n">batch_utilities_cand</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="n">batch_size</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_cand</span><span class="p">)),</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span>
+            <span class="n">query_indices</span> <span class="o">=</span> <span class="p">[]</span>
+
+            <span class="n">X_labeled</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">labeled_idxs</span><span class="p">]</span>
+            <span class="n">leaf_indices_labeled</span> <span class="o">=</span> <span class="n">reg</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">X_labeled</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">leaf_idx</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">leaf_indices_cand</span><span class="p">):</span>
+                <span class="n">X_cand_leaf</span> <span class="o">=</span> <span class="n">X_cand</span><span class="p">[</span><span class="n">leaf_indices_cand</span> <span class="o">==</span> <span class="n">leaf_idx</span><span class="p">]</span>
+                <span class="n">X_labeled_leaf</span> <span class="o">=</span> <span class="n">X_labeled</span><span class="p">[</span><span class="n">leaf_indices_labeled</span> <span class="o">==</span> <span class="n">leaf_idx</span><span class="p">]</span>
+
+                <span class="c1"># Calculate the L2 distance of each unlabeled sample in leaf k</span>
+                <span class="c1"># to all the labeled samples using equation (6) and (7).</span>
+                <span class="c1"># Compute the shortest distance from x_j to all labeled</span>
+                <span class="c1"># samples using equation (7).</span>
+                <span class="n">_</span><span class="p">,</span> <span class="n">d_min</span> <span class="o">=</span> <span class="n">pairwise_distances_argmin_min</span><span class="p">(</span>
+                    <span class="n">X_cand_leaf</span><span class="p">,</span> <span class="n">X_labeled_leaf</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
+                <span class="p">)</span>
+                <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_k_discrete</span><span class="p">[</span><span class="n">leaf_idx</span><span class="p">]):</span>
+                    <span class="n">batch_utilities_cand</span><span class="p">[</span>
+                        <span class="nb">len</span><span class="p">(</span><span class="n">query_indices</span><span class="p">),</span> <span class="n">leaf_indices_cand</span> <span class="o">==</span> <span class="n">leaf_idx</span>
+                    <span class="p">]</span> <span class="o">=</span> <span class="n">d_min</span>
+                    <span class="n">batch_utilities_cand</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">query_indices</span><span class="p">),</span> <span class="n">query_indices</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+                    <span class="p">)</span>
+                    <span class="n">query_indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                        <span class="n">rand_argmax</span><span class="p">(</span>
+                            <span class="n">batch_utilities_cand</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">query_indices</span><span class="p">)],</span>
+                            <span class="n">random_state</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state_</span><span class="p">,</span>
+                        <span class="p">)</span>
+                    <span class="p">)</span>
+
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;representativity&quot;</span><span class="p">:</span>
+            <span class="c1"># Perform a k-means clustering in leaf k with n_k clusters.</span>
+            <span class="n">query_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+            <span class="n">l_cand</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X_cand</span><span class="p">),</span> <span class="n">fill_value</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">leaf</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="n">n_k_discrete</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">():</span>
+                <span class="n">X_cand_leaf</span> <span class="o">=</span> <span class="n">X_cand</span><span class="p">[</span><span class="n">leaf_indices_cand</span> <span class="o">==</span> <span class="n">leaf</span><span class="p">]</span>
+                <span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span>
+                    <span class="n">n_k_discrete</span><span class="p">[</span><span class="n">leaf</span><span class="p">],</span> <span class="n">random_state</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state_</span>
+                <span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_cand_leaf</span><span class="p">)</span>
+
+                <span class="n">l_cand</span><span class="p">[</span><span class="n">leaf_indices_cand</span> <span class="o">==</span> <span class="n">leaf</span><span class="p">]</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span>
+                    <span class="n">X_cand_leaf</span>
+                <span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">n_k_discrete</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">leaf</span><span class="p">])</span>
+
+                <span class="n">centroids</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">cluster_centers_</span>
+                <span class="n">query_indices</span><span class="p">[</span>
+                    <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">n_k_discrete</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">leaf</span><span class="p">])</span> <span class="o">+</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_k_discrete</span><span class="p">[</span><span class="n">leaf</span><span class="p">])</span>
+                <span class="p">]</span> <span class="o">=</span> <span class="n">pairwise_distances_argmin</span><span class="p">(</span><span class="n">centroids</span><span class="p">,</span> <span class="n">X_cand</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+            <span class="c1"># Calculate R using Eq. (9)</span>
+            <span class="n">R_cand</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X_cand</span><span class="p">))</span>
+            <span class="k">for</span> <span class="n">l_idx</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">l_cand</span><span class="p">):</span>
+                <span class="n">C_l</span> <span class="o">=</span> <span class="n">X_cand</span><span class="p">[</span><span class="n">l_cand</span> <span class="o">==</span> <span class="n">l_idx</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">l_idx</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">C_l</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">R_cand</span><span class="p">[</span><span class="n">l_cand</span> <span class="o">==</span> <span class="n">l_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">pairwise_distances</span><span class="p">(</span><span class="n">C_l</span><span class="p">,</span> <span class="n">C_l</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span>
+                        <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
+                    <span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">C_l</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+            <span class="n">batch_utilities_cand</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="n">batch_size</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_cand</span><span class="p">)),</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_iter_representativity</span><span class="p">):</span>
+                <span class="n">prev_best_indices</span> <span class="o">=</span> <span class="n">query_indices</span>
+                <span class="k">for</span> <span class="n">l_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">batch_size</span><span class="p">):</span>
+                    <span class="c1"># Update DELTA using the current centroids.</span>
+                    <span class="n">X_M</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">labeled_idxs</span><span class="p">]</span>
+                    <span class="n">X_M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">X_M</span><span class="p">,</span> <span class="n">X_cand</span><span class="p">[</span><span class="n">query_indices</span><span class="p">[:</span><span class="n">l_idx</span><span class="p">]],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+                    <span class="n">X_M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                        <span class="n">X_M</span><span class="p">,</span> <span class="n">X_cand</span><span class="p">[</span><span class="n">query_indices</span><span class="p">[</span><span class="n">l_idx</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:]],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span>
+                    <span class="p">)</span>
+                    <span class="n">X_cand_l</span> <span class="o">=</span> <span class="n">X_cand</span><span class="p">[</span><span class="n">l_cand</span> <span class="o">==</span> <span class="n">l_idx</span><span class="p">]</span>
+                    <span class="n">_</span><span class="p">,</span> <span class="n">delta_l</span> <span class="o">=</span> <span class="n">pairwise_distances_argmin_min</span><span class="p">(</span>
+                        <span class="n">X_cand_l</span><span class="p">,</span> <span class="n">X_M</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
+                    <span class="p">)</span>  <span class="c1"># Equation (10)</span>
+
+                    <span class="c1"># Use Eq. (8) to find the next sample to be labeled.</span>
+                    <span class="n">R_l</span> <span class="o">=</span> <span class="n">R_cand</span><span class="p">[</span><span class="n">l_cand</span> <span class="o">==</span> <span class="n">l_idx</span><span class="p">]</span>
+                    <span class="n">batch_utilities_cand</span><span class="p">[</span><span class="n">l_idx</span><span class="p">,</span> <span class="n">l_cand</span> <span class="o">==</span> <span class="n">l_idx</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="n">delta_l</span> <span class="o">-</span> <span class="n">R_l</span>
+                    <span class="p">)</span>
+                    <span class="n">query_indices</span><span class="p">[</span><span class="n">l_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">rand_argmax</span><span class="p">(</span>
+                        <span class="n">batch_utilities_cand</span><span class="p">[</span><span class="n">l_idx</span><span class="p">],</span>
+                        <span class="n">random_state</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state_</span><span class="p">,</span>
+                    <span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+                <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">prev_best_indices</span> <span class="o">==</span> <span class="n">query_indices</span><span class="p">):</span>
+                    <span class="k">break</span>
+            <span class="k">for</span> <span class="n">l_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">batch_size</span><span class="p">):</span>
+                <span class="n">batch_utilities_cand</span><span class="p">[</span><span class="n">l_idx</span><span class="p">,</span> <span class="n">query_indices</span><span class="p">[:</span><span class="n">l_idx</span><span class="p">]]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s1">&#39;The given method &quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">method</span><span class="si">}</span><span class="s1">&quot; is not valid. Supported &#39;</span>
+                <span class="sa">f</span><span class="s1">&#39;methods are &quot;random&quot;, &quot;diversity&quot;, and &quot;representativity&quot;.&#39;</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">mapping</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">batch_utilities</span> <span class="o">=</span> <span class="n">batch_utilities_cand</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">batch_utilities</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="n">batch_size</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+            <span class="n">batch_utilities</span><span class="p">[:,</span> <span class="n">mapping</span><span class="p">]</span> <span class="o">=</span> <span class="n">batch_utilities_cand</span>
+            <span class="n">query_indices</span> <span class="o">=</span> <span class="n">mapping</span><span class="p">[</span><span class="n">query_indices</span><span class="p">]</span>
+
+        <span class="c1"># Check whether utilities are to be returned.</span>
+        <span class="k">if</span> <span class="n">return_utilities</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">query_indices</span><span class="p">,</span> <span class="n">batch_utilities</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">query_indices</span></div></div>
+
+
+<span class="k">def</span> <span class="nf">_discretize_acquisitions_per_leaf</span><span class="p">(</span><span class="n">n_k</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">random_state</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Discretizes a given array of non-negative floats corresponding to the</span>
+<span class="sd">    number of acquisitions per leaf of the regression tree. Guarantees that we</span>
+<span class="sd">    acquire a minimum number (i.e., floored floats) per leaf.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    n_k : numpy.ndarray of shape (n_leafs,)</span>
+<span class="sd">        Float acquisitions per leaf of the regression tree.</span>
+<span class="sd">    batch_size : int</span>
+<span class="sd">        Number of acquisitions.</span>
+<span class="sd">    random_state : np.random.RandomState</span>
+<span class="sd">        Random state for reproducibility.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    n_k_discrete : numpy.ndarray of shape (n_leafs,)</span>
+<span class="sd">        Integer acquisitions per leaf of the regression tree.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">n_k_rest</span><span class="p">,</span> <span class="n">n_k_discrete</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">modf</span><span class="p">(</span><span class="n">n_k</span><span class="p">)</span>
+    <span class="n">rest_size</span> <span class="o">=</span> <span class="n">n_k_rest</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">leaf_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">n_k</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">rest_size</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">sampled_leaf_indices</span> <span class="o">=</span> <span class="n">random_state</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span>
+            <span class="n">leaf_indices</span><span class="p">,</span>
+            <span class="n">p</span><span class="o">=</span><span class="n">n_k_rest</span> <span class="o">/</span> <span class="n">rest_size</span><span class="p">,</span>
+            <span class="n">size</span><span class="o">=</span><span class="n">batch_size</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">n_k_discrete</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span>
+            <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">add_leaf_indices</span><span class="p">,</span> <span class="n">add_leaf_counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span>
+            <span class="n">sampled_leaf_indices</span><span class="p">,</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)</span>
+        <span class="n">n_k_discrete</span><span class="p">[</span><span class="n">add_leaf_indices</span><span class="p">]</span> <span class="o">+=</span> <span class="n">add_leaf_counts</span>
+    <span class="k">return</span> <span class="n">n_k_discrete</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_calc_acquisitions_per_leaf</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">reg</span><span class="p">,</span> <span class="n">missing_label</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Regression Tree-based Active Learning</span>
+
+<span class="sd">    Computes the number of samples to be selected from each leaf of the</span>
+<span class="sd">    regression tree.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    X : array-like of shape (n_samples, n_features)</span>
+<span class="sd">        Training data set, usually complete, i.e. including the labeled and</span>
+<span class="sd">        unlabeled samples.</span>
+<span class="sd">    y : array-like of shape (n_samples)</span>
+<span class="sd">        Labels of the training data set (possibly including unlabeled ones</span>
+<span class="sd">        indicated by `self.missing_label`).</span>
+<span class="sd">    missing_label : scalar or string or np.nan or None</span>
+<span class="sd">        Value to represent a missing label.</span>
+<span class="sd">    reg: SkactivemlRegressor</span>
+<span class="sd">        Fitted regressor to predict the data.</span>
+<span class="sd">    batch_size : int, default=1</span>
+<span class="sd">        The number of samples to be selected in one AL cycle.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    n_samples_per_leaf : numpy.ndarray of shape (n_leafs)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">is_lbld</span> <span class="o">=</span> <span class="n">is_labeled</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">missing_label</span><span class="o">=</span><span class="n">missing_label</span><span class="p">)</span>
+
+    <span class="c1"># Compute the variance v_k on labeled samples in leaf k.</span>
+    <span class="n">leaf_labeled</span> <span class="o">=</span> <span class="n">reg</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">is_lbld</span><span class="p">])</span>
+    <span class="n">y_labeled</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">is_lbld</span><span class="p">]</span>
+    <span class="n">v_k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">reg</span><span class="o">.</span><span class="n">tree_</span><span class="o">.</span><span class="n">node_count</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">leaf</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">v_k</span><span class="p">)):</span>
+        <span class="n">y_labeled_leaf</span> <span class="o">=</span> <span class="n">y_labeled</span><span class="p">[</span><span class="n">leaf_labeled</span> <span class="o">==</span> <span class="n">leaf</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_labeled_leaf</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">v_k</span><span class="p">[</span><span class="n">leaf</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">y_labeled_leaf</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">v_k</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">v_k</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="mi">0</span> <span class="ow">in</span> <span class="n">v_k</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">leaf_labeled</span><span class="p">)]:</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+            <span class="s2">&quot;There are leaves with less than two labeled samples, &quot;</span>
+            <span class="s2">&quot;which causes a variance of zero. To avoid this, set &quot;</span>
+            <span class="s2">&quot;parameter `min_samples_leaf` of `reg` to &gt;= 2.&quot;</span>
+        <span class="p">)</span>
+
+    <span class="c1"># Compute the probability p_k that an unlabeled sample belongs to leaf k.</span>
+    <span class="n">leaf_unlabeled</span> <span class="o">=</span> <span class="n">reg</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="o">~</span><span class="n">is_lbld</span><span class="p">])</span>
+    <span class="n">samples_per_leaf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">bincount</span><span class="p">(</span><span class="n">leaf_unlabeled</span><span class="p">,</span> <span class="n">minlength</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">v_k</span><span class="p">))</span>
+    <span class="n">p_k</span> <span class="o">=</span> <span class="n">samples_per_leaf</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="o">~</span><span class="n">is_lbld</span><span class="p">)</span>
+
+    <span class="c1"># Compute the number of sample to be selected from each leaf of the</span>
+    <span class="c1"># regression tree.</span>
+    <span class="n">n_k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">p_k</span> <span class="o">*</span> <span class="n">v_k</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">n_k</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">n_k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full_like</span><span class="p">(</span><span class="n">n_k</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="n">batch_size</span> <span class="o">/</span> <span class="n">reg</span><span class="o">.</span><span class="n">tree_</span><span class="o">.</span><span class="n">node_count</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">n_k</span> <span class="o">=</span> <span class="n">batch_size</span> <span class="o">*</span> <span class="n">n_k</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">n_k</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">n_k</span>
+</pre></div>
+
+            </article>
+            
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div id="searchbox"></div>
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright 2020.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="theme-version">
+    Built with the
+    <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">
+        PyData Sphinx Theme
+    </a>
+    0.12.0.
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

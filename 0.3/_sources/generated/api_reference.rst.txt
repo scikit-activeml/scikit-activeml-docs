@@ -1,0 +1,289 @@
+.. _api_reference:
+
+=============
+API Reference
+=============
+
+This is an overview of the API.
+
+.. module:: skactiveml
+
+:mod:`skactiveml.base`:
+=======================
+
+.. automodule:: skactiveml.base
+    :no-members:
+    :no-inherited-members:
+
+.. currentmodule:: skactiveml
+
+Classes
+-------
+
+.. autosummary::
+   :nosignatures:
+   :toctree: api
+   :template: class.rst
+
+   base.QueryStrategy
+   base.SingleAnnotatorPoolQueryStrategy
+   base.MultiAnnotatorPoolQueryStrategy
+   base.BudgetManager
+   base.SingleAnnotatorStreamQueryStrategy
+   base.SkactivemlClassifier
+   base.ClassFrequencyEstimator
+   base.AnnotatorModelMixin
+   base.SkactivemlRegressor
+   base.ProbabilisticRegressor
+
+:mod:`skactiveml.pool`:
+=======================
+
+.. automodule:: skactiveml.pool
+    :no-members:
+    :no-inherited-members:
+
+.. currentmodule:: skactiveml
+
+Classes
+-------
+
+.. autosummary::
+   :nosignatures:
+   :toctree: api
+   :template: class.rst
+
+   pool.RandomSampling
+   pool.ProbabilisticAL
+   pool.UncertaintySampling
+   pool.EpistemicUncertaintySampling
+   pool.MonteCarloEER
+   pool.ValueOfInformationEER
+   pool.QueryByCommittee
+   pool.Quire
+   pool.FourDs
+   pool.CostEmbeddingAL
+   pool.ExpectedModelChangeMaximization
+   pool.ExpectedModelOutputChange
+   pool.ExpectedModelVarianceReduction
+   pool.KLDivergenceMaximization
+   pool.GreedySamplingX
+   pool.GreedySamplingTarget
+   pool.DiscriminativeAL
+
+Functions
+---------
+
+.. autosummary::
+   :nosignatures:
+   :toctree: api
+   :template: function.rst
+
+   pool.cost_reduction
+   pool.uncertainty_scores
+   pool.expected_average_precision
+   pool.average_kl_divergence
+   pool.vote_entropy
+
+:mod:`skactiveml.pool.multiannotator`:
+======================================
+
+.. automodule:: skactiveml.pool.multiannotator
+    :no-members:
+    :no-inherited-members:
+
+.. currentmodule:: skactiveml
+
+Classes
+-------
+
+.. autosummary::
+   :nosignatures:
+   :toctree: api
+   :template: class.rst
+
+   pool.multiannotator.IntervalEstimationThreshold
+   pool.multiannotator.IntervalEstimationAnnotModel
+   pool.multiannotator.SingleAnnotatorWrapper
+
+:mod:`skactiveml.pool.utils`:
+=============================
+
+.. automodule:: skactiveml.pool.utils
+    :no-members:
+    :no-inherited-members:
+
+.. currentmodule:: skactiveml
+
+Classes
+-------
+
+.. autosummary::
+   :nosignatures:
+   :toctree: api
+   :template: class.rst
+
+   pool.utils.IndexClassifierWrapper
+
+:mod:`skactiveml.stream`:
+=========================
+
+.. automodule:: skactiveml.stream
+    :no-members:
+    :no-inherited-members:
+
+.. currentmodule:: skactiveml
+
+Classes
+-------
+
+.. autosummary::
+   :nosignatures:
+   :toctree: api
+   :template: class.rst
+
+   stream.StreamRandomSampling
+   stream.PeriodicSampling
+   stream.FixedUncertainty
+   stream.VariableUncertainty
+   stream.Split
+   stream.StreamProbabilisticAL
+   stream.RandomVariableUncertainty
+
+:mod:`skactiveml.classifier`:
+=============================
+
+.. automodule:: skactiveml.classifier
+    :no-members:
+    :no-inherited-members:
+
+.. currentmodule:: skactiveml
+
+Classes
+-------
+
+.. autosummary::
+   :nosignatures:
+   :toctree: api
+   :template: class.rst
+
+   classifier.ParzenWindowClassifier
+   classifier.MixtureModelClassifier
+   classifier.SklearnClassifier
+   classifier.SlidingWindowClassifier
+
+:mod:`skactiveml.classifier.multiannotator`:
+============================================
+
+.. automodule:: skactiveml.classifier.multiannotator
+    :no-members:
+    :no-inherited-members:
+
+.. currentmodule:: skactiveml
+
+Classes
+-------
+
+.. autosummary::
+   :nosignatures:
+   :toctree: api
+   :template: class.rst
+
+   classifier.multiannotator.AnnotatorLogisticRegression
+   classifier.multiannotator.AnnotatorEnsembleClassifier
+
+:mod:`skactiveml.visualization`:
+================================
+
+.. automodule:: skactiveml.visualization
+    :no-members:
+    :no-inherited-members:
+
+.. currentmodule:: skactiveml
+
+Functions
+---------
+
+.. autosummary::
+   :nosignatures:
+   :toctree: api
+   :template: function.rst
+
+   visualization.plot_utilities
+   visualization.plot_decision_boundary
+   visualization.plot_contour_for_samples
+   visualization.plot_annotator_utilities
+   visualization.mesh
+
+:mod:`skactiveml.utils`:
+========================
+
+.. automodule:: skactiveml.utils
+    :no-members:
+    :no-inherited-members:
+
+.. currentmodule:: skactiveml
+
+Classes
+-------
+
+.. autosummary::
+   :nosignatures:
+   :toctree: api
+   :template: class.rst
+
+   utils.ExtLabelEncoder
+
+Functions
+---------
+
+.. autosummary::
+   :nosignatures:
+   :toctree: api
+   :template: function.rst
+
+   utils.rand_argmax
+   utils.rand_argmin
+   utils.compute_vote_vectors
+   utils.majority_vote
+   utils.is_unlabeled
+   utils.is_labeled
+   utils.check_classes
+   utils.check_missing_label
+   utils.check_cost_matrix
+   utils.check_scalar
+   utils.check_classifier_params
+   utils.check_X_y
+   utils.check_random_state
+   utils.call_func
+   utils.check_class_prior
+   utils.ext_confusion_matrix
+   utils.labeled_indices
+   utils.unlabeled_indices
+   utils.check_type
+   utils.check_bound
+   utils.check_equal_missing_label
+   utils.check_budget_manager
+   utils.check_indices
+   utils.simple_batch
+   utils._check_callable
+
+:mod:`skactiveml.exceptions`:
+=============================
+
+.. automodule:: skactiveml.exceptions
+    :no-members:
+    :no-inherited-members:
+
+.. currentmodule:: skactiveml
+
+Classes
+-------
+
+.. autosummary::
+   :nosignatures:
+   :toctree: api
+   :template: class.rst
+
+   exceptions.MappingError
+
