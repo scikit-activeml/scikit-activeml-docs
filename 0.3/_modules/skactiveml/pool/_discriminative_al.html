@@ -1,0 +1,400 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>skactiveml.pool._discriminative_al &#8212; scikit-activeml 0.3.1 documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../../../_static/filter_examples.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../../index.html">
+  <img src="../../../_static/scikit-activeml-logo.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../index.html">
+  Home
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../tutorials.html">
+  Tutorials
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../generated/strategy_overview.html">
+  Strategy Overview
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../generated/api_reference.html">
+  API Reference
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../generated/sphinx_gallery_examples/index.html">
+  Examples
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../developers_guide.html">
+  Developer Guide
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Quick Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/scikit-activeml/scikit-activeml" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://pypi.org/project/scikit-activeml" rel="noopener" target="_blank" title="PyPI"><span><i class="fas fa-box"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+              </div>
+              <div class="sidebar-end-items">
+              </div>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <h1>Source code for skactiveml.pool._discriminative_al</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Module implementing discriminative active learning.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="c1"># Authors: Marek Herde &lt;marek.herde@uni-kassel.de&gt;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">clone</span>
+
+<span class="kn">from</span> <span class="nn">..base</span> <span class="kn">import</span> <span class="n">SingleAnnotatorPoolQueryStrategy</span><span class="p">,</span> <span class="n">SkactivemlClassifier</span>
+<span class="kn">from</span> <span class="nn">..utils</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">MISSING_LABEL</span><span class="p">,</span>
+    <span class="n">rand_argmax</span><span class="p">,</span>
+    <span class="n">is_unlabeled</span><span class="p">,</span>
+    <span class="n">simple_batch</span><span class="p">,</span>
+    <span class="n">check_type</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<div class="viewcode-block" id="DiscriminativeAL"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.DiscriminativeAL.html#skactiveml.pool.DiscriminativeAL">[docs]</a><span class="k">class</span> <span class="nc">DiscriminativeAL</span><span class="p">(</span><span class="n">SingleAnnotatorPoolQueryStrategy</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Discriminative Active Learning.</span>
+
+<span class="sd">    This class implement the &quot;Discriminative Active Learning&quot; (DAL) strategy.</span>
+<span class="sd">    Its idea is to solve a binary classification task to choose samples for</span>
+<span class="sd">    labeling such that the labeled set and the unlabeled pool are</span>
+<span class="sd">    indistinguishable.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    greedy_selection : bool, optional (default=False)</span>
+<span class="sd">        This parameter is only relevant for `batch_size&gt;1`. If</span>
+<span class="sd">        `greedy_selection=False` the classifying discriminator is refitted</span>
+<span class="sd">        after each sample selection within a batch. Otherwise, the</span>
+<span class="sd">        discriminator is kept fixed.</span>
+<span class="sd">    missing_label : scalar or string or np.nan or None, optional</span>
+<span class="sd">    (default=np.nan)</span>
+<span class="sd">        Value to represent a missing label.</span>
+<span class="sd">    random_state : None or int or np.random.RandomState, optional</span>
+<span class="sd">    (default=None)</span>
+<span class="sd">        The random state to use.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    [1] Gissin D, Shalev-Shwartz S. &quot;Discriminative active learning.&quot;</span>
+<span class="sd">        arXiv:1907.06347. 2019.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">greedy_selection</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">missing_label</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">,</span>
+        <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">missing_label</span><span class="o">=</span><span class="n">missing_label</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">greedy_selection</span> <span class="o">=</span> <span class="n">greedy_selection</span>
+
+<div class="viewcode-block" id="DiscriminativeAL.query"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.DiscriminativeAL.html#skactiveml.pool.DiscriminativeAL.query">[docs]</a>    <span class="k">def</span> <span class="nf">query</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">X</span><span class="p">,</span>
+        <span class="n">y</span><span class="p">,</span>
+        <span class="n">discriminator</span><span class="p">,</span>
+        <span class="n">candidates</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">return_utilities</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Determines for which candidate samples labels are to be queried.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : array-like of shape (n_samples, n_features)</span>
+<span class="sd">            Training data set, usually complete, i.e., including the labeled</span>
+<span class="sd">            and unlabeled samples.</span>
+<span class="sd">        y : array-like of shape (n_samples)</span>
+<span class="sd">            Labels of the training data set (possibly including unlabeled ones</span>
+<span class="sd">            indicated by `self.missing_label`).</span>
+<span class="sd">        discriminator : skactiveml.base.SkactivemlClassifier</span>
+<span class="sd">            Model implementing the methods `fit` and `predict_proba`.</span>
+<span class="sd">            The parameters `classes` and `missing_label` will be internally</span>
+<span class="sd">            redefined.</span>
+<span class="sd">        candidates : None or array-like of shape (n_candidates), dtype=int or</span>
+<span class="sd">        array-like of shape (n_candidates, n_features), optional (default=None)</span>
+<span class="sd">            If `candidates` is `None`, the unlabeled samples from `(X, y)` are</span>
+<span class="sd">            considered as candidates.</span>
+<span class="sd">            If `candidates` is of shape `(n_candidates,)` and of type int,</span>
+<span class="sd">            `candidates` is considered as the indices of the samples in</span>
+<span class="sd">            `(X, y)`.</span>
+<span class="sd">            If `candidates` is of shape `(n_candidates, n_features)`, the</span>
+<span class="sd">            candidates are directly given in candidates (not necessarily</span>
+<span class="sd">            contained in `X`).</span>
+<span class="sd">        batch_size : int, optional (default=1)</span>
+<span class="sd">            The number of samples to be selected in one AL cycle.</span>
+<span class="sd">        return_utilities : bool, optional (default=False)</span>
+<span class="sd">            If true, also return the utilities based on the query strategy.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        query_indices : numpy.ndarray of shape (batch_size,)</span>
+<span class="sd">            The `query_indices` indicate for which candidate sample a label is</span>
+<span class="sd">            to be queried, e.g., `query_indices[0]` indicates the index of</span>
+<span class="sd">            the first selected sample.</span>
+<span class="sd">            If `candidates` is `None` or of shape `(n_candidates,)`, the</span>
+<span class="sd">            indexing refers to samples in `X`.</span>
+<span class="sd">            If `candidates` is of shape (n_candidates, n_features), the</span>
+<span class="sd">            indexing refers to samples in `candidates`.</span>
+<span class="sd">        utilities : numpy.ndarray of shape (batch_size, n_samples) or</span>
+<span class="sd">        numpy.ndarray of shape (batch_size, n_candidates)</span>
+<span class="sd">            The utilities of samples after each selected sample of the batch,</span>
+<span class="sd">            e.g., `utilities[0]` indicates the utilities used for selecting</span>
+<span class="sd">            the first sample (with index `query_indices[0]`) of the batch.</span>
+<span class="sd">            Utilities for labeled samples will be set to np.nan.</span>
+<span class="sd">            If `candidates` is `None` or of shape `(n_candidates,)`, the</span>
+<span class="sd">            indexing refers to samples in `X`.</span>
+<span class="sd">            If `candidates` is of shape `(n_candidates, n_features)`, the</span>
+<span class="sd">            indexing refers to samples in `candidates`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Validate parameters.</span>
+        <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">candidates</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">return_utilities</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_data</span><span class="p">(</span>
+            <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">candidates</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">return_utilities</span><span class="p">,</span> <span class="n">reset</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)</span>
+        <span class="n">check_type</span><span class="p">(</span><span class="n">discriminator</span><span class="p">,</span> <span class="s2">&quot;discriminator&quot;</span><span class="p">,</span> <span class="n">SkactivemlClassifier</span><span class="p">)</span>
+        <span class="n">check_type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">greedy_selection</span><span class="p">,</span> <span class="s2">&quot;greedy_selection&quot;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>
+
+        <span class="c1"># Retransform candidates and create a potential mapping to the samples</span>
+        <span class="c1"># in `X`.</span>
+        <span class="n">X_cand</span><span class="p">,</span> <span class="n">mapping</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transform_candidates</span><span class="p">(</span>
+            <span class="n">candidates</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">enforce_mapping</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Re-define discriminator to fit the setting of classifying</span>
+        <span class="c1"># labeled (y=0) and unlabeled samples (y=1).</span>
+        <span class="n">discriminator</span> <span class="o">=</span> <span class="n">clone</span><span class="p">(</span><span class="n">discriminator</span><span class="p">)</span>
+        <span class="n">discriminator</span><span class="o">.</span><span class="n">classes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="n">discriminator</span><span class="o">.</span><span class="n">missing_label</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">greedy_selection</span><span class="p">:</span>
+            <span class="c1"># Return the top samples with the highest probabilities of</span>
+            <span class="c1"># being unlabeled, which correspond to their utilities.</span>
+            <span class="n">y_discriminator</span> <span class="o">=</span> <span class="n">is_unlabeled</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">missing_label</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">missing_label</span><span class="p">)</span>
+            <span class="n">y_discriminator</span> <span class="o">=</span> <span class="n">y_discriminator</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+            <span class="n">discriminator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y_discriminator</span><span class="p">)</span>
+            <span class="n">utilities_cand</span> <span class="o">=</span> <span class="n">discriminator</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_cand</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">]</span>
+
+            <span class="c1"># Remapping of `utilities` and `query_indices` if required.</span>
+            <span class="n">utilities</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+            <span class="n">utilities</span><span class="p">[</span><span class="n">mapping</span><span class="p">]</span> <span class="o">=</span> <span class="n">utilities_cand</span>
+
+            <span class="c1"># Return `query_indices` and potential `utilities`.</span>
+            <span class="k">return</span> <span class="n">simple_batch</span><span class="p">(</span>
+                <span class="n">utilities</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">random_state_</span><span class="p">,</span>
+                <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
+                <span class="n">return_utilities</span><span class="o">=</span><span class="n">return_utilities</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Refit the binary classifier, i.e., the discriminator, after each</span>
+            <span class="c1"># selected sample in a batch.</span>
+            <span class="n">X_discriminator</span> <span class="o">=</span> <span class="n">X</span>
+            <span class="n">query_indices_cand</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">utilities_cand</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">batch_size</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_cand</span><span class="p">)),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">batch_size</span><span class="p">):</span>
+                <span class="c1"># Determine unlabeled vs. labeled samples.</span>
+                <span class="n">y_discriminator</span> <span class="o">=</span> <span class="n">is_unlabeled</span><span class="p">(</span>
+                    <span class="n">y</span><span class="p">,</span> <span class="n">missing_label</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">missing_label</span>
+                <span class="p">)</span>
+                <span class="n">y_discriminator</span> <span class="o">=</span> <span class="n">y_discriminator</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+                <span class="c1"># Mark already selected samples as labeled.</span>
+                <span class="n">y_discriminator</span><span class="p">[</span><span class="n">mapping</span><span class="p">[</span><span class="n">query_indices_cand</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">0</span>
+
+                <span class="c1"># Fit discriminator to classify unlabeled vs. labeled samples.</span>
+                <span class="n">discriminator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_discriminator</span><span class="p">,</span> <span class="n">y_discriminator</span><span class="p">)</span>
+
+                <span class="c1"># Compute utilities as probabilities of being unlabeled.</span>
+                <span class="n">utilities_cand</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">discriminator</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_cand</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">]</span>
+                <span class="n">utilities_cand</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">query_indices_cand</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+                <span class="n">query_indices_cand</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="n">rand_argmax</span><span class="p">(</span><span class="n">utilities_cand</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">random_state_</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="p">)</span>
+
+            <span class="c1"># Remapping of `utilities` and `query_indices`</span>
+            <span class="n">utilities</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="n">batch_size</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+            <span class="n">utilities</span><span class="p">[:,</span> <span class="n">mapping</span><span class="p">]</span> <span class="o">=</span> <span class="n">utilities_cand</span>
+            <span class="n">query_indices</span> <span class="o">=</span> <span class="n">mapping</span><span class="p">[</span><span class="n">query_indices_cand</span><span class="p">]</span>
+
+            <span class="c1"># Check whether `utilities` are to be returned.</span>
+            <span class="k">if</span> <span class="n">return_utilities</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">query_indices</span><span class="p">,</span> <span class="n">utilities</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">query_indices</span></div></div>
+</pre></div>
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2020.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

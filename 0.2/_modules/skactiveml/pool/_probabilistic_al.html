@@ -1,0 +1,539 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>skactiveml.pool._probabilistic_al &#8212; scikit-activeml 0.2.5 documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../../index.html">
+  <img src="../../../_static/scikit-activeml-logo.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../index.html">
+  Home
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../tutorials.html">
+  Tutorials
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../generated/strategy_overview/strategy_overview-Settles2012.html">
+  Strategy Overview
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../generated/api_reference.html">
+  API Reference
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../generated/sphinx_gallery_examples/index.html">
+  Examples
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../developers_guide.html">
+  Developer Guide
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Quick Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/scikit-activeml/scikit-activeml" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://pypi.org/project/scikit-activeml" rel="noopener" target="_blank" title="PyPI"><span><i class="fas fa-box"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+              </div>
+              <div class="sidebar-end-items">
+              </div>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <h1>Source code for skactiveml.pool._probabilistic_al</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">itertools</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">factorial</span><span class="p">,</span> <span class="n">gammaln</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">clone</span>
+<span class="kn">from</span> <span class="nn">sklearn.utils.validation</span> <span class="kn">import</span> <span class="n">check_array</span>
+
+<span class="kn">from</span> <span class="nn">..base</span> <span class="kn">import</span> <span class="n">ClassFrequencyEstimator</span>
+<span class="kn">from</span> <span class="nn">..base</span> <span class="kn">import</span> <span class="n">SingleAnnotatorPoolQueryStrategy</span>
+<span class="kn">from</span> <span class="nn">..utils</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">MISSING_LABEL</span><span class="p">,</span>
+    <span class="n">check_scalar</span><span class="p">,</span>
+    <span class="n">simple_batch</span><span class="p">,</span>
+    <span class="n">check_type</span><span class="p">,</span>
+    <span class="n">check_equal_missing_label</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<div class="viewcode-block" id="ProbabilisticAL"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.ProbabilisticAL.html#skactiveml.pool.ProbabilisticAL">[docs]</a><span class="k">class</span> <span class="nc">ProbabilisticAL</span><span class="p">(</span><span class="n">SingleAnnotatorPoolQueryStrategy</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;(Multi-class) Probabilistic Active Learning</span>
+
+<span class="sd">    This class implements multi-class probabilistic active learning (McPAL) [1]</span>
+<span class="sd">    strategy.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    prior: float, optional (default=1)</span>
+<span class="sd">        Prior probabilities for the Dirichlet distribution of the samples.</span>
+<span class="sd">    m_max: int, optional (default=1)</span>
+<span class="sd">        Maximum number of hypothetically acquired labels.</span>
+<span class="sd">    missing_label : scalar or string or np.nan or None, default=np.nan</span>
+<span class="sd">        Value to represent a missing label.</span>
+<span class="sd">    random_state: numeric | np.random.RandomState, optional</span>
+<span class="sd">        Random state for candidate selection.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    [1] Daniel Kottke, Georg Krempl, Dominik Lang, Johannes Teschner, and Myra</span>
+<span class="sd">        Spiliopoulou. Multi-Class Probabilistic Active Learning,</span>
+<span class="sd">        vol. 285 of Frontiers in Artificial Intelligence and Applications,</span>
+<span class="sd">        pages 586-594. IOS Press, 2016</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">prior</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">m_max</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">missing_label</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">missing_label</span><span class="o">=</span><span class="n">missing_label</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">prior</span> <span class="o">=</span> <span class="n">prior</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">m_max</span> <span class="o">=</span> <span class="n">m_max</span>
+
+<div class="viewcode-block" id="ProbabilisticAL.query"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.ProbabilisticAL.html#skactiveml.pool.ProbabilisticAL.query">[docs]</a>    <span class="k">def</span> <span class="nf">query</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">X</span><span class="p">,</span>
+        <span class="n">y</span><span class="p">,</span>
+        <span class="n">clf</span><span class="p">,</span>
+        <span class="n">fit_clf</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">utility_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">candidates</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">return_utilities</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Query the next instance to be labeled.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : array-like of shape (n_samples, n_features)</span>
+<span class="sd">            Training data set, usually complete, i.e. including the labeled and</span>
+<span class="sd">            unlabeled samples.</span>
+<span class="sd">        y : array-like of shape (n_samples)</span>
+<span class="sd">            Labels of the training data set (possibly including unlabeled ones</span>
+<span class="sd">            indicated by self.MISSING_LABEL.</span>
+<span class="sd">        clf : skactiveml.base.ClassFrequencyEstimator</span>
+<span class="sd">            Model implementing the methods `fit` and `predict_freq`.</span>
+<span class="sd">        fit_clf : bool, default=True</span>
+<span class="sd">            Defines whether the classifier should be fitted on `X`, `y`, and</span>
+<span class="sd">            `sample_weight`.</span>
+<span class="sd">        sample_weight: array-like of shape (n_samples), optional (default=None)</span>
+<span class="sd">            Weights of training samples in `X`.</span>
+<span class="sd">        utility_weight: array-like, optional (default=None)</span>
+<span class="sd">            Weight for each candidate (multiplied with utilities). Usually,</span>
+<span class="sd">            this is to be the density of a candidate in ProbabilisticAL. The</span>
+<span class="sd">            length of `utility_weight` is usually n_samples, except for the</span>
+<span class="sd">            case when candidates contains samples (ndim &gt;= 2). Then the length</span>
+<span class="sd">            is `n_candidates`.</span>
+<span class="sd">        candidates : None or array-like of shape (n_candidates), dtype=int or</span>
+<span class="sd">            array-like of shape (n_candidates, n_features),</span>
+<span class="sd">            optional (default=None)</span>
+<span class="sd">            If candidates is None, the unlabeled samples from (X,y) are</span>
+<span class="sd">            considered as candidates.</span>
+<span class="sd">            If candidates is of shape (n_candidates) and of type int,</span>
+<span class="sd">            candidates is considered as the indices of the samples in (X,y).</span>
+<span class="sd">            If candidates is of shape (n_candidates, n_features), the</span>
+<span class="sd">            candidates are directly given in candidates (not necessarily</span>
+<span class="sd">            contained in X). This is not supported by all query strategies.</span>
+<span class="sd">        batch_size : int, optional (default=1)</span>
+<span class="sd">            The number of samples to be selected in one AL cycle.</span>
+<span class="sd">        return_utilities : bool, optional (default=False)</span>
+<span class="sd">            If true, also return the utilities based on the query strategy.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        query_indices : numpy.ndarray, shape (batch_size)</span>
+<span class="sd">            The query_indices indicate for which candidate sample a label is</span>
+<span class="sd">            to queried, e.g., `query_indices[0]` indicates the first selected</span>
+<span class="sd">            sample.</span>
+<span class="sd">        utilities : numpy.ndarray, shape (batch_size, n_samples)</span>
+<span class="sd">            The utilities of all candidate samples after each selected</span>
+<span class="sd">            sample of the batch, e.g., `utilities[0]` indicates the utilities</span>
+<span class="sd">            used for selecting the first sample (with index `query_indices[0]`)</span>
+<span class="sd">            of the batch.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Validate input parameters.</span>
+        <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">candidates</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">return_utilities</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_data</span><span class="p">(</span>
+            <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">candidates</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">return_utilities</span><span class="p">,</span> <span class="n">reset</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)</span>
+
+        <span class="n">X_cand</span><span class="p">,</span> <span class="n">mapping</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transform_candidates</span><span class="p">(</span><span class="n">candidates</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+        <span class="c1"># Check the classifier&#39;s type.</span>
+        <span class="n">check_type</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="s2">&quot;clf&quot;</span><span class="p">,</span> <span class="n">ClassFrequencyEstimator</span><span class="p">)</span>
+        <span class="n">check_equal_missing_label</span><span class="p">(</span><span class="n">clf</span><span class="o">.</span><span class="n">missing_label</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">missing_label_</span><span class="p">)</span>
+        <span class="n">check_type</span><span class="p">(</span><span class="n">fit_clf</span><span class="p">,</span> <span class="s2">&quot;fit_clf&quot;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>
+
+        <span class="c1"># Check `utility_weight`.</span>
+        <span class="k">if</span> <span class="n">utility_weight</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">mapping</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">utility_weight</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X_cand</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">utility_weight</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
+        <span class="n">utility_weight</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">utility_weight</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">mapping</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_cand</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">utility_weight</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;&#39;utility_weight&#39; must have length &#39;n_candidates&#39; but &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">X_cand</span><span class="p">)</span><span class="si">}</span><span class="s2"> != </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">utility_weight</span><span class="p">)</span><span class="si">}</span><span class="s2">.&quot;</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="n">mapping</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">utility_weight</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;&#39;utility_weight&#39; must have length &#39;n_samples&#39; but &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="si">}</span><span class="s2"> != </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">utility_weight</span><span class="p">)</span><span class="si">}</span><span class="s2">.&quot;</span>
+            <span class="p">)</span>
+
+        <span class="c1"># Fit the classifier and predict frequencies.</span>
+        <span class="k">if</span> <span class="n">fit_clf</span><span class="p">:</span>
+            <span class="n">clf</span> <span class="o">=</span> <span class="n">clone</span><span class="p">(</span><span class="n">clf</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">)</span>
+        <span class="n">k_vec</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict_freq</span><span class="p">(</span><span class="n">X_cand</span><span class="p">)</span>
+
+        <span class="c1"># Calculate utilities and return the output.</span>
+        <span class="n">utilities_cand</span> <span class="o">=</span> <span class="n">cost_reduction</span><span class="p">(</span>
+            <span class="n">k_vec</span><span class="p">,</span> <span class="n">prior</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">prior</span><span class="p">,</span> <span class="n">m_max</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">m_max</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">mapping</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">utilities</span> <span class="o">=</span> <span class="n">utilities_cand</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">utilities</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+            <span class="n">utilities</span><span class="p">[</span><span class="n">mapping</span><span class="p">]</span> <span class="o">=</span> <span class="n">utilities_cand</span>
+        <span class="n">utilities</span> <span class="o">*=</span> <span class="n">utility_weight</span>
+
+        <span class="k">return</span> <span class="n">simple_batch</span><span class="p">(</span>
+            <span class="n">utilities</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">random_state_</span><span class="p">,</span>
+            <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
+            <span class="n">return_utilities</span><span class="o">=</span><span class="n">return_utilities</span><span class="p">,</span>
+        <span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="cost_reduction"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.cost_reduction.html#skactiveml.pool.cost_reduction">[docs]</a><span class="k">def</span> <span class="nf">cost_reduction</span><span class="p">(</span><span class="n">k_vec_list</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">m_max</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">prior</span><span class="o">=</span><span class="mf">1.0e-3</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Calculate the expected cost reduction.</span>
+
+<span class="sd">    Calculate the expected cost reduction for given maximum number of</span>
+<span class="sd">    hypothetically acquired labels, observed labels and cost matrix.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    k_vec_list: array-like, shape (n_samples, n_classes)</span>
+<span class="sd">        Observed class labels.</span>
+<span class="sd">    C: array-like, shape = (n_classes, n_classes)</span>
+<span class="sd">        Cost matrix.</span>
+<span class="sd">    m_max: int</span>
+<span class="sd">        Maximal number of hypothetically acquired labels.</span>
+<span class="sd">    prior : float | array-like, shape (n_classes)</span>
+<span class="sd">       Prior value for each class.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    expected_cost_reduction: array-like, shape (n_samples)</span>
+<span class="sd">        Expected cost reduction for given parameters.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Check if &#39;prior&#39; is valid</span>
+    <span class="n">check_scalar</span><span class="p">(</span><span class="n">prior</span><span class="p">,</span> <span class="s2">&quot;prior&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">),</span> <span class="n">min_inclusive</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">min_val</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1"># Check if &#39;m_max&#39; is valid</span>
+    <span class="n">check_scalar</span><span class="p">(</span><span class="n">m_max</span><span class="p">,</span> <span class="s2">&quot;m_max&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="n">min_val</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">n_classes</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">k_vec_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">n_samples</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">k_vec_list</span><span class="p">)</span>
+
+    <span class="c1"># check cost matrix</span>
+    <span class="n">C</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n_classes</span><span class="p">)</span> <span class="k">if</span> <span class="n">C</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
+
+    <span class="c1"># generate labelling vectors for all possible m values</span>
+    <span class="n">l_vec_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span>
+        <span class="p">[</span><span class="n">_gen_l_vec_list</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">n_classes</span><span class="p">)</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m_max</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
+    <span class="p">)</span>
+    <span class="n">m_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">l_vec_list</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">n_l_vecs</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">l_vec_list</span><span class="p">)</span>
+
+    <span class="c1"># compute optimal cost-sensitive decision for all combination of k-vectors</span>
+    <span class="c1"># and l-vectors</span>
+    <span class="n">tile</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">k_vec_list</span><span class="p">,</span> <span class="p">(</span><span class="n">n_l_vecs</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">k_l_vec_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">swapaxes</span><span class="p">(</span><span class="n">tile</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">l_vec_list</span>
+    <span class="n">y_hats</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">k_l_vec_list</span> <span class="o">@</span> <span class="n">C</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="c1"># add prior to k-vectors</span>
+    <span class="n">prior</span> <span class="o">=</span> <span class="n">prior</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n_classes</span><span class="p">)</span>
+    <span class="n">k_vec_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">k_vec_list</span><span class="p">)</span> <span class="o">+</span> <span class="n">prior</span>
+
+    <span class="c1"># all combination of k-, l-, and prediction indicator vectors</span>
+    <span class="n">combs</span> <span class="o">=</span> <span class="p">[</span><span class="n">k_vec_list</span><span class="p">,</span> <span class="n">l_vec_list</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n_classes</span><span class="p">)]</span>
+    <span class="n">combs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span>
+        <span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span> <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="o">*</span><span class="n">combs</span><span class="p">))]</span>
+    <span class="p">)</span>
+
+    <span class="c1"># three factors of the closed form solution</span>
+    <span class="n">factor_1</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">_euler_beta</span><span class="p">(</span><span class="n">k_vec_list</span><span class="p">)</span>
+    <span class="n">factor_2</span> <span class="o">=</span> <span class="n">_multinomial</span><span class="p">(</span><span class="n">l_vec_list</span><span class="p">)</span>
+    <span class="n">factor_3</span> <span class="o">=</span> <span class="n">_euler_beta</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">combs</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span>
+        <span class="n">n_samples</span><span class="p">,</span> <span class="n">n_l_vecs</span><span class="p">,</span> <span class="n">n_classes</span>
+    <span class="p">)</span>
+
+    <span class="c1"># expected classification cost for each m</span>
+    <span class="n">m_sums</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="n">factor_1</span><span class="p">[</span><span class="n">k_idx</span><span class="p">]</span>
+            <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">bincount</span><span class="p">(</span>
+                <span class="n">m_list</span><span class="p">,</span>
+                <span class="n">factor_2</span>
+                <span class="o">*</span> <span class="p">[</span>
+                    <span class="n">C</span><span class="p">[:,</span> <span class="n">y_hats</span><span class="p">[</span><span class="n">k_idx</span><span class="p">,</span> <span class="n">l_idx</span><span class="p">]]</span> <span class="o">@</span> <span class="n">factor_3</span><span class="p">[</span><span class="n">k_idx</span><span class="p">,</span> <span class="n">l_idx</span><span class="p">]</span>
+                    <span class="k">for</span> <span class="n">l_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_l_vecs</span><span class="p">)</span>
+                <span class="p">],</span>
+            <span class="p">)</span>
+            <span class="k">for</span> <span class="n">k_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_samples</span><span class="p">)</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="c1"># compute classification cost reduction as difference</span>
+    <span class="n">gains</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">m_max</span><span class="p">))</span> <span class="o">+</span> <span class="n">m_sums</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">gains</span> <span class="o">-=</span> <span class="n">m_sums</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:]</span>
+
+    <span class="c1"># normalize  cost reduction by number of hypothetical label acquisitions</span>
+    <span class="n">gains</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">m_max</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">gains</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></div>
+
+
+<span class="k">def</span> <span class="nf">_gen_l_vec_list</span><span class="p">(</span><span class="n">m_approx</span><span class="p">,</span> <span class="n">n_classes</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Creates all possible class labeling vectors for given number of</span>
+<span class="sd">    hypothetically acquired labels and given number of classes.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    m_approx: int</span>
+<span class="sd">        Number of hypothetically acquired labels..</span>
+<span class="sd">    n_classes: int,</span>
+<span class="sd">        Number of classes</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    label_vec_list: array-like, shape = [n_labelings, n_classes]</span>
+<span class="sd">        All possible class labelings for given parameters.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">label_vec_list</span> <span class="o">=</span> <span class="p">[[]]</span>
+    <span class="n">label_vec_res</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">m_approx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_classes</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">new_label_vec_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">labelVec</span> <span class="ow">in</span> <span class="n">label_vec_list</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">newLabel</span> <span class="ow">in</span> <span class="n">label_vec_res</span><span class="p">[</span>
+                <span class="n">label_vec_res</span> <span class="o">-</span> <span class="p">(</span><span class="n">m_approx</span> <span class="o">-</span> <span class="nb">sum</span><span class="p">(</span><span class="n">labelVec</span><span class="p">))</span> <span class="o">&lt;=</span> <span class="mf">1.0e-10</span>
+            <span class="p">]:</span>
+                <span class="n">new_label_vec_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">labelVec</span> <span class="o">+</span> <span class="p">[</span><span class="n">newLabel</span><span class="p">])</span>
+        <span class="n">label_vec_list</span> <span class="o">=</span> <span class="n">new_label_vec_list</span>
+
+    <span class="n">new_label_vec_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">labelVec</span> <span class="ow">in</span> <span class="n">label_vec_list</span><span class="p">:</span>
+        <span class="n">new_label_vec_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">labelVec</span> <span class="o">+</span> <span class="p">[</span><span class="n">m_approx</span> <span class="o">-</span> <span class="nb">sum</span><span class="p">(</span><span class="n">labelVec</span><span class="p">)])</span>
+    <span class="n">label_vec_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">new_label_vec_list</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">label_vec_list</span>
+
+
+<span class="k">def</span> <span class="nf">_euler_beta</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Represents Euler beta function:</span>
+<span class="sd">    B(a(i)) = Gamma(a(i,1))*...*Gamma(a_n)/Gamma(a(i,1)+...+a(i,n))</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    a: array-like, shape (m, n)</span>
+<span class="sd">        Vectors to evaluated.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    result: array-like, shape (m)</span>
+<span class="sd">        Euler beta function results [B(a(0)), ..., B(a(m))</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">gammaln</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">gammaln</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)))</span>
+
+
+<span class="k">def</span> <span class="nf">_multinomial</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes Multinomial coefficient:</span>
+<span class="sd">    Mult(a(i)) = (a(i,1)+...+a(i,n))!/(a(i,1)!...a(i,n)!)</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    a: array-like, shape (m, n)</span>
+<span class="sd">        Vectors to evaluated.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    result: array-like, shape (m)</span>
+<span class="sd">        Multinomial coefficients [Mult(a(0)), ..., Mult(a(m))</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">factorial</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">factorial</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2020.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

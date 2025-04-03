@@ -1,0 +1,1477 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>API Reference &#8212; scikit-activeml latest documentation</title>
+<script>
+  document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+  document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
+</script>
+
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+
+
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
+
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../_static/filter_examples.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="skactiveml.base.QueryStrategy" href="api/skactiveml.base.QueryStrategy.html" />
+    <link rel="prev" title="Strategy Overview" href="strategy_overview.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="docsearch:language" content="None">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+    <div class="bd-header-announcement container-fluid" id="banner">
+      
+
+    </div>
+
+    
+    <nav class="bd-header navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="bd-header__inner container-xl">
+
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    <img src="../_static/scikit-activeml-logo.png" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/scikit-activeml-logo.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="fas fa-bars"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../index.html">
+  Home
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../tutorials.html">
+  Tutorials
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="strategy_overview.html">
+  Strategy Overview
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="current reference internal nav-link" href="#">
+  API Reference
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="sphinx_gallery_examples/index.html">
+  Examples
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../developers_guide.html">
+  Developer Guide
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <span id="theme-switch" class="btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Quick Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/scikit-activeml/scikit-activeml" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://pypi.org/project/scikit-activeml" rel="noopener" target="_blank" title="PyPI"><span><i class="fas fa-box"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="bd-container container-xl">
+      <div class="bd-container__inner row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="bd-sidebar-primary col-12 col-md-3 bd-sidebar">
+  <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.base.QueryStrategy.html">
+   skactiveml.base.QueryStrategy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.base.SingleAnnotatorPoolQueryStrategy.html">
+   skactiveml.base.SingleAnnotatorPoolQueryStrategy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.base.MultiAnnotatorPoolQueryStrategy.html">
+   skactiveml.base.MultiAnnotatorPoolQueryStrategy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.base.BudgetManager.html">
+   skactiveml.base.BudgetManager
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.base.SingleAnnotatorStreamQueryStrategy.html">
+   skactiveml.base.SingleAnnotatorStreamQueryStrategy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.base.SkactivemlClassifier.html">
+   skactiveml.base.SkactivemlClassifier
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.base.ClassFrequencyEstimator.html">
+   skactiveml.base.ClassFrequencyEstimator
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.base.AnnotatorModelMixin.html">
+   skactiveml.base.AnnotatorModelMixin
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.base.SkactivemlRegressor.html">
+   skactiveml.base.SkactivemlRegressor
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.base.ProbabilisticRegressor.html">
+   skactiveml.base.ProbabilisticRegressor
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.pool.RandomSampling.html">
+   skactiveml.pool.RandomSampling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.pool.ProbabilisticAL.html">
+   skactiveml.pool.ProbabilisticAL
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.pool.UncertaintySampling.html">
+   skactiveml.pool.UncertaintySampling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.pool.EpistemicUncertaintySampling.html">
+   skactiveml.pool.EpistemicUncertaintySampling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.pool.MonteCarloEER.html">
+   skactiveml.pool.MonteCarloEER
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.pool.ValueOfInformationEER.html">
+   skactiveml.pool.ValueOfInformationEER
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.pool.QueryByCommittee.html">
+   skactiveml.pool.QueryByCommittee
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.pool.Quire.html">
+   skactiveml.pool.Quire
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.pool.FourDs.html">
+   skactiveml.pool.FourDs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.pool.CostEmbeddingAL.html">
+   skactiveml.pool.CostEmbeddingAL
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.pool.ExpectedModelChangeMaximization.html">
+   skactiveml.pool.ExpectedModelChangeMaximization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.pool.ExpectedModelOutputChange.html">
+   skactiveml.pool.ExpectedModelOutputChange
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.pool.ExpectedModelVarianceReduction.html">
+   skactiveml.pool.ExpectedModelVarianceReduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.pool.KLDivergenceMaximization.html">
+   skactiveml.pool.KLDivergenceMaximization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.pool.GreedySamplingX.html">
+   skactiveml.pool.GreedySamplingX
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.pool.GreedySamplingTarget.html">
+   skactiveml.pool.GreedySamplingTarget
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.pool.DiscriminativeAL.html">
+   skactiveml.pool.DiscriminativeAL
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.pool.BatchBALD.html">
+   skactiveml.pool.BatchBALD
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.pool.cost_reduction.html">
+   skactiveml.pool.cost_reduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.pool.uncertainty_scores.html">
+   skactiveml.pool.uncertainty_scores
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.pool.expected_average_precision.html">
+   skactiveml.pool.expected_average_precision
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.pool.average_kl_divergence.html">
+   skactiveml.pool.average_kl_divergence
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.pool.vote_entropy.html">
+   skactiveml.pool.vote_entropy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.pool.batch_bald.html">
+   skactiveml.pool.batch_bald
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.pool.multiannotator.IntervalEstimationThreshold.html">
+   skactiveml.pool.multiannotator.IntervalEstimationThreshold
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.pool.multiannotator.IntervalEstimationAnnotModel.html">
+   skactiveml.pool.multiannotator.IntervalEstimationAnnotModel
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.pool.multiannotator.SingleAnnotatorWrapper.html">
+   skactiveml.pool.multiannotator.SingleAnnotatorWrapper
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.pool.utils.IndexClassifierWrapper.html">
+   skactiveml.pool.utils.IndexClassifierWrapper
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.stream.StreamRandomSampling.html">
+   skactiveml.stream.StreamRandomSampling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.stream.PeriodicSampling.html">
+   skactiveml.stream.PeriodicSampling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.stream.FixedUncertainty.html">
+   skactiveml.stream.FixedUncertainty
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.stream.VariableUncertainty.html">
+   skactiveml.stream.VariableUncertainty
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.stream.Split.html">
+   skactiveml.stream.Split
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.stream.StreamProbabilisticAL.html">
+   skactiveml.stream.StreamProbabilisticAL
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.stream.RandomVariableUncertainty.html">
+   skactiveml.stream.RandomVariableUncertainty
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.stream.StreamDensityBasedAL.html">
+   skactiveml.stream.StreamDensityBasedAL
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.stream.CognitiveDualQueryStrategy.html">
+   skactiveml.stream.CognitiveDualQueryStrategy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.stream.CognitiveDualQueryStrategyRan.html">
+   skactiveml.stream.CognitiveDualQueryStrategyRan
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.stream.CognitiveDualQueryStrategyRanVarUn.html">
+   skactiveml.stream.CognitiveDualQueryStrategyRanVarUn
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.stream.CognitiveDualQueryStrategyVarUn.html">
+   skactiveml.stream.CognitiveDualQueryStrategyVarUn
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.stream.CognitiveDualQueryStrategyFixUn.html">
+   skactiveml.stream.CognitiveDualQueryStrategyFixUn
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.stream.budgetmanager.EstimatedBudgetZliobaite.html">
+   skactiveml.stream.budgetmanager.EstimatedBudgetZliobaite
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.stream.budgetmanager.FixedUncertaintyBudgetManager.html">
+   skactiveml.stream.budgetmanager.FixedUncertaintyBudgetManager
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.stream.budgetmanager.VariableUncertaintyBudgetManager.html">
+   skactiveml.stream.budgetmanager.VariableUncertaintyBudgetManager
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.stream.budgetmanager.SplitBudgetManager.html">
+   skactiveml.stream.budgetmanager.SplitBudgetManager
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.stream.budgetmanager.BalancedIncrementalQuantileFilter.html">
+   skactiveml.stream.budgetmanager.BalancedIncrementalQuantileFilter
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.stream.budgetmanager.RandomVariableUncertaintyBudgetManager.html">
+   skactiveml.stream.budgetmanager.RandomVariableUncertaintyBudgetManager
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.stream.budgetmanager.DensityBasedSplitBudgetManager.html">
+   skactiveml.stream.budgetmanager.DensityBasedSplitBudgetManager
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.stream.budgetmanager.RandomBudgetManager.html">
+   skactiveml.stream.budgetmanager.RandomBudgetManager
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.classifier.ParzenWindowClassifier.html">
+   skactiveml.classifier.ParzenWindowClassifier
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.classifier.MixtureModelClassifier.html">
+   skactiveml.classifier.MixtureModelClassifier
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.classifier.SklearnClassifier.html">
+   skactiveml.classifier.SklearnClassifier
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.classifier.SlidingWindowClassifier.html">
+   skactiveml.classifier.SlidingWindowClassifier
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.classifier.multiannotator.AnnotatorLogisticRegression.html">
+   skactiveml.classifier.multiannotator.AnnotatorLogisticRegression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.classifier.multiannotator.AnnotatorEnsembleClassifier.html">
+   skactiveml.classifier.multiannotator.AnnotatorEnsembleClassifier
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.visualization.plot_utilities.html">
+   skactiveml.visualization.plot_utilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.visualization.plot_decision_boundary.html">
+   skactiveml.visualization.plot_decision_boundary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.visualization.plot_contour_for_samples.html">
+   skactiveml.visualization.plot_contour_for_samples
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.visualization.plot_annotator_utilities.html">
+   skactiveml.visualization.plot_annotator_utilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.visualization.plot_stream_training_data.html">
+   skactiveml.visualization.plot_stream_training_data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.visualization.plot_stream_decision_boundary.html">
+   skactiveml.visualization.plot_stream_decision_boundary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.visualization.mesh.html">
+   skactiveml.visualization.mesh
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.utils.ExtLabelEncoder.html">
+   skactiveml.utils.ExtLabelEncoder
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.utils.rand_argmax.html">
+   skactiveml.utils.rand_argmax
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.utils.rand_argmin.html">
+   skactiveml.utils.rand_argmin
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.utils.compute_vote_vectors.html">
+   skactiveml.utils.compute_vote_vectors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.utils.majority_vote.html">
+   skactiveml.utils.majority_vote
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.utils.is_unlabeled.html">
+   skactiveml.utils.is_unlabeled
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.utils.is_labeled.html">
+   skactiveml.utils.is_labeled
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.utils.check_classes.html">
+   skactiveml.utils.check_classes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.utils.check_missing_label.html">
+   skactiveml.utils.check_missing_label
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.utils.check_cost_matrix.html">
+   skactiveml.utils.check_cost_matrix
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.utils.check_scalar.html">
+   skactiveml.utils.check_scalar
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.utils.check_classifier_params.html">
+   skactiveml.utils.check_classifier_params
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.utils.check_X_y.html">
+   skactiveml.utils.check_X_y
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.utils.check_random_state.html">
+   skactiveml.utils.check_random_state
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.utils.call_func.html">
+   skactiveml.utils.call_func
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.utils.check_class_prior.html">
+   skactiveml.utils.check_class_prior
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.utils.ext_confusion_matrix.html">
+   skactiveml.utils.ext_confusion_matrix
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.utils.labeled_indices.html">
+   skactiveml.utils.labeled_indices
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.utils.unlabeled_indices.html">
+   skactiveml.utils.unlabeled_indices
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.utils.check_type.html">
+   skactiveml.utils.check_type
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.utils.check_bound.html">
+   skactiveml.utils.check_bound
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.utils.check_equal_missing_label.html">
+   skactiveml.utils.check_equal_missing_label
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.utils.check_budget_manager.html">
+   skactiveml.utils.check_budget_manager
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.utils.check_indices.html">
+   skactiveml.utils.check_indices
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.utils.simple_batch.html">
+   skactiveml.utils.simple_batch
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.utils._check_callable.html">
+   skactiveml.utils._check_callable
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/skactiveml.exceptions.MappingError.html">
+   skactiveml.exceptions.MappingError
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+  </div>
+  <div class="sidebar-end-items">
+  </div>
+</div>
+
+
+          
+
+
+<div class="bd-sidebar-secondary d-none d-xl-block col-xl-2 bd-toc">
+  
+    
+    <div class="toc-item">
+      
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-skactiveml.base">
+   <code class="xref py py-mod docutils literal notranslate">
+    <span class="pre">
+     skactiveml.base
+    </span>
+   </code>
+   :
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#classes">
+     Classes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-skactiveml.pool">
+   <code class="xref py py-mod docutils literal notranslate">
+    <span class="pre">
+     skactiveml.pool
+    </span>
+   </code>
+   :
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Classes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#functions">
+     Functions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-skactiveml.pool.multiannotator">
+   <code class="xref py py-mod docutils literal notranslate">
+    <span class="pre">
+     skactiveml.pool.multiannotator
+    </span>
+   </code>
+   :
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     Classes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-skactiveml.pool.utils">
+   <code class="xref py py-mod docutils literal notranslate">
+    <span class="pre">
+     skactiveml.pool.utils
+    </span>
+   </code>
+   :
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     Classes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-skactiveml.stream">
+   <code class="xref py py-mod docutils literal notranslate">
+    <span class="pre">
+     skactiveml.stream
+    </span>
+   </code>
+   :
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     Classes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-skactiveml.stream.budgetmanager">
+   <code class="xref py py-mod docutils literal notranslate">
+    <span class="pre">
+     skactiveml.stream.budgetmanager
+    </span>
+   </code>
+   :
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     Classes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-skactiveml.classifier">
+   <code class="xref py py-mod docutils literal notranslate">
+    <span class="pre">
+     skactiveml.classifier
+    </span>
+   </code>
+   :
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     Classes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-skactiveml.classifier.multiannotator">
+   <code class="xref py py-mod docutils literal notranslate">
+    <span class="pre">
+     skactiveml.classifier.multiannotator
+    </span>
+   </code>
+   :
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     Classes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-skactiveml.visualization">
+   <code class="xref py py-mod docutils literal notranslate">
+    <span class="pre">
+     skactiveml.visualization
+    </span>
+   </code>
+   :
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id9">
+     Functions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-skactiveml.utils">
+   <code class="xref py py-mod docutils literal notranslate">
+    <span class="pre">
+     skactiveml.utils
+    </span>
+   </code>
+   :
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id10">
+     Classes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id11">
+     Functions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-skactiveml.exceptions">
+   <code class="xref py py-mod docutils literal notranslate">
+    <span class="pre">
+     skactiveml.exceptions
+    </span>
+   </code>
+   :
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id12">
+     Classes
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+    </div>
+    
+    <div class="toc-item">
+      
+    </div>
+    
+  
+</div>
+
+
+          
+          
+          <div class="bd-content col-12 col-md-9 col-xl-7">
+              
+              <article class="bd-article" role="main">
+                
+  <section id="api-reference">
+<span id="id1"></span><h1>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this headline">#</a></h1>
+<p>This is an overview of the API.</p>
+<span class="target" id="module-skactiveml"></span><section id="module-skactiveml.base">
+<span id="skactiveml-base"></span><h2><a class="reference internal" href="#module-skactiveml.base" title="skactiveml.base"><code class="xref py py-mod docutils literal notranslate"><span class="pre">skactiveml.base</span></code></a>:<a class="headerlink" href="#module-skactiveml.base" title="Permalink to this headline">#</a></h2>
+<p>The <a class="reference internal" href="#module-skactiveml.base" title="skactiveml.base"><code class="xref py py-mod docutils literal notranslate"><span class="pre">skactiveml.base</span></code></a> package implements the base classes for
+<a class="reference internal" href="#module-skactiveml" title="skactiveml"><code class="xref py py-mod docutils literal notranslate"><span class="pre">skactiveml</span></code></a>.</p>
+<section id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">#</a></h3>
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.base.QueryStrategy.html#skactiveml.base.QueryStrategy" title="skactiveml.base.QueryStrategy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">base.QueryStrategy</span></code></a></p></td>
+<td><p>Base class for all query strategies in scikit-activeml.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.base.SingleAnnotatorPoolQueryStrategy.html#skactiveml.base.SingleAnnotatorPoolQueryStrategy" title="skactiveml.base.SingleAnnotatorPoolQueryStrategy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">base.SingleAnnotatorPoolQueryStrategy</span></code></a></p></td>
+<td><p>Base class for all pool-based active learning query strategies with a single annotator in scikit-activeml.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.base.MultiAnnotatorPoolQueryStrategy.html#skactiveml.base.MultiAnnotatorPoolQueryStrategy" title="skactiveml.base.MultiAnnotatorPoolQueryStrategy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">base.MultiAnnotatorPoolQueryStrategy</span></code></a></p></td>
+<td><p>Base class for all pool-based active learning query strategies with multiple annotators in scikit-activeml.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.base.BudgetManager.html#skactiveml.base.BudgetManager" title="skactiveml.base.BudgetManager"><code class="xref py py-obj docutils literal notranslate"><span class="pre">base.BudgetManager</span></code></a></p></td>
+<td><p>Base class for all budget managers for stream-based active learning in scikit-activeml to model budgeting constraints.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.base.SingleAnnotatorStreamQueryStrategy.html#skactiveml.base.SingleAnnotatorStreamQueryStrategy" title="skactiveml.base.SingleAnnotatorStreamQueryStrategy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">base.SingleAnnotatorStreamQueryStrategy</span></code></a></p></td>
+<td><p>Base class for all stream-based active learning query strategies in scikit-activeml.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.base.SkactivemlClassifier.html#skactiveml.base.SkactivemlClassifier" title="skactiveml.base.SkactivemlClassifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">base.SkactivemlClassifier</span></code></a></p></td>
+<td><p>Base class for scikit-activeml classifiers such that missing labels, user-defined classes, and cost-sensitive classification (i.e., cost matrix) can be handled.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.base.ClassFrequencyEstimator.html#skactiveml.base.ClassFrequencyEstimator" title="skactiveml.base.ClassFrequencyEstimator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">base.ClassFrequencyEstimator</span></code></a></p></td>
+<td><p>Extends scikit-activeml classifiers to estimators that are able to estimate class frequencies for given samples (by calling 'predict_freq').</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.base.AnnotatorModelMixin.html#skactiveml.base.AnnotatorModelMixin" title="skactiveml.base.AnnotatorModelMixin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">base.AnnotatorModelMixin</span></code></a></p></td>
+<td><p>Base class of all annotator models estimating the performances of annotators for given samples.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.base.SkactivemlRegressor.html#skactiveml.base.SkactivemlRegressor" title="skactiveml.base.SkactivemlRegressor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">base.SkactivemlRegressor</span></code></a></p></td>
+<td><p>Base class for scikit-activeml regressors.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.base.ProbabilisticRegressor.html#skactiveml.base.ProbabilisticRegressor" title="skactiveml.base.ProbabilisticRegressor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">base.ProbabilisticRegressor</span></code></a></p></td>
+<td><p>Base class for scikit-activeml probabilistic regressors.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="module-skactiveml.pool">
+<span id="skactiveml-pool"></span><h2><a class="reference internal" href="#module-skactiveml.pool" title="skactiveml.pool"><code class="xref py py-mod docutils literal notranslate"><span class="pre">skactiveml.pool</span></code></a>:<a class="headerlink" href="#module-skactiveml.pool" title="Permalink to this headline">#</a></h2>
+<p>The <a class="reference internal" href="#module-skactiveml.pool" title="skactiveml.pool"><code class="xref py py-mod docutils literal notranslate"><span class="pre">skactiveml.pool</span></code></a> package implements query strategies for
+pool-based active learning.</p>
+<section id="id2">
+<h3>Classes<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.pool.RandomSampling.html#skactiveml.pool.RandomSampling" title="skactiveml.pool.RandomSampling"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pool.RandomSampling</span></code></a></p></td>
+<td><p>Random Sampling.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.pool.ProbabilisticAL.html#skactiveml.pool.ProbabilisticAL" title="skactiveml.pool.ProbabilisticAL"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pool.ProbabilisticAL</span></code></a></p></td>
+<td><p>(Multi-class) Probabilistic Active Learning</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.pool.UncertaintySampling.html#skactiveml.pool.UncertaintySampling" title="skactiveml.pool.UncertaintySampling"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pool.UncertaintySampling</span></code></a></p></td>
+<td><p>Uncertainty Sampling.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.pool.EpistemicUncertaintySampling.html#skactiveml.pool.EpistemicUncertaintySampling" title="skactiveml.pool.EpistemicUncertaintySampling"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pool.EpistemicUncertaintySampling</span></code></a></p></td>
+<td><p>Epistemic Uncertainty Sampling.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.pool.MonteCarloEER.html#skactiveml.pool.MonteCarloEER" title="skactiveml.pool.MonteCarloEER"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pool.MonteCarloEER</span></code></a></p></td>
+<td><p>This class implements the expected error method from [1] that uses a Monte-Carlo approach to estimate the error.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.pool.ValueOfInformationEER.html#skactiveml.pool.ValueOfInformationEER" title="skactiveml.pool.ValueOfInformationEER"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pool.ValueOfInformationEER</span></code></a></p></td>
+<td><p>This class implements the expected error method from [1] that estimates the value of information.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.pool.QueryByCommittee.html#skactiveml.pool.QueryByCommittee" title="skactiveml.pool.QueryByCommittee"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pool.QueryByCommittee</span></code></a></p></td>
+<td><p>Query-by-Committee.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.pool.Quire.html#skactiveml.pool.Quire" title="skactiveml.pool.Quire"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pool.Quire</span></code></a></p></td>
+<td><p>Implementation of the AL strategy &quot;QUerying Informative and Representative Examples&quot; (QUIRE for short) [1].</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.pool.FourDs.html#skactiveml.pool.FourDs" title="skactiveml.pool.FourDs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pool.FourDs</span></code></a></p></td>
+<td><p>Implementation of the pool-based query strategy 4DS for training a MixtureModelClassifier [1].</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.pool.CostEmbeddingAL.html#skactiveml.pool.CostEmbeddingAL" title="skactiveml.pool.CostEmbeddingAL"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pool.CostEmbeddingAL</span></code></a></p></td>
+<td><p>Active Learning with Cost Embedding (ALCE).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.pool.ExpectedModelChangeMaximization.html#skactiveml.pool.ExpectedModelChangeMaximization" title="skactiveml.pool.ExpectedModelChangeMaximization"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pool.ExpectedModelChangeMaximization</span></code></a></p></td>
+<td><p>Expected Model Change.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.pool.ExpectedModelOutputChange.html#skactiveml.pool.ExpectedModelOutputChange" title="skactiveml.pool.ExpectedModelOutputChange"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pool.ExpectedModelOutputChange</span></code></a></p></td>
+<td><p>Regression based Expected Model Output Change.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.pool.ExpectedModelVarianceReduction.html#skactiveml.pool.ExpectedModelVarianceReduction" title="skactiveml.pool.ExpectedModelVarianceReduction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pool.ExpectedModelVarianceReduction</span></code></a></p></td>
+<td><p>Expected Model Variance Reduction.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.pool.KLDivergenceMaximization.html#skactiveml.pool.KLDivergenceMaximization" title="skactiveml.pool.KLDivergenceMaximization"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pool.KLDivergenceMaximization</span></code></a></p></td>
+<td><p>Regression based Kullback Leibler Divergence Maximization.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.pool.GreedySamplingX.html#skactiveml.pool.GreedySamplingX" title="skactiveml.pool.GreedySamplingX"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pool.GreedySamplingX</span></code></a></p></td>
+<td><p>Greedy Sampling on the feature space.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.pool.GreedySamplingTarget.html#skactiveml.pool.GreedySamplingTarget" title="skactiveml.pool.GreedySamplingTarget"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pool.GreedySamplingTarget</span></code></a></p></td>
+<td><p>Greedy Sampling on the target space.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.pool.DiscriminativeAL.html#skactiveml.pool.DiscriminativeAL" title="skactiveml.pool.DiscriminativeAL"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pool.DiscriminativeAL</span></code></a></p></td>
+<td><p>Discriminative Active Learning.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.pool.BatchBALD.html#skactiveml.pool.BatchBALD" title="skactiveml.pool.BatchBALD"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pool.BatchBALD</span></code></a></p></td>
+<td><p>Batch Bayesian Active Learning by Disagreement (BatchBALD)</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">#</a></h3>
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.pool.cost_reduction.html#skactiveml.pool.cost_reduction" title="skactiveml.pool.cost_reduction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pool.cost_reduction</span></code></a></p></td>
+<td><p>Calculate the expected cost reduction.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.pool.uncertainty_scores.html#skactiveml.pool.uncertainty_scores" title="skactiveml.pool.uncertainty_scores"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pool.uncertainty_scores</span></code></a></p></td>
+<td><p>Computes uncertainty scores.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.pool.expected_average_precision.html#skactiveml.pool.expected_average_precision" title="skactiveml.pool.expected_average_precision"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pool.expected_average_precision</span></code></a></p></td>
+<td><p>Calculate the expected average precision.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.pool.average_kl_divergence.html#skactiveml.pool.average_kl_divergence" title="skactiveml.pool.average_kl_divergence"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pool.average_kl_divergence</span></code></a></p></td>
+<td><p>Calculates the average Kullback-Leibler (KL) divergence for measuring the level of disagreement in QueryByCommittee.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.pool.vote_entropy.html#skactiveml.pool.vote_entropy" title="skactiveml.pool.vote_entropy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pool.vote_entropy</span></code></a></p></td>
+<td><p>Calculates the vote entropy for measuring the level of disagreement in QueryByCommittee.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.pool.batch_bald.html#skactiveml.pool.batch_bald" title="skactiveml.pool.batch_bald"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pool.batch_bald</span></code></a></p></td>
+<td><p>BatchBALD: Efficient and Diverse Batch Acquisition</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="module-skactiveml.pool.multiannotator">
+<span id="skactiveml-pool-multiannotator"></span><h2><a class="reference internal" href="#module-skactiveml.pool.multiannotator" title="skactiveml.pool.multiannotator"><code class="xref py py-mod docutils literal notranslate"><span class="pre">skactiveml.pool.multiannotator</span></code></a>:<a class="headerlink" href="#module-skactiveml.pool.multiannotator" title="Permalink to this headline">#</a></h2>
+<p>The <a class="reference internal" href="#module-skactiveml.pool.multiannotator" title="skactiveml.pool.multiannotator"><code class="xref py py-mod docutils literal notranslate"><span class="pre">skactiveml.pool.multiannotator</span></code></a> package implements multi annotator
+pool-based active learning for multiple annotators.</p>
+<section id="id3">
+<h3>Classes<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.pool.multiannotator.IntervalEstimationThreshold.html#skactiveml.pool.multiannotator.IntervalEstimationThreshold" title="skactiveml.pool.multiannotator.IntervalEstimationThreshold"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pool.multiannotator.IntervalEstimationThreshold</span></code></a></p></td>
+<td><p>The strategy 'Interval Estimation Threshold' (IEThresh) [1] is useful for addressing the exploration vs.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.pool.multiannotator.IntervalEstimationAnnotModel.html#skactiveml.pool.multiannotator.IntervalEstimationAnnotModel" title="skactiveml.pool.multiannotator.IntervalEstimationAnnotModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pool.multiannotator.IntervalEstimationAnnotModel</span></code></a></p></td>
+<td><p>This annotator model relies on 'Interval Estimation Learning' (IELearning) for estimating the annotation performances, i.e., labeling accuracies, of multiple annotators [1].</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.pool.multiannotator.SingleAnnotatorWrapper.html#skactiveml.pool.multiannotator.SingleAnnotatorWrapper" title="skactiveml.pool.multiannotator.SingleAnnotatorWrapper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pool.multiannotator.SingleAnnotatorWrapper</span></code></a></p></td>
+<td><p>Implementation of a wrapper class for pool-based active learning query strategies with a single annotator such that it transforms the query strategy for the single annotator into a query strategy for multiple annotators by choosing an annotator randomly or according to the parameter <cite>A_pef</cite> and setting the labeled matrix to a labeled vector by an aggregation function, e.g., majority voting.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="module-skactiveml.pool.utils">
+<span id="skactiveml-pool-utils"></span><h2><a class="reference internal" href="#module-skactiveml.pool.utils" title="skactiveml.pool.utils"><code class="xref py py-mod docutils literal notranslate"><span class="pre">skactiveml.pool.utils</span></code></a>:<a class="headerlink" href="#module-skactiveml.pool.utils" title="Permalink to this headline">#</a></h2>
+<section id="id4">
+<h3>Classes<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.pool.utils.IndexClassifierWrapper.html#skactiveml.pool.utils.IndexClassifierWrapper" title="skactiveml.pool.utils.IndexClassifierWrapper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pool.utils.IndexClassifierWrapper</span></code></a></p></td>
+<td><p>Classifier to simplify retraining classifiers in an active learning scenario.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="module-skactiveml.stream">
+<span id="skactiveml-stream"></span><h2><a class="reference internal" href="#module-skactiveml.stream" title="skactiveml.stream"><code class="xref py py-mod docutils literal notranslate"><span class="pre">skactiveml.stream</span></code></a>:<a class="headerlink" href="#module-skactiveml.stream" title="Permalink to this headline">#</a></h2>
+<p>The <a class="reference internal" href="#module-skactiveml.stream" title="skactiveml.stream"><code class="xref py py-mod docutils literal notranslate"><span class="pre">skactiveml.stream</span></code></a> module implements query strategies for
+stream-based active learning.</p>
+<section id="id5">
+<h3>Classes<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h3>
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.stream.StreamRandomSampling.html#skactiveml.stream.StreamRandomSampling" title="skactiveml.stream.StreamRandomSampling"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stream.StreamRandomSampling</span></code></a></p></td>
+<td><p>Random Sampling for Datastreams.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.stream.PeriodicSampling.html#skactiveml.stream.PeriodicSampling" title="skactiveml.stream.PeriodicSampling"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stream.PeriodicSampling</span></code></a></p></td>
+<td><p>The PeriodicSampling samples instances periodically.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.stream.FixedUncertainty.html#skactiveml.stream.FixedUncertainty" title="skactiveml.stream.FixedUncertainty"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stream.FixedUncertainty</span></code></a></p></td>
+<td><p>The FixedUncertainty (Fixed-Uncertainty in [1]) query strategy samples instances based on the classifiers uncertainty assessed based on the classifier's predictions.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.stream.VariableUncertainty.html#skactiveml.stream.VariableUncertainty" title="skactiveml.stream.VariableUncertainty"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stream.VariableUncertainty</span></code></a></p></td>
+<td><p>The VariableUncertainty (Var-Uncertainty in [1]) query strategy samples instances based on the classifiers uncertainty assessed based on the classifier's predictions.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.stream.Split.html#skactiveml.stream.Split" title="skactiveml.stream.Split"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stream.Split</span></code></a></p></td>
+<td><p>The Split [1] query strategy samples in 100*v% of instances randomly and in 100*(1-v)% of cases according to VariableUncertainty.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.stream.StreamProbabilisticAL.html#skactiveml.stream.StreamProbabilisticAL" title="skactiveml.stream.StreamProbabilisticAL"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stream.StreamProbabilisticAL</span></code></a></p></td>
+<td><p>Probabilistic Active Learning in Datastreams (StreamProbabilisticAL) is an extension to Multi-Class Probabilistic Active Learning (McPAL) (see pool.ProbabilisticAL).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.stream.RandomVariableUncertainty.html#skactiveml.stream.RandomVariableUncertainty" title="skactiveml.stream.RandomVariableUncertainty"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stream.RandomVariableUncertainty</span></code></a></p></td>
+<td><p>The RandomVariableUncertainty (Ran-Var-Uncertainty in [1]) query strategy samples instances based on the classifier's uncertainty assessed based on the classifier's predictions.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.stream.StreamDensityBasedAL.html#skactiveml.stream.StreamDensityBasedAL" title="skactiveml.stream.StreamDensityBasedAL"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stream.StreamDensityBasedAL</span></code></a></p></td>
+<td><p>The StreamDensityBasedAL [1] query strategy is an extension to the uncertainty based query strategies proposed by Žliobaitė et al. [2].</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.stream.CognitiveDualQueryStrategy.html#skactiveml.stream.CognitiveDualQueryStrategy" title="skactiveml.stream.CognitiveDualQueryStrategy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stream.CognitiveDualQueryStrategy</span></code></a></p></td>
+<td><p>This class is the base for the CognitiveDualQueryStrategy query strategy proposed in [1].</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.stream.CognitiveDualQueryStrategyRan.html#skactiveml.stream.CognitiveDualQueryStrategyRan" title="skactiveml.stream.CognitiveDualQueryStrategyRan"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stream.CognitiveDualQueryStrategyRan</span></code></a></p></td>
+<td><p>This class implements the CognitiveDualQueryStrategy strategy with Random Sampling.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.stream.CognitiveDualQueryStrategyRanVarUn.html#skactiveml.stream.CognitiveDualQueryStrategyRanVarUn" title="skactiveml.stream.CognitiveDualQueryStrategyRanVarUn"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stream.CognitiveDualQueryStrategyRanVarUn</span></code></a></p></td>
+<td><p>This class implements the CognitiveDualQueryStrategy strategy with RandomVariableUncertainty.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.stream.CognitiveDualQueryStrategyVarUn.html#skactiveml.stream.CognitiveDualQueryStrategyVarUn" title="skactiveml.stream.CognitiveDualQueryStrategyVarUn"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stream.CognitiveDualQueryStrategyVarUn</span></code></a></p></td>
+<td><p>This class implements the CognitiveDualQueryStrategy strategy with VariableUncertainty.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.stream.CognitiveDualQueryStrategyFixUn.html#skactiveml.stream.CognitiveDualQueryStrategyFixUn" title="skactiveml.stream.CognitiveDualQueryStrategyFixUn"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stream.CognitiveDualQueryStrategyFixUn</span></code></a></p></td>
+<td><p>This class implements the CognitiveDualQueryStrategy strategy with FixedUncertainty.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="module-skactiveml.stream.budgetmanager">
+<span id="skactiveml-stream-budgetmanager"></span><h2><a class="reference internal" href="#module-skactiveml.stream.budgetmanager" title="skactiveml.stream.budgetmanager"><code class="xref py py-mod docutils literal notranslate"><span class="pre">skactiveml.stream.budgetmanager</span></code></a>:<a class="headerlink" href="#module-skactiveml.stream.budgetmanager" title="Permalink to this headline">#</a></h2>
+<p>The <a class="reference internal" href="#module-skactiveml.stream.budgetmanager" title="skactiveml.stream.budgetmanager"><code class="xref py py-mod docutils literal notranslate"><span class="pre">skactiveml.stream.budgetmanager</span></code></a> module implements budget managers,
+which are capable of modeling the budget constraints in stream-based active
+learning settings.</p>
+<section id="id6">
+<h3>Classes<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h3>
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.stream.budgetmanager.EstimatedBudgetZliobaite.html#skactiveml.stream.budgetmanager.EstimatedBudgetZliobaite" title="skactiveml.stream.budgetmanager.EstimatedBudgetZliobaite"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stream.budgetmanager.EstimatedBudgetZliobaite</span></code></a></p></td>
+<td><p>Budget manager which checks, whether the specified budget has been exhausted already.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.stream.budgetmanager.FixedUncertaintyBudgetManager.html#skactiveml.stream.budgetmanager.FixedUncertaintyBudgetManager" title="skactiveml.stream.budgetmanager.FixedUncertaintyBudgetManager"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stream.budgetmanager.FixedUncertaintyBudgetManager</span></code></a></p></td>
+<td><p>Budget manager which is optimized for FixedUncertainty and checks, whether the specified budget has been exhausted already.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.stream.budgetmanager.VariableUncertaintyBudgetManager.html#skactiveml.stream.budgetmanager.VariableUncertaintyBudgetManager" title="skactiveml.stream.budgetmanager.VariableUncertaintyBudgetManager"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stream.budgetmanager.VariableUncertaintyBudgetManager</span></code></a></p></td>
+<td><p>Budget manager which checks, whether the specified budget has been exhausted already.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.stream.budgetmanager.SplitBudgetManager.html#skactiveml.stream.budgetmanager.SplitBudgetManager" title="skactiveml.stream.budgetmanager.SplitBudgetManager"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stream.budgetmanager.SplitBudgetManager</span></code></a></p></td>
+<td><p>Budget manager which checks, whether the specified budget has been exhausted already.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.stream.budgetmanager.BalancedIncrementalQuantileFilter.html#skactiveml.stream.budgetmanager.BalancedIncrementalQuantileFilter" title="skactiveml.stream.budgetmanager.BalancedIncrementalQuantileFilter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stream.budgetmanager.BalancedIncrementalQuantileFilter</span></code></a></p></td>
+<td><p>The Balanced Incremental Quantile Filter has been proposed together with Probabilistic Active Learning for Datastreams [1].</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.stream.budgetmanager.RandomVariableUncertaintyBudgetManager.html#skactiveml.stream.budgetmanager.RandomVariableUncertaintyBudgetManager" title="skactiveml.stream.budgetmanager.RandomVariableUncertaintyBudgetManager"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stream.budgetmanager.RandomVariableUncertaintyBudgetManager</span></code></a></p></td>
+<td><p>Budget manager which checks, whether the specified budget has been exhausted already.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.stream.budgetmanager.DensityBasedSplitBudgetManager.html#skactiveml.stream.budgetmanager.DensityBasedSplitBudgetManager" title="skactiveml.stream.budgetmanager.DensityBasedSplitBudgetManager"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stream.budgetmanager.DensityBasedSplitBudgetManager</span></code></a></p></td>
+<td><p>Budget manager which checks, whether the specified budget has been exhausted already.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.stream.budgetmanager.RandomBudgetManager.html#skactiveml.stream.budgetmanager.RandomBudgetManager" title="skactiveml.stream.budgetmanager.RandomBudgetManager"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stream.budgetmanager.RandomBudgetManager</span></code></a></p></td>
+<td><p>Budget manager which checks, whether the specified budget has been exhausted already.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="module-skactiveml.classifier">
+<span id="skactiveml-classifier"></span><h2><a class="reference internal" href="#module-skactiveml.classifier" title="skactiveml.classifier"><code class="xref py py-mod docutils literal notranslate"><span class="pre">skactiveml.classifier</span></code></a>:<a class="headerlink" href="#module-skactiveml.classifier" title="Permalink to this headline">#</a></h2>
+<p>The <a class="reference internal" href="#module-skactiveml.classifier" title="skactiveml.classifier"><code class="xref py py-mod docutils literal notranslate"><span class="pre">skactiveml.classifier</span></code></a> module.</p>
+<section id="id7">
+<h3>Classes<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h3>
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.classifier.ParzenWindowClassifier.html#skactiveml.classifier.ParzenWindowClassifier" title="skactiveml.classifier.ParzenWindowClassifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">classifier.ParzenWindowClassifier</span></code></a></p></td>
+<td><p>The Parzen window classifier (PWC) is a simple and probabilistic classifier.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.classifier.MixtureModelClassifier.html#skactiveml.classifier.MixtureModelClassifier" title="skactiveml.classifier.MixtureModelClassifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">classifier.MixtureModelClassifier</span></code></a></p></td>
+<td><p>The classifier based on a mixture model (MixtureModelClassifier) is a generative classifier based on a (Bayesian) Gaussian mixture model (GMM).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.classifier.SklearnClassifier.html#skactiveml.classifier.SklearnClassifier" title="skactiveml.classifier.SklearnClassifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">classifier.SklearnClassifier</span></code></a></p></td>
+<td><p>Implementation of a wrapper class for scikit-learn classifiers such that missing labels can be handled.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.classifier.SlidingWindowClassifier.html#skactiveml.classifier.SlidingWindowClassifier" title="skactiveml.classifier.SlidingWindowClassifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">classifier.SlidingWindowClassifier</span></code></a></p></td>
+<td><p>Implementation of a wrapper class for SkactivemlClassifier such that the number of training samples can be limited to the latest <cite>window_size</cite> samples.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="module-skactiveml.classifier.multiannotator">
+<span id="skactiveml-classifier-multiannotator"></span><h2><a class="reference internal" href="#module-skactiveml.classifier.multiannotator" title="skactiveml.classifier.multiannotator"><code class="xref py py-mod docutils literal notranslate"><span class="pre">skactiveml.classifier.multiannotator</span></code></a>:<a class="headerlink" href="#module-skactiveml.classifier.multiannotator" title="Permalink to this headline">#</a></h2>
+<section id="id8">
+<h3>Classes<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h3>
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.classifier.multiannotator.AnnotatorLogisticRegression.html#skactiveml.classifier.multiannotator.AnnotatorLogisticRegression" title="skactiveml.classifier.multiannotator.AnnotatorLogisticRegression"><code class="xref py py-obj docutils literal notranslate"><span class="pre">classifier.multiannotator.AnnotatorLogisticRegression</span></code></a></p></td>
+<td><p>Logistic Regression based on Raykar [1] is a classification algorithm that learns from multiple annotators.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.classifier.multiannotator.AnnotatorEnsembleClassifier.html#skactiveml.classifier.multiannotator.AnnotatorEnsembleClassifier" title="skactiveml.classifier.multiannotator.AnnotatorEnsembleClassifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">classifier.multiannotator.AnnotatorEnsembleClassifier</span></code></a></p></td>
+<td><p>This strategy consists of fitting one classifier per annotator.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="module-skactiveml.visualization">
+<span id="skactiveml-visualization"></span><h2><a class="reference internal" href="#module-skactiveml.visualization" title="skactiveml.visualization"><code class="xref py py-mod docutils literal notranslate"><span class="pre">skactiveml.visualization</span></code></a>:<a class="headerlink" href="#module-skactiveml.visualization" title="Permalink to this headline">#</a></h2>
+<p>The <a class="reference internal" href="#module-skactiveml.visualization" title="skactiveml.visualization"><code class="xref py py-mod docutils literal notranslate"><span class="pre">skactiveml.visualization</span></code></a> module includes various tools for
+visualization.</p>
+<section id="id9">
+<h3>Functions<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h3>
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.visualization.plot_utilities.html#skactiveml.visualization.plot_utilities" title="skactiveml.visualization.plot_utilities"><code class="xref py py-obj docutils literal notranslate"><span class="pre">visualization.plot_utilities</span></code></a></p></td>
+<td><p>Plot the utility for the given single-annotator query strategy.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.visualization.plot_decision_boundary.html#skactiveml.visualization.plot_decision_boundary" title="skactiveml.visualization.plot_decision_boundary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">visualization.plot_decision_boundary</span></code></a></p></td>
+<td><p>Plot the decision boundary of the given classifier.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.visualization.plot_contour_for_samples.html#skactiveml.visualization.plot_contour_for_samples" title="skactiveml.visualization.plot_contour_for_samples"><code class="xref py py-obj docutils literal notranslate"><span class="pre">visualization.plot_contour_for_samples</span></code></a></p></td>
+<td><p>Plot the utility for the given query strategy.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.visualization.plot_annotator_utilities.html#skactiveml.visualization.plot_annotator_utilities" title="skactiveml.visualization.plot_annotator_utilities"><code class="xref py py-obj docutils literal notranslate"><span class="pre">visualization.plot_annotator_utilities</span></code></a></p></td>
+<td><p>Plot the utility for the given query strategy.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.visualization.plot_stream_training_data.html#skactiveml.visualization.plot_stream_training_data" title="skactiveml.visualization.plot_stream_training_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">visualization.plot_stream_training_data</span></code></a></p></td>
+<td><p>Plot the utility for the given query strategy.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.visualization.plot_stream_decision_boundary.html#skactiveml.visualization.plot_stream_decision_boundary" title="skactiveml.visualization.plot_stream_decision_boundary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">visualization.plot_stream_decision_boundary</span></code></a></p></td>
+<td><p>Plot the decision boundary of the given classifier.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.visualization.mesh.html#skactiveml.visualization.mesh" title="skactiveml.visualization.mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">visualization.mesh</span></code></a></p></td>
+<td><p>Function to get instances of a mesh grid as well as x-mesh and y-mesh with given resolution in the specified bounds.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="module-skactiveml.utils">
+<span id="skactiveml-utils"></span><h2><a class="reference internal" href="#module-skactiveml.utils" title="skactiveml.utils"><code class="xref py py-mod docutils literal notranslate"><span class="pre">skactiveml.utils</span></code></a>:<a class="headerlink" href="#module-skactiveml.utils" title="Permalink to this headline">#</a></h2>
+<p>The <a class="reference internal" href="#module-skactiveml.utils" title="skactiveml.utils"><code class="xref py py-mod docutils literal notranslate"><span class="pre">skactiveml.utils</span></code></a> module includes various utilities.</p>
+<section id="id10">
+<h3>Classes<a class="headerlink" href="#id10" title="Permalink to this headline">#</a></h3>
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.utils.ExtLabelEncoder.html#skactiveml.utils.ExtLabelEncoder" title="skactiveml.utils.ExtLabelEncoder"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utils.ExtLabelEncoder</span></code></a></p></td>
+<td><p>Encode class labels with value between 0 and classes-1 and uses -1 for unlabeled samples.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id11">
+<h3>Functions<a class="headerlink" href="#id11" title="Permalink to this headline">#</a></h3>
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.utils.rand_argmax.html#skactiveml.utils.rand_argmax" title="skactiveml.utils.rand_argmax"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utils.rand_argmax</span></code></a></p></td>
+<td><p>Returns index of maximum value.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.utils.rand_argmin.html#skactiveml.utils.rand_argmin" title="skactiveml.utils.rand_argmin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utils.rand_argmin</span></code></a></p></td>
+<td><p>Returns index of minimum value.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.utils.compute_vote_vectors.html#skactiveml.utils.compute_vote_vectors" title="skactiveml.utils.compute_vote_vectors"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utils.compute_vote_vectors</span></code></a></p></td>
+<td><p>Counts number of votes per class label for each sample.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.utils.majority_vote.html#skactiveml.utils.majority_vote" title="skactiveml.utils.majority_vote"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utils.majority_vote</span></code></a></p></td>
+<td><p>Assigns a label to each sample based on weighted voting.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.utils.is_unlabeled.html#skactiveml.utils.is_unlabeled" title="skactiveml.utils.is_unlabeled"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utils.is_unlabeled</span></code></a></p></td>
+<td><p>Creates a boolean mask indicating missing labels.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.utils.is_labeled.html#skactiveml.utils.is_labeled" title="skactiveml.utils.is_labeled"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utils.is_labeled</span></code></a></p></td>
+<td><p>Creates a boolean mask indicating present labels.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.utils.check_classes.html#skactiveml.utils.check_classes" title="skactiveml.utils.check_classes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utils.check_classes</span></code></a></p></td>
+<td><p>Check whether class labels are uniformly strings or numbers.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.utils.check_missing_label.html#skactiveml.utils.check_missing_label" title="skactiveml.utils.check_missing_label"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utils.check_missing_label</span></code></a></p></td>
+<td><p>Check whether a missing label is compatible to a given target type.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.utils.check_cost_matrix.html#skactiveml.utils.check_cost_matrix" title="skactiveml.utils.check_cost_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utils.check_cost_matrix</span></code></a></p></td>
+<td><p>Check whether cost matrix has shape <cite>(n_classes, n_classes)</cite>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.utils.check_scalar.html#skactiveml.utils.check_scalar" title="skactiveml.utils.check_scalar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utils.check_scalar</span></code></a></p></td>
+<td><p>Validate scalar parameters type and value.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.utils.check_classifier_params.html#skactiveml.utils.check_classifier_params" title="skactiveml.utils.check_classifier_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utils.check_classifier_params</span></code></a></p></td>
+<td><p>Check whether the parameters are compatible to each other (only if <cite>classes</cite> is not None).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.utils.check_X_y.html#skactiveml.utils.check_X_y" title="skactiveml.utils.check_X_y"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utils.check_X_y</span></code></a></p></td>
+<td><p>Input validation for standard estimators.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.utils.check_random_state.html#skactiveml.utils.check_random_state" title="skactiveml.utils.check_random_state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utils.check_random_state</span></code></a></p></td>
+<td><p>Check validity of the given random state.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.utils.call_func.html#skactiveml.utils.call_func" title="skactiveml.utils.call_func"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utils.call_func</span></code></a></p></td>
+<td><p>Calls a function with the given parameters given in kwargs if they exist as parameters in f_callable.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.utils.check_class_prior.html#skactiveml.utils.check_class_prior" title="skactiveml.utils.check_class_prior"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utils.check_class_prior</span></code></a></p></td>
+<td><p>Check if the class_prior is a valid prior.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.utils.ext_confusion_matrix.html#skactiveml.utils.ext_confusion_matrix" title="skactiveml.utils.ext_confusion_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utils.ext_confusion_matrix</span></code></a></p></td>
+<td><p>Compute confusion matrix to evaluate the accuracy of a classification.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.utils.labeled_indices.html#skactiveml.utils.labeled_indices" title="skactiveml.utils.labeled_indices"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utils.labeled_indices</span></code></a></p></td>
+<td><p>Return an array of indices indicating present labels.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.utils.unlabeled_indices.html#skactiveml.utils.unlabeled_indices" title="skactiveml.utils.unlabeled_indices"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utils.unlabeled_indices</span></code></a></p></td>
+<td><p>Return an array of indices indicating missing labels.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.utils.check_type.html#skactiveml.utils.check_type" title="skactiveml.utils.check_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utils.check_type</span></code></a></p></td>
+<td><p>Check if obj is one of the given types.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.utils.check_bound.html#skactiveml.utils.check_bound" title="skactiveml.utils.check_bound"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utils.check_bound</span></code></a></p></td>
+<td><p>Validates bound and returns the bound of X if bound is None.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.utils.check_equal_missing_label.html#skactiveml.utils.check_equal_missing_label" title="skactiveml.utils.check_equal_missing_label"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utils.check_equal_missing_label</span></code></a></p></td>
+<td><p>Check whether two missing label values are equal to each other.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.utils.check_budget_manager.html#skactiveml.utils.check_budget_manager" title="skactiveml.utils.check_budget_manager"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utils.check_budget_manager</span></code></a></p></td>
+<td><p>Validate if budget manager is a budgetmanager class and create a copy '<a href="#id13"><span class="problematic" id="id14">budget_manager_</span></a>'.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.utils.check_indices.html#skactiveml.utils.check_indices" title="skactiveml.utils.check_indices"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utils.check_indices</span></code></a></p></td>
+<td><p>Check if indices fit to array.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/skactiveml.utils.simple_batch.html#skactiveml.utils.simple_batch" title="skactiveml.utils.simple_batch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utils.simple_batch</span></code></a></p></td>
+<td><p>Generates a batch by selecting the highest values in the 'utilities'.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.utils._check_callable.html#skactiveml.utils._check_callable" title="skactiveml.utils._check_callable"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utils._check_callable</span></code></a></p></td>
+<td><p>Checks if function is a callable and if the number of free parameters is correct.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="module-skactiveml.exceptions">
+<span id="skactiveml-exceptions"></span><h2><a class="reference internal" href="#module-skactiveml.exceptions" title="skactiveml.exceptions"><code class="xref py py-mod docutils literal notranslate"><span class="pre">skactiveml.exceptions</span></code></a>:<a class="headerlink" href="#module-skactiveml.exceptions" title="Permalink to this headline">#</a></h2>
+<section id="id12">
+<h3>Classes<a class="headerlink" href="#id12" title="Permalink to this headline">#</a></h3>
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/skactiveml.exceptions.MappingError.html#skactiveml.exceptions.MappingError" title="skactiveml.exceptions.MappingError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">exceptions.MappingError</span></code></a></p></td>
+<td><p>Exception class to raise if a strategy needs a mapping between samples and candidates which is not available.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+
+
+              </article>
+              
+
+              
+              <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="strategy_overview.html" title="previous page">
+      <i class="fas fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Strategy Overview</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="api/skactiveml.base.QueryStrategy.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">skactiveml.base.QueryStrategy</p>
+  </div>
+  <i class="fas fa-angle-right"></i>
+  </a>
+</div>
+              </footer>
+              
+          </div>
+          
+      </div>
+    </div>
+
+  
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695"></script>
+
+<footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy; Copyright 2020.<br>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
+</p>
+  </div>
+  
+</div>
+</footer>
+  </body>
+</html>

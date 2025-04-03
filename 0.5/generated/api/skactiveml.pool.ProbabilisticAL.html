@@ -1,0 +1,937 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>skactiveml.pool.ProbabilisticAL &#8212; scikit-activeml 0.5.2 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'generated/api/skactiveml.pool.ProbabilisticAL';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://scikit-activeml.github.io/scikit-activeml-docs/latest/_static/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.5.2';
+        </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../../_static/filter_examples.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="skactiveml.pool.UncertaintySampling" href="skactiveml.pool.UncertaintySampling.html" />
+    <link rel="prev" title="skactiveml.pool.RandomSampling" href="skactiveml.pool.RandomSampling.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../../_static/scikit-activeml-logo.png" class="logo__image only-light" alt="Logo image">
+    <img src="../../_static/scikit-activeml-logo.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+    <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        0.5.2  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../index.html">
+                        Home
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../tutorials.html">
+                        Tutorials
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../strategy_overview.html">
+                        Strategy Overview
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../api_reference.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../sphinx_gallery_examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../contributing.html">
+                        Contributing Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-external" href="https://github.com/scikit-activeml/scikit-activeml/releases">
+                        Changelog
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
+      
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/scikit-activeml/scikit-activeml" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/scikit-activeml" title="PyPI" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fas fa-box"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../index.html">
+                        Home
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../tutorials.html">
+                        Tutorials
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../strategy_overview.html">
+                        Strategy Overview
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../api_reference.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../sphinx_gallery_examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../contributing.html">
+                        Contributing Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-external" href="https://github.com/scikit-activeml/scikit-activeml/releases">
+                        Changelog
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/scikit-activeml/scikit-activeml" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/scikit-activeml" title="PyPI" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fas fa-box"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Section navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">
+    Section Navigation
+  </p>
+  <div class="bd-toc-item navbar-nav">
+    <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.base.QueryStrategy.html">skactiveml.base.QueryStrategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.base.SingleAnnotatorPoolQueryStrategy.html">skactiveml.base.SingleAnnotatorPoolQueryStrategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.base.MultiAnnotatorPoolQueryStrategy.html">skactiveml.base.MultiAnnotatorPoolQueryStrategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.base.BudgetManager.html">skactiveml.base.BudgetManager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.base.SingleAnnotatorStreamQueryStrategy.html">skactiveml.base.SingleAnnotatorStreamQueryStrategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.base.SkactivemlClassifier.html">skactiveml.base.SkactivemlClassifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.base.ClassFrequencyEstimator.html">skactiveml.base.ClassFrequencyEstimator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.base.AnnotatorModelMixin.html">skactiveml.base.AnnotatorModelMixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.base.SkactivemlRegressor.html">skactiveml.base.SkactivemlRegressor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.base.ProbabilisticRegressor.html">skactiveml.base.ProbabilisticRegressor</a></li>
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.pool.RandomSampling.html">skactiveml.pool.RandomSampling</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">skactiveml.pool.ProbabilisticAL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.pool.UncertaintySampling.html">skactiveml.pool.UncertaintySampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.pool.EpistemicUncertaintySampling.html">skactiveml.pool.EpistemicUncertaintySampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.pool.MonteCarloEER.html">skactiveml.pool.MonteCarloEER</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.pool.ValueOfInformationEER.html">skactiveml.pool.ValueOfInformationEER</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.pool.QueryByCommittee.html">skactiveml.pool.QueryByCommittee</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.pool.Quire.html">skactiveml.pool.Quire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.pool.FourDs.html">skactiveml.pool.FourDs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.pool.CostEmbeddingAL.html">skactiveml.pool.CostEmbeddingAL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.pool.ExpectedModelChangeMaximization.html">skactiveml.pool.ExpectedModelChangeMaximization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.pool.ExpectedModelOutputChange.html">skactiveml.pool.ExpectedModelOutputChange</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.pool.ExpectedModelVarianceReduction.html">skactiveml.pool.ExpectedModelVarianceReduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.pool.KLDivergenceMaximization.html">skactiveml.pool.KLDivergenceMaximization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.pool.GreedySamplingX.html">skactiveml.pool.GreedySamplingX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.pool.GreedySamplingTarget.html">skactiveml.pool.GreedySamplingTarget</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.pool.DiscriminativeAL.html">skactiveml.pool.DiscriminativeAL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.pool.BatchBALD.html">skactiveml.pool.BatchBALD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.pool.Clue.html">skactiveml.pool.Clue</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.pool.CoreSet.html">skactiveml.pool.CoreSet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.pool.TypiClust.html">skactiveml.pool.TypiClust</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.pool.Badge.html">skactiveml.pool.Badge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.pool.ProbCover.html">skactiveml.pool.ProbCover</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.pool.ContrastiveAL.html">skactiveml.pool.ContrastiveAL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.pool.GreedyBALD.html">skactiveml.pool.GreedyBALD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.pool.RegressionTreeBasedAL.html">skactiveml.pool.RegressionTreeBasedAL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.pool.SubSamplingWrapper.html">skactiveml.pool.SubSamplingWrapper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.pool.ParallelUtilityEstimationWrapper.html">skactiveml.pool.ParallelUtilityEstimationWrapper</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.pool.cost_reduction.html">skactiveml.pool.cost_reduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.pool.uncertainty_scores.html">skactiveml.pool.uncertainty_scores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.pool.expected_average_precision.html">skactiveml.pool.expected_average_precision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.pool.average_kl_divergence.html">skactiveml.pool.average_kl_divergence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.pool.vote_entropy.html">skactiveml.pool.vote_entropy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.pool.variation_ratios.html">skactiveml.pool.variation_ratios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.pool.batch_bald.html">skactiveml.pool.batch_bald</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.pool.k_greedy_center.html">skactiveml.pool.k_greedy_center</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.pool.multiannotator.IntervalEstimationThreshold.html">skactiveml.pool.multiannotator.IntervalEstimationThreshold</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.pool.multiannotator.IntervalEstimationAnnotModel.html">skactiveml.pool.multiannotator.IntervalEstimationAnnotModel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.pool.multiannotator.SingleAnnotatorWrapper.html">skactiveml.pool.multiannotator.SingleAnnotatorWrapper</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.pool.utils.IndexClassifierWrapper.html">skactiveml.pool.utils.IndexClassifierWrapper</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.stream.StreamRandomSampling.html">skactiveml.stream.StreamRandomSampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.stream.PeriodicSampling.html">skactiveml.stream.PeriodicSampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.stream.FixedUncertainty.html">skactiveml.stream.FixedUncertainty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.stream.VariableUncertainty.html">skactiveml.stream.VariableUncertainty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.stream.Split.html">skactiveml.stream.Split</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.stream.StreamProbabilisticAL.html">skactiveml.stream.StreamProbabilisticAL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.stream.RandomVariableUncertainty.html">skactiveml.stream.RandomVariableUncertainty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.stream.StreamDensityBasedAL.html">skactiveml.stream.StreamDensityBasedAL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.stream.CognitiveDualQueryStrategy.html">skactiveml.stream.CognitiveDualQueryStrategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.stream.CognitiveDualQueryStrategyRan.html">skactiveml.stream.CognitiveDualQueryStrategyRan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.stream.CognitiveDualQueryStrategyRanVarUn.html">skactiveml.stream.CognitiveDualQueryStrategyRanVarUn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.stream.CognitiveDualQueryStrategyVarUn.html">skactiveml.stream.CognitiveDualQueryStrategyVarUn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.stream.CognitiveDualQueryStrategyFixUn.html">skactiveml.stream.CognitiveDualQueryStrategyFixUn</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.stream.budgetmanager.EstimatedBudgetZliobaite.html">skactiveml.stream.budgetmanager.EstimatedBudgetZliobaite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.stream.budgetmanager.FixedUncertaintyBudgetManager.html">skactiveml.stream.budgetmanager.FixedUncertaintyBudgetManager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.stream.budgetmanager.VariableUncertaintyBudgetManager.html">skactiveml.stream.budgetmanager.VariableUncertaintyBudgetManager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.stream.budgetmanager.SplitBudgetManager.html">skactiveml.stream.budgetmanager.SplitBudgetManager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.stream.budgetmanager.BalancedIncrementalQuantileFilter.html">skactiveml.stream.budgetmanager.BalancedIncrementalQuantileFilter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.stream.budgetmanager.RandomVariableUncertaintyBudgetManager.html">skactiveml.stream.budgetmanager.RandomVariableUncertaintyBudgetManager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.stream.budgetmanager.DensityBasedSplitBudgetManager.html">skactiveml.stream.budgetmanager.DensityBasedSplitBudgetManager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.stream.budgetmanager.RandomBudgetManager.html">skactiveml.stream.budgetmanager.RandomBudgetManager</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.classifier.ParzenWindowClassifier.html">skactiveml.classifier.ParzenWindowClassifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.classifier.MixtureModelClassifier.html">skactiveml.classifier.MixtureModelClassifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.classifier.SklearnClassifier.html">skactiveml.classifier.SklearnClassifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.classifier.SlidingWindowClassifier.html">skactiveml.classifier.SlidingWindowClassifier</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.classifier.multiannotator.AnnotatorLogisticRegression.html">skactiveml.classifier.multiannotator.AnnotatorLogisticRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.classifier.multiannotator.AnnotatorEnsembleClassifier.html">skactiveml.classifier.multiannotator.AnnotatorEnsembleClassifier</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.visualization.plot_utilities.html">skactiveml.visualization.plot_utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.visualization.plot_decision_boundary.html">skactiveml.visualization.plot_decision_boundary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.visualization.plot_contour_for_samples.html">skactiveml.visualization.plot_contour_for_samples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.visualization.plot_annotator_utilities.html">skactiveml.visualization.plot_annotator_utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.visualization.plot_stream_training_data.html">skactiveml.visualization.plot_stream_training_data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.visualization.plot_stream_decision_boundary.html">skactiveml.visualization.plot_stream_decision_boundary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.visualization.mesh.html">skactiveml.visualization.mesh</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.utils.ExtLabelEncoder.html">skactiveml.utils.ExtLabelEncoder</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.utils.rand_argmax.html">skactiveml.utils.rand_argmax</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.utils.rand_argmin.html">skactiveml.utils.rand_argmin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.utils.compute_vote_vectors.html">skactiveml.utils.compute_vote_vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.utils.majority_vote.html">skactiveml.utils.majority_vote</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.utils.is_unlabeled.html">skactiveml.utils.is_unlabeled</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.utils.is_labeled.html">skactiveml.utils.is_labeled</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.utils.check_classes.html">skactiveml.utils.check_classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.utils.check_missing_label.html">skactiveml.utils.check_missing_label</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.utils.check_cost_matrix.html">skactiveml.utils.check_cost_matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.utils.check_scalar.html">skactiveml.utils.check_scalar</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.utils.check_classifier_params.html">skactiveml.utils.check_classifier_params</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.utils.check_X_y.html">skactiveml.utils.check_X_y</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.utils.check_random_state.html">skactiveml.utils.check_random_state</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.utils.call_func.html">skactiveml.utils.call_func</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.utils.match_signature.html">skactiveml.utils.match_signature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.utils.check_class_prior.html">skactiveml.utils.check_class_prior</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.utils.ext_confusion_matrix.html">skactiveml.utils.ext_confusion_matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.utils.labeled_indices.html">skactiveml.utils.labeled_indices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.utils.unlabeled_indices.html">skactiveml.utils.unlabeled_indices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.utils.check_type.html">skactiveml.utils.check_type</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.utils.check_bound.html">skactiveml.utils.check_bound</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.utils.check_equal_missing_label.html">skactiveml.utils.check_equal_missing_label</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.utils.check_budget_manager.html">skactiveml.utils.check_budget_manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.utils.check_indices.html">skactiveml.utils.check_indices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.utils.simple_batch.html">skactiveml.utils.simple_batch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.utils._check_callable.html">skactiveml.utils._check_callable</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="skactiveml.exceptions.MappingError.html">skactiveml.exceptions.MappingError</a></li>
+</ul>
+
+  </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+  
+  <div id="rtd-footer-container"></div>
+
+      </div>
+      <main id="main-content" class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <section id="skactiveml-pool-probabilistical">
+<h1>skactiveml.pool.ProbabilisticAL<a class="headerlink" href="#skactiveml-pool-probabilistical" title="Permalink to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="skactiveml.pool.ProbabilisticAL">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">skactiveml.pool.</span></span><span class="sig-name descname"><span class="pre">ProbabilisticAL</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prior</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">missing_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">nan</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/pool/_probabilistic_al.html#ProbabilisticAL"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.pool.ProbabilisticAL" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="skactiveml.base.SingleAnnotatorPoolQueryStrategy.html#skactiveml.base.SingleAnnotatorPoolQueryStrategy" title="skactiveml.base.SingleAnnotatorPoolQueryStrategy"><code class="xref py py-class docutils literal notranslate"><span class="pre">SingleAnnotatorPoolQueryStrategy</span></code></a></p>
+<p>(Multi-class) Probabilistic Active Learning</p>
+<p>This class implements multi-class probabilistic active learning (McPAL) [1]
+strategy.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>prior: float, optional (default=1)</strong></dt><dd><p>Prior probabilities for the Dirichlet distribution of the samples.</p>
+</dd>
+<dt><strong>m_max: int, optional (default=1)</strong></dt><dd><p>Maximum number of hypothetically acquired labels.</p>
+</dd>
+<dt><strong>missing_label</strong><span class="classifier">scalar or string or np.nan or None, default=np.nan</span></dt><dd><p>Value to represent a missing label.</p>
+</dd>
+<dt><strong>metric</strong><span class="classifier">str or callable, default=None</span></dt><dd><p>The metric must be None or a valid kernel as defined by the function
+<cite>sklearn.metrics.pairwise.pairwise_kernels</cite>. The kernel is used to
+calculate the frequency of labels near the candidates and multiplied
+with the probabilities returned by <cite>clf</cite> to get a kernel frequency
+estimate for each class.
+If metric is set to None, the <cite>predict_freq</cite> function of the <cite>clf</cite> will
+be used instead. If this is not defined, a TypeError is raised.</p>
+</dd>
+<dt><strong>metric_dict</strong><span class="classifier">dict, default=None</span></dt><dd><p>Any further parameters that should be passed directly to the kernel
+function. If metric_dict is None and metric is ‘rbf’ metric_dict is set
+to {‘gamma’: ‘mean’}.</p>
+</dd>
+<dt><strong>random_state: numeric | np.random.RandomState, optional</strong></dt><dd><p>Random state for candidate selection.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<dl class="simple">
+<dt>[1] Daniel Kottke, Georg Krempl, Dominik Lang, Johannes Teschner, and Myra</dt><dd><p>Spiliopoulou. Multi-Class Probabilistic Active Learning,
+vol. 285 of Frontiers in Artificial Intelligence and Applications,
+pages 586-594. IOS Press, 2016</p>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.pool.ProbabilisticAL.get_metadata_routing" title="skactiveml.pool.ProbabilisticAL.get_metadata_routing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_metadata_routing</span></code></a>()</p></td>
+<td><p>Get metadata routing of this object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#skactiveml.pool.ProbabilisticAL.get_params" title="skactiveml.pool.ProbabilisticAL.get_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code></a>([deep])</p></td>
+<td><p>Get parameters for this estimator.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.pool.ProbabilisticAL.query" title="skactiveml.pool.ProbabilisticAL.query"><code class="xref py py-obj docutils literal notranslate"><span class="pre">query</span></code></a>(X, y, clf[, fit_clf, sample_weight, ...])</p></td>
+<td><p>Query the next instance to be labeled.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#skactiveml.pool.ProbabilisticAL.set_params" title="skactiveml.pool.ProbabilisticAL.set_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code></a>(**params)</p></td>
+<td><p>Set the parameters of this estimator.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="skactiveml.pool.ProbabilisticAL.get_metadata_routing">
+<span class="sig-name descname"><span class="pre">get_metadata_routing</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#skactiveml.pool.ProbabilisticAL.get_metadata_routing" title="Permalink to this definition">#</a></dt>
+<dd><p>Get metadata routing of this object.</p>
+<p>Please check <span class="xref std std-ref">User Guide</span> on how the routing
+mechanism works.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>routing</strong><span class="classifier">MetadataRequest</span></dt><dd><p>A <code class="xref py py-class docutils literal notranslate"><span class="pre">MetadataRequest</span></code> encapsulating
+routing information.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="skactiveml.pool.ProbabilisticAL.get_params">
+<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#skactiveml.pool.ProbabilisticAL.get_params" title="Permalink to this definition">#</a></dt>
+<dd><p>Get parameters for this estimator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>deep</strong><span class="classifier">bool, default=True</span></dt><dd><p>If True, will return the parameters for this estimator and
+contained subobjects that are estimators.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>params</strong><span class="classifier">dict</span></dt><dd><p>Parameter names mapped to their values.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="skactiveml.pool.ProbabilisticAL.query">
+<span class="sig-name descname"><span class="pre">query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fit_clf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">utility_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">candidates</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_utilities</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/pool/_probabilistic_al.html#ProbabilisticAL.query"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.pool.ProbabilisticAL.query" title="Permalink to this definition">#</a></dt>
+<dd><p>Query the next instance to be labeled.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>X</strong><span class="classifier">array-like of shape (n_samples, n_features)</span></dt><dd><p>Training data set, usually complete, i.e. including the labeled and
+unlabeled samples.</p>
+</dd>
+<dt><strong>y</strong><span class="classifier">array-like of shape (n_samples)</span></dt><dd><p>Labels of the training data set (possibly including unlabeled ones
+indicated by self.MISSING_LABEL.</p>
+</dd>
+<dt><strong>clf</strong><span class="classifier">skactiveml.base.ClassFrequencyEstimator</span></dt><dd><p>Model implementing the methods <cite>fit</cite> and <cite>predict_freq</cite>.</p>
+</dd>
+<dt><strong>fit_clf</strong><span class="classifier">bool, default=True</span></dt><dd><p>Defines whether the classifier should be fitted on <cite>X</cite>, <cite>y</cite>, and
+<cite>sample_weight</cite>.</p>
+</dd>
+<dt><strong>sample_weight: array-like of shape (n_samples), optional (default=None)</strong></dt><dd><p>Weights of training samples in <cite>X</cite>.</p>
+</dd>
+<dt><strong>utility_weight: array-like, optional (default=None)</strong></dt><dd><p>Weight for each candidate (multiplied with utilities). Usually,
+this is to be the density of a candidate in ProbabilisticAL. The
+length of <cite>utility_weight</cite> is usually n_samples, except for the
+case when candidates contains samples (ndim &gt;= 2). Then the length
+is <cite>n_candidates</cite>.</p>
+</dd>
+<dt><strong>candidates</strong><span class="classifier">None or array-like of shape (n_candidates), dtype=int or</span></dt><dd><p>array-like of shape (n_candidates, n_features),
+optional (default=None)
+If candidates is None, the unlabeled samples from (X,y) are
+considered as candidates.
+If candidates is of shape (n_candidates) and of type int,
+candidates is considered as the indices of the samples in (X,y).
+If candidates is of shape (n_candidates, n_features), the
+candidates are directly given in candidates (not necessarily
+contained in X). This is not supported by all query strategies.</p>
+</dd>
+<dt><strong>batch_size</strong><span class="classifier">int, optional (default=1)</span></dt><dd><p>The number of samples to be selected in one AL cycle.</p>
+</dd>
+<dt><strong>return_utilities</strong><span class="classifier">bool, optional (default=False)</span></dt><dd><p>If true, also return the utilities based on the query strategy.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>query_indices</strong><span class="classifier">numpy.ndarray, shape (batch_size)</span></dt><dd><p>The query_indices indicate for which candidate sample a label is
+to queried, e.g., <cite>query_indices[0]</cite> indicates the first selected
+sample.</p>
+</dd>
+<dt><strong>utilities</strong><span class="classifier">numpy.ndarray, shape (batch_size, n_samples)</span></dt><dd><p>The utilities of all candidate samples after each selected
+sample of the batch, e.g., <cite>utilities[0]</cite> indicates the utilities
+used for selecting the first sample (with index <cite>query_indices[0]</cite>)
+of the batch.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="skactiveml.pool.ProbabilisticAL.set_params">
+<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#skactiveml.pool.ProbabilisticAL.set_params" title="Permalink to this definition">#</a></dt>
+<dd><p>Set the parameters of this estimator.</p>
+<p>The method works on simple estimators as well as on nested objects
+(such as <code class="xref py py-class docutils literal notranslate"><span class="pre">Pipeline</span></code>). The latter have
+parameters of the form <code class="docutils literal notranslate"><span class="pre">&lt;component&gt;__&lt;parameter&gt;</span></code> so that it’s
+possible to update each component of a nested object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>**params</strong><span class="classifier">dict</span></dt><dd><p>Estimator parameters.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>self</strong><span class="classifier">estimator instance</span></dt><dd><p>Estimator instance.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<section id="examples-using-skactiveml-pool-probabilistical">
+<span id="sphx-glr-backref-skactiveml-pool-probabilistical"></span><h2>Examples using <code class="docutils literal notranslate"><span class="pre">skactiveml.pool.ProbabilisticAL</span></code><a class="headerlink" href="#examples-using-skactiveml-pool-probabilistical" title="Permalink to this heading">#</a></h2>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Parallel Utility Estimation Wrapper"><img alt="" src="../../_images/sphx_glr_plot-ParallelUtilityEstimationWrapper-Parallel_Utility_Estimation_Wrapper_thumb.gif" />
+<p><a class="reference internal" href="../sphinx_gallery_examples/pool/plot-ParallelUtilityEstimationWrapper-Parallel_Utility_Estimation_Wrapper.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-parallelutilityestimationwrapper-parallel-utility-estimation-wrapper-py"><span class="std std-ref">Parallel Utility Estimation Wrapper</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Parallel Utility Estimation Wrapper</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Multi-class Probabilistic Active Learning"><img alt="" src="../../_images/sphx_glr_plot-ProbabilisticAL-Multi-class_Probabilistic_Active_Learning_%28McPAL%29_thumb.gif" />
+<p><a class="reference internal" href="../sphinx_gallery_examples/pool/plot-ProbabilisticAL-Multi-class_Probabilistic_Active_Learning_%28McPAL%29.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-probabilistical-multi-class-probabilistic-active-learning-mcpal-py"><span class="std std-ref">Multi-class Probabilistic Active Learning</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Multi-class Probabilistic Active Learning</div>
+</div></div></section>
+</section>
+
+
+            </article>
+            
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="skactiveml.pool.RandomSampling.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">skactiveml.pool.RandomSampling</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="skactiveml.pool.UncertaintySampling.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">skactiveml.pool.UncertaintySampling</p>
+  </div>
+  <i class="fa-solid fa-angle-right"></i>
+  </a>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#skactiveml.pool.ProbabilisticAL">
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ProbabilisticAL
+    </span>
+   </code>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#skactiveml.pool.ProbabilisticAL.get_metadata_routing">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       ProbabilisticAL.get_metadata_routing()
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#skactiveml.pool.ProbabilisticAL.get_params">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       ProbabilisticAL.get_params()
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#skactiveml.pool.ProbabilisticAL.query">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       ProbabilisticAL.query()
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#skactiveml.pool.ProbabilisticAL.set_params">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       ProbabilisticAL.set_params()
+      </span>
+     </code>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#examples-using-skactiveml-pool-probabilistical">
+   Examples using
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     skactiveml.pool.ProbabilisticAL
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+<div class="toc-item">
+  
+<div id="searchbox"></div>
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+<div class="toc-item">
+  
+<div class="tocsection sourcelink">
+    <a href="../../_sources/generated/api/skactiveml.pool.ProbabilisticAL.rst.txt">
+        <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+</div>
+
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright 2020.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="theme-version">
+    Built with the
+    <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">
+        PyData Sphinx Theme
+    </a>
+    0.12.0.
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,769 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>skactiveml.pool.utils &#8212; scikit-activeml 0.2.5 documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../../index.html">
+  <img src="../../../_static/scikit-activeml-logo.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../index.html">
+  Home
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../tutorials.html">
+  Tutorials
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../generated/strategy_overview/strategy_overview-Settles2012.html">
+  Strategy Overview
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../generated/api_reference.html">
+  API Reference
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../generated/sphinx_gallery_examples/index.html">
+  Examples
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../developers_guide.html">
+  Developer Guide
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Quick Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/scikit-activeml/scikit-activeml" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://pypi.org/project/scikit-activeml" rel="noopener" target="_blank" title="PyPI"><span><i class="fas fa-box"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+              </div>
+              <div class="sidebar-end-items">
+              </div>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <h1>Source code for skactiveml.pool.utils</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">clone</span>
+<span class="kn">from</span> <span class="nn">sklearn.exceptions</span> <span class="kn">import</span> <span class="n">NotFittedError</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">pairwise_kernels</span>
+<span class="kn">from</span> <span class="nn">sklearn.utils.validation</span> <span class="kn">import</span> <span class="n">check_array</span><span class="p">,</span> <span class="n">check_consistent_length</span>
+
+<span class="kn">from</span> <span class="nn">..base</span> <span class="kn">import</span> <span class="n">SkactivemlClassifier</span>
+<span class="kn">from</span> <span class="nn">..classifier</span> <span class="kn">import</span> <span class="n">ParzenWindowClassifier</span>
+<span class="kn">from</span> <span class="nn">..utils</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">MISSING_LABEL</span><span class="p">,</span>
+    <span class="n">is_labeled</span><span class="p">,</span>
+    <span class="n">is_unlabeled</span><span class="p">,</span>
+    <span class="n">check_missing_label</span><span class="p">,</span>
+    <span class="n">check_equal_missing_label</span><span class="p">,</span>
+    <span class="n">check_type</span><span class="p">,</span>
+    <span class="n">check_indices</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;IndexClassifierWrapper&quot;</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="IndexClassifierWrapper"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.utils.IndexClassifierWrapper.html#skactiveml.pool.utils.IndexClassifierWrapper">[docs]</a><span class="k">class</span> <span class="nc">IndexClassifierWrapper</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Classifier to simplify retraining classifiers in an active learning</span>
+<span class="sd">    scenario. The idea is to pass all instances at once and use their indices</span>
+<span class="sd">    to access them. Thereby, optimization is possible e.g. by pre-computing</span>
+<span class="sd">    kernel-matrices. Moreover, this wrapper implements partial fit for all</span>
+<span class="sd">    classifiers and includes a base classifier that can be used to simulate</span>
+<span class="sd">    adding different instance-label pairs to the same classifier.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    clf : skactiveml.base.SkactivemlClassifier</span>
+<span class="sd">        The base classifier implementing the methods `fit` and `predict_proba`.</span>
+<span class="sd">    X : array-like of shape (n_samples, n_features)</span>
+<span class="sd">        Training data set, usually complete, i.e. including the labeled and</span>
+<span class="sd">        unlabeled samples.</span>
+<span class="sd">    y : array-like of shape (n_samples)</span>
+<span class="sd">        Labels of the training data set (possibly including unlabeled ones</span>
+<span class="sd">        indicated by self.missing_label.</span>
+<span class="sd">    sample_weight : array-like of shape (n_samples), optional (default=None)</span>
+<span class="sd">        Weights of training samples in `X`.</span>
+<span class="sd">    set_base_clf : bool, default=False</span>
+<span class="sd">        If True, the base classifier will be set to the newly fitted</span>
+<span class="sd">        classifier</span>
+<span class="sd">    ignore_partial_fit : bool, optional (default: True)</span>
+<span class="sd">        Specifies if the `partial_fit` function of `self.clf` should be used</span>
+<span class="sd">        (if implemented).</span>
+<span class="sd">    enforce_unique_samples : bool, optional (default: False)</span>
+<span class="sd">        If True, `partial_fit` will not simply append additional samples but</span>
+<span class="sd">        replace the current labels by the new one. If False, instances might</span>
+<span class="sd">        appear multiple times if their indices are repeated.</span>
+<span class="sd">    use_speed_up : bool, optional (default: True)</span>
+<span class="sd">        Specifies if potentially available speed ups should be used. Currently</span>
+<span class="sd">        implemented for Parzen Window Classifier.</span>
+<span class="sd">    missing_label : scalar or string or np.nan or None, default=np.nan</span>
+<span class="sd">        Value to represent a missing label.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">clf</span><span class="p">,</span>
+        <span class="n">X</span><span class="p">,</span>
+        <span class="n">y</span><span class="p">,</span>
+        <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">set_base_clf</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">ignore_partial_fit</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">enforce_unique_samples</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">use_speed_up</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">missing_label</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">clf</span> <span class="o">=</span> <span class="n">clf</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="n">X</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sample_weight</span> <span class="o">=</span> <span class="n">sample_weight</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ignore_partial_fit</span> <span class="o">=</span> <span class="n">ignore_partial_fit</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">enforce_unique_samples</span> <span class="o">=</span> <span class="n">enforce_unique_samples</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">use_speed_up</span> <span class="o">=</span> <span class="n">use_speed_up</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">missing_label</span> <span class="o">=</span> <span class="n">missing_label</span>
+
+        <span class="c1"># Validate classifier type.</span>
+        <span class="n">check_type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">clf</span><span class="p">,</span> <span class="s2">&quot;clf&quot;</span><span class="p">,</span> <span class="n">SkactivemlClassifier</span><span class="p">)</span>
+
+        <span class="c1"># Check X, y, sample_weight: will be done by base clf</span>
+        <span class="n">check_consistent_length</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sample_weight</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">check_consistent_length</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sample_weight</span><span class="p">)</span>
+
+        <span class="n">check_type</span><span class="p">(</span><span class="n">set_base_clf</span><span class="p">,</span> <span class="s2">&quot;set_base_clf&quot;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>
+
+        <span class="c1"># deep copy classifier as it might be fitted already</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">clf</span><span class="p">,</span> <span class="s2">&quot;classes_&quot;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">clf_</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">clf</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">set_base_clf</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">base_clf_</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">clf_</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">set_base_clf</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">NotFittedError</span><span class="p">(</span>
+                    <span class="s2">&quot;Classifier is not yet fitted but `set_base_clf=True` &quot;</span>
+                    <span class="s2">&quot;in `__init__` is set to True.&quot;</span>
+                <span class="p">)</span>
+
+        <span class="c1"># Check and use partial fit if applicable</span>
+        <span class="n">check_type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ignore_partial_fit</span><span class="p">,</span> <span class="s2">&quot;ignore_partial_fit&quot;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">use_partial_fit</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">clf</span><span class="p">,</span> <span class="s2">&quot;partial_fit&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">ignore_partial_fit</span>
+        <span class="p">)</span>
+
+        <span class="n">check_type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">enforce_unique_samples</span><span class="p">,</span> <span class="s2">&quot;enforce_unique_samples&quot;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">enforce_unique_samples</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s2">&quot;check_unique&quot;</span> <span class="k">if</span> <span class="n">enforce_unique_samples</span> <span class="k">else</span> <span class="kc">False</span>
+        <span class="p">)</span>
+        <span class="c1"># TODO better change check_indices function</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_partial_fit</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">enforce_unique_samples</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="s2">&quot;The `partial_fit` function by sklearn might not &quot;</span>
+                <span class="s2">&quot;ensure that every sample is used only once in the &quot;</span>
+                <span class="s2">&quot;fitting process.&quot;</span>
+            <span class="p">)</span>
+
+        <span class="c1"># Check use_speed_up</span>
+        <span class="n">check_type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">use_speed_up</span><span class="p">,</span> <span class="s2">&quot;use_speed_up&quot;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>
+
+        <span class="c1"># Check missing label</span>
+        <span class="n">check_missing_label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">missing_label</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">missing_label_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">missing_label</span>
+        <span class="n">check_equal_missing_label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">clf</span><span class="o">.</span><span class="n">missing_label</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">missing_label_</span><span class="p">)</span>
+
+        <span class="c1"># prepare ParzenWindowClassifier</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">clf</span><span class="p">,</span> <span class="n">ParzenWindowClassifier</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_speed_up</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pwc_metric_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">clf</span><span class="o">.</span><span class="n">metric</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pwc_metric_dict_</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="p">{}</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">clf</span><span class="o">.</span><span class="n">metric_dict</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">clf</span><span class="o">.</span><span class="n">metric_dict</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pwc_K_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">)],</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">clf_</span> <span class="o">=</span> <span class="n">clone</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">clf</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">clf_</span><span class="o">.</span><span class="n">metric</span> <span class="o">=</span> <span class="s2">&quot;precomputed&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">clf_</span><span class="o">.</span><span class="n">metric_dict</span> <span class="o">=</span> <span class="p">{}</span>
+
+<div class="viewcode-block" id="IndexClassifierWrapper.precompute"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.utils.IndexClassifierWrapper.html#skactiveml.pool.utils.IndexClassifierWrapper.precompute">[docs]</a>    <span class="k">def</span> <span class="nf">precompute</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">idx_fit</span><span class="p">,</span> <span class="n">idx_pred</span><span class="p">,</span> <span class="n">fit_params</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="n">pred_params</span><span class="o">=</span><span class="s2">&quot;all&quot;</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Function to describe for which samples we should precompute something.</span>
+<span class="sd">        Will be internally handled differently for different classifiers. The</span>
+<span class="sd">        function consists of pairs of `idx_fit` and `idx_predict` to describe</span>
+<span class="sd">        which sequences of fitting and predicting are to be expected.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        idx_fit : array-like of shape (n_fit_samples)</span>
+<span class="sd">            Indices of samples in `X` that will be used to fit the classifier.</span>
+<span class="sd">        idx_pred : array-like of shape (n_predict_samples)</span>
+<span class="sd">            Indices of samples in `X` that the classifier will predict for.</span>
+<span class="sd">        fit_params : string, optional (default=&#39;all&#39;)</span>
+<span class="sd">            Parameter to specify if only a subset of the `idx_fit` indices</span>
+<span class="sd">            will be used later. Can be of value &#39;all&#39;, &#39;labeled&#39;, or</span>
+<span class="sd">            &#39;unlabeled&#39;.</span>
+<span class="sd">        pred_params : string, optional (default=&#39;all&#39;)</span>
+<span class="sd">            Parameter to specify if only a subset of the `idx_predict` indices</span>
+<span class="sd">            will be used later. Can be of value &#39;all&#39;, &#39;labeled&#39;, or</span>
+<span class="sd">            &#39;unlabeled&#39;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">idx_fit</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">idx_fit</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+        <span class="n">idx_fit</span> <span class="o">=</span> <span class="n">check_indices</span><span class="p">(</span><span class="n">idx_fit</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="n">idx_pred</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">idx_pred</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+        <span class="n">idx_pred</span> <span class="o">=</span> <span class="n">check_indices</span><span class="p">(</span><span class="n">idx_pred</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="c1"># precompute ParzenWindowClassifier</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">clf</span><span class="p">,</span> <span class="n">ParzenWindowClassifier</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_speed_up</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">fit_params</span> <span class="o">==</span> <span class="s2">&quot;all&quot;</span><span class="p">:</span>
+                <span class="n">idx_fit_</span> <span class="o">=</span> <span class="n">idx_fit</span>
+            <span class="k">elif</span> <span class="n">fit_params</span> <span class="o">==</span> <span class="s2">&quot;labeled&quot;</span><span class="p">:</span>
+                <span class="n">idx_fit_</span> <span class="o">=</span> <span class="n">idx_fit</span><span class="p">[</span>
+                    <span class="n">is_labeled</span><span class="p">(</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="n">idx_fit</span><span class="p">],</span> <span class="n">missing_label</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">missing_label_</span>
+                    <span class="p">)</span>
+                <span class="p">]</span>
+            <span class="k">elif</span> <span class="n">fit_params</span> <span class="o">==</span> <span class="s2">&quot;unlabeled&quot;</span><span class="p">:</span>
+                <span class="n">idx_fit_</span> <span class="o">=</span> <span class="n">idx_fit</span><span class="p">[</span>
+                    <span class="n">is_unlabeled</span><span class="p">(</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="n">idx_fit</span><span class="p">],</span> <span class="n">missing_label</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">missing_label_</span>
+                    <span class="p">)</span>
+                <span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;`fit_params`== </span><span class="si">{</span><span class="n">fit_params</span><span class="si">}</span><span class="s2"> not defined&quot;</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">pred_params</span> <span class="o">==</span> <span class="s2">&quot;all&quot;</span><span class="p">:</span>
+                <span class="n">idx_pred_</span> <span class="o">=</span> <span class="n">idx_pred</span>
+            <span class="k">elif</span> <span class="n">pred_params</span> <span class="o">==</span> <span class="s2">&quot;labeled&quot;</span><span class="p">:</span>
+                <span class="n">idx_pred_</span> <span class="o">=</span> <span class="n">idx_pred</span><span class="p">[</span>
+                    <span class="n">is_labeled</span><span class="p">(</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="n">idx_pred</span><span class="p">],</span> <span class="n">missing_label</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">missing_label_</span>
+                    <span class="p">)</span>
+                <span class="p">]</span>
+            <span class="k">elif</span> <span class="n">pred_params</span> <span class="o">==</span> <span class="s2">&quot;unlabeled&quot;</span><span class="p">:</span>
+                <span class="n">idx_pred_</span> <span class="o">=</span> <span class="n">idx_pred</span><span class="p">[</span>
+                    <span class="n">is_unlabeled</span><span class="p">(</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="n">idx_pred</span><span class="p">],</span> <span class="n">missing_label</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">missing_label_</span>
+                    <span class="p">)</span>
+                <span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;`pred_params`== </span><span class="si">{</span><span class="n">pred_params</span><span class="si">}</span><span class="s2"> not defined&quot;</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">idx_fit_</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">idx_pred_</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">pwc_K_</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ix_</span><span class="p">(</span><span class="n">idx_fit_</span><span class="p">,</span> <span class="n">idx_pred_</span><span class="p">)]</span> <span class="o">=</span> <span class="n">pairwise_kernels</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">[</span><span class="n">idx_fit_</span><span class="p">],</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">[</span><span class="n">idx_pred_</span><span class="p">],</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">pwc_metric_</span><span class="p">,</span>
+                    <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">pwc_metric_dict_</span><span class="p">,</span>
+                <span class="p">)</span></div>
+
+<div class="viewcode-block" id="IndexClassifierWrapper.fit"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.utils.IndexClassifierWrapper.html#skactiveml.pool.utils.IndexClassifierWrapper.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">set_base_clf</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Fit the model using `self.X[idx]` as training data and `self.y[idx]`</span>
+<span class="sd">        as class labels.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        idx : array-like of shape (n_sub_samples)</span>
+<span class="sd">            Indices of samples in `X` that will be used to fit the classifier.</span>
+<span class="sd">        y : array-like of shape (n_sub_samples), optional (default=None)</span>
+<span class="sd">            Class labels of the training samples corresponding to `X[idx]`.</span>
+<span class="sd">            Missing labels are represented the attribute &#39;missing_label&#39;.</span>
+<span class="sd">            If None, labels passed in the `init` will be used.</span>
+<span class="sd">        sample_weight: array-like of shape (n_sub_samples), optional</span>
+<span class="sd">            (default=None)</span>
+<span class="sd">            Weights of training samples in `X[idx]`.</span>
+<span class="sd">            If None, weights passed in the `init` will be used.</span>
+<span class="sd">        set_base_clf : bool, default=False</span>
+<span class="sd">            If True, the base classifier will be set to the newly fitted</span>
+<span class="sd">            classifier</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self: IndexClassifierWrapper,</span>
+<span class="sd">            The fitted IndexClassifierWrapper.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># check idx</span>
+        <span class="n">idx</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+        <span class="n">idx</span> <span class="o">=</span> <span class="n">check_indices</span><span class="p">(</span>
+            <span class="n">idx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">unique</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">enforce_unique_samples</span>
+        <span class="p">)</span>
+
+        <span class="c1"># check set_base_clf</span>
+        <span class="n">check_type</span><span class="p">(</span><span class="n">set_base_clf</span><span class="p">,</span> <span class="s2">&quot;set_base_clf&quot;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>
+
+        <span class="c1"># check y</span>
+        <span class="k">if</span> <span class="n">y</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">is_unlabeled</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">missing_label</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">missing_label_</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+                <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;All labels are of `missing_label` in `fit`.&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">force_all_finite</span><span class="o">=</span><span class="s2">&quot;allow-nan&quot;</span><span class="p">)</span>
+            <span class="n">check_consistent_length</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+        <span class="c1"># check sample_weight</span>
+        <span class="k">if</span> <span class="n">sample_weight</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">sample_weight</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_copy_sw</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_get_sw</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sample_weight</span><span class="p">,</span> <span class="n">idx</span><span class="o">=</span><span class="n">idx</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="c1"># TODO deepcopy</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">sample_weight</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">sample_weight</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="n">check_consistent_length</span><span class="p">(</span><span class="n">sample_weight</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+        <span class="c1"># check if a clf_ exists</span>
+        <span class="k">if</span> <span class="s2">&quot;clf_&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">clf_</span> <span class="o">=</span> <span class="n">clone</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">clf</span><span class="p">)</span>
+
+        <span class="c1"># fit classifier</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">clf_</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">)</span>
+
+        <span class="c1"># store data for further processing</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_partial_fit</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">idx_</span> <span class="o">=</span> <span class="n">idx</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">y_</span> <span class="o">=</span> <span class="n">y</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sample_weight_</span> <span class="o">=</span> <span class="n">sample_weight</span>
+
+        <span class="c1"># set base clf if necessary</span>
+        <span class="k">if</span> <span class="n">set_base_clf</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">base_clf_</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">clf_</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_partial_fit</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">base_idx_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">idx_</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">base_y_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">base_sample_weight_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_copy_sw</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sample_weight_</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="IndexClassifierWrapper.partial_fit"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.utils.IndexClassifierWrapper.html#skactiveml.pool.utils.IndexClassifierWrapper.partial_fit">[docs]</a>    <span class="k">def</span> <span class="nf">partial_fit</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">idx</span><span class="p">,</span>
+        <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">use_base_clf</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">set_base_clf</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Update the fitted model using additional samples in `self.X[idx]`</span>
+<span class="sd">        and y as class labels.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        idx : array-like of shape (n_sub_samples)</span>
+<span class="sd">            Indices of samples in `X` that will be used to fit the classifier.</span>
+<span class="sd">        y : array-like of shape (n_sub_samples), optional (default=None)</span>
+<span class="sd">            Class labels of the training samples corresponding to `X[idx]`.</span>
+<span class="sd">            Missing labels are represented the attribute &#39;missing_label&#39;.</span>
+<span class="sd">        sample_weight: array-like of shape (n_sub_samples), optional</span>
+<span class="sd">            (default=None)</span>
+<span class="sd">            Weights of training samples in `X[idx]`.</span>
+<span class="sd">        use_base_clf : bool, default=False</span>
+<span class="sd">            If True, the base classifier will be used to update the fit instead</span>
+<span class="sd">            of the current classifier. Here, it is necessary that the base</span>
+<span class="sd">            classifier has been set once.</span>
+<span class="sd">        set_base_clf : bool, default=False</span>
+<span class="sd">            If True, the base classifier will be set to the newly fitted</span>
+<span class="sd">            classifier.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self: IndexClassifierWrapper,</span>
+<span class="sd">            The fitted IndexClassifierWrapper.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># check idx</span>
+        <span class="n">add_idx</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+        <span class="n">add_idx</span> <span class="o">=</span> <span class="n">check_indices</span><span class="p">(</span>
+            <span class="n">add_idx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">unique</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">enforce_unique_samples</span>
+        <span class="p">)</span>
+
+        <span class="c1"># check use_base_clf</span>
+        <span class="n">check_type</span><span class="p">(</span><span class="n">use_base_clf</span><span class="p">,</span> <span class="s2">&quot;use_base_clf&quot;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">use_base_clf</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_fitted</span><span class="p">(</span><span class="n">base_clf</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="n">NotFittedError</span><span class="p">(</span>
+                    <span class="s2">&quot;Base classifier is not set. Please use &quot;</span>
+                    <span class="s2">&quot;`set_base_clf=True` in `__init__`, `fit`, or &quot;</span>
+                    <span class="s2">&quot;`partial_fit`.&quot;</span>
+                <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_fitted</span><span class="p">(</span><span class="n">base_clf</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="n">NotFittedError</span><span class="p">(</span>
+                    <span class="s2">&quot;Classifier is not fitted. Please `fit` before using &quot;</span>
+                    <span class="s2">&quot;`partial_fit`.&quot;</span>
+                <span class="p">)</span>
+
+        <span class="c1"># check set_base_clf</span>
+        <span class="n">check_type</span><span class="p">(</span><span class="n">set_base_clf</span><span class="p">,</span> <span class="s2">&quot;set_base_clf&quot;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>
+
+        <span class="c1"># check y</span>
+        <span class="k">if</span> <span class="n">y</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">add_y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="n">add_idx</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">is_unlabeled</span><span class="p">(</span><span class="n">add_y</span><span class="p">,</span> <span class="n">missing_label</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">missing_label_</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+                <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                    <span class="s2">&quot;All labels are of `missing_label` in &quot;</span> <span class="s2">&quot;`partial_fit`.&quot;</span>
+                <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">add_y</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span>
+                <span class="n">y</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">force_all_finite</span><span class="o">=</span><span class="s2">&quot;allow-nan&quot;</span>
+            <span class="p">)</span>
+            <span class="n">check_consistent_length</span><span class="p">(</span><span class="n">add_idx</span><span class="p">,</span> <span class="n">add_y</span><span class="p">)</span>
+
+        <span class="c1"># check sample_weight</span>
+        <span class="k">if</span> <span class="n">sample_weight</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">add_sample_weight</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_copy_sw</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_get_sw</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sample_weight</span><span class="p">,</span> <span class="n">idx</span><span class="o">=</span><span class="n">add_idx</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">add_sample_weight</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">sample_weight</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="n">check_consistent_length</span><span class="p">(</span><span class="n">add_idx</span><span class="p">,</span> <span class="n">add_sample_weight</span><span class="p">)</span>
+
+        <span class="c1"># handle case when partial fit of clf is used</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_partial_fit</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">use_base_clf</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">clf_</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_clf_</span><span class="p">)</span>
+
+            <span class="c1"># partial fit clf</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">clf_</span><span class="o">.</span><span class="n">partial_fit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">[</span><span class="n">add_idx</span><span class="p">],</span> <span class="n">add_y</span><span class="p">,</span> <span class="n">add_sample_weight</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">set_base_clf</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">base_clf_</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">clf_</span><span class="p">)</span>
+
+        <span class="c1"># handle case using regular fit from clf</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;idx_&quot;</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="n">NotFittedError</span><span class="p">(</span>
+                    <span class="s2">&quot;Fitted classifier from `init` cannot be &quot;</span>
+                    <span class="s2">&quot;used for `partial_fit` as it is unknown &quot;</span>
+                    <span class="s2">&quot;where it has been fitted on.&quot;</span>
+                <span class="p">)</span>
+            <span class="k">if</span> <span class="n">use_base_clf</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">clf_</span> <span class="o">=</span> <span class="n">clone</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_clf_</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">idx_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">base_idx_</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">y_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">base_y_</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">sample_weight_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_copy_sw</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_sample_weight_</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">enforce_unique_samples</span><span class="p">:</span>
+                <span class="n">cur_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">i</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">add_idx</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">idx_</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">cur_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">idx_</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">idx_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">idx_</span><span class="p">[</span><span class="n">cur_idx</span><span class="p">],</span> <span class="n">add_idx</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">y_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">y_</span><span class="p">[</span><span class="n">cur_idx</span><span class="p">],</span> <span class="n">add_y</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sample_weight_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_concat_sw</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_get_sw</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sample_weight_</span><span class="p">,</span> <span class="n">cur_idx</span><span class="p">),</span> <span class="n">add_sample_weight</span>
+            <span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">idx_</span><span class="p">,</span>
+                <span class="n">y</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">y_</span><span class="p">,</span>
+                <span class="n">sample_weight</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sample_weight_</span><span class="p">,</span>
+                <span class="n">set_base_clf</span><span class="o">=</span><span class="n">set_base_clf</span><span class="p">,</span>
+            <span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="IndexClassifierWrapper.predict"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.utils.IndexClassifierWrapper.html#skactiveml.pool.utils.IndexClassifierWrapper.predict">[docs]</a>    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return class label predictions for the input data `X[idx]`.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        idx : array-like of shape (n_sub_samples)</span>
+<span class="sd">            Indices of samples in `X` that are to be predicted.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        y : array-like, shape (n_sub_samples)</span>
+<span class="sd">            Predicted class labels of the input samples.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">clf</span><span class="p">,</span> <span class="n">ParzenWindowClassifier</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_speed_up</span><span class="p">:</span>
+            <span class="n">P</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pwc_K_</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">idx_</span><span class="p">,</span> <span class="p">:][:,</span> <span class="n">idx</span><span class="p">]</span><span class="o">.</span><span class="n">T</span>
+
+            <span class="c1"># check if results contain NAN</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">P</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">&quot;Error in defining what should be &quot;</span>
+                    <span class="s2">&quot;pre-computed in ParzenWindowClassifier. &quot;</span>
+                    <span class="s2">&quot;Not all necessary &quot;</span>
+                    <span class="s2">&quot;information is available which results in &quot;</span>
+                    <span class="s2">&quot;NaNs in `predict_proba`.&quot;</span>
+                <span class="p">)</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">clf_</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">clf_</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="IndexClassifierWrapper.predict_proba"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.utils.IndexClassifierWrapper.html#skactiveml.pool.utils.IndexClassifierWrapper.predict_proba">[docs]</a>    <span class="k">def</span> <span class="nf">predict_proba</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return probability estimates for the input data `X[idx]`.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        idx : array-like of shape (n_sub_samples)</span>
+<span class="sd">            Indices of samples in `X` that are to be predicted.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        P : array-like, shape (n_sub_samples, classes)</span>
+<span class="sd">            The class probabilities of the input samples. Classes are ordered</span>
+<span class="sd">            by lexicographic order.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">clf</span><span class="p">,</span> <span class="n">ParzenWindowClassifier</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_speed_up</span><span class="p">:</span>
+            <span class="n">P</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pwc_K_</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">idx_</span><span class="p">,</span> <span class="p">:][:,</span> <span class="n">idx</span><span class="p">]</span><span class="o">.</span><span class="n">T</span>
+
+            <span class="c1"># check if results contain NAN</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">P</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">&quot;Error in defining what should be &quot;</span>
+                    <span class="s2">&quot;pre-computed in ParzenWindowClassifier. &quot;</span>
+                    <span class="s2">&quot;Not all necessary &quot;</span>
+                    <span class="s2">&quot;information is available which results in &quot;</span>
+                    <span class="s2">&quot;NaNs in `predict_proba`.&quot;</span>
+                <span class="p">)</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">clf_</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">clf_</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="IndexClassifierWrapper.predict_freq"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.utils.IndexClassifierWrapper.html#skactiveml.pool.utils.IndexClassifierWrapper.predict_freq">[docs]</a>    <span class="k">def</span> <span class="nf">predict_freq</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return class frequency estimates for the input samples &#39;X[idx]&#39;.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        idx : array-like of shape (n_sub_samples)</span>
+<span class="sd">            Indices of samples in `X` that are to be predicted.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        F: array-like of shape (n_sub_samples, classes)</span>
+<span class="sd">            The class frequency estimates of the input samples. Classes are</span>
+<span class="sd">            ordered according to `classes_`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">clf</span><span class="p">,</span> <span class="n">ParzenWindowClassifier</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_speed_up</span><span class="p">:</span>
+            <span class="n">P</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pwc_K_</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">idx_</span><span class="p">,</span> <span class="p">:][:,</span> <span class="n">idx</span><span class="p">]</span><span class="o">.</span><span class="n">T</span>
+
+            <span class="c1"># check if results contain NAN</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">P</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">&quot;Error in defining what should be &quot;</span>
+                    <span class="s2">&quot;pre-computed in ParzenWindowClassifier. &quot;</span>
+                    <span class="s2">&quot;Not all necessary &quot;</span>
+                    <span class="s2">&quot;information is available which results in &quot;</span>
+                    <span class="s2">&quot;NaNs in `predict_proba`.&quot;</span>
+                <span class="p">)</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">clf_</span><span class="o">.</span><span class="n">predict_freq</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">clf_</span><span class="o">.</span><span class="n">predict_freq</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="IndexClassifierWrapper.is_fitted"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.utils.IndexClassifierWrapper.html#skactiveml.pool.utils.IndexClassifierWrapper.is_fitted">[docs]</a>    <span class="k">def</span> <span class="nf">is_fitted</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_clf</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns if the classifier (resp. the base classifier) is fitted.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        base_clf : bool, default=False</span>
+<span class="sd">            If True, the result will describe if the base classifier is</span>
+<span class="sd">            fitted.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        is_fitted : boolean</span>
+<span class="sd">            Boolean describing if the classifier is fitted.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">clf</span> <span class="o">=</span> <span class="s2">&quot;base_clf_&quot;</span> <span class="k">if</span> <span class="n">base_clf</span> <span class="k">else</span> <span class="s2">&quot;clf_&quot;</span>
+        <span class="k">if</span> <span class="n">clf</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">hasattr</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clf</span><span class="p">),</span> <span class="s2">&quot;classes_&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span></div>
+
+    <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="k">if</span> <span class="s2">&quot;clf_&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">clf_</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">clf</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_get_sw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">,</span> <span class="n">idx</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">sample_weight</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">sample_weight</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">_copy_sw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">sample_weight</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">sample_weight</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_concat_sw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">,</span> <span class="n">sample_weight_add</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">sample_weight</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">sample_weight_add</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">sample_weight</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">sample_weight_add</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">sample_weight</span><span class="p">,</span> <span class="n">sample_weight_add</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;All `sample_weight` must be either None or &quot;</span> <span class="s2">&quot;given.&quot;</span>
+            <span class="p">)</span></div>
+</pre></div>
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2020.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

@@ -1,0 +1,1053 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Active Image Classification via Self-supervised Learning &#8212; scikit-activeml 0.5.2 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'generated/tutorials/05_pool_al_with_self_supervised_learning';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://scikit-activeml.github.io/scikit-activeml-docs/latest/_static/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.5.2';
+        </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../../_static/filter_examples.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Multi-annotator Pool-based Active Learning - Getting Started" href="10_multiple_annotators_getting_started.html" />
+    <link rel="prev" title="Pool-based Active Learning - Simple Evaluation Study" href="04_pool_simple_evaluation_study.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../../_static/scikit-activeml-logo.png" class="logo__image only-light" alt="Logo image">
+    <img src="../../_static/scikit-activeml-logo.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+    <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        0.5.2  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../index.html">
+                        Home
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../../tutorials.html">
+                        Tutorials
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../strategy_overview.html">
+                        Strategy Overview
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../api_reference.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../sphinx_gallery_examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../contributing.html">
+                        Contributing Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-external" href="https://github.com/scikit-activeml/scikit-activeml/releases">
+                        Changelog
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
+      
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/scikit-activeml/scikit-activeml" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/scikit-activeml" title="PyPI" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fas fa-box"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../index.html">
+                        Home
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../../tutorials.html">
+                        Tutorials
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../strategy_overview.html">
+                        Strategy Overview
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../api_reference.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../sphinx_gallery_examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../contributing.html">
+                        Contributing Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-external" href="https://github.com/scikit-activeml/scikit-activeml/releases">
+                        Changelog
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/scikit-activeml/scikit-activeml" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/scikit-activeml" title="PyPI" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fas fa-box"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Section navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">
+    Section Navigation
+  </p>
+  <div class="bd-toc-item navbar-nav">
+    <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="00_pool_getting_started.html">Pool-based Active Learning - Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_deep_pool_al_with_skorch.html">Deep Pool-based Active Learning: Scikit-activeml with Skorch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_pool_regression_getting_started.html">Pool-based Active Learning for Regression - Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_pool_oracle_annotations.html">Sample Annotating</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_pool_simple_evaluation_study.html">Pool-based Active Learning - Simple Evaluation Study</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Active Image Classification via Self-supervised Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_multiple_annotators_getting_started.html">Multi-annotator Pool-based Active Learning - Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20_stream_getting_started.html">Stream-based Active Learning - Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="21_stream_batch_with_pool_al.html">Batch Stream Active Learning with Pool-based Query Strategies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="22_river_classifier.html">Stream-based Active Learning with River</a></li>
+</ul>
+
+  </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+  
+  <div id="rtd-footer-container"></div>
+
+      </div>
+      <main id="main-content" class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <section id="Active-Image-Classification-via-Self-supervised-Learning">
+<h1>Active Image Classification via Self-supervised Learning<a class="headerlink" href="#Active-Image-Classification-via-Self-supervised-Learning" title="Permalink to this heading">#</a></h1>
+<blockquote>
+<div><p><strong>Google Colab Note:</strong> If the notebook fails to run after installing the needed packages, try to restart the runtime (Ctrl + M) under Runtime -&gt; Restart session.</p>
+</div></blockquote>
+<p><a class="reference external" href="https://colab.research.google.com/github/scikit-activeml/scikit-activeml-docs/blob/gh-pages/latest/generated/tutorials_colab//05_pool_al_with_self_supervised_learning.ipynb"><img alt="Open in Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
+<p><strong>Notebook Dependencies</strong></p>
+<p>Uncomment the following cells to install all dependencies for this tutorial.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># !pip install scikit-activeml torch torchvision torchaudio tqdm</span>
+</pre></div>
+</div>
+</div>
+<hr style="border-style: solid; border-top: 1px solid; border-right: 0; border-bottom: 0; border-left: 0;"><p>This tutorial aims to demonstrate a practical comparison study using our <code class="docutils literal notranslate"><span class="pre">scikit-activeml</span></code> library. The workflow involves utilizing a self-supervised learning model, specifically <code class="docutils literal notranslate"><span class="pre">DINOv2</span></code> from [1], to generate embeddings for the Flowers-102 dataset [2]. Subsequently, various active learning strategies will be employed to intelligently select samples for labeling.</p>
+<p><strong>Key Steps:</strong> 1. <strong>Self-Supervised Learning Model:</strong> Utilize the DINOv2 model to create embedding dataset for Flowers-102 dataset.</p>
+<ol class="arabic simple" start="2">
+<li><p><strong>Active Learning Strategies:</strong> Employ different active learning strategies provided by our library, including:</p>
+<ul class="simple">
+<li><p>Random Sampling</p></li>
+<li><p>Uncertainty Sampling</p></li>
+<li><p>Discriminative Active Learning (DiscriminativeAL)</p></li>
+<li><p>CoreSet</p></li>
+<li><p>TypiClust</p></li>
+<li><p>Badge</p></li>
+</ul>
+</li>
+<li><p><strong>Batch Sample Selection:</strong> Use each active learning strategy to select a batch of samples for labeling.</p></li>
+<li><p><strong>Plotting the results:</strong> By the end of this notebook, we’ll compare the accuracy of the aforementioned active learning strategies.</p></li>
+</ol>
+<p><strong>References:</strong></p>
+<p>[1] M. Oquab et al., ‘DINOv2: Learning Robust Visual Features without Supervision’. Transactions on Machine Learning Research (TMLR)</p>
+<p>[2] M. E. Nilsback and A. Zisserman, ‘Automated Flower Classification over a Large Number of Classes’. Indian Conference on Computer Vision, Graphics and Image Processing (ICVGIP)</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mlp</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+
+<span class="kn">from</span> <span class="nn">skactiveml.classifier</span> <span class="kn">import</span> <span class="n">SklearnClassifier</span>
+<span class="kn">from</span> <span class="nn">skactiveml.pool</span> <span class="kn">import</span> <span class="n">UncertaintySampling</span><span class="p">,</span> <span class="n">RandomSampling</span><span class="p">,</span> <span class="n">DiscriminativeAL</span><span class="p">,</span> <span class="n">CoreSet</span><span class="p">,</span> <span class="n">TypiClust</span><span class="p">,</span> <span class="n">Badge</span>
+<span class="kn">from</span> <span class="nn">skactiveml.utils</span> <span class="kn">import</span> <span class="n">call_func</span><span class="p">,</span> <span class="n">MISSING_LABEL</span>
+
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torchvision.datasets</span> <span class="k">as</span> <span class="nn">datasets</span>
+<span class="kn">import</span> <span class="nn">torchvision.transforms</span> <span class="k">as</span> <span class="nn">transforms</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">mlp</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.facecolor&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;white&quot;</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<section id="Prepare-Data-with-DINOv2">
+<h2>Prepare Data with DINOv2<a class="headerlink" href="#Prepare-Data-with-DINOv2" title="Permalink to this heading">#</a></h2>
+<p>In this step, we focus on preparing the datasets using the self-supervised learning model DINOv2. DINOv2, short for “self-distillation with no labels”, is a state-of-the-art model that excels at learning meaningful representations from unlabeled data.</p>
+<p>If you’ve already completed these steps, you can skip ahead to loading your data.</p>
+<p><strong>Step 1: Transformation</strong></p>
+<p>Apply necessary transformations to the datasets, including resizing images to a standardized format. This ensures consistency of input dimensions with the DINOv2 model.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transforms</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">(</span>
+        <span class="p">[</span><span class="n">transforms</span><span class="o">.</span><span class="n">Resize</span><span class="p">(</span><span class="mi">256</span><span class="p">),</span>
+         <span class="n">transforms</span><span class="o">.</span><span class="n">CenterCrop</span><span class="p">(</span><span class="mi">224</span><span class="p">),</span>
+         <span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>
+         <span class="n">transforms</span><span class="o">.</span><span class="n">Normalize</span><span class="p">((</span><span class="mf">0.485</span><span class="p">,</span> <span class="mf">0.456</span><span class="p">,</span> <span class="mf">0.406</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.229</span><span class="p">,</span> <span class="mf">0.224</span><span class="p">,</span> <span class="mf">0.225</span><span class="p">))]</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p><strong>Step 2: Load pretrained Model</strong> To calculate embeddings, we’ll use DINOv2. Below we load the second smallest DINOv2 model to generate embedding datasets for the Flowers-102 datasets.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">torch</span><span class="o">.</span><span class="n">hub</span><span class="o">.</span><span class="n">set_dir</span><span class="p">(</span><span class="s1">&#39;cache/&#39;</span><span class="p">)</span>
+
+<span class="n">dinov2_vitb14</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">hub</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;facebookresearch/dinov2&quot;</span><span class="p">,</span> <span class="s2">&quot;dinov2_vitb14&quot;</span><span class="p">)</span>
+
+<span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s1">&#39;cuda&#39;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s1">&#39;cpu&#39;</span><span class="p">)</span>
+
+<span class="n">dinov2_vitb14</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Downloading: &#34;https://github.com/facebookresearch/dinov2/zipball/main&#34; to cache/main.zip
+Downloading: &#34;https://dl.fbaipublicfiles.com/dinov2/dinov2_vitb14/dinov2_vitb14_pretrain.pth&#34; to cache/checkpoints\dinov2_vitb14_pretrain.pth
+100%|██████████| 330M/330M [00:03&lt;00:00, 113MB/s]
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+DinoVisionTransformer(
+  (patch_embed): PatchEmbed(
+    (proj): Conv2d(3, 768, kernel_size=(14, 14), stride=(14, 14))
+    (norm): Identity()
+  )
+  (blocks): ModuleList(
+    (0-11): 12 x NestedTensorBlock(
+      (norm1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+      (attn): MemEffAttention(
+        (qkv): Linear(in_features=768, out_features=2304, bias=True)
+        (attn_drop): Dropout(p=0.0, inplace=False)
+        (proj): Linear(in_features=768, out_features=768, bias=True)
+        (proj_drop): Dropout(p=0.0, inplace=False)
+      )
+      (ls1): LayerScale()
+      (drop_path1): Identity()
+      (norm2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+      (mlp): Mlp(
+        (fc1): Linear(in_features=768, out_features=3072, bias=True)
+        (act): GELU(approximate=&#39;none&#39;)
+        (fc2): Linear(in_features=3072, out_features=768, bias=True)
+        (drop): Dropout(p=0.0, inplace=False)
+      )
+      (ls2): LayerScale()
+      (drop_path2): Identity()
+    )
+  )
+  (norm): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+  (head): Identity()
+)
+</pre></div></div>
+</div>
+<p><strong>Step 3: Load Datasets and Generate Embeddings</strong></p>
+<p>Firstly, we begin by loading the Flowers-102 dataset.</p>
+<p>After that, we employ the pre-trained DINOv2 model to generate embeddings for each image in the dataset and save them in a npy file.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">load_and_process_dataset</span><span class="p">(</span><span class="n">root_dir</span><span class="p">,</span> <span class="n">is_train</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Load and process a given dataset for training or validation.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    - root_dir (str) : Root directory where the dataset will be stored.</span>
+<span class="sd">    - is_train (bool) : Boolean indicating whether the dataset is for training (True) or validation (False).</span>
+<span class="sd">    - batch_size (int) : The batch_size used for the DataLoader.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    - X (numpy.ndarray): Concatenated embeddings of the dataset.</span>
+<span class="sd">    - y_true (numpy.ndarray): Concatenated true labels of the dataset.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Load dataset</span>
+    <span class="k">if</span> <span class="n">is_train</span><span class="p">:</span>
+        <span class="n">split</span> <span class="o">=</span> <span class="s1">&#39;train&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">split</span> <span class="o">=</span> <span class="s1">&#39;val&#39;</span>
+
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">Flowers102</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="n">root_dir</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="n">split</span><span class="p">,</span> <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transforms</span><span class="p">)</span>
+
+
+    <span class="c1"># Create DataLoader</span>
+    <span class="n">dataloader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="n">is_train</span><span class="p">,</span> <span class="n">num_workers</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="n">embedding_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">label_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Iterate through the DataLoader and extract embeddings</span>
+    <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">enumerate</span><span class="p">(</span><span class="n">dataloader</span><span class="p">),</span> <span class="n">total</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">dataloader</span><span class="p">),</span> <span class="n">desc</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Flowers102 </span><span class="si">{</span><span class="n">split</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">):</span>
+            <span class="n">image</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="n">data</span>
+            <span class="n">embeddings</span> <span class="o">=</span> <span class="n">dinov2_vitb14</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">))</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span>
+            <span class="n">embedding_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">embeddings</span><span class="p">)</span>
+            <span class="n">label_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+
+        <span class="c1"># Concatenate embeddings and labels</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">embedding_list</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+        <span class="n">y_true</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">label_list</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">X</span><span class="p">,</span> <span class="n">y_true</span>
+</pre></div>
+</div>
+</div>
+<p>Applying on Flowers102 Datasets</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_dir</span> <span class="o">=</span> <span class="s2">&quot;./data&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Flowers-102</span>
+<span class="n">flowers102_X_train</span><span class="p">,</span> <span class="n">flowers102_y_train_true</span> <span class="o">=</span> <span class="n">load_and_process_dataset</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">flowers102_X_test</span><span class="p">,</span> <span class="n">flowers102_y_test_true</span> <span class="o">=</span> <span class="n">load_and_process_dataset</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">data_dir</span><span class="si">}</span><span class="s1">/flowers102_dinov2B_X_train.npy&#39;</span><span class="p">,</span> <span class="n">flowers102_X_train</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">data_dir</span><span class="si">}</span><span class="s1">/flowers102_dinov2B_y_train.npy&#39;</span><span class="p">,</span> <span class="n">flowers102_y_train_true</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">data_dir</span><span class="si">}</span><span class="s1">/flowers102_dinov2B_X_test.npy&#39;</span><span class="p">,</span> <span class="n">flowers102_X_test</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">data_dir</span><span class="si">}</span><span class="s1">/flowers102_dinov2B_y_test.npy&#39;</span><span class="p">,</span> <span class="n">flowers102_y_test_true</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Downloading https://thor.robots.ox.ac.uk/flowers/102/102flowers.tgz to data\flowers-102\102flowers.tgz
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+100%|██████████| 344862509/344862509 [00:05&lt;00:00, 68322052.63it/s]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Extracting data\flowers-102\102flowers.tgz to data\flowers-102
+Downloading https://thor.robots.ox.ac.uk/flowers/102/imagelabels.mat to data\flowers-102\imagelabels.mat
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+100%|██████████| 502/502 [00:00&lt;00:00, 334318.93it/s]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Downloading https://thor.robots.ox.ac.uk/flowers/102/setid.mat to data\flowers-102\setid.mat
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+100%|██████████| 14989/14989 [00:00&lt;00:00, 7487901.70it/s]
+Flowers102 train: 100%|██████████| 255/255 [00:09&lt;00:00, 25.93it/s]
+Flowers102 val: 100%|██████████| 255/255 [00:09&lt;00:00, 27.97it/s]
+</pre></div></div>
+</div>
+</section>
+<section id="Load-your-preprocessed-Dataset">
+<h2>Load your preprocessed Dataset<a class="headerlink" href="#Load-your-preprocessed-Dataset" title="Permalink to this heading">#</a></h2>
+<p>If you have previously processed your data with DINOv2, please use the following code to load your data. And we also define the number of classes in the Flowers102 dataset.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_dir</span> <span class="o">=</span> <span class="s2">&quot;./data&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Flowers-102</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">data_dir</span><span class="si">}</span><span class="s1">/flowers102_dinov2B_X_train.npy&#39;</span><span class="p">)</span>
+<span class="n">y_train_true</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">data_dir</span><span class="si">}</span><span class="s1">/flowers102_dinov2B_y_train.npy&#39;</span><span class="p">)</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">data_dir</span><span class="si">}</span><span class="s1">/flowers102_dinov2B_X_test.npy&#39;</span><span class="p">)</span>
+<span class="n">y_test_true</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">data_dir</span><span class="si">}</span><span class="s1">/flowers102_dinov2B_y_test.npy&#39;</span><span class="p">)</span>
+
+<span class="n">dataset_classes</span> <span class="o">=</span> <span class="mi">102</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Random-Seed-Management">
+<h2>Random Seed Management<a class="headerlink" href="#Random-Seed-Management" title="Permalink to this heading">#</a></h2>
+<p>To ensure experiment reproducibility, it’s important to set random states for all components that might use them. For simplicity, we set a single fixed random state and use helper functions to generate new seeds and random states. It’s important to note that the <code class="docutils literal notranslate"><span class="pre">master_random_state</span></code> should only be used to create new random states or random seeds.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">master_random_state</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">gen_seed</span><span class="p">(</span><span class="n">random_state</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generate a seed for a random number generator.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    - random_state (np.random.RandomState): Random state object.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    - int: Generated seed.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">random_state</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">**</span><span class="mi">31</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">gen_random_state</span><span class="p">(</span><span class="n">random_state</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generate a new random state object based on a given random state.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    - random_state (np.random.RandomState): Random state object.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    - np.random.RandomState: New random state object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="n">gen_seed</span><span class="p">(</span><span class="n">random_state</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Classification-Models-and-Query-Strategies">
+<h2>Classification Models and Query Strategies<a class="headerlink" href="#Classification-Models-and-Query-Strategies" title="Permalink to this heading">#</a></h2>
+<p>The embeddings we have computed can be used as an input to a classification model. For this guide, we use <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code> from <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>. Moreover, we handle the creation of query strategies using factory functions to simplify the separation of query strategies across repetitions.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clf</span> <span class="o">=</span> <span class="n">SklearnClassifier</span><span class="p">(</span><span class="n">LogisticRegression</span><span class="p">(),</span> <span class="n">classes</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">dataset_classes</span><span class="p">),</span> <span class="n">random_state</span><span class="o">=</span><span class="n">gen_seed</span><span class="p">(</span><span class="n">master_random_state</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">create_query_strategy</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">random_state</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">query_strategy_factory_functions</span><span class="p">[</span><span class="n">name</span><span class="p">](</span><span class="n">random_state</span><span class="p">)</span>
+
+<span class="n">query_strategy_factory_functions</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;RandomSampling&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">random_state</span><span class="p">:</span> <span class="n">RandomSampling</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">gen_seed</span><span class="p">(</span><span class="n">random_state</span><span class="p">)),</span>
+    <span class="s1">&#39;UncertaintySampling&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">random_state</span><span class="p">:</span> <span class="n">UncertaintySampling</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">gen_seed</span><span class="p">(</span><span class="n">random_state</span><span class="p">)),</span>
+    <span class="s1">&#39;DiscriminativeAL&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">random_state</span><span class="p">:</span> <span class="n">DiscriminativeAL</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">gen_seed</span><span class="p">(</span><span class="n">random_state</span><span class="p">)),</span>
+    <span class="s1">&#39;CoreSet&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">random_state</span><span class="p">:</span> <span class="n">CoreSet</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">gen_seed</span><span class="p">(</span><span class="n">random_state</span><span class="p">)),</span>
+    <span class="s1">&#39;TypiClust&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">random_state</span><span class="p">:</span> <span class="n">TypiClust</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">gen_seed</span><span class="p">(</span><span class="n">random_state</span><span class="p">)),</span>
+    <span class="s1">&#39;Badge&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">random_state</span><span class="p">:</span> <span class="n">Badge</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">gen_seed</span><span class="p">(</span><span class="n">random_state</span><span class="p">))</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Experiment-Parameters">
+<h2>Experiment Parameters<a class="headerlink" href="#Experiment-Parameters" title="Permalink to this heading">#</a></h2>
+<p>For this experiment, we need to define how the strategies should be compared against one another. Here the number of repetitions (<code class="docutils literal notranslate"><span class="pre">n_reps</span></code>), the number of cycles (<code class="docutils literal notranslate"><span class="pre">n_cycles</span></code>), and the size of each query (<code class="docutils literal notranslate"><span class="pre">query_batch_size</span></code>) need to be defined.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_reps</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">n_cycles</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">query_batch_size</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="n">query_strategy_names</span> <span class="o">=</span> <span class="n">query_strategy_factory_functions</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Experiment-Loop">
+<h2>Experiment Loop<a class="headerlink" href="#Experiment-Loop" title="Permalink to this heading">#</a></h2>
+<p>The actual experiment loops over all query strategies. The accuracy for the test set is stored for each cycle and repetition in the <code class="docutils literal notranslate"><span class="pre">results</span></code> dictionary.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">for</span> <span class="n">qs_name</span> <span class="ow">in</span> <span class="n">query_strategy_names</span><span class="p">:</span>
+    <span class="n">accuracies</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="n">n_reps</span><span class="p">,</span> <span class="n">n_cycles</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i_rep</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_reps</span><span class="p">):</span>
+        <span class="n">y_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">y_train_true</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">)</span>
+
+        <span class="n">qs</span> <span class="o">=</span> <span class="n">create_query_strategy</span><span class="p">(</span><span class="n">qs_name</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">gen_random_state</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="n">i_rep</span><span class="p">)))</span>
+        <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n_cycles</span><span class="p">),</span> <span class="n">desc</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Repeat </span><span class="si">{</span><span class="n">i_rep</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s1"> with </span><span class="si">{</span><span class="n">qs_name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">):</span>
+            <span class="n">query_idx</span> <span class="o">=</span> <span class="n">call_func</span><span class="p">(</span><span class="n">qs</span><span class="o">.</span><span class="n">query</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_train</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">query_batch_size</span><span class="p">,</span> <span class="n">clf</span><span class="o">=</span><span class="n">clf</span><span class="p">,</span> <span class="n">discriminator</span><span class="o">=</span><span class="n">clf</span><span class="p">)</span>
+            <span class="n">y_train</span><span class="p">[</span><span class="n">query_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_train_true</span><span class="p">[</span><span class="n">query_idx</span><span class="p">]</span>
+            <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+            <span class="n">score</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test_true</span><span class="p">)</span>
+            <span class="n">accuracies</span><span class="p">[</span><span class="n">i_rep</span><span class="p">,</span> <span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">score</span>
+
+    <span class="n">results</span><span class="p">[</span><span class="n">qs_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">accuracies</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Repeat 1 with RandomSampling: 100%|██████████| 30/30 [00:01&lt;00:00, 21.70it/s]
+Repeat 2 with RandomSampling: 100%|██████████| 30/30 [00:01&lt;00:00, 23.39it/s]
+Repeat 3 with RandomSampling: 100%|██████████| 30/30 [00:01&lt;00:00, 25.08it/s]
+Repeat 1 with UncertaintySampling: 100%|██████████| 30/30 [00:03&lt;00:00,  8.37it/s]
+Repeat 2 with UncertaintySampling: 100%|██████████| 30/30 [00:03&lt;00:00,  9.47it/s]
+Repeat 3 with UncertaintySampling: 100%|██████████| 30/30 [00:02&lt;00:00, 10.31it/s]
+Repeat 1 with DiscriminativeAL: 100%|██████████| 30/30 [00:13&lt;00:00,  2.17it/s]
+Repeat 2 with DiscriminativeAL: 100%|██████████| 30/30 [00:13&lt;00:00,  2.21it/s]
+Repeat 3 with DiscriminativeAL: 100%|██████████| 30/30 [00:13&lt;00:00,  2.18it/s]
+Repeat 1 with CoreSet: 100%|██████████| 30/30 [00:05&lt;00:00,  5.06it/s]
+Repeat 2 with CoreSet: 100%|██████████| 30/30 [00:05&lt;00:00,  5.06it/s]
+Repeat 3 with CoreSet: 100%|██████████| 30/30 [00:05&lt;00:00,  5.22it/s]
+Repeat 1 with TypiClust: 100%|██████████| 30/30 [00:14&lt;00:00,  2.06it/s]
+Repeat 2 with TypiClust: 100%|██████████| 30/30 [00:14&lt;00:00,  2.05it/s]
+Repeat 3 with TypiClust: 100%|██████████| 30/30 [00:14&lt;00:00,  2.14it/s]
+Repeat 1 with Badge: 100%|██████████| 30/30 [00:37&lt;00:00,  1.24s/it]
+Repeat 2 with Badge: 100%|██████████| 30/30 [00:37&lt;00:00,  1.26s/it]
+Repeat 3 with Badge: 100%|██████████| 30/30 [00:38&lt;00:00,  1.29s/it]
+</pre></div></div>
+</div>
+</section>
+<section id="Resulting-Plotting">
+<h2>Resulting Plotting<a class="headerlink" href="#Resulting-Plotting" title="Permalink to this heading">#</a></h2>
+<p>We use learning curves to compare strategies. We visualize the average accuracy over all repetitions. In addition, the legend provides insight into the area under the learning curve, which indicates the average accuracy over all cycles.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">qs_name</span> <span class="ow">in</span> <span class="n">query_strategy_names</span><span class="p">:</span>
+    <span class="n">key</span> <span class="o">=</span> <span class="n">qs_name</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+    <span class="n">reshaped_result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_cycles</span><span class="p">))</span>
+    <span class="n">errorbar_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">reshaped_result</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">errorbar_std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">reshaped_result</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_cycles</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">errorbar_mean</span><span class="p">,</span> <span class="n">errorbar_std</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">errorbar_mean</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">) </span><span class="si">{</span><span class="n">qs_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;LogisticRegression with query batch size </span><span class="si">{</span><span class="n">query_batch_size</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;cycle&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;accuracy&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/generated_tutorials_05_pool_al_with_self_supervised_learning_32_0.png" src="../../_images/generated_tutorials_05_pool_al_with_self_supervised_learning_32_0.png" />
+</div>
+</div>
+</section>
+</section>
+
+
+            </article>
+            
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="04_pool_simple_evaluation_study.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Pool-based Active Learning - Simple Evaluation Study</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="10_multiple_annotators_getting_started.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Multi-annotator Pool-based Active Learning - Getting Started</p>
+  </div>
+  <i class="fa-solid fa-angle-right"></i>
+  </a>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#Prepare-Data-with-DINOv2">
+   Prepare Data with DINOv2
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#Load-your-preprocessed-Dataset">
+   Load your preprocessed Dataset
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#Random-Seed-Management">
+   Random Seed Management
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#Classification-Models-and-Query-Strategies">
+   Classification Models and Query Strategies
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#Experiment-Parameters">
+   Experiment Parameters
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#Experiment-Loop">
+   Experiment Loop
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#Resulting-Plotting">
+   Resulting Plotting
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+<div class="toc-item">
+  
+<div id="searchbox"></div>
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+<div class="toc-item">
+  
+<div class="tocsection sourcelink">
+    <a href="../../_sources/generated/tutorials/05_pool_al_with_self_supervised_learning.ipynb.txt">
+        <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+</div>
+
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright 2020.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="theme-version">
+    Built with the
+    <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">
+        PyData Sphinx Theme
+    </a>
+    0.12.0.
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,1224 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>skactiveml.visualization._feature_space &#8212; scikit-activeml 0.5.2 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/sphinx_highlight.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/skactiveml/visualization/_feature_space';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://scikit-activeml.github.io/scikit-activeml-docs/latest/_static/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.5.2';
+        </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../../../_static/filter_examples.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../../../_static/scikit-activeml-logo.png" class="logo__image only-light" alt="Logo image">
+    <img src="../../../_static/scikit-activeml-logo.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+    <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        0.5.2  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../index.html">
+                        Home
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../tutorials.html">
+                        Tutorials
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../generated/strategy_overview.html">
+                        Strategy Overview
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../generated/api_reference.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../generated/sphinx_gallery_examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../contributing.html">
+                        Contributing Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-external" href="https://github.com/scikit-activeml/scikit-activeml/releases">
+                        Changelog
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
+      
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/scikit-activeml/scikit-activeml" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/scikit-activeml" title="PyPI" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fas fa-box"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../index.html">
+                        Home
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../tutorials.html">
+                        Tutorials
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../generated/strategy_overview.html">
+                        Strategy Overview
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../generated/api_reference.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../generated/sphinx_gallery_examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../contributing.html">
+                        Contributing Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-external" href="https://github.com/scikit-activeml/scikit-activeml/releases">
+                        Changelog
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/scikit-activeml/scikit-activeml" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/scikit-activeml" title="PyPI" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fas fa-box"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+  
+  <div id="rtd-footer-container"></div>
+
+      </div>
+      <main id="main-content" class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <h1>Source code for skactiveml.visualization._feature_space</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">lines</span><span class="p">,</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib.axes</span> <span class="kn">import</span> <span class="n">Axes</span>
+<span class="kn">from</span> <span class="nn">sklearn.base</span> <span class="kn">import</span> <span class="n">ClassifierMixin</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsRegressor</span>
+<span class="kn">from</span> <span class="nn">sklearn.utils.validation</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">check_array</span><span class="p">,</span>
+    <span class="n">check_consistent_length</span><span class="p">,</span>
+    <span class="n">column_or_1d</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">._misc</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">mesh</span><span class="p">,</span>
+    <span class="n">check_bound</span><span class="p">,</span>
+    <span class="n">_get_boundary_args</span><span class="p">,</span>
+    <span class="n">_get_confidence_args</span><span class="p">,</span>
+    <span class="n">_get_contour_args</span><span class="p">,</span>
+    <span class="n">_get_cmap</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">..base</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">QueryStrategy</span><span class="p">,</span>
+    <span class="n">SingleAnnotatorPoolQueryStrategy</span><span class="p">,</span>
+    <span class="n">MultiAnnotatorPoolQueryStrategy</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">..exceptions</span> <span class="kn">import</span> <span class="n">MappingError</span>
+<span class="kn">from</span> <span class="nn">..utils</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">check_scalar</span><span class="p">,</span>
+    <span class="n">unlabeled_indices</span><span class="p">,</span>
+    <span class="n">call_func</span><span class="p">,</span>
+    <span class="n">check_type</span><span class="p">,</span>
+    <span class="n">check_indices</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<div class="viewcode-block" id="plot_utilities"><a class="viewcode-back" href="../../../generated/api/skactiveml.visualization.plot_utilities.html#skactiveml.visualization.plot_utilities">[docs]</a><span class="k">def</span> <span class="nf">plot_utilities</span><span class="p">(</span><span class="n">qs</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">candidates</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot the utility for the given single-annotator query strategy.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    qs : skactiveml.base.SingleAnnotatorPoolQueryStrategy</span>
+<span class="sd">        The query strategy for which the utility is plotted.</span>
+<span class="sd">    X : array-like of shape (n_samples, n_features)</span>
+<span class="sd">        Training data set, usually complete, i.e. including the labeled and</span>
+<span class="sd">        unlabeled samples.</span>
+<span class="sd">    y : array-like of shape (n_samples, ) or (n_samples, n_annotators)</span>
+<span class="sd">        Labels of the training data set (possibly including unlabeled ones</span>
+<span class="sd">        indicated by self.MISSING_LABEL).</span>
+<span class="sd">    candidates : None or array-like of shape (n_candidates,), dtype=int or</span>
+<span class="sd">    array-like of shape (n_candidates, n_features),</span>
+<span class="sd">    optional (default=None)</span>
+<span class="sd">        If `candidates` is None, the unlabeled samples from (X,y) are</span>
+<span class="sd">        considered as candidates.</span>
+<span class="sd">        If `candidates` is of shape (n_candidates,) and of type int,</span>
+<span class="sd">        candidates is considered as the indices of the samples in (X,y).</span>
+<span class="sd">        If `candidates` is of shape (n_candidates, n_features), the</span>
+<span class="sd">        candidates are directly given in candidates (not necessarily</span>
+<span class="sd">        contained in X). This is not supported by all query strategies.</span>
+
+<span class="sd">    Other Parameters</span>
+<span class="sd">    ----------------</span>
+<span class="sd">    replace_nan : numeric or None, optional (default=0.0)</span>
+<span class="sd">        Only used if plotting with mesh instances is not possible.</span>
+<span class="sd">        If numeric, the utility of labeled instances will be plotted with</span>
+<span class="sd">        value `replace_nan`. If None, these samples will be ignored.</span>
+<span class="sd">    ignore_undefined_query_params : bool, optional (default=False)</span>
+<span class="sd">        If True, query parameters that are not defined in the query function</span>
+<span class="sd">        are ignored and will not raise an exception.</span>
+<span class="sd">    feature_bound : array-like of shape [[xmin, ymin], [xmax, ymax]], optional</span>
+<span class="sd">    (default=None)</span>
+<span class="sd">        Determines the area in which the boundary is plotted. If candidates is</span>
+<span class="sd">        not given, bound must not be None. Otherwise, the bound is determined</span>
+<span class="sd">        based on the data.</span>
+<span class="sd">    ax : matplotlib.axes.Axes, optional (default=None)</span>
+<span class="sd">        The axis on which the utility is plotted. Only if y.ndim = 1 (single</span>
+<span class="sd">        annotator).</span>
+<span class="sd">    res : int, optional (default=21)</span>
+<span class="sd">        The resolution of the plot.</span>
+<span class="sd">    contour_dict : dict, optional (default=None)</span>
+<span class="sd">        Additional parameters for the utility contour.</span>
+<span class="sd">    **kwargs</span>
+<span class="sd">        Remaining keyword arguments are passed the query function of the query</span>
+<span class="sd">        strategy.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ax : matplotlib.axes.Axes</span>
+<span class="sd">        The axis on which the utilities were plotted.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">check_type</span><span class="p">(</span><span class="n">qs</span><span class="p">,</span> <span class="s2">&quot;qs&quot;</span><span class="p">,</span> <span class="n">SingleAnnotatorPoolQueryStrategy</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">_general_plot_utilities</span><span class="p">(</span>
+        <span class="n">qs</span><span class="o">=</span><span class="n">qs</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">candidates</span><span class="o">=</span><span class="n">candidates</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="plot_annotator_utilities"><a class="viewcode-back" href="../../../generated/api/skactiveml.visualization.plot_annotator_utilities.html#skactiveml.visualization.plot_annotator_utilities">[docs]</a><span class="k">def</span> <span class="nf">plot_annotator_utilities</span><span class="p">(</span><span class="n">qs</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">candidates</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot the utility for the given query strategy.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    qs : skactiveml.base.QueryStrategy</span>
+<span class="sd">        The query strategy for which the utility is plotted.</span>
+<span class="sd">    X : array-like of shape (n_samples, n_features)</span>
+<span class="sd">        Training data set, usually complete, i.e. including the labeled and</span>
+<span class="sd">        unlabeled samples.</span>
+<span class="sd">    y : array-like of shape (n_samples, ) or (n_samples, n_annotators)</span>
+<span class="sd">        Labels of the training data set (possibly including unlabeled ones</span>
+<span class="sd">        indicated by self.MISSING_LABEL).</span>
+<span class="sd">    candidates : None or array-like of shape (n_candidates,), dtype=int or</span>
+<span class="sd">        array-like of shape (n_candidates, n_features),</span>
+<span class="sd">        optional (default=None)</span>
+<span class="sd">        If `candidates` is None, the unlabeled samples from (X,y) are</span>
+<span class="sd">        considered as candidates.</span>
+<span class="sd">        If `candidates` is of shape (n_candidates,) and of type int,</span>
+<span class="sd">        candidates is considered as the indices of the samples in (X,y).</span>
+<span class="sd">        If `candidates` is of shape (n_candidates, n_features), the</span>
+<span class="sd">        candidates are directly given in candidates (not necessarily</span>
+<span class="sd">        contained in X). This is not supported by all query strategies.</span>
+
+<span class="sd">    Other Parameters</span>
+<span class="sd">    ----------------</span>
+<span class="sd">    replace_nan : numeric or None, optional (default=0.0)</span>
+<span class="sd">        Only used if plotting with mesh instances is not possible.</span>
+<span class="sd">        If numeric, the utility of labeled instances will be plotted with</span>
+<span class="sd">        value `replace_nan`. If None, these samples will be ignored.</span>
+<span class="sd">    ignore_undefined_query_params : bool, optional (default=False)</span>
+<span class="sd">        If True, query parameters that are not defined in the query function</span>
+<span class="sd">        are ignored and will not raise an exception.</span>
+<span class="sd">    feature_bound : array-like of shape [[xmin, ymin], [xmax, ymax]], optional</span>
+<span class="sd">    (default=None)</span>
+<span class="sd">        Determines the area in which the boundary is plotted. If candidates is</span>
+<span class="sd">        not given, bound must not be None. Otherwise, the bound is determined</span>
+<span class="sd">        based on the data.</span>
+<span class="sd">    axes : array-like of matplotlib.axes.Axes, optional (default=None)</span>
+<span class="sd">        The axes on which the utilities for the annotators are plotted. Only</span>
+<span class="sd">        supported for y.ndim = 2 (multi annotator).</span>
+<span class="sd">    res : int, optional (default=21)</span>
+<span class="sd">        The resolution of the plot.</span>
+<span class="sd">    contour_dict : dict, optional (default=None)</span>
+<span class="sd">        Additional parameters for the utility contour.</span>
+<span class="sd">    plot_annotators : None or array-like of shape (n_annotators_to_plot,),</span>
+<span class="sd">    optional (default=None)</span>
+<span class="sd">        Contains the indices of the annotators to be plotted. If it is None,</span>
+<span class="sd">        all annotators are plotted. Only supported for y.ndim = 2</span>
+<span class="sd">         (multi annotator).</span>
+<span class="sd">    **kwargs</span>
+<span class="sd">        Remaining keyword arguments are passed the query function of the query</span>
+<span class="sd">        strategy.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    axes : array-like of shape (n_annotators_to_plot,)</span>
+<span class="sd">        The axes on which the utilities were plotted.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">check_type</span><span class="p">(</span><span class="n">qs</span><span class="p">,</span> <span class="s2">&quot;qs&quot;</span><span class="p">,</span> <span class="n">MultiAnnotatorPoolQueryStrategy</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">_general_plot_utilities</span><span class="p">(</span>
+        <span class="n">qs</span><span class="o">=</span><span class="n">qs</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">candidates</span><span class="o">=</span><span class="n">candidates</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="plot_decision_boundary"><a class="viewcode-back" href="../../../generated/api/skactiveml.visualization.plot_decision_boundary.html#skactiveml.visualization.plot_decision_boundary">[docs]</a><span class="k">def</span> <span class="nf">plot_decision_boundary</span><span class="p">(</span>
+    <span class="n">clf</span><span class="p">,</span>
+    <span class="n">feature_bound</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">res</span><span class="o">=</span><span class="mi">21</span><span class="p">,</span>
+    <span class="n">boundary_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">confidence</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;coolwarm&quot;</span><span class="p">,</span>
+    <span class="n">confidence_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot the decision boundary of the given classifier.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    clf: Sklearn classifier</span>
+<span class="sd">        The fitted classifier whose decision boundary is plotted. If confidence</span>
+<span class="sd">        is not None, the classifier must implement the predict_proba function.</span>
+<span class="sd">    feature_bound: array-like, [[xmin, ymin], [xmax, ymax]]</span>
+<span class="sd">        Determines the area in which the boundary is plotted.</span>
+<span class="sd">    ax: matplotlib.axes.Axes or List, optional (default=None)</span>
+<span class="sd">        The axis on which the decision boundary is plotted. If ax is a List,</span>
+<span class="sd">        each entry has to be an `matplotlib.axes.Axes`.</span>
+<span class="sd">    res: int, optional (default=21)</span>
+<span class="sd">        The resolution of the plot.</span>
+<span class="sd">    boundary_dict: dict, optional (default=None)</span>
+<span class="sd">        Additional parameters for the boundary contour.</span>
+<span class="sd">    confidence: scalar | None, optional (default=0.75)</span>
+<span class="sd">        The confidence interval plotted with dashed lines. It is not plotted if</span>
+<span class="sd">        confidence is None. Must be in the open interval (0.5, 1). The value</span>
+<span class="sd">        stands for the ratio best class / second best class.</span>
+<span class="sd">    cmap: str | matplotlib.colors.Colormap, optional (default=&#39;coolwarm_r&#39;)</span>
+<span class="sd">        The colormap for the confidence levels.</span>
+<span class="sd">    confidence_dict: dict, optional (default=None)</span>
+<span class="sd">        Additional parameters for the confidence contour. Must not contain a</span>
+<span class="sd">        colormap because cmap is used.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ax: matplotlib.axes.Axes or List</span>
+<span class="sd">        The axis on which the boundary was plotted or the list of axis if ax</span>
+<span class="sd">        was a list.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">check_type</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="s2">&quot;clf&quot;</span><span class="p">,</span> <span class="n">ClassifierMixin</span><span class="p">)</span>
+    <span class="n">check_scalar</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="s2">&quot;res&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="n">min_val</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+    <span class="n">check_type</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s2">&quot;ax&quot;</span><span class="p">,</span> <span class="n">Axes</span><span class="p">)</span>
+    <span class="n">feature_bound</span> <span class="o">=</span> <span class="n">check_bound</span><span class="p">(</span><span class="n">bound</span><span class="o">=</span><span class="n">feature_bound</span><span class="p">)</span>
+
+    <span class="c1"># Check and convert the colormap</span>
+    <span class="n">cmap</span> <span class="o">=</span> <span class="n">_get_cmap</span><span class="p">(</span><span class="n">cmap</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">confidence</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">check_scalar</span><span class="p">(</span>
+            <span class="n">confidence</span><span class="p">,</span>
+            <span class="s2">&quot;confidence&quot;</span><span class="p">,</span>
+            <span class="nb">float</span><span class="p">,</span>
+            <span class="n">min_inclusive</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">max_inclusive</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">min_val</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+            <span class="n">max_val</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="c1"># Update additional arguments</span>
+    <span class="n">boundary_args</span> <span class="o">=</span> <span class="n">_get_boundary_args</span><span class="p">(</span><span class="n">boundary_dict</span><span class="p">)</span>
+    <span class="n">confidence_args</span> <span class="o">=</span> <span class="n">_get_confidence_args</span><span class="p">(</span><span class="n">confidence_dict</span><span class="p">)</span>
+
+    <span class="c1"># Create mesh for plotting</span>
+    <span class="n">X_mesh</span><span class="p">,</span> <span class="n">Y_mesh</span><span class="p">,</span> <span class="n">mesh_instances</span> <span class="o">=</span> <span class="n">mesh</span><span class="p">(</span><span class="n">feature_bound</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
+
+    <span class="c1"># Calculate predictions</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="s2">&quot;predict_proba&quot;</span><span class="p">):</span>
+        <span class="n">predictions</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">mesh_instances</span><span class="p">)</span>
+        <span class="n">classes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">predictions</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="s2">&quot;predict&quot;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">confidence</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="s2">&quot;The given classifier does not implement &quot;</span>
+                <span class="s2">&quot;&#39;predict_proba&#39;. Thus, the confidence cannot be &quot;</span>
+                <span class="s2">&quot;plotted.&quot;</span>
+            <span class="p">)</span>
+            <span class="n">confidence</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">predicted_classes</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">mesh_instances</span><span class="p">)</span>
+        <span class="n">classes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">predicted_classes</span><span class="p">)))</span>
+        <span class="n">predictions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">predicted_classes</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">classes</span><span class="p">)))</span>
+        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">predicted_classes</span><span class="p">):</span>
+            <span class="n">predictions</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span>
+            <span class="s2">&quot;&#39;clf&#39; must implement &#39;predict&#39; or &quot;</span> <span class="s2">&quot;&#39;predict_proba&#39;&quot;</span>
+        <span class="p">)</span>
+
+    <span class="n">posterior_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">classes</span><span class="p">:</span>
+        <span class="n">posteriors</span> <span class="o">=</span> <span class="n">predictions</span><span class="p">[:,</span> <span class="n">y</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">X_mesh</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="n">posterior_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">posteriors</span><span class="p">)</span>
+
+    <span class="n">norm</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="n">classes</span><span class="p">),</span> <span class="n">vmax</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="n">classes</span><span class="p">))</span>
+
+    <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">classes</span><span class="p">:</span>
+        <span class="n">posteriors</span> <span class="o">=</span> <span class="n">posterior_list</span><span class="p">[</span><span class="n">y</span><span class="p">]</span>
+        <span class="n">posteriors_best_alternative</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">posteriors</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">y2</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">setdiff1d</span><span class="p">(</span><span class="n">classes</span><span class="p">,</span> <span class="p">[</span><span class="n">y</span><span class="p">]):</span>
+            <span class="n">posteriors_best_alternative</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span>
+                <span class="p">[</span><span class="n">posteriors_best_alternative</span><span class="p">,</span> <span class="n">posterior_list</span><span class="p">[</span><span class="n">y2</span><span class="p">]],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span>
+            <span class="p">)</span>
+
+        <span class="n">posteriors</span> <span class="o">=</span> <span class="n">posteriors</span> <span class="o">/</span> <span class="p">(</span><span class="n">posteriors</span> <span class="o">+</span> <span class="n">posteriors_best_alternative</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">X_mesh</span><span class="p">,</span> <span class="n">Y_mesh</span><span class="p">,</span> <span class="n">posteriors</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">],</span> <span class="o">**</span><span class="n">boundary_args</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">confidence</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span>
+                <span class="n">X_mesh</span><span class="p">,</span>
+                <span class="n">Y_mesh</span><span class="p">,</span>
+                <span class="n">posteriors</span><span class="p">,</span>
+                <span class="p">[</span><span class="n">confidence</span><span class="p">],</span>
+                <span class="n">colors</span><span class="o">=</span><span class="p">[</span><span class="n">cmap</span><span class="p">(</span><span class="n">norm</span><span class="p">(</span><span class="n">y</span><span class="p">))],</span>
+                <span class="o">**</span><span class="n">confidence_args</span><span class="p">,</span>
+            <span class="p">)</span>
+    <span class="k">return</span> <span class="n">ax</span></div>
+
+
+<div class="viewcode-block" id="plot_contour_for_samples"><a class="viewcode-back" href="../../../generated/api/skactiveml.visualization.plot_contour_for_samples.html#skactiveml.visualization.plot_contour_for_samples">[docs]</a><span class="k">def</span> <span class="nf">plot_contour_for_samples</span><span class="p">(</span>
+    <span class="n">X</span><span class="p">,</span>
+    <span class="n">values</span><span class="p">,</span>
+    <span class="n">replace_nan</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">feature_bound</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">res</span><span class="o">=</span><span class="mi">21</span><span class="p">,</span>
+    <span class="n">contour_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot the utility for the given query strategy.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    X : array-like of shape (n_samples, n_features)</span>
+<span class="sd">        Training data set, usually complete, i.e. including the labeled and</span>
+<span class="sd">        unlabeled samples.</span>
+<span class="sd">    values : array-like of shape (n_samples)</span>
+<span class="sd">        Values to plot for samples `X` (may contain np.nan, can be replaced</span>
+<span class="sd">        or ignored, see `replace_nan`).</span>
+<span class="sd">    replace_nan : numeric or None, optional (default=0.0)</span>
+<span class="sd">        If numeric, nan-values in `values` will be replaced by this number.</span>
+<span class="sd">        If None, these samples will be ignored.</span>
+<span class="sd">    feature_bound : array-like, [[xmin, ymin], [xmax, ymax]]</span>
+<span class="sd">        Determines the area in which the boundary is plotted. If candidates is</span>
+<span class="sd">        not given, bound must not be None. Otherwise, the bound is determined</span>
+<span class="sd">        based on the data.</span>
+<span class="sd">    ax : matplotlib.axes.Axes, optional (default=None)</span>
+<span class="sd">        The axis on which the utility is plotted.  If no axis is given, the</span>
+<span class="sd">        current axis (`plt.gca()`) will be used instead.</span>
+<span class="sd">    res : int, optional (default=21)</span>
+<span class="sd">        The resolution of the plot.</span>
+<span class="sd">    contour_dict : dict, optional (default=None)</span>
+<span class="sd">        Additional parameters for the utility contour.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    matplotlib.axes.Axes: The axis on which the utility was plotted.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">check_array</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">values</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span>
+        <span class="n">values</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">force_all_finite</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+    <span class="n">values</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isinf</span><span class="p">(</span><span class="n">values</span><span class="p">)]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+    <span class="n">feature_bound</span> <span class="o">=</span> <span class="n">check_bound</span><span class="p">(</span><span class="n">bound</span><span class="o">=</span><span class="n">feature_bound</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">)</span>
+
+    <span class="n">X_mesh</span><span class="p">,</span> <span class="n">Y_mesh</span><span class="p">,</span> <span class="n">mesh_instances</span> <span class="o">=</span> <span class="n">mesh</span><span class="p">(</span><span class="n">feature_bound</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">replace_nan</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">valid_idx</span> <span class="o">=</span> <span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">valid_idx</span><span class="p">]</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="n">valid_idx</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan_to_num</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">nan</span><span class="o">=</span><span class="n">replace_nan</span><span class="p">)</span>
+
+    <span class="n">contour_args</span> <span class="o">=</span> <span class="n">_get_contour_args</span><span class="p">(</span><span class="n">contour_dict</span><span class="p">)</span>
+
+    <span class="n">neighbors</span> <span class="o">=</span> <span class="n">KNeighborsRegressor</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">neighbors</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+
+    <span class="n">scores</span> <span class="o">=</span> <span class="n">neighbors</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">mesh_instances</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">X_mesh</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">X_mesh</span><span class="p">,</span> <span class="n">Y_mesh</span><span class="p">,</span> <span class="n">scores</span><span class="p">,</span> <span class="o">**</span><span class="n">contour_args</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ax</span></div>
+
+
+<div class="viewcode-block" id="plot_stream_training_data"><a class="viewcode-back" href="../../../generated/api/skactiveml.visualization.plot_stream_training_data.html#skactiveml.visualization.plot_stream_training_data">[docs]</a><span class="k">def</span> <span class="nf">plot_stream_training_data</span><span class="p">(</span>
+    <span class="n">ax</span><span class="p">,</span>
+    <span class="n">X</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">,</span>
+    <span class="n">queried_indices</span><span class="p">,</span>
+    <span class="n">classes</span><span class="p">,</span>
+    <span class="n">feature_bound</span><span class="p">,</span>
+    <span class="n">unlabeled_color</span><span class="o">=</span><span class="s2">&quot;grey&quot;</span><span class="p">,</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;coolwarm&quot;</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+    <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">plot_cand_highlight</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot the utility for the given query strategy.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ax : matplotlib.axes.Axes</span>
+<span class="sd">        The axis on which the utility is plotted. Only if y.ndim = 1 (single</span>
+<span class="sd">        annotator).</span>
+<span class="sd">    X : array-like of shape (n_samples, 1)</span>
+<span class="sd">        Training data set, usually complete, i.e. including the labeled and</span>
+<span class="sd">        unlabeled samples.</span>
+<span class="sd">    y : array-like of shape (n_samples, )</span>
+<span class="sd">        Labels of the training data set (possibly including unlabeled ones</span>
+<span class="sd">        indicated by self.MISSING_LABEL).</span>
+<span class="sd">    queried_indices : array-like of shape (n_samples,)</span>
+<span class="sd">        Indicates which instances from candidates have been queried.</span>
+<span class="sd">    classes : array-like of shape (n_classes)</span>
+<span class="sd">        Holds the label for each class.</span>
+<span class="sd">    feature_bound : array-like of shape [[xmin, ymin], [xmax, ymax]]</span>
+<span class="sd">        Determines the area in which the boundary is plotted. If candidates is</span>
+<span class="sd">        not given, bound must not be None. Otherwise, the bound is determined</span>
+<span class="sd">        based on the data.</span>
+<span class="sd">    unlabeled_color: str | matplotlib.colors.Colormap, optional</span>
+<span class="sd">    (default=&#39;grey&#39;)</span>
+<span class="sd">        The color for the unlabled samples.</span>
+<span class="sd">    cmap: str | matplotlib.colors.Colormap, optional (default=&#39;coolwarm_r&#39;)</span>
+<span class="sd">        The colormap for the confidence levels.</span>
+<span class="sd">    alpha: scalar</span>
+<span class="sd">        Set the alpha value used for blending - not supported on all backends.</span>
+<span class="sd">    linewidth: float</span>
+<span class="sd">        Set the line width in points.</span>
+<span class="sd">    plot_cand_highlight: bool</span>
+<span class="sd">        The indicator to higlight the current candidate.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">     axes : array-like of shape (n_annotators_to_plot,)</span>
+<span class="sd">         The axes on which the utilities were plotted.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">column_or_1d</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">check_array</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">force_all_finite</span><span class="o">=</span><span class="s2">&quot;allow-nan&quot;</span><span class="p">)</span>
+    <span class="n">check_consistent_length</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">check_array</span><span class="p">(</span><span class="n">queried_indices</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">check_array</span><span class="p">(</span><span class="n">classes</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">check_type</span><span class="p">(</span><span class="n">unlabeled_color</span><span class="p">,</span> <span class="s2">&quot;unlabeled_color&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+    <span class="n">check_type</span><span class="p">(</span><span class="n">plot_cand_highlight</span><span class="p">,</span> <span class="s2">&quot;plot_cand_highlight&quot;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>
+    <span class="n">check_type</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s2">&quot;ax&quot;</span><span class="p">,</span> <span class="n">Axes</span><span class="p">)</span>
+
+    <span class="n">data_lines</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">cmap</span> <span class="o">=</span> <span class="n">_get_cmap</span><span class="p">(</span><span class="n">cmap</span><span class="p">)</span>
+    <span class="n">norm</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="n">classes</span><span class="p">),</span> <span class="n">vmax</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="n">classes</span><span class="p">))</span>
+
+    <span class="n">highlight_color</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cmap</span><span class="p">(</span><span class="n">norm</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span> <span class="k">if</span> <span class="n">queried_indices</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">else</span> <span class="n">unlabeled_color</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">plot_cand_highlight</span><span class="p">:</span>
+        <span class="n">data_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">lines</span><span class="o">.</span><span class="n">Line2D</span><span class="p">(</span>
+                <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">feature_bound</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]],</span>
+                <span class="p">[</span><span class="n">X</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]],</span>
+                <span class="n">c</span><span class="o">=</span><span class="n">highlight_color</span><span class="p">,</span>
+                <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span>
+                <span class="n">linewidth</span><span class="o">=</span><span class="n">linewidth</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">t</span><span class="p">,</span> <span class="p">(</span><span class="n">x_t</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">y_t</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">queried_indices</span><span class="p">,</span> <span class="n">y</span><span class="p">)):</span>
+        <span class="n">line_color</span> <span class="o">=</span> <span class="n">cmap</span><span class="p">(</span><span class="n">norm</span><span class="p">(</span><span class="n">y_t</span><span class="p">))</span> <span class="k">if</span> <span class="n">a</span> <span class="k">else</span> <span class="n">unlabeled_color</span>
+        <span class="n">zorder</span> <span class="o">=</span> <span class="mi">3</span> <span class="k">if</span> <span class="n">a</span> <span class="k">else</span> <span class="mi">2</span>
+        <span class="n">alpha_tmp</span> <span class="o">=</span> <span class="n">alpha</span> <span class="o">*</span> <span class="mi">2</span> <span class="k">if</span> <span class="n">a</span> <span class="k">else</span> <span class="n">alpha</span>
+        <span class="n">data_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">lines</span><span class="o">.</span><span class="n">Line2D</span><span class="p">(</span>
+                <span class="p">[</span><span class="n">t</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span>
+                <span class="p">[</span><span class="n">x_t</span><span class="p">,</span> <span class="n">x_t</span><span class="p">],</span>
+                <span class="n">zorder</span><span class="o">=</span><span class="n">zorder</span><span class="p">,</span>
+                <span class="n">color</span><span class="o">=</span><span class="n">line_color</span><span class="p">,</span>
+                <span class="n">alpha</span><span class="o">=</span><span class="n">alpha_tmp</span><span class="p">,</span>
+                <span class="n">linewidth</span><span class="o">=</span><span class="n">linewidth</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+    <span class="k">for</span> <span class="n">d_line</span> <span class="ow">in</span> <span class="n">data_lines</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">add_line</span><span class="p">(</span><span class="n">d_line</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">data_lines</span></div>
+
+
+<div class="viewcode-block" id="plot_stream_decision_boundary"><a class="viewcode-back" href="../../../generated/api/skactiveml.visualization.plot_stream_decision_boundary.html#skactiveml.visualization.plot_stream_decision_boundary">[docs]</a><span class="k">def</span> <span class="nf">plot_stream_decision_boundary</span><span class="p">(</span>
+    <span class="n">ax</span><span class="p">,</span>
+    <span class="n">t_x</span><span class="p">,</span>
+    <span class="n">plot_step</span><span class="p">,</span>
+    <span class="n">clf</span><span class="p">,</span>
+    <span class="n">X</span><span class="p">,</span>
+    <span class="n">pred_list</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span>
+    <span class="n">res</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot the decision boundary of the given classifier.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ax: matplotlib.axes.Axes or List</span>
+<span class="sd">        The axis on which the decision boundary is plotted. If ax is a List,</span>
+<span class="sd">        each entry has to be an `matplotlib.axes.Axes`.</span>
+<span class="sd">    t_x: int</span>
+<span class="sd">        The position of the newest instance for the x axies.</span>
+<span class="sd">    plot_step: int</span>
+<span class="sd">        The interval in which the clf should predict new samples.</span>
+<span class="sd">    clf: Sklearn classifier</span>
+<span class="sd">        The fitted classifier whose decision boundary is plotted.</span>
+<span class="sd">    X : array-like of shape (n_samples, 1)</span>
+<span class="sd">        Training data set, usually complete, i.e. including the labeled and</span>
+<span class="sd">        unlabeled samples.</span>
+<span class="sd">    pred_list: array-like of shape (n_samples, )</span>
+<span class="sd">        The list containing classifier prediction for the last steps.</span>
+<span class="sd">    color: str | matplotlib.colors.Colormap, optional (default=&#39;k&#39;)</span>
+<span class="sd">        The color for the decision boundary.</span>
+<span class="sd">    res : int, optional (default=25)</span>
+<span class="sd">        The resolution of the plot.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ax: matplotlib.axes.Axes or List</span>
+<span class="sd">        The axis on which the boundary was plotted or the list of axis if ax</span>
+<span class="sd">        was a list.</span>
+<span class="sd">    pred_list: array-like of shape (n_samples, )</span>
+<span class="sd">        The list containing classifier prediction for the last steps.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">column_or_1d</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">check_array</span><span class="p">(</span><span class="n">pred_list</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ensure_min_samples</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">check_scalar</span><span class="p">(</span><span class="n">t_x</span><span class="p">,</span> <span class="s2">&quot;t_x&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="n">min_val</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">check_scalar</span><span class="p">(</span><span class="n">plot_step</span><span class="p">,</span> <span class="s2">&quot;plot_step&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="n">min_val</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">check_type</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s2">&quot;ax&quot;</span><span class="p">,</span> <span class="n">Axes</span><span class="p">)</span>
+    <span class="n">check_type</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="s2">&quot;clf&quot;</span><span class="p">,</span> <span class="n">ClassifierMixin</span><span class="p">)</span>
+    <span class="n">x_vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">res</span><span class="p">)</span>
+    <span class="n">t_vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">t_x</span> <span class="o">//</span> <span class="n">plot_step</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">plot_step</span>
+    <span class="n">t_mesh</span><span class="p">,</span> <span class="n">x_mesh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">t_vec</span><span class="p">,</span> <span class="n">x_vec</span><span class="p">)</span>
+    <span class="n">predictions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_vec</span><span class="o">.</span><span class="n">reshape</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))])</span>
+    <span class="n">pred_list</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">pred_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">pred_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span>
+            <span class="n">t_mesh</span><span class="p">,</span>
+            <span class="n">x_mesh</span><span class="p">,</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">pred_list</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span><span class="o">.</span><span class="n">T</span><span class="p">,</span>
+            <span class="n">levels</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">],</span>
+            <span class="n">colors</span><span class="o">=</span><span class="n">color</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">ax</span><span class="p">,</span> <span class="n">pred_list</span></div>
+
+
+<span class="k">def</span> <span class="nf">_general_plot_utilities</span><span class="p">(</span><span class="n">qs</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">candidates</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot the utility for the given query strategy.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    qs : skactiveml.base.QueryStrategy</span>
+<span class="sd">        The query strategy for which the utility is plotted.</span>
+<span class="sd">    X : array-like of shape (n_samples, n_features)</span>
+<span class="sd">        Training data set, usually complete, i.e. including the labeled and</span>
+<span class="sd">        unlabeled samples.</span>
+<span class="sd">    y : array-like of shape (n_samples, ) or (n_samples, n_annotators)</span>
+<span class="sd">        Labels of the training data set (possibly including unlabeled ones</span>
+<span class="sd">        indicated by self.MISSING_LABEL).</span>
+<span class="sd">    candidates : None or array-like of shape (n_candidates,), dtype=int or</span>
+<span class="sd">        array-like of shape (n_candidates, n_features),</span>
+<span class="sd">        optional (default=None)</span>
+<span class="sd">        If `candidates` is None, a mesh with the specified resolution is</span>
+<span class="sd">        generated and considered as candidates.</span>
+<span class="sd">        If `candidates` is of shape (n_candidates,) and of type int,</span>
+<span class="sd">        candidates is considered as the indices of the samples in (X,y).</span>
+<span class="sd">        If `candidates` is of shape (n_candidates, n_features), the</span>
+<span class="sd">        candidates are directly given in candidates (not necessarily</span>
+<span class="sd">        contained in X). This is not supported by all query strategies.</span>
+
+<span class="sd">    Other Parameters</span>
+<span class="sd">    ----------------</span>
+<span class="sd">    replace_nan : numeric or None, optional (default=0.0)</span>
+<span class="sd">        Only used if plotting with mesh instances is not possible.</span>
+<span class="sd">        If numeric, the utility of labeled instances will be plotted with</span>
+<span class="sd">        value `replace_nan`. If None, these samples will be ignored.</span>
+<span class="sd">    ignore_undefined_query_params : bool, optional (default=False)</span>
+<span class="sd">        If True, query parameters that are not defined in the query function</span>
+<span class="sd">        are ignored and will not raise an exception.</span>
+<span class="sd">    feature_bound : array-like of shape [[xmin, ymin], [xmax, ymax]], optional</span>
+<span class="sd">    (default=None)</span>
+<span class="sd">        Determines the area in which the boundary is plotted. If candidates is</span>
+<span class="sd">        not given, bound must not be None. Otherwise, the bound is determined</span>
+<span class="sd">        based on the data.</span>
+<span class="sd">    ax : matplotlib.axes.Axes, optional (default=None)</span>
+<span class="sd">        The axis on which the utility is plotted. Only if y.ndim = 1 (single</span>
+<span class="sd">        annotator).</span>
+<span class="sd">    axes : array-like of matplotlib.axes.Axes, optional (default=None)</span>
+<span class="sd">        The axes on which the utilities for the annotators are plotted. Only</span>
+<span class="sd">        supported for y.ndim = 2 (multi annotator).</span>
+<span class="sd">    res : int, optional (default=21)</span>
+<span class="sd">        The resolution of the plot.</span>
+<span class="sd">    contour_dict : dict, optional (default=None)</span>
+<span class="sd">        Additional parameters for the utility contour.</span>
+<span class="sd">    plot_annotators : None or array-like of shape (n_annotators_to_plot,),</span>
+<span class="sd">    optional (default=None)</span>
+<span class="sd">        Contains the indices of the annotators to be plotted. If it is None,</span>
+<span class="sd">        all annotators are plotted. Only supported for y.ndim = 2</span>
+<span class="sd">         (multi annotator).</span>
+<span class="sd">    **kwargs</span>
+<span class="sd">        Remaining keyword arguments are passed the query function of the query</span>
+<span class="sd">        strategy.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">     axes : array-like of shape (n_annotators_to_plot,)</span>
+<span class="sd">         The axes on which the utilities were plotted.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">replace_nan</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;replace_nan&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+    <span class="n">ignore_undefined_query_params</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span>
+        <span class="s2">&quot;ignore_undefined_query_params&quot;</span><span class="p">,</span> <span class="kc">False</span>
+    <span class="p">)</span>
+    <span class="n">feature_bound</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;feature_bound&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;ax&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="n">axes</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;axes&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;res&quot;</span><span class="p">,</span> <span class="mi">21</span><span class="p">)</span>
+    <span class="n">contour_dict</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;contour_dict&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="n">plot_annotators</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;plot_annotators&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+    <span class="n">check_type</span><span class="p">(</span><span class="n">qs</span><span class="p">,</span> <span class="s2">&quot;qs&quot;</span><span class="p">,</span> <span class="n">QueryStrategy</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">allow_nd</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Samples in `X` must have 2 features.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Check labels</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">force_all_finite</span><span class="o">=</span><span class="s2">&quot;allow-nan&quot;</span><span class="p">)</span>
+    <span class="n">check_consistent_length</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">y</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">plot_annotators</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">n_annotators</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">plot_annotators</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_annotators</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">plot_annotators</span> <span class="o">=</span> <span class="n">column_or_1d</span><span class="p">(</span><span class="n">plot_annotators</span><span class="p">)</span>
+            <span class="n">check_indices</span><span class="p">(</span><span class="n">plot_annotators</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">n_annotators</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">plot_annotators</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">n_annotators</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">plot_annotators</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                <span class="s2">&quot;`plot_annotator` can be only used in the multi-annotator &quot;</span>
+                <span class="s2">&quot;setting.&quot;</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">plot_annotators</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">n_annotators</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">axes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                <span class="s2">&quot;`axes` can be only used in the multi-annotator setting. &quot;</span>
+                <span class="s2">&quot;Use `ax` instead.&quot;</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">axes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">]])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">check_type</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s2">&quot;ax&quot;</span><span class="p">,</span> <span class="n">Axes</span><span class="p">)</span>
+            <span class="n">axes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">ax</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;`ax` can be only used in the single-annotator setting. &quot;</span>
+                <span class="s2">&quot;Use `axes` instead.&quot;</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="n">axes</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_annotators</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="p">[</span><span class="n">check_type</span><span class="p">(</span><span class="n">ax_</span><span class="p">,</span> <span class="s2">&quot;ax&quot;</span><span class="p">,</span> <span class="n">Axes</span><span class="p">)</span> <span class="k">for</span> <span class="n">ax_</span> <span class="ow">in</span> <span class="n">axes</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">n_annotators</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">axes</span><span class="p">)</span> <span class="o">!=</span> <span class="n">n_annotators</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;`axes` must contain one `Axes` object for each &quot;</span>
+            <span class="s2">&quot;annotator to be plotted (indicated by `plot_annotators`).&quot;</span>
+        <span class="p">)</span>
+
+    <span class="c1"># ensure that utilities are returned</span>
+    <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;return_utilities&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="k">if</span> <span class="n">candidates</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># plot mesh</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">check_scalar</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="s2">&quot;res&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="n">min_val</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">feature_bound</span> <span class="o">=</span> <span class="n">check_bound</span><span class="p">(</span><span class="n">bound</span><span class="o">=</span><span class="n">feature_bound</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">)</span>
+
+            <span class="n">X_mesh</span><span class="p">,</span> <span class="n">Y_mesh</span><span class="p">,</span> <span class="n">mesh_instances</span> <span class="o">=</span> <span class="n">mesh</span><span class="p">(</span><span class="n">feature_bound</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
+
+            <span class="n">contour_args</span> <span class="o">=</span> <span class="n">_get_contour_args</span><span class="p">(</span><span class="n">contour_dict</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">ignore_undefined_query_params</span><span class="p">:</span>
+                <span class="n">_</span><span class="p">,</span> <span class="n">utilities</span> <span class="o">=</span> <span class="n">call_func</span><span class="p">(</span>
+                    <span class="n">qs</span><span class="o">.</span><span class="n">query</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">candidates</span><span class="o">=</span><span class="n">mesh_instances</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+                <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">_</span><span class="p">,</span> <span class="n">utilities</span> <span class="o">=</span> <span class="n">qs</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+                    <span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">candidates</span><span class="o">=</span><span class="n">mesh_instances</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+                <span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">a_idx</span><span class="p">,</span> <span class="n">ax_</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">plot_annotators</span><span class="p">,</span> <span class="n">axes</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">n_annotators</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">utilities_a_idx</span> <span class="o">=</span> <span class="n">utilities</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="n">a_idx</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">utilities_a_idx</span> <span class="o">=</span> <span class="n">utilities</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>
+                <span class="n">utilities_a_idx</span> <span class="o">=</span> <span class="n">utilities_a_idx</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">X_mesh</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+                <span class="n">ax_</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">X_mesh</span><span class="p">,</span> <span class="n">Y_mesh</span><span class="p">,</span> <span class="n">utilities_a_idx</span><span class="p">,</span> <span class="o">**</span><span class="n">contour_args</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">n_annotators</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">axes</span>
+
+        <span class="k">except</span> <span class="n">MappingError</span><span class="p">:</span>
+            <span class="n">candidates</span> <span class="o">=</span> <span class="n">unlabeled_indices</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">missing_label</span><span class="o">=</span><span class="n">qs</span><span class="o">.</span><span class="n">missing_label</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Unable to create utility plot with mesh because &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;of the following error. Trying plotting over &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;candidates. </span><span class="se">\n\n</span><span class="s2"> Unexpected </span><span class="si">{</span><span class="n">err</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+            <span class="n">candidates</span> <span class="o">=</span> <span class="n">unlabeled_indices</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">missing_label</span><span class="o">=</span><span class="n">qs</span><span class="o">.</span><span class="n">missing_label</span><span class="p">)</span>
+
+    <span class="n">candidates</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span>
+        <span class="n">candidates</span><span class="p">,</span>
+        <span class="n">allow_nd</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">force_all_finite</span><span class="o">=</span><span class="s2">&quot;allow-nan&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="n">candidates</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">X_utils</span> <span class="o">=</span> <span class="n">X</span>
+        <span class="n">candidates</span> <span class="o">=</span> <span class="n">check_indices</span><span class="p">(</span><span class="n">candidates</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">X_utils</span> <span class="o">=</span> <span class="n">candidates</span>
+
+    <span class="k">if</span> <span class="n">ignore_undefined_query_params</span><span class="p">:</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">utilities</span> <span class="o">=</span> <span class="n">call_func</span><span class="p">(</span>
+            <span class="n">qs</span><span class="o">.</span><span class="n">query</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">candidates</span><span class="o">=</span><span class="n">candidates</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">utilities</span> <span class="o">=</span> <span class="n">qs</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">candidates</span><span class="o">=</span><span class="n">candidates</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">a_idx</span><span class="p">,</span> <span class="n">ax_</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">plot_annotators</span><span class="p">,</span> <span class="n">axes</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">n_annotators</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">utilities_a_idx</span> <span class="o">=</span> <span class="n">utilities</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="n">a_idx</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">utilities_a_idx</span> <span class="o">=</span> <span class="n">utilities</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>
+        <span class="n">plot_contour_for_samples</span><span class="p">(</span>
+            <span class="n">X_utils</span><span class="p">,</span>
+            <span class="n">utilities_a_idx</span><span class="p">,</span>
+            <span class="n">replace_nan</span><span class="o">=</span><span class="n">replace_nan</span><span class="p">,</span>
+            <span class="n">feature_bound</span><span class="o">=</span><span class="n">feature_bound</span><span class="p">,</span>
+            <span class="n">ax</span><span class="o">=</span><span class="n">ax_</span><span class="p">,</span>
+            <span class="n">res</span><span class="o">=</span><span class="n">res</span><span class="p">,</span>
+            <span class="n">contour_dict</span><span class="o">=</span><span class="n">contour_dict</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">n_annotators</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">axes</span>
+</pre></div>
+
+            </article>
+            
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div id="searchbox"></div>
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright 2020.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="theme-version">
+    Built with the
+    <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">
+        PyData Sphinx Theme
+    </a>
+    0.12.0.
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

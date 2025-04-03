@@ -1,0 +1,720 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Stream-based Active Learning - Getting Started &#8212; scikit-activeml 0.3.1 documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../../_static/filter_examples.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Batch Stream Active Learning With Pool Query Strategies" href="21_stream_batch_with_pool_al.html" />
+    <link rel="prev" title="Multi-annotator Pool-based Active Learning - Getting Started" href="10_multiple_annotators_getting_started.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../index.html">
+  <img src="../../_static/scikit-activeml-logo.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../index.html">
+  Home
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../../tutorials.html">
+  Tutorials
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../strategy_overview.html">
+  Strategy Overview
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../api_reference.html">
+  API Reference
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../sphinx_gallery_examples/index.html">
+  Examples
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../developers_guide.html">
+  Developer Guide
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Quick Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/scikit-activeml/scikit-activeml" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://pypi.org/project/scikit-activeml" rel="noopener" target="_blank" title="PyPI"><span><i class="fas fa-box"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="00_pool_getting_started.html">
+   Pool-based Active Learning - Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_deep_pool_al_with_skorch.html">
+   Deep Pool-based Active Learning: Scikit-activeml with Skorch
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_pool_regression_getting_started.html">
+   Pool-based Active Learning for Regression - Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10_multiple_annotators_getting_started.html">
+   Multi-annotator Pool-based Active Learning - Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Stream-based Active Learning - Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="21_stream_batch_with_pool_al.html">
+   Batch Stream Active Learning With Pool Query Strategies
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+              </div>
+              <div class="sidebar-end-items">
+              </div>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#Initialize-Stream-Parameters">
+   Initialize Stream Parameters
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#Random-Seed-Generation">
+   Random Seed Generation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#Generate-And-Initialize-Data-Set">
+   Generate And Initialize Data Set
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#Initialize-Query-Strategies">
+   Initialize Query Strategies
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#Start-Active-Learning-Cycle">
+   Start Active Learning Cycle
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt .copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+</style>
+<section id="Stream-based-Active-Learning---Getting-Started">
+<h1>Stream-based Active Learning - Getting Started<a class="headerlink" href="#Stream-based-Active-Learning---Getting-Started" title="Permalink to this headline">#</a></h1>
+<p>In this notebook, we will show how stream-based active learning strategies are used and compared them to one another. We showcase the methods available in the <code class="docutils literal notranslate"><span class="pre">skactiveml</span></code> stream package.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">sklearn.datasets</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
+<span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">gaussian_filter1d</span>
+<span class="kn">from</span> <span class="nn">skactiveml.classifier</span> <span class="kn">import</span> <span class="n">ParzenWindowClassifier</span>
+<span class="kn">from</span> <span class="nn">skactiveml.stream</span> <span class="kn">import</span> <span class="n">StreamRandomSampling</span><span class="p">,</span> <span class="n">PeriodicSampling</span>
+<span class="kn">from</span> <span class="nn">skactiveml.stream</span> <span class="kn">import</span> <span class="n">FixedUncertainty</span><span class="p">,</span> <span class="n">VariableUncertainty</span><span class="p">,</span> <span class="n">Split</span><span class="p">,</span> <span class="n">StreamProbabilisticAL</span>
+<span class="kn">from</span> <span class="nn">skactiveml.utils</span> <span class="kn">import</span> <span class="n">call_func</span>
+</pre></div>
+</div>
+</div>
+<section id="Initialize-Stream-Parameters">
+<h2>Initialize Stream Parameters<a class="headerlink" href="#Initialize-Stream-Parameters" title="Permalink to this headline">#</a></h2>
+<p>Before the experiments can start, we need to construct a random data set. For this, we specify the necessary parameters in the cell below. We specify the length of the data stream (<code class="docutils literal notranslate"><span class="pre">stream_length</span></code>) and the size of the sliding window that defines the available training data (<code class="docutils literal notranslate"><span class="pre">training_size</span></code>). Additionally, we define a parameter (<code class="docutils literal notranslate"><span class="pre">fit_clf</span></code>) to decide if <code class="docutils literal notranslate"><span class="pre">X</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> are needed and should be used.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># number of instances that are provided to the classifier</span>
+<span class="n">init_train_length</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="c1"># the length of the data stream</span>
+<span class="n">stream_length</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="c1"># the size of the sliding window that limits the training data</span>
+<span class="n">training_size</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="c1"># the parameter dedicated to decide if the classifier needs to be refited with X and y.</span>
+<span class="n">fit_clf</span> <span class="o">=</span> <span class="kc">False</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Random-Seed-Generation">
+<h2>Random Seed Generation<a class="headerlink" href="#Random-Seed-Generation" title="Permalink to this headline">#</a></h2>
+<p>To make the experiments repeatable, we will use the <code class="docutils literal notranslate"><span class="pre">random_state</span></code> object to generate all other random seeds, such that we only need to explicitly specify a single random seed. The <code class="docutils literal notranslate"><span class="pre">get_randomseed</span></code> function simplifies the generation of a new random seed using the random_state object.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># random state that is used to generate random seeds</span>
+<span class="n">random_state</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">get_randomseed</span><span class="p">(</span><span class="n">random_state</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">random_state</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">31</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Generate-And-Initialize-Data-Set">
+<h2>Generate And Initialize Data Set<a class="headerlink" href="#Generate-And-Initialize-Data-Set" title="Permalink to this headline">#</a></h2>
+<p>The next block initializes the tested data set. We use <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> to generate a random dataset with our pre-defined stream length. The data set consists of multiple parts. <code class="docutils literal notranslate"><span class="pre">X</span></code> represents the location of the instance within the feature space. The class for each instance is denoted by y. For models that need at least some initial training data, we generate samples to train an initial model. These are denoted by the suffix <code class="docutils literal notranslate"><span class="pre">_init</span></code>, while all data used within the active learning cycle are
+denoted by the suffix <code class="docutils literal notranslate"><span class="pre">_stream</span></code>. For this notebook we evaluate the performance of each query strategy using Prequential Evaluation. If a hold-out test dataset is used, it should be initialized here as well.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">make_classification</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="n">init_train_length</span> <span class="o">+</span> <span class="n">stream_length</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">get_randomseed</span><span class="p">(</span><span class="n">random_state</span><span class="p">),</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">X_init</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:</span><span class="n">init_train_length</span><span class="p">,</span> <span class="p">:]</span>
+<span class="n">y_init</span> <span class="o">=</span> <span class="n">y</span><span class="p">[:</span><span class="n">init_train_length</span><span class="p">]</span>
+<span class="n">X_stream</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">init_train_length</span><span class="p">:,</span> <span class="p">:]</span>
+<span class="n">y_stream</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">init_train_length</span><span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Initialize-Query-Strategies">
+<h2>Initialize Query Strategies<a class="headerlink" href="#Initialize-Query-Strategies" title="Permalink to this headline">#</a></h2>
+<p>Next, we initialize the classifier and the base query strategies that we want to compare. To guarantee that the classifier is not affected by previous repetitions, we use factory functions to separate the classifier for each experiment run. Since all query strategies have a default budget managager we use that for the sake of simplicity.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clf_factory</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">ParzenWindowClassifier</span><span class="p">(</span><span class="n">classes</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">random_state</span><span class="o">=</span><span class="n">get_randomseed</span><span class="p">(</span><span class="n">random_state</span><span class="p">))</span>
+<span class="n">query_strategies</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;StreamRandomSampling&#39;</span><span class="p">:</span> <span class="n">StreamRandomSampling</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">get_randomseed</span><span class="p">(</span><span class="n">random_state</span><span class="p">)),</span>
+    <span class="s1">&#39;PeriodicSampling&#39;</span><span class="p">:</span> <span class="n">PeriodicSampling</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">get_randomseed</span><span class="p">(</span><span class="n">random_state</span><span class="p">)),</span>
+    <span class="s1">&#39;FixedUncertainty&#39;</span><span class="p">:</span> <span class="n">FixedUncertainty</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">get_randomseed</span><span class="p">(</span><span class="n">random_state</span><span class="p">)),</span>
+    <span class="s1">&#39;VariableUncertainty&#39;</span><span class="p">:</span> <span class="n">VariableUncertainty</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">get_randomseed</span><span class="p">(</span><span class="n">random_state</span><span class="p">)),</span>
+    <span class="s1">&#39;Split&#39;</span><span class="p">:</span> <span class="n">Split</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">get_randomseed</span><span class="p">(</span><span class="n">random_state</span><span class="p">)),</span>
+    <span class="s1">&#39;StreamProbabilisticAL&#39;</span><span class="p">:</span> <span class="n">StreamProbabilisticAL</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">get_randomseed</span><span class="p">(</span><span class="n">random_state</span><span class="p">))</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Start-Active-Learning-Cycle">
+<h2>Start Active Learning Cycle<a class="headerlink" href="#Start-Active-Learning-Cycle" title="Permalink to this headline">#</a></h2>
+<p>After all, variables are initialized, we can start the experiment. The experiment loop below goes through all query strategies defined in query_strategies. For each experiment run, the average accuracy of the selected query strategies will be displayed. Lastly, the accuracy over time will be plotted.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">query_strategy_name</span><span class="p">,</span> <span class="n">query_strategy</span> <span class="ow">in</span> <span class="n">query_strategies</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">clf</span> <span class="o">=</span> <span class="n">clf_factory</span><span class="p">()</span>
+    <span class="c1"># initializing the training data</span>
+    <span class="n">X_train</span> <span class="o">=</span> <span class="n">deque</span><span class="p">(</span><span class="n">maxlen</span><span class="o">=</span><span class="n">training_size</span><span class="p">)</span>
+    <span class="n">X_train</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">X_init</span><span class="p">)</span>
+    <span class="n">y_train</span> <span class="o">=</span> <span class="n">deque</span><span class="p">(</span><span class="n">maxlen</span><span class="o">=</span><span class="n">training_size</span><span class="p">)</span>
+    <span class="n">y_train</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">y_init</span><span class="p">)</span>
+    <span class="c1"># train the model with the initially available data</span>
+    <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+    <span class="c1"># initialize the list that stores the result of the classifier&#39;s prediction</span>
+    <span class="n">correct_classifications</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">t</span><span class="p">,</span> <span class="p">(</span><span class="n">x_t</span><span class="p">,</span> <span class="n">y_t</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">X_stream</span><span class="p">,</span> <span class="n">y_stream</span><span class="p">)):</span>
+        <span class="c1"># create stream samples</span>
+        <span class="n">X_cand</span> <span class="o">=</span> <span class="n">x_t</span><span class="o">.</span><span class="n">reshape</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">y_cand</span> <span class="o">=</span> <span class="n">y_t</span>
+        <span class="c1"># train the classifier</span>
+        <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+        <span class="n">correct_classifications</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_cand</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">y_cand</span><span class="p">)</span>
+        <span class="c1"># check whether to sample the instance or not</span>
+        <span class="c1"># call_func is used since a classifier is not needed for RandomSampling and PeriodicSampling</span>
+        <span class="n">sampled_indices</span><span class="p">,</span> <span class="n">utilities</span> <span class="o">=</span> <span class="n">call_func</span><span class="p">(</span><span class="n">query_strategy</span><span class="o">.</span><span class="n">query</span><span class="p">,</span> <span class="n">candidates</span><span class="o">=</span><span class="n">X_cand</span><span class="p">,</span> <span class="n">clf</span><span class="o">=</span><span class="n">clf</span><span class="p">,</span> <span class="n">return_utilities</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fit_clf</span><span class="o">=</span><span class="n">fit_clf</span><span class="p">)</span>
+        <span class="c1"># create budget_manager_param_dict for BalancedIncrementalQuantileFilter used by StreamProbabilisticAL</span>
+        <span class="n">budget_manager_param_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;utilities&quot;</span><span class="p">:</span> <span class="n">utilities</span><span class="p">}</span>
+        <span class="c1"># update the query strategy and budget_manager to calculate the right budget</span>
+        <span class="n">call_func</span><span class="p">(</span><span class="n">query_strategy</span><span class="o">.</span><span class="n">update</span><span class="p">,</span> <span class="n">candidates</span><span class="o">=</span><span class="n">X_cand</span><span class="p">,</span> <span class="n">queried_indices</span><span class="o">=</span><span class="n">sampled_indices</span><span class="p">,</span> <span class="n">budget_manager_param_dict</span><span class="o">=</span><span class="n">budget_manager_param_dict</span><span class="p">)</span>
+        <span class="c1"># count the number of queries</span>
+        <span class="n">count</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">sampled_indices</span><span class="p">)</span>
+        <span class="c1"># add X_cand to X_train</span>
+        <span class="n">X_train</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x_t</span><span class="p">)</span>
+        <span class="c1"># add label or missing_label to y_train</span>
+        <span class="n">y_train</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y_cand</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sampled_indices</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">clf</span><span class="o">.</span><span class="n">missing_label</span><span class="p">)</span>
+    <span class="c1"># calculate and show the average accuracy</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Query Strategy: &quot;</span><span class="p">,</span> <span class="n">query_strategy_name</span><span class="p">,</span> <span class="s2">&quot;, Avg Accuracy: &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">correct_classifications</span><span class="p">),</span> <span class="s2">&quot;, Acquisition count:&quot;</span><span class="p">,</span> <span class="n">count</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gaussian_filter1d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">correct_classifications</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">),</span> <span class="mi">50</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="n">query_strategy_name</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Query Strategy:  StreamRandomSampling , Avg Accuracy:  0.7525 , Acquisition count: 994
+Query Strategy:  PeriodicSampling , Avg Accuracy:  0.7687 , Acquisition count: 1000
+Query Strategy:  FixedUncertainty , Avg Accuracy:  0.8235 , Acquisition count: 1040
+Query Strategy:  VariableUncertainty , Avg Accuracy:  0.8044 , Acquisition count: 1039
+Query Strategy:  Split , Avg Accuracy:  0.8168 , Acquisition count: 1038
+Query Strategy:  StreamProbabilisticAL , Avg Accuracy:  0.8205 , Acquisition count: 999
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;matplotlib.legend.Legend at 0x145edf917c0&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/generated_tutorials_20_stream_getting_started_12_2.png" src="../../_images/generated_tutorials_20_stream_getting_started_12_2.png" />
+</div>
+</div>
+</section>
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="10_multiple_annotators_getting_started.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Multi-annotator Pool-based Active Learning - Getting Started</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="21_stream_batch_with_pool_al.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Batch Stream Active Learning With Pool Query Strategies</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2020.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

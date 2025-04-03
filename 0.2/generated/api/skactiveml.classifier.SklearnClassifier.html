@@ -1,0 +1,902 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>skactiveml.classifier.SklearnClassifier &#8212; scikit-activeml 0.2.5 documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="skactiveml.classifier.SlidingWindowClassifier" href="skactiveml.classifier.SlidingWindowClassifier.html" />
+    <link rel="prev" title="skactiveml.classifier.MixtureModelClassifier" href="skactiveml.classifier.MixtureModelClassifier.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../index.html">
+  <img src="../../_static/scikit-activeml-logo.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../index.html">
+  Home
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../tutorials.html">
+  Tutorials
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../strategy_overview/strategy_overview-Settles2012.html">
+  Strategy Overview
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../api_reference.html">
+  API Reference
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../sphinx_gallery_examples/index.html">
+  Examples
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../developers_guide.html">
+  Developer Guide
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Quick Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/scikit-activeml/scikit-activeml" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://pypi.org/project/scikit-activeml" rel="noopener" target="_blank" title="PyPI"><span><i class="fas fa-box"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.base.QueryStrategy.html">
+   skactiveml.base.QueryStrategy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.base.SingleAnnotatorPoolQueryStrategy.html">
+   skactiveml.base.SingleAnnotatorPoolQueryStrategy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.base.MultiAnnotatorPoolQueryStrategy.html">
+   skactiveml.base.MultiAnnotatorPoolQueryStrategy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.base.BudgetManager.html">
+   skactiveml.base.BudgetManager
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.base.SingleAnnotatorStreamQueryStrategy.html">
+   skactiveml.base.SingleAnnotatorStreamQueryStrategy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.base.SkactivemlClassifier.html">
+   skactiveml.base.SkactivemlClassifier
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.base.ClassFrequencyEstimator.html">
+   skactiveml.base.ClassFrequencyEstimator
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.base.AnnotatorModelMixin.html">
+   skactiveml.base.AnnotatorModelMixin
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.RandomSampling.html">
+   skactiveml.pool.RandomSampling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.ProbabilisticAL.html">
+   skactiveml.pool.ProbabilisticAL
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.UncertaintySampling.html">
+   skactiveml.pool.UncertaintySampling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.EpistemicUncertaintySampling.html">
+   skactiveml.pool.EpistemicUncertaintySampling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.MonteCarloEER.html">
+   skactiveml.pool.MonteCarloEER
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.ValueOfInformationEER.html">
+   skactiveml.pool.ValueOfInformationEER
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.QueryByCommittee.html">
+   skactiveml.pool.QueryByCommittee
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.Quire.html">
+   skactiveml.pool.Quire
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.FourDs.html">
+   skactiveml.pool.FourDs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.CostEmbeddingAL.html">
+   skactiveml.pool.CostEmbeddingAL
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.DiscriminativeAL.html">
+   skactiveml.pool.DiscriminativeAL
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.cost_reduction.html">
+   skactiveml.pool.cost_reduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.uncertainty_scores.html">
+   skactiveml.pool.uncertainty_scores
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.expected_average_precision.html">
+   skactiveml.pool.expected_average_precision
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.average_kl_divergence.html">
+   skactiveml.pool.average_kl_divergence
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.vote_entropy.html">
+   skactiveml.pool.vote_entropy
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.multiannotator.IntervalEstimationThreshold.html">
+   skactiveml.pool.multiannotator.IntervalEstimationThreshold
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.multiannotator.IntervalEstimationAnnotModel.html">
+   skactiveml.pool.multiannotator.IntervalEstimationAnnotModel
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.multiannotator.SingleAnnotatorWrapper.html">
+   skactiveml.pool.multiannotator.SingleAnnotatorWrapper
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.pool.utils.IndexClassifierWrapper.html">
+   skactiveml.pool.utils.IndexClassifierWrapper
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.StreamRandomSampling.html">
+   skactiveml.stream.StreamRandomSampling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.PeriodicSampling.html">
+   skactiveml.stream.PeriodicSampling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.FixedUncertainty.html">
+   skactiveml.stream.FixedUncertainty
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.VariableUncertainty.html">
+   skactiveml.stream.VariableUncertainty
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.Split.html">
+   skactiveml.stream.Split
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.StreamProbabilisticAL.html">
+   skactiveml.stream.StreamProbabilisticAL
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.stream.RandomVariableUncertainty.html">
+   skactiveml.stream.RandomVariableUncertainty
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.classifier.ParzenWindowClassifier.html">
+   skactiveml.classifier.ParzenWindowClassifier
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.classifier.MixtureModelClassifier.html">
+   skactiveml.classifier.MixtureModelClassifier
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   skactiveml.classifier.SklearnClassifier
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.classifier.SlidingWindowClassifier.html">
+   skactiveml.classifier.SlidingWindowClassifier
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.classifier.multiannotator.AnnotatorLogisticRegression.html">
+   skactiveml.classifier.multiannotator.AnnotatorLogisticRegression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.classifier.multiannotator.AnnotatorEnsembleClassifier.html">
+   skactiveml.classifier.multiannotator.AnnotatorEnsembleClassifier
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.visualization.plot_utilities.html">
+   skactiveml.visualization.plot_utilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.visualization.plot_decision_boundary.html">
+   skactiveml.visualization.plot_decision_boundary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.visualization.plot_contour_for_samples.html">
+   skactiveml.visualization.plot_contour_for_samples
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.visualization.plot_annotator_utilities.html">
+   skactiveml.visualization.plot_annotator_utilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.visualization.mesh.html">
+   skactiveml.visualization.mesh
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.utils.ExtLabelEncoder.html">
+   skactiveml.utils.ExtLabelEncoder
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.utils.rand_argmax.html">
+   skactiveml.utils.rand_argmax
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.utils.rand_argmin.html">
+   skactiveml.utils.rand_argmin
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.utils.compute_vote_vectors.html">
+   skactiveml.utils.compute_vote_vectors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.utils.majority_vote.html">
+   skactiveml.utils.majority_vote
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.utils.is_unlabeled.html">
+   skactiveml.utils.is_unlabeled
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.utils.is_labeled.html">
+   skactiveml.utils.is_labeled
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.utils.check_classes.html">
+   skactiveml.utils.check_classes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.utils.check_missing_label.html">
+   skactiveml.utils.check_missing_label
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.utils.check_cost_matrix.html">
+   skactiveml.utils.check_cost_matrix
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.utils.check_scalar.html">
+   skactiveml.utils.check_scalar
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.utils.check_classifier_params.html">
+   skactiveml.utils.check_classifier_params
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.utils.check_X_y.html">
+   skactiveml.utils.check_X_y
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.utils.check_random_state.html">
+   skactiveml.utils.check_random_state
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.utils.call_func.html">
+   skactiveml.utils.call_func
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.utils.check_class_prior.html">
+   skactiveml.utils.check_class_prior
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.utils.ext_confusion_matrix.html">
+   skactiveml.utils.ext_confusion_matrix
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.utils.labeled_indices.html">
+   skactiveml.utils.labeled_indices
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.utils.unlabeled_indices.html">
+   skactiveml.utils.unlabeled_indices
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.utils.check_type.html">
+   skactiveml.utils.check_type
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.utils.check_bound.html">
+   skactiveml.utils.check_bound
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.utils.check_equal_missing_label.html">
+   skactiveml.utils.check_equal_missing_label
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.utils.check_budget_manager.html">
+   skactiveml.utils.check_budget_manager
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.utils.check_indices.html">
+   skactiveml.utils.check_indices
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.utils.simple_batch.html">
+   skactiveml.utils.simple_batch
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="skactiveml.exceptions.MappingError.html">
+   skactiveml.exceptions.MappingError
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+              </div>
+              <div class="sidebar-end-items">
+              </div>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#examples-using-skactiveml-classifier-sklearnclassifier">
+   Examples using
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     skactiveml.classifier.SklearnClassifier
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section id="skactiveml-classifier-sklearnclassifier">
+<h1>skactiveml.classifier.SklearnClassifier<a class="headerlink" href="#skactiveml-classifier-sklearnclassifier" title="Permalink to this headline">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="skactiveml.classifier.SklearnClassifier">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">skactiveml.classifier.</span></span><span class="sig-name descname"><span class="pre">SklearnClassifier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">estimator</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">missing_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">nan</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cost_matrix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/classifier/_wrapper.html#SklearnClassifier"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.classifier.SklearnClassifier" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="skactiveml.base.SkactivemlClassifier.html#skactiveml.base.SkactivemlClassifier" title="skactiveml.base.SkactivemlClassifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">skactiveml.base.SkactivemlClassifier</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.base.MetaEstimatorMixin</span></code></p>
+<p>Implementation of a wrapper class for scikit-learn classifiers such that
+missing labels can be handled. Therefor, samples with missing labels are
+filtered.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>estimator</strong><span class="classifier">sklearn.base.ClassifierMixin with predict_proba method</span></dt><dd><p>scikit-learn classifier that is able to deal with missing labels.</p>
+</dd>
+<dt><strong>classes</strong><span class="classifier">array-like of shape (n_classes,), default=None</span></dt><dd><p>Holds the label for each class. If none, the classes are determined
+during the fit.</p>
+</dd>
+<dt><strong>missing_label</strong><span class="classifier">scalar or string or np.nan or None, default=np.nan</span></dt><dd><p>Value to represent a missing label.</p>
+</dd>
+<dt><strong>cost_matrix</strong><span class="classifier">array-like of shape (n_classes, n_classes)</span></dt><dd><p>Cost matrix with <cite>cost_matrix[i,j]</cite> indicating cost of predicting class
+<cite>classes[j]</cite> for a sample of class <cite>classes[i]</cite>. Can be only set, if
+<cite>classes</cite> is not none.</p>
+</dd>
+<dt><strong>random_state</strong><span class="classifier">int or RandomState instance or None, default=None</span></dt><dd><p>Determines random number for ‘predict’ method. Pass an int for
+reproducible results across multiple method calls.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Attributes</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>classes_</strong><span class="classifier">array-like of shape (n_classes,)</span></dt><dd><p>Holds the label for each class after fitting.</p>
+</dd>
+<dt><strong>cost_matrix_</strong><span class="classifier">array-like of shape (classes, classes)</span></dt><dd><p>Cost matrix with <cite>cost_matrix_[i,j]</cite> indicating cost of predicting
+class <cite>classes_[j]</cite> for a sample of class <cite>classes_[i]</cite>.</p>
+</dd>
+<dt><strong>estimator_</strong><span class="classifier">sklearn.base.ClassifierMixin with predict_proba method</span></dt><dd><p>The scikit-learn classifier after calling the fit method.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.classifier.SklearnClassifier.fit" title="skactiveml.classifier.SklearnClassifier.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code></a>(X, y[, sample_weight])</p></td>
+<td><p>Fit the model using X as training data and y as class labels.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#skactiveml.classifier.SklearnClassifier.get_params" title="skactiveml.classifier.SklearnClassifier.get_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code></a>([deep])</p></td>
+<td><p>Get parameters for this estimator.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.classifier.SklearnClassifier.partial_fit" title="skactiveml.classifier.SklearnClassifier.partial_fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">partial_fit</span></code></a>(X, y[, sample_weight])</p></td>
+<td><p>Partially fitting the model using X as training data and y as class labels.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#skactiveml.classifier.SklearnClassifier.predict" title="skactiveml.classifier.SklearnClassifier.predict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict</span></code></a>(X, **predict_kwargs)</p></td>
+<td><p>Return class label predictions for the input data X.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.classifier.SklearnClassifier.predict_proba" title="skactiveml.classifier.SklearnClassifier.predict_proba"><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict_proba</span></code></a>(X, **predict_proba_kwargs)</p></td>
+<td><p>Return probability estimates for the input data X.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#skactiveml.classifier.SklearnClassifier.score" title="skactiveml.classifier.SklearnClassifier.score"><code class="xref py py-obj docutils literal notranslate"><span class="pre">score</span></code></a>(X, y[, sample_weight])</p></td>
+<td><p>Return the mean accuracy on the given test data and labels.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#skactiveml.classifier.SklearnClassifier.set_params" title="skactiveml.classifier.SklearnClassifier.set_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code></a>(**params)</p></td>
+<td><p>Set the parameters of this estimator.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="skactiveml.classifier.SklearnClassifier.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">fit_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/classifier/_wrapper.html#SklearnClassifier.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.classifier.SklearnClassifier.fit" title="Permalink to this definition">#</a></dt>
+<dd><p>Fit the model using X as training data and y as class labels.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>X</strong><span class="classifier">matrix-like, shape (n_samples, n_features)</span></dt><dd><p>The sample matrix X is the feature matrix representing the samples.</p>
+</dd>
+<dt><strong>y</strong><span class="classifier">array-like, shape (n_samples) or (n_samples, n_outputs)</span></dt><dd><p>It contains the class labels of the training samples.
+Missing labels are represented the attribute ‘missing_label’.
+In case of multiple labels per sample (i.e., n_outputs &gt; 1), the
+samples are duplicated.</p>
+</dd>
+<dt><strong>sample_weight</strong><span class="classifier">array-like, shape (n_samples) or (n_samples, n_outputs)</span></dt><dd><p>It contains the weights of the training samples’ class labels. It
+must have the same shape as y.</p>
+</dd>
+<dt><strong>fit_kwargs</strong><span class="classifier">dict-like</span></dt><dd><p>Further parameters as input to the ‘fit’ method of the ‘estimator’.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>self: SklearnClassifier,</dt><dd><p>The SklearnClassifier is fitted on the training data.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="skactiveml.classifier.SklearnClassifier.get_params">
+<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#skactiveml.classifier.SklearnClassifier.get_params" title="Permalink to this definition">#</a></dt>
+<dd><p>Get parameters for this estimator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>deep</strong><span class="classifier">bool, default=True</span></dt><dd><p>If True, will return the parameters for this estimator and
+contained subobjects that are estimators.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>params</strong><span class="classifier">dict</span></dt><dd><p>Parameter names mapped to their values.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="skactiveml.classifier.SklearnClassifier.partial_fit">
+<span class="sig-name descname"><span class="pre">partial_fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">fit_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/classifier/_wrapper.html#SklearnClassifier.partial_fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.classifier.SklearnClassifier.partial_fit" title="Permalink to this definition">#</a></dt>
+<dd><p>Partially fitting the model using X as training data and y as class
+labels.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>X</strong><span class="classifier">matrix-like, shape (n_samples, n_features)</span></dt><dd><p>The sample matrix X is the feature matrix representing the samples.</p>
+</dd>
+<dt><strong>y</strong><span class="classifier">array-like, shape (n_samples) or (n_samples, n_outputs)</span></dt><dd><p>It contains the class labels of the training samples.
+Missing labels are represented the attribute ‘missing_label’.
+In case of multiple labels per sample (i.e., n_outputs &gt; 1), the
+samples are duplicated.</p>
+</dd>
+<dt><strong>sample_weight</strong><span class="classifier">array-like, shape (n_samples) or (n_samples, n_outputs)</span></dt><dd><p>It contains the weights of the training samples’ class labels. It
+must have the same shape as y.</p>
+</dd>
+<dt><strong>fit_kwargs</strong><span class="classifier">dict-like</span></dt><dd><p>Further parameters as input to the ‘fit’ method of the ‘estimator’.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>self</strong><span class="classifier">SklearnClassifier,</span></dt><dd><p>The SklearnClassifier is fitted on the training data.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="skactiveml.classifier.SklearnClassifier.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">predict_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/classifier/_wrapper.html#SklearnClassifier.predict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.classifier.SklearnClassifier.predict" title="Permalink to this definition">#</a></dt>
+<dd><p>Return class label predictions for the input data X.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>X</strong><span class="classifier">array-like, shape (n_samples, n_features)</span></dt><dd><p>Input samples.</p>
+</dd>
+<dt><strong>predict_kwargs</strong><span class="classifier">dict-like</span></dt><dd><p>Further parameters as input to the ‘predict’ method of the
+‘estimator’.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>y</strong><span class="classifier">array-like, shape (n_samples)</span></dt><dd><p>Predicted class labels of the input samples.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="skactiveml.classifier.SklearnClassifier.predict_proba">
+<span class="sig-name descname"><span class="pre">predict_proba</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">predict_proba_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/skactiveml/classifier/_wrapper.html#SklearnClassifier.predict_proba"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#skactiveml.classifier.SklearnClassifier.predict_proba" title="Permalink to this definition">#</a></dt>
+<dd><p>Return probability estimates for the input data X.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>X</strong><span class="classifier">array-like, shape (n_samples, n_features)</span></dt><dd><p>Input samples.</p>
+</dd>
+<dt><strong>predict_proba_kwargs</strong><span class="classifier">dict-like</span></dt><dd><p>Further parameters as input to the ‘predict_proba’ method of the
+‘estimator’.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>P</strong><span class="classifier">array-like, shape (n_samples, classes)</span></dt><dd><p>The class probabilities of the input samples. Classes are ordered
+by lexicographic order.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="skactiveml.classifier.SklearnClassifier.score">
+<span class="sig-name descname"><span class="pre">score</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#skactiveml.classifier.SklearnClassifier.score" title="Permalink to this definition">#</a></dt>
+<dd><p>Return the mean accuracy on the given test data and labels.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>X</strong><span class="classifier">array-like of shape (n_samples, n_features)</span></dt><dd><p>Test samples.</p>
+</dd>
+<dt><strong>y</strong><span class="classifier">array-like of shape (n_samples,)</span></dt><dd><p>True labels for <cite>X</cite>.</p>
+</dd>
+<dt><strong>sample_weight</strong><span class="classifier">array-like of shape (n_samples,), default=None</span></dt><dd><p>Sample weights.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>score</strong><span class="classifier">float</span></dt><dd><p>Mean accuracy of <cite>self.predict(X)</cite> regarding <cite>y</cite>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="skactiveml.classifier.SklearnClassifier.set_params">
+<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#skactiveml.classifier.SklearnClassifier.set_params" title="Permalink to this definition">#</a></dt>
+<dd><p>Set the parameters of this estimator.</p>
+<p>The method works on simple estimators as well as on nested objects
+(such as <code class="xref py py-class docutils literal notranslate"><span class="pre">Pipeline</span></code>). The latter have
+parameters of the form <code class="docutils literal notranslate"><span class="pre">&lt;component&gt;__&lt;parameter&gt;</span></code> so that it’s
+possible to update each component of a nested object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>**params</strong><span class="classifier">dict</span></dt><dd><p>Estimator parameters.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>self</strong><span class="classifier">estimator instance</span></dt><dd><p>Estimator instance.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<section id="examples-using-skactiveml-classifier-sklearnclassifier">
+<span id="sphx-glr-backref-skactiveml-classifier-sklearnclassifier"></span><h2>Examples using <code class="docutils literal notranslate"><span class="pre">skactiveml.classifier.SklearnClassifier</span></code><a class="headerlink" href="#examples-using-skactiveml-classifier-sklearnclassifier" title="Permalink to this headline">#</a></h2>
+<div class="sphx-glr-thumbcontainer" tooltip="Query-by-Committee with Vote Entropy"><figure class="align-default" id="id1">
+<img alt="Query-by-Committee with Vote Entropy" src="../../_images/sphx_glr_plot_QueryByCommittee_Query-by-Committee_with_Vote_Entropy_thumb.gif" />
+<figcaption>
+<p><span class="caption-text"><a class="reference internal" href="../sphinx_gallery_examples/pool/plot_QueryByCommittee_Query-by-Committee_with_Vote_Entropy.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-querybycommittee-query-by-committee-with-vote-entropy-py"><span class="std std-ref">Query-by-Committee with Vote Entropy</span></a></span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Query-by-Committee with Kullback-Leibler Divergence"><figure class="align-default" id="id2">
+<img alt="Query-by-Committee with Kullback-Leibler Divergence" src="../../_images/sphx_glr_plot_QueryByCommittee_Query-by-Committee_with_Kullback-Leibler_Divergence_thumb.gif" />
+<figcaption>
+<p><span class="caption-text"><a class="reference internal" href="../sphinx_gallery_examples/pool/plot_QueryByCommittee_Query-by-Committee_with_Kullback-Leibler_Divergence.html#sphx-glr-generated-sphinx-gallery-examples-pool-plot-querybycommittee-query-by-committee-with-kullback-leibler-divergence-py"><span class="std std-ref">Query-by-Committee with Kullback-Leibler Divergence</span></a></span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</div><div class="sphx-glr-clear"></div></section>
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="skactiveml.classifier.MixtureModelClassifier.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">skactiveml.classifier.MixtureModelClassifier</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="skactiveml.classifier.SlidingWindowClassifier.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">skactiveml.classifier.SlidingWindowClassifier</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2020.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

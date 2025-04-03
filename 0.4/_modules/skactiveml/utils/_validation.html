@@ -1,0 +1,1030 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>skactiveml.utils._validation &#8212; scikit-activeml latest documentation</title>
+<script>
+  document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+  document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
+</script>
+
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+
+
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css" />
+
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../../../_static/filter_examples.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="docsearch:language" content="None">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+    <div class="bd-header-announcement container-fluid" id="banner">
+      
+
+    </div>
+
+    
+    <nav class="bd-header navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="bd-header__inner container-xl">
+
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+    <img src="../../../_static/scikit-activeml-logo.png" class="logo__image only-light" alt="Logo image">
+    <img src="../../../_static/scikit-activeml-logo.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="fas fa-bars"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../index.html">
+  Home
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../tutorials.html">
+  Tutorials
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../generated/strategy_overview.html">
+  Strategy Overview
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../generated/api_reference.html">
+  API Reference
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../generated/sphinx_gallery_examples/index.html">
+  Examples
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../developers_guide.html">
+  Developer Guide
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <span id="theme-switch" class="btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Quick Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/scikit-activeml/scikit-activeml" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://pypi.org/project/scikit-activeml" rel="noopener" target="_blank" title="PyPI"><span><i class="fas fa-box"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="bd-container container-xl">
+      <div class="bd-container__inner row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="bd-sidebar-primary col-12 col-md-3 bd-sidebar">
+  <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+  </div>
+  <div class="sidebar-end-items">
+  </div>
+</div>
+
+
+          
+
+
+<div class="bd-sidebar-secondary d-none d-xl-block col-xl-2 bd-toc">
+  
+</div>
+
+
+          
+          
+          <div class="bd-content col-12 col-md-9 col-xl-7">
+              
+              <article class="bd-article" role="main">
+                
+  <h1>Source code for skactiveml.utils._validation</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Iterable</span>
+<span class="kn">from</span> <span class="nn">inspect</span> <span class="kn">import</span> <span class="n">Parameter</span><span class="p">,</span> <span class="n">signature</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.utils.validation</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">check_array</span><span class="p">,</span>
+    <span class="n">column_or_1d</span><span class="p">,</span>
+    <span class="n">assert_all_finite</span><span class="p">,</span>
+    <span class="n">check_consistent_length</span><span class="p">,</span>
+    <span class="n">check_random_state</span> <span class="k">as</span> <span class="n">check_random_state_sklearn</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">._label</span> <span class="kn">import</span> <span class="n">MISSING_LABEL</span><span class="p">,</span> <span class="n">check_missing_label</span><span class="p">,</span> <span class="n">is_unlabeled</span>
+
+
+<div class="viewcode-block" id="check_scalar"><a class="viewcode-back" href="../../../generated/api/skactiveml.utils.check_scalar.html#skactiveml.utils.check_scalar">[docs]</a><span class="k">def</span> <span class="nf">check_scalar</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">name</span><span class="p">,</span>
+    <span class="n">target_type</span><span class="p">,</span>
+    <span class="n">min_inclusive</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">max_inclusive</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">min_val</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">max_val</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Validate scalar parameters type and value.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    x : object</span>
+<span class="sd">        The scalar parameter to validate.</span>
+<span class="sd">    name : str</span>
+<span class="sd">        The name of the parameter to be printed in error messages.</span>
+<span class="sd">    target_type : type or tuple</span>
+<span class="sd">        Acceptable data types for the parameter.</span>
+<span class="sd">    min_val : float or int, optional (default=None)</span>
+<span class="sd">        The minimum valid value the parameter can take. If None (default) it</span>
+<span class="sd">        is implied that the parameter does not have a lower bound.</span>
+<span class="sd">    min_inclusive : bool, optional (default=True)</span>
+<span class="sd">        If true, the minimum valid value is inclusive, otherwise exclusive.</span>
+<span class="sd">    max_val : float or int, optional (default=None)</span>
+<span class="sd">        The maximum valid value the parameter can take. If None (default) it</span>
+<span class="sd">        is implied that the parameter does not have an upper bound.</span>
+<span class="sd">    max_inclusive : bool, optional (default=True)</span>
+<span class="sd">        If true, the maximum valid value is inclusive, otherwise exclusive.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    -------</span>
+<span class="sd">    TypeError</span>
+<span class="sd">        If the parameter&#39;s type does not match the desired type.</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If the parameter&#39;s value violates the given bounds.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">target_type</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+            <span class="s2">&quot;`</span><span class="si">{}</span><span class="s2">` must be an instance of </span><span class="si">{}</span><span class="s2">, not </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">name</span><span class="p">,</span> <span class="n">target_type</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+    <span class="k">if</span> <span class="n">min_inclusive</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">min_val</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">min_val</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">x</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;`</span><span class="si">{}</span><span class="s2">`= </span><span class="si">{}</span><span class="s2">, must be &gt;= &quot;</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">min_val</span><span class="p">)</span>
+            <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">min_val</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="n">min_val</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">x</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;`</span><span class="si">{}</span><span class="s2">`= </span><span class="si">{}</span><span class="s2">, must be &gt; &quot;</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">min_val</span><span class="p">)</span>
+            <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">max_inclusive</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">max_val</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">max_val</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">x</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;`</span><span class="si">{}</span><span class="s2">`= </span><span class="si">{}</span><span class="s2">, must be &lt;= &quot;</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">max_val</span><span class="p">)</span>
+            <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">max_val</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">max_val</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">x</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;`</span><span class="si">{}</span><span class="s2">`= </span><span class="si">{}</span><span class="s2">, must be &lt; &quot;</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">max_val</span><span class="p">)</span>
+            <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="check_classifier_params"><a class="viewcode-back" href="../../../generated/api/skactiveml.utils.check_classifier_params.html#skactiveml.utils.check_classifier_params">[docs]</a><span class="k">def</span> <span class="nf">check_classifier_params</span><span class="p">(</span><span class="n">classes</span><span class="p">,</span> <span class="n">missing_label</span><span class="p">,</span> <span class="n">cost_matrix</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Check whether the parameters are compatible to each other (only if</span>
+<span class="sd">    `classes` is not None).</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    classes : array-like, shape (n_classes)</span>
+<span class="sd">        Array of class labels.</span>
+<span class="sd">    missing_label : {number, str, None, np.nan}</span>
+<span class="sd">        Symbol to represent a missing label.</span>
+<span class="sd">    cost_matrix : array-like, shape (n_classes, n_classes), default=None</span>
+<span class="sd">        Cost matrix. If None, cost matrix will be not checked.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">check_missing_label</span><span class="p">(</span><span class="n">missing_label</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">classes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">check_classes</span><span class="p">(</span><span class="n">classes</span><span class="p">)</span>
+        <span class="n">dtype</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">classes</span><span class="p">)</span><span class="o">.</span><span class="n">dtype</span>
+        <span class="n">check_missing_label</span><span class="p">(</span><span class="n">missing_label</span><span class="p">,</span> <span class="n">target_type</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;classes&quot;</span><span class="p">)</span>
+        <span class="n">n_labeled</span> <span class="o">=</span> <span class="n">is_unlabeled</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">classes</span><span class="p">,</span> <span class="n">missing_label</span><span class="o">=</span><span class="n">missing_label</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">n_labeled</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;`classes=</span><span class="si">{</span><span class="n">classes</span><span class="si">}</span><span class="s2">` contains &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;`missing_label=</span><span class="si">{</span><span class="n">missing_label</span><span class="si">}</span><span class="s2">.`&quot;</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="n">cost_matrix</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">check_cost_matrix</span><span class="p">(</span><span class="n">cost_matrix</span><span class="o">=</span><span class="n">cost_matrix</span><span class="p">,</span> <span class="n">n_classes</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">classes</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">cost_matrix</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;You cannot specify &#39;cost_matrix&#39; without &quot;</span>
+                <span class="s2">&quot;specifying &#39;classes&#39;.&quot;</span>
+            <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="check_classes"><a class="viewcode-back" href="../../../generated/api/skactiveml.utils.check_classes.html#skactiveml.utils.check_classes">[docs]</a><span class="k">def</span> <span class="nf">check_classes</span><span class="p">(</span><span class="n">classes</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Check whether class labels are uniformly strings or numbers.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    classes : array-like, shape (n_classes)</span>
+<span class="sd">        Array of class labels.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">classes</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+            <span class="s2">&quot;&#39;classes&#39; is not iterable. Got </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">classes</span><span class="p">))</span>
+        <span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">classes_sorted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">classes</span><span class="p">)))</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">classes</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">classes_sorted</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Duplicate entries in &#39;classes&#39;.&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+        <span class="n">types</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="vm">__qualname__</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">classes</span><span class="p">))</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+            <span class="s2">&quot;&#39;classes&#39; must be uniformly strings or numbers. Got </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">types</span>
+            <span class="p">)</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="check_class_prior"><a class="viewcode-back" href="../../../generated/api/skactiveml.utils.check_class_prior.html#skactiveml.utils.check_class_prior">[docs]</a><span class="k">def</span> <span class="nf">check_class_prior</span><span class="p">(</span><span class="n">class_prior</span><span class="p">,</span> <span class="n">n_classes</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Check if the class_prior is a valid prior.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    class_prior : numeric | array_like, shape (n_classes)</span>
+<span class="sd">        A class prior.</span>
+<span class="sd">    n_classes : int</span>
+<span class="sd">        The number of classes.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    class_prior : np.ndarray, shape (n_classes)</span>
+<span class="sd">        Numpy array as prior.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">class_prior</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;&#39;class_prior&#39; must not be None.&quot;</span><span class="p">)</span>
+    <span class="n">check_scalar</span><span class="p">(</span><span class="n">n_classes</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;n_classes&quot;</span><span class="p">,</span> <span class="n">target_type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">min_val</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">class_prior</span><span class="p">):</span>
+        <span class="n">check_scalar</span><span class="p">(</span>
+            <span class="n">class_prior</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;class_prior&quot;</span><span class="p">,</span>
+            <span class="n">target_type</span><span class="o">=</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">),</span>
+            <span class="n">min_val</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">class_prior</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">class_prior</span><span class="p">]</span> <span class="o">*</span> <span class="n">n_classes</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">class_prior</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">class_prior</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">is_negative</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">class_prior</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">class_prior</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="n">n_classes</span><span class="p">,)</span> <span class="ow">or</span> <span class="n">is_negative</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;`class_prior` must be either a non-negative&quot;</span>
+                <span class="s2">&quot;float or a list of `n_classes` non-negative &quot;</span>
+                <span class="s2">&quot;floats.&quot;</span>
+            <span class="p">)</span>
+    <span class="k">return</span> <span class="n">class_prior</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="check_cost_matrix"><a class="viewcode-back" href="../../../generated/api/skactiveml.utils.check_cost_matrix.html#skactiveml.utils.check_cost_matrix">[docs]</a><span class="k">def</span> <span class="nf">check_cost_matrix</span><span class="p">(</span>
+    <span class="n">cost_matrix</span><span class="p">,</span>
+    <span class="n">n_classes</span><span class="p">,</span>
+    <span class="n">only_non_negative</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">contains_non_zero</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">diagonal_is_zero</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Check whether cost matrix has shape `(n_classes, n_classes)`.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    cost_matrix : array-like, shape (n_classes, n_classes)</span>
+<span class="sd">        Cost matrix.</span>
+<span class="sd">    n_classes : int</span>
+<span class="sd">        Number of classes.</span>
+<span class="sd">    only_non_negative : bool, optional (default=True)</span>
+<span class="sd">        This parameter determines whether the matrix must contain only non</span>
+<span class="sd">        negative cost entries.</span>
+<span class="sd">    contains_non_zero : bool, optional (default=True)</span>
+<span class="sd">        This parameter determines whether the matrix must contain at least on</span>
+<span class="sd">        non-zero cost entry.</span>
+<span class="sd">    diagonal_is_zero : bool, optional (default=True)</span>
+<span class="sd">        This parameter determines whether the diagonal cost entries must be</span>
+<span class="sd">        zero.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    cost_matrix_new : np.ndarray, shape (n_classes, n_classes)</span>
+<span class="sd">        Numpy array as cost matrix.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">check_scalar</span><span class="p">(</span><span class="n">n_classes</span><span class="p">,</span> <span class="n">target_type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;n_classes&quot;</span><span class="p">,</span> <span class="n">min_val</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">cost_matrix_new</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">cost_matrix</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">),</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="n">cost_matrix_new</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="n">n_classes</span><span class="p">,</span> <span class="n">n_classes</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;&#39;cost_matrix&#39; must have shape (</span><span class="si">{}</span><span class="s2">, </span><span class="si">{}</span><span class="s2">). &quot;</span>
+            <span class="s2">&quot;Got </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n_classes</span><span class="p">,</span> <span class="n">n_classes</span><span class="p">,</span> <span class="n">cost_matrix_new</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="p">)</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">cost_matrix_new</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">only_non_negative</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;&#39;cost_matrix&#39; must contain only non-negative cost entries.&quot;</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;&#39;cost_matrix&#39; contains negative cost entries.&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">n_classes</span> <span class="o">!=</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">cost_matrix_new</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">contains_non_zero</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;&#39;cost_matrix&#39; must contain at least one non-zero cost &quot;</span>
+                <span class="s2">&quot;entry.&quot;</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="s2">&quot;&#39;cost_matrix&#39; contains contains no non-zero cost entry.&quot;</span>
+            <span class="p">)</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">cost_matrix_new</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">diagonal_is_zero</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;&#39;cost_matrix&#39; must contain only cost entries being zero on &quot;</span>
+                <span class="s2">&quot;its diagonal.&quot;</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="s2">&quot;&#39;cost_matrix&#39; contains non-zero cost entries on its diagonal.&quot;</span>
+            <span class="p">)</span>
+    <span class="k">return</span> <span class="n">cost_matrix_new</span></div>
+
+
+<div class="viewcode-block" id="check_X_y"><a class="viewcode-back" href="../../../generated/api/skactiveml.utils.check_X_y.html#skactiveml.utils.check_X_y">[docs]</a><span class="k">def</span> <span class="nf">check_X_y</span><span class="p">(</span>
+    <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">X_cand</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">sample_weight_cand</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">accept_sparse</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">accept_large_sparse</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;numeric&quot;</span><span class="p">,</span>
+    <span class="n">order</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">force_all_finite</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">allow_nd</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">multi_output</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">allow_nan</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">ensure_min_samples</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">ensure_min_features</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">y_numeric</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">estimator</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">missing_label</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Input validation for standard estimators.</span>
+
+<span class="sd">    Checks X and y for consistent length, enforces X to be 2D and y 1D. By</span>
+<span class="sd">    default, X is checked to be non-empty and containing only finite values.</span>
+<span class="sd">    Standard input checks are also applied to y, such as checking that y</span>
+<span class="sd">    does not have np.nan or np.inf targets. For multi-label y, set</span>
+<span class="sd">    multi_output=True to allow 2D and sparse y. If the dtype of X is</span>
+<span class="sd">    object, attempt converting to float, raising on failure.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    X : nd-array, list or sparse matrix</span>
+<span class="sd">        Labeled input data.</span>
+
+<span class="sd">    y : nd-array, list or sparse matrix</span>
+<span class="sd">        Labels for X.</span>
+
+<span class="sd">    X_cand : nd-array, list or sparse matrix (default=None)</span>
+<span class="sd">        Unlabeled input data</span>
+
+<span class="sd">    sample_weight : array-like of shape (n_samples,) (default=None)</span>
+<span class="sd">            Sample weights.</span>
+
+<span class="sd">    sample_weight_cand : array-like of shape (n_candidates,) (default=None)</span>
+<span class="sd">            Sample weights of the candidates.</span>
+
+<span class="sd">    accept_sparse : string, boolean or list of string (default=False)</span>
+<span class="sd">        String[s] representing allowed sparse matrix formats, such as &#39;csc&#39;,</span>
+<span class="sd">        &#39;csr&#39;, etc. If the input is sparse but not in the allowed format,</span>
+<span class="sd">        it will be converted to the first listed format. True allows the input</span>
+<span class="sd">        to be any format. False means that a sparse matrix input will</span>
+<span class="sd">        raise an error.</span>
+
+<span class="sd">    accept_large_sparse : bool (default=True)</span>
+<span class="sd">        If a CSR, CSC, COO or BSR sparse matrix is supplied and accepted by</span>
+<span class="sd">        accept_sparse, accept_large_sparse will cause it to be accepted only</span>
+<span class="sd">        if its indices are stored with a 32-bit dtype.</span>
+
+<span class="sd">        .. versionadded:: 0.20</span>
+
+<span class="sd">    dtype : string, type, list of types or None (default=&quot;numeric&quot;)</span>
+<span class="sd">        Data type of result. If None, the dtype of the input is preserved.</span>
+<span class="sd">        If &quot;numeric&quot;, dtype is preserved unless array.dtype is object.</span>
+<span class="sd">        If dtype is a list of types, conversion on the first type is only</span>
+<span class="sd">        performed if the dtype of the input is not in the list.</span>
+
+<span class="sd">    order : &#39;F&#39;, &#39;C&#39; or None (default=None)</span>
+<span class="sd">        Whether an array will be forced to be fortran or c-style.</span>
+
+<span class="sd">    copy : boolean (default=False)</span>
+<span class="sd">        Whether a forced copy will be triggered. If copy=False, a copy might</span>
+<span class="sd">        be triggered by a conversion.</span>
+
+<span class="sd">    force_all_finite : boolean or &#39;allow-nan&#39;, (default=True)</span>
+<span class="sd">        Whether to raise an error on np.inf, np.nan, pd.NA in X. This parameter</span>
+<span class="sd">        does not influence whether y can have np.inf, np.nan, pd.NA values.</span>
+<span class="sd">        The possibilities are:</span>
+
+<span class="sd">        - True: Force all values of X to be finite.</span>
+<span class="sd">        - False: accepts np.inf, np.nan, pd.NA in X.</span>
+<span class="sd">        - &#39;allow-nan&#39;: accepts only np.nan or pd.NA values in X. Values cannot</span>
+<span class="sd">          be infinite.</span>
+
+<span class="sd">        .. versionadded:: 0.20</span>
+<span class="sd">           ``force_all_finite`` accepts the string ``&#39;allow-nan&#39;``.</span>
+
+<span class="sd">        .. versionchanged:: 0.23</span>
+<span class="sd">           Accepts `pd.NA` and converts it into `np.nan`</span>
+
+<span class="sd">    ensure_2d : boolean (default=True)</span>
+<span class="sd">        Whether to raise a value error if X is not 2D.</span>
+
+<span class="sd">    allow_nd : boolean (default=False)</span>
+<span class="sd">        Whether to allow X.ndim &gt; 2.</span>
+
+<span class="sd">    multi_output : boolean (default=False)</span>
+<span class="sd">        Whether to allow 2D y (array or sparse matrix). If false, y will be</span>
+<span class="sd">        validated as a vector. y cannot have np.nan or np.inf values if</span>
+<span class="sd">        multi_output=True.</span>
+
+<span class="sd">    allow_nan : boolean (default=None)</span>
+<span class="sd">        Whether to allow np.nan in y.</span>
+
+<span class="sd">    ensure_min_samples : int (default=1)</span>
+<span class="sd">        Make sure that X has a minimum number of samples in its first</span>
+<span class="sd">        axis (rows for a 2D array).</span>
+
+<span class="sd">    ensure_min_features : int (default=1)</span>
+<span class="sd">        Make sure that the 2D array has some minimum number of features</span>
+<span class="sd">        (columns). The default value of 1 rejects empty datasets.</span>
+<span class="sd">        This check is only enforced when X has effectively 2 dimensions or</span>
+<span class="sd">        is originally 1D and ``ensure_2d`` is True. Setting to 0 disables</span>
+<span class="sd">        this check.</span>
+
+<span class="sd">    y_numeric : boolean (default=False)</span>
+<span class="sd">        Whether to ensure that y has a numeric type. If dtype of y is object,</span>
+<span class="sd">        it is converted to float64. Should only be used for regression</span>
+<span class="sd">        algorithms.</span>
+
+<span class="sd">    estimator : str or estimator instance (default=None)</span>
+<span class="sd">        If passed, include the name of the estimator in warning messages.</span>
+
+<span class="sd">    missing_label : {scalar, string, np.nan, None}, (default=np.nan)</span>
+<span class="sd">        Value to represent a missing label.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    X_converted : object</span>
+<span class="sd">        The converted and validated X.</span>
+
+<span class="sd">    y_converted : object</span>
+<span class="sd">        The converted and validated y.</span>
+
+<span class="sd">    candidates : object</span>
+<span class="sd">        The converted and validated candidates</span>
+<span class="sd">        Only returned if candidates is not None.</span>
+
+<span class="sd">    sample_weight : np.ndarray</span>
+<span class="sd">        The converted and validated sample_weight.</span>
+
+<span class="sd">    sample_weight_cand : np.ndarray</span>
+<span class="sd">        The converted and validated sample_weight_cand.</span>
+<span class="sd">        Only returned if candidates is not None.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">allow_nan</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">allow_nan</span> <span class="o">=</span> <span class="kc">True</span> <span class="k">if</span> <span class="n">missing_label</span> <span class="ow">is</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span> <span class="k">else</span> <span class="kc">False</span>
+    <span class="k">if</span> <span class="n">X</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span>
+            <span class="n">X</span><span class="p">,</span>
+            <span class="n">accept_sparse</span><span class="o">=</span><span class="n">accept_sparse</span><span class="p">,</span>
+            <span class="n">accept_large_sparse</span><span class="o">=</span><span class="n">accept_large_sparse</span><span class="p">,</span>
+            <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span>
+            <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">,</span>
+            <span class="n">copy</span><span class="o">=</span><span class="n">copy</span><span class="p">,</span>
+            <span class="n">force_all_finite</span><span class="o">=</span><span class="n">force_all_finite</span><span class="p">,</span>
+            <span class="n">ensure_2d</span><span class="o">=</span><span class="n">ensure_2d</span><span class="p">,</span>
+            <span class="n">allow_nd</span><span class="o">=</span><span class="n">allow_nd</span><span class="p">,</span>
+            <span class="n">ensure_min_samples</span><span class="o">=</span><span class="n">ensure_min_samples</span><span class="p">,</span>
+            <span class="n">ensure_min_features</span><span class="o">=</span><span class="n">ensure_min_features</span><span class="p">,</span>
+            <span class="n">estimator</span><span class="o">=</span><span class="n">estimator</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="k">if</span> <span class="n">y</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">multi_output</span><span class="p">:</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span>
+                <span class="n">y</span><span class="p">,</span>
+                <span class="n">accept_sparse</span><span class="o">=</span><span class="s2">&quot;csr&quot;</span><span class="p">,</span>
+                <span class="n">force_all_finite</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">column_or_1d</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">warn</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">assert_all_finite</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">allow_nan</span><span class="o">=</span><span class="n">allow_nan</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">y_numeric</span> <span class="ow">and</span> <span class="n">y</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">kind</span> <span class="o">==</span> <span class="s2">&quot;O&quot;</span><span class="p">:</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">X</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">y</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">check_consistent_length</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">sample_weight</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">sample_weight</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="n">sample_weight</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">sample_weight</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">check_consistent_length</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="n">y</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">1</span>
+            <span class="ow">and</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span>
+            <span class="ow">or</span> <span class="n">sample_weight</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">1</span>
+            <span class="ow">and</span> <span class="n">sample_weight</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span>
+        <span class="p">):</span>
+            <span class="n">check_consistent_length</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">X_cand</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">X_cand</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span>
+            <span class="n">X_cand</span><span class="p">,</span>
+            <span class="n">accept_sparse</span><span class="o">=</span><span class="n">accept_sparse</span><span class="p">,</span>
+            <span class="n">accept_large_sparse</span><span class="o">=</span><span class="n">accept_large_sparse</span><span class="p">,</span>
+            <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span>
+            <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">,</span>
+            <span class="n">copy</span><span class="o">=</span><span class="n">copy</span><span class="p">,</span>
+            <span class="n">force_all_finite</span><span class="o">=</span><span class="n">force_all_finite</span><span class="p">,</span>
+            <span class="n">ensure_2d</span><span class="o">=</span><span class="n">ensure_2d</span><span class="p">,</span>
+            <span class="n">allow_nd</span><span class="o">=</span><span class="n">allow_nd</span><span class="p">,</span>
+            <span class="n">ensure_min_samples</span><span class="o">=</span><span class="n">ensure_min_samples</span><span class="p">,</span>
+            <span class="n">ensure_min_features</span><span class="o">=</span><span class="n">ensure_min_features</span><span class="p">,</span>
+            <span class="n">estimator</span><span class="o">=</span><span class="n">estimator</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">X</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">X_cand</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;The number of features of candidates does not match&quot;</span>
+                <span class="s2">&quot;the number of features of X&quot;</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">sample_weight_cand</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">sample_weight_cand</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X_cand</span><span class="p">))</span>
+        <span class="n">sample_weight_cand</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">sample_weight_cand</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">check_consistent_length</span><span class="p">(</span><span class="n">X_cand</span><span class="p">,</span> <span class="n">sample_weight_cand</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">X_cand</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">X_cand</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">,</span> <span class="n">sample_weight_cand</span></div>
+
+
+<div class="viewcode-block" id="check_random_state"><a class="viewcode-back" href="../../../generated/api/skactiveml.utils.check_random_state.html#skactiveml.utils.check_random_state">[docs]</a><span class="k">def</span> <span class="nf">check_random_state</span><span class="p">(</span><span class="n">random_state</span><span class="p">,</span> <span class="n">seed_multiplier</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Check validity of the given random state.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    random_state : None | int | instance of RandomState</span>
+<span class="sd">        If random_state is None, return the RandomState singleton used by</span>
+<span class="sd">        np.random.</span>
+<span class="sd">        If random_state is an int, return a new RandomState.</span>
+<span class="sd">        If random_state is already a RandomState instance, return it.</span>
+<span class="sd">        Otherwise raise ValueError.</span>
+<span class="sd">    seed_multiplier : None | int, optional (default=None)</span>
+<span class="sd">        If the random_state and seed_multiplier are not None, draw a new int</span>
+<span class="sd">        from the random state, multiply it with the multiplier, and use the</span>
+<span class="sd">        product as the seed of a new random state.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    random_state: instance of RandomState</span>
+<span class="sd">        The validated random state.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">random_state</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">seed_multiplier</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">check_random_state_sklearn</span><span class="p">(</span><span class="n">random_state</span><span class="p">)</span>
+
+    <span class="n">check_scalar</span><span class="p">(</span>
+        <span class="n">seed_multiplier</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;seed_multiplier&quot;</span><span class="p">,</span> <span class="n">target_type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">min_val</span><span class="o">=</span><span class="mi">1</span>
+    <span class="p">)</span>
+    <span class="n">random_state</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">random_state</span><span class="p">)</span>
+    <span class="n">random_state</span> <span class="o">=</span> <span class="n">check_random_state_sklearn</span><span class="p">(</span><span class="n">random_state</span><span class="p">)</span>
+
+    <span class="n">seed</span> <span class="o">=</span> <span class="p">(</span><span class="n">random_state</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="o">**</span><span class="mi">31</span><span class="p">)</span> <span class="o">*</span> <span class="n">seed_multiplier</span><span class="p">)</span> <span class="o">%</span> <span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">31</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="check_indices"><a class="viewcode-back" href="../../../generated/api/skactiveml.utils.check_indices.html#skactiveml.utils.check_indices">[docs]</a><span class="k">def</span> <span class="nf">check_indices</span><span class="p">(</span><span class="n">indices</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s2">&quot;adaptive&quot;</span><span class="p">,</span> <span class="n">unique</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Check if indices fit to array.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    indices : array-like of shape (n_indices, n_dim) or (n_indices,)</span>
+<span class="sd">        The considered indices, where for every `i = 0, ..., n_indices - 1`</span>
+<span class="sd">        `indices[i]` is interpreted as an index to the array `A`.</span>
+<span class="sd">    A : array-like</span>
+<span class="sd">        The array that is indexed.</span>
+<span class="sd">    dim : int or tuple of ints</span>
+<span class="sd">        The dimensions of the array that are indexed.</span>
+<span class="sd">        If `dim` equals `&#39;adaptive&#39;`, `dim` is set to first indices</span>
+<span class="sd">        corresponding to the shape of `indices`. E.g., if `indices` is of</span>
+<span class="sd">        shape (n_indices,), `dim` is set `0`.</span>
+<span class="sd">    unique: bool or `check_unique`</span>
+<span class="sd">        If `unique` is `True` unique indices are returned. If `unique` is</span>
+<span class="sd">        `&#39;check_unique&#39;` an exception is raised if the indices are not unique.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    indices: tuple of np.ndarrays or np.ndarray</span>
+<span class="sd">        The validated indices.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">indices</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">indices</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">allow_nd</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">force_all_finite</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">unique</span> <span class="o">==</span> <span class="s2">&quot;check_unique&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">indices</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">n_unique_indices</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">indices</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">n_unique_indices</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">indices</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">n_unique_indices</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">indices</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;`indices` contains two different indices of the &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;same value.&quot;</span>
+            <span class="p">)</span>
+    <span class="k">elif</span> <span class="n">unique</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">indices</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">indices</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">indices</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">check_type</span><span class="p">(</span><span class="n">dim</span><span class="p">,</span> <span class="s2">&quot;dim&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">target_vals</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;adaptive&quot;</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">dim</span> <span class="o">==</span> <span class="s2">&quot;adaptive&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">indices</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">dim</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">dim</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">indices</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dim</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">dim</span><span class="p">:</span>
+            <span class="n">check_type</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;entry of `dim`&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">A</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&lt;=</span> <span class="nb">max</span><span class="p">(</span><span class="n">dim</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;`dim` contains entry of value </span><span class="si">{</span><span class="nb">max</span><span class="p">(</span><span class="n">dim</span><span class="p">)</span><span class="si">}</span><span class="s2">, but all&quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;entries of dim must be smaller than </span><span class="si">{</span><span class="n">A</span><span class="o">.</span><span class="n">ndim</span><span class="si">}</span><span class="s2">.&quot;</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">dim</span><span class="p">)</span> <span class="o">!=</span> <span class="n">indices</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;shape of `indices` along dimension 1 is &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">indices</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">, but must be </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">dim</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+        <span class="n">indices</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">indices</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">indices</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">indices</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">dim</span><span class="p">[</span><span class="n">i</span><span class="p">]]):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;`indices[</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">]` contains index of value &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">indices</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="si">}</span><span class="s2"> but all indices must be&quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot; less than </span><span class="si">{</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">dim</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span><span class="si">}</span><span class="s2">.&quot;</span>
+                <span class="p">)</span>
+        <span class="k">return</span> <span class="n">indices</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">A</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&lt;=</span> <span class="n">dim</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;`dim` has value </span><span class="si">{</span><span class="n">dim</span><span class="si">}</span><span class="s2">, but must be smaller than &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">A</span><span class="o">.</span><span class="n">ndim</span><span class="si">}</span><span class="s2">.&quot;</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">indices</span> <span class="o">&gt;=</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">dim</span><span class="p">]):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;`indices` contains index of value &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">indices</span><span class="p">)</span><span class="si">}</span><span class="s2"> but all indices must be&quot;</span>
+                <span class="sa">f</span><span class="s2">&quot; less than </span><span class="si">{</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="si">}</span><span class="s2">.&quot;</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">indices</span></div>
+
+
+<div class="viewcode-block" id="check_type"><a class="viewcode-back" href="../../../generated/api/skactiveml.utils.check_type.html#skactiveml.utils.check_type">[docs]</a><span class="k">def</span> <span class="nf">check_type</span><span class="p">(</span>
+    <span class="n">obj</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">*</span><span class="n">target_types</span><span class="p">,</span> <span class="n">target_vals</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">indicator_funcs</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Check if obj is one of the given types. It is also possible to allow</span>
+<span class="sd">    specific values. Further it is possible to pass indicator functions</span>
+<span class="sd">    that can also accept obj. Thereby obj must either have a correct type</span>
+<span class="sd">    a correct value or be accepted by an indicator function.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    obj: object</span>
+<span class="sd">        The object to be checked.</span>
+<span class="sd">    name: str</span>
+<span class="sd">        The variable name of the object.</span>
+<span class="sd">    target_types : iterable</span>
+<span class="sd">        The possible types.</span>
+<span class="sd">    target_vals : iterable, optional (default=None)</span>
+<span class="sd">        Possible further values that the object is allowed to equal.</span>
+<span class="sd">    indicator_funcs : iterable, optional (default=None)</span>
+<span class="sd">        Possible further custom indicator (boolean) functions that accept</span>
+<span class="sd">        the object by returning `True` if the object is passed as a parameter.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">target_vals</span> <span class="o">=</span> <span class="n">target_vals</span> <span class="k">if</span> <span class="n">target_vals</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">[]</span>
+    <span class="n">indicator_funcs</span> <span class="o">=</span> <span class="n">indicator_funcs</span> <span class="k">if</span> <span class="n">indicator_funcs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">[]</span>
+
+    <span class="n">wrong_type</span> <span class="o">=</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">target_types</span><span class="p">)</span>
+    <span class="n">wrong_value</span> <span class="o">=</span> <span class="n">obj</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">target_vals</span>
+    <span class="n">wrong_index</span> <span class="o">=</span> <span class="nb">all</span><span class="p">(</span><span class="ow">not</span> <span class="n">i_func</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="k">for</span> <span class="n">i_func</span> <span class="ow">in</span> <span class="n">indicator_funcs</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">wrong_type</span> <span class="ow">and</span> <span class="n">wrong_value</span> <span class="ow">and</span> <span class="n">wrong_index</span><span class="p">:</span>
+        <span class="n">error_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;`</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">` &quot;</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">target_types</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">target_vals</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">error_str</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot; must&quot;</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">target_vals</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">target_types</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">error_str</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot; has type `</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span><span class="si">}</span><span class="s2">`, but must&quot;</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">target_vals</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">target_types</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">error_str</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot; has value `</span><span class="si">{</span><span class="n">obj</span><span class="si">}</span><span class="s2">`, but must&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">error_str</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot; has type `</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span><span class="si">}</span><span class="s2">` and value `</span><span class="si">{</span><span class="n">obj</span><span class="si">}</span><span class="s2">`, but must&quot;</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">target_types</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">error_str</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot; have type `</span><span class="si">{</span><span class="n">target_types</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">`&quot;</span>
+        <span class="k">elif</span> <span class="mi">1</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">target_types</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">error_str</span> <span class="o">+=</span> <span class="s2">&quot; have type&quot;</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">target_types</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="n">error_str</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot; `</span><span class="si">{</span><span class="n">target_types</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2">`,&quot;</span>
+            <span class="n">error_str</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot; or `</span><span class="si">{</span><span class="n">target_types</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">target_types</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">`&quot;</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">target_types</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">error_str</span> <span class="o">+=</span> <span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot; have one of the following types: </span><span class="si">{</span><span class="nb">set</span><span class="p">(</span><span class="n">target_types</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">target_vals</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">target_types</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">indicator_funcs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">error_str</span> <span class="o">+=</span> <span class="s2">&quot; or&quot;</span>
+            <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">target_types</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">indicator_funcs</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">error_str</span> <span class="o">+=</span> <span class="s2">&quot;,&quot;</span>
+            <span class="n">error_str</span> <span class="o">+=</span> <span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot; equal one of the following values: </span><span class="si">{</span><span class="nb">set</span><span class="p">(</span><span class="n">target_vals</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">indicator_funcs</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">target_types</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">target_vals</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">error_str</span> <span class="o">+=</span> <span class="s2">&quot; or&quot;</span>
+            <span class="n">error_str</span> <span class="o">+=</span> <span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot; be accepted by one of the following custom boolean &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;functions: </span><span class="si">{</span><span class="nb">set</span><span class="p">(</span><span class="n">i_f</span><span class="o">.</span><span class="vm">__name__</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">i_f</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">indicator_funcs</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">error_str</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="_check_callable"><a class="viewcode-back" href="../../../generated/api/skactiveml.utils._check_callable.html#skactiveml.utils._check_callable">[docs]</a><span class="k">def</span> <span class="nf">_check_callable</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">n_positional_parameters</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Checks if function is a callable and if the number of free parameters is</span>
+<span class="sd">    correct.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    func: callable</span>
+<span class="sd">        The functions to be validated.</span>
+<span class="sd">    name: str</span>
+<span class="sd">        The name of the function</span>
+<span class="sd">    n_positional_parameters: int, optional (default=None)</span>
+<span class="sd">        The number of free parameters. If `n_free_parameters` is `None`,</span>
+<span class="sd">        `n_free_parameters` is set to `1`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">n_positional_parameters</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">n_positional_parameters</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">callable</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;`</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">` must be callable. &quot;</span> <span class="sa">f</span><span class="s2">&quot;`</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">` is of type </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">func</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+
+    <span class="c1"># count the number of arguments that have no default value</span>
+    <span class="n">n_actual_positional_parameters</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span>
+        <span class="nb">list</span><span class="p">(</span>
+            <span class="nb">filter</span><span class="p">(</span>
+                <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">default</span> <span class="o">==</span> <span class="n">Parameter</span><span class="o">.</span><span class="n">empty</span><span class="p">,</span>
+                <span class="n">signature</span><span class="p">(</span><span class="n">func</span><span class="p">)</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">values</span><span class="p">(),</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">n_actual_positional_parameters</span> <span class="o">!=</span> <span class="n">n_positional_parameters</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;The number of positional parameters of the callable has to &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;equal </span><span class="si">{</span><span class="n">n_positional_parameters</span><span class="si">}</span><span class="s2">. &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;The number of positional parameters is &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">n_actual_positional_parameters</span><span class="si">}</span><span class="s2">.&quot;</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="check_bound"><a class="viewcode-back" href="../../../generated/api/skactiveml.utils.check_bound.html#skactiveml.utils.check_bound">[docs]</a><span class="k">def</span> <span class="nf">check_bound</span><span class="p">(</span>
+    <span class="n">bound</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">bound_must_be_given</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Validates bound and returns the bound of X if bound is None.</span>
+<span class="sd">    `bound` or `X` must not be None.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    bound: array-like, shape (2, ndim), optional (default=None)</span>
+<span class="sd">        The given bound of shape</span>
+<span class="sd">        [[x1_min, x2_min, ..., xndim_min], [x1_max, x2_max, ..., xndim_max]]</span>
+<span class="sd">    X: matrix-like, shape (n_samples, ndim), optional (default=None)</span>
+<span class="sd">        The sample matrix X is the feature matrix representing samples.</span>
+<span class="sd">    ndim: int, optional (default=2)</span>
+<span class="sd">        The number of dimensions.</span>
+<span class="sd">    epsilon: float, optional (default=0)</span>
+<span class="sd">        The minimal distance between the returned bound and the values of `X`,</span>
+<span class="sd">        if `bound` is not specified.</span>
+<span class="sd">    bound_must_be_given: bool, optional (default=False)</span>
+<span class="sd">        Whether it is allowed for the bound to be `None` and to be inferred by</span>
+<span class="sd">        `X`.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    bound: array-like, shape (2, ndim), optional (default=None)</span>
+<span class="sd">        The given bound or bound of X.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">X</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="n">ndim</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;`X` along axis 1 must be of length </span><span class="si">{</span><span class="n">ndim</span><span class="si">}</span><span class="s2">. &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;`X` along axis 1 is of length </span><span class="si">{</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">.&quot;</span>
+            <span class="p">)</span>
+    <span class="k">if</span> <span class="n">bound</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">bound</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">bound</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">bound</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">ndim</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Shape of `bound` must be (2, </span><span class="si">{</span><span class="n">ndim</span><span class="si">}</span><span class="s2">). &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;Shape of `bound` is </span><span class="si">{</span><span class="n">bound</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">.&quot;</span>
+            <span class="p">)</span>
+    <span class="k">elif</span> <span class="n">bound_must_be_given</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;`bound` must not be `None`.&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">bound</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">X</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">minima</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmin</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="n">epsilon</span>
+        <span class="n">maxima</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">epsilon</span>
+        <span class="n">bound</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">minima</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">maxima</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">bound</span>
+    <span class="k">elif</span> <span class="n">bound</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">X</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">logical_or</span><span class="p">(</span><span class="n">bound</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">X</span><span class="p">,</span> <span class="n">X</span> <span class="o">&gt;</span> <span class="n">bound</span><span class="p">[</span><span class="mi">1</span><span class="p">])):</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;`X` contains values not within range of `bound`.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">bound</span>
+    <span class="k">elif</span> <span class="n">bound</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">bound</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;`X` or `bound` must not be None.&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="check_budget_manager"><a class="viewcode-back" href="../../../generated/api/skactiveml.utils.check_budget_manager.html#skactiveml.utils.check_budget_manager">[docs]</a><span class="k">def</span> <span class="nf">check_budget_manager</span><span class="p">(</span>
+    <span class="n">budget</span><span class="p">,</span>
+    <span class="n">budget_manager</span><span class="p">,</span>
+    <span class="n">default_budget_manager_class</span><span class="p">,</span>
+    <span class="n">default_budget_manager_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Validate if budget manager is a budgetmanager class and create a</span>
+<span class="sd">    copy &#39;budget_manager_&#39;.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">uses_rand</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;random_state&quot;</span> <span class="ow">in</span> <span class="n">signature</span><span class="p">(</span><span class="n">default_budget_manager_class</span><span class="p">)</span><span class="o">.</span><span class="n">parameters</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="n">default_budget_manager_dict</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">default_budget_manager_dict</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">elif</span> <span class="ow">not</span> <span class="n">uses_rand</span><span class="p">:</span>
+        <span class="n">default_budget_manager_dict</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;random_state&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">budget_manager</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">budget_manager_</span> <span class="o">=</span> <span class="n">default_budget_manager_class</span><span class="p">(</span>
+            <span class="n">budget</span><span class="o">=</span><span class="n">budget</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">default_budget_manager_dict</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">budget</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">budget</span> <span class="o">!=</span> <span class="n">budget_manager</span><span class="o">.</span><span class="n">budget</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="s2">&quot;budgetmanager is already given such that the budget &quot;</span>
+                <span class="s2">&quot;is not used. The given budget differs from the &quot;</span>
+                <span class="s2">&quot;budget_managers budget.&quot;</span>
+            <span class="p">)</span>
+        <span class="n">budget_manager_</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">budget_manager</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">budget_manager_</span></div>
+</pre></div>
+
+              </article>
+              
+
+              
+              <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              </footer>
+              
+          </div>
+          
+      </div>
+    </div>
+
+  
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695"></script>
+
+<footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy; Copyright 2020.<br>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
+</p>
+  </div>
+  
+</div>
+</footer>
+  </body>
+</html>

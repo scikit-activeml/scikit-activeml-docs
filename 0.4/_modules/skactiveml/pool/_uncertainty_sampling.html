@@ -1,0 +1,640 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>skactiveml.pool._uncertainty_sampling &#8212; scikit-activeml latest documentation</title>
+<script>
+  document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+  document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
+</script>
+
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+
+
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css" />
+
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../../../_static/filter_examples.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="docsearch:language" content="None">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+    <div class="bd-header-announcement container-fluid" id="banner">
+      
+
+    </div>
+
+    
+    <nav class="bd-header navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="bd-header__inner container-xl">
+
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+    <img src="../../../_static/scikit-activeml-logo.png" class="logo__image only-light" alt="Logo image">
+    <img src="../../../_static/scikit-activeml-logo.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="fas fa-bars"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../index.html">
+  Home
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../tutorials.html">
+  Tutorials
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../generated/strategy_overview.html">
+  Strategy Overview
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../generated/api_reference.html">
+  API Reference
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../generated/sphinx_gallery_examples/index.html">
+  Examples
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../developers_guide.html">
+  Developer Guide
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <span id="theme-switch" class="btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Quick Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/scikit-activeml/scikit-activeml" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://pypi.org/project/scikit-activeml" rel="noopener" target="_blank" title="PyPI"><span><i class="fas fa-box"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="bd-container container-xl">
+      <div class="bd-container__inner row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="bd-sidebar-primary col-12 col-md-3 bd-sidebar">
+  <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+  </div>
+  <div class="sidebar-end-items">
+  </div>
+</div>
+
+
+          
+
+
+<div class="bd-sidebar-secondary d-none d-xl-block col-xl-2 bd-toc">
+  
+</div>
+
+
+          
+          
+          <div class="bd-content col-12 col-md-9 col-xl-7">
+              
+              <article class="bd-article" role="main">
+                
+  <h1>Source code for skactiveml.pool._uncertainty_sampling</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Module implementing various uncertainty based query strategies.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># Authors: Pascal Mergard &lt;Pascal.Mergard@student.uni-kassel.de&gt;</span>
+<span class="c1">#          Marek Herde &lt;marek.herde@uni-kassel.de&gt;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">clone</span>
+<span class="kn">from</span> <span class="nn">sklearn.utils.validation</span> <span class="kn">import</span> <span class="n">check_array</span>
+
+<span class="kn">from</span> <span class="nn">..base</span> <span class="kn">import</span> <span class="n">SingleAnnotatorPoolQueryStrategy</span><span class="p">,</span> <span class="n">SkactivemlClassifier</span>
+<span class="kn">from</span> <span class="nn">..utils</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">MISSING_LABEL</span><span class="p">,</span>
+    <span class="n">check_cost_matrix</span><span class="p">,</span>
+    <span class="n">simple_batch</span><span class="p">,</span>
+    <span class="n">check_classes</span><span class="p">,</span>
+    <span class="n">check_type</span><span class="p">,</span>
+    <span class="n">check_equal_missing_label</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<div class="viewcode-block" id="UncertaintySampling"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.UncertaintySampling.html#skactiveml.pool.UncertaintySampling">[docs]</a><span class="k">class</span> <span class="nc">UncertaintySampling</span><span class="p">(</span><span class="n">SingleAnnotatorPoolQueryStrategy</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Uncertainty Sampling.</span>
+
+<span class="sd">    This class implement various uncertainty based query strategies, i.e., the</span>
+<span class="sd">    standard uncertainty measures [1], cost-sensitive ones [2], and one</span>
+<span class="sd">    optimizing expected average precision [3].</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    method : string, default=&#39;least_confident&#39;</span>
+<span class="sd">        The method to calculate the uncertainty, entropy, least_confident,</span>
+<span class="sd">        margin_sampling, and expected_average_precision  are possible.</span>
+<span class="sd">    cost_matrix : array-like of shape (n_classes, n_classes)</span>
+<span class="sd">        Cost matrix with cost_matrix[i,j] defining the cost of predicting class</span>
+<span class="sd">        j for a sample with the actual class i. Only supported for</span>
+<span class="sd">        `least_confident` and `margin_sampling` variant.</span>
+<span class="sd">    missing_label : scalar or string or np.nan or None, default=np.nan</span>
+<span class="sd">        Value to represent a missing label.</span>
+<span class="sd">    random_state : int or np.random.RandomState</span>
+<span class="sd">        The random state to use.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    [1] Settles, Burr. Active learning literature survey.</span>
+<span class="sd">        University of Wisconsin-Madison Department of Computer Sciences, 2009.</span>
+<span class="sd">    [2] Chen, Po-Lung, and Hsuan-Tien Lin. &quot;Active learning for multiclass</span>
+<span class="sd">        cost-sensitive classification using probabilistic models.&quot; 2013</span>
+<span class="sd">        Conference on Technologies and Applications of Artificial Intelligence.</span>
+<span class="sd">        IEEE, 2013.</span>
+<span class="sd">    [3] Wang, Hanmo, et al. &quot;Uncertainty sampling for action recognition</span>
+<span class="sd">        via maximizing expected average precision.&quot;</span>
+<span class="sd">        IJCAI International Joint Conference on Artificial Intelligence. 2018.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">method</span><span class="o">=</span><span class="s2">&quot;least_confident&quot;</span><span class="p">,</span>
+        <span class="n">cost_matrix</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">missing_label</span><span class="o">=</span><span class="n">MISSING_LABEL</span><span class="p">,</span>
+        <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">missing_label</span><span class="o">=</span><span class="n">missing_label</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">method</span> <span class="o">=</span> <span class="n">method</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cost_matrix</span> <span class="o">=</span> <span class="n">cost_matrix</span>
+
+<div class="viewcode-block" id="UncertaintySampling.query"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.UncertaintySampling.html#skactiveml.pool.UncertaintySampling.query">[docs]</a>    <span class="k">def</span> <span class="nf">query</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">X</span><span class="p">,</span>
+        <span class="n">y</span><span class="p">,</span>
+        <span class="n">clf</span><span class="p">,</span>
+        <span class="n">fit_clf</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">utility_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">candidates</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">return_utilities</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Determines for which candidate samples labels are to be queried.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : array-like of shape (n_samples, n_features)</span>
+<span class="sd">            Training data set, usually complete, i.e. including the labeled and</span>
+<span class="sd">            unlabeled samples.</span>
+<span class="sd">        y : array-like of shape (n_samples)</span>
+<span class="sd">            Labels of the training data set (possibly including unlabeled ones</span>
+<span class="sd">            indicated by self.MISSING_LABEL.</span>
+<span class="sd">        clf : skactiveml.base.SkactivemlClassifier</span>
+<span class="sd">            Model implementing the methods `fit` and `predict_proba`.</span>
+<span class="sd">        fit_clf : bool, optional (default=True)</span>
+<span class="sd">            Defines whether the classifier should be fitted on `X`, `y`, and</span>
+<span class="sd">            `sample_weight`.</span>
+<span class="sd">        sample_weight: array-like of shape (n_samples), optional (default=None)</span>
+<span class="sd">            Weights of training samples in `X`.</span>
+<span class="sd">        utility_weight: array-like, optional (default=None)</span>
+<span class="sd">            Weight for each candidate (multiplied with utilities). Usually,</span>
+<span class="sd">            this is to be the density of a candidate. The length of</span>
+<span class="sd">            `utility_weight` is usually n_samples, except for the case when</span>
+<span class="sd">            candidates contains samples (ndim &gt;= 2). Then the length is</span>
+<span class="sd">            `n_candidates`.</span>
+<span class="sd">        candidates : None or array-like of shape (n_candidates), dtype=int or</span>
+<span class="sd">            array-like of shape (n_candidates, n_features),</span>
+<span class="sd">            optional (default=None)</span>
+<span class="sd">            If candidates is None, the unlabeled samples from (X,y) are</span>
+<span class="sd">            considered as candidates.</span>
+<span class="sd">            If candidates is of shape (n_candidates) and of type int,</span>
+<span class="sd">            candidates is considered as the indices of the samples in (X,y).</span>
+<span class="sd">            If candidates is of shape (n_candidates, n_features), the</span>
+<span class="sd">            candidates are directly given in candidates (not necessarily</span>
+<span class="sd">            contained in X). This is not supported by all query strategies.</span>
+<span class="sd">        batch_size : int, default=1</span>
+<span class="sd">            The number of samples to be selected in one AL cycle.</span>
+<span class="sd">        return_utilities : bool, default=False</span>
+<span class="sd">            If true, also return the utilities based on the query strategy.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        query_indices : numpy.ndarray of shape (batch_size)</span>
+<span class="sd">            The query_indices indicate for which candidate sample a label is</span>
+<span class="sd">            to queried, e.g., `query_indices[0]` indicates the first selected</span>
+<span class="sd">            sample.</span>
+<span class="sd">            If candidates is None or of shape (n_candidates), the indexing</span>
+<span class="sd">            refers to samples in X.</span>
+<span class="sd">            If candidates is of shape (n_candidates, n_features), the indexing</span>
+<span class="sd">            refers to samples in candidates.</span>
+<span class="sd">        utilities : numpy.ndarray of shape (batch_size, n_samples) or</span>
+<span class="sd">            numpy.ndarray of shape (batch_size, n_candidates)</span>
+<span class="sd">            The utilities of samples after each selected sample of the batch,</span>
+<span class="sd">            e.g., `utilities[0]` indicates the utilities used for selecting</span>
+<span class="sd">            the first sample (with index `query_indices[0]`) of the batch.</span>
+<span class="sd">            Utilities for labeled samples will be set to np.nan.</span>
+<span class="sd">            If candidates is None or of shape (n_candidates), the indexing</span>
+<span class="sd">            refers to samples in X.</span>
+<span class="sd">            If candidates is of shape (n_candidates, n_features), the indexing</span>
+<span class="sd">            refers to samples in candidates.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Validate input parameters.</span>
+        <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">candidates</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">return_utilities</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_data</span><span class="p">(</span>
+            <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">candidates</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">return_utilities</span><span class="p">,</span> <span class="n">reset</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)</span>
+
+        <span class="n">X_cand</span><span class="p">,</span> <span class="n">mapping</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transform_candidates</span><span class="p">(</span><span class="n">candidates</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+        <span class="c1"># Validate classifier type.</span>
+        <span class="n">check_type</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="s2">&quot;clf&quot;</span><span class="p">,</span> <span class="n">SkactivemlClassifier</span><span class="p">)</span>
+        <span class="n">check_equal_missing_label</span><span class="p">(</span><span class="n">clf</span><span class="o">.</span><span class="n">missing_label</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">missing_label_</span><span class="p">)</span>
+
+        <span class="c1"># Validate classifier type.</span>
+        <span class="n">check_type</span><span class="p">(</span><span class="n">fit_clf</span><span class="p">,</span> <span class="s2">&quot;fit_clf&quot;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>
+
+        <span class="c1"># Check `utility_weight`.</span>
+        <span class="k">if</span> <span class="n">utility_weight</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">mapping</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">utility_weight</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X_cand</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">utility_weight</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
+        <span class="n">utility_weight</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">utility_weight</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">mapping</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_cand</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">utility_weight</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;&#39;utility_weight&#39; must have length &#39;n_candidates&#39; but &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">X_cand</span><span class="p">)</span><span class="si">}</span><span class="s2"> != </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">utility_weight</span><span class="p">)</span><span class="si">}</span><span class="s2">.&quot;</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="n">mapping</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">utility_weight</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;&#39;utility_weight&#39; must have length &#39;n_samples&#39; but &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">utility_weight</span><span class="p">)</span><span class="si">}</span><span class="s2"> != </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="si">}</span><span class="s2">.&quot;</span>
+            <span class="p">)</span>
+
+        <span class="c1"># Validate method.</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">method</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                <span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> is an invalid type for method. Type </span><span class="si">{}</span><span class="s2"> is &quot;</span>
+                <span class="s2">&quot;expected&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">method</span><span class="p">),</span> <span class="nb">str</span><span class="p">)</span>
+            <span class="p">)</span>
+
+        <span class="c1"># sample_weight is checked by clf when fitted</span>
+
+        <span class="c1"># Fit the classifier.</span>
+        <span class="k">if</span> <span class="n">fit_clf</span><span class="p">:</span>
+            <span class="n">clf</span> <span class="o">=</span> <span class="n">clone</span><span class="p">(</span><span class="n">clf</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">)</span>
+
+        <span class="c1"># Predict class-membership probabilities.</span>
+        <span class="n">probas</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_cand</span><span class="p">)</span>
+
+        <span class="c1"># Choose the method and calculate corresponding utilities.</span>
+        <span class="k">with</span> <span class="n">np</span><span class="o">.</span><span class="n">errstate</span><span class="p">(</span><span class="n">divide</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">method</span> <span class="ow">in</span> <span class="p">[</span>
+                <span class="s2">&quot;least_confident&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;margin_sampling&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;entropy&quot;</span><span class="p">,</span>
+            <span class="p">]:</span>
+                <span class="n">utilities_cand</span> <span class="o">=</span> <span class="n">uncertainty_scores</span><span class="p">(</span>
+                    <span class="n">probas</span><span class="o">=</span><span class="n">probas</span><span class="p">,</span>
+                    <span class="n">method</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">method</span><span class="p">,</span>
+                    <span class="n">cost_matrix</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cost_matrix</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;expected_average_precision&quot;</span><span class="p">:</span>
+                <span class="n">classes</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">classes_</span>
+                <span class="n">utilities_cand</span> <span class="o">=</span> <span class="n">expected_average_precision</span><span class="p">(</span><span class="n">classes</span><span class="p">,</span> <span class="n">probas</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">&quot;The given method </span><span class="si">{}</span><span class="s2"> is not valid. Supported methods are &quot;</span>
+                    <span class="s2">&quot;&#39;entropy&#39;, &#39;least_confident&#39;, &#39;margin_sampling&#39; and &quot;</span>
+                    <span class="s2">&quot;&#39;expected_average_precision&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">method</span><span class="p">)</span>
+                <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">mapping</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">utilities</span> <span class="o">=</span> <span class="n">utilities_cand</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">utilities</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+            <span class="n">utilities</span><span class="p">[</span><span class="n">mapping</span><span class="p">]</span> <span class="o">=</span> <span class="n">utilities_cand</span>
+        <span class="n">utilities</span> <span class="o">*=</span> <span class="n">utility_weight</span>
+
+        <span class="k">return</span> <span class="n">simple_batch</span><span class="p">(</span>
+            <span class="n">utilities</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">random_state_</span><span class="p">,</span>
+            <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
+            <span class="n">return_utilities</span><span class="o">=</span><span class="n">return_utilities</span><span class="p">,</span>
+        <span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="uncertainty_scores"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.uncertainty_scores.html#skactiveml.pool.uncertainty_scores">[docs]</a><span class="k">def</span> <span class="nf">uncertainty_scores</span><span class="p">(</span><span class="n">probas</span><span class="p">,</span> <span class="n">cost_matrix</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;least_confident&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes uncertainty scores. Three methods are available: least</span>
+<span class="sd">    confident (&#39;least_confident&#39;), margin sampling (&#39;margin_sampling&#39;),</span>
+<span class="sd">    and entropy based uncertainty (&#39;entropy&#39;) [1]. For the least confident and</span>
+<span class="sd">    margin sampling methods cost-sensitive variants are implemented in case of</span>
+<span class="sd">    a given cost matrix (see [2] for more information).</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    probas : array-like, shape (n_samples, n_classes)</span>
+<span class="sd">        Class membership probabilities for each sample.</span>
+<span class="sd">    cost_matrix : array-like, shape (n_classes, n_classes)</span>
+<span class="sd">        Cost matrix with C[i,j] defining the cost of predicting class j for a</span>
+<span class="sd">        sample with the actual class i. Only supported for least confident</span>
+<span class="sd">        variant.</span>
+<span class="sd">    method : {&#39;least_confident&#39;, &#39;margin_sampling&#39;, &#39;entropy&#39;},</span>
+<span class="sd">            optional (default=&#39;least_confident&#39;)</span>
+<span class="sd">        Least confidence (lc) queries the sample whose maximal posterior</span>
+<span class="sd">        probability is minimal. In case of a given cost matrix, the maximial</span>
+<span class="sd">        expected cost variant is used. Smallest margin (sm) queries the sample</span>
+<span class="sd">        whose posterior probability gap between the most and the second most</span>
+<span class="sd">        probable class label is minimal. In case of a given cost matrix, the</span>
+<span class="sd">        cost-weighted minimum margin is used. Entropy (&#39;entropy&#39;) queries the</span>
+<span class="sd">        sample whose posterior&#39;s have the maximal entropy. There is no</span>
+<span class="sd">        cost-sensitive variant of entropy based uncertainty sampling.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    [1] Settles, Burr. &quot;Active learning literature survey&quot;.</span>
+<span class="sd">        University of Wisconsin-Madison Department of Computer Sciences, 2009.</span>
+<span class="sd">    [2] Chen, Po-Lung, and Hsuan-Tien Lin. &quot;Active learning for multiclass</span>
+<span class="sd">        cost-sensitive classification using probabilistic models.&quot; 2013</span>
+<span class="sd">        Conference on Technologies and Applications of Artificial Intelligence.</span>
+<span class="sd">        IEEE, 2013.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Check probabilities.</span>
+    <span class="n">probas</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">probas</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">probas</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">rtol</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="mf">1.0e-3</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;&#39;probas&#39; are invalid. The sum over axis 1 must be one.&quot;</span>
+        <span class="p">)</span>
+
+    <span class="n">n_classes</span> <span class="o">=</span> <span class="n">probas</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="c1"># Check cost matrix.</span>
+    <span class="k">if</span> <span class="n">cost_matrix</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">cost_matrix</span> <span class="o">=</span> <span class="n">check_cost_matrix</span><span class="p">(</span><span class="n">cost_matrix</span><span class="p">,</span> <span class="n">n_classes</span><span class="o">=</span><span class="n">n_classes</span><span class="p">)</span>
+
+    <span class="c1"># Compute uncertainties.</span>
+    <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;least_confident&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">cost_matrix</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">probas</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">costs</span> <span class="o">=</span> <span class="n">probas</span> <span class="o">@</span> <span class="n">cost_matrix</span>
+            <span class="n">costs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="n">costs</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+            <span class="k">return</span> <span class="n">costs</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;margin_sampling&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">cost_matrix</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">probas</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="o">-</span><span class="n">probas</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">])</span>
+            <span class="k">return</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">probas</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">probas</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">costs</span> <span class="o">=</span> <span class="n">probas</span> <span class="o">@</span> <span class="n">cost_matrix</span>
+            <span class="n">costs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="n">costs</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+            <span class="k">return</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">costs</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">costs</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;entropy&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">cost_matrix</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">with</span> <span class="n">np</span><span class="o">.</span><span class="n">errstate</span><span class="p">(</span><span class="n">divide</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">invalid</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="o">-</span><span class="n">probas</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">probas</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Method `entropy` does not support cost matrices but &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;`cost_matrix` was not None.&quot;</span>
+            <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;Supported methods are [&#39;least_confident&#39;, &#39;margin_sampling&#39;, &quot;</span>
+            <span class="s2">&quot;&#39;entropy&#39;], the given one is: </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">method</span><span class="p">)</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="expected_average_precision"><a class="viewcode-back" href="../../../generated/api/skactiveml.pool.expected_average_precision.html#skactiveml.pool.expected_average_precision">[docs]</a><span class="k">def</span> <span class="nf">expected_average_precision</span><span class="p">(</span><span class="n">classes</span><span class="p">,</span> <span class="n">probas</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the expected average precision.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    classes : array-like, shape=(n_classes)</span>
+<span class="sd">        Holds the label for each class.</span>
+<span class="sd">    probas : np.ndarray, shape=(n_X_cand, n_classes)</span>
+<span class="sd">        The probabilistic estimation for each classes and all instance in</span>
+<span class="sd">        candidates.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    score : np.ndarray, shape=(n_X_cand)</span>
+<span class="sd">        The expected average precision score of all instances in candidates.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    [1] Wang, Hanmo, et al. &quot;Uncertainty sampling for action recognition</span>
+<span class="sd">        via maximizing expected average precision.&quot;</span>
+<span class="sd">        IJCAI International Joint Conference on Artificial Intelligence. 2018.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Check if `probas` is valid.</span>
+    <span class="n">probas</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span>
+        <span class="n">probas</span><span class="p">,</span>
+        <span class="n">accept_sparse</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">accept_large_sparse</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;numeric&quot;</span><span class="p">,</span>
+        <span class="n">order</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">force_all_finite</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">allow_nd</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">ensure_min_samples</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">ensure_min_features</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">estimator</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">probas</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;probas are invalid. The sum over axis 1 must be &quot;</span> <span class="s2">&quot;one.&quot;</span>
+        <span class="p">)</span>
+
+    <span class="c1"># Check if `classes` are valid.</span>
+    <span class="n">check_classes</span><span class="p">(</span><span class="n">classes</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">classes</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;`classes` must contain at least 2 entries.&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">classes</span><span class="p">)</span> <span class="o">!=</span> <span class="n">probas</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;`classes` must have the same length as `probas` has &quot;</span> <span class="s2">&quot;columns.&quot;</span>
+        <span class="p">)</span>
+
+    <span class="n">score</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">probas</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">classes</span><span class="p">)):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">probas</span><span class="p">)):</span>
+            <span class="c1"># The i-th column of p without p[j,i]</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">probas</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="p">[</span><span class="n">j</span><span class="p">])</span>
+            <span class="c1"># Sort p in descending order</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flipud</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+
+            <span class="c1"># calculate g_arr</span>
+            <span class="n">g_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)))</span>
+            <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)):</span>
+                <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+                    <span class="n">g_arr</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="n">h</span><span class="p">]</span> <span class="o">=</span> <span class="n">_g</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">g_arr</span><span class="p">)</span>
+
+            <span class="c1"># calculate f_arr</span>
+            <span class="n">f_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+            <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+                    <span class="n">f_arr</span><span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">]</span> <span class="o">=</span> <span class="n">_f</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">f_arr</span><span class="p">,</span> <span class="n">g_arr</span><span class="p">)</span>
+
+            <span class="c1"># calculate score</span>
+            <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)):</span>
+                <span class="n">score</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+=</span> <span class="n">f_arr</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">),</span> <span class="n">t</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="n">t</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">score</span></div>
+
+
+<span class="c1"># g-function for expected_average_precision</span>
+<span class="k">def</span> <span class="nf">_g</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">g_arr</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">t</span> <span class="o">&gt;</span> <span class="n">n</span> <span class="ow">or</span> <span class="p">(</span><span class="n">t</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">t</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">p</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">g_arr</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">t</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">p</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="n">g_arr</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">t</span><span class="p">]</span>
+
+
+<span class="c1"># f-function for expected_average_precision</span>
+<span class="k">def</span> <span class="nf">_f</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">f_arr</span><span class="p">,</span> <span class="n">g_arr</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">t</span> <span class="o">&gt;</span> <span class="n">n</span> <span class="ow">or</span> <span class="p">(</span><span class="n">t</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">t</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="n">p</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">f_arr</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">t</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="o">+</span> <span class="n">p</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">t</span> <span class="o">*</span> <span class="n">g_arr</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">t</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">n</span>
+        <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">p</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="n">f_arr</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">t</span><span class="p">]</span>
+    <span class="p">)</span>
+</pre></div>
+
+              </article>
+              
+
+              
+              <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              </footer>
+              
+          </div>
+          
+      </div>
+    </div>
+
+  
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695"></script>
+
+<footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy; Copyright 2020.<br>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
+</p>
+  </div>
+  
+</div>
+</footer>
+  </body>
+</html>

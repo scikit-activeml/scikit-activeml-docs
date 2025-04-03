@@ -1,0 +1,1129 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Contributing Guide &#8212; scikit-activeml development documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-rendered-html.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'contributing';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://scikit-activeml.github.io/scikit-activeml-docs/latest/_static/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'development';
+        </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="_static/filter_examples.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Probabilistic Active Learning in Datastreams" href="generated/sphinx_gallery_examples/stream/plot-StreamProbabilisticAL-Probabilistic_Active_Learning_in_Datastreams.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="_static/scikit-activeml-logo.png" class="logo__image only-light" alt="Logo image">
+    <img src="_static/scikit-activeml-logo.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+    <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        development  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="index.html">
+                        Home
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="tutorials.html">
+                        Tutorials
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="generated/strategy_overview.html">
+                        Strategy Overview
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="generated/api_reference.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="generated/sphinx_gallery_examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Contributing Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-external" href="https://github.com/scikit-activeml/scikit-activeml/releases">
+                        Changelog
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
+      
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/scikit-activeml/scikit-activeml" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/scikit-activeml" title="PyPI" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fas fa-box"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="index.html">
+                        Home
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="tutorials.html">
+                        Tutorials
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="generated/strategy_overview.html">
+                        Strategy Overview
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="generated/api_reference.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="generated/sphinx_gallery_examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Contributing Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-external" href="https://github.com/scikit-activeml/scikit-activeml/releases">
+                        Changelog
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/scikit-activeml/scikit-activeml" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/scikit-activeml" title="PyPI" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fas fa-box"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+  
+  <div id="rtd-footer-container"></div>
+
+      </div>
+      <main id="main-content" class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <section id="contributing-guide">
+<h1>Contributing Guide<a class="headerlink" href="#contributing-guide" title="Permalink to this heading">#</a></h1>
+<p><strong>scikit-activeml</strong> is a library that implements the most important query
+strategies for active learning. It is built upon the well-known machine
+learning framework <a class="reference external" href="https://scikit-learn.org/stable/">scikit-learn</a>.</p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<p>Our philosophy is to extend the <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> ecosystem with the most relevant
+query strategies for active learning and to implement tools for working with
+partially unlabeled data. An overview of our repository’s structure is provided
+in the image below. Each node represents a class or interface, and the arrows
+illustrate the inheritance hierarchy among them. Dashed nodes indicate
+functionality that is not yet available in our library.</p>
+<a class="reference internal image-reference" href="https://raw.githubusercontent.com/scikit-activeml/scikit-activeml/master/docs/logos/scikit-activeml-structure.png"><img alt="https://raw.githubusercontent.com/scikit-activeml/scikit-activeml/master/docs/logos/scikit-activeml-structure.png" src="https://raw.githubusercontent.com/scikit-activeml/scikit-activeml/master/docs/logos/scikit-activeml-structure.png" style="width: 1000px;" /></a>
+<p>In our package <code class="docutils literal notranslate"><span class="pre">skactiveml</span></code>, there are three major components:
+<code class="docutils literal notranslate"><span class="pre">SkactivemlClassifier</span></code>, <code class="docutils literal notranslate"><span class="pre">SkactivemlRegressor</span></code>, and <code class="docutils literal notranslate"><span class="pre">QueryStrategy</span></code>.
+The classifier and regressor modules are necessary to handle partially unlabeled
+data and to implement active-learning–specific estimators. This way, an active
+learning cycle can be easily implemented starting with zero initial labels.
+Regarding active learning query strategies, we currently differentiate between
+the pool-based paradigm (a large pool of unlabeled samples is available) and the
+stream-based paradigm (unlabeled samples arrive sequentially, i.e., as a stream).
+Furthermore, we distinguish between the single-annotator and multi-annotator
+settings. In the latter case, multiple error-prone annotators are queried to
+provide labels. As a result, an active learning query strategy not only decides
+which samples to query but also which annotators should be queried.</p>
+<section id="thank-you-contributors">
+<h3>Thank You, Contributors!<a class="headerlink" href="#thank-you-contributors" title="Permalink to this heading">#</a></h3>
+<p>A big thank you to all contributors who provide the <strong>scikit-activeml</strong>
+project with new enhancements and bug fixes.</p>
+</section>
+<section id="getting-help">
+<h3>Getting Help<a class="headerlink" href="#getting-help" title="Permalink to this heading">#</a></h3>
+<p>If you have any questions, please reach out to other developers via the
+following channels:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/scikit-activeml/scikit-activeml/issues">GitHub Issues</a></p></li>
+</ul>
+</section>
+<section id="roadmap">
+<h3>Roadmap<a class="headerlink" href="#roadmap" title="Permalink to this heading">#</a></h3>
+<p>Our roadmap is summarized in the issue
+<a class="reference external" href="https://github.com/scikit-activeml/scikit-activeml/issues/145">Upcoming Features</a>.</p>
+</section>
+</section>
+<section id="get-started">
+<h2>Get Started<a class="headerlink" href="#get-started" title="Permalink to this heading">#</a></h2>
+<p>Before you contribute to this project, please follow the steps below.</p>
+<section id="setup-development-environment">
+<h3>Setup Development Environment<a class="headerlink" href="#setup-development-environment" title="Permalink to this heading">#</a></h3>
+<p>There are several ways to create a local Python environment, such as
+<a class="reference external" href="https://www.google.com/search?client=safari&amp;rls=en&amp;q=virtualenv&amp;ie=UTF-8&amp;oe=UTF-8">virtualenv</a>,
+<a class="reference external" href="https://pipenv.pypa.io/en/latest/">pipenv</a>, or
+<a class="reference external" href="https://docs.conda.io/en/latest/miniconda.html">miniconda</a>. One possible
+workflow is to install <code class="docutils literal notranslate"><span class="pre">miniconda</span></code> and use it to create a Python environment.</p>
+<section id="example-with-miniconda">
+<h4>Example with miniconda<a class="headerlink" href="#example-with-miniconda" title="Permalink to this heading">#</a></h4>
+<p>Create a new Python environment named <strong>scikit-activeml</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>scikit-activeml
+</pre></div>
+</div>
+<p>To ensure that the correct environment is active:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>activate<span class="w"> </span>scikit-activeml
+</pre></div>
+</div>
+<p>Then install <code class="docutils literal notranslate"><span class="pre">pip</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>install<span class="w"> </span>pip
+</pre></div>
+</div>
+</section>
+</section>
+<section id="install-dependencies">
+<h3>Install Dependencies<a class="headerlink" href="#install-dependencies" title="Permalink to this heading">#</a></h3>
+<p>Now, install the required project dependencies, which are defined in the
+<code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> and <code class="docutils literal notranslate"><span class="pre">requirements_extra.txt</span></code> (for development) files.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make sure your scikit-activeml Python environment is active!</span>
+<span class="nb">cd</span><span class="w"> </span>&lt;project-root&gt;
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements_extra.txt
+</pre></div>
+</div>
+<p>After the pip installation is successful, you must install <code class="docutils literal notranslate"><span class="pre">pandoc</span></code> and
+<code class="docutils literal notranslate"><span class="pre">ghostscript</span></code> if they are not already installed.</p>
+<section id="example-with-macos-homebrew">
+<h4>Example with macOS (Homebrew)<a class="headerlink" href="#example-with-macos-homebrew" title="Permalink to this heading">#</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>brew<span class="w"> </span>install<span class="w"> </span>pandoc<span class="w"> </span>ghostscript
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="contributing-code">
+<h2>Contributing Code<a class="headerlink" href="#contributing-code" title="Permalink to this heading">#</a></h2>
+<section id="general-coding-conventions">
+<h3>General Coding Conventions<a class="headerlink" href="#general-coding-conventions" title="Permalink to this heading">#</a></h3>
+<p>This library follows the conventions of
+<a class="reference external" href="https://scikit-learn.org/stable/developers/develop.html#coding-guidelines">scikit-learn</a>
+and should conform to the <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">PEP 8</a>
+Style Guide for Python code. For linting, the use of
+<a class="reference external" href="https://flake8.pycqa.org/en/latest/">flake8</a> is recommended. The Python
+package <a class="reference external" href="https://black.readthedocs.io/en/stable/">black</a> provides a simple
+solution for code formatting. For example, you can install it and format your
+code using the following commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>black
+black<span class="w"> </span>--line-length<span class="w"> </span><span class="m">79</span><span class="w"> </span>example_file.py
+</pre></div>
+</div>
+</section>
+<section id="example-for-code-contribution-cycle-c3-and-pull-requests">
+<h3>Example for Code Contribution Cycle (C3) and Pull Requests<a class="headerlink" href="#example-for-code-contribution-cycle-c3-and-pull-requests" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Fork the repository using the GitHub
+<a class="reference external" href="https://github.com/scikit-activeml/scikit-activeml/fork">Fork</a> button.</p></li>
+<li><p>Clone your fork to your local machine:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/&lt;your-username&gt;/scikit-activeml.git
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Create a new branch for your changes from the <code class="docutils literal notranslate"><span class="pre">development</span></code> branch:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>&lt;branch-name&gt;
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>After you have finished implementing the feature, ensure that all tests pass.
+You can run the tests using:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pytest
+</pre></div>
+</div>
+<p>Make sure you have covered all lines with tests.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pytest<span class="w"> </span>--cov<span class="o">=</span>./skactiveml
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>Commit and push your changes.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>&lt;modified-files&gt;
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;&lt;commit-message&gt;&quot;</span>
+git<span class="w"> </span>push
+</pre></div>
+</div>
+<ol class="arabic simple" start="6">
+<li><p>Create a pull request.</p></li>
+</ol>
+</section>
+</section>
+<section id="query-strategies">
+<h2>Query Strategies<a class="headerlink" href="#query-strategies" title="Permalink to this heading">#</a></h2>
+<p>All query strategies inherit from the abstract superclass
+<code class="docutils literal notranslate"><span class="pre">skactiveml.base.QueryStrategy</span></code>, which is implemented in <code class="docutils literal notranslate"><span class="pre">skactiveml/base.py</span></code>.
+This superclass inherits from <code class="docutils literal notranslate"><span class="pre">sklearn.base.Estimator</span></code>. By default, its
+<code class="docutils literal notranslate"><span class="pre">__init__</span></code> method requires a <code class="docutils literal notranslate"><span class="pre">random_state</span></code> parameter, and the abstract
+<code class="docutils literal notranslate"><span class="pre">query</span></code> method enforces the implementation of the sample selection logic.</p>
+<section id="single-annotator-pool-based-query-strategies">
+<h3>Single-annotator Pool-based Query Strategies<a class="headerlink" href="#single-annotator-pool-based-query-strategies" title="Permalink to this heading">#</a></h3>
+<section id="general">
+<span id="general-1"></span><h4>General<a class="headerlink" href="#general" title="Permalink to this heading">#</a></h4>
+<p>Single-annotator pool-based query strategies are stored in the file
+<code class="docutils literal notranslate"><span class="pre">skactiveml/pool/*.py</span></code> and inherit from
+<code class="docutils literal notranslate"><span class="pre">skactiveml.base.SingleAnnotatorPoolQueryStrategy</span></code>.</p>
+<p>The class must implement the following methods:</p>
+<table class="table">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Method</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">__init__</span></code></p></td>
+<td><p>Method for initialization.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">query</span></code></p></td>
+<td><p>Select the samples whose labels are to be queried.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="init-method">
+<span id="init-1"></span><h4><code class="docutils literal notranslate"><span class="pre">__init__</span></code> Method<a class="headerlink" href="#init-method" title="Permalink to this heading">#</a></h4>
+<p>For typical class parameters, we use standard names:</p>
+</section>
+<section id="query-method">
+<span id="query-1"></span><h4><code class="docutils literal notranslate"><span class="pre">query</span></code> Method<a class="headerlink" href="#query-method" title="Permalink to this heading">#</a></h4>
+<p>Required Parameters:</p>
+<p>Returns:</p>
+<section id="general-advice">
+<span id="general-advice-1"></span><h5>General Advice<a class="headerlink" href="#general-advice" title="Permalink to this heading">#</a></h5>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">self._validate_data</span></code> method (implemented in the superclass)
+to check the inputs <code class="docutils literal notranslate"><span class="pre">X</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> only once. Fit the classifier or
+regressor if it is not yet fitted (using <code class="docutils literal notranslate"><span class="pre">fit_if_not_fitted</span></code> from <code class="docutils literal notranslate"><span class="pre">utils</span></code>).
+Calculate utilities via an extra public function. Use the
+<code class="docutils literal notranslate"><span class="pre">simple_batch</span></code> function from <code class="docutils literal notranslate"><span class="pre">utils</span></code> to determine the query indices and set
+the utilities in naive batch query strategies.</p>
+</section>
+</section>
+<section id="testing">
+<span id="testing-1"></span><h4>Testing<a class="headerlink" href="#testing" title="Permalink to this heading">#</a></h4>
+<p>The test classes in <code class="docutils literal notranslate"><span class="pre">skactiveml.pool.test.TestQueryStrategy</span></code> for
+single-annotator pool-based query strategies must inherit from the test
+template <code class="docutils literal notranslate"><span class="pre">skactiveml.tests.template_query_strategy.TemplateSingleAnnotatorPoolQueryStrategy</span></code>.
+As a result, many required functionalities will be automatically tested.
+You must specify the parameters of <code class="docutils literal notranslate"><span class="pre">qs_class</span></code> and <code class="docutils literal notranslate"><span class="pre">init_default_params</span></code> in
+the <code class="docutils literal notranslate"><span class="pre">__init__</span></code> accordingly. Depending on whether the query strategy can handle
+regression, classification, or both, you also need to define the parameters
+<code class="docutils literal notranslate"><span class="pre">query_default_params_reg</span></code> or <code class="docutils literal notranslate"><span class="pre">query_default_params_clf</span></code>. Once the parameters
+are set, adjust the tests until all errors are resolved. Please refer to the test
+template for more detailed information.</p>
+</section>
+</section>
+</section>
+<section id="classifiers">
+<h2>Classifiers<a class="headerlink" href="#classifiers" title="Permalink to this heading">#</a></h2>
+<p>Standard classifier implementations are part of the subpackage
+<code class="docutils literal notranslate"><span class="pre">skactiveml.classifier</span></code>, and classifiers learning from multiple
+annotators are implemented in the subpackage
+<code class="docutils literal notranslate"><span class="pre">skactiveml.classifier.multiannotator</span></code>. Every classifier inherits from
+<code class="docutils literal notranslate"><span class="pre">skactiveml.base.SkactivemlClassifier</span></code> and must implement the following methods:</p>
+<table class="table">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Method</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">__init__</span></code></p></td>
+<td><p>Method for initialization.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fit</span></code></p></td>
+<td><p>Method to fit the classifier for given training data.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">predict_proba</span></code></p></td>
+<td><p>Method predicting class-membership probabilities for
+samples.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">predict</span></code></p></td>
+<td><p>Method predicting class labels for samples. The super
+implementation uses <code class="docutils literal notranslate"><span class="pre">predict_proba</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<colgroup>
+<col style="width: 43%" />
+<col style="width: 57%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">X</span></code></p></td>
+<td><p>Matrix of feature values representing the
+samples for which predictions are made.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<colgroup>
+<col style="width: 43%" />
+<col style="width: 57%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">X</span></code></p></td>
+<td><p>Matrix of feature values representing the
+samples for which predictions are made.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="regressors">
+<h2>Regressors<a class="headerlink" href="#regressors" title="Permalink to this heading">#</a></h2>
+<p>Standard regressor implementations are part of the subpackage
+<code class="docutils literal notranslate"><span class="pre">skactiveml.regressor</span></code>. Every regressor inherits from
+<code class="docutils literal notranslate"><span class="pre">skactiveml.base.SkactivemlRegressor</span></code> and must implement the following methods:</p>
+<table class="table">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Method</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">__init__</span></code></p></td>
+<td><p>Method for initialization.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fit</span></code></p></td>
+<td><p>Method to fit the regressor for given training data.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">predict</span></code></p></td>
+<td><p>Method predicting the target values for samples.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<colgroup>
+<col style="width: 43%" />
+<col style="width: 57%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">X</span></code></p></td>
+<td><p>Matrix of feature values representing the
+samples for which predictions are made.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="annotator-models">
+<h2>Annotator Models<a class="headerlink" href="#annotator-models" title="Permalink to this heading">#</a></h2>
+<p>Annotator models implement the interface
+<code class="docutils literal notranslate"><span class="pre">skactiveml.base.AnnotatorModelMixin</span></code>. These models can estimate the
+performance of annotators for given samples. Each annotator model must implement
+the <code class="docutils literal notranslate"><span class="pre">predict_annotator_perf</span></code> method, which estimates the performance per
+sample for each annotator as a proxy for the quality of the provided annotations.</p>
+<p>Required Parameters:</p>
+<p>Returns:</p>
+<table class="table">
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 82%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">P_annot</span></code></p></td>
+<td><p>The estimated performance per sample-annotator pair.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
+<p>Two of our main goals are to make active learning more understandable and
+improve our framework’s usability. Therefore, we require an example for each
+query strategy. To do so, create a file named
+<code class="docutils literal notranslate"><span class="pre">scikit-activeml/docs/examples/query_strategy.json</span></code>. Currently, we support
+examples for single-annotator pool-based and stream-based query strategies.</p>
+<p>The JSON file supports the following entries:</p>
+</section>
+<section id="testing-and-code-coverage">
+<h2>Testing and Code Coverage<a class="headerlink" href="#testing-and-code-coverage" title="Permalink to this heading">#</a></h2>
+<p>Please ensure test coverage is close to 100%. The current code coverage can be
+viewed <a class="reference external" href="https://app.codecov.io/gh/scikit-activeml/scikit-activeml">here</a>.</p>
+</section>
+<section id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this heading">#</a></h2>
+<p>Guidelines for writing documentation in <code class="docutils literal notranslate"><span class="pre">scikit-activeml</span></code> adopt the
+<a class="reference external" href="https://scikit-learn.org/stable/developers/contributing.html#guidelines-for-writing-documentation">scikit-learn guidelines</a>
+used by scikit-learn.</p>
+<section id="building-the-documentation">
+<h3>Building the Documentation<a class="headerlink" href="#building-the-documentation" title="Permalink to this heading">#</a></h3>
+<p>To ensure your documentation is well formatted, build it using Sphinx:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sphinx-build<span class="w"> </span>-b<span class="w"> </span>html<span class="w"> </span>docs<span class="w"> </span>docs/_build
+</pre></div>
+</div>
+</section>
+</section>
+<section id="issue-tracking">
+<h2>Issue Tracking<a class="headerlink" href="#issue-tracking" title="Permalink to this heading">#</a></h2>
+<p>We use <a class="reference external" href="https://github.com/scikit-activeml/scikit-activeml/issues">GitHub Issues</a>
+as our issue tracker. If you believe you have found a bug in
+<code class="docutils literal notranslate"><span class="pre">scikit-activeml</span></code>, please report it there. Documentation bugs can also be reported.</p>
+<section id="checking-if-a-bug-already-exists">
+<h3>Checking If a Bug Already Exists<a class="headerlink" href="#checking-if-a-bug-already-exists" title="Permalink to this heading">#</a></h3>
+<p>Before filing an issue, please check whether the problem has already been reported.
+This will help determine if the problem is resolved or fixed in an upcoming release, save
+time, and provide guidance on how to fix it. Search the issue database using the search box
+at the top of the issue tracker page (filter by the <code class="docutils literal notranslate"><span class="pre">bug</span></code> label).</p>
+</section>
+<section id="reporting-an-issue">
+<h3>Reporting an Issue<a class="headerlink" href="#reporting-an-issue" title="Permalink to this heading">#</a></h3>
+<p>Use the following labels when reporting an issue:</p>
+<table class="table">
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 70%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Label</p></th>
+<th class="head"><p>Use Case</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">bug</span></code></p></td>
+<td><p>Something isn’t working</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">enhancement</span></code></p></td>
+<td><p>Request for a new feature</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">documentation</span></code></p></td>
+<td><p>Improvement or additions to documentation</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">question</span></code></p></td>
+<td><p>General questions</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+
+
+            </article>
+            
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="generated/sphinx_gallery_examples/stream/plot-StreamProbabilisticAL-Probabilistic_Active_Learning_in_Datastreams.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Probabilistic Active Learning in Datastreams</p>
+      </div>
+  </a>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview">
+   Overview
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#thank-you-contributors">
+     Thank You, Contributors!
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#getting-help">
+     Getting Help
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#roadmap">
+     Roadmap
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#get-started">
+   Get Started
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#setup-development-environment">
+     Setup Development Environment
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example-with-miniconda">
+       Example with miniconda
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#install-dependencies">
+     Install Dependencies
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example-with-macos-homebrew">
+       Example with macOS (Homebrew)
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#contributing-code">
+   Contributing Code
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#general-coding-conventions">
+     General Coding Conventions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-for-code-contribution-cycle-c3-and-pull-requests">
+     Example for Code Contribution Cycle (C3) and Pull Requests
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#query-strategies">
+   Query Strategies
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#single-annotator-pool-based-query-strategies">
+     Single-annotator Pool-based Query Strategies
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#general">
+       General
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#init-method">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         __init__
+        </span>
+       </code>
+       Method
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#query-method">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         query
+        </span>
+       </code>
+       Method
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#general-advice">
+         General Advice
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#testing">
+       Testing
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#classifiers">
+   Classifiers
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#regressors">
+   Regressors
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#annotator-models">
+   Annotator Models
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#examples">
+   Examples
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#testing-and-code-coverage">
+   Testing and Code Coverage
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#documentation">
+   Documentation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#building-the-documentation">
+     Building the Documentation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#issue-tracking">
+   Issue Tracking
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#checking-if-a-bug-already-exists">
+     Checking If a Bug Already Exists
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reporting-an-issue">
+     Reporting an Issue
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+<div class="toc-item">
+  
+<div id="searchbox"></div>
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+<div class="toc-item">
+  
+<div class="tocsection sourcelink">
+    <a href="_sources/contributing.rst.txt">
+        <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+</div>
+
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright 2020.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="theme-version">
+    Built with the
+    <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">
+        PyData Sphinx Theme
+    </a>
+    0.12.0.
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>
